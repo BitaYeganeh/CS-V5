@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <style>
+      .logo-text { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; fill: #0066cc; }
+      .logo-bg { fill: #f0f0f0; }
+    </style>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle class="logo-bg" cx="100" cy="100" r="95"/>
+  
+  <!-- Border -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#0066cc" stroke-width="2"/>
+  
+  <!-- Shield/Security symbol -->
+  <path d="M 100 40 L 140 60 L 140 110 Q 100 140 100 140 Q 60 140 60 110 L 60 60 Z" fill="#0066cc" opacity="0.8"/>
+  <path d="M 100 50 L 130 65 L 130 110 Q 100 135 100 135 Q 70 135 70 110 L 70 65 Z" fill="#0099ff"/>
+  
+  <!-- Check mark inside shield -->
+  <path d="M 85 105 L 95 115 L 115 85" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Text below -->
+  <text x="100" y="165" class="logo-text" text-anchor="middle">CSF</text>
+</svg>

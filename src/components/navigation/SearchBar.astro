@@ -1,0 +1,297 @@
+<div class="relative w-full" data-search-root>
+  <label class="sr-only" for="site-search">Search</label>
+  <input 
+    id="site-search" 
+    type="search" 
+    class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 pr-10 text-base shadow-sm focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500 min-h-[48px]" 
+    placeholder="Search..." 
+    autocomplete="off" 
+    data-search-input 
+  />
+  <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none text-slate-400">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+    </svg>
+  </div>
+  <div 
+    class="hidden absolute top-full left-0 right-0 mt-2 flex-col gap-2 rounded-lg border border-slate-200 bg-white shadow-2xl text-sm max-h-96 overflow-y-auto w-full z-50 p-4" 
+    data-search-panel
+  ></div>
+</div>
+
+<script type="module">
+  // Initialize search on DOM ready
+  function initSearch() {
+    const searchRoot = document.querySelector('[data-search-root]');
+    if (!searchRoot) return;
+    
+    const input = searchRoot.querySelector('[data-search-input]');
+    const panel = searchRoot.querySelector('[data-search-panel]');
+    
+    if (!input || !panel) return;
+    
+    let debounceTimer;
+    
+    function showPopular() {
+      const popular = ['ISO 27001', 'NIS2', 'GDPR', 'SOC 2', 'DORA'];
+      const html = popular.map(term => 
+        `<button type="button" class="px-3 py-2 bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-700 rounded text-xs" data-term="${term}">${term}</button>`
+      ).join('');
+      panel.innerHTML = `<div class="text-xs text-slate-500 mb-2">Popular searches:</div><div class="flex flex-wrap gap-2">${html}</div>`;
+      panel.classList.remove('hidden');
+    }
+    
+    function showResults(data) {
+      if (!data.results || data.results.length === 0) {
+        panel.innerHTML = '<p class="text-slate-500 text-sm">No results found</p>';
+        panel.classList.remove('hidden');
+        return;
+      }
+      
+      const html = data.results.map(r => 
+        `<a href="${r.url}" class="block p-2 hover:bg-slate-100 rounded border border-slate-200 text-xs">
+          <div class="font-medium text-slate-900">${r.title}</div>
+          <div class="text-slate-600 line-clamp-2">${r.content.substring(0, 60)}...</div>
+        </a>`
+      ).join('');
+      
+      panel.innerHTML = `<div class="text-xs text-slate-500 mb-2">${data.total} results</div><div class="space-y-1">${html}</div>`;
+      panel.classList.remove('hidden');
+    }
+    
+    async function performSearch(query) {
+      if (!query.trim()) {
+        showPopular();
+        return;
+      }
+      
+      try {
+        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+        const data = await response.json();
+        showResults(data);
+      } catch (error) {
+        panel.innerHTML = '<p class="text-red-500 text-sm">Search error</p>';
+        panel.classList.remove('hidden');
+      }
+    }
+    
+    // Input listener
+    input.addEventListener('input', (e) => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        performSearch(e.target.value);
+      }, 300);
+    });
+    
+    // Focus listener
+    input.addEventListener('focus', () => {
+      if (input.value.trim()) {
+        performSearch(input.value);
+      } else {
+        showPopular();
+      }
+    });
+    
+    // Click listener for popular searches
+    panel.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-term]');
+      if (btn) {
+        input.value = btn.getAttribute('data-term');
+        performSearch(input.value);
+      }
+    });
+    
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!searchRoot.contains(e.target)) {
+        panel.classList.add('hidden');
+      }
+    });
+    
+    // Escape to close
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        panel.classList.add('hidden');
+        input.blur();
+      }
+    });
+  }
+  
+  // Run on DOMContentLoaded and also on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSearch);
+  } else {
+    initSearch();
+  }
+</script>
+
+<script type="module" is:inline>
+document.addEventListener('DOMContentLoaded', function() {
+  const searchRoot = document.querySelector('[data-search-root]');
+  if (!searchRoot) return;
+  
+  const input = searchRoot.querySelector('[data-search-input]');
+  const panel = searchRoot.querySelector('[data-search-panel]');
+  
+  if (!input || !panel) return;
+  
+  let searchTimeout;
+  
+  async function search(query) {
+    if (!query.trim()) {
+      showPopularSearches();
+      return;
+    }
+    
+    try {
+      const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+      const data = await response.json();
+      showResults(data, query);
+    } catch (error) {
+      showError();
+    }
+  }
+  
+  function showPopularSearches() {
+    const popular = ['ISO 27001', 'NIS2', 'GDPR', 'SOC 2', 'DORA', 'Risk Assessment'];
+    const html = `
+      <div class="p-3 sm:p-4">
+        <p class="text-slate-600 mb-3 font-medium text-sm sm:text-base">Popular searches:</p>
+        <div class="flex flex-wrap gap-2">
+          ${popular.map(term => `
+            <button class="px-3 py-2 bg-slate-100 text-slate-600 rounded-full text-xs sm:text-sm hover:bg-blue-100 hover:text-blue-700 transition-colors touch-manipulation min-h-[44px]" data-search-term="${term}">
+              ${term}
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+    panel.innerHTML = html;
+    panel.classList.remove('hidden');
+  }
+  
+  function showResults(data, query) {
+    if (!data.results || data.results.length === 0) {
+      panel.innerHTML = `
+        <div class="p-3 sm:p-4">
+          <p class="text-slate-500 text-sm sm:text-base">No results found for "${query}"</p>
+        </div>
+      `;
+      panel.classList.remove('hidden');
+      return;
+    }
+    
+    const html = `
+      <div class="p-3 sm:p-4 w-full">
+        <p class="text-slate-500 mb-4 text-xs sm:text-base">${data.total} results for "${query}"</p>
+        <div class="space-y-2 sm:space-y-3 max-h-60 sm:max-h-80 overflow-y-auto">
+          ${data.results.map(result => `
+            <a href="${result.url}" class="block p-3 hover:bg-slate-50 rounded-lg border border-slate-200 transition-colors touch-manipulation">
+              <div class="flex items-start justify-between gap-2">
+                <div class="flex-1 min-w-0">
+                  <h3 class="font-medium text-slate-900 text-xs sm:text-base truncate">${result.title}</h3>
+                  <p class="text-xs sm:text-sm text-slate-600 mt-1 line-clamp-2">${result.content.substring(0, 80)}...</p>
+                  <div class="flex items-center gap-2 mt-2 flex-wrap">
+                    <span class="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded">${result.type}</span>
+                    ${result.framework ? `<span class="px-2 py-1 bg-green-100 text-green-700 text-xs rounded">${result.framework}</span>` : ''}
+                  </div>
+                </div>
+                <svg class="w-4 h-4 text-slate-400 flex-shrink-0 ml-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+            </a>
+          `).join('')}
+        </div>
+      </div>
+    `;
+    panel.innerHTML = html;
+    panel.classList.remove('hidden');
+  }
+  
+  function showError() {
+    panel.innerHTML = `
+      <div class="p-3 sm:p-4">
+        <p class="text-red-500 text-sm sm:text-base">Search temporarily unavailable</p>
+      </div>
+    `;
+    panel.classList.remove('hidden');
+  }
+  
+  // Event listeners
+  input.addEventListener('input', (e) => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      search(e.target.value);
+    }, 300);
+  });
+  
+  input.addEventListener('focus', () => {
+    if (input.value.trim()) {
+      search(input.value);
+    } else {
+      showPopularSearches();
+    }
+  });
+  
+  // Handle popular search clicks with touch support
+  panel.addEventListener('click', (e) => {
+    const searchTerm = e.target.getAttribute('data-search-term');
+    if (searchTerm) {
+      input.value = searchTerm;
+      search(searchTerm);
+      // On mobile, keep focus for better UX
+      if (window.innerWidth < 768) {
+        input.focus();
+      }
+    }
+  });
+  
+  // Enhanced click outside to close with mobile menu support
+  document.addEventListener('click', (e) => {
+    // Don't close if clicking within search components
+    if (searchRoot.contains(e.target)) return;
+    
+    // Don't close if clicking on mobile menu backdrop
+    if (e.target.id === 'mobile-menu-backdrop') return;
+    
+    // Close search panel
+    panel.classList.add('hidden');
+  });
+  
+  // Enhanced keyboard navigation
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      panel.classList.add('hidden');
+      input.blur();
+    } else if (e.key === 'ArrowDown' && !panel.classList.contains('hidden')) {
+      // Focus first result link
+      const firstLink = panel.querySelector('a');
+      if (firstLink) {
+        e.preventDefault();
+        firstLink.focus();
+      }
+    }
+  });
+  
+  // Handle search result keyboard navigation
+  panel.addEventListener('keydown', (e) => {
+    const links = Array.from(panel.querySelectorAll('a'));
+    const currentIndex = links.indexOf(document.activeElement);
+    
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const nextIndex = (currentIndex + 1) % links.length;
+      links[nextIndex].focus();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const prevIndex = currentIndex <= 0 ? links.length - 1 : currentIndex - 1;
+      links[prevIndex].focus();
+    } else if (e.key === 'Escape') {
+      panel.classList.add('hidden');
+      input.focus();
+    }
+  });
+});
+</script>
+

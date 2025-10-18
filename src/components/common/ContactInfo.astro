@@ -1,0 +1,33 @@
+---
+import Icon from "@ui/icons/Icon.astro";
+const { phone, email, website } = Astro.props;
+---
+
+<div class="space-y-3">
+  <h3 class="font-semibold text-slate-700 mb-4">Contact Us</h3>
+  <ul class="space-y-3 text-sm text-slate-600">
+    <li>CyberSecurity Finland</li>
+    <li class="flex items-center gap-x-3 min-h-[44px]">
+      <Icon name="mobile" class="flex-shrink-0" />
+      <a
+        href={"tel:+" + phone.replace(/[^+\d]/g, "")}
+        class="transition-colors duration-300 hover:text-slate-500 touch-manipulation py-2 px-1 rounded">+{phone}</a
+      >
+    </li>
+    <li class="flex items-center gap-x-3 min-h-[44px]">
+      <Icon name="email" class="flex-shrink-0" />
+      <a
+        href={"mailto:" + email}
+        class="transition-colors duration-300 hover:text-slate-500 touch-manipulation py-2 px-1 rounded">{email}</a
+      >
+    </li>
+    <li class="flex items-center gap-x-3 min-h-[44px]">
+      <Icon name="world" class="flex-shrink-0" />
+      <a
+        href={"https://" + website}
+        class="transition-colors duration-300 hover:text-slate-500 touch-manipulation py-2 px-1 rounded">{website}</a
+      >
+    </li>
+  </ul>
+</div>
+

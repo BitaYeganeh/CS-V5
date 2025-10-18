@@ -1,0 +1,329 @@
+---
+import { menu } from '@data/menu.js';
+import Icon from '@ui/icons/Icon.astro';
+import SearchBar from './navigation/SearchBar.astro';
+
+const currentPath = Astro.url.pathname;
+const lang = 'en';
+---
+
+<header class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-[70] transition-all duration-300 ease-in-out backdrop-blur-sm bg-white/95">
+  <!-- Main navigation - enhanced mobile layout -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="h-16 sm:h-14 flex items-center justify-between relative" aria-label="Main navigation" role="navigation">
+      <!-- Logo with enhanced mobile sizing -->
+      <a 
+        href="/" 
+        class="flex items-center px-2.5 py-1.5 rounded-md transition-all duration-500 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 hover:scale-105 group relative overflow-hidden min-h-[44px] min-w-[44px]"
+        aria-label="Go to homepage - Cybersecurity Finland"
+      >
+        <img 
+          src="/logo.png" 
+          alt="Cybersecurity Finland" 
+          class="block h-8 sm:h-7 lg:h-9 w-auto object-contain group-hover:scale-110 group-hover:rotate-2 transition-all duration-500 relative z-10" 
+          decoding="async" 
+          loading="eager" 
+          style="filter: drop-shadow(0 0 1px rgba(0,0,0,0.25)) contrast(1.1) brightness(0.9);" 
+        />
+        <div class="absolute -inset-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-lg blur opacity-0 group-hover:opacity-30 transition-all duration-500"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-teal-50/50 to-cyan-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-md"></div>
+        <div class="absolute inset-0 rounded-md border-2 border-transparent group-hover:border-teal-200 transition-all duration-500"></div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-1 flex-1 justify-center min-w-0">
+        {menu && menu.map(item => {
+          const href = item.href;
+          const isActive = currentPath === href || currentPath.startsWith(href + '/') || (href !== '/' && currentPath.startsWith(href));
+          const hasChildren = item.children && item.children.length > 0;
+          const label = item.label_en; // Always use English labels
+          
+          return <div class="relative group">
+            {hasChildren ? (
+              <>
+                <button class={`flex items-center px-2.5 py-1 text-[12px] font-medium rounded-md transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 transform hover:scale-105 hover:shadow-md hover:-translate-y-0.5 relative overflow-hidden group ${isActive ? 'text-teal-700 bg-teal-50' : 'text-slate-700 hover:text-teal-700 hover:bg-gradient-to-r hover:from-slate-50 hover:to-teal-50/50'}`} aria-haspopup="true" aria-expanded="false">
+                  <span class="relative z-10 group-hover:tracking-wide transition-all duration-300">{label}</span>
+                  <Icon name="chevronDown" class="w-3 h-3 ml-1 transform group-hover:rotate-180 group-hover:scale-110 transition-all duration-500" />
+                  <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-teal-500 to-cyan-500 transition-all duration-500 group-hover:w-full"></div>
+                  <div class="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-md animate-pulse"></div>
+                </button>
+                
+                <div class="absolute left-0 top-full min-w-48 bg-white shadow-xl rounded-lg border border-slate-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 backdrop-blur-sm bg-white/95">
+                  <div class="py-2 relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-teal-50/30 to-cyan-50/20 rounded-lg"></div>
+                    {item.children && item.children.map(sub => {
+                      const subHref = sub.href;
+                      const subLabel = sub.label_en;
+                      return <a href={subHref} class="block px-4 py-1.5 text-[12px] text-slate-700 hover:text-teal-700 hover:bg-slate-50 transition-all duration-300 transform hover:scale-105 hover:translate-x-1 group/dropdown relative overflow-hidden" aria-label={subLabel}>
+                        <span class="relative z-10 group-hover/dropdown:tracking-wide transition-all duration-300">{subLabel}</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-teal-50 to-cyan-50 opacity-0 group-hover/dropdown:opacity-100 transition-opacity duration-300"></div>
+                      </a>;
+                    })}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <a href={href} class={`flex items-center px-2.5 py-1 text-[12px] font-medium rounded-md transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 transform hover:scale-105 hover:shadow-md hover:-translate-y-0.5 relative overflow-hidden group ${isActive ? 'text-teal-700 bg-teal-50' : 'text-slate-700 hover:text-teal-700 hover:bg-gradient-to-r hover:from-slate-50 hover:to-teal-50/50'}`}>
+                <span class="relative z-10 group-hover:tracking-wide transition-all duration-300">{label}</span>
+                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-teal-500 to-cyan-500 transition-all duration-500 group-hover:w-full"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-md animate-pulse"></div>
+              </a>
+            )}
+          </div>;
+        })}
+      </div>
+
+      <!-- Desktop Header Utility: keep search only, remove CTAs -->
+      <div class="hidden lg:flex items-center space-x-3 shrink-0">
+        <div class="w-44 lg:w-48 xl:w-56 transform transition-all duration-500 hover:scale-105 focus-within:scale-105 relative group">
+          <SearchBar placeholder="Search..." />
+          <div class="absolute inset-0 bg-gradient-to-r from-teal-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg pointer-events-none"></div>
+        </div>
+      </div>
+
+      <!-- Enhanced Mobile Controls with better touch targets and animations -->
+      <div class="lg:hidden ml-auto flex items-center">
+        <button 
+          id="mobile-trigger" 
+          aria-controls="mobile-menu" 
+          aria-expanded="false"
+          aria-label="Open navigation menu"
+          class="relative p-3 rounded-xl text-slate-700 hover:bg-slate-50 active:bg-slate-100 transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 min-h-[48px] min-w-[48px] group touch-manipulation"
+          type="button"
+        >
+          <span class="sr-only">Open menu</span>
+          <!-- Enhanced animated hamburger icon -->
+          <div class="w-6 h-6 flex flex-col justify-center items-center space-y-1.5 relative">
+            <span class="hamburger-line block w-6 h-0.5 bg-slate-700 rounded-full transition-all duration-300 ease-out transform origin-center group-hover:bg-teal-600"></span>
+            <span class="hamburger-line block w-6 h-0.5 bg-slate-700 rounded-full transition-all duration-300 ease-out transform origin-center group-hover:bg-teal-600"></span>
+            <span class="hamburger-line block w-6 h-0.5 bg-slate-700 rounded-full transition-all duration-300 ease-out transform origin-center group-hover:bg-teal-600"></span>
+          </div>
+          <!-- Enhanced ripple effect background -->
+          <div class="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 rounded-xl animate-pulse"></div>
+          <!-- Touch feedback ring -->
+          <div class="absolute inset-0 border-2 border-transparent group-active:border-teal-300 rounded-xl transition-all duration-150"></div>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Enhanced Mobile Menu with improved animations and accessibility -->
+<div 
+  id="mobile-menu" 
+  class="lg:hidden fixed inset-0 w-screen h-screen bg-white z-[9999] transform translate-x-full transition-all duration-500 ease-out hidden overflow-y-auto overscroll-contain touch-pan-y backdrop-blur-sm shadow-2xl" 
+  aria-hidden="true" 
+  role="dialog" 
+  aria-modal="true"
+  aria-labelledby="mobile-menu-title"
+  style="will-change: transform; backface-visibility: hidden;"
+>
+  <!-- Enhanced mobile menu header with better spacing and touch targets -->
+  <div class="flex items-center justify-between p-4 pt-[calc(env(safe-area-inset-top)+1rem)] border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white relative overflow-hidden min-h-[80px] touch-manipulation">
+    <h2 id="mobile-menu-title" class="text-xl font-semibold text-slate-900 tracking-wide relative z-10">Navigation Menu</h2>
+    <button 
+      data-close 
+      aria-label="Close navigation menu"
+      class="relative p-3 rounded-xl text-slate-700 hover:bg-slate-100 active:bg-slate-200 transition-all duration-300 transform hover:scale-105 active:scale-95 hover:rotate-90 group overflow-hidden min-h-[48px] min-w-[48px] focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 touch-manipulation"
+      type="button"
+    >
+      <Icon name="close" class="w-6 h-6 group-hover:scale-125 transition-all duration-300 relative z-10" />
+      <div class="absolute inset-0 bg-gradient-to-r from-red-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+      <!-- Touch feedback ring -->
+      <div class="absolute inset-0 border-2 border-transparent group-active:border-red-300 rounded-xl transition-all duration-150"></div>
+    </button>
+    <div class="absolute inset-0 bg-gradient-to-r from-teal-500/5 to-cyan-500/5 opacity-50"></div>
+  </div>
+
+  <!-- Enhanced mobile search with better spacing and touch targets -->
+  <div class="p-4 border-b border-slate-200 bg-slate-50/50 touch-manipulation">
+    <div class="max-w-full">
+      <SearchBar placeholder="Search services, articles..." />
+    </div>
+  </div>
+  
+  <div class="h-full pb-24">
+    <nav class="p-4 space-y-3">
+      {menu && menu.map((item, index) => {
+        const href = item.href;
+        const isActive = currentPath === href || currentPath.startsWith(href + '/') || (href !== '/' && currentPath.startsWith(href));
+        const hasChildren = item.children && item.children.length > 0;
+        const label = item.label_en; // Always use English labels
+        
+        if (hasChildren) {
+          return (
+            <details class="group menu-item-mobile transition-all duration-300 ease-out opacity-0 transform translate-x-4" style={`transition-delay: ${index * 50}ms;`}>
+              <summary class={`flex items-center justify-between p-4 min-h-[56px] rounded-2xl cursor-pointer transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] group/summary relative overflow-hidden touch-manipulation ${
+                isActive ? 'text-teal-700 bg-gradient-to-r from-teal-50 to-cyan-50 shadow-lg' : 'text-slate-700 hover:text-teal-700 bg-white/60 backdrop-blur-sm border border-slate-200/50 hover:bg-gradient-to-r hover:from-teal-50 hover:to-cyan-50 shadow-sm hover:shadow-lg'
+              }`}>
+                <div class="flex items-center space-x-3">
+                  <div class="w-2 h-2 rounded-full bg-gradient-to-r from-teal-500 to-cyan-500 group-hover/summary:scale-125 transition-transform duration-300"></div>
+                  <span class="text-lg font-medium group-hover/summary:tracking-wide transition-all duration-300 relative z-10">{label}</span>
+                </div>
+                <Icon name="chevronDown" class="w-5 h-5 transition-all duration-500 ease-out group-open:rotate-180 group-hover/summary:scale-110" />
+                <div class="absolute inset-0 bg-gradient-to-r from-teal-500/5 to-cyan-500/5 opacity-0 group-hover/summary:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
+                <!-- Touch feedback ring -->
+                <div class="absolute inset-0 border-2 border-transparent group-active:border-teal-300 rounded-2xl transition-all duration-150"></div>
+              </summary>
+              <div class="overflow-hidden">
+                <div class="mt-3 ml-2 space-y-2 bg-gradient-to-br from-slate-50 to-white rounded-xl p-3 border border-slate-200/50">
+                  {item.children && item.children.map((sub, subIndex) => {
+                    const subHref = sub.href;
+                    const subLabel = sub.label_en;
+                    const subIsActive = currentPath.startsWith(subHref);
+                    return (
+                      <a 
+                        href={subHref}
+                        class={`flex items-center space-x-3 p-3 min-h-[48px] rounded-xl text-base transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] group/sub relative overflow-hidden touch-manipulation ${
+                          subIsActive ? 'text-teal-700 bg-gradient-to-r from-teal-50 to-cyan-50 shadow-md' : 'text-slate-600 hover:text-teal-700 hover:bg-gradient-to-r hover:from-teal-50 hover:to-cyan-50 shadow-sm hover:shadow-md'
+                        }`}
+                        style={`transition-delay: ${subIndex * 30}ms;`}
+                      >
+                        <div class="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 group-hover/sub:scale-150 transition-transform duration-300"></div>
+                        <span class="font-medium group-hover/sub:translate-x-1 transition-transform duration-300">{subLabel}</span>
+                        <!-- Touch feedback background -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-cyan-500/10 opacity-0 group-hover/sub:opacity-100 transition-opacity duration-200 rounded-xl"></div>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            </details>
+          );
+        } else {
+          // Simple menu items without children - enhanced mobile styling
+          return (
+            <a 
+              href={href}
+              class={`flex items-center space-x-3 p-4 min-h-[56px] rounded-2xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] group/main relative overflow-hidden touch-manipulation menu-item-mobile opacity-0 translate-x-4 ${
+                isActive ? 'text-teal-700 bg-gradient-to-r from-teal-50 to-cyan-50 shadow-lg' : 'text-slate-700 hover:text-teal-700 bg-white/60 backdrop-blur-sm border border-slate-200/50 hover:bg-gradient-to-r hover:from-teal-50 hover:to-cyan-50 shadow-sm hover:shadow-lg'
+              }`}
+              style={`transition-delay: ${index * 50}ms;`}
+            >
+              <div class="w-2 h-2 rounded-full bg-gradient-to-r from-teal-500 to-cyan-500 group-hover/main:scale-125 transition-transform duration-300"></div>
+              <span class="text-lg font-medium group-hover/main:tracking-wide transition-all duration-300 relative z-10">{label}</span>
+              <!-- Hover gradient overlay -->
+              <div class="absolute inset-0 bg-gradient-to-r from-teal-500/5 to-cyan-500/5 opacity-0 group-hover/main:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
+              <!-- Touch feedback ring -->
+              <div class="absolute inset-0 border-2 border-transparent group-active:border-teal-300 rounded-2xl transition-all duration-150"></div>
+            </a>
+          );
+        }
+      })}
+    </nav>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const trigger = document.getElementById('mobile-trigger') as HTMLElement | null;
+    const menuRoot = document.getElementById('mobile-menu') as HTMLElement | null;
+
+    if (!trigger || !menuRoot) return;
+    let lastFocus: HTMLElement | null = null;
+
+    const focusableSelector = 'a[href], button:not([disabled]), [role="button"], summary, input, select, textarea';
+
+    function trapFocus(e: KeyboardEvent) {
+      if (!menuRoot || menuRoot.classList.contains('hidden')) return;
+      const focusables = Array.from(menuRoot.querySelectorAll(focusableSelector)) as HTMLElement[];
+      const visible = focusables.filter(el => el.offsetParent !== null);
+      if (!visible.length) return;
+      const first = visible[0];
+      const last = visible[visible.length - 1];
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+      if (e.key === 'Escape') closeMenu();
+    }
+
+    function openMenu() {
+      if (!trigger || !menuRoot) return;
+      lastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      menuRoot.classList.remove('hidden');
+      
+      // Enhanced animation sequence with staggered entrance effects
+      requestAnimationFrame(() => { 
+        if (menuRoot) {
+          menuRoot.classList.remove('translate-x-full');
+          
+          // Trigger staggered animations for menu items
+          const menuItems = menuRoot.querySelectorAll('.menu-item-mobile');
+          menuItems.forEach((item, index) => {
+            setTimeout(() => {
+              if (item instanceof HTMLElement) {
+                item.style.opacity = '1';
+                item.style.transform = 'translateX(0)';
+              }
+            }, index * 50 + 200); // Start after slide-in begins
+          });
+        }
+      });
+      
+      trigger.setAttribute('aria-expanded','true');
+      menuRoot.removeAttribute('aria-hidden');
+      document.documentElement.classList.add('overflow-hidden');
+      document.body.classList.add('overflow-hidden');
+      
+      const firstLink = menuRoot.querySelector('a, button, summary') as HTMLElement | null;
+      if (firstLink) setTimeout(() => firstLink.focus(), 300); // Delay to allow animation
+      document.addEventListener('keydown', trapFocus);
+    }
+
+    function closeMenu() {
+      if (!trigger || !menuRoot) return;
+      
+      // Enhanced close animation with fade out
+      const menuItems = menuRoot.querySelectorAll('.menu-item-mobile');
+      menuItems.forEach((item, index) => {
+        if (item instanceof HTMLElement) {
+          setTimeout(() => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(16px)';
+          }, index * 20); // Reverse stagger
+        }
+      });
+      
+      setTimeout(() => {
+        menuRoot.classList.add('translate-x-full');
+      }, menuItems.length * 20 + 100); // Wait for items to fade
+      
+      trigger.setAttribute('aria-expanded','false');
+      menuRoot.setAttribute('aria-hidden','true');
+      document.documentElement.classList.remove('overflow-hidden');
+      document.body.classList.remove('overflow-hidden');
+      document.removeEventListener('keydown', trapFocus);
+      
+      const lf = lastFocus;
+      if (lf) setTimeout(() => lf.focus(), 100);
+      
+      setTimeout(() => { 
+        if (menuRoot && menuRoot.classList.contains('translate-x-full')) {
+          menuRoot.classList.add('hidden');
+          // Reset menu items for next open
+          menuItems.forEach(item => {
+            if (item instanceof HTMLElement) {
+              item.style.opacity = '0';
+              item.style.transform = 'translateX(16px)';
+            }
+          });
+        }
+      }, 600); // Longer delay for smoother close
+    }
+
+    trigger.addEventListener('click', () => {
+      const open = trigger.getAttribute('aria-expanded') === 'true';
+      open ? closeMenu() : openMenu();
+    });
+
+    menuRoot.addEventListener('click', (e: MouseEvent) => {
+      const t = e.target as Element | null;
+      if (!t) return;
+      if (t.closest('[data-close]')) return closeMenu();
+      if (t.closest('a') && !t.closest('details')) return closeMenu();
+    });
+
+    window.addEventListener('resize', () => { if (window.innerWidth >= 1024 && trigger.getAttribute('aria-expanded') === 'true') closeMenu(); });
+  });
+</script>

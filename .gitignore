@@ -1,0 +1,12 @@
+node_modules
+.astro/
+dist/
+.vercel/
+# Local env files
+.env
+.env.*
+# OS junk
+.DS_Store
+# Logs
+*.log
+logs/

@@ -1,0 +1,347 @@
+﻿---
+import Layout from '@/layouts/Layout.astro';
+import HeroSection from '@/components/sections/HeroSection.astro';
+import CTA from '@/components/sections/CTA.astro';
+import Button from '@/components/ui/Button.astro';
+
+const title = "ISO 27001 Services";
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const heroContent = {
+  title: "ISO 27001 - Information Security Management System",
+  subtitle: "Achieve comprehensive information security governance with internationally recognized standards",
+  description: "Cybersecurity.fi specializes in ISO 27001 implementation and certification, providing Finnish organizations with expert guidance to establish robust Information Security Management Systems (ISMS) that protect critical assets, ensure business continuity, and demonstrate commitment to security excellence.",
+  primaryCTA: { text: "Start ISO 27001 Implementation", href: "/contact" },
+  secondaryCTA: { text: "View Our Services", href: "/services/iso-27001" },
+  image: "/images/certifications/iso-27001.svg"
+};
+
+const keyBenefits = [
+  {
+    title: "� Strategic Security Governance",
+    description: "Establish a comprehensive ISMS that aligns with business objectives, ensuring security becomes an integral part of organizational strategy and decision-making processes.",
+    icon: "target"
+  },
+  {
+    title: "Legal & Regulatory Compliance",
+    description: "Meet Finnish and EU regulatory requirements including GDPR, NIS2, and sector-specific regulations while achieving internationally recognized certification status.",
+    icon: "scale"
+  },
+  {
+    title: "Risk-Based Security Framework",
+    description: "Implement systematic risk management processes aligned with ISO 27005, ensuring threats are identified, assessed, and mitigated effectively across all business areas.",
+    icon: "shield"
+  },
+  {
+    title: "Continuous Improvement Culture",
+    description: "Establish ongoing monitoring, measurement, and improvement processes that ensure your ISMS evolves with changing threats and business requirements.",
+    icon: "chart"
+  },
+  {
+    title: "Business Continuity Integration",
+    description: "Align information security controls with business continuity planning, ensuring critical operations remain protected and recoverable during incidents.",
+    icon: "building"
+  },
+  {
+    title: "🤝 Stakeholder Confidence",
+    description: "Demonstrate commitment to information security excellence, building trust with customers, partners, and regulators through internationally recognized certification.",
+    icon: "handshake"
+  }
+];
+
+const implementationSteps = [
+  {
+    phase: "Phase 1: Foundation & Planning �",
+    duration: "Weeks 1-6",
+    activities: [
+      "Comprehensive gap analysis against ISO 27001 requirements",
+      "ISMS scope definition and boundary establishment",
+      "Information asset inventory and classification",
+      "Stakeholder engagement and commitment securing",
+      "Project team formation and training",
+      "Risk assessment methodology selection"
+    ],
+    deliverables: [
+      "Gap Analysis Report with prioritized recommendations",
+      "ISMS Scope Statement and Charter",
+      "Information Asset Register",
+      "Project Plan with resource allocation",
+      "Risk Assessment Framework"
+    ]
+  },
+  {
+    phase: "Phase 2: Risk Management & Control Design ",
+    duration: "Weeks 7-14",
+    activities: [
+      "Comprehensive risk identification and assessment",
+      "Threat modeling and vulnerability analysis",
+      "Control objective mapping and selection",
+      "Statement of Applicability (SoA) development",
+      "Risk treatment plan creation",
+      "Security policy framework development"
+    ],
+    deliverables: [
+      "Risk Assessment Report",
+      "Risk Treatment Plan",
+      "Statement of Applicability",
+      "Information Security Policy Suite",
+      "Control Implementation Roadmap"
+    ]
+  },
+  {
+    phase: "Phase 3: Implementation & Documentation ",
+    duration: "Weeks 15-22",
+    activities: [
+      "Security control implementation across all domains",
+      "Process documentation and procedure creation",
+      "Staff training and awareness programs",
+      "Incident response capability establishment",
+      "Access control and identity management setup",
+      "Monitoring and measurement system deployment"
+    ],
+    deliverables: [
+      "Implemented Security Controls",
+      "Process Documentation Library",
+      "Training Materials and Records",
+      "Incident Response Procedures",
+      "Monitoring and Measurement Framework"
+    ]
+  },
+  {
+    phase: "Phase 4: Testing & Certification Preparation �",
+    duration: "Weeks 23-28",
+    activities: [
+      "Internal audit program execution",
+      "Management review and decision-making",
+      "Corrective action implementation",
+      "Pre-certification readiness assessment",
+      "External audit coordination",
+      "Continuous improvement planning"
+    ],
+    deliverables: [
+      "Internal Audit Reports",
+      "Management Review Minutes",
+      "Corrective Action Plans",
+      "ISO 27001 Certificate",
+      "Continuous Improvement Program"
+    ]
+  }
+];
+
+const industryExamples = [
+  {
+    industry: "� Financial Services",
+    challenge: "Meeting Finnish Financial Supervisory Authority (FIN-FSA) requirements while implementing comprehensive information security governance that addresses both traditional banking risks and emerging fintech challenges.",
+    solution: "Integrated ISMS implementation combining ISO 27001 with sector-specific controls for payment processing, customer data protection, and regulatory reporting. Included specialized modules for digital banking security and cryptocurrency handling.",
+    outcome: "Achieved ISO 27001 certification in 6 months with full FIN-FSA compliance. Reduced security incidents by 78% and improved regulatory examination outcomes. Enhanced customer trust leading to 23% increase in digital service adoption."
+  },
+  {
+    industry: "� Healthcare & MedTech",
+    challenge: "Protecting sensitive patient data under GDPR while ensuring medical device security and maintaining interoperability with existing healthcare systems across multiple facilities.",
+    solution: "Privacy-by-design ISMS implementation with healthcare-specific controls addressing medical device cybersecurity, patient data flows, and clinical research data protection. Integrated with existing quality management systems (ISO 13485).",
+    outcome: "Full GDPR compliance achieved alongside ISO 27001 certification. Zero patient data breaches in 18 months post-implementation. 34% reduction in cybersecurity-related downtime for critical medical systems."
+  },
+  {
+    industry: "� Manufacturing & Industrial",
+    challenge: "Securing industrial control systems (ICS) and operational technology (OT) while maintaining production efficiency and protecting intellectual property in globally distributed manufacturing operations.",
+    solution: "Comprehensive ISMS covering both IT and OT environments with specialized controls for industrial networks, supply chain security, and intellectual property protection. Implemented zero-trust architecture for critical production systems.",
+    outcome: "End-to-end security framework protecting critical manufacturing processes. 89% reduction in OT security incidents and improved supply chain resilience. ISO 27001 certification facilitated expansion into regulated markets."
+  },
+  {
+    industry: "� Professional Services",
+    challenge: "Protecting client confidential information across multiple jurisdictions while enabling secure remote work capabilities and maintaining competitive advantage through information security excellence.",
+    solution: "Client-focused ISMS with strong confidentiality controls, secure collaboration platforms, and robust access management. Implemented continuous monitoring and threat intelligence capabilities for proactive security management.",
+    outcome: "ISO 27001 certification became key differentiator in client acquisition. 45% increase in high-value client engagements and expanded service offerings to security-conscious sectors. Zero client data incidents recorded."
+  }
+];
+
+const relatedServices = [
+  { 
+    title: "NIS2 Directive Compliance", 
+    href: "/frameworks/nis2", 
+    description: "EU cybersecurity directive implementation and essential/important entity compliance" 
+  },
+  { 
+    title: "Risk Assessment Services", 
+    href: "/services/risk-assessments", 
+    description: "Comprehensive risk management aligned with ISO 27005 and Finnish standards" 
+  },
+  { 
+    title: "Security Policy Development", 
+    href: "/services/policy-development", 
+    description: "Strategic governance framework creation and policy management" 
+  },
+  { 
+    title: "Security Audit Preparation", 
+    href: "/services/audit-preparation", 
+    description: "Certification readiness support and internal audit capability building" 
+  },
+  { 
+    title: "SOC 2 Type II Readiness", 
+    href: "/packages/soc2-readiness", 
+    description: "Service organization control framework for cloud and SaaS providers" 
+  },
+  { 
+    title: "GDPR Compliance Integration", 
+    href: "/packages/gdpr-accelerator", 
+    description: "Privacy management system alignment with information security controls" 
+  }
+];
+---
+
+<Layout title={title}>
+  <HeroSection content={heroContent} />
+  
+  <!-- Key Benefits Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-slate-900 mb-6">Why Choose Cybersecurity.fi for ISO 27001</h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          Our comprehensive approach to ISO 27001 implementation ensures your organization achieves certification while building lasting security capabilities that drive business value and competitive advantage.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {keyBenefits.map((benefit) => (
+          <div class="bg-gradient-to-br from-slate-50 to-white p-8 rounded-xl border border-slate-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-4">{benefit.title}</h3>
+            <p class="text-slate-600 leading-relaxed">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Implementation Process Section -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-slate-900 mb-6">Our Proven ISO 27001 Implementation Methodology</h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          Structured 28-week approach ensuring successful ISO 27001 certification while building sustainable security capabilities and maintaining business continuity throughout the implementation process.
+        </p>
+      </div>
+      
+      <div class="space-y-8">
+        {implementationSteps.map((step, index) => (
+          <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-lg">
+            <div class="flex items-start gap-6">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
+                  {index + 1}
+                </div>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-4 mb-4">
+                  <h3 class="text-2xl font-bold text-slate-900">{step.phase}</h3>
+                  <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                    {step.duration}
+                  </span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 class="font-semibold text-slate-900 mb-3">Key Activities</h4>
+                    <ul class="space-y-2">
+                      {step.activities.map((activity) => (
+                        <li class="flex items-center text-slate-600">
+                          <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                          </svg>
+                          {activity}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-slate-900 mb-3">Deliverables</h4>
+                    <ul class="space-y-2">
+                      {step.deliverables.map((deliverable) => (
+                        <li class="flex items-center text-slate-600">
+                          <svg class="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                          </svg>
+                          {deliverable}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Industry Examples Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-slate-900 mb-6">Industry-Specific Success Stories</h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          See how we've helped organizations across different industries achieve ISO 27001 certification while addressing their unique challenges.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {industryExamples.map((example) => (
+          <div class="bg-slate-50 p-8 rounded-xl border border-slate-200">
+            <div class="mb-4">
+              <span class="inline-block bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
+                {example.industry}
+              </span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-4">Challenge</h3>
+            <p class="text-slate-600 mb-6">{example.challenge}</p>
+            <h4 class="text-lg font-semibold text-slate-900 mb-3">Our Solution</h4>
+            <p class="text-slate-600 mb-6">{example.solution}</p>
+            <h4 class="text-lg font-semibold text-slate-900 mb-3">Outcome</h4>
+            <p class="text-slate-600">{example.outcome}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services Section -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-slate-900 mb-6">Related Services</h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          Enhance your cybersecurity posture with our complementary services and frameworks.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {relatedServices.map((service) => (
+          <a href={service.href} class="group">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 hover:shadow-lg transition-shadow group-hover:border-blue-300">
+              <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                {service.title}
+              </h3>
+              <p class="text-slate-600 text-sm">{service.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CTA 
+    title="Ready to Achieve ISO 27001 Certification?"
+    description="Join hundreds of Finnish organizations that have successfully implemented ISO 27001 with our expert guidance. Let's discuss how we can help you build a robust information security management system."
+    primaryCTA={{ text: "Start Your ISO 27001 Journey", href: "/contact" }}
+    secondaryCTA={{ text: "View Our Services", href: "/services/iso-27001" }}
+  />
+</Layout>
+

@@ -1,0 +1,425 @@
+﻿---
+import Layout from '@/layouts/Layout.astro';
+import HeroSection from '@/components/sections/HeroSection.astro';
+import CTA from '@/components/sections/CTA.astro';
+
+const title = "SOC 2 Readiness in 12 Weeks";
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const heroContent = {
+  title: "SOC 2 Readiness in 12 Weeks - Trust Service Excellence",
+  subtitle: "Achieve SOC 2 Type I and Type II readiness with comprehensive trust service criteria implementation and audit preparation",
+  description: "Cybersecurity.fi's SOC 2 Readiness Program delivers complete preparation for successful SOC 2 audits, ensuring your organization meets all Trust Service Criteria while building customer confidence through demonstrated security, availability, processing integrity, confidentiality, and privacy controls.",
+  primaryCTA: { text: "Start SOC 2 Readiness Program", href: "/contact?package=soc2-readiness" },
+  secondaryCTA: { text: "Learn About SOC 2", href: "/frameworks/soc-2" }
+};
+
+const trustServiceCriteria = [
+  {
+    criterion: "Security (Mandatory)",
+    description: "Protection of system resources against unauthorized access, use, disclosure, disruption, modification, or destruction",
+    focus: "Access controls, logical and physical security, network security, system boundaries, data protection, change management, risk assessment and mitigation",
+    weeks: "Weeks 1-4",
+    controlCount: "64 common criteria controls"
+  },
+  {
+    criterion: "Availability (Optional)",
+    description: "System availability for operation and use as committed or agreed, typically 99.9% or higher uptime requirements",
+    focus: "System monitoring, backup procedures, incident response, capacity management, disaster recovery, business continuity planning, performance monitoring",
+    weeks: "Weeks 5-6",
+    controlCount: "13 additional criteria controls"
+  },
+  {
+    criterion: "✓ Processing Integrity (Optional)",
+    description: "System processing is complete, valid, accurate, timely, and authorized to meet the entity's objectives",
+    focus: "Data validation, error handling, processing controls, system monitoring, data accuracy, completeness checks, authorized processing",
+    weeks: "Weeks 7-8",
+    controlCount: "11 additional criteria controls"
+  },
+  {
+    criterion: "�Confidentiality (Optional)",
+    description: "Information designated as confidential is protected as committed or agreed through its collection, use, retention, disclosure, and disposal",
+    focus: "Data classification, encryption, access restrictions, confidentiality agreements, secure disposal, data loss prevention, information handling policies",
+    weeks: "Weeks 9-10",
+    controlCount: "8 additional criteria controls"
+  },
+  {
+    criterion: "Privacy (Optional)",
+    description: "Personal information is collected, used, retained, disclosed, and disposed of in conformity with the entity's privacy notice and criteria set forth in Generally Accepted Privacy Principles (GAPP)",
+    focus: "Privacy policies, consent management, data retention, privacy controls, data subject rights, cross-border transfers, privacy impact assessments",
+    weeks: "Weeks 11-12",
+    controlCount: "19 additional criteria controls"
+  }
+];
+
+const programPhases = [
+  {
+    phase: "Weeks 1-2: Foundation & Assessment ",
+    title: "SOC 2 Readiness Assessment & Scoping",
+    activities: [
+      "Comprehensive current state assessment against all applicable Trust Service Criteria",
+      "Detailed gap analysis with risk-based prioritization and remediation planning",
+      "SOC 2 scoping and system boundary definition with data flow mapping",
+      "Service Organization Description (SOD) development and stakeholder review",
+      "Control environment evaluation with governance framework assessment",
+      "Audit firm selection criteria and procurement support"
+    ],
+    deliverables: [
+      "SOC 2 Readiness Assessment Report with gap analysis",
+      "System Scoping Document and data flow diagrams",
+      "Service Organization Description (SOD) first draft",
+      "Control Environment Assessment with recommendations",
+      "Implementation Roadmap with timeline and resource requirements"
+    ]
+  },
+  {
+    phase: "Weeks 3-6: Security Foundation & Core Controls ",
+    title: "Mandatory Security Controls Design & Implementation",
+    activities: [
+      "Access management and identity governance system implementation",
+      "Logical and physical security controls deployment and configuration",
+      "Network security architecture review and segmentation implementation",
+      "Data protection and encryption mechanisms deployment",
+      "Change management and system development lifecycle controls",
+      "Risk assessment and management framework establishment"
+    ],
+    deliverables: [
+      "Access Management Framework with role-based access controls",
+      "Network Security Architecture with segmentation and monitoring",
+      "Data Protection and Encryption Implementation documentation",
+      "Change Management Procedures with approval workflows",
+      "Risk Management Framework with assessment methodologies"
+    ]
+  },
+  {
+    phase: "Weeks 7-8: Additional Trust Service Criteria Implementation �",
+    title: "Availability, Processing Integrity, Confidentiality & Privacy Controls",
+    activities: [
+      "Availability monitoring and incident response capabilities implementation",
+      "Processing integrity controls for data validation and accuracy",
+      "Confidentiality controls for sensitive information protection",
+      "Privacy controls for personal data handling and GDPR alignment",
+      "Business continuity and disaster recovery planning and testing",
+      "Performance monitoring and capacity management system deployment"
+    ],
+    deliverables: [
+      "Availability Monitoring Dashboard with automated alerting",
+      "Processing Integrity Controls with data validation procedures",
+      "Confidentiality Framework with classification and handling procedures",
+      "Privacy Management Program with consent and rights management",
+      "Business Continuity and Disaster Recovery tested procedures"
+    ]
+  },
+  {
+    phase: "Weeks 9-10: Policy Development & Documentation ",
+    title: "SOC 2 Compliant Policies, Procedures & Evidence Repository",
+    activities: [
+      "Comprehensive SOC 2 compliant policy suite development and approval",
+      "Detailed procedure documentation with step-by-step instructions",
+      "Vendor management and third-party risk assessment procedures",
+      "Evidence collection and documentation management system setup",
+      "Control testing procedures and validation methodologies development",
+      "Management review and approval processes establishment"
+    ],
+    deliverables: [
+      "Complete SOC 2 Policy Suite with board approval",
+      "Detailed Procedure Documentation with control activities",
+      "Vendor Management Framework with assessment criteria",
+      "Evidence Repository with automated collection capabilities",
+      "Control Testing Procedures with validation criteria"
+    ]
+  },
+  {
+    phase: "Weeks 11-12: Audit Preparation & Readiness Validation ",
+    title: "Internal Testing, Audit Preparation & Certification Readiness",
+    activities: [
+      "Comprehensive internal control testing and effectiveness validation",
+      "Evidence collection and organization for auditor review",
+      "Pre-audit readiness assessment with simulated audit procedures",
+      "Auditor selection, engagement, and contract negotiation support",
+      "Staff training for audit interviews and evidence presentation",
+      "Final SOC 2 readiness certification and sign-off procedures"
+    ],
+    deliverables: [
+      "Internal Control Testing Results with effectiveness validation",
+      "Organized Evidence Portfolio ready for auditor review",
+      "Pre-Audit Readiness Assessment with certification",
+      "Auditor Engagement Support with contract review",
+      "Staff Training Materials and audit interview preparation",
+      "SOC 2 Readiness Certification with management sign-off"
+    ]
+  }
+];
+
+const deliverables = [
+  {
+    category: "Documentation",
+    items: [
+      "Service Organization Description (SOD)",
+      "SOC 2 compliant policies and procedures",
+      "Risk assessment and treatment plan",
+      "Control matrix and evidence repository",
+      "Incident response playbooks"
+    ]
+  },
+  {
+    category: "Implementation",
+    items: [
+      "Security control implementations",
+      "Monitoring and alerting systems",
+      "Access management framework",
+      "Data encryption and protection",
+      "Backup and recovery procedures"
+    ]
+  },
+  {
+    category: "Training & Support",
+    items: [
+      "SOC 2 awareness training for staff",
+      "Control owner training sessions",
+      "Auditor interface training",
+      "Ongoing compliance guidance",
+      "Post-audit support (3 months)"
+    ]
+  }
+];
+
+const packageOptions = [
+  {
+    name: "Essential (Security Only)",
+    criteria: ["Security (64 controls)"],
+    suitable: "Small to medium SaaS companies, basic SOC 2 Type I compliance needs",
+    includes: "Security controls, policies, evidence collection, Type I audit prep"
+  },
+  {
+    name: "Standard (Security + Availability)",
+    criteria: ["Security (64 controls)", "Availability (13 controls)"],
+    suitable: "Growing companies with uptime commitments and SLA requirements",
+    includes: "Security + Availability controls, monitoring, incident response, Type I/II prep"
+  },
+  {
+    name: "� Comprehensive (All 5 Criteria)",
+    criteria: ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
+    suitable: "Enterprise organizations, financial services, healthcare, full compliance requirements",
+    includes: "All Trust Service Criteria, comprehensive controls (115+ total), Type I/II audit readiness"
+  },
+  {
+    name: "Enterprise Plus (All Criteria + Ongoing)",
+    criteria: ["All 5 Criteria + 12 months ongoing support"],
+    suitable: "Large enterprises requiring continuous compliance management and support",
+    includes: "Complete implementation + 12 months ongoing compliance monitoring and support"
+  }
+];
+---
+
+<Layout title={title}>
+  <HeroSection content={heroContent} />
+  
+  <!-- Program Overview -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">Why SOC 2 Compliance Matters</h2>
+        <p class="text-lg text-slate-600 max-w-4xl mx-auto">
+          SOC 2 compliance demonstrates to customers and stakeholders that your organization has 
+          implemented robust controls to protect their data. It's essential for B2B SaaS companies, 
+          cloud service providers, and technology companies handling sensitive customer data.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.414-4.414a2 2 0 010 2.828L9.828 17.657a2 2 0 01-2.828 0L3.172 13.828a2 2 0 010-2.828L9.757 4.414a2 2 0 012.828 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2">Customer Trust</h3>
+          <p class="text-slate-600">Build confidence with enterprise customers requiring SOC 2 compliance</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2">Competitive Advantage</h3>
+          <p class="text-slate-600">Differentiate from competitors and win enterprise deals</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2">Business Growth</h3>
+          <p class="text-slate-600">Access larger enterprise markets with compliance requirements</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2">Risk Management</h3>
+          <p class="text-slate-600">Improve security posture and reduce operational risks</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Service Criteria -->
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">SOC 2 Trust Service Criteria</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Our program addresses all five trust service criteria, helping you choose the right combination for your business needs.
+        </p>
+      </div>
+      
+      <div class="space-y-6">
+        {trustServiceCriteria.map((criteria, index) => (
+          <div class="bg-white rounded-lg shadow-lg border border-slate-200 p-8">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
+              <div class="lg:flex-1">
+                <div class="flex items-center mb-2">
+                  <span class="bg-teal-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3">
+                    {criteria.weeks}
+                  </span>
+                  <h3 class="text-xl font-semibold text-slate-900">{criteria.criterion}</h3>
+                </div>
+                <p class="text-slate-600 mb-3">{criteria.description}</p>
+                <p class="text-sm text-slate-500"><strong>Focus Areas:</strong> {criteria.focus}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Implementation Timeline -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">12-Week Implementation Timeline</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Structured approach to achieve SOC 2 readiness with clear milestones and deliverables.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {programPhases.map((phase, index) => (
+          <div class="bg-slate-50 rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <span class="bg-teal-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3">
+                {phase.phase}
+              </span>
+              <h3 class="text-lg font-semibold text-slate-900">{phase.title}</h3>
+            </div>
+            
+            <ul class="space-y-2">
+              {phase.activities.map(activity => (
+                <li class="flex items-start">
+                  <svg class="w-4 h-4 text-teal-600 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-sm text-slate-700">{activity}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables -->
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">Program Deliverables</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Comprehensive deliverables ensuring your organization is fully prepared for SOC 2 audit success.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {deliverables.map(category => (
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-lg font-semibold text-slate-900 mb-4">{category.category}</h3>
+            <ul class="space-y-3">
+              {category.items.map(item => (
+                <li class="flex items-start">
+                  <svg class="w-4 h-4 text-teal-600 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-sm text-slate-700">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Packages -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">SOC 2 Readiness Packages</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Choose the package that best fits your compliance requirements and business needs.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {packageOptions.map((pkg, index) => (
+          <div class={`rounded-lg shadow-lg p-8 ${index === 1 ? 'bg-teal-50 border-2 border-teal-200' : 'bg-white border border-slate-200'}`}>
+            <div class="text-center mb-6">
+              <h3 class="text-xl font-semibold text-slate-900 mb-2">{pkg.name}</h3>
+              <p class="text-sm text-slate-600">{pkg.suitable}</p>
+            </div>
+            
+            <div class="mb-6">
+              <h4 class="text-sm font-semibold text-slate-900 mb-3">Included Criteria:</h4>
+              <ul class="space-y-2">
+                {pkg.criteria.map(criterion => (
+                  <li class="flex items-center">
+                    <svg class="w-4 h-4 text-teal-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-sm text-slate-700">{criterion}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <a href={`/contact?package=soc2-${pkg.name.toLowerCase()}`} 
+               class={`block w-full text-center py-2 px-4 rounded-md font-medium ${
+                 index === 1 
+                   ? 'bg-teal-600 text-white hover:bg-teal-700' 
+                   : 'bg-slate-100 text-slate-900 hover:bg-slate-200'
+               } transition-colors`}>
+              Get Started
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA 
+    title="Ready to Achieve SOC 2 Compliance?"
+    description="Join the growing number of companies that have achieved SOC 2 readiness through our proven 12-week program."
+    primaryCTA={{ text: "Start Your SOC 2 Journey", href: "/contact?package=soc2-readiness" }}
+    secondaryCTA={{ text: "Learn About SOC 2", href: "/frameworks/soc-2" }}
+  />
+</Layout>
+

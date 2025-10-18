@@ -1,0 +1,529 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import HeroSection from '@/components/sections/HeroSection.astro';
+import CTA from '@/components/sections/CTA.astro';
+
+const title = "NIS2 Sprint Program";
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+// Check if this is the homepage to show promotional content
+const isHomepage = Astro.url.pathname === '/' || Astro.url.pathname === '';
+
+const heroContent = {
+  title: isHomepage ? "NIS2 Sprint Program - Rapid Compliance Implementation" : "NIS2 Sprint Program - Rapid Compliance Implementation",
+  subtitle: isHomepage ? "Accelerated 12-week program ensuring full NIS2 Directive compliance for critical infrastructure and essential service providers" : "Accelerated 12-week program for NIS2 Directive compliance",
+  description: isHomepage ? "Cybersecurity.fi's NIS2 Sprint Program delivers comprehensive cybersecurity governance, risk management, and incident response capabilities required under the EU NIS2 Directive. Fast-track your compliance while building resilient cybersecurity foundations that protect critical operations and ensure regulatory alignment." : "NIS2 Sprint Program delivers comprehensive cybersecurity governance, risk management, and incident response capabilities required under the EU NIS2 Directive.",
+  primaryCTA: { text: "Start NIS2 Sprint Program", href: "/contact?package=nis2-sprint" },
+  secondaryCTA: { text: "View NIS2 Framework", href: "/frameworks/nis2" }
+};
+
+const nis2Sectors = [
+  {
+    category: "Essential Services (High Risk)",
+    sectors: [
+      "Energy sector (electricity, oil, gas distribution and supply)",
+      "Transport (air, rail, water, road transport and traffic management)",
+      "Banking and financial market infrastructures",
+      "Health sector (healthcare providers and institutions)",
+      "Drinking water supply and distribution systems",
+      "Digital infrastructure (Internet Exchange Points, DNS, TLD registries)",
+      "ICT service management (B2B) and cloud computing services",
+      "Public administration (central government entities)"
+    ]
+  },
+  {
+    category: "Important Services (Medium-High Risk)", 
+    sectors: [
+      "Digital services (online marketplaces, search engines, social networks)",
+      "Waste water management and treatment facilities",
+      "Chemicals production, processing and distribution",
+      "Food production, processing and distribution",
+      "Manufacturing (medical devices, electronics, machinery, motor vehicles)",
+      "Research organizations and facilities",
+      "Space sector (satellite operations and services)",
+      "Postal and courier services (cross-border operations)"
+    ]
+  },
+  {
+    category: "Size Thresholds",
+    sectors: [
+      "Essential Services: All entities regardless of size",
+      "Important Services: Medium and large enterprises only",
+      "Medium enterprises: 50-249 employees OR €10-50M turnover",
+      "Large enterprises: 250+ employees OR €50M+ turnover",
+      "Public sector entities are generally in scope"
+    ]
+  }
+];
+
+const nis2Requirements = [
+  {
+    area: "Cybersecurity Risk Management",
+    description: "Comprehensive cybersecurity risk assessment and management framework",
+    requirements: [
+      "Policies on risk analysis and information system security",
+      "Incident handling and business continuity management",
+      "Supply chain security and security in network relationships",
+      "Security in acquisition, development and maintenance of systems",
+      "Policies and procedures to assess effectiveness of measures"
+    ],
+    timeline: "Weeks 1-3"
+  },
+  {
+    area: "Technical & Organizational Measures",
+    description: "Implementation of appropriate technical and organizational cybersecurity measures",
+    requirements: [
+      "Multi-factor authentication and secure communication protocols",
+      "Encryption and cryptographic mechanisms for data protection",
+      "Network security measures and network segmentation",
+      "Backup mechanisms and disaster recovery procedures",
+      "Security testing and vulnerability management programs"
+    ],
+    timeline: "Weeks 4-7"
+  },
+  {
+    area: "Incident Reporting & Response",
+    description: "24/7 incident detection, response, and regulatory notification capabilities",
+    requirements: [
+      "Computer security incident detection and response capabilities", 
+      "Early warning notifications to relevant authorities",
+      "24-hour, 72-hour, and one-month incident reporting timelines",
+      "Evidence preservation and forensic investigation protocols",
+      "Recovery procedures and lessons learned documentation"
+    ],
+    timeline: "Weeks 8-10"
+  },
+  {
+    area: "Governance & Human Resources",
+    description: "Corporate governance framework and human resource security measures",
+    requirements: [
+      "Cybersecurity governance policies and management responsibilities",
+      "Regular cybersecurity training and awareness programs",
+      "Access control policies and privileged access management",
+      "Third-party risk assessment and vendor security requirements",
+      "Regular security audits and penetration testing programs"
+    ],
+    timeline: "Weeks 11-12"
+  }
+];
+
+const implementationPhases = [
+  {
+    phase: "Weeks 1-3: Foundation & Assessment",
+    objectives: [
+      "NIS2 scope and applicability determination with legal analysis",
+      "Comprehensive cybersecurity posture assessment and maturity evaluation",
+      "Gap analysis against all NIS2 technical and organizational requirements",
+      "Risk assessment methodology selection and threat landscape analysis",
+      "Governance framework design and management responsibility mapping",
+      "Implementation roadmap development with resource planning"
+    ],
+    deliverables: [
+      "NIS2 Legal Applicability Assessment Report",
+      "Cybersecurity Maturity Assessment with gap analysis",
+      "Risk Assessment Framework and threat modeling documentation", 
+      "Governance Charter with roles and responsibilities",
+      "12-week Implementation Roadmap with resource allocation"
+    ]
+  },
+  {
+    phase: "Weeks 4-7: Technical Implementation & Security Controls",
+    objectives: [
+      "Critical security controls deployment across all infrastructure",
+      "Network architecture review and segmentation implementation",
+      "Identity and access management system enhancement",
+      "Encryption and cryptographic controls implementation",
+      "Backup, disaster recovery, and business continuity setup",
+      "Security monitoring and threat detection capabilities deployment"
+    ],
+    deliverables: [
+      "Enhanced security infrastructure with documented controls",
+      "Network segmentation and microsegmentation implementation",
+      "Multi-factor authentication deployment across all systems",
+      "Security Information and Event Management (SIEM) platform",
+      "Comprehensive backup and disaster recovery procedures",
+      "24/7 security monitoring dashboard and alerting system"
+    ]
+  },
+  {
+    phase: "Weeks 8-10: Incident Response & Regulatory Compliance",
+    objectives: [
+      "Computer Security Incident Response Team (CSIRT) establishment",
+      "Incident detection, classification, and severity assessment procedures",
+      "Regulatory reporting workflows for 24h, 72h, and monthly requirements",
+      "Crisis communication and stakeholder notification protocols",
+      "Evidence preservation and digital forensics capabilities",
+      "Recovery procedures and business continuity activation protocols"
+    ],
+    deliverables: [
+      "Complete Incident Response Plan with CSIRT operational procedures",
+      "Incident Management Platform with automated reporting capabilities",
+      "Regulatory reporting templates and notification workflows",
+      "Crisis Communication Plan with stakeholder contact procedures",
+      "Digital forensics toolkit and evidence preservation protocols",
+      "Business Continuity and Disaster Recovery activation procedures"
+    ]
+  },
+  {
+    phase: "Weeks 11-12: Governance Finalization & Compliance Validation",
+    objectives: [
+      "Cybersecurity governance framework finalization and board approval",
+      "Complete policy and procedure suite development and approval",
+      "Comprehensive staff training and cybersecurity awareness programs",
+      "Third-party vendor assessment and supply chain security protocols",
+      "Compliance testing, validation, and audit readiness preparation",
+      "Continuous monitoring and improvement planning with KPI establishment"
+    ],
+    deliverables: [
+      "Board-approved Cybersecurity Governance Charter and policies",
+      "Complete NIS2 Policy and Procedure Documentation Suite",
+      "Staff Training Programs with completion tracking and certification",
+      "Vendor Assessment Framework and supply chain security requirements",
+      "NIS2 Compliance Validation Report with audit-ready documentation",
+      "Continuous Compliance Monitoring Plan with performance indicators"
+    ]
+  }
+];
+
+const complianceTimeline = [
+  {
+    date: "January 16, 2023",
+    milestone: "NIS2 Directive Entry into Force",
+    status: "Completed",
+    description: "EU NIS2 Directive officially entered into force"
+  },
+  {
+    date: "October 17, 2024", 
+    milestone: "National Implementation Deadline",
+    status: "Completed",
+    description: "EU Member States completed transposition into national law"
+  },
+  {
+    date: "October 17, 2024",
+    milestone: "Compliance Deadline",
+    status: "Active",
+    description: "Organizations must be fully compliant with NIS2 requirements"
+  },
+  {
+    date: "Ongoing",
+    milestone: "Continuous Compliance",
+    status: "Ongoing", 
+    description: "Regular audits, incident reporting, and compliance monitoring"
+  }
+];
+
+const penalties = [
+  {
+    severity: "Administrative Fines",
+    amount: "Up to €10 million or 2% of annual turnover",
+    applies_to: "Essential and important entities",
+    violations: "Non-compliance with cybersecurity measures and incident reporting"
+  },
+  {
+    severity: "Management Sanctions",
+    amount: "Personal liability for management",
+    applies_to: "Senior management and board members",
+    violations: "Failure to fulfill cybersecurity responsibilities"
+  },
+  {
+    severity: "Operational Sanctions",
+    amount: "Suspension of services or operations", 
+    applies_to: "Critical service providers",
+    violations: "Severe non-compliance affecting service availability"
+  }
+];
+
+const packageIncludes = [
+    "Complete NIS2 applicability and gap assessment",
+    "Cybersecurity risk management framework implementation",
+    "Technical security controls deployment and configuration",
+    "24/7 incident response and regulatory reporting system",
+    "Complete regulatory compliance documentation package",
+    "Comprehensive staff training and awareness programs",
+    "Continuous monitoring and threat detection setup",
+    "12 months post-implementation support and maintenance",
+    "Quarterly compliance reviews and improvement recommendations",
+    "Legal compliance verification and audit support",
+    "Annual NIS2 compliance assessment and certification",
+    "24/7 expert support hotline for compliance questions"
+  ]
+---
+
+<Layout title={title}>
+  <HeroSection content={heroContent} />
+  
+  <!-- NIS2 Overview -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">NIS2 Directive: Enhanced Cybersecurity for Europe</h2>
+        <p class="text-lg text-slate-600 max-w-4xl mx-auto">
+          The Network and Information Systems (NIS2) Directive strengthens cybersecurity requirements 
+          across critical sectors in the EU. Our Sprint Program delivers rapid compliance for organizations 
+          that must meet these enhanced cybersecurity obligations.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-red-50 border-l-4 border-red-400 p-6">
+          <div class="flex items-center mb-2">
+            <svg class="w-6 h-6 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <h3 class="text-lg font-semibold text-red-900">Mandatory</h3>
+          </div>
+          <p class="text-red-700">Compliance required for all in-scope essential and important entities</p>
+        </div>
+        
+        <div class="bg-orange-50 border-l-4 border-orange-400 p-6">
+          <div class="flex items-center mb-2">
+            <svg class="w-6 h-6 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+            </svg>
+            <h3 class="text-lg font-semibold text-orange-900">High Penalties</h3>
+          </div>
+          <p class="text-orange-700">Up to €10M or 2% annual turnover for non-compliance</p>
+        </div>
+        
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6">
+          <div class="flex items-center mb-2">
+            <svg class="w-6 h-6 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <h3 class="text-lg font-semibold text-yellow-900">Active Enforcement</h3>
+          </div>
+          <p class="text-yellow-700">National authorities actively monitoring and enforcing compliance</p>
+        </div>
+        
+        <div class="bg-teal-50 border-l-4 border-teal-400 p-6">
+          <div class="flex items-center mb-2">
+            <svg class="w-6 h-6 text-teal-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+            </svg>
+            <h3 class="text-lg font-semibold text-teal-900">Business Benefit</h3>
+          </div>
+          <p class="text-teal-700">Enhanced cybersecurity resilience and competitive advantage</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NIS2 Sectors -->
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">NIS2 Covered Sectors</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          NIS2 applies to essential and important service providers across critical sectors of the economy.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {nis2Sectors.map(category => (
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-xl font-semibold text-slate-900 mb-4">{category.category}</h3>
+            <ul class="space-y-3">
+              {category.sectors.map(sector => (
+                <li class="flex items-start">
+                  <svg class="w-4 h-4 text-teal-600 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-slate-700">{sector}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- NIS2 Requirements -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">NIS2 Cybersecurity Requirements</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Comprehensive cybersecurity measures required under the NIS2 Directive.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {nis2Requirements.map(requirement => (
+          <div class="bg-slate-50 rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <span class="bg-teal-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3">
+                {requirement.timeline}
+              </span>
+              <h3 class="text-lg font-semibold text-slate-900">{requirement.area}</h3>
+            </div>
+            <p class="text-slate-600 mb-4">{requirement.description}</p>
+            
+            <ul class="space-y-2">
+              {requirement.requirements.map(req => (
+                <li class="flex items-start">
+                  <svg class="w-4 h-4 text-teal-600 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-sm text-slate-700">{req}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Implementation Timeline -->
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">8-Week Sprint Implementation</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Accelerated implementation methodology to achieve NIS2 compliance quickly and efficiently.
+        </p>
+      </div>
+      
+      <div class="space-y-8">
+        {implementationPhases.map((phase, index) => (
+          <div class="bg-white rounded-lg shadow-lg border border-slate-200 p-8">
+            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
+              <div class="lg:flex-1">
+                <h3 class="text-xl font-semibold text-slate-900 mb-2">{phase.phase}</h3>
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div>
+                <h4 class="text-sm font-semibold text-slate-900 mb-3">Objectives:</h4>
+                <ul class="space-y-2">
+                  {phase.objectives.map(objective => (
+                    <li class="flex items-start">
+                      <svg class="w-4 h-4 text-teal-600 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                      </svg>
+                      <span class="text-sm text-slate-700">{objective}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div>
+                <h4 class="text-sm font-semibold text-slate-900 mb-3">Deliverables:</h4>
+                <ul class="space-y-2">
+                  {phase.deliverables.map(deliverable => (
+                    <li class="flex items-start">
+                      <svg class="w-4 h-4 text-orange-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" clip-rule="evenodd"></path>
+                      </svg>
+                      <span class="text-sm text-slate-700">{deliverable}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Compliance Timeline -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">NIS2 Compliance Timeline</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Key milestones and deadlines for NIS2 implementation and ongoing compliance.
+        </p>
+      </div>
+      
+      <div class="space-y-6">
+        {complianceTimeline.map((milestone, index) => (
+          <div class="flex items-start">
+            <div class={`w-4 h-4 rounded-full mt-1 mr-4 ${
+              milestone.status === 'Completed' ? 'bg-green-500' : 
+              milestone.status === 'Active' ? 'bg-orange-500' : 'bg-teal-500'
+            }`}></div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-lg font-semibold text-slate-900">{milestone.milestone}</h3>
+                <span class={`px-3 py-1 rounded-full text-xs font-medium ${
+                  milestone.status === 'Completed' ? 'bg-green-100 text-green-800' :
+                  milestone.status === 'Active' ? 'bg-orange-100 text-orange-800' : 'bg-teal-100 text-teal-800'
+                }`}>
+                  {milestone.status}
+                </span>
+              </div>
+              <p class="text-sm text-slate-500 mb-2">{milestone.date}</p>
+              <p class="text-slate-700">{milestone.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Penalties -->
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">NIS2 Penalties & Sanctions</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Understanding the enforcement landscape and potential consequences of non-compliance.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {penalties.map(penalty => (
+          <div class="bg-white rounded-lg shadow-lg p-6 border-l-4 border-red-400">
+            <h3 class="text-lg font-semibold text-slate-900 mb-3">{penalty.severity}</h3>
+            <p class="text-xl font-bold text-red-600 mb-3">{penalty.amount}</p>
+            <p class="text-sm text-slate-600 mb-3"><strong>Applies to:</strong> {penalty.applies_to}</p>
+            <p class="text-sm text-slate-700">{penalty.violations}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Package Includes -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-slate-900 mb-4">NIS2 Sprint Program Includes</h2>
+      <p class="text-lg text-slate-600 mb-8">
+        Comprehensive NIS2 compliance implementation with ongoing support and monitoring.
+      </p>
+      
+      <div class="bg-slate-50 rounded-lg p-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+          {packageIncludes.map(item => (
+            <div class="flex items-start">
+              <svg class="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-slate-700">{item}</span>
+            </div>
+          ))}
+        </div>
+        
+        <div class="mt-8">
+          <a href="/contact?package=nis2-sprint" 
+             class="bg-teal-600 text-white py-3 px-8 rounded-md font-medium hover:bg-teal-700 transition-colors inline-block">
+            Start NIS2 Sprint Program
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA 
+    title="Achieve NIS2 Compliance in Just 8 Weeks"
+    description="Don't wait for enforcement actions. Start your NIS2 compliance journey with our proven Sprint Program methodology."
+    primaryCTA={{ text: "Begin NIS2 Sprint", href: "/contact?package=nis2-sprint" }}
+    secondaryCTA={{ text: "Learn About NIS2", href: "/regulatory/nis2-finland" }}
+  />
+</Layout>
+

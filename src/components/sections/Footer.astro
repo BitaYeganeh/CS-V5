@@ -1,0 +1,135 @@
+---
+import ContactInfo from "@common/ContactInfo.astro";
+import { footerMenu } from '@data/footerMenu.js';
+
+const companyName = "Cyber Security Finland"; // updated branding
+const companyDescription = "Cyber Security Finland empowers organizations to navigate the evolving landscape of cyber threats and compliance. Specializing in Governance, Risk, and Compliance (GRC), we help you meet the latest EU regulations and directives, including NIS2 and the Digital Operational Resilience Act (DORA). Secure your business with expert guidance—visit cybersecurity.fi.";
+const contactDetails = {
+  phone: "+358 44 5040308",
+  email: "info@cybersecurity.fi",
+  website: "www.cybersecurity.fi",
+  businessId: "1234567-8", // Finnish business ID format
+};
+const copyrightYear = new Date().getFullYear();
+const craftedBy = { name: "SelmaSoft", url: "https://selmasoft.com" };
+
+// Lang detection
+const path = Astro.url.pathname;
+const isFi = path.startsWith('/fi');
+const lang = isFi ? 'fi' : 'en';
+const menu = footerMenu[lang];
+---
+
+<footer class="mt-auto w-full bg-linear-to-t/oklch from-teal-200 via-transparent to-white pt-8 pb-6 border-t border-teal-100">
+  <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-6 lg:grid-cols-12">
+      <!-- Brand + Description -->
+      <div class="lg:col-span-4 space-y-6">
+        <a href={isFi ? '/fi' : '/'} class="flex-none text-xl font-semibold text-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500" aria-label={companyName} data-track="footer-brand">
+          <span class="text-teal-700">Cyber</span> Security Finland
+        </a>
+        <p class="text-pretty text-slate-600 text-sm leading-relaxed">
+          {companyDescription}
+        </p>
+        <div class="text-sm text-slate-500 space-y-1" aria-label={isFi ? 'Yhteystiedot' : 'Contact details'}>
+          <div><a href={`tel:${contactDetails.phone}`} class="hover:text-teal-700" data-track="footer-contact" data-contact-type="phone">{contactDetails.phone}</a></div>
+          <div><a href={`mailto:${contactDetails.email}`} class="hover:text-teal-700" data-track="footer-contact" data-contact-type="email">{contactDetails.email}</a></div>
+          <div>{isFi ? 'Y-tunnus' : 'Business ID'}: {contactDetails.businessId}</div>
+        </div>
+      </div>
+
+      <!-- Navigation Columns -->
+      <div class="lg:col-span-8 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        {menu.map(section => (
+          <div class="group" data-footer-group>
+            <h3 class="text-xs font-semibold text-slate-900 mb-2 tracking-wide hidden sm:block uppercase">{section.title}</h3>
+            <button type="button" class="sm:hidden w-full flex items-center justify-between text-left text-xs font-semibold text-slate-900 py-1.5 border-b border-slate-200" aria-expanded="false" data-footer-accordion>
+              <span>{section.title}</span>
+              <span class="ml-2 inline-block transition-transform text-slate-500" aria-hidden>▾</span>
+            </button>
+            <ul class="space-y-1.5 hidden sm:block" data-footer-list>
+              {section.items.map(link => (
+                <li>
+                  <a href={link.href} class="text-xs text-slate-600 hover:text-teal-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 rounded block" data-track="footer-link" data-footer-section={section.title}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+        <!-- Contact info column -->
+        <div class="col-span-full sm:col-span-2 md:col-span-2 lg:col-span-2">
+          <h3 class="text-xs font-semibold text-slate-700 mb-2 uppercase tracking-wide">{isFi ? 'Ota yhteyttä' : 'Get in Touch'}</h3>
+          <div class="text-sm text-slate-600 space-y-2">
+            <p><a href={`tel:${contactDetails.phone}`} class="hover:text-teal-700 transition-colors">{contactDetails.phone}</a></p>
+            <p><a href={`mailto:${contactDetails.email}`} class="hover:text-teal-700 transition-colors">{contactDetails.email}</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-6 border-slate-200" />
+
+    <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between text-sm text-slate-500">
+      <p>&copy; 2024-{copyrightYear} {companyName}. {isFi ? 'Kaikki oikeudet pidätetään.' : 'All rights reserved.'} <span class="block md:inline">{isFi ? 'Toteuttanut' : 'Crafted by'} <a href={craftedBy.url} target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-teal-700">{craftedBy.name}</a></span></p>
+      <p>{isFi ? 'Suomen ja EU:n tietoturva- ja vaatimustenmukaisuuspalvelut' : 'Comprehensive cybersecurity and compliance solutions tailored for Finland and the EU Region'}</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // @ts-nocheck
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('contrast-toggle');
+    const fontButtons = document.querySelectorAll('[data-font]');
+
+    try {
+
+    } catch (e) { /* ignore */ }
+
+    // Analytics for footer
+    function emitFooter(type, extra) {
+      window.dispatchEvent(new CustomEvent('footer:interaction', { detail: { type, ...(extra||{}), ts: Date.now() } }));
+    }
+    document.querySelectorAll('[data-track]')?.forEach(el => {
+      el.addEventListener('click', () => {
+        const type = el.getAttribute('data-track');
+        if (type?.startsWith('footer') || type?.startsWith('pref')) {
+          emitFooter(type, {
+            section: el.getAttribute('data-footer-section'),
+            contactType: el.getAttribute('data-contact-type'),
+            fontSize: el.getAttribute('data-font-size'),
+            state: el.getAttribute('data-state')
+          });
+        }
+      });
+    });
+
+    // Footer mobile accordions
+    const accordions = document.querySelectorAll('[data-footer-accordion]');
+    accordions.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        const list = btn.parentElement?.querySelector('[data-footer-list]');
+        const icon = btn.querySelector('span[aria-hidden]');
+        if (!list) return;
+        if (expanded) {
+          list.classList.add('hidden');
+          btn.setAttribute('aria-expanded','false');
+          icon?.classList.remove('rotate-180');
+        } else {
+          list.classList.remove('hidden');
+          btn.setAttribute('aria-expanded','true');
+          icon?.classList.add('rotate-180');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  @media (min-width: 640px) {
+    [data-footer-list] { display:block !important; }
+  }
+  [data-footer-accordion] span.rotate-180 { transform: rotate(180deg); }
+</style>
+

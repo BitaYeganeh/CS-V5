@@ -1,0 +1,224 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const title = "Our Story";
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const content = {
+  en: {
+    title: "About CSF",
+    subtitle: "Cyber Security Finland - Your Trusted Security Partner",
+    heroDescription: "CSF provides comprehensive cybersecurity services to protect organizations and maintain safe digital environments worldwide.",
+    story: {
+      title: "About CSF",
+      content: "CSF provides Governance, Risk & Compliance Services, Security Testing, Supply Chain Information Risk Management, Secure Code Testing, Security Awareness Training, Virtual CISO Service, Red Team Testing, Information Security Threat & Risk Assessments, Information Security Management Systems, Social Engineering, Gap Analysis, Risk Assessment, PCI DSS, DPA & GDPR, ISO 27001, SOC 2 Type 2, Cyber Essentials and Penetration Testing.",
+      vision: "Our goal is to create and maintain safe environments by providing threat analysis, protection, investigations, consulting, intelligence and security training services everywhere clients go. We created an easier, safer and faster way to collaborate and manage your security and penetration testing projects and programs. CSF's team of seasoned experts customize services based on specific client needs and work around the clock to discreetly prevent security issues before they occur. While our proactive approach sets us apart, our highly respected employees and efficient results have made us the global standard in protective and investigative services worldwide.",
+      growth: "Cybersecurity Support includes Security Assessments, Computer Network Operations and Defense, Security Certification and Accreditation, Perimeter Defense Design and Implementation, and Independent Security Testing and Evaluation. Founded in 2021 and headquartered in Helsinki, Uusimaa, we are a Computer and Network Security company with 11-50 employees specializing in cyber security, risk assessment, risk management, penetration testing, and vulnerability management. Website: https://www.cybersecurity.fi | Phone: +358402211119"
+    },
+    milestones: {
+      title: "Company Information",
+      items: [
+        {
+          year: "2021",
+          title: "Founded",
+          description: "Cyber Security Finland established in Helsinki, Uusimaa"
+        },
+        {
+          year: "11-50",
+          title: "Team Size",
+          description: "Employees specializing in cybersecurity services"
+        },
+        {
+          year: "Finland",
+          title: "Headquarters",
+          description: "Based in Helsinki, serving clients globally"
+        },
+        {
+          year: "Global",
+          title: "Reach",
+          description: "Protective and investigative services worldwide"
+        }
+      ]
+    },
+    values: {
+      title: "Our Specialties",
+      items: [
+        {
+          title: "Cyber Security",
+          description: "Comprehensive cybersecurity solutions and threat management services."
+        },
+        {
+          title: "Risk Assessment",
+          description: "Thorough risk analysis and assessment methodologies for your organization."
+        },
+        {
+          title: "Risk Management",
+          description: "Strategic risk management frameworks and implementation guidance."
+        },
+        {
+          title: "Penetration Testing",
+          description: "Advanced penetration testing and vulnerability assessment services."
+        },
+        {
+          title: "Vulnerability Management",
+          description: "Continuous vulnerability management and remediation strategies."
+        }
+      ]
+    },
+    cta: {
+      title: "Ready to Secure Your Organization?",
+      subtitle: "Contact CSF today to discuss your cybersecurity needs.",
+      primaryButton: "Get Started",
+      secondaryButton: "Visit Our Website"
+    }
+  },
+  fi: {
+    title: "Tarinaamme",
+    subtitle: "Rakennamme Turvallista Digitaalista Tulevaisuutta Vuodesta 2018",
+    heroDescription: "Tutustu matkaan, joka johti meidät Suomen johtavaksi kyberturvallisuuskonsultiksi, joka on omistautunut organisaatioiden suojaamiseen ja kestävien turvallisuusohjelmien rakentamiseen.",
+    story: {
+      title: "Alku",
+      content: "CyberSecurity.fi perustettiin vuonna 2018 yksinkertaisesta mutta voimakkaasta visiosta: tehdä yritystason kyberturvallisuudesta saavutettavissa kaikille organisaatioille. Perustajamme, kokeneet kyberturvallisuusasiantuntijat, joilla on yhteensä vuosikymmeniä kokemusta, tunnistivat kasvavan kuilun monimutkaisten sääntelyvaatimusten ja käytännön toteutuskapasiteetin välillä.",
+      vision: "Kuvittelimme maailman, jossa organisaatiot voisivat navigoida monimutkaisessa kyberturvallisuusmaisemassa luottavaisesti, asiantuntijoiden tuella, jotka ymmärtävät sekä tekniset että liiketoiminnan turvallisuusnäkökohdat.",
+      growth: "Helsingissä, Suomessa, olemme kasvaneet pienestä konsultista Suomen johtavaksi kyberturvallisuuden noudattamisen ja riskien hallinnan konsultiksi. Asiantuntemuksemme kattaa useita kehystöjä, mukaan lukien ISO 27001, NIS2, DORA, GDPR ja SOC 2, palvelemme asiakkaita ympäri Eurooppaa ja sen ulkopuolella."
+    },
+    milestones: {
+      title: "Keskeiset Virstanpylväät",
+      items: [
+        {
+          year: "2018",
+          title: "Perustaminen",
+          description: "Yritys perustettu ISO 27001 -toteutuksen fokuksella"
+        },
+        {
+          year: "2020",
+          title: "Laajentuminen",
+          description: "Lisätty NIS2- ja GDPR-palvelut, tiimi laajennettu 15 ammattilaiseen"
+        },
+        {
+          year: "2022",
+          title: "Kasvu",
+          description: "Käynnistetty DORA-noudattamispalvelut, avattu toimisto Tukholmaan"
+        },
+        {
+          year: "2024",
+          title: "Johtajuus",
+          description: "Tunnustettu Suomen parhaaksi kyberturvallisuuskonsultiksi"
+        }
+      ]
+    },
+    values: {
+      title: "Keskeiset Arvomme",
+      items: [
+        {
+          title: "Erinomaisuus",
+          description: "Pyrimme erinomaisuuteen jokaisessa työsuhteessa, tarjoamalla korkealaatuisia ratkaisuja, jotka ylittävät odotukset."
+        },
+        {
+          title: "Rehellisyys",
+          description: "Toimimme korkeimmilla eettisillä standardeilla ja ylläpidämme täydellistä läpinäkyvyyttä kaikissa vuorovaikutuksissamme."
+        },
+        {
+          title: "Innovaatio",
+          description: "Jatkuvasti innovoimme lähestymistapojamme pysyäksemme kehittyvien kyberturvallisuushaasteiden edellä."
+        },
+        {
+          title: "Kumppanuus",
+          description: "Rakennamme pitkäaikaisia kumppanuuksia asiakkaidemme kanssa, tukien heidän kyberturvallisuusmatkaansa jokaisessa vaiheessa."
+        }
+      ]
+    },
+    cta: {
+      title: "Liity Matkaamme",
+      subtitle: "Valmiina rakentamaan yhdessä turvallisemman tulevaisuuden?",
+      primaryButton: "Aloita",
+      secondaryButton: "Lue Lisää Tiimistämme"
+    }
+  }
+};
+
+const currentContent = content[lang];
+---
+
+<Layout title={title}>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-5xl font-bold mb-6">{currentContent.title}</h1>
+      <p class="text-2xl font-light mb-8">{currentContent.subtitle}</p>
+      <p class="text-xl text-slate-300 max-w-3xl mx-auto">{currentContent.heroDescription}</p>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-slate-900 mb-4">{currentContent.story.title}</h2>
+        </div>
+        
+        <div class="prose prose-lg mx-auto">
+          <p class="text-lg text-slate-600 mb-6">{currentContent.story.content}</p>
+          <p class="text-lg text-slate-600 mb-6">{currentContent.story.vision}</p>
+          <p class="text-lg text-slate-600 mb-6">{currentContent.story.growth}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Milestones Section -->
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">{currentContent.milestones.title}</h2>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {currentContent.milestones.items.map((milestone) => (
+          <div class="text-center p-6 bg-white rounded-lg shadow-md">
+            <div class="text-4xl font-bold text-blue-600 mb-2">{milestone.year}</div>
+            <h3 class="text-xl font-semibold text-slate-900 mb-2">{milestone.title}</h3>
+            <p class="text-slate-600">{milestone.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">{currentContent.values.title}</h2>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {currentContent.values.items.map((value) => (
+          <div class="p-6 border border-slate-200 rounded-lg">
+            <h3 class="text-xl font-semibold text-slate-900 mb-3">{value.title}</h3>
+            <p class="text-slate-600">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-blue-600 text-white">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-4">{currentContent.cta.title}</h2>
+      <p class="text-xl mb-8">{currentContent.cta.subtitle}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-colors">
+          {currentContent.cta.primaryButton}
+        </a>
+        <a href="/about/team" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+          {currentContent.cta.secondaryButton}
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+

@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.nyc_output/
+
+# Production
+# Keep deployments safe when using Vercel CLI by excluding only non-essential files
+
+# Dependencies (Vercel will install from package.json/lockfile)
+node_modules/
+.pnp/
+.pnp.js
+
+# Test coverage artifacts
+coverage/
+.nyc_output/
+
+# Local build output (never upload prebuilt artifacts)
+dist/
+build/
+out/
+.astro/
+.vercel/
+
+# Misc
+.DS_Store
+*.log
+.env.local
+.env.*.local
+*.pem
+
+# Framework caches
+.next/
+.cache/
+.vuepress/
+.docusaurus/
