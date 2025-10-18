@@ -1,0 +1,259 @@
+---
+import Icon from '@ui/icons/Icon.astro';
+import Button from '@ui/Button.astro';
+
+interface Service {
+  title: string;
+  description: string;
+  href: string;
+  category: string;
+  icon?: string;
+  difficulty?: 'beginner' | 'intermediate' | 'advanced';
+  estimatedTime?: string;
+}
+
+interface Props {
+  currentService?: string;
+  category?: string;
+  maxItems?: number;
+  title?: string;
+  className?: string;
+}
+
+const { 
+  currentService = '', 
+  category = '', 
+  maxItems = 3, 
+  title = 'Related Services',
+  className = ''
+} = Astro.props;
+
+// Service recommendations based on current path and category
+const allServices: Service[] = [
+  {
+    title: 'ISO 27001 Fast-Track',
+    description: 'Complete ISMS implementation in 90-120 days with certification support',
+    href: '/packages/iso-27001-fast-track',
+    category: 'Standards',
+    icon: 'shield',
+    difficulty: 'intermediate',
+    estimatedTime: '90-120 days'
+  },
+  {
+    title: 'NIS2 Sprint Program',
+    description: 'Rapid NIS2 compliance preparation with gap analysis and implementation',
+    href: '/packages/nis2-sprint',
+    category: 'Regulatory',
+    icon: 'shield-exclamation',
+    difficulty: 'advanced',
+    estimatedTime: '60-90 days'
+  },
+  {
+    title: 'SOC 2 Readiness',
+    description: 'Type I and Type II preparation with control implementation and testing',
+    href: '/packages/soc2-readiness-12-weeks',
+    category: 'Standards',
+    icon: 'database',
+    difficulty: 'intermediate',
+    estimatedTime: '12 weeks'
+  },
+  {
+    title: 'DORA Program-in-a-Box',
+    description: 'Complete operational resilience framework for financial services',
+    href: '/packages/dora-program-in-a-box',
+    category: 'Financial',
+    icon: 'bank',
+    difficulty: 'advanced',
+    estimatedTime: '75-105 days'
+  },
+  {
+    title: 'GDPR Accelerator',
+    description: 'Privacy compliance and data protection implementation',
+    href: '/packages/gdpr-accelerator',
+    category: 'Privacy',
+    icon: 'lock',
+    difficulty: 'beginner',
+    estimatedTime: '45-60 days'
+  },
+  {
+    title: 'Risk Assessment Services',
+    description: 'Comprehensive cybersecurity risk evaluation and management',
+    href: '/services/risk-and-assessment-services',
+    category: 'Assessment',
+    icon: 'chart-bar',
+    difficulty: 'intermediate',
+    estimatedTime: '2-4 weeks'
+  },
+  {
+    title: 'CISO-as-a-Service',
+    description: 'Virtual CISO services for strategic security leadership',
+    href: '/services/ciso-as-a-service',
+    category: 'Governance',
+    icon: 'user-tie',
+    difficulty: 'advanced',
+    estimatedTime: 'Ongoing'
+  },
+  {
+    title: 'Third-Party Risk Management',
+    description: 'Vendor risk assessment and supply chain security evaluation',
+    href: '/services/third-party-risk-tprm',
+    category: 'Risk',
+    icon: 'network',
+    difficulty: 'intermediate',
+    estimatedTime: '4-6 weeks'
+  }
+];
+
+// Smart recommendation logic
+const currentPath = Astro.url.pathname;
+const recommendedServices = allServices
+  .filter(service => {
+    // Don't show current service
+    if (service.href === currentPath) return false;
+    
+    // Filter by category if specified
+    if (category && service.category.toLowerCase() !== category.toLowerCase()) {
+      return false;
+    }
+    
+    return true;
+  })
+  .slice(0, maxItems);
+
+// Difficulty color mapping
+const difficultyColors = {
+  beginner: 'text-green-600 bg-green-50 border-green-200',
+  intermediate: 'text-blue-600 bg-blue-50 border-blue-200',
+  advanced: 'text-purple-600 bg-purple-50 border-purple-200'
+};
+---
+
+{recommendedServices.length > 0 && (
+  <section class={`bg-gradient-to-br from-slate-50 to-white py-12 ${className}`}>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">{title}</h2>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+          Continue your cybersecurity journey with these complementary services
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {recommendedServices.map((service, index) => (
+          <div 
+            class="group bg-white rounded-xl p-6 shadow-sm hover:shadow-lg border border-slate-200 hover:border-teal-200 transition-all duration-300 transform hover:-translate-y-1"
+            style={`animation-delay: ${index * 150}ms`}
+          >
+            <!-- Service Header -->
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-center gap-3">
+                {service.icon && (
+                  <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors duration-300">
+                    <Icon name={service.icon} class="w-5 h-5 text-teal-600" />
+                  </div>
+                )}
+                <div>
+                  <h3 class="font-semibold text-slate-900 group-hover:text-teal-700 transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <div class="flex items-center gap-2 mt-1">
+                    <span class="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">
+                      {service.category}
+                    </span>
+                    {service.difficulty && (
+                      <span class={`text-xs px-2 py-0.5 rounded-full border ${difficultyColors[service.difficulty]}`}>
+                        {service.difficulty}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service Description -->
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              {service.description}
+            </p>
+
+            <!-- Service Footer -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-xs text-slate-500">
+                {service.estimatedTime && (
+                  <>
+                    <Icon name="clock" class="w-3 h-3" />
+                    <span>{service.estimatedTime}</span>
+                  </>
+                )}
+              </div>
+              
+              <a 
+                href={service.href}
+                class="inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-700 group/link"
+              >
+                <span>Learn more</span>
+                <Icon name="arrow-right" class="w-3 h-3 transform group-hover/link:translate-x-0.5 transition-transform duration-200" />
+              </a>
+            </div>
+
+            <!-- Hover effect overlay -->
+            <div class="absolute inset-0 bg-gradient-to-r from-teal-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none"></div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Call to Action -->
+      <div class="text-center mt-10">
+        <p class="text-slate-600 mb-4">Not sure which service is right for you?</p>
+        <Button 
+          href="/contact?consultation=true" 
+          variant="secondary"
+          className="inline-flex items-center gap-2"
+        >
+          <Icon name="calendar" class="w-4 h-4" />
+          Schedule Free Consultation
+        </Button>
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  /* Staggered animation for cards */
+  .group {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Enhanced hover effects */
+  .group:hover .absolute {
+    transform: scale(1.02);
+  }
+</style>
+
+<script>
+  // Track related service interactions
+  document.addEventListener('DOMContentLoaded', () => {
+    const relatedLinks = document.querySelectorAll('[href^="/packages/"], [href^="/services/"]');
+    
+    relatedLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const serviceName = (e.currentTarget as HTMLAnchorElement).textContent?.trim();
+        
+        // Analytics tracking for related service clicks
+        console.log('Related service clicked:', {
+          service: serviceName,
+          from: window.location.pathname,
+          timestamp: new Date().toISOString()
+        });
+      });
+    });
+  });
+</script>

@@ -1,0 +1,72 @@
+---
+interface Props {
+  showOnPages?: string[];
+  className?: string;
+}
+
+const { showOnPages = [], className = '' } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<div 
+  id="progress-indicator" 
+  class={`fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 to-cyan-500 z-[60] transform origin-left scale-x-0 transition-transform duration-300 ${className}`}
+  style="will-change: transform;"
+></div>
+
+<script>
+  function initProgressIndicator() {
+    const progressBar = document.getElementById('progress-indicator');
+    if (!progressBar) return;
+
+    let ticking = false;
+
+    function updateProgress() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollProgress = scrollTop / scrollHeight;
+      
+      progressBar.style.transform = `scaleX(${Math.min(scrollProgress, 1)})`;
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(updateProgress);
+        ticking = true;
+      }
+    }
+
+    // Show progress bar when user starts scrolling
+    function showProgressBar() {
+      if (window.pageYOffset > 100) {
+        progressBar.style.opacity = '1';
+      } else {
+        progressBar.style.opacity = '0';
+      }
+    }
+
+    function handleScroll() {
+      onScroll();
+      showProgressBar();
+    }
+
+    // Initial setup
+    progressBar.style.opacity = '0';
+    progressBar.style.transition = 'opacity 0.3s ease, transform 0.1s ease';
+
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Cleanup function
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initProgressIndicator);
+
+  // Reinitialize on page navigation (for SPAs)
+  document.addEventListener('astro:page-load', initProgressIndicator);
+</script>

@@ -1,31 +1,175 @@
 ---
+import Icon from '@ui/icons/Icon.astro';
+
 /**
- * Breadcrumbs component
+ * Enhanced Smart Breadcrumbs component with user journey tracking
  * Usage: <Breadcrumbs segments={[{ href: '/', label: 'Home' }, ...]} />
  * If segments not passed, builds from current path.
  */
-interface Crumb { href: string; label: string }
-interface Props { segments?: Crumb[] }
-const { segments } = Astro.props as Props;
+interface Crumb { 
+  href: string; 
+  label: string;
+  icon?: string;
+  category?: string;
+}
+
+interface Props { 
+  segments?: Crumb[];
+  showBackButton?: boolean;
+  showEstimatedTime?: boolean;
+}
+
+const { segments, showBackButton = true, showEstimatedTime = true } = Astro.props as Props;
 const path = Astro.url.pathname.replace(/\/$/, '');
 const isFi = path.startsWith('/fi');
+
+// Enhanced path mapping with icons and categories
+const pathMappings: Record<string, { label: string; icon: string; category: string }> = {
+  'services': { label: 'Services', icon: 'shield-check', category: 'Services' },
+  'packages': { label: 'Packages', icon: 'package', category: 'Solutions' },
+  'industries': { label: 'Industries', icon: 'building', category: 'Industries' },
+  'resources': { label: 'Resources', icon: 'book-open', category: 'Learning' },
+  'frameworks': { label: 'Frameworks', icon: 'grid', category: 'Standards' },
+  'regulatory': { label: 'Regulatory', icon: 'clipboard-list', category: 'Compliance' },
+  'about': { label: 'About', icon: 'users', category: 'Company' },
+  'contact': { label: 'Contact', icon: 'mail', category: 'Support' },
+  'iso-27001': { label: 'ISO 27001', icon: 'shield', category: 'Standard' },
+  'nis2': { label: 'NIS2', icon: 'shield-exclamation', category: 'Regulation' },
+  'gdpr': { label: 'GDPR', icon: 'lock', category: 'Privacy' },
+  'dora': { label: 'DORA', icon: 'bank', category: 'Financial' },
+};
+
 const parts = segments ?? path.split('/').filter(Boolean).reduce((acc: Crumb[], part, idx, arr) => {
   const href = '/' + arr.slice(0, idx + 1).join('/');
-  acc.push({ href, label: decodeURIComponent(part.replace(/-/g,' ')) });
+  const mapping = pathMappings[part] || pathMappings[part.toLowerCase()];
+  const label = mapping?.label || decodeURIComponent(part.replace(/-/g,' '));
+  const icon = mapping?.icon;
+  const category = mapping?.category;
+  
+  acc.push({ href, label, icon, category });
   return acc;
 }, []);
+
 const homeHref = isFi ? '/fi' : '/';
 const homeLabel = isFi ? 'Koti' : 'Home';
+
+// Estimate reading time for current page (rough calculation)
+const estimatedTime = parts.length > 2 ? `${Math.min(parts.length * 2, 10)} min read` : '';
 ---
-<nav aria-label="Breadcrumb" class="mb-4 text-sm">
-  <ol class="flex flex-wrap items-center gap-1 text-slate-500">
-    <li><a href={homeHref} class="hover:text-teal-700">{homeLabel}</a></li>
-    {parts.map(p => (
-      <li class="flex items-center">
-        <span class="mx-1 text-slate-400">/</span>
-        <a href={p.href} class="capitalize hover:text-teal-700 aria-[current=page]:text-slate-700" aria-current={p.href === path ? 'page' : undefined}>{p.label}</a>
-      </li>
-    ))}
-  </ol>
+
+<nav 
+  aria-label="Smart Breadcrumb Navigation" 
+  class="mb-6 bg-white/80 backdrop-blur-sm border-b border-slate-100 sticky top-16 z-40 py-3 transition-all duration-300"
+  data-breadcrumb-nav
+>
+  <div class="flex items-center justify-between">
+    <!-- Breadcrumb Trail -->
+    <div class="flex items-center gap-2 min-w-0 flex-1">
+      {showBackButton && parts.length > 0 && (
+        <button 
+          onclick="history.back()" 
+          class="flex items-center gap-1 px-2 py-1 text-sm text-slate-600 hover:text-teal-700 hover:bg-teal-50 rounded-md transition-colors duration-200 flex-shrink-0"
+          aria-label="Go back"
+        >
+          <Icon name="arrow-left" class="w-4 h-4" />
+          <span class="hidden sm:inline">Back</span>
+        </button>
+      )}
+      
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-slate-500 min-w-0">
+        <!-- Home -->
+        <li class="flex items-center">
+          <a href={homeHref} class="flex items-center gap-1 hover:text-teal-700 transition-colors duration-200 px-2 py-1 rounded-md hover:bg-teal-50">
+            <Icon name="home" class="w-4 h-4" />
+            <span class="hidden sm:inline">{homeLabel}</span>
+          </a>
+        </li>
+        
+        <!-- Path segments -->
+        {parts.map((crumb, index) => {
+          const isLast = index === parts.length - 1;
+          return (
+            <li class="flex items-center min-w-0">
+              <Icon name="chevron-right" class="w-3 h-3 mx-1 text-slate-400 flex-shrink-0" />
+              {isLast ? (
+                <span 
+                  class="flex items-center gap-1 text-slate-900 font-medium px-2 py-1 bg-teal-50 rounded-md max-w-xs truncate"
+                  aria-current="page"
+                  title={crumb.label}
+                >
+                  {crumb.icon && <Icon name={crumb.icon} class="w-4 h-4 text-teal-600 flex-shrink-0" />}
+                  <span class="truncate">{crumb.label}</span>
+                  {crumb.category && (
+                    <span class="hidden lg:inline text-xs text-teal-600 bg-teal-100 px-1.5 py-0.5 rounded-full ml-1 flex-shrink-0">
+                      {crumb.category}
+                    </span>
+                  )}
+                </span>
+              ) : (
+                <a 
+                  href={crumb.href} 
+                  class="flex items-center gap-1 hover:text-teal-700 transition-colors duration-200 px-2 py-1 rounded-md hover:bg-teal-50 max-w-xs truncate"
+                  title={crumb.label}
+                >
+                  {crumb.icon && <Icon name={crumb.icon} class="w-4 h-4 flex-shrink-0" />}
+                  <span class="truncate capitalize">{crumb.label}</span>
+                </a>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+    
+    <!-- Reading time and page info -->
+    {showEstimatedTime && estimatedTime && (
+      <div class="hidden md:flex items-center gap-2 text-xs text-slate-500 flex-shrink-0 ml-4">
+        <Icon name="clock" class="w-3 h-3" />
+        <span>{estimatedTime}</span>
+      </div>
+    )}
+  </div>
+  
+  <!-- Mobile-optimized breadcrumb for small screens -->
+  <div class="sm:hidden mt-2 flex items-center gap-2 text-xs text-slate-600">
+    {parts.length > 1 && (
+      <div class="flex items-center gap-1">
+        <span>in</span>
+        <a href={parts[0]?.href} class="text-teal-600 hover:text-teal-700 font-medium">
+          {parts[0]?.label}
+        </a>
+      </div>
+    )}
+  </div>
 </nav>
+
+<script>
+  // Track user journey for analytics
+  document.addEventListener('DOMContentLoaded', () => {
+    const breadcrumbNav = document.querySelector('[data-breadcrumb-nav]');
+    if (!breadcrumbNav) return;
+
+    // Track breadcrumb clicks for user journey analysis
+    breadcrumbNav.addEventListener('click', (e) => {
+      const link = (e.target as Element)?.closest('a');
+      if (link && link.href) {
+        // You can send this data to your analytics service
+        console.log('Breadcrumb navigation:', {
+          from: window.location.pathname,
+          to: link.href,
+          timestamp: new Date().toISOString()
+        });
+      }
+    });
+
+    // Highlight current section in navigation
+    const currentPath = window.location.pathname;
+    const breadcrumbLinks = breadcrumbNav.querySelectorAll('a[href]');
+    breadcrumbLinks.forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add('bg-teal-100', 'text-teal-800');
+      }
+    });
+  });
+</script>
 

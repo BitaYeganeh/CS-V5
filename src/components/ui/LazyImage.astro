@@ -1,0 +1,222 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'sync' | 'auto';
+  placeholder?: string;
+  sizes?: string;
+  srcset?: string;
+  priority?: boolean;
+  aspectRatio?: string;
+  objectFit?: 'cover' | 'contain' | 'fill' | 'scale-down' | 'none';
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  class: className = '',
+  loading = 'lazy',
+  decoding = 'async',
+  placeholder,
+  sizes,
+  srcset,
+  priority = false,
+  aspectRatio,
+  objectFit = 'cover'
+} = Astro.props;
+
+// Generate placeholder image (blurred, low-quality version)
+const placeholderSrc = placeholder || `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${width || 400} ${height || 300}'%3E%3Crect width='100%25' height='100%25' fill='%23f1f5f9'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='0.3em' fill='%23cbd5e1' font-family='sans-serif' font-size='14'%3ELoading...%3C/text%3E%3C/svg%3E`;
+
+// Responsive image sizes if not provided
+const responsiveSizes = sizes || '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw';
+
+// Priority loading for above-the-fold images
+const imageLoading = priority ? 'eager' : loading;
+const fetchPriority = priority ? 'high' : 'auto';
+---
+
+<div 
+  class={`lazy-image-container relative overflow-hidden ${aspectRatio ? 'aspect-ratio-container' : ''} ${className}`}
+  style={aspectRatio ? `aspect-ratio: ${aspectRatio}` : ''}
+  data-lazy-image
+>
+  <!-- Placeholder -->
+  <img
+    src={placeholderSrc}
+    alt=""
+    class={`lazy-placeholder absolute inset-0 w-full h-full object-${objectFit} transition-opacity duration-300 blur-sm scale-110`}
+    aria-hidden="true"
+    style="will-change: opacity;"
+  />
+  
+  <!-- Actual Image -->
+  <img
+    data-src={src}
+    data-srcset={srcset}
+    src={priority ? src : undefined}
+    srcset={priority ? srcset : undefined}
+    alt={alt}
+    width={width}
+    height={height}
+    sizes={responsiveSizes}
+    loading={imageLoading}
+    decoding={decoding}
+    fetchpriority={fetchPriority}
+    class={`lazy-target w-full h-full object-${objectFit} transition-all duration-500 ${priority ? 'opacity-100' : 'opacity-0'}`}
+    style="will-change: opacity, transform;"
+    onload="this.style.opacity='1'; this.previousElementSibling.style.opacity='0';"
+    onerror="this.style.opacity='0.5'; this.previousElementSibling.style.opacity='0.3';"
+  />
+  
+  <!-- Loading indicator -->
+  <div class="lazy-loader absolute inset-0 flex items-center justify-center bg-slate-100/50 backdrop-blur-sm opacity-100 transition-opacity duration-300">
+    <div class="flex items-center gap-2 text-slate-600">
+      <div class="w-4 h-4 border-2 border-slate-300 border-t-slate-600 rounded-full animate-spin"></div>
+      <span class="text-xs">Loading...</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Intersection Observer for lazy loading
+  function initLazyImages() {
+    const images = document.querySelectorAll('[data-lazy-image]');
+    
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const container = entry.target as HTMLElement;
+            const img = container.querySelector('.lazy-target') as HTMLImageElement;
+            const placeholder = container.querySelector('.lazy-placeholder') as HTMLImageElement;
+            const loader = container.querySelector('.lazy-loader') as HTMLElement;
+            
+            if (img && img.dataset.src) {
+              // Start loading the actual image
+              img.src = img.dataset.src;
+              
+              if (img.dataset.srcset) {
+                img.srcset = img.dataset.srcset;
+              }
+              
+              // Remove loader
+              if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.remove(), 300);
+              }
+              
+              // Handle successful load
+              img.onload = () => {
+                img.style.opacity = '1';
+                img.style.transform = 'scale(1)';
+                if (placeholder) {
+                  placeholder.style.opacity = '0';
+                  setTimeout(() => placeholder.remove(), 500);
+                }
+                
+                // Analytics: track image load performance
+                console.log('Image loaded:', {
+                  src: img.src,
+                  loadTime: performance.now(),
+                  page: window.location.pathname
+                });
+              };
+              
+              // Handle load error
+              img.onerror = () => {
+                img.style.opacity = '0.5';
+                if (placeholder) {
+                  placeholder.style.opacity = '0.3';
+                }
+                if (loader) {
+                  loader.innerHTML = '<div class="text-red-500 text-xs">Failed to load</div>';
+                }
+                
+                console.warn('Image failed to load:', img.dataset.src);
+              };
+              
+              // Stop observing this image
+              imageObserver.unobserve(container);
+            }
+          }
+        });
+      }, {
+        // Load images 50px before they enter viewport
+        rootMargin: '50px 0px',
+        threshold: 0.01
+      });
+      
+      images.forEach(img => imageObserver.observe(img));
+    } else {
+      // Fallback for browsers without IntersectionObserver
+      images.forEach(container => {
+        const img = container.querySelector('.lazy-target') as HTMLImageElement;
+        if (img && img.dataset.src) {
+          img.src = img.dataset.src;
+          if (img.dataset.srcset) {
+            img.srcset = img.dataset.srcset;
+          }
+        }
+      });
+    }
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initLazyImages);
+  
+  // Reinitialize on navigation (for SPAs)
+  document.addEventListener('astro:page-load', initLazyImages);
+</script>
+
+<style>
+  .aspect-ratio-container {
+    position: relative;
+  }
+  
+  .aspect-ratio-container > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Smooth transitions for loading states */
+  .lazy-target {
+    transform: scale(1.02);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .lazy-target[src] {
+    transform: scale(1);
+  }
+  
+  /* Shimmer effect for placeholder */
+  .lazy-placeholder {
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    .lazy-target,
+    .lazy-placeholder,
+    .lazy-loader {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+</style>

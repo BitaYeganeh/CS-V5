@@ -1,0 +1,262 @@
+---
+import Icon from '@ui/icons/Icon.astro';
+
+interface Props {
+  title: string;
+  className?: string;
+  defaultOpen?: boolean;
+  level?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  variant?: 'default' | 'card' | 'minimal';
+  showIcon?: boolean;
+  collapsedHeight?: string;
+}
+
+const {
+  title,
+  className = '',
+  defaultOpen = false,
+  level = 'h3',
+  variant = 'default',
+  showIcon = true,
+  collapsedHeight = 'auto'
+} = Astro.props;
+
+const HeadingTag = level;
+const sectionId = `collapsible-${Math.random().toString(36).substr(2, 9)}`;
+const contentId = `content-${sectionId}`;
+
+// Variant styles
+const variantClasses = {
+  default: 'border border-slate-200 rounded-lg bg-white',
+  card: 'bg-gradient-to-br from-white to-slate-50 border border-slate-200 rounded-xl shadow-sm',
+  minimal: 'border-b border-slate-200'
+};
+
+const headerClasses = {
+  default: 'p-4 hover:bg-slate-50',
+  card: 'p-5 hover:bg-white/50',
+  minimal: 'py-3 hover:bg-slate-50'
+};
+
+const contentClasses = {
+  default: 'px-4 pb-4',
+  card: 'px-5 pb-5',
+  minimal: 'py-3'
+};
+---
+
+<div 
+  class={`collapsible-section ${variantClasses[variant]} transition-all duration-300 ${className}`}
+  data-collapsible
+  data-variant={variant}
+>
+  <!-- Header / Trigger -->
+  <button
+    type="button"
+    class={`w-full text-left flex items-center justify-between gap-3 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 ${headerClasses[variant]}`}
+    aria-expanded={defaultOpen}
+    aria-controls={contentId}
+    data-collapsible-trigger
+    id={sectionId}
+  >
+    <HeadingTag class="font-semibold text-slate-900 flex-1 min-w-0 text-left m-0">
+      {title}
+    </HeadingTag>
+    
+    {showIcon && (
+      <div class="flex-shrink-0">
+        <Icon 
+          name="chevron-down" 
+          class={`w-5 h-5 text-slate-500 transition-transform duration-300 ${defaultOpen ? 'rotate-180' : ''}`}
+          data-chevron
+        />
+      </div>
+    )}
+  </button>
+
+  <!-- Collapsible Content -->
+  <div
+    id={contentId}
+    class={`collapsible-content overflow-hidden transition-all duration-300 ease-out ${contentClasses[variant]}`}
+    style={defaultOpen ? 'max-height: none; opacity: 1;' : 'max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0;'}
+    aria-labelledby={sectionId}
+    data-collapsible-content
+  >
+    <div class="collapsible-inner" data-collapsible-inner>
+      <slot />
+    </div>
+  </div>
+</div>
+
+<script>
+  function initCollapsibleSections() {
+    const sections = document.querySelectorAll('[data-collapsible]');
+    
+    sections.forEach(section => {
+      const trigger = section.querySelector('[data-collapsible-trigger]') as HTMLButtonElement;
+      const content = section.querySelector('[data-collapsible-content]') as HTMLElement;
+      const chevron = section.querySelector('[data-chevron]') as HTMLElement;
+      const inner = section.querySelector('[data-collapsible-inner]') as HTMLElement;
+      
+      if (!trigger || !content || !inner) return;
+      
+      // Set initial state
+      const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+      
+      if (!isExpanded) {
+        content.style.maxHeight = '0';
+        content.style.opacity = '0';
+        content.style.paddingTop = '0';
+        content.style.paddingBottom = '0';
+      }
+      
+      function toggleSection() {
+        const isCurrentlyExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        const shouldExpand = !isCurrentlyExpanded;
+        
+        // Update aria-expanded
+        trigger.setAttribute('aria-expanded', shouldExpand.toString());
+        
+        // Animate chevron
+        if (chevron) {
+          chevron.style.transform = shouldExpand ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+        
+        if (shouldExpand) {
+          // Expanding
+          const targetHeight = inner.scrollHeight;
+          content.style.maxHeight = `${targetHeight}px`;
+          content.style.opacity = '1';
+          content.style.paddingTop = '';
+          content.style.paddingBottom = '';
+          
+          // Remove max-height after animation completes
+          setTimeout(() => {
+            if (trigger.getAttribute('aria-expanded') === 'true') {
+              content.style.maxHeight = 'none';
+            }
+          }, 300);
+        } else {
+          // Collapsing
+          const currentHeight = content.scrollHeight;
+          content.style.maxHeight = `${currentHeight}px`;
+          
+          // Force reflow then collapse
+          requestAnimationFrame(() => {
+            content.style.maxHeight = '0';
+            content.style.opacity = '0';
+            content.style.paddingTop = '0';
+            content.style.paddingBottom = '0';
+          });
+        }
+        
+        // Analytics tracking
+        console.log('Collapsible section toggled:', {
+          title: trigger.textContent?.trim(),
+          expanded: shouldExpand,
+          page: window.location.pathname
+        });
+      }
+      
+      // Click handler
+      trigger.addEventListener('click', toggleSection);
+      
+      // Keyboard navigation
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleSection();
+        }
+      });
+      
+      // Touch feedback for mobile
+      if ('ontouchstart' in window) {
+        trigger.addEventListener('touchstart', () => {
+          trigger.style.transform = 'scale(0.98)';
+        }, { passive: true });
+        
+        trigger.addEventListener('touchend', () => {
+          trigger.style.transform = 'scale(1)';
+        }, { passive: true });
+      }
+      
+      // Auto-expand on focus for accessibility
+      trigger.addEventListener('focus', () => {
+        if (window.innerWidth <= 768) { // Mobile only
+          const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+          if (!isExpanded) {
+            // Small delay to avoid accidental expansion
+            setTimeout(() => {
+              if (document.activeElement === trigger) {
+                toggleSection();
+              }
+            }, 500);
+          }
+        }
+      });
+    });
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initCollapsibleSections);
+  
+  // Reinitialize on navigation
+  document.addEventListener('astro:page-load', initCollapsibleSections);
+</script>
+
+<style>
+  /* Enhanced transitions for smooth animations */
+  .collapsible-content {
+    will-change: max-height, opacity, padding;
+  }
+  
+  .collapsible-section[data-variant="card"]:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Mobile-specific styles */
+  @media (max-width: 768px) {
+    .collapsible-section {
+      margin-bottom: 0.5rem;
+    }
+    
+    .collapsible-section[data-variant="minimal"] {
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+    }
+    
+    /* Touch feedback */
+    .touch-active {
+      transform: scale(0.98);
+      transition: transform 0.1s ease;
+    }
+  }
+  
+  /* Reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .collapsible-content,
+    [data-chevron] {
+      transition: none !important;
+    }
+  }
+  
+  /* Focus styles for better accessibility */
+  [data-collapsible-trigger]:focus-visible {
+    outline: 2px solid #0d9488;
+    outline-offset: 2px;
+  }
+  
+  /* Print styles - expand all sections */
+  @media print {
+    .collapsible-content {
+      max-height: none !important;
+      opacity: 1 !important;
+      padding: inherit !important;
+    }
+    
+    [data-chevron] {
+      display: none;
+    }
+  }
+</style>

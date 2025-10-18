@@ -3,6 +3,8 @@ import Header from '../components/Header.astro';
 import MobileMenu from '../components/MobileMenu.astro';
 import Footer from '@/components/sections/Footer.astro';
 import Breadcrumbs from '@/components/navigation/Breadcrumbs.astro';
+import ProgressIndicator from '@/components/ui/ProgressIndicator.astro';
+import QuickActionSidebar from '@/components/ui/QuickActionSidebar.astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
 import '@styles/global.css';
 import { initMobileEnhancements } from '@utils/mobile-enhancements';
@@ -164,26 +166,67 @@ const fiUrl = `${siteUrl}/fi${basePath === '/' ? '' : basePath}`;
   </head>
   <body class="bg-off-white">
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white px-4 py-2 rounded shadow">Skip to content</a>
+    
+    <!-- Progress Indicator -->
+    <ProgressIndicator />
+    
     <Header />
     <MobileMenu />
+    
+    <!-- Enhanced Breadcrumbs -->
     {(() => {
       if (path === '' || path === '/' || path === '/fi') return null;
-      return <div class="bg-white border-b border-slate-200"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2"><Breadcrumbs /></div></div>;
+      return <Breadcrumbs />;
     })()}
+    
     <main id="main" class="min-h-[60vh]">
       <slot />
     </main>
+    
+    <!-- Quick Action Sidebar -->
+    <QuickActionSidebar />
+    
     <Footer />
     <SpeedInsights />
 
-    <!-- Mobile enhancements script -->
+    <!-- Enhanced initialization script -->
     <script>
       // Only run on client-side
       if (typeof window !== 'undefined') {
+        // Initialize mobile enhancements
         import('@utils/mobile-enhancements').then(mod => {
           mod.initMobileEnhancements();
         }).catch(err => {
           // Silently fail for non-critical enhancement
+        });
+
+        // Register Service Worker for performance optimization
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+              .then(registration => {
+                console.log('SW registered: ', registration);
+              })
+              .catch(registrationError => {
+                console.log('SW registration failed: ', registrationError);
+              });
+          });
+        }
+
+        // Performance monitoring
+        window.addEventListener('load', () => {
+          // Send performance metrics to service worker
+          if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+            navigator.serviceWorker.controller.postMessage({
+              type: 'PERFORMANCE_METRICS',
+              metrics: {
+                loadTime: performance.now(),
+                domContentLoaded: performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart,
+                networkTime: performance.timing.responseEnd - performance.timing.fetchStart,
+                page: window.location.pathname
+              }
+            });
+          }
         });
       }
     </script>

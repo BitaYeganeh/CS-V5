@@ -1,0 +1,331 @@
+---
+import Icon from '@ui/icons/Icon.astro';
+
+interface Props {
+  showOnPages?: string[];
+  className?: string;
+}
+
+const { showOnPages = [], className = '' } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+// Contact options with different priorities
+const contactOptions = [
+  {
+    type: 'consultation',
+    label: 'Free Consultation',
+    icon: 'calendar',
+    href: '/contact?consultation=true',
+    description: 'Book a 30-min call',
+    priority: 'high',
+    color: 'teal'
+  },
+  {
+    type: 'quote',
+    label: 'Get Quote',
+    icon: 'calculator',
+    href: '/contact?quote=true',
+    description: 'Pricing for your needs',
+    priority: 'medium',
+    color: 'blue'
+  },
+  {
+    type: 'phone',
+    label: 'Call Us',
+    icon: 'phone',
+    href: 'tel:+358445040308',
+    description: '+358 44 504 0308',
+    priority: 'high',
+    color: 'green'
+  },
+  {
+    type: 'email',
+    label: 'Email',
+    icon: 'mail',
+    href: 'mailto:info@cybersecurity.fi',
+    description: 'info@cybersecurity.fi',
+    priority: 'medium',
+    color: 'purple'
+  },
+  {
+    type: 'chat',
+    label: 'Live Chat',
+    icon: 'chat',
+    href: '#',
+    description: 'Available 9-17 EET',
+    priority: 'low',
+    color: 'orange'
+  }
+];
+
+// Quick resources based on current page
+const quickResources = [
+  {
+    title: 'Compliance Checklist',
+    icon: 'clipboard-list',
+    href: '/resources/guides/nis2-compliance-checklist',
+    description: 'Free download'
+  },
+  {
+    title: 'ROI Calculator',
+    icon: 'calculator',
+    href: '/tools/roi-calculator',
+    description: 'Calculate savings'
+  },
+  {
+    title: 'Assessment Tool',
+    icon: 'shield-check',
+    href: '/tools/security-assessment',
+    description: '5-min evaluation'
+  }
+];
+---
+
+<div 
+  id="quick-action-sidebar"
+  class={`fixed right-0 top-1/2 -translate-y-1/2 z-50 transition-all duration-500 ease-out ${className}`}
+  style="will-change: transform;"
+>
+  <!-- Sidebar Toggle Button -->
+  <button
+    id="sidebar-toggle"
+    class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full bg-teal-600 hover:bg-teal-700 text-white p-3 rounded-l-lg shadow-lg transition-all duration-300 group"
+    aria-label="Open quick actions"
+    type="button"
+  >
+    <Icon name="help-circle" class="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
+  </button>
+
+  <!-- Sidebar Panel -->
+  <div 
+    id="sidebar-panel"
+    class="bg-white shadow-2xl border-l border-slate-200 w-80 h-auto max-h-[80vh] overflow-y-auto transform translate-x-full transition-all duration-500 ease-out"
+  >
+    <!-- Header -->
+    <div class="sticky top-0 bg-gradient-to-r from-teal-600 to-cyan-600 text-white p-4 z-10">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="font-semibold text-lg">Need Help?</h3>
+          <p class="text-teal-100 text-sm">Get in touch instantly</p>
+        </div>
+        <button 
+          id="sidebar-close"
+          class="p-1 hover:bg-white/20 rounded-lg transition-colors duration-200"
+          aria-label="Close quick actions"
+          type="button"
+        >
+          <Icon name="x" class="w-5 h-5" />
+        </button>
+      </div>
+    </div>
+
+    <!-- Contact Options -->
+    <div class="p-4 space-y-3">
+      <h4 class="font-medium text-slate-900 text-sm uppercase tracking-wide mb-3">Contact Options</h4>
+      
+      {contactOptions.filter(option => option.priority === 'high').map(option => (
+        <a 
+          href={option.href}
+          class={`flex items-center gap-3 p-3 rounded-lg border-2 border-${option.color}-200 bg-${option.color}-50 hover:bg-${option.color}-100 transition-all duration-200 group`}
+          data-contact-type={option.type}
+        >
+          <div class={`w-10 h-10 bg-${option.color}-100 rounded-lg flex items-center justify-center group-hover:bg-${option.color}-200 transition-colors duration-200`}>
+            <Icon name={option.icon} class={`w-5 h-5 text-${option.color}-600`} />
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class={`font-medium text-${option.color}-900`}>{option.label}</div>
+            <div class={`text-sm text-${option.color}-700`}>{option.description}</div>
+          </div>
+          <Icon name="arrow-right" class={`w-4 h-4 text-${option.color}-600 transform group-hover:translate-x-0.5 transition-transform duration-200`} />
+        </a>
+      ))}
+
+      <!-- Secondary Contact Options -->
+      <details class="group">
+        <summary class="cursor-pointer text-sm text-slate-600 hover:text-slate-900 py-2 flex items-center gap-2">
+          <Icon name="chevron-down" class="w-4 h-4 transform group-open:rotate-180 transition-transform duration-200" />
+          More contact options
+        </summary>
+        <div class="space-y-2 mt-2 pl-6">
+          {contactOptions.filter(option => option.priority !== 'high').map(option => (
+            <a 
+              href={option.href}
+              class="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-50 transition-colors duration-200 group/item"
+              data-contact-type={option.type}
+            >
+              <Icon name={option.icon} class="w-4 h-4 text-slate-500 group-hover/item:text-slate-700" />
+              <div class="flex-1 min-w-0">
+                <div class="text-sm font-medium text-slate-700 group-hover/item:text-slate-900">{option.label}</div>
+                <div class="text-xs text-slate-500">{option.description}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </details>
+    </div>
+
+    <!-- Quick Resources -->
+    <div class="border-t border-slate-200 p-4 space-y-3">
+      <h4 class="font-medium text-slate-900 text-sm uppercase tracking-wide mb-3">Quick Resources</h4>
+      
+      {quickResources.map(resource => (
+        <a 
+          href={resource.href}
+          class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all duration-200 group"
+        >
+          <div class="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center group-hover:bg-slate-200 transition-colors duration-200">
+            <Icon name={resource.icon} class="w-4 h-4 text-slate-600" />
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="font-medium text-slate-900 text-sm">{resource.title}</div>
+            <div class="text-xs text-slate-500">{resource.description}</div>
+          </div>
+          <Icon name="external-link" class="w-3 h-3 text-slate-400" />
+        </a>
+      ))}
+    </div>
+
+    <!-- Current Page Context -->
+    <div class="border-t border-slate-200 p-4 bg-slate-50">
+      <div class="text-xs text-slate-600 text-center">
+        <Icon name="info" class="w-3 h-3 inline mr-1" />
+        Questions about this page? We're here to help!
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.getElementById('quick-action-sidebar');
+    const toggle = document.getElementById('sidebar-toggle');
+    const panel = document.getElementById('sidebar-panel');
+    const close = document.getElementById('sidebar-close');
+    
+    if (!sidebar || !toggle || !panel || !close) return;
+
+    let isOpen = false;
+
+    function openSidebar() {
+      isOpen = true;
+      panel.style.transform = 'translateX(0)';
+      toggle.style.opacity = '0';
+      toggle.setAttribute('aria-expanded', 'true');
+      
+      // Track sidebar open
+      console.log('Quick action sidebar opened', {
+        page: window.location.pathname,
+        timestamp: new Date().toISOString()
+      });
+    }
+
+    function closeSidebar() {
+      isOpen = false;
+      panel.style.transform = 'translateX(100%)';
+      toggle.style.opacity = '1';
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    // Event listeners
+    toggle.addEventListener('click', openSidebar);
+    close.addEventListener('click', closeSidebar);
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        closeSidebar();
+      }
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (isOpen && !sidebar.contains(e.target as Node)) {
+        closeSidebar();
+      }
+    });
+
+    // Track contact method usage
+    panel.addEventListener('click', (e) => {
+      const contactLink = (e.target as Element).closest('[data-contact-type]');
+      if (contactLink) {
+        const contactType = contactLink.getAttribute('data-contact-type');
+        console.log('Contact method used:', {
+          type: contactType,
+          page: window.location.pathname,
+          timestamp: new Date().toISOString()
+        });
+      }
+    });
+
+    // Auto-show on scroll (delayed engagement)
+    let hasShownAuto = false;
+    let scrollTimer: NodeJS.Timeout;
+
+    function checkAutoShow() {
+      if (hasShownAuto || isOpen) return;
+      
+      const scrollPercent = window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight);
+      
+      // Show after user has scrolled 50% of the page and spent some time
+      if (scrollPercent > 0.5) {
+        scrollTimer = setTimeout(() => {
+          if (!isOpen && !hasShownAuto) {
+            toggle.style.background = '#f59e0b'; // Orange highlight
+            toggle.style.animation = 'pulse 2s infinite';
+            hasShownAuto = true;
+            
+            // Reset after 10 seconds
+            setTimeout(() => {
+              toggle.style.background = '';
+              toggle.style.animation = '';
+            }, 10000);
+          }
+        }, 3000); // 3 second delay
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimer);
+      checkAutoShow();
+    }, { passive: true });
+
+    // Show on exit intent (mouse leaving viewport)
+    document.addEventListener('mouseleave', (e) => {
+      if (e.clientY <= 0 && !hasShownAuto && !isOpen) {
+        openSidebar();
+        hasShownAuto = true;
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Custom scrollbar for sidebar */
+  #sidebar-panel {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(148 163 184) rgb(241 245 249);
+  }
+
+  #sidebar-panel::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  #sidebar-panel::-webkit-scrollbar-track {
+    background: rgb(241 245 249);
+  }
+
+  #sidebar-panel::-webkit-scrollbar-thumb {
+    background: rgb(148 163 184);
+    border-radius: 3px;
+  }
+
+  #sidebar-panel::-webkit-scrollbar-thumb:hover {
+    background: rgb(100 116 139);
+  }
+
+  /* Pulse animation for attention */
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+  }
+</style>
