@@ -1,23 +1,33 @@
----
-import Layout from '@/layouts/Layout.astro';
 
-const title = 'Risk & Assessment Services';
-const tagline = 'Identify, assess, and manage your security risks';
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const title = lang === 'fi' ? 'Riskienhallinta ja Arviointipalvelut' : 'Risk & Assessment Services';
+const tagline = lang === 'fi'
+  ? 'Tunnista, arvioi ja hallitse kyberturvariskejä'
+  : 'Identify, assess, and manage your security risks';
+
 const items = [
   {
-    title: 'Risk Management',
+    title: lang === 'fi' ? 'Riskienhallinta' : 'Risk Management',
     href: '/services/risk-and-assessment-services/risk-management',
-    description: 'Design and operate risk management frameworks, registers, KRIs, and reporting to decision makers.'
+    description: lang === 'fi'
+      ? 'Suunnittele ja operoi riskienhallintokehykset, rekisterit, KRI:t ja raportointi päätöksentekijöille.'
+      : 'Design and operate risk management frameworks, registers, KRIs, and reporting to decision makers.'
   },
   {
-    title: 'Risk Assessments',
+    title: lang === 'fi' ? 'Riskien arviointi' : 'Risk Assessments',
     href: '/services/risk-and-assessment-services/risk-assessments',
-    description: 'Perform technical and organizational risk assessments using proven methodologies.'
+    description: lang === 'fi'
+      ? 'Suorita teknisiä ja organisaatioon liittyviä riskien arviointeja todistetuin metodologioin.'
+      : 'Perform technical and organizational risk assessments using proven methodologies.'
   },
   {
-    title: 'Third-Party Risk',
+    title: lang === 'fi' ? 'Kolmannen osapuolen riski' : 'Third-Party Risk',
     href: '/services/risk-and-assessment-services/third-party-risk',
-    description: 'Establish TPRM lifecycle, due diligence, contractual controls, and continuous monitoring.'
+    description: lang === 'fi'
+      ? 'Perusta TPRM elinkaari, due diligence, sopimusohjaukset ja jatkuva valvonta.'
+      : 'Establish TPRM lifecycle, due diligence, contractual controls, and continuous monitoring.'
   }
 ];
 ---
@@ -37,7 +47,9 @@ const items = [
           <a href={s.href} class="group block rounded-xl border border-slate-200 p-6 bg-white hover:bg-slate-50 transition-colors">
             <h3 class="text-lg font-semibold text-slate-900 group-hover:text-teal-700">{s.title}</h3>
             <p class="mt-2 text-slate-600 text-sm">{s.description}</p>
-            <span class="inline-flex items-center mt-4 text-teal-700 font-medium">Read more →</span>
+            <span class="inline-flex items-center mt-4 text-teal-700 font-medium">
+              {lang === 'fi' ? 'Lue lisää →' : 'Read more →'}
+            </span>
           </a>
         ))}
       </div>

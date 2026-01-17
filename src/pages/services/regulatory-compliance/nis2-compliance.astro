@@ -1,27 +1,48 @@
----
-import Layout from '@/layouts/Layout.astro';
 import HeroSection from '@/components/sections/HeroSection.astro';
 import CTA from '@/components/sections/CTA.astro';
 
-const title = 'NIS2 Compliance Services';
-const description = 'Comprehensive NIS2 Directive compliance for essential and important entities with expert Finnish regulatory guidance.';
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const title = lang === 'fi' ? 'NIS2 Yhteensopivuuspalvelut' : 'NIS2 Compliance Services';
+const description = lang === 'fi'
+  ? 'Kattava NIS2-direktiivin yhteensopivuus oleellisille ja tärkeille toimijoille asiantuntevan suomalaisen sääntelyohjauksen avulla.'
+  : 'Comprehensive NIS2 Directive compliance for essential and important entities with expert Finnish regulatory guidance.';
 
 // Check if this is the homepage to show promotional content
 const isHomepage = Astro.url.pathname === '/' || Astro.url.pathname === '';
 
 const heroContent = {
-  title: isHomepage ? "NIS2 Directive Compliance Services" : "NIS2 Compliance Services",
-  subtitle: isHomepage ? "Comprehensive EU cybersecurity compliance for critical infrastructure and essential service providers" : "Expert NIS2 compliance guidance for essential and important entities",
-  description: isHomepage ? "Expert guidance through NIS2 requirements including gap assessment, risk management implementation, 24/7 incident response capabilities, and regulatory reporting to ensure full compliance while building resilient cybersecurity foundations." : "Professional NIS2 compliance services helping organizations meet EU cybersecurity requirements through comprehensive risk management, technical controls, and regulatory reporting.",
-  primaryCTA: { text: "Start NIS2 Assessment", href: "/contact?service=nis2-compliance" },
-  secondaryCTA: { text: "View NIS2 Framework", href: "/frameworks/nis2" }
+  title: isHomepage
+    ? (lang === 'fi' ? "NIS2-direktiivin yhteensopivuuspalvelut" : "NIS2 Directive Compliance Services")
+    : (lang === 'fi' ? "NIS2 Yhteensopivuuspalvelut" : "NIS2 Compliance Services"),
+  subtitle: isHomepage
+    ? (lang === 'fi' ? "Kattava EU:n kyberturvallisuuden yhteensopivuus kriittiselle infrastruktuurille ja olennaisille palveluille" : "Comprehensive EU cybersecurity compliance for critical infrastructure and essential service providers")
+    : (lang === 'fi' ? "Asiantunteva NIS2:n yhteensopivuusohjaus oleellisille ja tärkeille toimijoille" : "Expert NIS2 compliance guidance for essential and important entities"),
+  description: isHomepage
+    ? (lang === 'fi' ? "Asiantuntematon ohjaus NIS2:n vaatimuksissa mukaan lukien tilannekatsaus, riskienhallinnan toteutus, 24/7 häiriönhallintakyvyt ja sääntelyraportointi täyden yhteensopivuuden varmistamiseksi rakentaen resilianttia kyberturvallisuusperustaa." : "Expert guidance through NIS2 requirements including gap assessment, risk management implementation, 24/7 incident response capabilities, and regulatory reporting to ensure full compliance while building resilient cybersecurity foundations.")
+    : (lang === 'fi' ? "Ammattitaitoinen NIS2:n yhteensopivuuspalvelut jotka auttavat organisaatioita täyttämään EU:n kyberturvallisuusvaatimukset kattavan riskienhallinnan, teknisten ohjainten ja sääntelyraportoinnin kautta." : "Professional NIS2 compliance services helping organizations meet EU cybersecurity requirements through comprehensive risk management, technical controls, and regulatory reporting."),
+  primaryCTA: {
+    text: lang === 'fi' ? "Aloita NIS2-arviointi" : "Start NIS2 Assessment",
+    href: "/contact?service=nis2-compliance"
+  },
+  secondaryCTA: {
+    text: lang === 'fi' ? "Katso NIS2-kehys" : "View NIS2 Framework",
+    href: "/frameworks/nis2"
+  }
 };
 
 const serviceAreas = [
   {
-    title: "NIS2 Gap Assessment & Scoping",
-    description: "Comprehensive evaluation of current cybersecurity posture against NIS2 requirements",
-    deliverables: [
+    title: lang === 'fi' ? "NIS2-tilannekatsaus ja laajuuden määrittely" : "NIS2 Gap Assessment & Scoping",
+    description: lang === 'fi' ? "Kattava arviointi nykyisestä kyberturvallisuusasemasta NIS2:n vaatimusten vastapainossa" : "Comprehensive evaluation of current cybersecurity posture against NIS2 requirements",
+    deliverables: lang === 'fi' ? [
+      "Toimijaluokitus (Oleelliset vs Tärkeät palvelut)",
+      "Yksityiskohtainen aukkoanalyysi kaikkia NIS2:n vaatimuksia vastaan",
+      "Riskinarviointi ja uhkakentän analyysi",
+      "Toteutussuunnitelma priorisoituina toimina",
+      "Resursointisuunnittelu ja budjetointi"
+    ] : [
       "Entity classification (Essential vs Important services)",
       "Detailed gap analysis against all NIS2 requirements",
       "Risk assessment and threat landscape analysis",
@@ -30,9 +51,15 @@ const serviceAreas = [
     ]
   },
   {
-    title: "Cybersecurity Risk Management Framework",
-    description: "Implementation of comprehensive risk management aligned with NIS2 requirements",
-    deliverables: [
+    title: lang === 'fi' ? "Kyberturvallisuuden riskienhallintakehys" : "Cybersecurity Risk Management Framework",
+    description: lang === 'fi' ? "Kattavan riskienhallinnan toteutus NIS2:n vaatimusten mukaisesti" : "Implementation of comprehensive risk management aligned with NIS2 requirements",
+    deliverables: lang === 'fi' ? [
+      "Riskienhallintakäytännöt ja menettelyt",
+      "ICT-omaisuuden inventointi ja luokittelu",
+      "Toimittajaturvallisuuskehys",
+      "Liiketoiminnan jatkuvuus ja kriisinhallinta",
+      "Säännölliset riskinarvioinnit ja seurantaprosessit"
+    ] : [
       "Risk management policies and procedures",
       "ICT asset inventory and classification",
       "Supply chain security framework",
@@ -41,9 +68,15 @@ const serviceAreas = [
     ]
   },
   {
-    title: "Incident Response & Reporting System",
-    description: "24/7 incident detection, response, and regulatory reporting capabilities",
-    deliverables: [
+    title: lang === 'fi' ? "Häiriönhallinta ja raportointijärjestelmä" : "Incident Response & Reporting System",
+    description: lang === 'fi' ? "24/7 häiriönhavaitseminen, vastaaminen ja sääntelyraportointikyvyt" : "24/7 incident detection, response, and regulatory reporting capabilities",
+    deliverables: lang === 'fi' ? [
+      "24/7 tietoturvan valvonta ja havaitseminen",
+      "Häiriöiden luokitteleminen ja vakavuusasteen arviointi",
+      "Sääntelyraportointi Traficomiin määräaikojen mukaan",
+      "Kriisiviestintä ja eskalointiprosessit",
+      "Palautuminen ja oppimisen prosessit"
+    ] : [
       "24/7 security monitoring and detection",
       "Incident classification and severity assessment",
       "Regulatory reporting to Traficom within required timeframes",
@@ -52,9 +85,15 @@ const serviceAreas = [
     ]
   },
   {
-    title: "Technical Security Controls Implementation",
-    description: "Deployment of appropriate technical and organizational cybersecurity measures",
-    deliverables: [
+    title: lang === 'fi' ? "Teknisten tietoturvaohjainten toteutus" : "Technical Security Controls Implementation",
+    description: lang === 'fi' ? "Sopivan teknisten ja organisaatiollisten kyberturvatoimien käyttöönotto" : "Deployment of appropriate technical and organizational cybersecurity measures",
+    deliverables: lang === 'fi' ? [
+      "Monivaiheinen tunnistautuminen ja käyttöoikeusohjaimet",
+      "Verkkoturvallisuus ja segmentointi",
+      "Salaus ja tietojen suojaustoimet",
+      "Varmuuskopiointi ja katastrofipalautusjärjestelmät",
+      "Haavoittuvuuden hallinta ja tietoturvatestaus"
+    ] : [
       "Multi-factor authentication and access controls",
       "Network security and segmentation",
       "Encryption and data protection measures",
@@ -66,40 +105,40 @@ const serviceAreas = [
 
 const complianceTimeline = [
   {
-    milestone: "NIS2 Directive Entry into Force",
+    milestone: lang === 'fi' ? "NIS2-direktiivin voimaantulo" : "NIS2 Directive Entry into Force",
     date: "January 16, 2023",
     status: "Completed",
-    description: "EU NIS2 Directive officially entered into force"
+    description: lang === 'fi' ? "EU:n NIS2-direktiivi astui virallisesti voimaan" : "EU NIS2 Directive officially entered into force"
   },
   {
-    milestone: "National Implementation Deadline",
+    milestone: lang === 'fi' ? "Kansallisen toteutuksen määräpäivä" : "National Implementation Deadline",
     date: "October 17, 2024",
     status: "Active",
-    description: "EU Member States must transpose directive into national law"
+    description: lang === 'fi' ? "EU:n jäsenvaltioiden on saatettava direktiivi osaksi kansallista lainsäädäntöään" : "EU Member States must transpose directive into national law"
   },
   {
-    milestone: "Entity Compliance Deadline",
+    milestone: lang === 'fi' ? "Toimijan yhteensopivuuden määräpäivä" : "Entity Compliance Deadline",
     date: "October 17, 2024",
     status: "Mandatory",
-    description: "Organizations must be fully compliant with NIS2 requirements"
+    description: lang === 'fi' ? "Organisaatioiden on oltava täysin yhteensopivia NIS2:n vaatimusten kanssa" : "Organizations must be fully compliant with NIS2 requirements"
   }
 ];
 
 const penalties = [
   {
-    violation: "Administrative Fines",
+    violation: lang === 'fi' ? "Hallinnolliset sakot" : "Administrative Fines",
     penalty: "Up to €10 million or 2% of annual turnover",
-    scope: "Non-compliance with cybersecurity measures"
+    scope: lang === 'fi' ? "Tietoturvasäädösten noudattamatta jättö" : "Non-compliance with cybersecurity measures"
   },
   {
-    violation: "Management Liability",
-    penalty: "Personal sanctions for senior management",
-    scope: "Failure to implement required measures"
+    violation: lang === 'fi' ? "Johtohenkilöstön vastuu" : "Management Liability",
+    penalty: lang === 'fi' ? "Henkilökohtaiset seuraamukset johtohenkilöstölle" : "Personal sanctions for senior management",
+    scope: lang === 'fi' ? "Vaadittujen toimenpiteiden toteuttamatta jättö" : "Failure to implement required measures"
   },
   {
-    violation: "Operational Sanctions",
-    penalty: "Suspension of services",
-    scope: "Severe non-compliance cases"
+    violation: lang === 'fi' ? "Operaattorisanktiot" : "Operational Sanctions",
+    penalty: lang === 'fi' ? "Palvelujen keskeyttäminen" : "Suspension of services",
+    scope: lang === 'fi' ? "Vakavat noudattamatta jättötapaukset" : "Severe non-compliance cases"
   }
 ];
 ---
@@ -111,19 +150,21 @@ const penalties = [
   <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">NIS2 Compliance Service Areas</h2>
+        <h2 class="text-4xl font-bold text-slate-900 mb-6">{lang === 'fi' ? 'NIS2 Yhteensopivuuspalvelualueet' : 'NIS2 Compliance Service Areas'}</h2>
         <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Comprehensive support across all NIS2 requirements to ensure your organization achieves and maintains compliance while building cybersecurity resilience.
+          {lang === 'fi'
+            ? 'Kattava tuki kaikkien NIS2:n vaatimusten yli varmistaen että organisaationne saavuttaa ja ylläpitää yhteensopivuutta rakentaen kyberturvallisuusresilienssiä.'
+            : 'Comprehensive support across all NIS2 requirements to ensure your organization achieves and maintains compliance while building cybersecurity resilience.'}
         </p>
       </div>
-      
+
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {serviceAreas.map((area) => (
           <div class="bg-gradient-to-br from-slate-50 to-white p-8 rounded-xl border border-slate-200 hover:shadow-xl transition-all duration-300">
             <h3 class="text-xl font-bold text-slate-900 mb-4">{area.title}</h3>
             <p class="text-slate-600 mb-6">{area.description}</p>
             <div>
-              <h4 class="font-semibold text-slate-900 mb-3">Key Deliverables</h4>
+              <h4 class="font-semibold text-slate-900 mb-3">{lang === 'fi' ? 'Avainläpäisijät' : 'Key Deliverables'}</h4>
               <ul class="space-y-2">
                 {area.deliverables.map((deliverable) => (
                   <li class="flex items-start text-slate-600">
@@ -145,18 +186,20 @@ const penalties = [
   <section class="py-20 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">NIS2 Compliance Timeline</h2>
+        <h2 class="text-4xl font-bold text-slate-900 mb-6">{lang === 'fi' ? 'NIS2 Yhteensopivuusaikataulu' : 'NIS2 Compliance Timeline'}</h2>
         <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Key dates and milestones for NIS2 implementation and compliance requirements.
+          {lang === 'fi'
+            ? 'Avainpäivät ja etapit NIS2:n toteutukseen ja yhteensopivuusvaatimuksiin.'
+            : 'Key dates and milestones for NIS2 implementation and compliance requirements.'}
         </p>
       </div>
-      
+
       <div class="space-y-8">
         {complianceTimeline.map((item, index) => (
           <div class="flex items-start gap-6">
             <div class="flex-shrink-0">
               <div class={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold ${
-                item.status === 'Completed' ? 'bg-green-500' : 
+                item.status === 'Completed' ? 'bg-green-500' :
                 item.status === 'Active' ? 'bg-blue-500' : 'bg-red-500'
               }`}>
                 {index + 1}
@@ -184,12 +227,14 @@ const penalties = [
   <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">NIS2 Penalties & Sanctions</h2>
+        <h2 class="text-4xl font-bold text-slate-900 mb-6">{lang === 'fi' ? 'NIS2 Sanktiot ja Seuraamukset' : 'NIS2 Penalties & Sanctions'}</h2>
         <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Understanding the potential consequences of non-compliance with NIS2 requirements.
+          {lang === 'fi'
+            ? 'Ymmärrä mahdolliset seuraukset NIS2:n vaatimusten noudattamatta jättämisestä.'
+            : 'Understanding the potential consequences of non-compliance with NIS2 requirements.'}
         </p>
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {penalties.map((penalty) => (
           <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded-xl">
@@ -202,11 +247,19 @@ const penalties = [
     </div>
   </section>
 
-  <CTA 
-    title="Ready to Achieve NIS2 Compliance?"
-    description="Don't wait until the deadline. Start your NIS2 compliance journey today with expert Finnish regulatory guidance and proven implementation methodologies."
-    primaryCTA={{ text: "Start NIS2 Assessment", href: "/contact?service=nis2-compliance" }}
-    secondaryCTA={{ text: "View NIS2 Framework", href: "/frameworks/nis2" }}
+  <CTA
+    title={lang === 'fi' ? "Oletko valmis saavuttamaan NIS2-yhteensopivuuden?" : "Ready to Achieve NIS2 Compliance?"}
+    description={lang === 'fi'
+      ? "Älä odota määräpäivään. Aloita NIS2:n yhteensopivuusmatkasi jo tänään asiantuntevan suomalaisen sääntelyohjauksen ja todistettujen toteutusmetodologioiden avulla."
+      : "Don't wait until the deadline. Start your NIS2 compliance journey today with expert Finnish regulatory guidance and proven implementation methodologies."}
+    primaryCTA={{
+      text: lang === 'fi' ? "Aloita NIS2-arviointi" : "Start NIS2 Assessment",
+      href: "/contact?service=nis2-compliance"
+    }}
+    secondaryCTA={{
+      text: lang === 'fi' ? "Katso NIS2-kehys" : "View NIS2 Framework",
+      href: "/frameworks/nis2"
+    }}
   />
 </Layout>
 
