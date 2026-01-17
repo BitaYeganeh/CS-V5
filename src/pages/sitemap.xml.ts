@@ -17,6 +17,8 @@ const pages = [
   { url: 'services/gdpr', priority: 0.8 },
   { url: 'services/dora', priority: 0.8 },
   { url: 'services/soc-2', priority: 0.8 },
+  { url: 'services/virtual-ciso', priority: 0.8 },
+  { url: 'services/virtual-dpo', priority: 0.8 },
   
   // Package pages
   { url: 'packages/iso-27001-fast-track', priority: 0.7 },

@@ -207,6 +207,7 @@ const quickResources = [
     let isOpen = false;
 
     function openSidebar() {
+      if (!toggle || !panel) return;
       isOpen = true;
       panel.style.transform = 'translateX(0)';
       toggle.style.opacity = '0';
@@ -220,6 +221,7 @@ const quickResources = [
     }
 
     function closeSidebar() {
+      if (!toggle || !panel) return;
       isOpen = false;
       panel.style.transform = 'translateX(100%)';
       toggle.style.opacity = '1';
@@ -262,20 +264,20 @@ const quickResources = [
     let scrollTimer: NodeJS.Timeout;
 
     function checkAutoShow() {
-      if (hasShownAuto || isOpen) return;
+      if (hasShownAuto || isOpen || !toggle) return;
       
       const scrollPercent = window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight);
       
       // Show only after user has scrolled 80% of the page and spent time
       if (scrollPercent > 0.8) {
         scrollTimer = setTimeout(() => {
-          if (!isOpen && !hasShownAuto) {
+          if (!isOpen && !hasShownAuto && toggle) {
             toggle.style.opacity = '0.8'; // Subtle highlight
             hasShownAuto = true;
             
             // Reset after 5 seconds
             setTimeout(() => {
-              toggle.style.opacity = '';
+              if (toggle) toggle.style.opacity = '';
             }, 5000);
           }
         }, 5000); // 5 second delay

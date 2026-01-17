@@ -1,9 +1,10 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
 
-const title = "Contact";
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const title = "Contact";
 
 const content = {
   en: {
@@ -206,9 +207,9 @@ const currentContent = content[lang];
         <div class="text-sm text-gray-500 mb-6">* {currentContent.form.required}</div>
         
         <div class="text-center">
-          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-300">
+          <Button type="submit" variant="brand" className="py-3 px-8 font-semibold">
             {currentContent.form.submit}
-          </button>
+          </Button>
         </div>
       </form>
     </div>

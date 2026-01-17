@@ -1,0 +1,200 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
+
+const currentPath = Astro.url.pathname;
+const lang = 'fi'; // Explicitly set to Finnish for this version
+
+const industries = [
+  {
+    name: "Rahoituspalvelut & Fintech",
+    description: "Erityisosaaminen DORA, PCI DSS ja toiminnan resilierenssin vaatimuksissa",
+    icon: "banknotes",
+    image: "/images/industries/financial-services.svg",
+    services: [
+      "DORA -digitaalinen toiminnallinen resilierenssi",
+      "PCI DSS -maksutietojen suojaus",
+      "Operatiivinen resilierenssi",
+      "Kolmannen osapuolen riskienhallinta"
+    ],
+    href: "/fi/industries/financial-services-fintech",
+    color: "blue"
+  },
+  {
+    name: "SaaS & Teknologia",
+    description: "ISO 27001, SOC 2 ja pilvitietoturvan kehykset",
+    icon: "code-bracket",
+    image: "/images/industries/saas-technology.svg",
+    services: [
+      "ISO 27001 -tietoturva",
+      "SOC 2 Type I & II -valmius",
+      "Pilvitietoturva",
+      "Kehitystiimien tietoturva"
+    ],
+    href: "/fi/industries/saas-technology",
+    color: "cyan"
+  },
+  {
+    name: "Terveys & Elintarvikkeet",
+    description: "GDPR, tietosuoja ja potilastietojen käsittely",
+    icon: "heart",
+    image: "/images/industries/healthcare.svg",
+    services: [
+      "GDPR -tietosuojan hallinta",
+      "Potilastietojen suojaus",
+      "HIPAA -yhteensopivuus",
+      "Lääketieteellisten laitteiden turvallisuus"
+    ],
+    href: "/fi/industries/healthcare-life-sciences",
+    color: "emerald"
+  },
+  {
+    name: "Kriittinen infrastruktuuri",
+    description: "NIS2, kyberturvallisuus ja jatkuvuuden hallinta",
+    icon: "bolt",
+    image: "/images/industries/critical-infrastructure.svg",
+    services: [
+      "NIS2 -direktiivin noudattaminen",
+      "Operaatioteknologian turvallisuus",
+      "Kriisinhallinta",
+      "Toimitusketjun turvallisuus"
+    ],
+    href: "/fi/industries/critical-infrastructure-energy",
+    color: "amber"
+  },
+  {
+    name: "Julkinen sektori",
+    description: "Hallituksen sääntelyvaatimukset ja kansalaisten tietosuoja",
+    icon: "building-office",
+    image: "/images/industries/public-sector.svg",
+    services: [
+      "Julkinen hankinta -turvallisuus",
+      "GDPR -vaatimukset julkiselle sektorille",
+      "Kansalaistietojen suojaus",
+      "Tietoturva-arviointi"
+    ],
+    href: "/fi/industries/public-sector-finland",
+    color: "slate"
+  },
+  {
+    name: "Teollisuus & Valmistus",
+    description: "OT/ICS -turvallisuus ja toimittajaketjun hallinta",
+    icon: "cog",
+    image: "/images/industries/manufacturing.svg",
+    services: [
+      "Teollisuuden IoT -turvallisuus",
+      "OT/ICS -tietoturva",
+      "Toimittajaketjun riskienhallinta",
+      "IEC 62443 -standardin noudattaminen"
+    ],
+    href: "/fi/industries/manufacturing-industrial",
+    color: "violet"
+  }
+];
+
+const ctaSection = {
+  title: lang === 'fi' 
+    ? 'Tarvitsetko toimialakohtaista asiantuntemusta?' 
+    : 'Need industry-specific expertise?',
+  description: lang === 'fi' 
+    ? 'Meillä on syvää asiantuntemusta eri toimialoilla ja voimme auttaa sinua ratkaisemaan toimialasi ainutlaatuiset haasteet.' 
+    : 'We have deep expertise across industries and can help you solve your industry-specific challenges.',
+  primaryCTA: { 
+    text: lang === 'fi' ? 'Aloita ilmainen arviointi' : 'Start Free Assessment', 
+    href: "/fi/contact" 
+  },
+  secondaryCTA: { 
+    text: lang === 'fi' ? 'Tutustu palveluihimme' : 'Explore Our Services', 
+    href: "/fi/services" 
+  }
+};
+---
+
+<Layout 
+  title="Toimialat - Kyberturvallisuuspalvelut | Cyber Security Finland" 
+  description="Toimialakohtaiset kyberturvallisuus- ja sääntelyvaatimustenmukaisuuspalvelut. Rahoitus, terveys, kriittinen infrastruktuuri, julkinen sektori, teollisuus."
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-slate-50 via-white to-slate-100 py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
+          {lang === 'fi' ? 'Toimialat joita palvelemme' : 'Industries We Serve'}
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-600 mb-4">
+          {lang === 'fi' ? 'Toimialakohtainen asiantuntemus ja ratkaisut' : 'Industry-specific expertise and solutions'}
+        </p>
+        <p class="text-lg text-slate-500 max-w-3xl mx-auto">
+          {lang === 'fi' 
+            ? 'Meillä on syvää asiantuntemusta useilla toimialoilla, ja tarjoamme räätälöityjä ratkaisuja, jotka vastaavat kunkin toimialan ainutlaatuisiin haasteisiin ja sääntelyvaatimuksiin.' 
+            : 'We have deep expertise across multiple industries, providing tailored solutions that address each sector\'s unique challenges and regulatory requirements.'}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries Grid -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {industries.map(industry => (
+          <div class="group bg-gradient-to-br from-white to-slate-50 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden" key={industry.name}>
+            <div class={`h-2 bg-${industry.color}-500`}></div>
+            <div class="p-6">
+              <div class="flex items-center mb-4">
+                <div class={`w-12 h-12 bg-${industry.color}-100 rounded-lg flex items-center justify-center mr-4`}>
+                  <Icon name={industry.icon} class={`w-6 h-6 text-${industry.color}-600`} />
+                </div>
+                <h3 class="text-xl font-bold text-slate-900">{industry.name}</h3>
+              </div>
+              <p class="text-slate-600 mb-4">{industry.description}</p>
+              
+              <div class="mb-6">
+                <h4 class="text-sm font-semibold text-slate-700 mb-2">
+                  {lang === 'fi' ? 'Keskeiset palvelut' : 'Key Services'}
+                </h4>
+                <ul class="space-y-1">
+                  {industry.services.map(service => (
+                    <li class="flex items-center text-sm text-slate-600" key={service}>
+                      <Icon name="check" class={`w-4 h-4 text-${industry.color}-500 mr-2`} />
+                      <span>{service}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <Button 
+                href={industry.href} 
+                variant="outline" 
+                className={`w-full border-${industry.color}-200 text-${industry.color}-600 hover:bg-${industry.color}-50`}
+              >
+                {lang === 'fi' ? 'Tutustu palveluihimme' : 'Explore Our Services'}
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-4xl font-bold mb-4">
+        {ctaSection.title}
+      </h2>
+      <p class="text-xl mb-8 opacity-90">
+        {ctaSection.description}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button href={ctaSection.primaryCTA.href} variant="white">
+          {ctaSection.primaryCTA.text}
+        </Button>
+        <Button href={ctaSection.secondaryCTA.href} variant="outline-white">
+          {ctaSection.secondaryCTA.text}
+        </Button>
+      </div>
+    </div>
+  </section>
+</Layout>

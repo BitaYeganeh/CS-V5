@@ -1,0 +1,197 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
+
+const seoConfig = {
+  title: "Design System | Cyber Security Finland",
+  description: "Our design system showcasing components and styles",
+  type: "website"
+};
+
+const buttonStyles = [
+  { variant: 'primary', label: 'Primary Action', description: 'For primary actions and important CTAs' },
+  { variant: 'secondary', label: 'Secondary Action', description: 'For secondary actions that complement primary' },
+  { variant: 'tertiary', label: 'Tertiary Action', description: 'For subtle actions with minimal emphasis' },
+  { variant: 'brand', label: 'Brand Action', description: 'For brand-specific actions' },
+  { variant: 'success', label: 'Success Action', description: 'For positive actions like confirmations' },
+  { variant: 'warning', label: 'Warning Action', description: 'For cautionary actions' },
+  { variant: 'danger', label: 'Danger Action', description: 'For destructive actions like deletion' },
+  { variant: 'ghost', label: 'Ghost Button', description: 'For subtle actions with minimal visual impact' },
+  { variant: 'link', label: 'Link Button', description: 'For navigational actions that look like links' },
+];
+---
+
+<Layout {...seoConfig}>
+  <div class="max-w-6xl mx-auto px-4 py-16">
+    <header class="mb-16 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Design System</h1>
+      <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+        Our comprehensive design system ensures consistent and accessible user experiences across all our products and services.
+      </p>
+    </header>
+    
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 text-slate-900">Buttons</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {buttonStyles.map((item) => (
+          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-semibold text-slate-900">{item.label}</h3>
+              <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-800">
+                {item.variant}
+              </span>
+            </div>
+            <p class="text-slate-600 text-sm mb-4">{item.description}</p>
+            <div class="flex gap-3">
+              <Button variant={item.variant} size="sm">Small</Button>
+              <Button variant={item.variant} size="md">Medium</Button>
+              <Button variant={item.variant} size="lg">Large</Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+    
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 text-slate-900">Button States</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl border border-slate-200">
+          <h3 class="text-lg font-semibold text-slate-900 mb-4">Normal State</h3>
+          <div class="space-y-3">
+            <Button variant="primary">Primary</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Button variant="success">Success</Button>
+          </div>
+        </div>
+        
+        <div class="bg-white p-6 rounded-xl border border-slate-200">
+          <h3 class="text-lg font-semibold text-slate-900 mb-4">Hover State</h3>
+          <p class="text-sm text-slate-600 mb-4">Hover over buttons to see transitions</p>
+          <div class="space-y-3">
+            <Button variant="primary">Primary</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Button variant="success">Success</Button>
+          </div>
+        </div>
+        
+        <div class="bg-white p-6 rounded-xl border border-slate-200">
+          <h3 class="text-lg font-semibold text-slate-900 mb-4">Focus State</h3>
+          <p class="text-sm text-slate-600 mb-4">Tab to buttons to see focus rings</p>
+          <div class="space-y-3">
+            <Button variant="primary">Primary</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Button variant="success">Success</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 text-slate-900">Button Accessibility</h2>
+      
+      <div class="bg-white p-8 rounded-xl border border-slate-200">
+        <h3 class="text-xl font-semibold text-slate-900 mb-4">Accessibility Features</h3>
+        <ul class="space-y-3 text-slate-700">
+          <li class="flex items-start">
+            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span><strong>Focus Indicators:</strong> Clear focus rings for keyboard navigation</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span><strong>Contrast Ratios:</strong> All buttons meet WCAG AA contrast requirements</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span><strong>Touch Targets:</strong> Minimum 44px touch targets for mobile usability</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span><strong>Screen Reader Support:</strong> Proper ARIA attributes and semantic markup</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span><strong>Reduced Motion:</strong> Animations respect user preferences</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+    
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 text-slate-900">Button Usage Guidelines</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+          <h3 class="text-lg font-semibold text-slate-900 mb-4">Do's</h3>
+          <ul class="space-y-3 text-slate-700">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Use primary buttons sparingly for most important actions</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Provide clear, actionable labels</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Maintain consistent styling within contexts</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Include loading states for async actions</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+          <h3 class="text-lg font-semibold text-slate-900 mb-4">Don'ts</h3>
+          <ul class="space-y-3 text-slate-700">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+              <span>Don't use too many primary buttons on one screen</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+              <span>Don't use vague labels like "Click here"</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+              <span>Don't disable buttons without explanation</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+              <span>Don't rely solely on color to convey meaning</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

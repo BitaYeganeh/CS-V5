@@ -18,7 +18,10 @@
         "src/assets/images/*"
       ],
       "@layout/*": [
-        "src/layout/*"
+        "src/layouts/*"
+      ],
+      "@layouts/*": [
+        "src/layouts/*"
       ],
       "@ui/*": [
         "src/components/ui/*"

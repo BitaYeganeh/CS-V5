@@ -3,9 +3,47 @@ import Layout from '@/layouts/Layout.astro';
 import HeroSection from '@/components/sections/HeroSection.astro';
 import CTA from '@/components/sections/CTA.astro';
 
-const title = "SOC 2 Readiness in 12 Weeks";
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+// SEO Configuration
+const seoConfig = {
+  title: lang === 'fi' ? "SOC 2 -valmius 12 viikossa | Cyber Security Finland" : "SOC 2 Readiness in 12 Weeks | Cyber Security Finland",
+  description: lang === 'fi'
+    ? "Kattava SOC 2 -valmiusohjelma 12 viikossa. Type I ja Type II -valmius, kontrollien toteutus ja auditointituki mukana."
+    : "Comprehensive SOC 2 readiness program in 12 weeks. Type I and Type II readiness, control implementation, and audit support included.",
+  keywords: lang === 'fi'
+    ? "SOC 2 Suomi, SOC 2 valmius, SOC 2 auditointi, SOC 2 Type I, SOC 2 Type II, tietoturva auditointi Suomi"
+    : "SOC 2 finland, SOC 2 readiness, SOC 2 audit, SOC 2 Type I, SOC 2 Type II, information security audit finland",
+  type: "product" as const,
+  schema: {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "SOC 2 Readiness in 12 Weeks",
+    "description": "12-week comprehensive SOC 2 readiness program for service organizations preparing for Type I and Type II audits",
+    "provider": {
+      "@type": "Organization",
+      "name": "Cyber Security Finland",
+      "url": "https://cybersecurity.fi"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Finland"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "Contact for pricing",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Cyber Security Finland"
+      }
+    },
+    "serviceType": "SOC 2 Readiness and Audit Preparation",
+    "availableLanguage": ["English", "Finnish"]
+  }
+};
 
 const heroContent = {
   title: "SOC 2 Readiness in 12 Weeks - Trust Service Excellence",
@@ -38,7 +76,7 @@ const trustServiceCriteria = [
     controlCount: "11 additional criteria controls"
   },
   {
-    criterion: "�Confidentiality (Optional)",
+    criterion: "Confidentiality (Optional)",
     description: "Information designated as confidential is protected as committed or agreed through its collection, use, retention, disclosure, and disposal",
     focus: "Data classification, encryption, access restrictions, confidentiality agreements, secure disposal, data loss prevention, information handling policies",
     weeks: "Weeks 9-10",
@@ -93,7 +131,7 @@ const programPhases = [
     ]
   },
   {
-    phase: "Weeks 7-8: Additional Trust Service Criteria Implementation �",
+    phase: "Weeks 7-8: Additional Trust Service Criteria Implementation ",
     title: "Availability, Processing Integrity, Confidentiality & Privacy Controls",
     activities: [
       "Availability monitoring and incident response capabilities implementation",
@@ -199,7 +237,7 @@ const packageOptions = [
     includes: "Security + Availability controls, monitoring, incident response, Type I/II prep"
   },
   {
-    name: "� Comprehensive (All 5 Criteria)",
+    name: " Comprehensive (All 5 Criteria)",
     criteria: ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
     suitable: "Enterprise organizations, financial services, healthcare, full compliance requirements",
     includes: "All Trust Service Criteria, comprehensive controls (115+ total), Type I/II audit readiness"
@@ -213,7 +251,7 @@ const packageOptions = [
 ];
 ---
 
-<Layout title={title}>
+<Layout seoConfig={seoConfig}>
   <HeroSection content={heroContent} />
   
   <!-- Program Overview -->

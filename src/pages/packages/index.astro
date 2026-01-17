@@ -1,12 +1,57 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
 import HeroSection from '@/components/sections/HeroSection.astro';
 import FeatureGrid from '@/components/sections/FeatureGrid.astro';
 import CTA from '@/components/sections/CTA.astro';
 
-const title = "Cybersecurity Packages";
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+// SEO Configuration
+const seoConfig = {
+  title: lang === 'fi'
+    ? "Kyberturvallisuuspalvelupaketit | Cyber Security Finland"
+    : "Cybersecurity Packages | Cyber Security Finland",
+  description: lang === 'fi'
+    ? "Valmiit kyberturvallisuuspalvelupaketit ISO 27001, NIS2, GDPR ja DORA -vaatimustenmukaisuuteen. Nopeat toteutukset ja asiantuntijatuki."
+    : "Ready-made cybersecurity packages for ISO 27001, NIS2, GDPR and DORA compliance. Fast implementations with expert support.",
+  keywords: lang === 'fi'
+    ? "kyberturvallisuuspaketit suomi, ISO 27001 paketti, NIS2 paketti, GDPR paketti, DORA paketti, kyberturvallisuuspalvelut"
+    : "cybersecurity packages, ISO 27001 package, NIS2 package, GDPR package, DORA package, cybersecurity services",
+  type: "website" as const,
+  schema: {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Cybersecurity Packages",
+    "description": "Ready-made cybersecurity and compliance packages for Finnish businesses",
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "Product",
+          "name": "ISO 27001 Fast-Track",
+          "description": "Complete ISO 27001 implementation in 90-120 days with expert guidance and ongoing support"
+        },
+        {
+          "@type": "Product",
+          "name": "NIS2 Sprint Program",
+          "description": "Rapid NIS2 compliance implementation for essential and important entities"
+        },
+        {
+          "@type": "Product",
+          "name": "SOC 2 Readiness Package",
+          "description": "12-week program to prepare for SOC 2 Type I and Type II audits"
+        },
+        {
+          "@type": "Product",
+          "name": "DORA Program-in-a-Box",
+          "description": "Complete Digital Operational Resilience Act implementation for financial services"
+        }
+      ]
+    }
+  }
+};
 
 const heroContent = {
   title: "Ready-to-Deploy Cybersecurity Packages",
@@ -62,7 +107,7 @@ const packages = [
 ];
 ---
 
-<Layout title={title}>
+<Layout seoConfig={seoConfig}>
   <HeroSection content={heroContent} />
   
   <section id="packages" class="py-16 bg-white">
@@ -94,12 +139,13 @@ const packages = [
               ))}
             </ul>
             
-            <a 
+            <Button
               href={pkg.href}
-              class="block w-full text-center bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700 transition-colors"
+              variant="primary"
+              className="w-full py-2 px-4"
             >
               Learn More
-            </a>
+            </Button>
           </div>
         ))}
       </div>

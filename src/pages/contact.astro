@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
@@ -147,12 +148,9 @@ const currentContent = content[lang];
       <p class="text-xl text-slate-300 mb-8">
         {currentContent.cta.subtitle}
       </p>
-      <a
-        href={currentContent.cta.link}
-        class="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-8 rounded-lg text-lg transition duration-300 inline-block"
-      >
+      <Button href={currentContent.cta.link} variant="primary" size="lg">
         {currentContent.cta.button}
-      </a>
+      </Button>
     </div>
   </section>
 </Layout>

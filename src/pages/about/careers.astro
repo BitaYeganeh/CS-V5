@@ -1,9 +1,10 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
 
-const title = "Careers";
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const title = "Careers";
 
 const content = {
   en: {
@@ -288,9 +289,9 @@ const currentContent = content[lang];
                 </div>
               </div>
               <div class="mt-4 lg:mt-0">
-                <a href="/contact" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                <Button href="/contact" variant="brand" className="px-6 py-2">
                   Apply Now
-                </a>
+                </Button>
               </div>
             </div>
             <p class="text-slate-600 mb-4">{position.description}</p>

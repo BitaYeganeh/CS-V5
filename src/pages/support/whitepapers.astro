@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Icon from "@ui/icons/Icon.astro";
+import Button from '@/components/ui/Button.astro';
 import { getCollection } from "astro:content";
 
 const whitepapers = await getCollection("whitepapers");
@@ -57,12 +58,14 @@ export const pageContent = {
                     </a>
                   )}
                   {paper.data.btnLink && (
-                    <a
+                    <Button
                       href={paper.data.btnLink}
-                      class="mt-6 inline-flex items-center rounded-md bg-teal-700 px-4 py-2 text-sm font-medium text-white shadow-xs transition-colors duration-300 hover:bg-teal-700/80 focus:outline-hidden focus:ring-2 focus:ring-teal-400"
+                      variant="primary"
+                      size="sm"
+                      className="mt-6"
                     >
                       {paper.data.btnTitle}
-                    </a>
+                    </Button>
                   )}
                 </div>
               </div>

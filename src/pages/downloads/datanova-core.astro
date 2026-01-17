@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Icon from "@ui/icons/Icon.astro";
+import Button from '@/components/ui/Button.astro';
 
 // Hero
 const preTitle = "Get Started";
@@ -153,12 +154,15 @@ const pageTitle = title; // Use hero title for layout
       <p class="mt-8 text-base/6 text-slate-600 sm:mt-10">
         {essentialTier.description}
       </p>
-      <a
+      <Button
         href={essentialTier.cta.link}
+        variant="secondary"
+        size="sm"
+        className="mt-8 block"
         aria-describedby={essentialTier.title}
-        class="mt-8 block rounded-lg px-3.5 py-2.5 text-center text-sm font-semibold ring-1 ring-inset ring-teal-700 transition duration-300 hover:bg-teal-700/80 hover:text-white focus:bg-teal-700 focus:text-white focus:outline-hidden sm:mt-10"
-        >{essentialTier.cta.text}</a
       >
+        {essentialTier.cta.text}
+      </Button>
     </div>
 
     <div
@@ -172,12 +176,15 @@ const pageTitle = title; // Use hero title for layout
         {advancedTier.description}
       </p>
 
-      <a
+      <Button
         href={advancedTier.cta.link}
+        variant="primary"
+        size="sm"
+        className="mt-8 block"
         aria-describedby={advancedTier.title}
-        class="mt-8 block rounded-lg bg-teal-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs transition-colors duration-300 hover:bg-teal-600/80 focus:bg-teal-600/80 focus:outline-hidden sm:mt-10"
-        >{advancedTier.cta.text}</a
       >
+        {advancedTier.cta.text}
+      </Button>
     </div>
   </section>
 

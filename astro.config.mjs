@@ -37,4 +37,9 @@ export default defineConfig({
   },
   output: "server",
   adapter: vercel(),
+  server: {
+    host: true,
+    // Use local dev port 4322 for local development
+    port: 4322,
+  },
 });

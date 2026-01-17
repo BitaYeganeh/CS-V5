@@ -22,6 +22,7 @@ const currentPath = Astro.url.pathname;
     let ticking = false;
 
     function updateProgress() {
+      if (!progressBar) return;
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrollProgress = scrollTop / scrollHeight;
@@ -39,6 +40,7 @@ const currentPath = Astro.url.pathname;
 
     // Show progress bar when user starts scrolling
     function showProgressBar() {
+      if (!progressBar) return;
       if (window.pageYOffset > 100) {
         progressBar.style.opacity = '1';
       } else {

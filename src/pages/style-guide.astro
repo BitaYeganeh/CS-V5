@@ -1,0 +1,149 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const colors = [
+  { name: 'Brand Blue', class: 'bg-blue-600', hex: '#2563eb' },
+  { name: 'Brand Cyan', class: 'bg-cyan-500', hex: '#06b6d4' },
+  { name: 'Neutral Gray', class: 'bg-slate-700', hex: '#334155' },
+  { name: 'Success Green', class: 'bg-green-500', hex: '#10b981' },
+  { name: 'Warning Amber', class: 'bg-amber-500', hex: '#f59e0b' },
+  { name: 'Error Red', class: 'bg-red-500', hex: '#ef4444' }
+];
+
+const typography = [
+  { element: 'h1', class: 'text-4xl font-bold', example: 'Heading 1: Main Title' },
+  { element: 'h2', class: 'text-3xl font-semibold', example: 'Heading 2: Section Title' },
+  { element: 'h3', class: 'text-2xl font-medium', example: 'Heading 3: Subsection Title' },
+  { element: 'h4', class: 'text-xl font-medium', example: 'Heading 4: Minor Heading' },
+  { element: 'p', class: 'text-base', example: 'Paragraph: This is a sample paragraph text demonstrating the professional typography used throughout the website. The text is carefully selected for readability and aesthetic appeal.' }
+];
+
+const components = [
+  {
+    name: 'Primary Button',
+    html: '<Button variant="primary">Primary Action</Button>',
+    description: 'Used for primary actions and calls-to-action'
+  },
+  {
+    name: 'Secondary Button',
+    html: '<Button variant="secondary">Secondary Action</Button>',
+    description: 'Used for secondary actions and less prominent calls-to-action'
+  },
+  {
+    name: 'Card Component',
+    html: '<div class="card"><h3 class="font-semibold">Card Title</h3><p>Card content goes here</p></div>',
+    description: 'Used for grouping related content and information'
+  }
+];
+---
+
+<Layout 
+  title={lang === 'fi' ? 'Tyyliopas - Cyber Security Finland' : 'Style Guide - Cyber Security Finland'}
+  description={lang === 'fi' 
+    ? 'Virallinen tyyliopas Cyber Security Finlandin brändin ja suunnittelunäkemykseen' 
+    : 'Official style guide for Cyber Security Finland brand and design system'}
+>
+  <div class="min-h-screen bg-slate-50">
+    <div class="container-professional py-12">
+      <div class="text-center mb-16">
+        <h1 class="heading-primary text-center">
+          {lang === 'fi' ? 'Tyyliopas' : 'Style Guide'}
+        </h1>
+        <p class="text-paragraph max-w-2xl mx-auto mt-4">
+          {lang === 'fi' 
+            ? 'Tämä tyyliopas määrittelee Cyber Security Finlandin brändin visuaaliset standardit ja suunnitteluperiaatteet.' 
+            : 'This style guide defines the visual standards and design principles for the Cyber Security Finland brand.'}
+        </p>
+      </div>
+
+      <!-- Colors Section -->
+      <section class="mb-16">
+        <h2 class="heading-secondary mb-8">
+          {lang === 'fi' ? 'Väripaletti' : 'Color Palette'}
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          {colors.map(color => (
+            <div class="text-center">
+              <div class={`w-full h-24 rounded-lg mb-3 ${color.class}`}></div>
+              <h3 class="font-semibold text-slate-900">{color.name}</h3>
+              <p class="text-sm text-slate-500">{color.hex}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Typography Section -->
+      <section class="mb-16">
+        <h2 class="heading-secondary mb-8">
+          {lang === 'fi' ? 'Typografia' : 'Typography'}
+        </h2>
+        <div class="space-y-6">
+          {typography.map(item => (
+            <div>
+              <h3 class="text-sm font-medium text-slate-500 mb-2">{item.element}</h3>
+              <div class={`border-l-4 border-blue-500 pl-4 ${item.class} text-slate-900`}>{item.example}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Components Section -->
+      <section class="mb-16">
+        <h2 class="heading-secondary mb-8">
+          {lang === 'fi' ? 'Komponentit' : 'Components'}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {components.map(component => (
+            <div class="card-professional p-6">
+              <h3 class="font-semibold text-slate-900 mb-2">{component.name}</h3>
+              <div class="mb-4" dangerouslySetInnerHTML={{ __html: component.html }}></div>
+              <p class="text-sm text-slate-600">{component.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Professional Layout Examples -->
+      <section>
+        <h2 class="heading-secondary mb-8">
+          {lang === 'fi' ? 'Layout-esimerkkejä' : 'Layout Examples'}
+        </h2>
+        
+        <div class="grid-professional grid-3col mb-12">
+          <div class="card-professional p-6">
+            <h3 class="heading-secondary mb-4">Service Card</h3>
+            <p class="text-paragraph mb-4">Professional service card with consistent styling and clear hierarchy.</p>
+            <Button variant="brand">Learn More</Button>
+          </div>
+
+          <div class="card-professional p-6">
+            <h3 class="heading-secondary mb-4">Feature Card</h3>
+            <p class="text-paragraph mb-4">Clean feature presentation with accent colors for emphasis.</p>
+            <Button variant="secondary">Get Started</Button>
+          </div>
+
+          <div class="card-professional p-6">
+            <h3 class="heading-secondary mb-4">Testimonial Card</h3>
+            <p class="text-paragraph mb-4">Professional testimonial display with client information.</p>
+            <div class="mt-4">
+              <p class="text-sm font-medium">— Jane Doe, CEO</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-brand-light rounded-xl p-8">
+          <h3 class="heading-secondary mb-4">Professional Section</h3>
+          <p class="text-paragraph mb-6">This demonstrates a professional section with alternate background and consistent spacing.</p>
+          <div class="flex gap-4">
+            <Button variant="brand">Primary Action</Button>
+            <Button variant="secondary">Secondary Action</Button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

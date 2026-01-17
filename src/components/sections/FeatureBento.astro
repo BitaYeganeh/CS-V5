@@ -64,7 +64,7 @@ const features = [
 ---
 
 <div class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-20">
-  {/* Section container for the title and subtitle */}
+  <!-- Section container for the title and subtitle -->
   <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
     <h2
       class="text-balance text-2xl font-semibold text-slate-800 md:text-3xl md:leading-tight"
@@ -92,7 +92,7 @@ const features = [
                   {feature.title}
                 </h3>
 
-                {/* Render descriptions as paragraphs if available */}
+                <!-- Render descriptions as paragraphs if available -->
                 {feature.description && (
                   <p
                     class="mt-2 max-w-lg text-sm/6 text-slate-600 max-lg:text-center"
@@ -100,7 +100,7 @@ const features = [
                   />
                 )}
 
-                {/* Render list items if available */}
+                <!-- Render list items if available -->
                 {feature.listItems && (
                   <ul class="mt-2 max-w-lg list-inside list-disc space-y-1 text-sm/6 text-slate-600 marker:text-teal-600 max-lg:text-center">
                     {feature.listItems.map((item) => (
@@ -110,7 +110,7 @@ const features = [
                 )}
               </div>
 
-              {/* Render Image if available */}
+              <!-- Render Image if available -->
               {feature.image && (
                 <div class={`${feature.imageContainerClass}`}>
                   {feature.imageSecondaryContainerClass ? (
@@ -134,7 +134,7 @@ const features = [
                 </div>
               )}
 
-              {/* Render component if available */}
+              <!-- Render component if available -->
               {feature.component && (
                 <div>
                   <PlatformOrbit />

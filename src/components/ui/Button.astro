@@ -1,15 +1,18 @@
 ---
 import { twMerge } from "tailwind-merge";
-const { type, href, rel, target, variant, className, id } = Astro.props;
+const { type, href, rel, target, variant, className, id, size, disabled, loading } = Astro.props;
 
 export interface Props {
   type?: "button" | "submit" | "reset";
   href?: string;
   rel?: string;
   target?: "_self" | "_blank" | "_parent" | "_top";
-  variant?: "primary" | "secondary" | "tertiary" | "white" | "outline-white"; // added legacy variants
+  variant?: "primary" | "secondary" | "tertiary" | "white" | "outline-white" | "brand" | "danger" | "success" | "warning" | "ghost" | "link"; // added legacy variants
+  size?: "sm" | "md" | "lg";
   className?: string;
   id?: string;
+  disabled?: boolean;
+  loading?: boolean;
 }
 
 /**
@@ -19,16 +22,34 @@ export interface Props {
  * - tertiary: A soft teal background with hover effects.
  * - white: Solid white button for dark backgrounds.
  * - outline-white: Transparent background with white border/text for dark sections.
+ * - brand: Brand-styled button matching template design
+ * - danger: Danger-styled button for destructive actions
+ * - success: Success-styled button for positive actions
+ * - warning: Warning-styled button for cautionary actions
+ * - ghost: Minimal button with subtle hover effect
+ * - link: Link-styled button that looks like a text link
  */
 
 const variants = {
   primary:
-    "bg-teal-800 hover:bg-teal-800/80 focus:bg-teal-800/80 border border-transparent text-white",
+    "bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white border border-transparent font-semibold shadow-sm hover:shadow-md active:shadow-inner transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500",
   secondary:
-    "hover:border-teal-700 hover:bg-teal-700 border-teal-800 border-2 text-slate-800 hover:text-white",
-  tertiary: "bg-teal-50 hover:bg-teal-50/80",
-  white: "bg-white text-slate-900 hover:bg-white/90 border border-white",
-  "outline-white": "bg-transparent text-white border border-white hover:bg-white/10"
+    "bg-white text-teal-600 border-2 border-teal-600 hover:bg-gradient-to-r hover:from-teal-50 hover:to-cyan-50 font-semibold transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-300",
+  tertiary: "bg-teal-50 text-teal-700 hover:bg-teal-100 border border-transparent font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-300",
+  white: "bg-white text-slate-900 hover:bg-gray-100 border border-gray-300 font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-300",
+  "outline-white": "bg-transparent text-white border-2 border-white hover:bg-white/10 font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white",
+  brand: "bg-gradient-to-r from-[var(--brand-primary)] to-[var(--brand-secondary)] hover:from-[var(--brand-primary-dark)] hover:to-[var(--brand-secondary-dark)] text-white font-semibold border border-transparent shadow-sm hover:shadow-md transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--brand-primary)]",
+  danger: "bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold border border-transparent shadow-sm hover:shadow-md transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500",
+  success: "bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold border border-transparent shadow-sm hover:shadow-md transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500",
+  warning: "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold border border-transparent shadow-sm hover:shadow-md transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500",
+  ghost: "bg-transparent text-slate-700 hover:bg-slate-100 border border-transparent font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-300",
+  link: "bg-transparent text-teal-600 hover:text-teal-800 underline decoration-transparent hover:decoration-current underline-offset-4 transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-300"
+};
+
+const sizes = {
+  sm: "text-sm px-4 py-2 rounded-lg min-h-[36px] flex items-center justify-center gap-2",
+  md: "text-base px-6 py-3 rounded-xl min-h-[44px] flex items-center justify-center gap-2",
+  lg: "text-lg px-8 py-4 rounded-2xl min-h-[52px] flex items-center justify-center gap-2"
 };
 ---
 
@@ -40,7 +61,7 @@ This component dynamically renders either a `<button>` element or an `<a>` (link
  - If the `href` prop is provided, an `<a>` tag is rendered to allow navigation.
  - If no `href` is provided, a `<button>` tag is rendered for performing actions and supports the `type` attribute (e.g., 'button', 'submit', or 'reset') to specify its behavior.
 
- Both types of elements share a similar structure and styling logic, with customization through the `variant`, `className`, and `id` props.
+ Both types of elements share a similar structure and styling logic, with customization through the `variant`, `size`, `className`, and `id` props.
 */
 }
 
@@ -52,19 +73,41 @@ This component dynamically renders either a `<button>` element or an `<a>` (link
       rel={rel ? rel : undefined}
       target={target ? target : undefined}
       class={twMerge(
-        `rounded-lg px-6 py-3 text-center font-medium transition-colors duration-300 focus:outline-hidden min-h-[44px] flex items-center justify-center touch-manipulation ${variants[variant ?? "primary"]} ${className || ""}`,
+        `${variants[variant ?? "primary"]} ${sizes[size ?? "md"]} ${className || ""} ${
+          disabled
+            ? 'opacity-50 cursor-not-allowed'
+            : 'cursor-pointer'
+        }`,
       )}
+      aria-disabled={disabled}
     >
+      {loading && (
+        <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+      )}
       <slot />
     </a>
   ) : (
     <button
       id={id}
       type={type || "button"}
+      disabled={disabled || loading}
       class={twMerge(
-        `rounded-lg px-6 py-3 text-center font-medium transition-colors duration-300 focus:outline-hidden min-h-[44px] flex items-center justify-center touch-manipulation ${variants[variant ?? "primary"]} ${className || ""}`,
+        `${variants[variant ?? "primary"]} ${sizes[size ?? "md"]} ${className || ""} ${
+          disabled || loading
+            ? 'opacity-50 cursor-not-allowed'
+            : 'cursor-pointer'
+        }`,
       )}
     >
+      {loading && (
+        <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+      )}
       <slot />
     </button>
   )

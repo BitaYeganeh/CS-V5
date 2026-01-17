@@ -1,0 +1,268 @@
+---
+import { menu } from '@data/menu.js';
+import Icon from '@ui/icons/Icon.astro';
+import Button from '@/components/ui/Button.astro';
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+---
+
+<header class="bg-white border-b border-slate-200 sticky top-0 z-50 backdrop-blur-sm bg-white/95">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="h-16 flex items-center justify-between" aria-label="Main navigation">
+      <!-- Logo -->
+      <a 
+        href="/" 
+        class="flex items-center space-x-2 text-slate-900 hover:text-blue-600 transition-colors duration-200"
+        aria-label="Cyber Security Finland Home"
+      >
+        <img
+          src="/logo-2025.jpg"
+          alt="Cyber Security Finland"
+          class="h-12 w-auto object-contain rounded-md"
+        />
+        <span class="font-bold text-lg hidden sm:block">Cyber Security Finland</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center space-x-8">
+        {menu.map(item => {
+          const isActive = currentPath === item.href || currentPath.startsWith(item.href + '/');
+          const hasChildren = item.children && item.children.length > 0;
+          
+          return (
+            <div class="relative group">
+              {hasChildren ? (
+                <button 
+                  class={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                    isActive 
+                      ? 'text-blue-600 bg-blue-50' 
+                      : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'
+                  }`}
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span>{lang === 'fi' ? item.label_fi : item.label_en}</span>
+                  <Icon name="chevronDown" class="w-4 h-4" />
+                </button>
+              ) : (
+                <a 
+                  href={item.href}
+                  class={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                    isActive 
+                      ? 'text-blue-600 bg-blue-50' 
+                      : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'
+                  }`}
+                >
+                  {lang === 'fi' ? item.label_fi : item.label_en}
+                </a>
+              )}
+              
+              <!-- Dropdown Menu -->
+              {hasChildren && (
+                <div class="absolute left-0 mt-2 w-56 bg-white shadow-lg rounded-md border border-slate-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div class="py-2">
+                    {item.children.map(subItem => (
+                      <a
+                        href={subItem.href}
+                        class={`block px-4 py-2 text-sm ${
+                          currentPath === subItem.href || currentPath.startsWith(subItem.href + '/')
+                            ? 'text-blue-600 bg-blue-50'
+                            : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'
+                        }`}
+                      >
+                        {lang === 'fi' ? subItem.label_fi : subItem.label_en}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+        
+        <!-- Language Switcher -->
+        <div class="relative mr-4" id="language-switcher-wrapper">
+          <button
+            id="language-switcher"
+            aria-label="Change language"
+            class="flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 transition-colors duration-200"
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            <Icon name="globeAlt" class="w-4 h-4" />
+            <span>{lang === 'fi' ? 'FI' : 'EN'}</span>
+            <Icon name="chevronDown" class="w-4 h-4 ml-1 transition-transform duration-200" />
+          </button>
+
+          <div id="language-dropdown" class="absolute right-0 mt-2 w-32 bg-white shadow-lg rounded-md border border-slate-200 opacity-0 invisible scale-95 transform translate-y-1 transition-all duration-200 z-50 origin-top-right">
+            <div class="py-1">
+              <a
+                href={lang === 'fi' ? currentPath.replace('/fi', '') || '/' : '/fi' + currentPath}
+                class={`block px-4 py-2 text-sm ${
+                  lang === 'fi'
+                    ? 'text-slate-400 bg-slate-50 cursor-not-allowed'
+                    : 'text-slate-700 hover:bg-slate-50'
+                }`}
+                onclick={lang === 'fi' ? "event.preventDefault();" : ""}
+              >
+                English
+              </a>
+              <a
+                href={lang === 'fi' ? currentPath : currentPath === '/' ? '/fi' : '/fi' + currentPath}
+                class={`block px-4 py-2 text-sm ${
+                  lang === 'fi'
+                    ? 'text-slate-700 bg-slate-50'
+                    : 'text-slate-400 hover:bg-slate-50 cursor-not-allowed'
+                }`}
+                onclick={lang !== 'fi' ? "event.preventDefault();" : ""}
+              >
+                Suomi
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Button -->
+        <Button
+          href="/contact"
+          variant="brand"
+          size="sm"
+          className="ml-4"
+        >
+          {lang === 'fi' ? 'Ota yhteyttä' : 'Contact Us'}
+        </Button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        id="mobile-menu-button"
+        class="lg:hidden p-2 rounded-md text-slate-700 hover:text-blue-600 hover:bg-slate-100"
+        aria-expanded="false"
+        aria-label="Open main menu"
+      >
+        <Icon name="bars3" class="h-6 w-6" />
+      </button>
+    </nav>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-slate-200">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      {menu.map(item => (
+        <div>
+          {item.children && item.children.length > 0 ? (
+            <details class="group">
+              <summary class="flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 cursor-pointer">
+                <span>{lang === 'fi' ? item.label_fi : item.label_en}</span>
+                <Icon name="chevronDown" class="w-5 h-5 ml-1 transition-transform duration-200 group-open:rotate-180" />
+              </summary>
+              <div class="pl-6 mt-1 space-y-1">
+                {item.children.map(subItem => (
+                  <a
+                    href={subItem.href}
+                    class={`block px-3 py-2 rounded-md text-sm ${
+                      currentPath === subItem.href || currentPath.startsWith(subItem.href + '/')
+                        ? 'text-blue-600 bg-blue-50'
+                        : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50'
+                    }`}
+                  >
+                    {lang === 'fi' ? subItem.label_fi : subItem.label_en}
+                  </a>
+                ))}
+              </div>
+            </details>
+          ) : (
+            <a
+              href={item.href}
+              class={`block px-3 py-2 rounded-md text-base font-medium ${
+                currentPath === item.href || currentPath.startsWith(item.href + '/')
+                  ? 'text-blue-600 bg-blue-50'
+                  : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'
+              }`}
+            >
+              {lang === 'fi' ? item.label_fi : item.label_en}
+            </a>
+          )}
+        </div>
+      ))}
+      
+      <a 
+        href="/contact"
+        class="block w-full mt-4 px-4 py-2 bg-blue-600 text-white text-center rounded-md hover:bg-blue-700 transition-colors duration-200"
+      >
+        {lang === 'fi' ? 'Ota yhteyttä' : 'Contact Us'}
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+        mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Language Switcher functionality
+    const switcherWrapper = document.getElementById('language-switcher-wrapper');
+    const switcherButton = document.getElementById('language-switcher');
+    const dropdown = document.getElementById('language-dropdown');
+
+    if (switcherButton && dropdown) {
+      // Toggle dropdown visibility
+      switcherButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isExpanded = switcherButton.getAttribute('aria-expanded') === 'true';
+
+        // Toggle expanded state
+        switcherButton.setAttribute('aria-expanded', !isExpanded);
+
+        // Toggle dropdown visibility
+        if (!isExpanded) {
+          dropdown.classList.remove('opacity-0', 'invisible', 'scale-95', 'translate-y-1');
+          dropdown.classList.add('opacity-100', 'visible', 'scale-100', 'translate-y-0');
+          const chevronIcon = switcherButton.querySelector('svg:last-child');
+          if (chevronIcon) chevronIcon.classList.add('rotate-180');
+        } else {
+          dropdown.classList.add('opacity-0', 'invisible', 'scale-95', 'translate-y-1');
+          dropdown.classList.remove('opacity-100', 'visible', 'scale-100', 'translate-y-0');
+          const chevronIcon = switcherButton.querySelector('svg:last-child');
+          if (chevronIcon) chevronIcon.classList.remove('rotate-180');
+        }
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (switcherWrapper && !switcherWrapper.contains(e.target)) {
+          switcherButton.setAttribute('aria-expanded', 'false');
+          dropdown.classList.add('opacity-0', 'invisible', 'scale-95', 'translate-y-1');
+          dropdown.classList.remove('opacity-100', 'visible', 'scale-100', 'translate-y-0');
+          const chevronIcon = switcherButton.querySelector('svg:last-child');
+          if (chevronIcon) chevronIcon.classList.remove('rotate-180');
+        }
+      });
+
+      // Handle keyboard navigation
+      switcherButton.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          switcherButton.click();
+        } else if (e.key === 'Escape') {
+          switcherButton.setAttribute('aria-expanded', 'false');
+          dropdown.classList.add('opacity-0', 'invisible', 'scale-95', 'translate-y-1');
+          dropdown.classList.remove('opacity-100', 'visible', 'scale-100', 'translate-y-0');
+          switcherButton.focus();
+          const chevronIcon = switcherButton.querySelector('svg:last-child');
+          if (chevronIcon) chevronIcon.classList.remove('rotate-180');
+        }
+      });
+    }
+  });
+</script>

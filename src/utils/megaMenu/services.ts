@@ -33,6 +33,12 @@ export const servicesMenu = [
         href: "/services/gdpr-privacy",
       },
       {
+        icon: "shieldCheck",
+        title: "Virtual DPO (V-DPO)",
+        description: "Virtual Data Protection Officer services",
+        href: "/services/virtual-dpo",
+      },
+      {
         icon: "identification",
         title: "eIDAS/Digital Trust",
         description: "Electronic identification and trust services",
@@ -78,6 +84,12 @@ export const servicesMenu = [
         title: "CISO-as-a-Service",
         description: "Fractional CISO and security leadership",
         href: "/services/ciso-as-a-service",
+      },
+      {
+        icon: "userCircle",
+        title: "Virtual CISO (V-CISO)",
+        description: "Virtual Chief Information Security Officer services",
+        href: "/services/virtual-ciso",
       },
       {
         icon: "magnifyingGlass",

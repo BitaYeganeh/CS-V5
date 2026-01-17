@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
 // Temporarily disabled obsolete page content to resolve build errors.
 const title = "Webinars & Events";
 ---
@@ -8,7 +9,7 @@ const title = "Webinars & Events";
     <div class="max-w-3xl mx-auto px-4 text-center">
       <h1 class="text-3xl font-bold mb-4">Page Moved</h1>
       <p class="text-slate-600 mb-6">Webinars & events have moved to the new <a href="/webinars" class="text-teal-700 underline">/webinars</a> section.</p>
-      <a href="/webinars" class="inline-block bg-teal-800 text-white px-6 py-3 rounded-lg">Go to Webinars</a>
+      <Button href="/webinars" variant="primary" className="px-6 py-3">Go to Webinars</Button>
     </div>
   </section>
 </Layout>

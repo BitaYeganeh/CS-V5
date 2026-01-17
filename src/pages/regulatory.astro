@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
 import HeroSection from '@/components/sections/HeroSection.astro';
 import CTA from '@/components/sections/CTA.astro';
 
@@ -133,12 +134,13 @@ const regulations = [
               </ul>
             </div>
             
-            <a 
+            <Button
               href={regulation.href}
-              class="block w-full text-center bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700 transition-colors"
+              variant="primary"
+              className="w-full py-2 px-4"
             >
               Read Full Guide
-            </a>
+            </Button>
           </div>
         ))}
       </div>

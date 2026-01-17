@@ -60,9 +60,9 @@ const steps = [
         ))}
       </div>
       <div class="mt-12 flex flex-wrap gap-3">
-        <a href="/services/nis2" class="px-4 py-2 rounded-md bg-teal-600 text-white text-sm">{lang==='fi'?'NIS2‑palvelut':'NIS2 Services'}</a>
-        <a href="/services/risk-management" class="px-4 py-2 rounded-md bg-slate-100 text-slate-800 text-sm">{lang==='fi'?'Riskienhallinta':'Risk Management'}</a>
-        <a href="/services/business-continuity-iso-22301" class="px-4 py-2 rounded-md bg-slate-100 text-slate-800 text-sm">{lang==='fi'?'Jatkuvuus':'Business Continuity'}</a>
+        <Button href="/services/nis2" variant="primary" size="sm" className="px-4 py-2">{lang==='fi'?'NIS2‑palvelut':'NIS2 Services'}</Button>
+        <Button href="/services/risk-management" variant="tertiary" size="sm" className="px-4 py-2 text-slate-800">{lang==='fi'?'Riskienhallinta':'Risk Management'}</Button>
+        <Button href="/services/business-continuity-iso-22301" variant="tertiary" size="sm" className="px-4 py-2 text-slate-800">{lang==='fi'?'Jatkuvuus':'Business Continuity'}</Button>
       </div>
     </div>
   </section>

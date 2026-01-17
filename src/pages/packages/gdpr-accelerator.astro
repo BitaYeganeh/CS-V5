@@ -3,9 +3,47 @@ import Layout from '@/layouts/Layout.astro';
 import HeroSection from '@/components/sections/HeroSection.astro';
 import CTA from '@/components/sections/CTA.astro';
 
-const title = "GDPR Compliance Accelerator";
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+// SEO Configuration
+const seoConfig = {
+  title: lang === 'fi' ? "GDPR-kiihdytin | Cyber Security Finland" : "GDPR Compliance Accelerator | Cyber Security Finland",
+  description: lang === 'fi'
+    ? "Nopea GDPR:n vaatimustenmukaisuus 60-90 päivässä. Kattava tietosuojan hallintajärjestelmä, rekisteriselosteet ja DPO-palvelut mukana."
+    : "Fast GDPR compliance in 60-90 days. Comprehensive privacy management system, register documents, and DPO services included.",
+  keywords: lang === 'fi'
+    ? "GDPR Suomi, GDPR yhteensopivuus, GDPR kiihdytin, tietosuojavastaava, DPO palvelu, GDPR konsultointi"
+    : "GDPR finland, GDPR compliance, GDPR accelerator, data protection officer, DPO service, GDPR consulting",
+  type: "product" as const,
+  schema: {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "GDPR Compliance Accelerator",
+    "description": "Accelerated GDPR compliance implementation with privacy management system and Virtual DPO services",
+    "provider": {
+      "@type": "Organization",
+      "name": "Cyber Security Finland",
+      "url": "https://cybersecurity.fi"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Finland"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "Contact for pricing",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Cyber Security Finland"
+      }
+    },
+    "serviceType": "GDPR Compliance Implementation and Virtual DPO Service",
+    "availableLanguage": ["English", "Finnish"]
+  }
+};
 
 const heroContent = {
   title: "GDPR Accelerator - Privacy Excellence Program",
@@ -305,7 +343,7 @@ const packageTiers = [
 ];
 ---
 
-<Layout title={title}>
+<Layout seoConfig={seoConfig}>
   <HeroSection content={heroContent} />
   
   <!-- GDPR Overview -->

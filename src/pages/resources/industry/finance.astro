@@ -1,0 +1,218 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const financialResources = [
+  {
+    title: lang === 'fi' ? 'DORA-sääntelyn noudattaminen rahoitussektorilla' : 'DORA Compliance in Financial Services',
+    description: lang === 'fi' ? 'Käytännönläheinen opas digitaalisen toiminnan resilierenssin sääntelyn noudattamiseen' : 'Practical guide to digital operational resilience act compliance',
+    type: 'Guide',
+    framework: 'DORA',
+    date: '2024-03-15',
+    readTime: '15 min',
+    url: '/resources/industry/finance/dora-compliance-guide',
+    tags: ['Risk Management', 'Operational Resilience', 'Digital Operations']
+  },
+  {
+    title: lang === 'fi' ? 'PCI DSS -tietoturvaohje rahoituslaitoksille' : 'PCI DSS Security Guide for Financial Institutions',
+    description: lang === 'fi' ? 'Krediittikorttitietojen käsittelyn turvallisuus PCI DSS -standardin mukaisesti' : 'Securing credit card data handling according to PCI DSS standards',
+    type: 'Guide',
+    framework: 'PCI DSS',
+    date: '2024-02-20',
+    readTime: '12 min',
+    url: '/resources/industry/finance/pci-dss-security',
+    tags: ['Payment Security', 'Data Protection', 'Compliance']
+  },
+  {
+    title: lang === 'fi' ? 'Rahoitussektorin riskienhallintamalli' : 'Financial Sector Risk Management Template',
+    description: lang === 'fi' ? 'Valmis malli rahoitussektorin erityispiirteisiin soveltuvaan riskienhallintaan' : 'Ready-made template for financial sector-specific risk management',
+    type: 'Template',
+    framework: 'Risk Management',
+    date: '2024-01-30',
+    readTime: '8 min',
+    url: '/resources/industry/finance/risk-management-template',
+    tags: ['Risk Assessment', 'Compliance', 'Documentation']
+  },
+  {
+    title: lang === 'fi' ? 'Finanssialan NIS2-vaatimustarkistus' : 'Financial Services NIS2 Requirements Checklist',
+    description: lang === 'fi' ? 'Tarkistuslista NIS2-direktiivin vaatimusten noudattamiseksi rahoitussektorilla' : 'Checklist for meeting NIS2 directive requirements in financial services',
+    type: 'Checklist',
+    framework: 'NIS2',
+    date: '2024-04-10',
+    readTime: '5 min',
+    url: '/resources/industry/finance/nis2-checklist',
+    tags: ['Compliance', 'Security', 'Assessment']
+  }
+];
+---
+
+<Layout 
+  title={lang === 'fi' ? 'Rahoituspalveluiden resurssit' : 'Financial Services Resources'} 
+  description={lang === 'fi' 
+    ? 'Lataa rahoitussektorin erityispiirteisiin soveltuvia oppaita, malleja ja tarkistuslistoja.' 
+    : 'Download guides, templates, and checklists tailored to financial services specifics.'}
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-blue-50 via-white to-cyan-50 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 mb-4">
+          <Icon name="bank-notes" class="w-4 h-4 mr-1" />
+          {lang === 'fi' ? 'Rahoituspalvelut' : 'Financial Services'}
+        </span>
+        <h1 class="text-4xl font-bold text-slate-900 mb-6">
+          {lang === 'fi' ? 'Rahoituspalveluiden resurssit' : 'Financial Services Resources'}
+        </h1>
+        <p class="text-xl text-slate-600 mb-8">
+          {lang === 'fi' 
+            ? 'Lataa rahoitussektorin erityispiirteisiin soveltuvia oppaita, malleja ja tarkistuslistoja.' 
+            : 'Download guides, templates, and checklists tailored to financial services specifics.'}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources Grid -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {financialResources.map(resource => (
+          <div class="bg-gradient-to-br from-white to-slate-50 rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                    {resource.type}
+                  </span>
+                  <span class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-cyan-100 text-cyan-800">
+                    {resource.framework}
+                  </span>
+                </div>
+                <div class="flex-shrink-0">
+                  {resource.type === 'Template' || resource.type === 'Checklist' ? (
+                    <Icon name="arrowDownTray" class="h-5 w-5 text-slate-400" />
+                  ) : (
+                    <Icon name="bookOpen" class="h-5 w-5 text-slate-400" />
+                  )}
+                </div>
+              </div>
+              
+              <h3 class="text-lg font-semibold text-slate-900 mb-2">
+                {resource.title}
+              </h3>
+              <p class="text-slate-600 text-sm mb-4">
+                {resource.description}
+              </p>
+              
+              <div class="flex flex-wrap gap-2 mb-4">
+                {resource.tags.map(tag => (
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-700">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              
+              <div class="flex items-center justify-between text-xs text-slate-500 mb-4">
+                <span>{resource.date}</span>
+                <span>{resource.readTime}</span>
+              </div>
+              
+              <a 
+                href={resource.url}
+                class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700"
+              >
+                {resource.type === 'Template' || resource.type === 'Checklist' 
+                  ? (lang === 'fi' ? 'Lataa nyt' : 'Download Now') 
+                  : (lang === 'fi' ? 'Lue lisää' : 'Read More')}
+                <Icon name={resource.type === 'Template' || resource.type === 'Checklist' ? 'arrowDownTray' : 'arrowRight'} class="ml-2 -mr-1 h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Industry Specific Info -->
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">
+          {lang === 'fi' ? 'Rahoitussektorin sääntelyhaasteet' : 'Regulatory Challenges in Financial Services'}
+        </h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          {lang === 'fi' 
+            ? 'Rahoitussektorilla on yksi tiukimmista sääntelyympäristöistä, mukaan lukien DORA, NIS2, PCI DSS ja monet muut.' 
+            : 'Financial services face one of the strictest regulatory environments, including DORA, NIS2, PCI DSS, and many others.'}
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl border border-slate-200">
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+            <Icon name="shield-check" class="h-6 w-6 text-blue-600" />
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-2 text-center">
+            {lang === 'fi' ? 'DORA ja NIS2' : 'DORA & NIS2'}
+          </h3>
+          <p class="text-slate-600 text-center">
+            {lang === 'fi' 
+              ? 'Digitaalisen toiminnan resilierenssi ja verkon tietoturvan direktiivit asettavat uudet vaatimukset rahoitussektorille.' 
+              : 'Digital operational resilience and network security directives set new requirements for financial services.'}
+          </p>
+        </div>
+        
+        <div class="bg-white p-6 rounded-xl border border-slate-200">
+          <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+            <Icon name="credit-card" class="h-6 w-6 text-cyan-600" />
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-2 text-center">
+            {lang === 'fi' ? 'PCI DSS' : 'PCI DSS'}
+          </h3>
+          <p class="text-slate-600 text-center">
+            {lang === 'fi' 
+              ? 'Krediittikorttitietojen suojaamista koskevat standardit ovat kriittisiä maksupalveluiden tarjoajille.' 
+              : 'Credit card data security standards are critical for payment service providers.'}
+          </p>
+        </div>
+        
+        <div class="bg-white p-6 rounded-xl border border-slate-200">
+          <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+            <Icon name="chart-bar" class="h-6 w-6 text-indigo-600" />
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-2 text-center">
+            {lang === 'fi' ? 'Riskienhallinta' : 'Risk Management'}
+          </h3>
+          <p class="text-slate-600 text-center">
+            {lang === 'fi' 
+              ? 'Rahoitussektorin ainutlaatuiset kyberturvallisuusriskit vaativat erikoistuneen lähestymistavan.' 
+              : 'Unique cybersecurity risks in financial services require a specialized approach.'}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-gradient-to-r from-blue-600 to-cyan-600 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-4">
+        {lang === 'fi' ? 'Tarvitsetko apua rahoitussektorin sääntelyssä?' : 'Need help with financial services compliance?'}
+      </h2>
+      <p class="text-xl mb-8 opacity-90">
+        {lang === 'fi' 
+          ? 'Asiantuntijatietoomme auttaa sinua hallitsemaan rahoitussektorin sääntelyvaatimuksia tehokkaasti.' 
+          : 'Our expertise can help you manage financial services regulatory requirements effectively.'}
+      </p>
+      <a 
+        href="/contact" 
+        class="inline-block bg-white text-cyan-600 font-medium py-3 px-6 rounded-lg hover:bg-slate-100 transition-colors"
+      >
+        {lang === 'fi' ? 'Ota yhteyttä' : 'Contact Us'}
+      </a>
+    </div>
+  </section>
+</Layout>

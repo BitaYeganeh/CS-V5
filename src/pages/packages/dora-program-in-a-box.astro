@@ -1,14 +1,53 @@
 ﻿---
 import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
 import HeroSection from '@/components/sections/HeroSection.astro';
 import CTA from '@/components/sections/CTA.astro';
 
-const title = "DORA Program-in-a-Box";
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
+// SEO Configuration
+const seoConfig = {
+  title: lang === 'fi' ? "DORA-ohjelma-laatikossa | Cyber Security Finland" : "DORA Program-in-a-Box | Cyber Security Finland",
+  description: lang === 'fi'
+    ? "Kokonaisvaltainen DORA-direktiivin toteutusohjelma 75-105 päivässä. ICT-riskinhallinta, kolmannen osapuolen riskit ja operaattorisen resilierenssin testaus mukana."
+    : "Comprehensive DORA directive implementation program in 75-105 days. ICT risk management, third-party risks, and operational resilience testing included.",
+  keywords: lang === 'fi'
+    ? "DORA Suomi, DORA direktiivi, DORA yhteensopivuus, DORA toteutus, digitaalinen operatiivinen resilierenssi, rahoituspalvelut Suomi"
+    : "DORA finland, DORA directive, DORA compliance, DORA implementation, digital operational resilience, financial services finland",
+  type: "product" as const,
+  schema: {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "DORA Program-in-a-Box",
+    "description": "Complete Digital Operational Resilience Act implementation for financial services organizations",
+    "provider": {
+      "@type": "Organization",
+      "name": "Cyber Security Finland",
+      "url": "https://cybersecurity.fi"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Finland"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "Contact for pricing",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Cyber Security Finland"
+      }
+    },
+    "serviceType": "DORA Implementation and Digital Operational Resilience",
+    "availableLanguage": ["English", "Finnish"]
+  }
+};
+
 const heroContent = {
-  title: "� DORA Program-in-a-Box - Digital Operational Resilience Excellence",
+  title: " DORA Program-in-a-Box - Digital Operational Resilience Excellence",
   subtitle: "Complete Digital Operational Resilience Act (DORA) compliance solution for financial institutions and critical third-party ICT service providers",
   description: "Cybersecurity.fi's DORA Program-in-a-Box delivers comprehensive digital operational resilience capabilities including ICT risk management, incident response, operational resilience testing, and third-party risk management to ensure full compliance with EU DORA regulations by January 17, 2025.",
   primaryCTA: { text: "Start DORA Compliance Program", href: "/contact?package=dora-program" },
@@ -17,7 +56,7 @@ const heroContent = {
 
 const doraRequirements = [
   {
-    pillar: "� ICT Risk Management Framework",
+    pillar: " ICT Risk Management Framework",
     description: "Establish comprehensive ICT risk management framework with governance, strategy, and risk appetite alignment",
     requirements: [
       "ICT risk management policy and procedures with board oversight",
@@ -45,7 +84,7 @@ const doraRequirements = [
     complexity: "Medium-High - Requires coordination with regulatory bodies"
   },
   {
-    pillar: "� Digital Operational Resilience Testing (DORT)",
+    pillar: " Digital Operational Resilience Testing (DORT)",
     description: "Establish comprehensive testing framework for ICT systems, applications, and operational processes",
     requirements: [
       "Testing strategy and methodology aligned with business strategy",
@@ -200,7 +239,7 @@ const programIncludes = [
 ];
 ---
 
-<Layout title={title}>
+<Layout seoConfig={seoConfig}>
   <HeroSection content={heroContent} />
   
   <!-- DORA Overview -->
@@ -409,10 +448,12 @@ const programIncludes = [
         </div>
         
         <div class="mt-8">
-          <a href="/contact?package=dora-program" 
-             class="bg-teal-600 text-white py-3 px-8 rounded-md font-medium hover:bg-teal-700 transition-colors inline-block">
+          <Button
+            href="/contact?package=dora-program"
+            variant="primary"
+            className="py-3 px-8 inline-block">
             Start DORA Implementation
-          </a>
+          </Button>
         </div>
       </div>
     </div>

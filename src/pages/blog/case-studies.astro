@@ -1,5 +1,6 @@
 ﻿---
 import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
 
 const title = "Case Studies";
 const currentPath = Astro.url.pathname;
@@ -59,31 +60,31 @@ const content = {
         {
           name: "Financial Services",
           count: "12 case studies",
-          icon: "�",
+          icon: "",
           description: "Banking, insurance, and fintech compliance solutions"
         },
         {
           name: "Healthcare",
           count: "8 case studies",
-          icon: "�",
+          icon: "",
           description: "HIPAA, GDPR, and healthcare security implementations"
         },
         {
           name: "Manufacturing",
           count: "15 case studies",
-          icon: "�",
+          icon: "",
           description: "Industrial cybersecurity and supply chain security"
         },
         {
           name: "Technology",
           count: "20 case studies",
-          icon: "�",
+          icon: "",
           description: "SaaS, cloud security, and software development"
         },
         {
           name: "Retail",
           count: "10 case studies",
-          icon: "�",
+          icon: "",
           description: "E-commerce security and PCI DSS compliance"
         },
         {
@@ -235,31 +236,31 @@ const content = {
         {
           name: "Rahoituspalvelut",
           count: "12 tapaustutkimusta",
-          icon: "�",
+          icon: "",
           description: "Pankkitoiminta, vakuutus ja fintech-yhteensopivuusratkaisut"
         },
         {
           name: "Terveydenhuolto",
           count: "8 tapaustutkimusta",
-          icon: "�",
+          icon: "",
           description: "HIPAA, GDPR ja terveydenhuollon turvallisuustoteutukset"
         },
         {
           name: "Valmistus",
           count: "15 tapaustutkimusta",
-          icon: "�",
+          icon: "",
           description: "Teollinen kyberturvallisuus ja toimitusketjun turvallisuus"
         },
         {
           name: "Teknologia",
           count: "20 tapaustutkimusta",
-          icon: "�",
+          icon: "",
           description: "SaaS, pilviturvallisuus ja ohjelmistokehitys"
         },
         {
           name: "Vähittäiskauppa",
           count: "10 tapaustutkimusta",
-          icon: "�",
+          icon: "",
           description: "E-kaupan turvallisuus ja PCI DSS -yhteensopivuus"
         },
         {
@@ -533,9 +534,9 @@ const currentContent = content[lang];
             <div class="text-blue-600 text-sm mb-4">
               {resource.format} • {resource.size}
             </div>
-            <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">
+            <Button variant="brand" className="py-2 px-4 font-semibold">
               {resource.download}
-            </button>
+            </Button>
           </div>
         ))}
       </div>

@@ -1,73 +1,124 @@
 ﻿---
 import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
 import HeroSection from '@/components/sections/HeroSection.astro';
 import CTA from '@/components/sections/CTA.astro';
 
-const title = "ISO 27001 Fast‑Track (90–120 days)";
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
+// SEO Configuration
+const seoConfig = {
+  title: lang === 'fi' ? "ISO 27001 Fast-Track (90–120 päivää) | Cyber Security Finland" : "ISO 27001 Fast‑Track (90–120 days) | Cyber Security Finland",
+  description: lang === 'fi'
+    ? "Nopea ISO 27001 -toteutus 90-120 päivässä. Kattava tietoturvajärjestelmän toteutus, dokumentointi, koulutus ja sertifiointituki mukana."
+    : "Fast-track ISO 27001 implementation in 90-120 days. Complete ISMS implementation, documentation, training, and certification support included.",
+  keywords: lang === 'fi'
+    ? "ISO 27001 Suomi, ISO 27001 nopea toteutus, ISO 27001 sertifiointi, tietoturvajärjestelmä Suomi, ISO 27001 konsultointi"
+    : "ISO 27001 finland, ISO 27001 fast track, ISO 27001 certification, information security management system, ISO 27001 consulting",
+  type: "product" as const,
+  schema: {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "ISO 27001 Fast-Track Package",
+    "description": "Complete ISO 27001 Information Security Management System implementation in 90-120 days with expert guidance and ongoing support",
+    "provider": {
+      "@type": "Organization",
+      "name": "Cyber Security Finland",
+      "url": "https://cybersecurity.fi"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Finland"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "Contact for pricing",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Cyber Security Finland"
+      }
+    },
+    "serviceType": "ISO 27001 Implementation and Certification",
+    "availableLanguage": ["English", "Finnish"]
+  }
+};
+
 const heroContent = {
-  title: "ISO 27001 Fast-Track: Complete Implementation in 90-120 Days",
-  subtitle: "From assessment to certification in record time",
-  description: "Transform your information security management in just 3-4 months with our proven fast-track methodology. This all-inclusive program takes you from initial assessment to ISO 27001 certification with everything you need included.",
-  primaryCTA: { text: "Get Started", href: "/contact?package=iso-27001-fast-track" },
-  secondaryCTA: { text: "Learn More", href: "/services/iso-27001" }
+  title: lang === 'fi' ? "ISO 27001 Fast-Track: Täydellinen toteutus 90-120 päivässä" : "ISO 27001 Fast-Track: Complete Implementation in 90-120 Days",
+  subtitle: lang === 'fi' ? "Arvioinnista sertifiointiin ennätysajassa" : "From assessment to certification in record time",
+  description: lang === 'fi' 
+    ? "Muuta tietoturvasi hallinta vain 3-4 kuukaudessa todistetulla fast-track -menetelmällämme. Tämä kattava ohjelma vie sinut alkukartoituksesta ISO 27001 -sertifiointiin sisältäen kaiken tarvittavan."
+    : "Transform your information security management in just 3-4 months with our proven fast-track methodology. This all-inclusive program takes you from initial assessment to ISO 27001 certification with everything you need included.",
+  primaryCTA: { text: lang === 'fi' ? "Aloita nyt" : "Get Started", href: "/contact?package=iso-27001-fast-track" },
+  secondaryCTA: { text: lang === 'fi' ? "Lue lisää" : "Learn More", href: lang === 'fi' ? "/fi/services/iso-27001-services" : "/services/iso-27001" }
 };
 
 const packageFeatures = [
   {
-    title: "Assessment & Planning",
-    description: "Comprehensive security posture assessment and gap analysis, risk assessment covering all organizational assets and processes, implementation roadmap with detailed timeline and milestones.",
-    duration: "Weeks 1-2"
+    title: lang === 'fi' ? "Arviointi & Suunnittelu" : "Assessment & Planning",
+    description: lang === 'fi'
+      ? "Kattava tietoturvan tilan arviointi ja puuteanalyysi (gap analysis), riskien arviointi kattaen kaikki organisaation varat ja prosessit, toteutussuunnitelma yksityiskohtaisella aikataululla ja virstanpylväillä."
+      : "Comprehensive security posture assessment and gap analysis, risk assessment covering all organizational assets and processes, implementation roadmap with detailed timeline and milestones.",
+    duration: lang === 'fi' ? "Viikot 1-2" : "Weeks 1-2"
   },
   {
-    title: "Implementation Services",
-    description: "Information Security Management System (ISMS) design, policy library development (50+ policies and procedures), risk treatment plan implementation and control deployment.",
-    duration: "Weeks 3-8"
+    title: lang === 'fi' ? "Toteutuspalvelut" : "Implementation Services",
+    description: lang === 'fi'
+      ? "Tietoturvallisuuden hallintajärjestelmän (ISMS) suunnittelu, politiikkakirjaston kehittäminen (50+ käytäntöä ja menettelytapaa), riskien käsittelysuunnitelman toteutus ja hallintakeinojen käyttöönotto."
+      : "Information Security Management System (ISMS) design, policy library development (50+ policies and procedures), risk treatment plan implementation and control deployment.",
+    duration: lang === 'fi' ? "Viikot 3-8" : "Weeks 3-8"
   },
   {
-    title: "� Training & Documentation",
-    description: "Comprehensive staff training programs across all levels, complete documentation package with professional ISMS documentation, implementation tools & systems.",
-    duration: "Weeks 9-10"
+    title: lang === 'fi' ? "Koulutus & Dokumentaatio" : "Training & Documentation",
+    description: lang === 'fi'
+      ? "Kattavat henkilöstön koulutusohjelmat kaikille tasoille, täydellinen dokumentaatiopaketti ammattimaisella ISMS-dokumentaatiolla, toteutustyökalut ja järjestelmät."
+      : "Comprehensive staff training programs across all levels, complete documentation package with professional ISMS documentation, implementation tools & systems.",
+    duration: lang === 'fi' ? "Viikot 9-10" : "Weeks 9-10"
   },
   {
-    title: "Certification & Support",
-    description: "Stage 1 and Stage 2 audit preparation and support, certification body liaison, 12-month post-certification support and guidance.",
-    duration: "Weeks 11-12"
+    title: lang === 'fi' ? "Sertifiointi & Tuki" : "Certification & Support",
+    description: lang === 'fi'
+      ? "Vaiheen 1 ja 2 auditointivalmistelu ja tuki, yhteistyö sertifiointielimen kanssa, 12 kuukauden tuki ja ohjaus sertifioinnin jälkeen."
+      : "Stage 1 and Stage 2 audit preparation and support, certification body liaison, 12-month post-certification support and guidance.",
+    duration: lang === 'fi' ? "Viikot 11-12" : "Weeks 11-12"
   }
 ];
 
 const benefits = [
-  "Achieve certification 3x faster than traditional approaches",
-  "Comprehensive documentation package included",
-  "Dedicated project manager assigned",
-  "Weekly progress reviews and reporting",
-  "Post-certification maintenance support",
-  "Risk register and treatment plan",
-  "Employee training and awareness program",
-  "Incident response procedures"
+  lang === 'fi' ? "Saavuta sertifiointi 3x nopeammin kuin perinteisillä tavoilla" : "Achieve certification 3x faster than traditional approaches",
+  lang === 'fi' ? "Kattava dokumentaatiopaketti sisältyy hintaan" : "Comprehensive documentation package included",
+  lang === 'fi' ? "Oma nimetty projektipäällikkö" : "Dedicated project manager assigned",
+  lang === 'fi' ? "Viikoittaiset edistymiskatsaukset ja raportointi" : "Weekly progress reviews and reporting",
+  lang === 'fi' ? "Sertifioinnin jälkeinen ylläpitotuki" : "Post-certification maintenance support",
+  lang === 'fi' ? "Riskirekisteri ja käsittelysuunnitelma" : "Risk register and treatment plan",
+  lang === 'fi' ? "Henkilöstön koulutus- ja tietoisuusohjelma" : "Employee training and awareness program",
+  lang === 'fi' ? "Häiriönhallintamenettelyt" : "Incident response procedures"
 ];
 
 const packageIncludes = [
-  "Complete ISO 27001 implementation",
-  "All required documentation",
-  "Staff training (up to 20 employees)",
-  "Internal audit and gap analysis",
-  "Certification audit support",
-  "3 months post-certification support"
+  lang === 'fi' ? "Täydellinen ISO 27001 -toteutus" : "Complete ISO 27001 implementation",
+  lang === 'fi' ? "Kaikki vaadittu dokumentaatio" : "All required documentation",
+  lang === 'fi' ? "Henkilöstökoulutus (jopa 20 työntekijää)" : "Staff training (up to 20 employees)",
+  lang === 'fi' ? "Sisäinen auditointi ja puuteanalyysi" : "Internal audit and gap analysis",
+  lang === 'fi' ? "Sertifiointiauditoinnin tuki" : "Certification audit support",
+  lang === 'fi' ? "3 kuukauden tuki sertifioinnin jälkeen" : "3 months post-certification support"
 ];
 ---
 
-<Layout title={title}>
-  <HeroSection content={heroContent} />
+<Layout seoConfig={seoConfig}>
+  <HeroSection content={heroContent} variant="simple" />
   
   <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Fast-Track Implementation Process</h2>
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang === 'fi' ? "Fast-Track -toteutusprosessi" : "Fast-Track Implementation Process"}</h2>
         <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          Our proven 16-week methodology gets you from start to certification efficiently and effectively.
+          {lang === 'fi' 
+            ? "Todistettu 16 viikon menetelmämme vie sinut alusta sertifiointiin tehokkaasti ja tuloksellisesti."
+            : "Our proven 16-week methodology gets you from start to certification efficiently and effectively."}
         </p>
       </div>
       
@@ -94,7 +145,7 @@ const packageIncludes = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div>
-          <h2 class="text-3xl font-bold text-slate-900 mb-6">What's Included</h2>
+          <h2 class="text-3xl font-bold text-slate-900 mb-6">{lang === 'fi' ? "Mitä paketti sisältää" : "What's Included"}</h2>
           <ul class="space-y-3">
             {benefits.map(benefit => (
               <li class="flex items-start">
@@ -121,12 +172,13 @@ const packageIncludes = [
             ))}
           </ul>
           
-          <a 
+          <Button
             href="/contact?package=iso-27001-fast-track"
-            class="block w-full text-center bg-teal-600 text-white py-3 px-6 rounded-md hover:bg-teal-700 transition-colors font-semibold"
+            variant="primary"
+            className="w-full py-3 px-6 font-semibold"
           >
             Get Started Today
-          </a>
+          </Button>
         </div>
       </div>
     </div>

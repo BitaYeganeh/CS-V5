@@ -1,0 +1,139 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
+import { useState } from 'react';
+
+const seoConfig = {
+  title: "Button Showcase | Cyber Security Finland",
+  description: "Showcase of improved button designs with enhanced UX and accessibility",
+  type: "website"
+};
+
+const buttonVariants = [
+  { variant: 'primary', label: 'Primary' },
+  { variant: 'secondary', label: 'Secondary' },
+  { variant: 'tertiary', label: 'Tertiary' },
+  { variant: 'white', label: 'White' },
+  { variant: 'outline-white', label: 'Outline White' },
+  { variant: 'brand', label: 'Brand' },
+  { variant: 'danger', label: 'Danger' },
+  { variant: 'success', label: 'Success' },
+  { variant: 'warning', label: 'Warning' },
+  { variant: 'ghost', label: 'Ghost' },
+  { variant: 'link', label: 'Link' },
+];
+
+const buttonSizes = [
+  { size: 'sm', label: 'Small' },
+  { size: 'md', label: 'Medium' },
+  { size: 'lg', label: 'Large' },
+];
+---
+
+<Layout {...seoConfig}>
+  <div class="max-w-6xl mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold text-center mb-12 text-slate-900">Button Showcase</h1>
+    
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold mb-6 text-slate-800">Button Variants</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {buttonVariants.map((item) => (
+          <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+            <h3 class="text-lg font-medium mb-4 text-slate-700 capitalize">{item.label}</h3>
+            <div class="space-y-4">
+              <Button variant={item.variant} size="sm">Small</Button>
+              <Button variant={item.variant} size="md">Medium</Button>
+              <Button variant={item.variant} size="lg">Large</Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+    
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold mb-6 text-slate-800">Button States</h2>
+      <div class="space-y-6">
+        <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+          <h3 class="text-lg font-medium mb-4 text-slate-700">Normal State</h3>
+          <div class="flex flex-wrap gap-4">
+            <Button variant="primary">Primary</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Button variant="danger">Danger</Button>
+          </div>
+        </div>
+        
+        <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+          <h3 class="text-lg font-medium mb-4 text-slate-700">Disabled State</h3>
+          <div class="flex flex-wrap gap-4">
+            <Button variant="primary" disabled={true}>Primary</Button>
+            <Button variant="secondary" disabled={true}>Secondary</Button>
+            <Button variant="danger" disabled={true}>Danger</Button>
+          </div>
+        </div>
+        
+        <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+          <h3 class="text-lg font-medium mb-4 text-slate-700">Loading State</h3>
+          <div class="flex flex-wrap gap-4">
+            <Button variant="primary" loading={true}>Loading...</Button>
+            <Button variant="secondary" loading={true}>Loading...</Button>
+            <Button variant="danger" loading={true}>Loading...</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold mb-6 text-slate-800">Button Sizes</h2>
+      <div class="space-y-6">
+        {buttonSizes.map((item) => (
+          <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+            <h3 class="text-lg font-medium mb-4 text-slate-700">{item.label} Buttons</h3>
+            <div class="flex flex-wrap gap-4">
+              <Button variant="primary" size={item.size}>Primary</Button>
+              <Button variant="secondary" size={item.size}>Secondary</Button>
+              <Button variant="success" size={item.size}>Success</Button>
+              <Button variant="warning" size={item.size}>Warning</Button>
+              <Button variant="danger" size={item.size}>Danger</Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+    
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold mb-6 text-slate-800">Button with Icons</h2>
+      <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+        <div class="flex flex-wrap gap-4">
+          <Button variant="primary">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            With Icon
+          </Button>
+          <Button variant="secondary">
+            Download
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+            </svg>
+          </Button>
+          <Button variant="ghost">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+            </svg>
+          </Button>
+        </div>
+      </div>
+    </section>
+    
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold mb-6 text-slate-800">Button Links</h2>
+      <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+        <div class="flex flex-wrap gap-4">
+          <Button href="/contact" variant="primary">Contact Us</Button>
+          <Button href="/services" variant="secondary">Our Services</Button>
+          <Button href="/about" variant="ghost">About Us</Button>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

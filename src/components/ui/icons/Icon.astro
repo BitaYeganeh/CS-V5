@@ -7,31 +7,40 @@ interface Path {
 }
 
 const { name, class: className, ...attributes } = Astro.props;
-let icon = (Icons as any)[name] || {};
-let paths: Path[] = icon.paths || [];
+let icon = (Icons as any)[name];
+const hasIcon = icon && typeof icon === 'object' && icon.paths && Array.isArray(icon.paths) && icon.paths.length > 0;
+let paths: Path[] = hasIcon ? icon.paths : [];
 
+const defaultClass = 'w-6 h-6 inline-block align-middle';
 const combinedClass = [
-  icon.class,
+  defaultClass,
+  hasIcon ? icon.class : null,
   className
 ].filter(Boolean).join(" ");
 ---
 
-{icon ? (
-  <svg 
+{hasIcon ? (
+  <svg
     {...attributes}
     class={combinedClass}
-    viewBox={icon.viewBox}
-    fill={icon.fill}
-    stroke={icon.stroke}
-    stroke-width={icon.strokeWidth}
-    stroke-linecap={icon.strokeLinecap}
-    stroke-linejoin={icon.strokeLinejoin}
+    viewBox={icon.viewBox || '0 0 24 24'}
+    fill={icon.fill ?? 'none'}
+    stroke={icon.stroke ?? 'currentColor'}
+    stroke-width={icon.strokeWidth ?? '1.5'}
+    stroke-linecap={icon.strokeLinecap ?? 'round'}
+    stroke-linejoin={icon.strokeLinejoin ?? 'round'}
+    role={icon.title ? 'img' : 'presentation'}
+    focusable="false"
+    aria-hidden={icon.title ? 'false' : 'true'}
   >
-    <title>{icon.title}</title>
+    {icon.title ? <title>{icon.title}</title> : null}
     {paths.map((path: Path) => (
       <path d={path.d} class={path.class || ""} />
     ))}
   </svg>
 ) : (
-  "Icon not found"
+  <svg class={combinedClass} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false" aria-hidden="false">
+    <circle cx="12" cy="12" r="10" fill="#ef4444" opacity="0.15" />
+    <path d="M8 12h8" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" />
+  </svg>
 )}

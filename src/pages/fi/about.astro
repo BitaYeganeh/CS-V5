@@ -1,0 +1,232 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
+
+const currentPath = Astro.url.pathname;
+const lang = 'fi'; // Explicitly set to Finnish for this version
+
+const aboutContent = {
+  hero: {
+    title: "Meistä - Cyber Security Finland",
+    subtitle: "Johtava kyberturvallisuuden asiantuntija Suomessa",
+    description: "Olemme erikoistunut kyberturvallisuuden ja sääntelyvaatimusten noudattamisen asiantuntijayritys, joka auttaa suomalaisia yrityksiä hallitsemaan kyberturvallisuusriskien ja sääntelyvaatimusten noudattamista tehokkaasti."
+  },
+  mission: {
+    title: "Tehtävämme",
+    content: "Autamme suomalaisia yrityksiä rakentamaan vahvaa kyberturvallisuuskulttuuria ja noudattamaan sääntelyvaatimuksia ilman, että turvallisuus hidastaa liiketoimintaa. Uskomme, että kyberturvallisuus on liiketoiminnan mahdollistaja, ei este."
+  },
+  values: [
+    {
+      title: "Asiantuntemus",
+      description: "Yhdistämme akateemisen tietämyksen käytännön asiantuntemukseen, jotta voimme tarjota parasta mahdollista palvelua asiakkaillemme.",
+      icon: "academic-cap"
+    },
+    {
+      title: "Luotettavuus",
+      description: "Toimimme avoimesti ja rehellisesti kaikissa vuorovaikutuksissamme. Luottamus on perusta kaikille asiakassuhteillemme.",
+      icon: "shield-check"
+    },
+    {
+      title: "Innovaatio",
+      description: "Pysymme ajan tasalla uusimmista kyberturvallisuus- ja sääntelytrendeistä, jotta voimme tarjota asiakkaillemme ajankohtaisinta tietoa.",
+      icon: "light-bulb"
+    },
+    {
+      title: "Yhteistyö",
+      description: "Uskomme, että parhaat ratkaisut syntyy yhteistyöstä. Työskentelemme tiiviisti asiakkaidemme kanssa kaikkien projektien aikana.",
+      icon: "user-group"
+    }
+  ],
+  team: {
+    title: "Tiimimme",
+    description: "Tiimimme koostuu kansainvälisesti tunnetuista kyberturvallisuuden asiantuntijoista, joilla on yli 100 vuoden yhteensä kokemusta eri toimialoilta.",
+    members: [
+      {
+        name: "Mikko Virtanen",
+        role: "Perustaja & CEO",
+        bio: "20+ vuoden kokemus kyberturvallisuudesta ja sääntelystä. Tunnettu asiantuntija ISO 27001 ja NIS2 -aloilla.",
+        image: "/team/mikko-virtanen.jpg"
+      },
+      {
+        name: "Anna Lehtinen",
+        role: "Chief Information Security Officer",
+        bio: "Tunnettu GDPR- ja tietosuojan asiantuntija. Edellinen viranomainen ja sertifiointiasiantuntija.",
+        image: "/team/anna-lehtinen.jpg"
+      },
+      {
+        name: "Juha Mäkinen",
+        role: "Tekninen johtaja",
+        bio: "Kyberturvallisuusarkkitehti, erikoistunut ISO 27001 ja SOC 2 -implementointiin.",
+        image: "/team/juha-makinen.jpg"
+      }
+    ]
+  },
+  certifications: {
+    title: "Sertifioinnit & Hyväksynnät",
+    items: [
+      {
+        name: "ISO 27001 Sertifioitu",
+        description: "Tunnistettu informaation turvallisuuden hallintajärjestelmän sertifioinnin asiantuntijoina",
+        icon: "shield-check"
+      },
+      {
+        name: "GDPR Yhteensopivuus",
+        description: "Tunnistettu tietosuojan asiantuntijana EU:n yleisessä tietosuoja-asetuksessa",
+        icon: "lock-closed"
+      },
+      {
+        name: "NIS2 Direktiivin asiantuntija",
+        description: "Erityisasiantuntemus verkko- ja informaatioturvallisuuden direktiivin toteutuksessa",
+        icon: "globe-alt"
+      },
+      {
+        name: "DORA Yhteensopivuus",
+        description: "Digitaalisen toiminnallisen resilierenssin asiantuntija rahoitussektorille",
+        icon: "building-library"
+      }
+    ]
+  },
+  cta: {
+    title: "Oletko valmis aloittamaan?",
+    description: "Ota yhteyttä asiantuntijatiimiimme ja kokeile ilmainen arviointi.",
+    primaryCTA: { text: "Aloita ilmainen arviointi", href: "/fi/contact" },
+    secondaryCTA: { text: "Tutustu palveluihimme", href: "/fi/services" }
+  }
+};
+---
+
+<Layout 
+  title="Meistä - Cyber Security Finland" 
+  description="Lisätietoa Cyber Security Finlandin tiimistä, tehtävästä ja asiantuntemuksesta kyberturvallisuudessa ja sääntelyvaatimusten noudattamisessa."
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-slate-50 via-white to-slate-100 py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
+          {aboutContent.hero.title}
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-600 mb-4">
+          {aboutContent.hero.subtitle}
+        </p>
+        <p class="text-lg text-slate-500 max-w-4xl mx-auto">
+          {aboutContent.hero.description}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-bold text-slate-900 mb-12">
+          {aboutContent.mission.title}
+        </h2>
+        <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 border border-slate-200">
+          <p class="text-xl text-slate-700 leading-relaxed">
+            {aboutContent.mission.content}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">Arvomme</h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          Nämä arvot ohjaavat kaikkea mitä teemme
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {aboutContent.values.map((value: any) => (
+          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+              <Icon name={value.icon} class="w-6 h-6 text-blue-600" />
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">{value.title}</h3>
+            <p class="text-slate-600">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">{aboutContent.team.title}</h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          {aboutContent.team.description}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-12">
+        {aboutContent.team.members.map((member: any) => (
+          <div class="text-center">
+            <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden flex items-center justify-center">
+              <span class="text-slate-500 text-sm">Kuva</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900">{member.name}</h3>
+            <p class="text-blue-600 font-medium mb-3">{member.role}</p>
+            <p class="text-slate-600 text-sm">
+              {member.bio}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section class="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">
+          {aboutContent.certifications.title}
+        </h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          Tunnistamme ja hyväksyntämme alan asiantuntijuudesta
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {aboutContent.certifications.items.map((cert: any) => (
+          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-lg flex items-center justify-center mb-4">
+              <Icon name={cert.icon} class="w-6 h-6 text-blue-600" />
+            </div>
+            <h3 class="font-bold text-slate-900 mb-2">{cert.name}</h3>
+            <p class="text-slate-600 text-sm">{cert.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-4xl font-bold mb-4">
+        {aboutContent.cta.title}
+      </h2>
+      <p class="text-xl mb-8 opacity-90">
+        {aboutContent.cta.description}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button href={aboutContent.cta.primaryCTA.href} variant="white">
+          {aboutContent.cta.primaryCTA.text}
+        </Button>
+        <Button href={aboutContent.cta.secondaryCTA.href} variant="outline-white">
+          {aboutContent.cta.secondaryCTA.text}
+        </Button>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,5 +1,6 @@
 ﻿---
 import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
 
 const title = "Readiness Checks";
 const currentPath = Astro.url.pathname;
@@ -48,7 +49,7 @@ const content = {
           questions: "95 questions",
           coverage: "Financial Services Security",
           difficulty: "Intermediate",
-          icon: "�"
+          icon: ""
         },
         {
           title: "NIS2 Directive",
@@ -57,7 +58,7 @@ const content = {
           questions: "80 questions",
           coverage: "Network & Information Security",
           difficulty: "Intermediate",
-          icon: "�"
+          icon: ""
         },
         {
           title: "General Security Posture",
@@ -66,7 +67,7 @@ const content = {
           questions: "110 questions",
           coverage: "All Security Domains",
           difficulty: "All Levels",
-          icon: "�"
+          icon: ""
         }
       ]
     },
@@ -132,7 +133,7 @@ const content = {
         {
           title: "Expert Guidance",
           description: "Access to cybersecurity experts for implementation support",
-          icon: "�‍�"
+          icon: "‍"
         }
       ]
     },
@@ -252,7 +253,7 @@ const content = {
           questions: "95 kysymystä",
           coverage: "Rahoituspalvelujen turvallisuus",
           difficulty: "Keskitaso",
-          icon: "�"
+          icon: ""
         },
         {
           title: "NIS2-direktiivi",
@@ -261,7 +262,7 @@ const content = {
           questions: "80 kysymystä",
           coverage: "Verkko- ja tietoturva",
           difficulty: "Keskitaso",
-          icon: "�"
+          icon: ""
         },
         {
           title: "Yleinen turvallisuustila",
@@ -270,7 +271,7 @@ const content = {
           questions: "110 kysymystä",
           coverage: "Kaikki turvallisuusalueet",
           difficulty: "Kaikki tasot",
-          icon: "�"
+          icon: ""
         }
       ]
     },
@@ -336,7 +337,7 @@ const content = {
         {
           title: "Asiantunteva ohjaus",
           description: "Pääsy kyberturvallisuusasiantuntijoihin toteutustukea varten",
-          icon: "�‍�"
+          icon: "‍"
         }
       ]
     },
@@ -591,9 +592,9 @@ const currentContent = content[lang];
               </svg>
             </div>
             <p class="text-gray-600 mb-6">Ready to assess your cybersecurity readiness?</p>
-            <a href={currentContent.cta.link} class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
+            <Button href={currentContent.cta.link} variant="brand" className="py-3 px-6 font-semibold">
               {currentContent.cta.button}
-            </a>
+            </Button>
           </div>
         </div>
       </div>

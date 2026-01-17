@@ -1,41 +1,134 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import HeroSection from '@/components/sections/HeroSection.astro';
 import Button from '@/components/ui/Button.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
+import CybersecurityAssessment from '@/components/interactive/CybersecurityAssessment.astro';
 
 // SEO Configuration
 const seoConfig = {
-  title: "Cybersecurity Experts Finland | ISO 27001, NIS2, GDPR Compliance",
-  description: "Expert cybersecurity and compliance services in Finland. ISO 27001, NIS2, GDPR, and DORA implementation in 90 days. Free assessment included.",
-  keywords: "cybersecurity finland, ISO 27001 compliance, NIS2 directive, GDPR expert, DORA implementation, information security consulting",
+  title: "Cyber Security Finland | Expert Cybersecurity & Compliance Services in Finland",
+  description: "Leading cybersecurity experts in Finland. Specialized in ISO 27001, NIS2, GDPR, and DORA compliance. Fast-track implementation in 90 days with expert guidance.",
+  keywords: "cybersecurity finland, ISO 27001 compliance, NIS2 directive, GDPR expert, DORA implementation, information security consulting, cybersecurity services finland, compliance consulting, risk management services",
   type: "website" as const,
   schema: {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Cyber Security Finland",
     "url": "https://cybersecurity.fi",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://cybersecurity.fi/search?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    },
-    "provider": {
+    "description": "Expert cybersecurity and compliance services for Finnish businesses. ISO 27001, NIS2, GDPR, and DORA implementation with proven methodologies.",
+    "publisher": {
       "@type": "Organization",
       "name": "Cyber Security Finland",
-      "description": "Expert cybersecurity and compliance services for Finnish businesses",
-      "serviceType": ["Cybersecurity Consulting", "Compliance Services", "Risk Management"],
-      "areaServed": "Finland"
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://cybersecurity.fi/logo-2025.jpg",
+        "width": 300,
+        "height": 300
+      }
+    },
+    "potentialAction": {
+      "@type": "ContactAction",
+      "target": "https://cybersecurity.fi/contact",
+      "name": "Contact Us"
     }
   }
 };
 
-const heroContent = {
-  title: "Cybersecurity Compliance Made Simple for Finnish Businesses",
-  subtitle: "Fast-track your ISO 27001, NIS2, and GDPR compliance with our proven 90-day programs. Expert guidance, complete documentation, and ongoing support included.",
-  description: "",
-  primaryCTA: { text: "Get Free Compliance Assessment", href: "/contact" },
-  secondaryCTA: { text: "Learn About Our Services", href: "/services" }
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const content = {
+  en: {
+    hero: {
+      title: "Cybersecurity Compliance Made Simple for Finnish Businesses",
+      subtitle: "Fast-track your ISO 27001, NIS2, and GDPR compliance with our proven 90-day programs. Expert guidance, complete documentation, and ongoing support included.",
+      primaryCTA: { text: "Get Free Compliance Assessment", href: "/contact" },
+      secondaryCTA: { text: "Learn About Our Services", href: "/services" }
+    },
+    services: {
+      title: "Our Core Services",
+      description: "Comprehensive cybersecurity and compliance solutions tailored to your business needs",
+      items: [
+        {
+          title: "ISO 27001 Fast-Track",
+          description: "Complete ISMS implementation in 90 days with certification support",
+          icon: "shield-check",
+          href: "/packages/iso-27001-fast-track"
+        },
+        {
+          title: "NIS2 Compliance",
+          description: "Prepare for NIS2 directive requirements with expert guidance",
+          icon: "globe-alt",
+          href: "/services/nis2-compliance"
+        },
+        {
+          title: "GDPR & Privacy",
+          description: "Data protection compliance and privacy governance solutions",
+          icon: "lock-closed",
+          href: "/services/gdpr-privacy"
+        },
+        {
+          title: "DORA Implementation",
+          description: "Digital operational resilience for financial services",
+          icon: "building-library",
+          href: "/services/dora-compliance"
+        }
+      ]
+    },
+    cta: {
+      title: "Ready to Secure Your Business?",
+      subtitle: "Join hundreds of Finnish companies that trust us with their cybersecurity and compliance needs.",
+      primaryCTA: { text: "Start Free Assessment", href: "/contact" },
+      secondaryCTA: { text: "View All Services", href: "/services" }
+    }
+  },
+  fi: {
+    hero: {
+      title: "Kyberturvallisuuden yhteensopivuus tehty helpoksi suomalaisille yrityksille",
+      subtitle: "Nopeuta ISO 27001, NIS2 ja GDPR -vaatimustenmukaisuutta todistetuin 90 päivän ohjelmin. Asiantunteva ohjaus, täydellinen dokumentointi ja jatkuva tuki mukana.",
+      primaryCTA: { text: "Hanki ilmainen vaatimustenmukaisuusarviointi", href: "/contact" },
+      secondaryCTA: { text: "Lisätietoja palveluistamme", href: "/services" }
+    },
+    services: {
+      title: "Keskeiset palvelumme",
+      description: "Kattavat kyberturvallisuuden ja sääntelyn noudattamisen ratkaisut liiketoimintaasi varten",
+      items: [
+        {
+          title: "ISO 27001 Fast-Track",
+          description: "Täysi ISMS-toteutus 90 päivässä sertifiointituelle",
+          icon: "shield-check",
+          href: "/packages/iso-27001-fast-track"
+        },
+        {
+          title: "NIS2 Yhteensopivuus",
+          description: "Valmistele NIS2-direktiivin vaatimuksia asiantuntijan ohjauksella",
+          icon: "globe-alt",
+          href: "/services/nis2-compliance"
+        },
+        {
+          title: "GDPR & Tietosuoja",
+          description: "Tietosuojan noudattaminen ja yksityisyyden hallintaratkaisut",
+          icon: "lock-closed",
+          href: "/services/gdpr-privacy"
+        },
+        {
+          title: "DORA Toteutus",
+          description: "Digitaalinen toiminnallinen resilierenssi rahoituspalveluille",
+          icon: "building-library",
+          href: "/services/dora-compliance"
+        }
+      ]
+    },
+    cta: {
+      title: "Oletko valmis suojaamaan liiketoimintaasi?",
+      subtitle: "Liity satojen suomalaisten yritysten joukkoon, jotka luottavat meihin kyberturvallisuuteen ja vaatimustenmukaisuuteen.",
+      primaryCTA: { text: "Aloita ilmainen arviointi", href: "/contact" },
+      secondaryCTA: { text: "Näytä kaikki palvelut", href: "/services" }
+    }
+  }
 };
+
+const currentContent = content[lang];
 
 const keyServices = [
   {
@@ -52,7 +145,7 @@ const keyServices = [
   },
   {
     title: "Governance & Policy",
-    description: "Establish robust cybersecurity governance structures. Strategic policy development, CISO-as-a-Service, and board-level risk reporting to ensure organizational security maturity.",
+    description: "Establish robust cybersecurity governance structures. Strategic policy development, CISO-as-a-Service, Virtual CISO (V-CISO), and board-level risk reporting to ensure organizational security maturity.",
     icon: "building-library",
     href: "/services"
   },
@@ -61,6 +154,45 @@ const keyServices = [
     description: "Expert services for unique cybersecurity challenges. Anti-fraud services, digital trust solutions, audit preparation, and specialized compliance support for complex requirements.",
     icon: "star",
     href: "/services"
+  }
+];
+
+const complianceFrameworks = [
+  {
+    title: "ISO 27001",
+    description: "Information Security Management System - the international standard for cybersecurity management.",
+    icon: "shield-check",
+    href: "/frameworks/iso-27001"
+  },
+  {
+    title: "NIS2 Directive",
+    description: "Network and Information Security Directive - EU cybersecurity legislation for essential and important entities.",
+    icon: "globe-alt",
+    href: "/regulatory/nis2"
+  },
+  {
+    title: "GDPR",
+    description: "General Data Protection Regulation - EU privacy regulation for personal data protection and privacy.",
+    icon: "lock-closed",
+    href: "/regulatory/gdpr"
+  },
+  {
+    title: "DORA",
+    description: "Digital Operational Resilience Act - EU regulation for digital operational resilience in financial services.",
+    icon: "building-library",
+    href: "/regulatory/dora"
+  },
+  {
+    title: "SOC 2",
+    description: "Service Organization Control 2 - auditing procedure that ensures service providers securely manage data.",
+    icon: "document-check",
+    href: "/frameworks/soc-2"
+  },
+  {
+    title: "Common Criteria",
+    description: "International standard for computer security certification - evaluation criteria for IT security products.",
+    icon: "star",
+    href: "/frameworks/common-criteria"
   }
 ];
 
@@ -84,7 +216,7 @@ const industries = [
     icon: "heart", 
     href: "/industries/healthcare-life-sciences",
     image: "/images/industries/healthcare.svg",
-    description: "GDPR, medical device regulations, and patient data protection compliance for healthcare organizations and life sciences companies."
+    description: "GDPR, Virtual DPO (V-DPO), medical device regulations, and patient data protection compliance for healthcare organizations and life sciences companies."
   },
   { 
     name: "Critical Infrastructure", 
@@ -133,49 +265,179 @@ const latestResources = [
 
 <Layout {...seoConfig}>
   <!-- Hero Section -->
-  <HeroSection content={heroContent} showPromoBanner={true} showTypewriter={true} showAnimation={true} />
-  
-  <!-- Simplified background pattern -->
-  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-50">
-    <!-- Subtle gradient background -->
-    <div class="absolute inset-0 bg-gradient-to-br from-teal-50 to-cyan-50"></div>
-    
-    <!-- Minimal floating elements -->
-    <div class="absolute top-1/4 right-1/4 w-16 h-16 bg-teal-200 rounded-full opacity-20 animate-pulse"></div>
-    <div class="absolute bottom-1/3 left-1/4 w-12 h-12 bg-cyan-200 rounded-full opacity-15 animate-pulse" style="animation-delay: 2s;"></div>
-  </div>
+  <section class="bg-gradient-to-br from-slate-100 via-gray-50 to-slate-100 text-slate-900 py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          {lang === 'fi'
+            ? 'Kyberturvallisuuden yhteensopivuus tehty helpoksi suomalaisille yrityksille'
+            : 'Cybersecurity Compliance Made Simple for Finnish Businesses'}
+        </h1>
+        <p class="text-xl text-slate-600 mb-10 max-w-4xl mx-auto">
+          {lang === 'fi'
+            ? 'Nopeuta ISO 27001, NIS2 ja GDPR -vaatimustenmukaisuutta todistetuin 90 päivän ohjelmin. Asiantunteva ohjaus, täydellinen dokumentointi ja jatkuva tuki mukana.'
+            : 'Fast-track your ISO 27001, NIS2, and GDPR compliance with our proven 90-day programs. Expert guidance, complete documentation, and ongoing support included.'}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/contact" variant="primary">
+            {lang === 'fi' ? 'Hanki ilmainen vaatimustenmukaisuusarviointi' : 'Get Free Compliance Assessment'}
+          </Button>
+          <Button href="/services" variant="secondary">
+            {lang === 'fi' ? 'Lisätietoja palveluistamme' : 'Learn About Our Services'}
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
   
   <!-- Key Services Section -->
-  <section class="py-20 bg-white overflow-hidden">
+  <section class="py-20 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">Our Core Service Areas</h2>
-        <p class="text-xl text-slate-600 max-w-4xl mx-auto">
-          We provide comprehensive cybersecurity and compliance services tailored for small and medium businesses facing resource constraints and compliance challenges.
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+          {lang === 'fi' ? 'Keskeiset palvelumme' : 'Our Core Services'}
+        </h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          {lang === 'fi'
+            ? 'Kattavat kyberturvallisuuden ja sääntelyn noudattamisen ratkaisut liiketoimintaasi varten'
+            : 'Comprehensive cybersecurity and compliance solutions tailored to your business needs'}
         </p>
       </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {keyServices.map((service, index) => (
-          <div class="group bg-white p-8 rounded-xl border border-slate-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style={`animation-delay: ${index * 150}ms`}>
-            <div class="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-300">
-              <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-slate-200 hover:shadow-md transition-shadow duration-200">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+              <Icon name={service.icon} class="w-6 h-6 text-blue-600" />
             </div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-teal-600 transition-colors duration-300">{service.title}</h3>
-            <p class="text-slate-600 mb-6 leading-relaxed">{service.description}</p>
-            <a href={service.href} class="inline-flex items-center text-teal-600 hover:text-teal-800 font-semibold group/link transition-colors duration-300">
-              Learn more 
-              <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
+            <h3 class="text-lg font-semibold text-slate-900 mb-2">{service.title}</h3>
+            <p class="text-slate-600 mb-4">{service.description}</p>
+            <a
+              href={service.href}
+              class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium group"
+            >
+              {lang === 'fi' ? 'Lue lisää' : 'Learn more'}
+              <Icon name="arrowRight" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
         ))}
       </div>
     </div>
   </section>
+    
+  <!-- Industries We Serve Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+          {lang === 'fi' ? 'Toimialat joita palvelemme' : 'Industries We Serve'}
+        </h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          {lang === 'fi'
+            ? 'Asiantuntemuksemme kattaa monia toimialoja ja tarjoaa toimialakohtaisia ratkaisuja'
+            : 'Our expertise spans multiple industries with tailored solutions for each sector'}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {industries.map((industry, index) => (
+          <div class="bg-gradient-to-br from-slate-50 to-white rounded-xl p-6 border border-slate-200 hover:shadow-lg transition-all duration-300">
+            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+              <Icon name={industry.icon} class="w-8 h-8 text-blue-600" />
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">{industry.name}</h3>
+            <p class="text-slate-600 mb-4">{industry.description}</p>
+            <a
+              href={industry.href}
+              class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium group"
+            >
+              {lang === 'fi' ? 'Tutustu palveluihimme' : 'Explore our services'}
+              <Icon name="arrowRight" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Compliance Frameworks Section -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+          {lang === 'fi' ? 'Yhteensopivuuskehykset' : 'Compliance Frameworks'}
+        </h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          {lang === 'fi'
+            ? 'Täysi yhteensopivuus keskeisten sääntelyvaatimusten kanssa'
+            : 'Full compliance with key regulatory requirements'}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {complianceFrameworks.map((framework, index) => (
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-slate-200 hover:shadow-md transition-shadow duration-200">
+            <div class="flex items-start">
+              <div class="flex-shrink-0 mt-1">
+                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                  <Icon name={framework.icon} class="w-6 h-6 text-blue-600" />
+                </div>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-semibold text-slate-900 mb-2">{framework.title}</h3>
+                <p class="text-slate-600 text-sm">{framework.description}</p>
+              </div>
+            </div>
+            <div class="mt-4">
+              <a
+                href={framework.href}
+                class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 font-medium group"
+              >
+                {lang === 'fi' ? 'Lue lisää' : 'Learn more'}
+                <Icon name="arrowRight" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Services Section -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+          {lang === 'fi' ? 'Keskeiset palvelualamme' : 'Our Core Service Areas'}
+        </h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          {lang === 'fi'
+            ? 'Tarjoamme kattavat kyberturvallisuus- ja vaatimustenmukaisuuspalvelut pienyrityksille ja keskisuurille yrityksille, jotka kohtaavat resurssirajoituksia ja vaatimustenmukaisuushaasteita.'
+            : 'We provide comprehensive cybersecurity and compliance services tailored for small and medium businesses facing resource constraints and compliance challenges.'}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {keyServices.map((service, index) => (
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-slate-200 hover:shadow-md transition-shadow duration-200">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+              <Icon name={service.icon} class="w-6 h-6 text-blue-600" />
+            </div>
+            <h3 class="text-lg font-semibold text-slate-900 mb-2">{service.title}</h3>
+            <p class="text-slate-600 text-sm mb-4">{service.description}</p>
+            <a
+              href={service.href}
+              class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium group"
+            >
+              {lang === 'fi' ? 'Lue lisää' : 'Learn more'}
+              <Icon name="arrowRight" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
 
   <!-- Featured Packages Section -->
   <section class="py-20 bg-white overflow-hidden">
@@ -453,10 +715,10 @@ const latestResources = [
         Don't wait for a security incident or regulatory deadline to catch you unprepared.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/contact" variant="primary" className="text-lg px-8 py-3 hover:scale-105 transition-transform duration-300 bg-teal-600 hover:bg-teal-700 text-white border-0">
+        <Button href="/contact" variant="primary" size="lg">
           Start Today
         </Button>
-        <Button href="/contact?assessment=true" variant="secondary" className="text-lg px-8 py-3 hover:scale-105 transition-transform duration-300 bg-white hover:bg-gray-100 text-slate-900 border border-slate-300">
+        <Button href="/contact?assessment=true" variant="secondary" size="lg">
           Get Free Assessment
         </Button>
       </div>
