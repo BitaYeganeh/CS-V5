@@ -1,6 +1,10 @@
-
 ---
-import Page from '../../../support/articles/[id].astro';
+// Disable prerendering for this dynamic route
+export const prerender = false;
+
+const { id } = Astro.params;
+const lang = 'fi';
 ---
 
-<Page />
+<h1>Artikkelia ei löydy</h1>
+<p>Artikkelia ID: {id} ei löydy.</p>
