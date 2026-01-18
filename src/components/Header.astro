@@ -101,20 +101,18 @@ const menu = getMenu(lang);
   </div>
 </header>
 
-<!-- Mobile Menu -->
+<!-- Mobile Menu Backdrop -->
 <div
   id="mobile-menu-backdrop"
-  class="lg:hidden fixed inset-0 bg-black/20 z-[60] opacity-0 invisible transition-opacity duration-300"
-  aria-hidden="true"
+  class="mobile-backdrop"
+  style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); z-index: 998;"
 ></div>
 
+<!-- Mobile Menu Panel -->
 <div
   id="mobile-menu"
-  class="lg:hidden fixed top-0 right-0 w-80 max-w-full h-screen bg-white z-[65] transform translate-x-full transition-transform duration-300 overflow-y-auto"
-  aria-hidden="true"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="mobile-menu-title"
+  class="mobile-menu-panel"
+  style="display: none; position: fixed; top: 0; right: 0; width: 300px; max-width: 85vw; height: 100vh; background: white; z-index: 999; overflow-y: auto; box-shadow: -2px 0 10px rgba(0,0,0,0.1);"
 >
   <!-- Mobile menu header -->
   <div class="flex items-center justify-between p-4 border-b border-gray-200">
@@ -183,105 +181,72 @@ const menu = getMenu(lang);
 </div>
 
 <script is:inline>
+  // Simple mobile menu - uses display:block/none for maximum compatibility
   (function() {
-    function initMobileMenu() {
-      var trigger = document.getElementById('mobile-trigger');
-      var menuRoot = document.getElementById('mobile-menu');
+    var isOpen = false;
+
+    function openMenu() {
+      var menu = document.getElementById('mobile-menu');
       var backdrop = document.getElementById('mobile-menu-backdrop');
-
-      if (!trigger || !menuRoot || !backdrop) {
-        return;
-      }
-
-      // Prevent duplicate initialization
-      if (trigger.getAttribute('data-initialized') === 'true') return;
-      trigger.setAttribute('data-initialized', 'true');
-
-      var lastFocus = null;
-
-      function openMenu() {
-        lastFocus = document.activeElement;
-
-        menuRoot.classList.remove('translate-x-full');
-        backdrop.classList.remove('invisible', 'opacity-0');
-        backdrop.classList.add('opacity-100', 'visible');
-
-        trigger.setAttribute('aria-expanded', 'true');
-        menuRoot.removeAttribute('aria-hidden');
-        document.documentElement.classList.add('overflow-hidden');
-        document.body.classList.add('overflow-hidden');
-      }
-
-      function closeMenu() {
-        menuRoot.classList.add('translate-x-full');
-        backdrop.classList.remove('opacity-100', 'visible');
-        backdrop.classList.add('opacity-0', 'invisible');
-
-        trigger.setAttribute('aria-expanded', 'false');
-        menuRoot.setAttribute('aria-hidden', 'true');
-        document.documentElement.classList.remove('overflow-hidden');
-        document.body.classList.remove('overflow-hidden');
-
-        if (lastFocus && lastFocus.focus) {
-          lastFocus.focus();
-        }
-      }
-
-      trigger.onclick = function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        var isOpen = trigger.getAttribute('aria-expanded') === 'true';
-        if (isOpen) {
-          closeMenu();
-        } else {
-          openMenu();
-        }
-      };
-
-      backdrop.onclick = function() {
-        closeMenu();
-      };
-
-      menuRoot.onclick = function(e) {
-        var target = e.target;
-        if (!target) return;
-
-        // Close button
-        if (target.closest('[data-close]')) {
-          closeMenu();
-          return;
-        }
-
-        // Link clicked (but not inside details/accordion)
-        if (target.closest('a') && !target.closest('details')) {
-          closeMenu();
-          return;
-        }
-      };
-
-      // Close on escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && trigger.getAttribute('aria-expanded') === 'true') {
-          closeMenu();
-        }
-      });
-
-      // Close on resize to desktop
-      window.addEventListener('resize', function() {
-        if (window.innerWidth >= 1024 && trigger.getAttribute('aria-expanded') === 'true') {
-          closeMenu();
-        }
-      });
+      if (menu) menu.style.display = 'block';
+      if (backdrop) backdrop.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      isOpen = true;
     }
 
-    // Run immediately if DOM is ready
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      initMobileMenu();
+    function closeMenu() {
+      var menu = document.getElementById('mobile-menu');
+      var backdrop = document.getElementById('mobile-menu-backdrop');
+      if (menu) menu.style.display = 'none';
+      if (backdrop) backdrop.style.display = 'none';
+      document.body.style.overflow = '';
+      isOpen = false;
+    }
+
+    function setup() {
+      var trigger = document.getElementById('mobile-trigger');
+      var backdrop = document.getElementById('mobile-menu-backdrop');
+      var menu = document.getElementById('mobile-menu');
+      var closeBtn = menu ? menu.querySelector('[data-close]') : null;
+
+      if (trigger) {
+        trigger.onclick = function(e) {
+          e.preventDefault();
+          if (isOpen) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        };
+      }
+
+      if (backdrop) {
+        backdrop.onclick = closeMenu;
+      }
+
+      if (closeBtn) {
+        closeBtn.onclick = closeMenu;
+      }
+
+      // Close menu when clicking links
+      if (menu) {
+        var links = menu.getElementsByTagName('a');
+        for (var i = 0; i < links.length; i++) {
+          links[i].onclick = function() {
+            setTimeout(closeMenu, 100);
+          };
+        }
+      }
+    }
+
+    // Setup when ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setup);
     } else {
-      document.addEventListener('DOMContentLoaded', initMobileMenu);
+      setup();
     }
 
-    // Also handle Astro view transitions
-    document.addEventListener('astro:page-load', initMobileMenu);
+    // Re-setup on Astro navigation
+    document.addEventListener('astro:page-load', setup);
   })();
 </script>
