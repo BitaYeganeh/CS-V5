@@ -232,21 +232,33 @@ const contactInfo = {
             </div>
 
             <!-- Success/Error Messages -->
-            <div id="form-success" class="hidden p-4 bg-green-50 border border-green-200 rounded-lg">
-              <p class="text-green-800 text-sm flex items-center gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                Kiitos! Viestisi on lähetetty onnistuneesti. Otamme sinuun yhteyttä pian.
-              </p>
+            <div id="form-success" class="hidden p-6 bg-green-50 border border-green-200 rounded-lg">
+              <div class="flex items-start gap-3">
+                <div class="flex-shrink-0">
+                  <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-green-800 font-semibold text-lg mb-1">Viesti vastaanotettu!</h4>
+                  <p class="text-green-700">Kiitos yhteydenotostasi. Olemme vastaanottaneet pyyntösi ja tiimimme ottaa sinuun yhteyttä 24 tunnin kuluessa.</p>
+                  <p class="text-green-600 text-sm mt-2">Jos asiasi on kiireellinen, soita meille numeroon +358 44 5040308.</p>
+                </div>
+              </div>
             </div>
-            <div id="form-error" class="hidden p-4 bg-red-50 border border-red-200 rounded-lg">
-              <p class="text-red-800 text-sm flex items-center gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-                Jokin meni pieleen. Yritä uudelleen tai lähetä meille sähköpostia.
-              </p>
+            <div id="form-error" class="hidden p-6 bg-red-50 border border-red-200 rounded-lg">
+              <div class="flex items-start gap-3">
+                <div class="flex-shrink-0">
+                  <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-red-800 font-semibold text-lg mb-1">Lähetys epäonnistui</h4>
+                  <p class="text-red-700">Jokin meni pieleen viestiä lähetettäessä. Yritä uudelleen.</p>
+                  <p class="text-red-600 text-sm mt-2">Tai ota meihin yhteyttä suoraan osoitteessa <a href="mailto:info@cybersecurity.fi" class="underline font-medium">info@cybersecurity.fi</a> tai soita +358 44 5040308.</p>
+                </div>
+              </div>
             </div>
           </form>
         </div>
