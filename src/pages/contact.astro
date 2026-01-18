@@ -1,176 +1,118 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Button from '@/components/ui/Button.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
 const currentPath = Astro.url.pathname;
-const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const lang = 'en'; // Explicitly set to English for this version
 
-// SEO Configuration
-const seoConfig = {
-  title: lang === 'fi' 
-    ? "Ota yhteyttä | Kyberturvallisuuden asiantuntijat"
-    : "Contact Us | Cybersecurity Experts",
-  description: lang === 'fi'
-    ? "Ota yhteyttä kyberturvallisuuden asiantuntijoihimme. Ilmainen konsultaatio ISO 27001, NIS2, GDPR ja DORA -vaatimustenmukaisuudesta. Puh: +358 44 5040308"
-    : "Contact our cybersecurity experts. Free consultation for ISO 27001, NIS2, GDPR, and DORA compliance. Phone: +358 44 5040308",
-  keywords: lang === 'fi'
-    ? "kyberturvallisuus yhteystiedot, ISO 27001 konsultaatio, NIS2 neuvonta, GDPR asiantuntija suomi"
-    : "cybersecurity contact, ISO 27001 consultation, NIS2 advisory, GDPR expert finland, cybersecurity consulting contact",
-  type: "website" as const,
-  schema: {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": "Contact Cyber Security Finland",
-    "description": "Get in touch with our cybersecurity and compliance experts for consultation and services.",
-    "provider": {
-      "@type": "Organization",
-      "name": "Cyber Security Finland",
-      "telephone": "+358 44 5040308",
-      "email": "info@cybersecurity.fi",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer service",
-        "telephone": "+358 44 5040308",
-        "email": "info@cybersecurity.fi",
-        "availableLanguage": ["English", "Finnish"],
-        "areaServed": "Finland"
-      }
+const contactInfo = {
+  title: "Get in Touch",
+  subtitle: "Ready to Transform Your Business?",
+  description: "Connect with our team of cybersecurity experts and discover how we can help you achieve compliance, enhance security, and drive business growth.",
+  contactMethods: [
+    {
+      title: "Phone",
+      value: "+358 44 5040308",
+      icon: "phone",
+      description: "Mon-Fri, 9:00-17:00"
+    },
+    {
+      title: "Email",
+      value: "info@cybersecurity.fi",
+      icon: "envelope",
+      description: "We typically respond within 24 hours"
+    },
+    {
+      title: "Location",
+      value: "Helsinki, Finland",
+      icon: "locationMarker",
+      description: "Serving clients globally"
     }
-  }
+  ],
+  services: [
+    {
+      name: "ISO 27001",
+      description: "Complete ISMS implementation in 90 days"
+    },
+    {
+      name: "NIS2 Compliance",
+      description: "Prepare for NIS2 directive requirements"
+    },
+    {
+      name: "GDPR Compliance",
+      description: "Data protection and privacy management"
+    },
+    {
+      name: "DORA Compliance",
+      description: "Digital operational resilience"
+    },
+    {
+      name: "V-CISO Service",
+      description: "Virtual CISO guidance"
+    },
+    {
+      name: "V-DPO Service",
+      description: "Virtual Data Protection Officer"
+    }
+  ]
 };
-
-const content = {
-  en: {
-    title: "Get in Touch",
-    subtitle: "Ready to Transform Your Business?",
-    heroDescription: "Connect with our team of cybersecurity experts and discover how we can help you achieve compliance, enhance security, and drive business growth.",
-    contactInfo: {
-      title: "Contact Information",
-      description: "We're here to help you navigate the complex world of cybersecurity and compliance. Reach out to us through any of these channels:",
-      phone: "Phone",
-      email: "Email",
-      hours: "Business Hours",
-      response: "Response Time"
-    },
-    form: {
-      title: "Send Us a Message",
-      description: "Fill out the form below and we'll get back to you within 24 hours.",
-      name: "Full Name",
-      namePlaceholder: "John Smith",
-      email: "Email Address",
-      emailPlaceholder: "john@company.com",
-      company: "Company",
-      companyPlaceholder: "Your Company Ltd",
-      phone: "Phone (Optional)",
-      phonePlaceholder: "+358 40 123 4567",
-      service: "Service Interest",
-      serviceOptions: [
-        { value: "", label: "Select a service..." },
-        { value: "iso-27001", label: "ISO 27001 Certification" },
-        { value: "nis2", label: "NIS2 Compliance" },
-        { value: "gdpr", label: "GDPR & Privacy" },
-        { value: "dora", label: "DORA Compliance" },
-        { value: "soc2", label: "SOC 2 Readiness" },
-        { value: "ciso", label: "CISO as a Service" },
-        { value: "risk", label: "Risk Assessment" },
-        { value: "other", label: "Other / General Inquiry" }
-      ],
-      message: "Message",
-      messagePlaceholder: "Tell us about your project or compliance needs...",
-      submit: "Send Message",
-      submitting: "Sending...",
-      success: "Thank you! Your message has been sent successfully. We'll be in touch soon.",
-      error: "Something went wrong. Please try again or email us directly."
-    },
-    cta: {
-      title: "Ready to Get Started?",
-      subtitle: "Join hundreds of organizations that trust us with their cybersecurity and compliance needs.",
-      button: "Schedule a Consultation",
-      link: "/contact"
-    }
-  },
-  fi: {
-    title: "Ota yhteyttä",
-    subtitle: "Valmiit muuttamaan liiketoimintasi?",
-    heroDescription: "Yhdistä meidän kyberturvallisuusasiantuntijoiden tiimiin ja löydä, miten voimme auttaa sinua saavuttamaan yhteensopivuuden, parantamaan turvallisuutta ja edistämään liiketoiminnan kasvua.",
-    contactInfo: {
-      title: "Yhteystiedot",
-      description: "Olemme täällä auttaaksemme sinua navigoimaan kyberturvallisuuden ja yhteensopivuuden monimutkaisessa maailmassa. Ota meihin yhteyttä millä tahansa näistä kanavista:",
-      phone: "Puhelin",
-      email: "Sähköposti",
-      hours: "Aukioloajat",
-      response: "Vastausaika"
-    },
-    form: {
-      title: "Lähetä meille viesti",
-      description: "Täytä alla oleva lomake ja otamme sinuun yhteyttä 24 tunnin kuluessa.",
-      name: "Koko nimi",
-      namePlaceholder: "Matti Meikäläinen",
-      email: "Sähköpostiosoite",
-      emailPlaceholder: "matti@yritys.fi",
-      company: "Yritys",
-      companyPlaceholder: "Yrityksesi Oy",
-      phone: "Puhelin (Valinnainen)",
-      phonePlaceholder: "+358 40 123 4567",
-      service: "Palvelu",
-      serviceOptions: [
-        { value: "", label: "Valitse palvelu..." },
-        { value: "iso-27001", label: "ISO 27001 -sertifiointi" },
-        { value: "nis2", label: "NIS2-vaatimustenmukaisuus" },
-        { value: "gdpr", label: "GDPR & Tietosuoja" },
-        { value: "dora", label: "DORA-vaatimustenmukaisuus" },
-        { value: "soc2", label: "SOC 2 -valmius" },
-        { value: "ciso", label: "CISO-palveluna" },
-        { value: "risk", label: "Riskien arviointi" },
-        { value: "other", label: "Muu / Yleinen tiedustelu" }
-      ],
-      message: "Viesti",
-      messagePlaceholder: "Kerro meille projektistasi tai vaatimustenmukaisuustarpeistasi...",
-      submit: "Lähetä viesti",
-      submitting: "Lähetetään...",
-      success: "Kiitos! Viestisi on lähetetty onnistuneesti. Otamme sinuun yhteyttä pian.",
-      error: "Jokin meni pieleen. Yritä uudelleen tai lähetä meille sähköpostia."
-    },
-    cta: {
-      title: "Valmiit aloittamaan?",
-      subtitle: "Liity satoihin organisaatioihin, jotka luottavat meihin kyberturvallisuus- ja yhteensopivuustarpeidensa kanssa.",
-      button: "Varaa konsultaatio",
-      link: "/contact"
-    }
-  }
-};
-
-const currentContent = content[lang];
 ---
 
-<Layout {...seoConfig}>
+<Layout
+  title="Contact Us - Cyber Security Finland"
+  description="Contact Cyber Security Finland's expert team. We offer ISO 27001, NIS2, GDPR, and DORA compliance services globally."
+>
   <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-teal-50 via-white to-blue-50 py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-        {currentContent.title}
-      </h1>
-      <p class="text-2xl font-light text-slate-600 mb-8">
-        {currentContent.subtitle}
-      </p>
-      <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-        {currentContent.heroDescription}
-      </p>
+  <section class="bg-gradient-to-br from-slate-50 via-white to-slate-100 py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
+          {contactInfo.title}
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-600 mb-4">
+          {contactInfo.subtitle}
+        </p>
+        <p class="text-lg text-slate-500 max-w-3xl mx-auto">
+          {contactInfo.description}
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- Main Content: Form + Contact Info -->
-  <section class="py-16 bg-white">
+  <!-- Contact Methods -->
+  <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-12">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">Contact Information</h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          Reach out to us through any of these channels
+        </p>
+      </div>
 
-        <!-- Contact Form -->
-        <div class="bg-slate-50 rounded-2xl p-8 lg:p-10">
-          <h2 class="text-2xl font-bold text-slate-900 mb-2">
-            {currentContent.form.title}
-          </h2>
-          <p class="text-slate-600 mb-8">
-            {currentContent.form.description}
+      <div class="grid md:grid-cols-3 gap-8">
+        {contactInfo.contactMethods.map(method => (
+          <div class="bg-gradient-to-br from-slate-50 to-white rounded-xl p-8 border border-slate-200 text-center hover:shadow-lg transition-shadow duration-300">
+            <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Icon name={method.icon} class="w-8 h-8 text-teal-600" />
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">{method.title}</h3>
+            <p class="text-slate-600 font-medium text-lg mb-2">{method.value}</p>
+            <p class="text-slate-500">{method.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+        <div>
+          <h2 class="text-3xl font-bold text-slate-900 mb-6">Send Us a Message</h2>
+          <p class="text-lg text-slate-600 mb-8">
+            Fill out the form below and our experts will get back to you as soon as possible.
           </p>
 
           <form
@@ -180,111 +122,114 @@ const currentContent = content[lang];
             class="space-y-6"
           >
             <!-- Hidden field for language -->
-            <input type="hidden" name="_language" value={lang} />
+            <input type="hidden" name="_language" value="en" />
 
-            <!-- Name -->
-            <div>
-              <label for="name" class="block text-sm font-medium text-slate-700 mb-2">
-                {currentContent.form.name} <span class="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                placeholder={currentContent.form.namePlaceholder}
-                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors"
-              />
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label for="firstName" class="block text-sm font-medium text-slate-700 mb-2">First Name <span class="text-red-500">*</span></label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  required
+                  class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                  placeholder="Enter your first name"
+                />
+              </div>
+              <div>
+                <label for="lastName" class="block text-sm font-medium text-slate-700 mb-2">Last Name <span class="text-red-500">*</span></label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  required
+                  class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                  placeholder="Enter your last name"
+                />
+              </div>
             </div>
 
-            <!-- Email -->
             <div>
-              <label for="email" class="block text-sm font-medium text-slate-700 mb-2">
-                {currentContent.form.email} <span class="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                placeholder={currentContent.form.emailPlaceholder}
-                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors"
-              />
-            </div>
-
-            <!-- Company -->
-            <div>
-              <label for="company" class="block text-sm font-medium text-slate-700 mb-2">
-                {currentContent.form.company} <span class="text-red-500">*</span>
-              </label>
+              <label for="company" class="block text-sm font-medium text-slate-700 mb-2">Company <span class="text-red-500">*</span></label>
               <input
                 type="text"
                 id="company"
                 name="company"
                 required
-                placeholder={currentContent.form.companyPlaceholder}
-                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors"
+                class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                placeholder="Enter your company name"
               />
             </div>
 
-            <!-- Phone -->
             <div>
-              <label for="phone" class="block text-sm font-medium text-slate-700 mb-2">
-                {currentContent.form.phone}
-              </label>
+              <label for="email" class="block text-sm font-medium text-slate-700 mb-2">Email <span class="text-red-500">*</span></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                placeholder="Enter your email address"
+              />
+            </div>
+
+            <div>
+              <label for="phone" class="block text-sm font-medium text-slate-700 mb-2">Phone Number</label>
               <input
                 type="tel"
                 id="phone"
                 name="phone"
-                placeholder={currentContent.form.phonePlaceholder}
-                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors"
+                class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                placeholder="Enter your phone number"
               />
             </div>
 
-            <!-- Service Interest -->
             <div>
-              <label for="service" class="block text-sm font-medium text-slate-700 mb-2">
-                {currentContent.form.service} <span class="text-red-500">*</span>
-              </label>
+              <label for="service" class="block text-sm font-medium text-slate-700 mb-2">Service Interest <span class="text-red-500">*</span></label>
               <select
                 id="service"
                 name="service"
                 required
-                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors bg-white"
+                class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-white"
               >
-                {currentContent.form.serviceOptions.map((option) => (
-                  <option value={option.value}>{option.label}</option>
-                ))}
+                <option value="">Select a service</option>
+                <option value="iso-27001">ISO 27001 Certification</option>
+                <option value="nis2">NIS2 Compliance</option>
+                <option value="gdpr">GDPR & Privacy</option>
+                <option value="dora">DORA Compliance</option>
+                <option value="soc2">SOC 2 Readiness</option>
+                <option value="vciso">CISO as a Service</option>
+                <option value="vdpo">DPO as a Service</option>
+                <option value="risk">Risk Assessment</option>
+                <option value="other">Other / General Inquiry</option>
               </select>
             </div>
 
-            <!-- Message -->
             <div>
-              <label for="message" class="block text-sm font-medium text-slate-700 mb-2">
-                {currentContent.form.message} <span class="text-red-500">*</span>
-              </label>
+              <label for="message" class="block text-sm font-medium text-slate-700 mb-2">Message <span class="text-red-500">*</span></label>
               <textarea
                 id="message"
                 name="message"
-                rows="5"
                 required
-                placeholder={currentContent.form.messagePlaceholder}
-                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors resize-none"
+                rows="5"
+                class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                placeholder="Describe your needs or questions..."
               ></textarea>
             </div>
 
-            <!-- Submit Button -->
-            <button
-              type="submit"
-              id="submit-btn"
-              class="w-full px-6 py-4 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
-            >
-              <span id="btn-text">{currentContent.form.submit}</span>
-              <svg id="btn-spinner" class="hidden w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-            </button>
+            <div>
+              <button
+                type="submit"
+                id="submit-btn"
+                class="w-full px-6 py-4 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white font-semibold rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
+              >
+                <span id="btn-text">Send Message</span>
+                <svg id="btn-spinner" class="hidden w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              </button>
+            </div>
 
             <!-- Success/Error Messages -->
             <div id="form-success" class="hidden p-4 bg-green-50 border border-green-200 rounded-lg">
@@ -292,7 +237,7 @@ const currentContent = content[lang];
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
-                {currentContent.form.success}
+                Thank you! Your message has been sent successfully. We'll be in touch soon.
               </p>
             </div>
             <div id="form-error" class="hidden p-4 bg-red-50 border border-red-200 rounded-lg">
@@ -300,106 +245,73 @@ const currentContent = content[lang];
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
-                {currentContent.form.error}
+                Something went wrong. Please try again or email us directly.
               </p>
             </div>
           </form>
         </div>
 
-        <!-- Contact Information -->
-        <div class="lg:pl-8">
-          <h2 class="text-2xl font-bold text-slate-900 mb-2">
-            {currentContent.contactInfo.title}
-          </h2>
+        <div>
+          <h3 class="text-2xl font-bold text-slate-900 mb-6">Our Services</h3>
           <p class="text-slate-600 mb-8">
-            {currentContent.contactInfo.description}
+            Need compliance services? We have the expertise across all areas of cybersecurity and regulatory compliance.
           </p>
 
           <div class="space-y-6">
-            <!-- Phone -->
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                </svg>
+            {contactInfo.services.map(service => (
+              <div class="flex items-start">
+                <div class="flex-shrink-0 mt-1">
+                  <div class="w-6 h-6 rounded-full bg-teal-100 flex items-center justify-center">
+                    <Icon name="check" class="w-4 h-4 text-teal-600" />
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <h4 class="font-semibold text-slate-900">{service.name}</h4>
+                  <p class="text-slate-600 text-sm">{service.description}</p>
+                </div>
               </div>
-              <div>
-                <h3 class="text-lg font-semibold text-slate-900 mb-1">
-                  {currentContent.contactInfo.phone}
-                </h3>
-                <a href="tel:+358445040308" class="text-teal-600 hover:text-teal-700 font-medium">
-                  +358 44 5040308
-                </a>
-              </div>
-            </div>
-
-            <!-- Email -->
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-lg font-semibold text-slate-900 mb-1">
-                  {currentContent.contactInfo.email}
-                </h3>
-                <a href="mailto:info@cybersecurity.fi" class="text-teal-600 hover:text-teal-700 font-medium">
-                  info@cybersecurity.fi
-                </a>
-              </div>
-            </div>
-
-            <!-- Business Hours -->
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-lg font-semibold text-slate-900 mb-1">
-                  {currentContent.contactInfo.hours}
-                </h3>
-                <p class="text-slate-600">
-                  {lang === 'fi' ? 'Ma-Pe: 09:00 - 17:00 (EET)' : 'Mon-Fri: 09:00 - 17:00 (EET)'}
-                </p>
-              </div>
-            </div>
-
-            <!-- Response Time -->
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-lg font-semibold text-slate-900 mb-1">
-                  {currentContent.contactInfo.response}
-                </h3>
-                <p class="text-slate-600">
-                  {lang === 'fi' ? 'Vastaamme 24 tunnin sisällä' : 'We respond within 24 hours'}
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
 
-          <!-- Trust Badges -->
-          <div class="mt-10 pt-8 border-t border-slate-200">
-            <p class="text-sm text-slate-500 mb-4">
-              {lang === 'fi' ? 'Luotettu asiantuntijuus:' : 'Trusted expertise in:'}
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-full">ISO 27001</span>
-              <span class="px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-full">NIS2</span>
-              <span class="px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-full">GDPR</span>
-              <span class="px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-full">DORA</span>
-              <span class="px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-full">SOC 2</span>
-            </div>
+          <div class="mt-12 bg-gradient-to-br from-teal-50 to-cyan-50 rounded-xl p-6 border border-teal-200">
+            <h4 class="font-bold text-slate-900 mb-3 flex items-center">
+              <Icon name="lightBulb" class="w-5 h-5 text-teal-600 mr-2" />
+              Why Choose Us?
+            </h4>
+            <ul class="space-y-2">
+              <li class="flex items-start">
+                <Icon name="checkCircle" class="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                <span class="text-slate-700">Expert team based in Finland</span>
+              </li>
+              <li class="flex items-start">
+                <Icon name="checkCircle" class="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                <span class="text-slate-700">Proven methodologies with 90-day implementation</span>
+              </li>
+              <li class="flex items-start">
+                <Icon name="checkCircle" class="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                <span class="text-slate-700">Ongoing support and expertise</span>
+              </li>
+              <li class="flex items-start">
+                <Icon name="checkCircle" class="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                <span class="text-slate-700">Industry-specific expertise</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-slate-900 via-teal-900 to-slate-900 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-4xl font-bold mb-4">Ready to Get Started?</h2>
+      <p class="text-xl mb-8 opacity-90">
+        Don't wait for a security incident or audit. Contact our experts today.
+      </p>
+      <Button href="/services" variant="white">
+        Explore Our Services
+      </Button>
     </div>
   </section>
 </Layout>
