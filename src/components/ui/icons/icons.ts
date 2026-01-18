@@ -47,6 +47,110 @@ const explicit: Record<string, any> = {
     ...base,
     paths: [{ d: 'M2 12s4-8 10-8 10 8 10 8-4 8-10 8S2 12 2 12z' }, { d: 'M12 15a3 3 0 100-6 3 3 0 000 6z' }],
   },
+  bars: {
+    ...base,
+    paths: [{ d: 'M3 6h18' }, { d: 'M3 12h18' }, { d: 'M3 18h18' }],
+  },
+  x: {
+    ...base,
+    paths: [{ d: 'M18 6L6 18' }, { d: 'M6 6l12 12' }],
+  },
+  alert: {
+    ...base,
+    paths: [{ d: 'M12 2L2 20h20L12 2z' }, { d: 'M12 9v4' }, { d: 'M12 17h.01' }],
+  },
+  arrowDownRight: {
+    ...base,
+    paths: [{ d: 'M7 7l10 10' }, { d: 'M17 7v10H7' }],
+  },
+  bars3: {
+    ...base,
+    paths: [{ d: 'M3 6h18' }, { d: 'M3 12h18' }, { d: 'M3 18h18' }],
+  },
+  calendar: {
+    ...base,
+    paths: [{ d: 'M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z' }, { d: 'M16 2v4' }, { d: 'M8 2v4' }, { d: 'M5 10h14' }],
+  },
+  chatBubble: {
+    ...base,
+    paths: [{ d: 'M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z' }],
+  },
+  clock: {
+    ...base,
+    paths: [{ d: 'M12 2a10 10 0 100 20 10 10 0 000-20z' }, { d: 'M12 6v6l4 2' }],
+  },
+  close: {
+    ...base,
+    paths: [{ d: 'M18 6L6 18' }, { d: 'M6 6l12 12' }],
+  },
+  email: {
+    ...base,
+    paths: [{ d: 'M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z' }, { d: 'M22 6l-10 7L2 6' }],
+  },
+  'external-link': {
+    ...base,
+    paths: [{ d: 'M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6' }, { d: 'M15 3h6v6' }, { d: 'M10 14L21 3' }],
+  },
+  globeAlt: {
+    ...base,
+    paths: [{ d: 'M12 2a10 10 0 100 20 10 10 0 000-20z' }, { d: 'M2 12h20' }, { d: 'M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z' }],
+  },
+  'help-circle': {
+    ...base,
+    paths: [{ d: 'M12 2a10 10 0 100 20 10 10 0 000-20z' }, { d: 'M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3' }, { d: 'M12 17h.01' }],
+  },
+  mobile: {
+    ...base,
+    paths: [{ d: 'M17 2H7a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2z' }, { d: 'M12 18h.01' }],
+  },
+  world: {
+    ...base,
+    paths: [{ d: 'M12 2a10 10 0 100 20 10 10 0 000-20z' }, { d: 'M2 12h20' }, { d: 'M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z' }],
+  },
+  globe: {
+    ...base,
+    paths: [{ d: 'M12 2a10 10 0 100 20 10 10 0 000-20z' }, { d: 'M2 12h20' }, { d: 'M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z' }],
+  },
+  banknotes: {
+    ...base,
+    paths: [{ d: 'M2 8h20v8H2z' }, { d: 'M4 4h16v4H4z' }, { d: 'M4 16h16v4H4z' }, { d: 'M12 12a2 2 0 100-4 2 2 0 000 4z' }],
+  },
+  identification: {
+    ...base,
+    paths: [{ d: 'M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z' }, { d: 'M8 12a2 2 0 100-4 2 2 0 000 4z' }, { d: 'M6 16c0-1.1.9-2 2-2h0c1.1 0 2 .9 2 2' }, { d: 'M14 10h4' }, { d: 'M14 14h4' }],
+  },
+  users: {
+    ...base,
+    paths: [{ d: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2' }, { d: 'M9 7a4 4 0 100-8 4 4 0 000 8z' }, { d: 'M23 21v-2a4 4 0 00-3-3.87' }, { d: 'M16 3.13a4 4 0 010 7.75' }],
+  },
+  userCircle: {
+    ...base,
+    paths: [{ d: 'M12 2a10 10 0 100 20 10 10 0 000-20z' }, { d: 'M12 12a3 3 0 100-6 3 3 0 000 6z' }, { d: 'M6.168 18.849A4 4 0 0110 16h4a4 4 0 013.834 2.855' }],
+  },
+  magnifyingGlass: {
+    ...base,
+    paths: [{ d: 'M11 2a9 9 0 100 18 9 9 0 000-18z' }, { d: 'M21 21l-4.35-4.35' }],
+  },
+  exclamationTriangle: {
+    ...base,
+    paths: [{ d: 'M12 2L2 20h20L12 2z' }, { d: 'M12 9v4' }, { d: 'M12 17h.01' }],
+  },
+  envelope: {
+    ...base,
+    paths: [{ d: 'M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z' }, { d: 'M22 6l-10 7L2 6' }],
+  },
+  creditCard: {
+    ...base,
+    paths: [{ d: 'M2 6h20v12H2z' }, { d: 'M2 10h20' }, { d: 'M6 14h4' }],
+  },
+  badge: {
+    ...base,
+    paths: [{ d: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' }],
+  },
+  arrowPath: {
+    ...base,
+    paths: [{ d: 'M21 2v6h-6' }, { d: 'M3 12a9 9 0 0115-6.7L21 8' }, { d: 'M3 22v-6h6' }, { d: 'M21 12a9 9 0 01-15 6.7L3 16' }],
+  },
 
   // Security / shields / locks
   shield: {
@@ -103,15 +207,47 @@ const explicit: Record<string, any> = {
     ...base,
     paths: [{ d: 'M9 3H5a2 2 0 00-2 2v12' }, { d: 'M9 3h10a2 2 0 012 2v12' }],
   },
+  documentCheck: {
+    ...base,
+    paths: [{ d: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z' }, { d: 'M14 2v6h6' }, { d: 'M9 15l2 2 4-4' }],
+  },
 
   // UI / data viz
   chartBar: {
     ...base,
     paths: [{ d: 'M3 3v18h18' }, { d: 'M7 13v6' }, { d: 'M12 9v10' }, { d: 'M17 5v14' }],
   },
+  chartPie: {
+    ...base,
+    paths: [{ d: 'M21.21 15.89A10 10 0 118 2.83' }, { d: 'M22 12A10 10 0 0012 2v10z' }],
+  },
+  presentationChart: {
+    ...base,
+    paths: [{ d: 'M3 3h18v12H3z' }, { d: 'M3 15l6 6' }, { d: 'M21 15l-6 6' }, { d: 'M9 9v6' }, { d: 'M12 7v8' }, { d: 'M15 11v4' }],
+  },
   lightBulb: {
     ...base,
     paths: [{ d: 'M9 18h6' }, { d: 'M10 10a4 4 0 118 0c0 2-2 3-2 3H8s-2-1-2-3' }],
+  },
+  portfolio: {
+    ...base,
+    paths: [{ d: 'M3 7h18v12H3z' }, { d: 'M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2' }, { d: 'M3 11h18' }],
+  },
+  articles: {
+    ...base,
+    paths: [{ d: 'M6 2h12v20H6z' }, { d: 'M10 6h4' }, { d: 'M10 10h4' }, { d: 'M10 14h4' }, { d: 'M10 18h4' }],
+  },
+  documentChartBar: {
+    ...base,
+    paths: [{ d: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z' }, { d: 'M14 2v6h6' }, { d: 'M9 12v5' }, { d: 'M12 10v7' }, { d: 'M15 13v4' }],
+  },
+  blankDocument: {
+    ...base,
+    paths: [{ d: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z' }, { d: 'M14 2v6h6' }],
+  },
+  documentMagnifyingGlass: {
+    ...base,
+    paths: [{ d: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z' }, { d: 'M14 2v6h6' }, { d: 'M11 14a2 2 0 100-4 2 2 0 000 4z' }, { d: 'M14.5 14.5L17 17' }],
   },
   headphones: {
     ...base,
@@ -163,6 +299,37 @@ const explicit: Record<string, any> = {
     ...base,
     paths: [{ d: 'M12 17.3l6.18 3.73-1.64-7.03L21 9.24l-7.19-.62L12 2 10.19 8.62 3 9.24l4.46 4.76L5.82 21z' }],
   },
+  academicCap: {
+    ...base,
+    paths: [{ d: 'M12 2L2 7l10 5 10-5-10-5z' }, { d: 'M2 17l10 5 10-5' }, { d: 'M2 12l10 5 10-5' }],
+  },
+  'academic-cap': null,
+  bookOpen: {
+    ...base,
+    paths: [{ d: 'M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z' }, { d: 'M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z' }],
+  },
+  edit: {
+    ...base,
+    paths: [{ d: 'M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7' }, { d: 'M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z' }],
+  },
+  play: {
+    ...base,
+    fill: 'currentColor',
+    stroke: 'none',
+    paths: [{ d: 'M8 5v14l11-7z' }],
+  },
+  video: {
+    ...base,
+    paths: [{ d: 'M23 7l-7 5 7 5V7z' }, { d: 'M2 5h14v14H2z' }],
+  },
+  target: {
+    ...base,
+    paths: [{ d: 'M12 2a10 10 0 100 20 10 10 0 000-20z' }, { d: 'M12 6a6 6 0 100 12 6 6 0 000-12z' }, { d: 'M12 10a2 2 0 100 4 2 2 0 000-4z' }],
+  },
+  'building-library': {
+    ...base,
+    paths: [{ d: 'M12 2L2 7v1h20V7z' }, { d: 'M4 9v10' }, { d: 'M8 9v10' }, { d: 'M12 9v10' }, { d: 'M16 9v10' }, { d: 'M20 9v10' }, { d: 'M2 19h20v2H2z' }],
+  },
 };
 
 // Aliases for hyphen/camel variants commonly used in templates
@@ -187,6 +354,24 @@ const aliases: Array<[string, string]> = [
   ['chart-bar', 'chartBar'],
   ['light-bulb', 'lightBulb'],
   ['arrowDownTray', 'arrowDownTray'],
+  ['arrow-down-right', 'arrowDownRight'],
+  ['chat-bubble', 'chatBubble'],
+  ['globe-alt', 'globeAlt'],
+  ['externalLink', 'external-link'],
+  ['document-check', 'documentCheck'],
+  ['user-circle', 'userCircle'],
+  ['magnifying-glass', 'magnifyingGlass'],
+  ['exclamation-triangle', 'exclamationTriangle'],
+  ['credit-card', 'creditCard'],
+  ['arrow-path', 'arrowPath'],
+  ['chart-pie', 'chartPie'],
+  ['presentation-chart', 'presentationChart'],
+  ['document-chart-bar', 'documentChartBar'],
+  ['blank-document', 'blankDocument'],
+  ['document-magnifying-glass', 'documentMagnifyingGlass'],
+  ['book-open', 'bookOpen'],
+  ['lock-closed', 'lockClosed'],
+  ['building-library', 'building-library'],
 ];
 
 for (const [from, to] of aliases) {

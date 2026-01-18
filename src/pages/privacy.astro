@@ -1,0 +1,124 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const seoConfig = {
+  title: lang === 'fi' ? "Tietosuojakäytäntö" : "Privacy Policy",
+  description: lang === 'fi'
+    ? "Cyber Security Finlandin tietosuojakäytäntö. Lue kuinka käsittelemme ja suojaamme henkilötietojasi."
+    : "Privacy Policy of Cyber Security Finland. Learn how we process and protect your personal data.",
+  type: "website" as const
+};
+
+const content = {
+  en: {
+    title: "Privacy Policy",
+    lastUpdated: "Last updated: January 2025",
+    intro: "At Cyber Security Finland, we take your privacy seriously. This policy describes how we collect, use, and protect your personal data.",
+    sections: [
+      {
+        title: "1. Data Controller",
+        content: "Cyber Security Finland Oy is the data controller for personal data processed under this policy. Contact us at info@cybersecurity.fi for any privacy-related inquiries."
+      },
+      {
+        title: "2. Data We Collect",
+        content: "We collect personal data that you provide directly to us, including: name, email address, phone number, company information, and any other information you choose to provide when contacting us or using our services."
+      },
+      {
+        title: "3. How We Use Your Data",
+        content: "We use your personal data to: respond to your inquiries, provide our cybersecurity and compliance services, send you relevant information about our services (with your consent), and improve our website and services."
+      },
+      {
+        title: "4. Legal Basis for Processing",
+        content: "We process your personal data based on: your consent, the performance of a contract with you, our legitimate business interests, and compliance with legal obligations."
+      },
+      {
+        title: "5. Data Sharing",
+        content: "We do not sell your personal data. We may share data with trusted service providers who assist us in operating our business, always under strict confidentiality agreements."
+      },
+      {
+        title: "6. Data Retention",
+        content: "We retain personal data only for as long as necessary to fulfill the purposes for which it was collected, or as required by law."
+      },
+      {
+        title: "7. Your Rights",
+        content: "Under GDPR, you have the right to: access your personal data, rectify inaccurate data, request erasure, restrict processing, data portability, and object to processing. Contact us to exercise these rights."
+      },
+      {
+        title: "8. Security",
+        content: "We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction."
+      },
+      {
+        title: "9. Contact Us",
+        content: "For privacy-related questions, contact us at: info@cybersecurity.fi or +358 44 5040308."
+      }
+    ]
+  },
+  fi: {
+    title: "Tietosuojakäytäntö",
+    lastUpdated: "Päivitetty viimeksi: Tammikuu 2025",
+    intro: "Cyber Security Finland ottaa yksityisyytesi vakavasti. Tämä käytäntö kuvaa, kuinka keräämme, käytämme ja suojaamme henkilötietojasi.",
+    sections: [
+      {
+        title: "1. Rekisterinpitäjä",
+        content: "Cyber Security Finland Oy on tämän käytännön mukaisesti käsiteltyjen henkilötietojen rekisterinpitäjä. Ota yhteyttä osoitteeseen info@cybersecurity.fi kaikissa tietosuojaan liittyvissä kysymyksissä."
+      },
+      {
+        title: "2. Keräämämme tiedot",
+        content: "Keräämme henkilötietoja, jotka annat meille suoraan, mukaan lukien: nimi, sähköpostiosoite, puhelinnumero, yritystiedot ja muut tiedot, jotka valitset antaa ottaessasi yhteyttä tai käyttäessäsi palveluitamme."
+      },
+      {
+        title: "3. Kuinka käytämme tietojasi",
+        content: "Käytämme henkilötietojasi: vastaamaan tiedusteluihisi, tarjoamaan kyberturvallisuus- ja vaatimustenmukaisuuspalveluitamme, lähettämään sinulle tietoa palveluistamme (suostumuksellasi) ja parantamaan verkkosivustoamme ja palveluitamme."
+      },
+      {
+        title: "4. Käsittelyn oikeusperuste",
+        content: "Käsittelemme henkilötietojasi: suostumuksesi perusteella, sopimuksen täyttämiseksi kanssasi, oikeutettujen liiketoimintaetujemme perusteella ja lakisääteisten velvoitteiden noudattamiseksi."
+      },
+      {
+        title: "5. Tietojen jakaminen",
+        content: "Emme myy henkilötietojasi. Voimme jakaa tietoja luotettujen palveluntarjoajien kanssa, jotka auttavat meitä liiketoiminnassamme, aina tiukkojen salassapitosopimusten alaisina."
+      },
+      {
+        title: "6. Tietojen säilytys",
+        content: "Säilytämme henkilötietoja vain niin kauan kuin on tarpeen niiden keräystarkoitusten täyttämiseksi tai lain vaatimalla tavalla."
+      },
+      {
+        title: "7. Oikeutesi",
+        content: "GDPR:n mukaisesti sinulla on oikeus: saada pääsy henkilötietoihisi, oikaista virheellisiä tietoja, pyytää poistamista, rajoittaa käsittelyä, tietojen siirrettävyyteen ja vastustaa käsittelyä. Ota yhteyttä käyttääksesi näitä oikeuksia."
+      },
+      {
+        title: "8. Turvallisuus",
+        content: "Toteutamme asianmukaiset tekniset ja organisatoriset toimenpiteet suojataksemme henkilötietojasi luvattomalta pääsyltä, muuttamiselta, paljastamiselta tai tuhoamiselta."
+      },
+      {
+        title: "9. Ota yhteyttä",
+        content: "Tietosuojaan liittyvissä kysymyksissä ota yhteyttä: info@cybersecurity.fi tai +358 44 5040308."
+      }
+    ]
+  }
+};
+
+const c = content[lang];
+---
+
+<Layout {...seoConfig}>
+  <section class="py-16 bg-gradient-to-b from-slate-50 to-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-slate-900 mb-4">{c.title}</h1>
+      <p class="text-sm text-slate-500 mb-8">{c.lastUpdated}</p>
+      <p class="text-lg text-slate-600 mb-12">{c.intro}</p>
+
+      <div class="space-y-8">
+        {c.sections.map((section) => (
+          <div class="bg-white p-6 rounded-lg border border-slate-200">
+            <h2 class="text-xl font-semibold text-slate-900 mb-3">{section.title}</h2>
+            <p class="text-slate-600 leading-relaxed">{section.content}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

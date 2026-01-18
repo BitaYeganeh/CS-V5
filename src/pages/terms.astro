@@ -1,0 +1,116 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const seoConfig = {
+  title: lang === 'fi' ? "Käyttöehdot" : "Terms of Service",
+  description: lang === 'fi'
+    ? "Cyber Security Finlandin verkkosivuston ja palveluiden käyttöehdot."
+    : "Terms of Service for Cyber Security Finland website and services.",
+  type: "website" as const
+};
+
+const content = {
+  en: {
+    title: "Terms of Service",
+    lastUpdated: "Last updated: January 2025",
+    intro: "These terms govern your use of the Cyber Security Finland website and services. By using our services, you agree to these terms.",
+    sections: [
+      {
+        title: "1. Services",
+        content: "Cyber Security Finland provides cybersecurity consulting, compliance advisory, and related professional services. Specific service terms are defined in individual service agreements."
+      },
+      {
+        title: "2. Use of Website",
+        content: "You may use our website for lawful purposes only. You agree not to use the website in any way that could damage, disable, or impair it."
+      },
+      {
+        title: "3. Intellectual Property",
+        content: "All content on this website, including text, graphics, logos, and software, is the property of Cyber Security Finland and is protected by intellectual property laws."
+      },
+      {
+        title: "4. Limitation of Liability",
+        content: "Cyber Security Finland shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of our website or services."
+      },
+      {
+        title: "5. Confidentiality",
+        content: "We maintain strict confidentiality regarding all client information and project details. Our confidentiality obligations are outlined in individual service agreements."
+      },
+      {
+        title: "6. Governing Law",
+        content: "These terms are governed by the laws of Finland. Any disputes shall be resolved in the courts of Finland."
+      },
+      {
+        title: "7. Changes to Terms",
+        content: "We may update these terms from time to time. Continued use of our services after changes constitutes acceptance of the new terms."
+      },
+      {
+        title: "8. Contact",
+        content: "For questions about these terms, contact us at info@cybersecurity.fi."
+      }
+    ]
+  },
+  fi: {
+    title: "Käyttöehdot",
+    lastUpdated: "Päivitetty viimeksi: Tammikuu 2025",
+    intro: "Nämä ehdot koskevat Cyber Security Finlandin verkkosivuston ja palveluiden käyttöä. Käyttämällä palveluitamme hyväksyt nämä ehdot.",
+    sections: [
+      {
+        title: "1. Palvelut",
+        content: "Cyber Security Finland tarjoaa kyberturvallisuuskonsultointia, vaatimustenmukaisuusneuvontaa ja niihin liittyviä asiantuntijapalveluita. Yksittäisten palvelujen ehdot määritellään erillisissä palvelusopimuksissa."
+      },
+      {
+        title: "2. Verkkosivuston käyttö",
+        content: "Voit käyttää verkkosivustoamme vain laillisiin tarkoituksiin. Sitoudut olemaan käyttämättä sivustoa tavalla, joka voisi vahingoittaa, estää tai heikentää sitä."
+      },
+      {
+        title: "3. Immateriaalioikeudet",
+        content: "Kaikki tämän verkkosivuston sisältö, mukaan lukien tekstit, grafiikat, logot ja ohjelmistot, on Cyber Security Finlandin omaisuutta ja immateriaalioikeuslainsäädännön suojaamaa."
+      },
+      {
+        title: "4. Vastuunrajoitus",
+        content: "Cyber Security Finland ei ole vastuussa mistään epäsuorista, satunnaisista, erityisistä tai välillisistä vahingoista, jotka johtuvat verkkosivustomme tai palveluidemme käytöstä."
+      },
+      {
+        title: "5. Luottamuksellisuus",
+        content: "Pidämme tiukan luottamuksellisuuden kaikkien asiakastietojen ja projektitietojen suhteen. Luottamuksellisuusvelvoitteemme määritellään yksittäisissä palvelusopimuksissa."
+      },
+      {
+        title: "6. Sovellettava laki",
+        content: "Näitä ehtoja sovelletaan Suomen lakien mukaisesti. Mahdolliset riidat ratkaistaan Suomen tuomioistuimissa."
+      },
+      {
+        title: "7. Ehtojen muutokset",
+        content: "Voimme päivittää näitä ehtoja aika ajoin. Palveluidemme jatkuva käyttö muutosten jälkeen merkitsee uusien ehtojen hyväksymistä."
+      },
+      {
+        title: "8. Yhteystiedot",
+        content: "Näitä ehtoja koskevissa kysymyksissä ota yhteyttä osoitteeseen info@cybersecurity.fi."
+      }
+    ]
+  }
+};
+
+const c = content[lang];
+---
+
+<Layout {...seoConfig}>
+  <section class="py-16 bg-gradient-to-b from-slate-50 to-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-slate-900 mb-4">{c.title}</h1>
+      <p class="text-sm text-slate-500 mb-8">{c.lastUpdated}</p>
+      <p class="text-lg text-slate-600 mb-12">{c.intro}</p>
+
+      <div class="space-y-8">
+        {c.sections.map((section) => (
+          <div class="bg-white p-6 rounded-lg border border-slate-200">
+            <h2 class="text-xl font-semibold text-slate-900 mb-3">{section.title}</h2>
+            <p class="text-slate-600 leading-relaxed">{section.content}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

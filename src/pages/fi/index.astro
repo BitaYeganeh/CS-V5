@@ -2,12 +2,11 @@
 import Layout from '@/layouts/Layout.astro';
 import Button from '@/components/ui/Button.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-import CybersecurityAssessment from '@/components/interactive/CybersecurityAssessment.astro';
 
 // SEO Configuration
 const seoConfig = {
-  title: "Cyber Security Finland | Kyberturvallisuuden ja sääntelyn asiantuntijapalvelut Suomessa",
-  description: "Johtavat kyberturvallisuuden asiantuntijat Suomessa. Erityistä ISO 27001, NIS2, GDPR ja DORA -yhteensopivuutta. Nopea toteutus 90 päivässä asiantuntijan ohjauksella.",
+  title: "Cyber Security Finland | Kyberturvallisuus- ja vaatimustenmukaisuusneuvonta",
+  description: "Kyberturvallisuus- ja vaatimustenmukaisuusneuvonta. ISO 27001, NIS2, GDPR ja DORA -toteutus todistetuin menetelmin maailmanlaajuisille organisaatioille.",
   keywords: "kyberturvallisuus suomi, ISO 27001 yhteensopivuus, NIS2 direktiivi, GDPR asiantuntija, DORA toteutus, tietoturva konsultointi, kyberturvallisuus palvelut suomi, sääntely konsultointi, riskienhallinta palvelut",
   type: "website" as const,
   schema: {
@@ -15,7 +14,7 @@ const seoConfig = {
     "@type": "WebSite",
     "name": "Cyber Security Finland",
     "url": "https://cybersecurity.fi",
-    "description": "Asiantuntijakyberturvallisuus- ja sääntelypalvelut suomalaisille yrityksille. ISO 27001, NIS2, GDPR ja DORA -toteutus todistetuilla metodologioilla.",
+    "description": "Kyberturvallisuus- ja vaatimustenmukaisuusneuvontapalvelut. ISO 27001, NIS2, GDPR ja DORA -toteutus todistetuin menetelmin maailmanlaajuisille organisaatioille.",
     "publisher": {
       "@type": "Organization",
       "name": "Cyber Security Finland",
@@ -40,14 +39,14 @@ const lang = 'fi'; // Explicitly set to Finnish for this version
 const content = {
   fi: {
     hero: {
-      title: "Kyberturvallisuuden yhteensopivuus tehty helpoksi suomalaisille yrityksille",
-      subtitle: "Nopeuta ISO 27001, NIS2 ja GDPR -vaatimustenmukaisuutta todistetuin 90 päivän ohjelmin. Asiantunteva ohjaus, täydellinen dokumentointi ja jatkuva tuki mukana.",
-      primaryCTA: { text: "Hanki ilmainen vaatimustenmukaisuusarviointi", href: "/fi/contact" },
-      secondaryCTA: { text: "Lisätietoja palveluistamme", href: "/fi/services" }
+      title: "Kyberturvallisuus- ja vaatimustenmukaisuusneuvonta",
+      subtitle: "Strateginen ohjaus monimutkaisissa sääntelyympäristöissä. ISO 27001, NIS2, GDPR ja DORA toteutus todistetuin menetelmin, joihin maailmanlaajuiset organisaatiot luottavat.",
+      primaryCTA: { text: "Pyydä konsultaatio", href: "/fi/contact" },
+      secondaryCTA: { text: "Tutustu palveluihin", href: "/fi/services" }
     },
     services: {
-      title: "Keskeiset palvelumme",
-      description: "Kattavat kyberturvallisuuden ja sääntelyn noudattamisen ratkaisut liiketoimintaasi varten",
+      title: "Ydinosaamisalueet",
+      description: "Kattavat kyberturvallisuus- ja sääntelyvaatimustenmukaisuusratkaisut yrityksille säännellyillä toimialoilla",
       items: [
         {
           title: "ISO 27001 Fast-Track",
@@ -65,7 +64,7 @@ const content = {
           title: "GDPR & Tietosuoja",
           description: "Tietosuojan noudattaminen ja yksityisyyden hallintaratkaisut",
           icon: "lock-closed",
-          href: "/fi/services/gdpr-privacy"
+          href: "/fi/services/gdpr-privacy-services"
         },
         {
           title: "DORA Toteutus",
@@ -76,10 +75,10 @@ const content = {
       ]
     },
     cta: {
-      title: "Oletko valmis suojaamaan liiketoimintaasi?",
-      subtitle: "Liity satojen suomalaisten yritysten joukkoon, jotka luottavat meihin kyberturvallisuuteen ja vaatimustenmukaisuuteen.",
-      primaryCTA: { text: "Aloita ilmainen arviointi", href: "/fi/contact" },
-      secondaryCTA: { text: "Näytä kaikki palvelut", href: "/fi/services" }
+      title: "Muuta turvallisuusasemaasi",
+      subtitle: "Kumppani kokeneiden neuvonantajien kanssa, joihin luottavat yritykset erittäin säännellyillä toimialoilla maailmanlaajuisesti.",
+      primaryCTA: { text: "Varaa konsultaatio", href: "/fi/contact" },
+      secondaryCTA: { text: "Näytä palvelut", href: "/fi/services" }
     }
   }
 };
@@ -349,55 +348,6 @@ const latestResources = [
     </div>
   </section>
 
-  <!-- Key Services Section -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-          Keskeiset palvelualamme
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Tarjoamme kattavat kyberturvallisuus- ja vaatimustenmukaisuuspalvelut pienyrityksille ja keskisuurille yrityksille, jotka kohtaavat resurssirajoituksia ja vaatimustenmukaisuushaasteita.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {keyServices.map((service, index) => (
-          <div class="bg-white rounded-xl shadow-sm p-6 border border-slate-200 hover:shadow-md transition-shadow duration-200">
-            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-              <Icon name={service.icon} class="w-6 h-6 text-blue-600" />
-            </div>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2">{service.title}</h3>
-            <p class="text-slate-600 text-sm mb-4">{service.description}</p>
-            <a
-              href={service.href}
-              class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium group"
-            >
-              Lue lisää
-              <Icon name="arrowRight" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Interactive Assessment Section -->
-  <section class="py-20 bg-gradient-to-br from-slate-50 to-blue-50 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">Arvioi kyberturvallisuusasemaasi</h2>
-        <p class="text-xl text-slate-600 max-w-4xl mx-auto">
-          Ota nopea arviointi ymmärtääksesi organisaatiosi riskitaso ja saadaksesi personoituneita suosituksia.
-        </p>
-      </div>
-
-      <div class="max-w-4xl mx-auto">
-        <CybersecurityAssessment />
-      </div>
-    </div>
-  </section>
-
   <!-- Featured Packages Section -->
   <section class="py-20 bg-white overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -623,7 +573,7 @@ const latestResources = [
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-4">NIS2 Toteutus: Mitä suomalaiset yritykset tarvitsevat tietää</h3>
           <p class="text-slate-600 mb-6">Olemassa olevat ohjeet organisaatioille jotka valmistautuvat NIS2 yhteensopivuusvaatimuksiin.</p>
-          <a href="/fi/webinars" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold group/link transition-colors duration-300">
+          <a href="/fi/resources/webinars" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold group/link transition-colors duration-300">
             Rekisteröidy 
             <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -639,7 +589,7 @@ const latestResources = [
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-4">DORA Yhteensopivuus rahoituspalveluille</h3>
           <p class="text-slate-600 mb-6">Rahoituslaitosten valmistautuminen digitaalisen toiminnan resilierenssin vaatimuksiin.</p>
-          <a href="/fi/webinars" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold group/link transition-colors duration-300">
+          <a href="/fi/resources/webinars" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold group/link transition-colors duration-300">
             Rekisteröidy 
             <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -655,7 +605,7 @@ const latestResources = [
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-4">ISO 27001:2022 Muutokset ja vaikutukset</h3>
           <p class="text-slate-600 mb-6">Ymmärrä viimeisimmät päivitykset ja niiden vaikutukset organisaatioosi.</p>
-          <a href="/fi/webinars" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold group/link transition-colors duration-300">
+          <a href="/fi/resources/webinars" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold group/link transition-colors duration-300">
             Rekisteröidy 
             <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>

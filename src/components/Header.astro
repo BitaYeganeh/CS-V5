@@ -13,7 +13,7 @@ const menu = getMenu(lang);
   <ScamWarningBanner />
 </div>
 
-<header class="bg-gradient-to-b from-[var(--bg-primary)] to-[var(--bg-secondary)] border-b border-[var(--border-secondary)] sticky top-0 z-50 shadow-sm">
+<header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm backdrop-blur-sm bg-white/95">
   <!-- Main navigation - enhanced mobile layout -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <nav class="h-16 flex items-center justify-between" aria-label="Main navigation" role="navigation">
@@ -41,17 +41,17 @@ const menu = getMenu(lang);
           return <div class="relative group">
             {hasChildren ? (
               <>
-                <button class={`flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${isActive ? 'text-blue-600' : 'text-slate-700 hover:text-blue-600'}`} aria-haspopup="true" aria-expanded="false">
+                <button class={`flex items-center px-3 py-2 text-sm font-medium transition-colors duration-200 ${isActive ? 'text-gray-900' : 'text-gray-700 hover:text-gray-900'}`} aria-haspopup="true" aria-expanded="false">
                   <span>{label}</span>
-                  <Icon name="chevronDown" class="w-4 h-4 ml-1" />
+                  <Icon name="chevronDown" class="w-4 h-4 ml-1 text-gray-500" />
                 </button>
 
-                <div class="absolute left-0 top-full min-w-56 bg-white shadow-lg rounded-md border border-slate-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 group-focus-within:translate-y-0 z-50">
+                <div class="absolute left-0 top-full min-w-56 bg-white shadow-xl rounded-sm border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 group-focus-within:translate-y-0 z-50">
                   <div class="py-2">
                     {item.children && item.children.map(sub => {
                       const subHref = sub.href;
                       const subLabel = sub.label;
-                      return <a href={subHref} class="block px-4 py-2 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200">
+                      return <a href={subHref} class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors duration-150">
                         {subLabel}
                       </a>;
                     })}
@@ -59,7 +59,7 @@ const menu = getMenu(lang);
                 </div>
               </>
             ) : (
-              <a href={href} class={`px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${isActive ? 'text-blue-600' : 'text-slate-700 hover:text-blue-600'}`}>
+              <a href={href} class={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${isActive ? 'text-gray-900' : 'text-gray-700 hover:text-gray-900'}`}>
                 {label}
               </a>
             )}
@@ -71,7 +71,7 @@ const menu = getMenu(lang);
       <div class="hidden lg:flex items-center space-x-4">
         <a
           href={lang === 'fi' ? '/fi/contact' : '/contact'}
-          class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors duration-200"
+          class="px-5 py-2.5 text-sm font-medium text-white bg-gray-900 hover:bg-black transition-all duration-200 border border-gray-900 hover:border-black"
         >
           {lang === 'fi' ? 'Ota yhteyttä' : 'Contact'}
         </a>
@@ -81,13 +81,16 @@ const menu = getMenu(lang);
       </div>
 
       <!-- Mobile Controls -->
-      <div class="lg:hidden ml-auto flex items-center">
+      <div class="lg:hidden ml-auto flex items-center gap-3">
+        <!-- Language Selector for Mobile -->
+        <LanguageSelector />
+
         <button
           id="mobile-trigger"
           aria-controls="mobile-menu"
           aria-expanded="false"
           aria-label="Open navigation menu"
-          class="p-2 rounded-md text-slate-700 hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          class="p-2 text-gray-700 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 transition-colors"
           type="button"
         >
           <span class="sr-only">Open menu</span>
@@ -114,12 +117,12 @@ const menu = getMenu(lang);
   aria-labelledby="mobile-menu-title"
 >
   <!-- Mobile menu header -->
-  <div class="flex items-center justify-between p-4 border-b border-slate-200">
-    <h2 id="mobile-menu-title" class="text-lg font-semibold text-slate-900">Menu</h2>
+  <div class="flex items-center justify-between p-4 border-b border-gray-200">
+    <h2 id="mobile-menu-title" class="text-lg font-semibold text-gray-900">Menu</h2>
     <button
       data-close
       aria-label="Close navigation menu"
-      class="p-2 rounded-md text-slate-700 hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+      class="p-2 text-gray-700 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
       type="button"
     >
       <Icon name="x" class="w-5 h-5" />
@@ -137,9 +140,9 @@ const menu = getMenu(lang);
       if (hasChildren) {
         return (
           <details class="group mb-2">
-            <summary class={`flex items-center justify-between p-3 rounded-md cursor-pointer ${isActive ? 'bg-blue-50 text-blue-600' : 'text-slate-700 hover:bg-slate-50'}`}>
+            <summary class={`flex items-center justify-between p-3 cursor-pointer ${isActive ? 'bg-gray-50 text-gray-900' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'}`}>
               <span class="font-medium">{label}</span>
-              <Icon name="chevronDown" class="w-4 h-4 transition-transform duration-200 group-open:rotate-180" />
+              <Icon name="chevronDown" class="w-4 h-4 text-gray-500 transition-transform duration-200 group-open:rotate-180" />
             </summary>
             <div class="mt-2 ml-4 space-y-1">
               {item.children && item.children.map((sub: any, subIndex: number) => {
@@ -148,7 +151,7 @@ const menu = getMenu(lang);
                 return (
                   <a
                     href={subHref}
-                    class="block p-2 text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-600 rounded-md transition-colors duration-200"
+                    class="block p-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors duration-150"
                   >
                     {subLabel}
                   </a>
@@ -162,7 +165,7 @@ const menu = getMenu(lang);
         return (
           <a
             href={href}
-            class={`block p-3 rounded-md mb-2 ${isActive ? 'bg-blue-50 text-blue-600' : 'text-slate-700 hover:bg-slate-50'}`}
+            class={`block p-3 mb-2 ${isActive ? 'bg-gray-50 text-gray-900' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'}`}
           >
             <span class="font-medium">{label}</span>
           </a>
@@ -172,7 +175,7 @@ const menu = getMenu(lang);
     
     <a
       href={lang === 'fi' ? '/fi/contact' : '/contact'}
-      class="block w-full mt-4 px-4 py-3 text-center text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors duration-200"
+      class="block w-full mt-4 px-4 py-3 text-center text-white bg-gray-900 hover:bg-black transition-all duration-200"
     >
       {lang === 'fi' ? 'Ota yhteyttä' : 'Contact Us'}
     </a>

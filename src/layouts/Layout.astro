@@ -44,9 +44,9 @@ const lang = path.startsWith('/fi') ? 'fi' : 'en';
 // SEO defaults
 const siteName = "Cyber Security Finland";
 const siteUrl = "https://cybersecurity.fi";
-const defaultDescription = lang === 'fi' 
-  ? "Kyberturvallisuuden asiantuntijat Suomessa. ISO 27001, NIS2, GDPR ja DORA -vaatimustenmukaisuuspalvelut. Nopea toteutus, asiantunteva tuki."
-  : "Cybersecurity experts in Finland. ISO 27001, NIS2, GDPR, and DORA compliance services. Fast implementation, expert support.";
+const defaultDescription = lang === 'fi'
+  ? "Kyberturvallisuus- ja vaatimustenmukaisuusneuvonta. ISO 27001, NIS2, GDPR ja DORA -toteutus todistetuin menetelmin maailmanlaajuisille organisaatioille."
+  : "Enterprise cybersecurity and compliance advisory. ISO 27001, NIS2, GDPR, and DORA implementation with proven methodologies for global organizations.";
 
 const pageTitle = title ? `${title} | ${siteName}` : siteName;
 const pageDescription = description || defaultDescription;
@@ -172,7 +172,7 @@ const fiUrl = `${siteUrl}/fi${basePath === '/' ? '' : basePath}`;
           "addressCountry": "FI",
           "addressLocality": "Finland"
         },
-        "description": "Expert cybersecurity and compliance services for Finnish businesses. ISO 27001, NIS2, GDPR, and DORA implementation with proven methodologies.",
+        "description": "Enterprise cybersecurity and compliance advisory services. ISO 27001, NIS2, GDPR, and DORA implementation with proven methodologies trusted by global organizations.",
         "serviceType": [
           "Cybersecurity Consulting",
           "ISO 27001 Implementation",
@@ -180,12 +180,24 @@ const fiUrl = `${siteUrl}/fi${basePath === '/' ? '' : basePath}`;
           "GDPR Compliance",
           "DORA Implementation",
           "Risk Management",
-          "Information Security"
+          "Information Security",
+          "Enterprise Security Advisory",
+          "Compliance Framework Implementation"
         ],
-        "areaServed": {
-          "@type": "Country",
-          "name": "Finland"
-        },
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "Finland"
+          },
+          {
+            "@type": "Place",
+            "name": "European Union"
+          },
+          {
+            "@type": "Place",
+            "name": "Global"
+          }
+        ],
         "foundingDate": "2020",
         "knowsLanguage": ["en", "fi"],
         "award": [
@@ -200,16 +212,26 @@ const fiUrl = `${siteUrl}/fi${basePath === '/' ? '' : basePath}`;
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Service",
-        "serviceType": "Cybersecurity Consulting",
+        "@type": "ProfessionalService",
+        "serviceType": "Enterprise Cybersecurity Advisory",
         "provider": {
           "@type": "Organization",
           "name": "Cyber Security Finland"
         },
-        "areaServed": {
-          "@type": "Country",
-          "name": "Finland"
-        },
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "Finland"
+          },
+          {
+            "@type": "Place",
+            "name": "European Union"
+          },
+          {
+            "@type": "Place",
+            "name": "Global"
+          }
+        ],
         "offers": {
           "@type": "Offer",
           "priceSpecification": {
@@ -217,7 +239,7 @@ const fiUrl = `${siteUrl}/fi${basePath === '/' ? '' : basePath}`;
             "valueAddedTaxIncluded": "true"
           }
         },
-        "description": "Expert cybersecurity and compliance services including ISO 27001, NIS2, GDPR, and DORA implementation."
+        "description": "Enterprise cybersecurity and compliance advisory services including ISO 27001, NIS2, GDPR, and DORA implementation with proven methodologies for global organizations."
       }
     </script>
 

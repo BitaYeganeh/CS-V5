@@ -1,0 +1,116 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const seoConfig = {
+  title: lang === 'fi' ? "Saavutettavuusseloste" : "Accessibility Statement",
+  description: lang === 'fi'
+    ? "Cyber Security Finlandin saavutettavuusseloste. Sitoudumme tekemään verkkosivustostamme kaikkien saavutettavan."
+    : "Accessibility Statement for Cyber Security Finland. We are committed to making our website accessible to everyone.",
+  type: "website" as const
+};
+
+const content = {
+  en: {
+    title: "Accessibility Statement",
+    lastUpdated: "Last updated: January 2025",
+    intro: "Cyber Security Finland is committed to ensuring digital accessibility for people with disabilities. We continually improve the user experience for everyone.",
+    sections: [
+      {
+        title: "1. Our Commitment",
+        content: "We strive to ensure that our website meets WCAG 2.1 Level AA standards. We are continually working to improve the accessibility of our website and services."
+      },
+      {
+        title: "2. Accessibility Features",
+        content: "Our website includes the following accessibility features: keyboard navigation support, skip-to-content links, semantic HTML structure, descriptive link text, sufficient color contrast, resizable text support, and alt text for images."
+      },
+      {
+        title: "3. Assistive Technologies",
+        content: "Our website is designed to be compatible with assistive technologies including screen readers, speech recognition software, and keyboard-only navigation."
+      },
+      {
+        title: "4. Known Limitations",
+        content: "While we strive for full accessibility, some older content or third-party components may not meet all accessibility standards. We are working to address these limitations."
+      },
+      {
+        title: "5. Browser Compatibility",
+        content: "Our website is designed to work with modern browsers. For the best experience, we recommend using the latest versions of Chrome, Firefox, Safari, or Edge."
+      },
+      {
+        title: "6. Feedback",
+        content: "We welcome your feedback on the accessibility of our website. If you encounter any barriers or have suggestions for improvement, please contact us."
+      },
+      {
+        title: "7. Third-Party Content",
+        content: "Some content on our website may be provided by third parties. While we encourage our partners to follow accessibility best practices, we cannot guarantee the accessibility of external content."
+      },
+      {
+        title: "8. Contact Us",
+        content: "If you have questions about accessibility or need assistance using our website, please contact us at info@cybersecurity.fi or call +358 44 5040308."
+      }
+    ]
+  },
+  fi: {
+    title: "Saavutettavuusseloste",
+    lastUpdated: "Päivitetty viimeksi: Tammikuu 2025",
+    intro: "Cyber Security Finland on sitoutunut varmistamaan verkkosivuston saavutettavuuden vammaisille henkilöille. Parannamme jatkuvasti käyttökokemusta kaikille.",
+    sections: [
+      {
+        title: "1. Sitoumuksemme",
+        content: "Pyrimme varmistamaan, että verkkosivustomme täyttää WCAG 2.1 AA-tason standardit. Työskentelemme jatkuvasti parantaaksemme verkkosivustomme ja palveluidemme saavutettavuutta."
+      },
+      {
+        title: "2. Saavutettavuusominaisuudet",
+        content: "Verkkosivustomme sisältää seuraavat saavutettavuusominaisuudet: näppäimistönavigaation tuki, hyppää sisältöön -linkit, semanttinen HTML-rakenne, kuvailevat linkkitekstit, riittävä värikontrasti, muutettavan tekstikoon tuki ja kuvien alt-tekstit."
+      },
+      {
+        title: "3. Avustavat teknologiat",
+        content: "Verkkosivustomme on suunniteltu yhteensopivaksi avustavien teknologioiden kanssa, mukaan lukien ruudunlukijat, puheentunnistusohjelmistot ja pelkästään näppäimistöllä tapahtuva navigointi."
+      },
+      {
+        title: "4. Tunnetut rajoitukset",
+        content: "Vaikka pyrimme täyteen saavutettavuuteen, jotkin vanhemmat sisällöt tai kolmannen osapuolen komponentit eivät välttämättä täytä kaikkia saavutettavuusstandardeja. Työskentelemme näiden rajoitusten korjaamiseksi."
+      },
+      {
+        title: "5. Selainyhteensopivuus",
+        content: "Verkkosivustomme on suunniteltu toimimaan nykyaikaisilla selaimilla. Parhaan kokemuksen saamiseksi suosittelemme käyttämään Chromen, Firefoxin, Safarin tai Edgen uusimpia versioita."
+      },
+      {
+        title: "6. Palaute",
+        content: "Otamme mielellämme vastaan palautetta verkkosivustomme saavutettavuudesta. Jos kohtaat esteitä tai sinulla on parannusehdotuksia, ota meihin yhteyttä."
+      },
+      {
+        title: "7. Kolmannen osapuolen sisältö",
+        content: "Osa verkkosivustomme sisällöstä voi olla kolmansien osapuolten tarjoamaa. Vaikka kannustamme kumppaneitamme noudattamaan saavutettavuuden parhaita käytäntöjä, emme voi taata ulkoisen sisällön saavutettavuutta."
+      },
+      {
+        title: "8. Ota yhteyttä",
+        content: "Jos sinulla on kysyttävää saavutettavuudesta tai tarvitset apua verkkosivustomme käytössä, ota yhteyttä osoitteeseen info@cybersecurity.fi tai soita +358 44 5040308."
+      }
+    ]
+  }
+};
+
+const c = content[lang];
+---
+
+<Layout {...seoConfig}>
+  <section class="py-16 bg-gradient-to-b from-slate-50 to-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-slate-900 mb-4">{c.title}</h1>
+      <p class="text-sm text-slate-500 mb-8">{c.lastUpdated}</p>
+      <p class="text-lg text-slate-600 mb-12">{c.intro}</p>
+
+      <div class="space-y-8">
+        {c.sections.map((section) => (
+          <div class="bg-white p-6 rounded-lg border border-slate-200">
+            <h2 class="text-xl font-semibold text-slate-900 mb-3">{section.title}</h2>
+            <p class="text-slate-600 leading-relaxed">{section.content}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

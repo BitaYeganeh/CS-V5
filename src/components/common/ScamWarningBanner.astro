@@ -10,48 +10,62 @@ const linkHref = "/resources/scam-awareness"; // You can update this to your act
 
 <div class="w-full border-b shadow-sm" style="background-color: var(--color-amber-300); border-color: var(--color-amber-400);">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between gap-2 py-1.5 sm:py-1.5">
+    <!-- Mobile: Stack vertically -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 py-2 sm:py-1.5">
       <!-- Left section: Warning icon and message -->
       <div class="flex items-center gap-2 flex-1 min-w-0">
         <div class="flex-shrink-0 flex items-center">
           <Icon
             name="alert"
-            class="w-4 h-4 flex-shrink-0 animate-pulse"
+            class="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 animate-pulse"
             style="color: var(--color-red-600);"
             aria-hidden="true"
           />
         </div>
         <div class="min-w-0 flex-1">
-          <p class="text-xs font-bold" style="color: var(--color-red-600);">
+          <p class="text-xs sm:text-sm font-bold" style="color: var(--color-red-600);">
             {warningMessage}
           </p>
         </div>
+        <!-- Close button on mobile - next to text -->
+        <button
+          class="flex-shrink-0 sm:hidden p-1 rounded transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
+          style="color: var(--color-red-600);"
+          onmouseover="this.style.backgroundColor='var(--color-amber-100)'"
+          onmouseout="this.style.backgroundColor='transparent'"
+          aria-label="Dismiss scam warning"
+          onclick="this.closest('[data-scam-banner]').remove(); localStorage.setItem('scamBannerDismissed', 'true');"
+        >
+          <Icon name="x" class="w-4 h-4" aria-hidden="true" />
+        </button>
       </div>
 
-      <!-- Right section: Action button -->
-      <a
-        href={linkHref}
-        class="flex-shrink-0 inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-semibold hover:shadow-md active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 whitespace-nowrap"
-        style="background-color: var(--color-red-600); color: var(--text-inverse);"
-        onmouseover="this.style.backgroundColor='var(--color-red-700)'"
-        onmouseout="this.style.backgroundColor='var(--color-red-600)'"
-        aria-label={linkText}
-      >
-        <span>{linkText}</span>
-        <Icon name="chevronRight" class="w-3 h-3 flex-shrink-0" aria-hidden="true" />
-      </a>
+      <!-- Right section: Action button (full width on mobile) -->
+      <div class="flex items-center gap-2">
+        <a
+          href={linkHref}
+          class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1 px-3 py-1.5 sm:px-2 sm:py-0.5 rounded text-xs font-semibold hover:shadow-md active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 whitespace-nowrap transition-all"
+          style="background-color: var(--color-red-600); color: var(--text-inverse);"
+          onmouseover="this.style.backgroundColor='var(--color-red-700)'"
+          onmouseout="this.style.backgroundColor='var(--color-red-600)'"
+          aria-label={linkText}
+        >
+          <span>Learn more</span>
+          <Icon name="chevronRight" class="w-3 h-3 flex-shrink-0" aria-hidden="true" />
+        </a>
 
-      <!-- Close button -->
-      <button
-        class="flex-shrink-0 p-0.5 rounded transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
-        style="color: var(--color-red-600);"
-        onmouseover="this.style.backgroundColor='var(--color-amber-100)'"
-        onmouseout="this.style.backgroundColor='transparent'"
-        aria-label="Dismiss scam warning"
-        onclick="this.closest('[data-scam-banner]').remove(); localStorage.setItem('scamBannerDismissed', 'true');"
-      >
-        <Icon name="x" class="w-4 h-4" aria-hidden="true" />
-      </button>
+        <!-- Close button on desktop -->
+        <button
+          class="hidden sm:block flex-shrink-0 p-0.5 rounded transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
+          style="color: var(--color-red-600);"
+          onmouseover="this.style.backgroundColor='var(--color-amber-100)'"
+          onmouseout="this.style.backgroundColor='transparent'"
+          aria-label="Dismiss scam warning"
+          onclick="this.closest('[data-scam-banner]').remove(); localStorage.setItem('scamBannerDismissed', 'true');"
+        >
+          <Icon name="x" class="w-4 h-4" aria-hidden="true" />
+        </button>
+      </div>
     </div>
   </div>
 </div>

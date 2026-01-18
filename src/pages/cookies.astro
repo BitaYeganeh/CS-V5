@@ -1,0 +1,116 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const seoConfig = {
+  title: lang === 'fi' ? "Evästekäytäntö" : "Cookie Policy",
+  description: lang === 'fi'
+    ? "Cyber Security Finlandin evästekäytäntö. Lue kuinka käytämme evästeitä verkkosivustollamme."
+    : "Cookie Policy of Cyber Security Finland. Learn how we use cookies on our website.",
+  type: "website" as const
+};
+
+const content = {
+  en: {
+    title: "Cookie Policy",
+    lastUpdated: "Last updated: January 2025",
+    intro: "This policy explains how Cyber Security Finland uses cookies and similar technologies on our website.",
+    sections: [
+      {
+        title: "1. What Are Cookies",
+        content: "Cookies are small text files stored on your device when you visit a website. They help websites remember your preferences and improve your browsing experience."
+      },
+      {
+        title: "2. Cookies We Use",
+        content: "We use the following types of cookies: Essential cookies (necessary for website functionality), Analytics cookies (Google Analytics to understand how visitors use our site), and Performance cookies (to improve website performance)."
+      },
+      {
+        title: "3. Essential Cookies",
+        content: "These cookies are necessary for the website to function properly. They enable basic functions like page navigation and access to secure areas. The website cannot function properly without these cookies."
+      },
+      {
+        title: "4. Analytics Cookies",
+        content: "We use Google Analytics to collect information about how visitors use our website. This helps us improve our services and user experience. These cookies collect information in an anonymous form."
+      },
+      {
+        title: "5. Managing Cookies",
+        content: "You can control and manage cookies through your browser settings. Note that disabling certain cookies may affect website functionality. Most browsers allow you to block or delete cookies."
+      },
+      {
+        title: "6. Third-Party Cookies",
+        content: "Some of our pages may contain content from third-party services that may set their own cookies. We do not control these cookies. Please refer to the respective third-party privacy policies."
+      },
+      {
+        title: "7. Updates to This Policy",
+        content: "We may update this cookie policy from time to time. Any changes will be posted on this page with an updated revision date."
+      },
+      {
+        title: "8. Contact Us",
+        content: "If you have questions about our use of cookies, please contact us at info@cybersecurity.fi."
+      }
+    ]
+  },
+  fi: {
+    title: "Evästekäytäntö",
+    lastUpdated: "Päivitetty viimeksi: Tammikuu 2025",
+    intro: "Tämä käytäntö selittää, kuinka Cyber Security Finland käyttää evästeitä ja vastaavia teknologioita verkkosivustollamme.",
+    sections: [
+      {
+        title: "1. Mitä evästeet ovat",
+        content: "Evästeet ovat pieniä tekstitiedostoja, jotka tallennetaan laitteellesi, kun vierailet verkkosivustolla. Ne auttavat verkkosivustoja muistamaan asetuksesi ja parantamaan selauskokemustasi."
+      },
+      {
+        title: "2. Käyttämämme evästeet",
+        content: "Käytämme seuraavan tyyppisiä evästeitä: Välttämättömät evästeet (verkkosivuston toiminnallisuudelle välttämättömät), Analytiikkaevästeet (Google Analytics ymmärtääksemme, kuinka kävijät käyttävät sivustoamme) ja Suorituskykyevästeet (sivuston suorituskyvyn parantamiseksi)."
+      },
+      {
+        title: "3. Välttämättömät evästeet",
+        content: "Nämä evästeet ovat välttämättömiä verkkosivuston toimivuuden kannalta. Ne mahdollistavat perustoiminnot, kuten sivunavigaation ja pääsyn suojatuille alueille. Verkkosivusto ei voi toimia kunnolla ilman näitä evästeitä."
+      },
+      {
+        title: "4. Analytiikkaevästeet",
+        content: "Käytämme Google Analyticsia kerätäksemme tietoja siitä, miten kävijät käyttävät verkkosivustoamme. Tämä auttaa meitä parantamaan palveluitamme ja käyttökokemusta. Nämä evästeet keräävät tietoja nimettömässä muodossa."
+      },
+      {
+        title: "5. Evästeiden hallinta",
+        content: "Voit hallita evästeitä selaimesi asetuksista. Huomaa, että tiettyjen evästeiden poistaminen käytöstä voi vaikuttaa verkkosivuston toiminnallisuuteen. Useimmat selaimet sallivat evästeiden estämisen tai poistamisen."
+      },
+      {
+        title: "6. Kolmannen osapuolen evästeet",
+        content: "Jotkut sivuistamme voivat sisältää kolmannen osapuolen palveluiden sisältöä, jotka voivat asettaa omia evästeitään. Emme hallitse näitä evästeitä. Tutustu kyseisten kolmansien osapuolten tietosuojakäytäntöihin."
+      },
+      {
+        title: "7. Päivitykset tähän käytäntöön",
+        content: "Voimme päivittää tätä evästekäytäntöä aika ajoin. Kaikki muutokset julkaistaan tällä sivulla päivitetyllä muokkauspäivämäärällä."
+      },
+      {
+        title: "8. Ota yhteyttä",
+        content: "Jos sinulla on kysyttävää evästeistämme, ota yhteyttä osoitteeseen info@cybersecurity.fi."
+      }
+    ]
+  }
+};
+
+const c = content[lang];
+---
+
+<Layout {...seoConfig}>
+  <section class="py-16 bg-gradient-to-b from-slate-50 to-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-slate-900 mb-4">{c.title}</h1>
+      <p class="text-sm text-slate-500 mb-8">{c.lastUpdated}</p>
+      <p class="text-lg text-slate-600 mb-12">{c.intro}</p>
+
+      <div class="space-y-8">
+        {c.sections.map((section) => (
+          <div class="bg-white p-6 rounded-lg border border-slate-200">
+            <h2 class="text-xl font-semibold text-slate-900 mb-3">{section.title}</h2>
+            <p class="text-slate-600 leading-relaxed">{section.content}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

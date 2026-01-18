@@ -1,33 +1,38 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import { t, getLanguageFromPath, getLanguagePrefix } from '@/utils/language';
 
-const title = 'Regulatory Compliance';
-const tagline = 'Navigate complex regulations with confidence';
+const currentPath = Astro.url.pathname;
+const lang = getLanguageFromPath(currentPath);
+const langPrefix = getLanguagePrefix(lang);
+
+const title = t('regulatoryComplianceTitle', lang);
+const tagline = t('regulatoryComplianceTagline', lang);
 const items = [
   {
-    title: 'NIS2 Compliance',
-    href: '/services/regulatory-compliance/nis2-compliance',
-    description: 'Assess gaps, implement controls, and operationalize incident reporting to meet EU NIS2 obligations for essential and important entities.'
+    title: t('nis2ComplianceTitle', lang),
+    href: `${langPrefix}/services/regulatory-compliance/nis2-compliance`,
+    description: t('nis2ComplianceDesc', lang)
   },
   {
-    title: 'DORA Compliance',
-    href: '/services/regulatory-compliance/dora-compliance',
-    description: 'Build Digital Operational Resilience with ICT risk management, testing, and incident processes aligned to DORA requirements.'
+    title: t('doraComplianceTitle', lang),
+    href: `${langPrefix}/services/regulatory-compliance/dora-compliance`,
+    description: t('doraComplianceDesc', lang)
   },
   {
-    title: 'GDPR/Privacy Services',
-    href: '/services/regulatory-compliance/gdpr-privacy-services',
-    description: 'Operationalize privacy by design: data mapping, DPIAs, records of processing, and governance to demonstrate GDPR compliance.'
+    title: t('gdprPrivacyTitle', lang),
+    href: `${langPrefix}/services/regulatory-compliance/gdpr-privacy-services`,
+    description: t('gdprPrivacyDesc', lang)
   },
   {
-    title: 'eIDAS/Digital Trust',
-    href: '/services/regulatory-compliance/eidas-digital-trust',
-    description: 'Establish trusted digital identity, qualified signatures and seals, and assurance aligned with eIDAS and ETSI standards.'
+    title: t('eidasDigitalTrustTitle', lang),
+    href: `${langPrefix}/services/regulatory-compliance/eidas-digital-trust`,
+    description: t('eidasDigitalTrustDesc', lang)
   },
   {
-    title: 'ePrivacy & Cookie Compliance',
-    href: '/services/regulatory-compliance/eprivacy-cookie-compliance',
-    description: 'ePrivacy and cookie compliance: consent management, cookie audits, tracking governance.'
+    title: t('eprivacyCookieTitle', lang),
+    href: `${langPrefix}/services/regulatory-compliance/eprivacy-cookie-compliance`,
+    description: t('eprivacyCookieDesc', lang)
   }
 ];
 ---
@@ -44,10 +49,10 @@ const items = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {items.map((s) => (
-          <a href={s.href} class="group block rounded-xl border border-slate-200 p-6 bg-white hover:bg-slate-50 transition-colors">
-            <h3 class="text-lg font-semibold text-slate-900 group-hover:text-teal-700">{s.title}</h3>
-            <p class="mt-2 text-slate-600 text-sm">{s.description}</p>
-            <span class="inline-flex items-center mt-4 text-teal-700 font-medium">Read more →</span>
+          <a href={s.href} class="group block rounded-xl border border-gray-200 p-6 bg-white hover:bg-gray-50 transition-colors">
+            <h3 class="text-lg font-semibold text-gray-900 group-hover:text-gray-700">{s.title}</h3>
+            <p class="mt-2 text-gray-600 text-sm">{s.description}</p>
+            <span class="inline-flex items-center mt-4 text-gray-900 font-medium">{t('readMore', lang)} →</span>
           </a>
         ))}
       </div>

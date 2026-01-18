@@ -2,20 +2,19 @@
 import Layout from '@/layouts/Layout.astro';
 import Button from '@/components/ui/Button.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-import CybersecurityAssessment from '@/components/interactive/CybersecurityAssessment.astro';
 
 // SEO Configuration
 const seoConfig = {
-  title: "Cyber Security Finland | Expert Cybersecurity & Compliance Services in Finland",
-  description: "Leading cybersecurity experts in Finland. Specialized in ISO 27001, NIS2, GDPR, and DORA compliance. Fast-track implementation in 90 days with expert guidance.",
-  keywords: "cybersecurity finland, ISO 27001 compliance, NIS2 directive, GDPR expert, DORA implementation, information security consulting, cybersecurity services finland, compliance consulting, risk management services",
+  title: "Cyber Security Finland | Enterprise Cybersecurity & Compliance Advisory",
+  description: "Global cybersecurity and compliance advisory firm. Specialized in ISO 27001, NIS2, GDPR, and DORA compliance across regulated industries. Proven methodologies trusted by enterprises worldwide.",
+  keywords: "cybersecurity consulting, ISO 27001 compliance, NIS2 directive, GDPR expert, DORA implementation, information security consulting, enterprise security, compliance advisory, risk management, governance risk compliance",
   type: "website" as const,
   schema: {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Cyber Security Finland",
     "url": "https://cybersecurity.fi",
-    "description": "Expert cybersecurity and compliance services for Finnish businesses. ISO 27001, NIS2, GDPR, and DORA implementation with proven methodologies.",
+    "description": "Enterprise cybersecurity and compliance advisory services. ISO 27001, NIS2, GDPR, and DORA implementation with proven methodologies for global organizations.",
     "publisher": {
       "@type": "Organization",
       "name": "Cyber Security Finland",
@@ -40,90 +39,90 @@ const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 const content = {
   en: {
     hero: {
-      title: "Cybersecurity Compliance Made Simple for Finnish Businesses",
-      subtitle: "Fast-track your ISO 27001, NIS2, and GDPR compliance with our proven 90-day programs. Expert guidance, complete documentation, and ongoing support included.",
-      primaryCTA: { text: "Get Free Compliance Assessment", href: "/contact" },
-      secondaryCTA: { text: "Learn About Our Services", href: "/services" }
+      title: "Enterprise Cybersecurity & Compliance Advisory",
+      subtitle: "Strategic guidance for complex regulatory environments. ISO 27001, NIS2, GDPR, and DORA implementation with proven methodologies trusted by global organizations.",
+      primaryCTA: { text: "Request Consultation", href: "/contact" },
+      secondaryCTA: { text: "Explore Capabilities", href: "/services" }
     },
     services: {
-      title: "Our Core Services",
-      description: "Comprehensive cybersecurity and compliance solutions tailored to your business needs",
+      title: "Core Capabilities",
+      description: "Comprehensive cybersecurity and regulatory compliance solutions for enterprises across regulated industries",
       items: [
         {
-          title: "ISO 27001 Fast-Track",
-          description: "Complete ISMS implementation in 90 days with certification support",
+          title: "Information Security Management",
+          description: "ISO 27001 implementation and certification readiness programs",
           icon: "shield-check",
           href: "/packages/iso-27001-fast-track"
         },
         {
-          title: "NIS2 Compliance",
-          description: "Prepare for NIS2 directive requirements with expert guidance",
+          title: "Regulatory Compliance",
+          description: "NIS2 directive compliance and cybersecurity resilience frameworks",
           icon: "globe-alt",
           href: "/services/nis2-compliance"
         },
         {
-          title: "GDPR & Privacy",
-          description: "Data protection compliance and privacy governance solutions",
+          title: "Data Protection & Privacy",
+          description: "GDPR compliance programs and privacy governance frameworks",
           icon: "lock-closed",
-          href: "/services/gdpr-privacy"
+          href: "/services/gdpr-privacy-services"
         },
         {
-          title: "DORA Implementation",
-          description: "Digital operational resilience for financial services",
+          title: "Digital Operational Resilience",
+          description: "DORA compliance for financial institutions and critical infrastructure",
           icon: "building-library",
           href: "/services/dora-compliance"
         }
       ]
     },
     cta: {
-      title: "Ready to Secure Your Business?",
-      subtitle: "Join hundreds of Finnish companies that trust us with their cybersecurity and compliance needs.",
-      primaryCTA: { text: "Start Free Assessment", href: "/contact" },
-      secondaryCTA: { text: "View All Services", href: "/services" }
+      title: "Transform Your Security Posture",
+      subtitle: "Partner with experienced advisors trusted by enterprises in highly regulated industries worldwide.",
+      primaryCTA: { text: "Schedule Consultation", href: "/contact" },
+      secondaryCTA: { text: "View Services", href: "/services" }
     }
   },
   fi: {
     hero: {
-      title: "Kyberturvallisuuden yhteensopivuus tehty helpoksi suomalaisille yrityksille",
-      subtitle: "Nopeuta ISO 27001, NIS2 ja GDPR -vaatimustenmukaisuutta todistetuin 90 päivän ohjelmin. Asiantunteva ohjaus, täydellinen dokumentointi ja jatkuva tuki mukana.",
-      primaryCTA: { text: "Hanki ilmainen vaatimustenmukaisuusarviointi", href: "/contact" },
-      secondaryCTA: { text: "Lisätietoja palveluistamme", href: "/services" }
+      title: "Kyberturvallisuus- ja vaatimustenmukaisuusneuvonta",
+      subtitle: "Strateginen ohjaus monimutkaisissa sääntelyympäristöissä. ISO 27001, NIS2, GDPR ja DORA toteutus todistetuin menetelmin, joihin maailmanlaajuiset organisaatiot luottavat.",
+      primaryCTA: { text: "Pyydä konsultaatio", href: "/contact" },
+      secondaryCTA: { text: "Tutustu palveluihin", href: "/services" }
     },
     services: {
-      title: "Keskeiset palvelumme",
-      description: "Kattavat kyberturvallisuuden ja sääntelyn noudattamisen ratkaisut liiketoimintaasi varten",
+      title: "Ydinosaamisalueet",
+      description: "Kattavat kyberturvallisuus- ja sääntelyvaatimustenmukaisuusratkaisut yrityksille säännellyillä toimialoilla",
       items: [
         {
-          title: "ISO 27001 Fast-Track",
-          description: "Täysi ISMS-toteutus 90 päivässä sertifiointituelle",
+          title: "Tietoturvallisuuden hallinta",
+          description: "ISO 27001 -toteutus ja sertifiointivalmius-ohjelmat",
           icon: "shield-check",
           href: "/packages/iso-27001-fast-track"
         },
         {
-          title: "NIS2 Yhteensopivuus",
-          description: "Valmistele NIS2-direktiivin vaatimuksia asiantuntijan ohjauksella",
+          title: "Sääntelyvaatimustenmukaisuus",
+          description: "NIS2-direktiivin vaatimustenmukaisuus ja kyberturvallisuuden resilienssi",
           icon: "globe-alt",
           href: "/services/nis2-compliance"
         },
         {
-          title: "GDPR & Tietosuoja",
-          description: "Tietosuojan noudattaminen ja yksityisyyden hallintaratkaisut",
+          title: "Tietosuoja ja yksityisyys",
+          description: "GDPR-vaatimustenmukaisuusohjelmat ja tietosuojan hallintakehykset",
           icon: "lock-closed",
-          href: "/services/gdpr-privacy"
+          href: "/services/gdpr-privacy-services"
         },
         {
-          title: "DORA Toteutus",
-          description: "Digitaalinen toiminnallinen resilierenssi rahoituspalveluille",
+          title: "Digitaalinen toimintakyky",
+          description: "DORA-vaatimustenmukaisuus rahoituslaitoksille ja kriittiselle infrastruktuurille",
           icon: "building-library",
           href: "/services/dora-compliance"
         }
       ]
     },
     cta: {
-      title: "Oletko valmis suojaamaan liiketoimintaasi?",
-      subtitle: "Liity satojen suomalaisten yritysten joukkoon, jotka luottavat meihin kyberturvallisuuteen ja vaatimustenmukaisuuteen.",
-      primaryCTA: { text: "Aloita ilmainen arviointi", href: "/contact" },
-      secondaryCTA: { text: "Näytä kaikki palvelut", href: "/services" }
+      title: "Muuta turvallisuusasemaasi",
+      subtitle: "Kumppani kokeneiden neuvonantajien kanssa, joihin luottavat yritykset erittäin säännellyillä toimialoilla maailmanlaajuisesti.",
+      primaryCTA: { text: "Varaa konsultaatio", href: "/contact" },
+      secondaryCTA: { text: "Näytä palvelut", href: "/services" }
     }
   }
 };
@@ -168,7 +167,7 @@ const complianceFrameworks = [
     title: "NIS2 Directive",
     description: "Network and Information Security Directive - EU cybersecurity legislation for essential and important entities.",
     icon: "globe-alt",
-    href: "/regulatory/nis2"
+    href: "/frameworks/nis2"
   },
   {
     title: "GDPR",
@@ -265,25 +264,21 @@ const latestResources = [
 
 <Layout {...seoConfig}>
   <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-slate-100 via-gray-50 to-slate-100 text-slate-900 py-24">
+  <section class="bg-gradient-to-br from-gray-50 via-white to-gray-50 text-gray-900 py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-          {lang === 'fi'
-            ? 'Kyberturvallisuuden yhteensopivuus tehty helpoksi suomalaisille yrityksille'
-            : 'Cybersecurity Compliance Made Simple for Finnish Businesses'}
+          {currentContent.hero.title}
         </h1>
-        <p class="text-xl text-slate-600 mb-10 max-w-4xl mx-auto">
-          {lang === 'fi'
-            ? 'Nopeuta ISO 27001, NIS2 ja GDPR -vaatimustenmukaisuutta todistetuin 90 päivän ohjelmin. Asiantunteva ohjaus, täydellinen dokumentointi ja jatkuva tuki mukana.'
-            : 'Fast-track your ISO 27001, NIS2, and GDPR compliance with our proven 90-day programs. Expert guidance, complete documentation, and ongoing support included.'}
+        <p class="text-xl text-gray-600 mb-10 max-w-4xl mx-auto">
+          {currentContent.hero.subtitle}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button href="/contact" variant="primary">
-            {lang === 'fi' ? 'Hanki ilmainen vaatimustenmukaisuusarviointi' : 'Get Free Compliance Assessment'}
+          <Button href={currentContent.hero.primaryCTA.href} variant="primary">
+            {currentContent.hero.primaryCTA.text}
           </Button>
-          <Button href="/services" variant="secondary">
-            {lang === 'fi' ? 'Lisätietoja palveluistamme' : 'Learn About Our Services'}
+          <Button href={currentContent.hero.secondaryCTA.href} variant="secondary">
+            {currentContent.hero.secondaryCTA.text}
           </Button>
         </div>
       </div>
@@ -295,12 +290,10 @@ const latestResources = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Keskeiset palvelumme' : 'Our Core Services'}
+          {currentContent.services.title}
         </h2>
         <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi'
-            ? 'Kattavat kyberturvallisuuden ja sääntelyn noudattamisen ratkaisut liiketoimintaasi varten'
-            : 'Comprehensive cybersecurity and compliance solutions tailored to your business needs'}
+          {currentContent.services.description}
         </p>
       </div>
 
@@ -397,41 +390,6 @@ const latestResources = [
                 <Icon name="arrowRight" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Key Services Section -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Keskeiset palvelualamme' : 'Our Core Service Areas'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi'
-            ? 'Tarjoamme kattavat kyberturvallisuus- ja vaatimustenmukaisuuspalvelut pienyrityksille ja keskisuurille yrityksille, jotka kohtaavat resurssirajoituksia ja vaatimustenmukaisuushaasteita.'
-            : 'We provide comprehensive cybersecurity and compliance services tailored for small and medium businesses facing resource constraints and compliance challenges.'}
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {keyServices.map((service, index) => (
-          <div class="bg-white rounded-xl shadow-sm p-6 border border-slate-200 hover:shadow-md transition-shadow duration-200">
-            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-              <Icon name={service.icon} class="w-6 h-6 text-blue-600" />
-            </div>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2">{service.title}</h3>
-            <p class="text-slate-600 text-sm mb-4">{service.description}</p>
-            <a
-              href={service.href}
-              class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium group"
-            >
-              {lang === 'fi' ? 'Lue lisää' : 'Learn more'}
-              <Icon name="arrowRight" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-            </a>
           </div>
         ))}
       </div>
@@ -664,7 +622,7 @@ const latestResources = [
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-4">NIS2 Implementation: What Finnish Companies Need to Know</h3>
           <p class="text-slate-600 mb-6">Essential guidance for organizations preparing for NIS2 compliance requirements.</p>
-          <a href="/webinars" class="inline-flex items-center text-teal-600 hover:text-teal-800 font-semibold group/link transition-colors duration-300">
+          <a href="/resources/webinars" class="inline-flex items-center text-teal-600 hover:text-teal-800 font-semibold group/link transition-colors duration-300">
             Register 
             <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -680,7 +638,7 @@ const latestResources = [
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-4">DORA Compliance for Financial Services</h3>
           <p class="text-slate-600 mb-6">Preparing financial institutions for digital operational resilience requirements.</p>
-          <a href="/webinars" class="inline-flex items-center text-teal-600 hover:text-teal-800 font-semibold group/link transition-colors duration-300">
+          <a href="/resources/webinars" class="inline-flex items-center text-teal-600 hover:text-teal-800 font-semibold group/link transition-colors duration-300">
             Register 
             <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -696,7 +654,7 @@ const latestResources = [
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-4">ISO 27001:2022 Changes and Impact</h3>
           <p class="text-slate-600 mb-6">Understanding the latest updates and their implications for your organization.</p>
-          <a href="/webinars" class="inline-flex items-center text-teal-600 hover:text-teal-800 font-semibold group/link transition-colors duration-300">
+          <a href="/resources/webinars" class="inline-flex items-center text-teal-600 hover:text-teal-800 font-semibold group/link transition-colors duration-300">
             Register 
             <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>

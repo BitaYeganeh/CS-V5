@@ -1,0 +1,55 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { t, getLanguageFromPath, getLanguagePrefix } from '@/utils/language';
+
+const currentPath = Astro.url.pathname;
+const lang = getLanguageFromPath(currentPath);
+const langPrefix = getLanguagePrefix(lang);
+
+const title = t('riskAndAssessmentTitle', lang);
+const tagline = t('riskAndAssessmentTagline', lang);
+
+const items = [
+  {
+    title: t('riskManagementTitle', lang),
+    href: `${langPrefix}/services/risk-and-assessment-services/risk-management`,
+    description: t('riskManagementDesc', lang)
+  },
+  {
+    title: t('riskAssessmentsTitle', lang),
+    href: `${langPrefix}/services/risk-and-assessment-services/risk-assessments`,
+    description: t('riskAssessmentsDesc', lang)
+  },
+  {
+    title: t('thirdPartyRiskTitle', lang),
+    href: `${langPrefix}/services/risk-and-assessment-services/third-party-risk`,
+    description: t('thirdPartyRiskDesc', lang)
+  }
+];
+---
+
+<Layout title={title} description={tagline}>
+  <section class="bg-gradient-to-br from-gray-50 via-white to-gray-50 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900">{title}</h1>
+      <p class="mt-3 text-gray-600 text-lg">{tagline}</p>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        {items.map((s) => (
+          <a href={s.href} class="group block rounded-xl border border-gray-200 p-6 bg-white hover:bg-gray-50 transition-colors">
+            <h3 class="text-lg font-semibold text-gray-900 group-hover:text-gray-700">{s.title}</h3>
+            <p class="mt-2 text-gray-600 text-sm">{s.description}</p>
+            <span class="inline-flex items-center mt-4 text-gray-900 font-medium">
+              {t('readMore', lang)} →
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+

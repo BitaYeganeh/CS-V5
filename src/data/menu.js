@@ -261,7 +261,7 @@ export const menu = [
       {
         label_fi: "Webinaarit",
         label_en: "Webinars",
-        href: "/webinars",
+        href: "/resources/webinars",
         children: []
       },
       {
