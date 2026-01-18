@@ -182,80 +182,106 @@ const menu = getMenu(lang);
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const trigger = document.getElementById('mobile-trigger') || null;
-    const menuRoot = document.getElementById('mobile-menu') || null;
-    const backdrop = document.getElementById('mobile-menu-backdrop') || null;
+<script is:inline>
+  (function() {
+    function initMobileMenu() {
+      var trigger = document.getElementById('mobile-trigger');
+      var menuRoot = document.getElementById('mobile-menu');
+      var backdrop = document.getElementById('mobile-menu-backdrop');
 
-    if (!trigger || !menuRoot || !backdrop) return;
-    let lastFocus = null;
-
-    const focusableSelector = 'a[href], button:not([disabled]), [role="button"], summary, input, select, textarea';
-
-    function trapFocus(e) {
-      if (!menuRoot || menuRoot.classList.contains('translate-x-full')) return;
-      const focusables = Array.from(menuRoot.querySelectorAll(focusableSelector)).filter(el => el.offsetParent !== null);
-      if (!focusables.length) return;
-      const first = focusables[0];
-      const last = focusables[focusables.length - 1];
-      if (e.key === 'Tab') {
-        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      if (!trigger || !menuRoot || !backdrop) {
+        return;
       }
-      if (e.key === 'Escape') closeMenu();
+
+      // Prevent duplicate initialization
+      if (trigger.getAttribute('data-initialized') === 'true') return;
+      trigger.setAttribute('data-initialized', 'true');
+
+      var lastFocus = null;
+
+      function openMenu() {
+        lastFocus = document.activeElement;
+
+        menuRoot.classList.remove('translate-x-full');
+        backdrop.classList.remove('invisible', 'opacity-0');
+        backdrop.classList.add('opacity-100', 'visible');
+
+        trigger.setAttribute('aria-expanded', 'true');
+        menuRoot.removeAttribute('aria-hidden');
+        document.documentElement.classList.add('overflow-hidden');
+        document.body.classList.add('overflow-hidden');
+      }
+
+      function closeMenu() {
+        menuRoot.classList.add('translate-x-full');
+        backdrop.classList.remove('opacity-100', 'visible');
+        backdrop.classList.add('opacity-0', 'invisible');
+
+        trigger.setAttribute('aria-expanded', 'false');
+        menuRoot.setAttribute('aria-hidden', 'true');
+        document.documentElement.classList.remove('overflow-hidden');
+        document.body.classList.remove('overflow-hidden');
+
+        if (lastFocus && lastFocus.focus) {
+          lastFocus.focus();
+        }
+      }
+
+      trigger.onclick = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+        if (isOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      };
+
+      backdrop.onclick = function() {
+        closeMenu();
+      };
+
+      menuRoot.onclick = function(e) {
+        var target = e.target;
+        if (!target) return;
+
+        // Close button
+        if (target.closest('[data-close]')) {
+          closeMenu();
+          return;
+        }
+
+        // Link clicked (but not inside details/accordion)
+        if (target.closest('a') && !target.closest('details')) {
+          closeMenu();
+          return;
+        }
+      };
+
+      // Close on escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && trigger.getAttribute('aria-expanded') === 'true') {
+          closeMenu();
+        }
+      });
+
+      // Close on resize to desktop
+      window.addEventListener('resize', function() {
+        if (window.innerWidth >= 1024 && trigger.getAttribute('aria-expanded') === 'true') {
+          closeMenu();
+        }
+      });
     }
 
-    function openMenu() {
-      if (!trigger || !menuRoot || !backdrop) return;
-      lastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-
-      menuRoot.classList.remove('translate-x-full');
-      backdrop.classList.remove('invisible', 'opacity-0');
-      backdrop.classList.add('opacity-100', 'visible');
-
-      trigger.setAttribute('aria-expanded','true');
-      menuRoot.removeAttribute('aria-hidden');
-      document.documentElement.classList.add('overflow-hidden');
-      document.body.classList.add('overflow-hidden');
-
-      const firstLink = menuRoot.querySelector('a, button, [data-close]');
-      if (firstLink) setTimeout(() => firstLink.focus(), 300);
-
-      document.addEventListener('keydown', trapFocus);
+    // Run immediately if DOM is ready
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      initMobileMenu();
+    } else {
+      document.addEventListener('DOMContentLoaded', initMobileMenu);
     }
 
-    function closeMenu() {
-      if (!trigger || !menuRoot || !backdrop) return;
-
-      menuRoot.classList.add('translate-x-full');
-      backdrop.classList.remove('opacity-100', 'visible');
-      backdrop.classList.add('opacity-0', 'invisible');
-
-      trigger.setAttribute('aria-expanded','false');
-      menuRoot.setAttribute('aria-hidden','true');
-      document.documentElement.classList.remove('overflow-hidden');
-      document.body.classList.remove('overflow-hidden');
-      document.removeEventListener('keydown', trapFocus);
-
-      const lf = lastFocus;
-      if (lf) setTimeout(() => lf.focus(), 100);
-    }
-
-    trigger.addEventListener('click', () => {
-      const open = trigger.getAttribute('aria-expanded') === 'true';
-      open ? closeMenu() : openMenu();
-    });
-
-    backdrop.addEventListener('click', () => closeMenu());
-    
-    menuRoot.addEventListener('click', (e) => {
-      const t = e.target;
-      if (!t) return;
-      if (t.closest('[data-close]')) return closeMenu();
-      if (t.closest('a') && !t.closest('details')) return closeMenu();
-    });
-
-    window.addEventListener('resize', () => { if (window.innerWidth >= 1024 && trigger.getAttribute('aria-expanded') === 'true') closeMenu(); });
-  });
+    // Also handle Astro view transitions
+    document.addEventListener('astro:page-load', initMobileMenu);
+  })();
 </script>
