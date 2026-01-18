@@ -1,0 +1,357 @@
+---
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const content = {
+  en: {
+    title: "We value your privacy",
+    description: "We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking \"Accept All\", you consent to our use of cookies.",
+    acceptAll: "Accept All",
+    rejectAll: "Reject All",
+    customize: "Customize",
+    cookiePolicy: "Cookie Policy",
+    privacyPolicy: "Privacy Policy",
+    savePreferences: "Save Preferences",
+    close: "Close",
+    categories: {
+      necessary: {
+        title: "Necessary",
+        description: "Essential cookies required for the website to function properly. These cannot be disabled.",
+        required: true
+      },
+      analytics: {
+        title: "Analytics",
+        description: "Cookies that help us understand how visitors interact with our website.",
+        required: false
+      },
+      marketing: {
+        title: "Marketing",
+        description: "Cookies used to deliver personalized advertisements.",
+        required: false
+      }
+    }
+  },
+  fi: {
+    title: "Arvostamme yksityisyyttäsi",
+    description: "Käytämme evästeitä parantaaksemme selauskokemustasi, analysoidaksemme sivuston liikennettä ja personoidaksemme sisältöä. Klikkaamalla \"Hyväksy kaikki\" suostut evästeiden käyttöön.",
+    acceptAll: "Hyväksy kaikki",
+    rejectAll: "Hylkää kaikki",
+    customize: "Mukauta",
+    cookiePolicy: "Evästekäytäntö",
+    privacyPolicy: "Tietosuojakäytäntö",
+    savePreferences: "Tallenna valinnat",
+    close: "Sulje",
+    categories: {
+      necessary: {
+        title: "Välttämättömät",
+        description: "Välttämättömät evästeet, jotka ovat tarpeen verkkosivuston toiminnalle. Näitä ei voi poistaa käytöstä.",
+        required: true
+      },
+      analytics: {
+        title: "Analytiikka",
+        description: "Evästeet, jotka auttavat meitä ymmärtämään, miten kävijät käyttävät verkkosivustoamme.",
+        required: false
+      },
+      marketing: {
+        title: "Markkinointi",
+        description: "Evästeet, joita käytetään personoitujen mainosten näyttämiseen.",
+        required: false
+      }
+    }
+  }
+};
+
+const c = content[lang];
+const cookiePolicyUrl = lang === 'fi' ? '/fi/cookies' : '/cookies';
+const privacyPolicyUrl = lang === 'fi' ? '/fi/privacy' : '/privacy';
+---
+
+<!-- Cookie Consent Banner -->
+<div
+  id="cookie-consent-banner"
+  class="fixed bottom-0 left-0 right-0 z-[9999] transform translate-y-full transition-transform duration-500 ease-out"
+  role="dialog"
+  aria-labelledby="cookie-consent-title"
+  aria-describedby="cookie-consent-description"
+>
+  <div class="bg-white border-t border-slate-200 shadow-2xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        <!-- Text Content -->
+        <div class="flex-1">
+          <h2 id="cookie-consent-title" class="text-lg font-semibold text-slate-900 mb-2 flex items-center gap-2">
+            <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+            </svg>
+            {c.title}
+          </h2>
+          <p id="cookie-consent-description" class="text-sm text-slate-600 max-w-2xl">
+            {c.description}
+            <a href={cookiePolicyUrl} class="text-teal-600 hover:text-teal-700 underline ml-1">{c.cookiePolicy}</a>
+          </p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex flex-col sm:flex-row gap-3 lg:flex-shrink-0">
+          <button
+            id="cookie-customize-btn"
+            type="button"
+            class="px-5 py-2.5 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors"
+          >
+            {c.customize}
+          </button>
+          <button
+            id="cookie-reject-btn"
+            type="button"
+            class="px-5 py-2.5 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors"
+          >
+            {c.rejectAll}
+          </button>
+          <button
+            id="cookie-accept-btn"
+            type="button"
+            class="px-5 py-2.5 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition-colors"
+          >
+            {c.acceptAll}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Preferences Modal -->
+<div
+  id="cookie-preferences-modal"
+  class="fixed inset-0 z-[10000] hidden"
+  role="dialog"
+  aria-labelledby="cookie-modal-title"
+  aria-modal="true"
+>
+  <!-- Backdrop -->
+  <div class="fixed inset-0 bg-black/50 backdrop-blur-sm" id="cookie-modal-backdrop"></div>
+
+  <!-- Modal Content -->
+  <div class="fixed inset-0 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-hidden">
+      <!-- Header -->
+      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+        <h3 id="cookie-modal-title" class="text-lg font-semibold text-slate-900">{c.customize}</h3>
+        <button
+          id="cookie-modal-close"
+          type="button"
+          class="p-2 text-slate-400 hover:text-slate-600 transition-colors"
+          aria-label={c.close}
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Body -->
+      <div class="px-6 py-4 overflow-y-auto max-h-[60vh]">
+        <p class="text-sm text-slate-600 mb-6">{c.description}</p>
+
+        <!-- Cookie Categories -->
+        <div class="space-y-4">
+          <!-- Necessary -->
+          <div class="p-4 bg-slate-50 rounded-lg">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-medium text-slate-900">{c.categories.necessary.title}</h4>
+              <span class="text-xs text-slate-500 bg-slate-200 px-2 py-1 rounded">
+                {lang === 'fi' ? 'Aina päällä' : 'Always on'}
+              </span>
+            </div>
+            <p class="text-sm text-slate-600">{c.categories.necessary.description}</p>
+          </div>
+
+          <!-- Analytics -->
+          <div class="p-4 bg-slate-50 rounded-lg">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-medium text-slate-900">{c.categories.analytics.title}</h4>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="cookie-analytics" class="sr-only peer" checked />
+                <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-teal-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-teal-600"></div>
+              </label>
+            </div>
+            <p class="text-sm text-slate-600">{c.categories.analytics.description}</p>
+          </div>
+
+          <!-- Marketing -->
+          <div class="p-4 bg-slate-50 rounded-lg">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-medium text-slate-900">{c.categories.marketing.title}</h4>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="cookie-marketing" class="sr-only peer" />
+                <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-teal-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-teal-600"></div>
+              </label>
+            </div>
+            <p class="text-sm text-slate-600">{c.categories.marketing.description}</p>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div class="mt-6 pt-4 border-t border-slate-200 flex gap-4 text-sm">
+          <a href={cookiePolicyUrl} class="text-teal-600 hover:text-teal-700 underline">{c.cookiePolicy}</a>
+          <a href={privacyPolicyUrl} class="text-teal-600 hover:text-teal-700 underline">{c.privacyPolicy}</a>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="px-6 py-4 border-t border-slate-200 flex flex-col sm:flex-row gap-3">
+        <button
+          id="cookie-save-preferences"
+          type="button"
+          class="flex-1 px-5 py-2.5 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition-colors"
+        >
+          {c.savePreferences}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+(function() {
+  var COOKIE_CONSENT_KEY = 'cookie_consent';
+  var COOKIE_PREFERENCES_KEY = 'cookie_preferences';
+
+  var banner = document.getElementById('cookie-consent-banner');
+  var modal = document.getElementById('cookie-preferences-modal');
+  var acceptBtn = document.getElementById('cookie-accept-btn');
+  var rejectBtn = document.getElementById('cookie-reject-btn');
+  var customizeBtn = document.getElementById('cookie-customize-btn');
+  var modalClose = document.getElementById('cookie-modal-close');
+  var modalBackdrop = document.getElementById('cookie-modal-backdrop');
+  var savePreferencesBtn = document.getElementById('cookie-save-preferences');
+  var analyticsCheckbox = document.getElementById('cookie-analytics');
+  var marketingCheckbox = document.getElementById('cookie-marketing');
+
+  function getConsent() {
+    try {
+      return localStorage.getItem(COOKIE_CONSENT_KEY);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setConsent(value, preferences) {
+    try {
+      localStorage.setItem(COOKIE_CONSENT_KEY, value);
+      if (preferences) {
+        localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(preferences));
+      }
+      applyConsent(value, preferences);
+    } catch (e) {
+      console.warn('Could not save cookie consent');
+    }
+  }
+
+  function applyConsent(value, preferences) {
+    // If analytics rejected, disable Google Analytics
+    if (value === 'rejected' || (preferences && !preferences.analytics)) {
+      window['ga-disable-G-V1WCCZBL3S'] = true;
+    } else {
+      window['ga-disable-G-V1WCCZBL3S'] = false;
+    }
+  }
+
+  function showBanner() {
+    if (banner) {
+      banner.classList.remove('translate-y-full');
+      banner.classList.add('translate-y-0');
+    }
+  }
+
+  function hideBanner() {
+    if (banner) {
+      banner.classList.remove('translate-y-0');
+      banner.classList.add('translate-y-full');
+    }
+  }
+
+  function showModal() {
+    if (modal) {
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function hideModal() {
+    if (modal) {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+  }
+
+  function init() {
+    var consent = getConsent();
+
+    if (!consent) {
+      // No consent yet, show banner after a short delay
+      setTimeout(showBanner, 1000);
+    } else {
+      // Apply existing consent
+      try {
+        var preferences = JSON.parse(localStorage.getItem(COOKIE_PREFERENCES_KEY) || '{}');
+        applyConsent(consent, preferences);
+      } catch (e) {
+        applyConsent(consent, null);
+      }
+    }
+  }
+
+  // Event listeners
+  if (acceptBtn) {
+    acceptBtn.onclick = function() {
+      setConsent('accepted', { necessary: true, analytics: true, marketing: true });
+      hideBanner();
+    };
+  }
+
+  if (rejectBtn) {
+    rejectBtn.onclick = function() {
+      setConsent('rejected', { necessary: true, analytics: false, marketing: false });
+      hideBanner();
+    };
+  }
+
+  if (customizeBtn) {
+    customizeBtn.onclick = function() {
+      showModal();
+    };
+  }
+
+  if (modalClose) {
+    modalClose.onclick = hideModal;
+  }
+
+  if (modalBackdrop) {
+    modalBackdrop.onclick = hideModal;
+  }
+
+  if (savePreferencesBtn) {
+    savePreferencesBtn.onclick = function() {
+      var preferences = {
+        necessary: true,
+        analytics: analyticsCheckbox ? analyticsCheckbox.checked : false,
+        marketing: marketingCheckbox ? marketingCheckbox.checked : false
+      };
+      setConsent('custom', preferences);
+      hideModal();
+      hideBanner();
+    };
+  }
+
+  // Initialize
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // Re-init on Astro navigation
+  document.addEventListener('astro:page-load', init);
+})();
+</script>
