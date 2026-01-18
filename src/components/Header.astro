@@ -9,6 +9,84 @@ const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 const menu = getMenu(lang);
 ---
 
+<style>
+  /* CSS-only mobile menu - no JavaScript required */
+  #mobile-menu-toggle {
+    display: none;
+  }
+
+  .mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .mobile-menu-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    max-width: 85vw;
+    height: 100vh;
+    background: white;
+    z-index: 999;
+    overflow-y: auto;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  #mobile-menu-toggle:checked ~ .mobile-menu-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  #mobile-menu-toggle:checked ~ .mobile-menu-panel {
+    transform: translateX(0);
+  }
+
+  /* Prevent body scroll when menu is open */
+  #mobile-menu-toggle:checked ~ .mobile-menu-panel,
+  #mobile-menu-toggle:checked ~ .mobile-menu-overlay {
+    pointer-events: auto;
+  }
+
+  .menu-trigger-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    color: #374151;
+    transition: color 0.2s;
+  }
+
+  .menu-trigger-label:hover {
+    color: #111827;
+  }
+
+  .close-menu-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    color: #374151;
+    transition: color 0.2s;
+  }
+
+  .close-menu-label:hover {
+    color: #111827;
+  }
+</style>
+
 <div data-scam-banner>
   <ScamWarningBanner />
 </div>
@@ -36,7 +114,7 @@ const menu = getMenu(lang);
           const href = item.href;
           const isActive = currentPath === href || currentPath.startsWith(href + '/') || (href !== '/' && currentPath.startsWith(href));
           const hasChildren = item.children && item.children.length > 0;
-          const label = item.label; // Use translated label based on language
+          const label = item.label;
 
           return <div class="relative group">
             {hasChildren ? (
@@ -85,55 +163,38 @@ const menu = getMenu(lang);
         <!-- Language Selector for Mobile -->
         <LanguageSelector />
 
-        <button
-          id="mobile-trigger"
-          aria-controls="mobile-menu"
-          aria-expanded="false"
-          aria-label="Open navigation menu"
-          class="p-2 text-gray-700 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 transition-colors"
-          type="button"
-        >
+        <!-- CSS-only mobile menu trigger -->
+        <label for="mobile-menu-toggle" class="menu-trigger-label" aria-label="Open navigation menu">
           <span class="sr-only">Open menu</span>
           <Icon name="bars" class="w-6 h-6" />
-        </button>
+        </label>
       </div>
     </nav>
   </div>
 </header>
 
-<!-- Mobile Menu Backdrop -->
-<div
-  id="mobile-menu-backdrop"
-  class="mobile-backdrop"
-  style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); z-index: 998;"
-></div>
+<!-- CSS-only Mobile Menu System -->
+<input type="checkbox" id="mobile-menu-toggle" aria-hidden="true" />
+
+<!-- Backdrop - clicking closes menu -->
+<label for="mobile-menu-toggle" class="mobile-menu-overlay lg:hidden" aria-hidden="true"></label>
 
 <!-- Mobile Menu Panel -->
-<div
-  id="mobile-menu"
-  class="mobile-menu-panel"
-  style="display: none; position: fixed; top: 0; right: 0; width: 300px; max-width: 85vw; height: 100vh; background: white; z-index: 999; overflow-y: auto; box-shadow: -2px 0 10px rgba(0,0,0,0.1);"
->
+<nav class="mobile-menu-panel lg:hidden" aria-label="Mobile navigation">
   <!-- Mobile menu header -->
   <div class="flex items-center justify-between p-4 border-b border-gray-200">
-    <h2 id="mobile-menu-title" class="text-lg font-semibold text-gray-900">Menu</h2>
-    <button
-      data-close
-      aria-label="Close navigation menu"
-      class="p-2 text-gray-700 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
-      type="button"
-    >
+    <span class="text-lg font-semibold text-gray-900">Menu</span>
+    <label for="mobile-menu-toggle" class="close-menu-label" aria-label="Close navigation menu">
       <Icon name="x" class="w-5 h-5" />
-    </button>
+    </label>
   </div>
 
-
   <div class="p-4">
-    {menu && menu.map((item, index) => {
+    {menu && menu.map((item) => {
       const href = item.href;
       const isActive = currentPath === href || currentPath.startsWith(href + '/') || (href !== '/' && currentPath.startsWith(href));
       const hasChildren = item.children && item.children.length > 0;
-      const label = item.label; // Use translated label based on language
+      const label = item.label;
 
       if (hasChildren) {
         return (
@@ -143,7 +204,7 @@ const menu = getMenu(lang);
               <Icon name="chevronDown" class="w-4 h-4 text-gray-500 transition-transform duration-200 group-open:rotate-180" />
             </summary>
             <div class="mt-2 ml-4 space-y-1">
-              {item.children && item.children.map((sub: any, subIndex: number) => {
+              {item.children && item.children.map((sub: any) => {
                 const subHref = sub.href;
                 const subLabel = sub.label;
                 return (
@@ -159,7 +220,6 @@ const menu = getMenu(lang);
           </details>
         );
       } else {
-        // Simple menu items without children
         return (
           <a
             href={href}
@@ -170,7 +230,7 @@ const menu = getMenu(lang);
         );
       }
     })}
-    
+
     <a
       href={lang === 'fi' ? '/fi/contact' : '/contact'}
       class="block w-full mt-4 px-4 py-3 text-center text-white bg-gray-900 hover:bg-black transition-all duration-200"
@@ -178,75 +238,4 @@ const menu = getMenu(lang);
       {lang === 'fi' ? 'Ota yhteyttä' : 'Contact Us'}
     </a>
   </div>
-</div>
-
-<script is:inline>
-  // Simple mobile menu - uses display:block/none for maximum compatibility
-  (function() {
-    var isOpen = false;
-
-    function openMenu() {
-      var menu = document.getElementById('mobile-menu');
-      var backdrop = document.getElementById('mobile-menu-backdrop');
-      if (menu) menu.style.display = 'block';
-      if (backdrop) backdrop.style.display = 'block';
-      document.body.style.overflow = 'hidden';
-      isOpen = true;
-    }
-
-    function closeMenu() {
-      var menu = document.getElementById('mobile-menu');
-      var backdrop = document.getElementById('mobile-menu-backdrop');
-      if (menu) menu.style.display = 'none';
-      if (backdrop) backdrop.style.display = 'none';
-      document.body.style.overflow = '';
-      isOpen = false;
-    }
-
-    function setup() {
-      var trigger = document.getElementById('mobile-trigger');
-      var backdrop = document.getElementById('mobile-menu-backdrop');
-      var menu = document.getElementById('mobile-menu');
-      var closeBtn = menu ? menu.querySelector('[data-close]') : null;
-
-      if (trigger) {
-        trigger.onclick = function(e) {
-          e.preventDefault();
-          if (isOpen) {
-            closeMenu();
-          } else {
-            openMenu();
-          }
-        };
-      }
-
-      if (backdrop) {
-        backdrop.onclick = closeMenu;
-      }
-
-      if (closeBtn) {
-        closeBtn.onclick = closeMenu;
-      }
-
-      // Close menu when clicking links
-      if (menu) {
-        var links = menu.getElementsByTagName('a');
-        for (var i = 0; i < links.length; i++) {
-          links[i].onclick = function() {
-            setTimeout(closeMenu, 100);
-          };
-        }
-      }
-    }
-
-    // Setup when ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', setup);
-    } else {
-      setup();
-    }
-
-    // Re-setup on Astro navigation
-    document.addEventListener('astro:page-load', setup);
-  })();
-</script>
+</nav>
