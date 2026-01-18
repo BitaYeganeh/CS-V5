@@ -1,25 +1,32 @@
+# Cyber Security Finland - robots.txt
+# https://cybersecurity.fi
+
 User-agent: *
 Allow: /
 
-# Disallow admin and private areas
-Disallow: /admin/
+# Disallow private and technical areas
 Disallow: /api/
 Disallow: /_astro/
-Disallow: /search
+Disallow: /admin/
+Disallow: /design-system
+Disallow: /button-showcase
+Disallow: /demo
 
-# Allow important pages
-Allow: /services/
-Allow: /packages/
-Allow: /industries/
-Allow: /resources/
-Allow: /about/
-Allow: /contact/
-Allow: /webinars/
-Allow: /frameworks/
+# Disallow URL parameters (handled by canonical URLs)
+Disallow: /*?*
 
-# Sitemap
-Sitemap: https://cybersecurity.fi/sitemap.xml
+# Sitemaps
 Sitemap: https://cybersecurity.fi/sitemap-index.xml
 
 # Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Google-specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing-specific
+User-agent: Bingbot
+Allow: /
 Crawl-delay: 1

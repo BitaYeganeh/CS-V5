@@ -5,6 +5,7 @@ import vercel from "@astrojs/vercel";
 import react from "@astrojs/react";
 import markdoc from "@astrojs/markdoc";
 import svelte from "@astrojs/svelte";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://cybersecurity.fi",
@@ -17,6 +18,25 @@ export default defineConfig({
     react(),
     markdoc(),
     svelte(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'en',
+        locales: {
+          en: 'en',
+          fi: 'fi',
+        },
+      },
+      filter: (page) =>
+        !page.includes('/api/') &&
+        !page.includes('/admin/') &&
+        !page.includes('?') &&
+        !page.includes('/design-system') &&
+        !page.includes('/button-showcase') &&
+        !page.includes('/demo'),
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+    }),
   ],
   vite: {
     plugins: [tailwindcss()],
