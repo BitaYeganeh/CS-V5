@@ -121,12 +121,7 @@ const fetchPriority = priority ? 'high' : 'auto';
                   setTimeout(() => placeholder.remove(), 500);
                 }
                 
-                // Analytics: track image load performance
-                console.log('Image loaded:', {
-                  src: img.src,
-                  loadTime: performance.now(),
-                  page: window.location.pathname
-                });
+                // Image loaded successfully
               };
               
               // Handle load error
@@ -139,7 +134,7 @@ const fetchPriority = priority ? 'high' : 'auto';
                   loader.innerHTML = '<div class="text-red-500 text-xs">Failed to load</div>';
                 }
                 
-                console.warn('Image failed to load:', img.dataset.src);
+                // Image failed to load - error state shown
               };
               
               // Stop observing this image

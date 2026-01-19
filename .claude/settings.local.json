@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(findstr:*)",
+      "Bash(dir:*)",
+      "Bash(git add:*)",
+      "Bash(git reset:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nFix broken links and add legal pages\n\n- Fix /services/gdpr-privacy -> /services/gdpr-privacy-services links\n- Fix /webinars -> /resources/webinars links throughout site\n- Fix Footer NIS2 link path\n- Fix /regulatory/nis2 -> /frameworks/nis2 link\n- Add missing legal pages: privacy, terms, cookies, accessibility\n- Add Finnish versions of legal pages\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nFix UI consistency and language selector flags\n\n- Replace emoji flags with SVG flags for cross-platform compatibility\n- Fix scam-awareness page styling to match site design\n- Update hero section with consistent gradient styling\n- Improve heading sizes for better visual hierarchy\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git commit:*)",
+      "Bash(npm install:*)",
+      "WebFetch(domain:pagespeed.web.dev)",
+      "Bash(find:*)",
+      "Bash(ls:*)"
+    ]
+  }
+}

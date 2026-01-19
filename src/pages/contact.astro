@@ -132,6 +132,8 @@ const contactInfo = {
                   id="firstName"
                   name="firstName"
                   required
+                  aria-required="true"
+                  autocomplete="given-name"
                   class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                   placeholder="Enter your first name"
                 />
@@ -143,6 +145,8 @@ const contactInfo = {
                   id="lastName"
                   name="lastName"
                   required
+                  aria-required="true"
+                  autocomplete="family-name"
                   class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                   placeholder="Enter your last name"
                 />
@@ -156,6 +160,8 @@ const contactInfo = {
                 id="company"
                 name="company"
                 required
+                aria-required="true"
+                autocomplete="organization"
                 class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 placeholder="Enter your company name"
               />
@@ -168,6 +174,8 @@ const contactInfo = {
                 id="email"
                 name="email"
                 required
+                aria-required="true"
+                autocomplete="email"
                 class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 placeholder="Enter your email address"
               />
@@ -179,6 +187,7 @@ const contactInfo = {
                 type="tel"
                 id="phone"
                 name="phone"
+                autocomplete="tel"
                 class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 placeholder="Enter your phone number"
               />
@@ -190,6 +199,7 @@ const contactInfo = {
                 id="service"
                 name="service"
                 required
+                aria-required="true"
                 class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-white"
               >
                 <option value="">Select a service</option>
@@ -211,6 +221,7 @@ const contactInfo = {
                 id="message"
                 name="message"
                 required
+                aria-required="true"
                 rows="5"
                 class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 placeholder="Describe your needs or questions..."
