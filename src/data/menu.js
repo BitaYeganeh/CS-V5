@@ -427,12 +427,6 @@ export const menu = [
         children: []
       },
       {
-        label_fi: "Sertifioinnit",
-        label_en: "Certifications",
-        href: "/about/certifications",
-        children: []
-      },
-      {
         label_fi: "Ura",
         label_en: "Careers",
         href: "/about/careers",
