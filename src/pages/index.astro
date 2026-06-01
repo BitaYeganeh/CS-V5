@@ -263,6 +263,7 @@ const latestResources = [
 ---
 
 <Layout {...seoConfig}>
+
   <!-- Hero Section -->
   <section class="bg-gradient-to-br from-gray-50 via-white to-gray-50 text-gray-900 py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -286,12 +287,14 @@ const latestResources = [
   </section>
   
   <!-- Key Services Section -->
+  
   <section class="py-20 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
           {currentContent.services.title}
         </h2>
+        
         <p class="text-xl text-slate-600 max-w-3xl mx-auto">
           {currentContent.services.description}
         </p>
@@ -299,20 +302,43 @@ const latestResources = [
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {keyServices.map((service, index) => (
-          <div class="bg-white rounded-xl shadow-sm p-6 border border-slate-200 hover:shadow-md transition-shadow duration-200">
-            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-              <Icon name={service.icon} class="w-6 h-6 text-blue-600" />
-            </div>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2">{service.title}</h3>
-            <p class="text-slate-600 mb-4">{service.description}</p>
-            <a
-              href={service.href}
-              class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium group"
-            >
-              {lang === 'fi' ? 'Lue lisää' : 'Learn more'}
-              <Icon name="arrowRight" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
+<div class="bg-white rounded-xl border border-slate-200 hover:border-blue-200 hover:bg-blue-50/30 hover:shadow-xl hover:-translate-y-2 hover:shadow-blue-100/50 transition-all duration-300 transform-gpu flex flex-col h-full p-7 group">
+  <!-- Top row: icon only -->
+<div class="flex justify-center mb-5">
+  <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-blue-600 group-hover:scale-110 group-hover:shadow-lg">
+    <Icon
+      name={service.icon}
+      class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300"
+    />
+  </div>
+</div>
+
+  <!-- Content FULL WIDTH (this fixes your issue) -->
+  <div class="flex-1">
+    <h3 class="text-2xl font-semibold text-slate-900 mb-4 leading-snug">
+      {service.title}
+    </h3>
+
+    <p class="text-slate-600 text-[15px] leading-relaxed">
+      {service.description}
+    </p>
+  </div>
+
+  <!-- CTA bottom aligned -->
+<div class="mt-6 pt-5 border-t border-slate-100 flex justify-center">
+  <a
+    href={service.href}
+    class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm group"
+  >
+    {lang === 'fi' ? 'Lue lisää' : 'Learn more'}
+
+    <Icon
+      name="arrowRight"
+      class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-300"
+    />
+  </a>
+</div>
+</div>
         ))}
       </div>
     </div>
@@ -332,24 +358,49 @@ const latestResources = [
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {industries.map((industry, index) => (
-          <div class="bg-gradient-to-br from-slate-50 to-white rounded-xl p-6 border border-slate-200 hover:shadow-lg transition-all duration-300">
-            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
-              <Icon name={industry.icon} class="w-8 h-8 text-blue-600" />
-            </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-3">{industry.name}</h3>
-            <p class="text-slate-600 mb-4">{industry.description}</p>
-            <a
-              href={industry.href}
-              class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium group"
-            >
-              {lang === 'fi' ? 'Tutustu palveluihimme' : 'Explore our services'}
-              <Icon name="arrowRight" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-        ))}
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {industries.map((industry, index) => (
+    <div class="bg-white rounded-xl border border-slate-200 hover:border-blue-200 hover:bg-blue-50/30 hover:shadow-xl hover:-translate-y-2 hover:shadow-blue-100/50 transition-all duration-300 transform-gpu flex flex-col h-full p-7 group">
+
+      <!-- Icon -->
+      <div class="flex justify-center mb-5">
+        <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-blue-600 group-hover:scale-110 group-hover:shadow-lg">
+          <Icon
+            name={industry.icon}
+            class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300"
+          />
+        </div>
       </div>
+
+      <!-- Content -->
+      <div class="flex-1">
+        <h3 class="text-2xl font-semibold text-slate-900 mb-4 leading-snug">
+          {industry.name}
+        </h3>
+
+        <p class="text-slate-600 text-[15px] leading-relaxed">
+          {industry.description}
+        </p>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-6 pt-5 border-t border-slate-100 flex justify-center">
+        <a
+          href={industry.href}
+          class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm group"
+        >
+          {lang === 'fi' ? 'Tutustu palveluihimme' : 'Explore services'}
+
+          <Icon
+            name="arrowRight"
+            class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-300"
+          />
+        </a>
+      </div>
+
+    </div>
+  ))}
+</div>
     </div>
   </section>
   
