@@ -264,26 +264,32 @@ const latestResources = [
 
 <Layout {...seoConfig}>
 
-<!-- Hero Section (Scandinavian Minimal) -->
-<section class="bg-white text-slate-900 py-28">
+<!-- Hero Section with Badge -->
+<section class="bg-white text-slate-900 py-20 md:py-32">
   <div class="max-w-5xl mx-auto px-4 text-center">
 
-    <h1 class="text-4xl md:text-5xl font-semibold tracking-tight mb-6">
-      Enterprise Cybersecurity & Compliance Advisory
+    <!-- Badge -->
+    <div class="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 rounded-full px-4 py-1.5 mb-6">
+      <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+      <span class="text-sm font-medium text-blue-700">Trusted by 200+ enterprises</span>
+    </div>
+
+    <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+      Enterprise Cybersecurity & <span class="text-blue-600">Compliance Advisory</span>
     </h1>
 
     <p class="text-lg md:text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed mb-10">
       ISO 27001, SOC 2, NIS2 and DORA implementation for regulated organizations.
     </p>
 
-    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a href="/contact"
-         class="px-6 py-3 bg-slate-900 text-white rounded-md hover:bg-slate-800 transition">
+         class="px-6 py-3 bg-slate-900 text-white rounded-lg hover:bg-blue-600 transition-all duration-300 hover:shadow-lg">
         Request Consultation
       </a>
 
       <a href="/services"
-         class="px-6 py-3 border border-slate-300 text-slate-700 rounded-md hover:border-slate-500 transition">
+         class="px-8 py-3 border-2 border-slate-200 text-slate-700 rounded-lg hover:border-slate-900 hover:bg-slate-50 transition-all duration-300">
         Explore Services
       </a>
     </div>
@@ -291,45 +297,44 @@ const latestResources = [
   </div>
 </section>
 
-
-<!-- Trust Bar (Scandinavian Minimal) -->
-<section class="py-10 bg-white border-y border-slate-100">
+<!-- Trust Bar (Enhanced - Matching Hero) -->
+<section class="py-12 bg-white border-y border-slate-100">
   <div class="max-w-5xl mx-auto px-4">
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
 
-      <div>
-        <div class="text-2xl font-semibold text-slate-900">
+      <div class="group cursor-pointer transition-all duration-300 hover:-translate-y-1">
+        <div class="text-2xl md:text-3xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
           ISO 27001
         </div>
-        <div class="text-sm text-slate-500 mt-1">
+        <div class="text-sm text-slate-500 mt-1 group-hover:text-slate-700 transition-colors duration-300">
           Compliance
         </div>
       </div>
 
-      <div>
-        <div class="text-2xl font-semibold text-slate-900">
+      <div class="group cursor-pointer transition-all duration-300 hover:-translate-y-1">
+        <div class="text-2xl md:text-3xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
           SOC 2
         </div>
-        <div class="text-sm text-slate-500 mt-1">
+        <div class="text-sm text-slate-500 mt-1 group-hover:text-slate-700 transition-colors duration-300">
           Assurance
         </div>
       </div>
 
-      <div>
-        <div class="text-2xl font-semibold text-slate-900">
+      <div class="group cursor-pointer transition-all duration-300 hover:-translate-y-1">
+        <div class="text-2xl md:text-3xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
           NIS2
         </div>
-        <div class="text-sm text-slate-500 mt-1">
+        <div class="text-sm text-slate-500 mt-1 group-hover:text-slate-700 transition-colors duration-300">
           Regulation
         </div>
       </div>
 
-      <div>
-        <div class="text-2xl font-semibold text-slate-900">
+      <div class="group cursor-pointer transition-all duration-300 hover:-translate-y-1">
+        <div class="text-2xl md:text-3xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
           DORA
         </div>
-        <div class="text-sm text-slate-500 mt-1">
+        <div class="text-sm text-slate-500 mt-1 group-hover:text-slate-700 transition-colors duration-300">
           Resilience
         </div>
       </div>
@@ -339,143 +344,158 @@ const latestResources = [
   </div>
 </section>
 
-
-
-
-<!-- Featured Packages Section -->
+<!-- Featured Packages Section (Enhanced - Matching Hero) -->
 <section class="py-24 bg-white">
   <div class="max-w-6xl mx-auto px-4">
 
-    <!-- Header -->
-    <div class="text-center mb-14">
-      <h2 class="text-3xl md:text-4xl font-semibold text-slate-900 mb-4">
+    <!-- Header - بدون Badge -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-4">
         Featured Compliance Packages
       </h2>
 
-      <p class="text-lg text-slate-500 max-w-2xl mx-auto">
+      <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
         Fast-track programs designed for regulated enterprises.
       </p>
     </div>
 
     <!-- Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
       <!-- ISO 27001 -->
-      <div class="p-6 border border-slate-200 rounded-xl
+      <div class="p-6 border-2 border-slate-100 rounded-xl
                   hover:border-blue-200 hover:bg-blue-50/30
-                  hover:shadow-xl hover:-translate-y-2
+                  hover:shadow-2xl hover:-translate-y-2
                   hover:shadow-blue-100/50
                   transition-all duration-300 transform-gpu
                   flex flex-col group">
 
-        <!-- Badge -->
-        <span class="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded-full mb-3 inline-block w-fit">
-          Fast-track program
-        </span>
-
-        <h3 class="text-lg font-semibold text-slate-900 mb-2">
+        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
           ISO 27001 Fast Track
         </h3>
 
-        <p class="text-sm text-slate-500 mb-3">
+        <p class="text-sm text-slate-500 mb-3 leading-relaxed">
           Certification-ready ISMS in 90–120 days
         </p>
 
-        <!-- Duration -->
-        <p class="text-xs text-slate-400 mb-5">
-          Duration: 90–120 days
+        <p class="text-xs text-slate-400 mb-5 flex items-center gap-1">
+          <span>⏱️</span> Duration: 90–120 days
         </p>
 
-        <ul class="text-xs text-slate-500 space-y-1 mb-6">
-          <li>• Policy set development</li>
-          <li>• Risk assessment & gap analysis</li>
-          <li>• Audit preparation & support</li>
+        <ul class="text-sm text-slate-600 space-y-2 mb-6">
+          <li class="flex items-start gap-2">
+            <span class="text-blue-500">✓</span>
+            <span>Policy set development</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-blue-500">✓</span>
+            <span>Risk assessment & gap analysis</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-blue-500">✓</span>
+            <span>Audit preparation & support</span>
+          </li>
         </ul>
 
-        <!-- CTA -->
         <a href="/packages/iso-27001-fast-track"
            class="mt-auto inline-flex items-center justify-center
-                  px-4 py-2 rounded-md bg-slate-900 text-white
-                  hover:bg-slate-800 transition">
-          Start program →
+                  px-6 py-3 rounded-lg bg-slate-900 text-white
+                  hover:bg-blue-600 hover:scale-105 hover:shadow-lg
+                  transition-all duration-300 font-medium gap-2">
+          Start program
+          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
         </a>
 
       </div>
 
       <!-- NIS2 -->
-      <div class="p-6 border border-slate-200 rounded-xl
+      <div class="p-6 border-2 border-slate-100 rounded-xl
                   hover:border-blue-200 hover:bg-blue-50/30
-                  hover:shadow-xl hover:-translate-y-2
+                  hover:shadow-2xl hover:-translate-y-2
                   hover:shadow-blue-100/50
                   transition-all duration-300 transform-gpu
                   flex flex-col group">
 
-        <span class="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded-full mb-3 inline-block w-fit">
-          Fast-track program
-        </span>
-
-        <h3 class="text-lg font-semibold text-slate-900 mb-2">
+        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
           NIS2 Sprint Program
         </h3>
 
-        <p class="text-sm text-slate-500 mb-3">
+        <p class="text-sm text-slate-500 mb-3 leading-relaxed">
           Compliance roadmap in 60–90 days
         </p>
 
-        <p class="text-xs text-slate-400 mb-5">
-          Duration: 60–90 days
+        <p class="text-xs text-slate-400 mb-5 flex items-center gap-1">
+          <span>⏱️</span> Duration: 60–90 days
         </p>
 
-        <ul class="text-xs text-slate-500 space-y-1 mb-6">
-          <li>• Incident response framework</li>
-          <li>• Risk management setup</li>
-          <li>• Regulatory reporting readiness</li>
+        <ul class="text-sm text-slate-600 space-y-2 mb-6">
+          <li class="flex items-start gap-2">
+            <span class="text-blue-500">✓</span>
+            <span>Incident response framework</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-blue-500">✓</span>
+            <span>Risk management setup</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-blue-500">✓</span>
+            <span>Regulatory reporting readiness</span>
+          </li>
         </ul>
 
         <a href="/packages/nis2-sprint"
            class="mt-auto inline-flex items-center justify-center
-                  px-4 py-2 rounded-md bg-slate-900 text-white
-                  hover:bg-slate-800 transition">
-          Start program →
+                  px-6 py-3 rounded-lg bg-slate-900 text-white
+                  hover:bg-blue-600 hover:scale-105 hover:shadow-lg
+                  transition-all duration-300 font-medium gap-2">
+          Start program
+          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
         </a>
 
       </div>
 
       <!-- SOC 2 -->
-      <div class="p-6 border border-slate-200 rounded-xl
+      <div class="p-6 border-2 border-slate-100 rounded-xl
                   hover:border-blue-200 hover:bg-blue-50/30
-                  hover:shadow-xl hover:-translate-y-2
+                  hover:shadow-2xl hover:-translate-y-2
                   hover:shadow-blue-100/50
                   transition-all duration-300 transform-gpu
                   flex flex-col group">
 
-        <span class="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded-full mb-3 inline-block w-fit">
-          Fast-track program
-        </span>
-
-        <h3 class="text-lg font-semibold text-slate-900 mb-2">
+        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
           SOC 2 Readiness
         </h3>
 
-        <p class="text-sm text-slate-500 mb-3">
+        <p class="text-sm text-slate-500 mb-3 leading-relaxed">
           Audit preparation in 12 weeks
         </p>
 
-        <p class="text-xs text-slate-400 mb-5">
-          Duration: 12 weeks
+        <p class="text-xs text-slate-400 mb-5 flex items-center gap-1">
+          <span>⏱️</span> Duration: 12 weeks
         </p>
 
-        <ul class="text-xs text-slate-500 space-y-1 mb-6">
-          <li>• Control implementation</li>
-          <li>• Evidence collection system</li>
-          <li>• Continuous monitoring setup</li>
+        <ul class="text-sm text-slate-600 space-y-2 mb-6">
+          <li class="flex items-start gap-2">
+            <span class="text-blue-500">✓</span>
+            <span>Control implementation</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-blue-500">✓</span>
+            <span>Evidence collection system</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-blue-500">✓</span>
+            <span>Continuous monitoring setup</span>
+          </li>
         </ul>
 
         <a href="/packages/soc2-readiness-12-weeks"
            class="mt-auto inline-flex items-center justify-center
-                  px-4 py-2 rounded-md bg-slate-900 text-white
-                  hover:bg-slate-800 transition">
-          Start program →
+                  px-6 py-3 rounded-lg bg-slate-900 text-white
+                  hover:bg-blue-600 hover:scale-105 hover:shadow-lg
+                  transition-all duration-300 font-medium gap-2">
+          Start program
+          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
         </a>
 
       </div>
@@ -483,7 +503,6 @@ const latestResources = [
     </div>
   </div>
 </section>
-
 
 
 <!-- Key Services Section -->
