@@ -90,51 +90,76 @@ const footerLinks = {
     }
   ]
 };
-
-const socialLinks = [
-  { name: 'LinkedIn', href: 'https://www.linkedin.com/company/cyber-security-finland', icon: 'linkedin' },
-  { name: 'Twitter', href: '#', icon: 'twitter' },
-  { name: 'Facebook', href: '#', icon: 'facebook' }
-];
 ---
 
-<footer class="bg-[var(--bg-secondary)] text-[var(--text-primary)]">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<!-- Footer with Blue headers & enhanced hovers -->
+<footer class="bg-white border-t-2 border-blue-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <!-- Main Footer Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+      
       <!-- Company Info -->
       <div class="lg:col-span-2">
-        <a href="/" class="flex items-center">
-          <img src="/logo-2025.jpg" alt="Cyber Security Finland" width="160" height="64" loading="lazy" decoding="async" class="h-16 w-auto object-contain" />
+        <a href="/" class="inline-block">
+          <img 
+            src="/logo-2025.jpg" 
+            alt="Cyber Security Finland" 
+            width="140" 
+            height="56" 
+            loading="lazy" 
+            class="h-12 w-auto object-contain"
+          />
         </a>
-        <p class="mt-4 text-[var(--text-primary)] text-sm font-medium">
+        <p class="mt-4 text-slate-500 text-sm leading-relaxed max-w-xs">
           {lang === 'fi'
             ? 'Olemme johtava kyberturvallisuuden asiantuntija Suomessa, tarjoamme ISO 27001, NIS2, GDPR ja DORA -yhteensopivuuspalveluja.'
             : 'We are Finland\'s leading cybersecurity expert, providing ISO 27001, NIS2, GDPR, and DORA compliance services.'}
         </p>
         <div class="mt-6 flex space-x-4">
-          {socialLinks.map(link => (
-            <a
-              href={link.href}
-              class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors duration-200"
-              aria-label={link.name}
-            >
-              <Icon name={link.icon} class="h-6 w-6" />
-            </a>
-          ))}
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/company/cyber-security-finland" 
+             class="text-slate-400 hover:text-blue-700 hover:-translate-y-1 transition-all duration-300" 
+             aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+          
+          <!-- Twitter -->
+          <a href="#" 
+             class="text-slate-400 hover:text-blue-700 hover:-translate-y-1 transition-all duration-300" 
+             aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0021.683-12.095c0-.212-.005-.425-.015-.636A9.936 9.936 0 0024 4.59z"/>
+            </svg>
+          </a>
+          
+          <!-- Facebook -->
+          <a href="#" 
+             class="text-slate-400 hover:text-blue-700 hover:-translate-y-1 transition-all duration-300" 
+             aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
         </div>
       </div>
 
       <!-- Services -->
       <div>
-        <h3 class="text-sm font-semibold text-[var(--text-primary)] tracking-wider uppercase">
-          {lang === 'fi' ? 'Palvelut' : 'Services'}
-        </h3>
-        <ul class="mt-4 space-y-2">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-1 h-4 bg-blue-500 rounded-full"></div>
+          <h3 class="text-xs font-semibold text-blue-600 tracking-wider uppercase">
+            {lang === 'fi' ? 'Palvelut' : 'Services'}
+          </h3>
+        </div>
+        <ul class="space-y-2">
           {footerLinks.services.slice(0, 5).map(link => (
             <li>
               <a
                 href={link.href}
-                class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors duration-200 text-sm"
+                class="text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-all duration-200 text-sm inline-block"
               >
                 {link.title}
               </a>
@@ -145,15 +170,18 @@ const socialLinks = [
 
       <!-- Company -->
       <div>
-        <h3 class="text-sm font-semibold text-[var(--text-primary)] tracking-wider uppercase">
-          {lang === 'fi' ? 'Yritys' : 'Company'}
-        </h3>
-        <ul class="mt-4 space-y-2">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-1 h-4 bg-blue-500 rounded-full"></div>
+          <h3 class="text-xs font-semibold text-blue-600 tracking-wider uppercase">
+            {lang === 'fi' ? 'Yritys' : 'Company'}
+          </h3>
+        </div>
+        <ul class="space-y-2">
           {footerLinks.company.map(link => (
             <li>
               <a
                 href={link.href}
-                class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors duration-200 text-sm"
+                class="text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-all duration-200 text-sm inline-block"
               >
                 {link.title}
               </a>
@@ -164,15 +192,18 @@ const socialLinks = [
 
       <!-- Resources -->
       <div>
-        <h3 class="text-sm font-semibold text-[var(--text-primary)] tracking-wider uppercase">
-          {lang === 'fi' ? 'Resurssit' : 'Resources'}
-        </h3>
-        <ul class="mt-4 space-y-2">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-1 h-4 bg-blue-500 rounded-full"></div>
+          <h3 class="text-xs font-semibold text-blue-600 tracking-wider uppercase">
+            {lang === 'fi' ? 'Resurssit' : 'Resources'}
+          </h3>
+        </div>
+        <ul class="space-y-2">
           {footerLinks.resources.map(link => (
             <li>
               <a
                 href={link.href}
-                class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors duration-200 text-sm"
+                class="text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-all duration-200 text-sm inline-block"
               >
                 {link.title}
               </a>
@@ -183,16 +214,16 @@ const socialLinks = [
     </div>
 
     <!-- Bottom Bar -->
-    <div class="mt-16 pt-8 border-t border-slate-400">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <p class="text-black text-sm font-medium">
+    <div class="mt-10 pt-6 border-t border-slate-100">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-slate-400 text-xs">
           &copy; {new Date().getFullYear()} {lang === 'fi' ? 'Cyber Security Finland Oy' : 'Cyber Security Finland Ltd.'} {lang === 'fi' ? 'Kaikki oikeudet pidätetään.' : 'All rights reserved.'}
         </p>
-        <div class="mt-4 md:mt-0 flex space-x-6">
+        <div class="flex flex-wrap justify-center gap-6">
           {footerLinks.legal.map(link => (
             <a
               href={link.href}
-              class="text-black hover:text-gray-800 transition-colors duration-200 text-sm"
+              class="text-slate-400 hover:text-slate-600 transition-colors duration-200 text-xs"
             >
               {link.title}
             </a>
@@ -200,5 +231,35 @@ const socialLinks = [
         </div>
       </div>
     </div>
+    
   </div>
+
+<!-- Back to Top Button -->
+<button 
+  id="back-to-top" 
+  class="fixed bottom-24 right-6 bg-white text-blue-600 p-3 rounded-full shadow-lg border border-slate-200 opacity-0 invisible transition-all duration-300 cursor-pointer z-50 hover:bg-slate-800 hover:text-white hover:-translate-y-1 hover:shadow-xl"
+  aria-label="Back to top"
+>
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+  </svg>
+</button>
+
+<script>
+  const backToTop = document.getElementById('back-to-top');
+  
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 500) {
+      backToTop.classList.remove('opacity-0', 'invisible');
+      backToTop.classList.add('opacity-100', 'visible');
+    } else {
+      backToTop.classList.add('opacity-0', 'invisible');
+      backToTop.classList.remove('opacity-100', 'visible');
+    }
+  });
+  
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
 </footer>

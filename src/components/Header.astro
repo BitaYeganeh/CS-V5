@@ -52,24 +52,18 @@ const menu = getMenu(lang);
     transform: translateX(0);
   }
 
-  /* Prevent body scroll when menu is open */
-  #mobile-menu-toggle:checked ~ .mobile-menu-panel,
-  #mobile-menu-toggle:checked ~ .mobile-menu-overlay {
-    pointer-events: auto;
-  }
-
   .menu-trigger-label {
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.5rem;
-    color: #374151;
+    color: #1e293b;
     transition: color 0.2s;
   }
 
   .menu-trigger-label:hover {
-    color: #111827;
+    color: #2563eb;
   }
 
   .close-menu-label {
@@ -78,12 +72,12 @@ const menu = getMenu(lang);
     align-items: center;
     justify-content: center;
     padding: 0.5rem;
-    color: #374151;
+    color: #1e293b;
     transition: color 0.2s;
   }
 
   .close-menu-label:hover {
-    color: #111827;
+    color: #2563eb;
   }
 </style>
 
@@ -91,14 +85,15 @@ const menu = getMenu(lang);
   <ScamWarningBanner />
 </div>
 
-<header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm backdrop-blur-sm bg-white/95">
-  <!-- Main navigation - enhanced mobile layout -->
+<!-- Simplified Header - Matching modern design -->
+<header class="bg-white border-b border-slate-100 sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <nav class="h-16 flex items-center justify-between" aria-label="Main navigation" role="navigation">
-      <!-- Logo with enhanced mobile sizing -->
+    <nav class="h-16 flex items-center justify-between">
+      
+      <!-- Logo -->
       <a
         href={lang === 'fi' ? '/fi' : '/'}
-        class="flex items-center rounded-md transition-all duration-300 hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+        class="flex items-center transition-opacity duration-300 hover:opacity-80"
         aria-label={lang === 'fi' ? "Etusivulle - Cyber Security Finland" : "Go to homepage - Cybersecurity Finland"}
       >
         <img
@@ -107,14 +102,12 @@ const menu = getMenu(lang);
           width="120"
           height="48"
           loading="eager"
-          decoding="async"
-          fetchpriority="high"
-          class="h-12 w-auto object-contain"
+          class="h-10 w-auto object-contain"
         />
       </a>
 
-      <!-- Desktop Navigation -->
-      <div class="hidden lg:flex items-center gap-6 flex-1 justify-center">
+      <!-- Desktop Navigation - Clean & Minimal -->
+      <div class="hidden lg:flex items-center gap-6">
         {menu && menu.map(item => {
           const href = item.href;
           const isActive = currentPath === href || currentPath.startsWith(href + '/') || (href !== '/' && currentPath.startsWith(href));
@@ -124,17 +117,17 @@ const menu = getMenu(lang);
           return <div class="relative group">
             {hasChildren ? (
               <>
-                <button class={`flex items-center px-3 py-2 text-sm font-medium transition-colors duration-200 ${isActive ? 'text-gray-900' : 'text-gray-700 hover:text-gray-900'}`} aria-haspopup="true" aria-expanded="false">
+                <button class={`flex items-center px-3 py-2 text-sm font-medium transition-colors duration-200 ${isActive ? 'text-slate-900' : 'text-slate-600 hover:text-slate-900'}`}>
                   <span>{label}</span>
-                  <Icon name="chevronDown" class="w-4 h-4 ml-1 text-gray-500" />
+                  <Icon name="chevronDown" class="w-4 h-4 ml-1 text-slate-400 group-hover:text-slate-600 transition-colors" />
                 </button>
 
-                <div class="absolute left-0 top-full min-w-56 bg-white shadow-xl rounded-sm border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 group-focus-within:translate-y-0 z-50">
+                <div class="absolute left-0 top-full min-w-48 bg-white rounded-lg border border-slate-100 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                   <div class="py-2">
                     {item.children && item.children.map(sub => {
                       const subHref = sub.href;
                       const subLabel = sub.label;
-                      return <a href={subHref} class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors duration-150">
+                      return <a href={subHref} class="block px-4 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
                         {subLabel}
                       </a>;
                     })}
@@ -142,7 +135,7 @@ const menu = getMenu(lang);
                 </div>
               </>
             ) : (
-              <a href={href} class={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${isActive ? 'text-gray-900' : 'text-gray-700 hover:text-gray-900'}`}>
+              <a href={href} class={`text-sm font-medium transition-colors duration-200 ${isActive ? 'text-slate-900' : 'text-slate-600 hover:text-slate-900'}`}>
                 {label}
               </a>
             )}
@@ -150,25 +143,20 @@ const menu = getMenu(lang);
         })}
       </div>
 
-      <!-- Desktop Header Utility -->
-      <div class="hidden lg:flex items-center space-x-4">
+      <!-- Desktop Right Side -->
+      <div class="hidden lg:flex items-center gap-4">
+        <LanguageSelector />
         <a
           href={lang === 'fi' ? '/fi/contact' : '/contact'}
-          class="px-5 py-2.5 text-sm font-medium text-white bg-gray-900 hover:bg-black transition-all duration-200 border border-gray-900 hover:border-black"
+          class="px-5 py-2 text-sm font-medium text-white bg-slate-900 rounded-lg hover:bg-blue-600 transition-all duration-300 hover:shadow-md"
         >
           {lang === 'fi' ? 'Ota yhteyttä' : 'Contact'}
         </a>
-
-        <!-- Language Selector -->
-        <LanguageSelector />
       </div>
 
       <!-- Mobile Controls -->
-      <div class="lg:hidden ml-auto flex items-center gap-3">
-        <!-- Language Selector for Mobile -->
+      <div class="lg:hidden flex items-center gap-3">
         <LanguageSelector />
-
-        <!-- CSS-only mobile menu trigger -->
         <label for="mobile-menu-toggle" class="menu-trigger-label" aria-label="Open navigation menu">
           <span class="sr-only">Open menu</span>
           <Icon name="bars" class="w-6 h-6" />
@@ -181,14 +169,11 @@ const menu = getMenu(lang);
 <!-- CSS-only Mobile Menu System -->
 <input type="checkbox" id="mobile-menu-toggle" aria-hidden="true" />
 
-<!-- Backdrop - clicking closes menu -->
 <label for="mobile-menu-toggle" class="mobile-menu-overlay lg:hidden" aria-hidden="true"></label>
 
-<!-- Mobile Menu Panel -->
 <nav class="mobile-menu-panel lg:hidden" aria-label="Mobile navigation">
-  <!-- Mobile menu header -->
-  <div class="flex items-center justify-between p-4 border-b border-gray-200">
-    <span class="text-lg font-semibold text-gray-900">Menu</span>
+  <div class="flex items-center justify-between p-4 border-b border-slate-100">
+    <span class="text-lg font-semibold text-slate-900">Menu</span>
     <label for="mobile-menu-toggle" class="close-menu-label" aria-label="Close navigation menu">
       <Icon name="x" class="w-5 h-5" />
     </label>
@@ -204,9 +189,9 @@ const menu = getMenu(lang);
       if (hasChildren) {
         return (
           <details class="group mb-2">
-            <summary class={`flex items-center justify-between p-3 cursor-pointer ${isActive ? 'bg-gray-50 text-gray-900' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'}`}>
-              <span class="font-medium">{label}</span>
-              <Icon name="chevronDown" class="w-4 h-4 text-gray-500 transition-transform duration-200 group-open:rotate-180" />
+            <summary class={`flex items-center justify-between p-3 rounded-lg cursor-pointer ${isActive ? 'bg-slate-50 text-slate-900' : 'text-slate-700 hover:bg-slate-50'}`}>
+              <span class="font-medium text-sm">{label}</span>
+              <Icon name="chevronDown" class="w-4 h-4 text-slate-400 transition-transform duration-200 group-open:rotate-180" />
             </summary>
             <div class="mt-2 ml-4 space-y-1">
               {item.children && item.children.map((sub: any) => {
@@ -215,7 +200,7 @@ const menu = getMenu(lang);
                 return (
                   <a
                     href={subHref}
-                    class="block p-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors duration-150"
+                    class="block p-2 text-sm text-slate-600 rounded-lg hover:bg-slate-50 hover:text-slate-900 transition-colors"
                   >
                     {subLabel}
                   </a>
@@ -228,9 +213,9 @@ const menu = getMenu(lang);
         return (
           <a
             href={href}
-            class={`block p-3 mb-2 ${isActive ? 'bg-gray-50 text-gray-900' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'}`}
+            class={`block p-3 mb-2 rounded-lg ${isActive ? 'bg-slate-50 text-slate-900' : 'text-slate-700 hover:bg-slate-50'}`}
           >
-            <span class="font-medium">{label}</span>
+            <span class="font-medium text-sm">{label}</span>
           </a>
         );
       }
@@ -238,7 +223,7 @@ const menu = getMenu(lang);
 
     <a
       href={lang === 'fi' ? '/fi/contact' : '/contact'}
-      class="block w-full mt-4 px-4 py-3 text-center text-white bg-gray-900 hover:bg-black transition-all duration-200"
+      class="block w-full mt-4 px-4 py-3 text-center text-white bg-slate-900 rounded-lg hover:bg-blue-600 transition-all duration-300 text-sm font-medium"
     >
       {lang === 'fi' ? 'Ota yhteyttä' : 'Contact Us'}
     </a>
