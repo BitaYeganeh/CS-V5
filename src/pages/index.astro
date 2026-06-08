@@ -265,29 +265,29 @@ const latestResources = [
 <Layout {...seoConfig}>
 
 <!-- Hero Section - Light blue background with responsive improvements -->
-<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 min-h-[90vh] md:min-h-screen flex items-center relative overflow-hidden">  
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-16">
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 min-h-[85vh] md:min-h-screen flex items-center relative overflow-hidden">  
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-10 md:py-16">
     
-    <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+    <div class="grid md:grid-cols-2 gap-6 lg:gap-12 items-center">
       
       <!-- Left Side: Content - Responsive text sizes -->
       <div class="text-left">
         
-        <!-- Responsive heading: smaller on mobile, larger on desktop -->
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4 leading-tight">
+        <!-- Responsive heading: better on mobile -->
+        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4 leading-tight">
           <div>Enterprise Cybersecurity</div>
-          <div class="pl-6 sm:pl-8 md:pl-10">
-            <span class="text-2xl sm:text-3xl md:text-4xl">&</span>
+          <div class="pl-4 sm:pl-6 md:pl-8 lg:pl-10">
+            <span class="text-3xl sm:text-4xl md:text-5xl">&</span>
           </div>
           <div>
             <span class="bg-gradient-to-r from-[#1E2A7A] to-[#60A5FA] bg-clip-text text-transparent">Compliance Advisory</span>
           </div>
         </h1>
 
-        <!-- Responsive buttons: full width on mobile, auto on desktop -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start mt-8 md:mt-12">
+        <!-- Responsive buttons: full width on mobile -->
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start mt-6 md:mt-10">
           <!-- Primary button -->
-          <a href="/contact" class="inline-flex items-center justify-center px-5 py-2.5 sm:px-6 sm:py-3 bg-gradient-to-r from-[#1E2A7A] to-[#2563EB] text-white rounded-full hover:from-[#2563EB] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm sm:text-base">
+          <a href="/contact" class="inline-flex items-center justify-center w-full sm:w-auto px-4 py-2.5 sm:px-6 sm:py-3 bg-gradient-to-r from-[#1E2A7A] to-[#2563EB] text-white rounded-full hover:from-[#2563EB] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm sm:text-base">
             Request Consultation
             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -295,7 +295,7 @@ const latestResources = [
           </a>
           
           <!-- Secondary button -->
-          <a href="/services" class="inline-flex items-center justify-center px-5 py-2.5 sm:px-6 sm:py-3 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#2563EB] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+          <a href="/services" class="inline-flex items-center justify-center w-full sm:w-auto px-4 py-2.5 sm:px-6 sm:py-3 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#2563EB] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
             Explore Services
             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -305,7 +305,18 @@ const latestResources = [
         
       </div>
       
-      <!-- Right Side: Chess Image - Hidden on mobile, visible on tablet+ -->
+      <!-- Right Side: Chess Image -->
+      <!-- Small image on mobile -->
+      <div class="md:hidden relative mt-6 flex justify-center">
+        <img 
+          src="/images/1.webp"
+          alt="cybersecurity concept"
+          class="w-40 h-40 rounded-2xl shadow-2xl object-cover"
+          loading="eager"
+        />      
+      </div>
+      
+      <!-- Large image on tablet+ -->
       <div class="hidden md:block relative">
         <img 
           src="/images/1.webp"
@@ -318,7 +329,6 @@ const latestResources = [
     </div>
   </div>
 </section>
-
 
 <!-- Trust Bar - Seamless with Hero -->
 <section class="py-8 bg-gradient-to-b from-blue-50/30 to-white">
