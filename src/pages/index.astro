@@ -264,225 +264,280 @@ const latestResources = [
 
 <Layout {...seoConfig}>
 
-<!-- Hero Section -->
-<section class="bg-white text-slate-900 py-16 md:py-24">
-  <div class="max-w-5xl mx-auto px-4 text-center">
+<!-- Hero Section - Light blue background -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 min-h-screen flex items-center relative overflow-hidden">  
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-16">
+    
+    <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+      
+      <!-- Left Side: Content -->
+      <div class="text-left">
+        
+        <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-6xl font-bold tracking-wide mb-5 leading-none text-left">
+          <div>Enterprise Cybersecurity</div>
+          <div class="pl-10 md:pl-18">
+            <span class="text-3xl md:text-4xl">&</span>
+          </div>
+          <div>
+            <span class="bg-gradient-to-r from-[#1E2A7A] to-[#60A5FA] bg-clip-text text-transparent">Compliance Advisory</span>
+          </div>
+        </h1>
 
-    <h1 class="text-4xl md:text-6xl font-semibold tracking-tight mb-6">
-      Enterprise Cybersecurity & <span class="text-blue-600">Compliance Advisory</span>
-    </h1>
-
-    <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-10">
-      ISO 27001, SOC 2, NIS2 and DORA implementation for regulated organizations
-    </p>
-
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="/contact"
-         class="px-6 py-3 bg-slate-900 text-white rounded-lg hover:bg-blue-600 transition-all duration-300 hover:shadow-lg">
-        Request Consultation
-      </a>
-
-      <a href="/services"
-         class="px-8 py-3 border-2 border-slate-200 text-slate-700 rounded-lg hover:border-slate-900 hover:bg-slate-50 transition-all duration-300">
-        Explore Services
-      </a>
+        <div class="flex flex-col sm:flex-row gap-10 justify-center sm:justify-start mt-12">
+          <!-- Primary button with gradient -->
+          <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-[#1E2A7A] to-[#2563EB] text-white rounded-3xl hover:from-[#2563EB] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium">
+            Request Consultation
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          
+          <!-- Secondary button with gradient text -->
+<a href="/services" class="inline-flex items-center justify-center px-6 py-3 border-2 border-[#1E40AF] bg-[#1E2A7A]  bg-clip-text text-transparent rounded-3xl hover:to-[#2563EB] hover:text-[#2563EB] hover:border-[#2563EB] transition-all duration-300 font-medium">
+  Explore Services
+  <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+  </svg>
+</a>
+       </div>
+        
+      </div>
+      
+      <!-- Right Side: Chess Image -->
+      <div class="hidden md:block relative">
+        <img 
+          src="/images/1.webp"
+          alt="cybersecurity concept"
+          class="w-full max-w-1xl mx-auto mt-4 mb-4 rounded-2xl shadow-2xl object-cover scale-105 relative z-10"
+          loading="eager"
+        />      
+      </div>
+      
     </div>
-
   </div>
 </section>
 
-<!-- Trust Bar -->
-<section class="py-8 bg-white border-y border-slate-100">
-  <div class="max-w-5xl mx-auto px-4">
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
-
-      <div class="group cursor-pointer transition-all duration-300 hover:-translate-y-1">
-        <div class="text-2xl md:text-3xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
-          ISO 27001
-        </div>
-        <div class="text-sm text-slate-500 mt-1 group-hover:text-slate-700 transition-colors duration-300">
-          Compliance
-        </div>
+<!-- Trust Bar - Seamless with Hero -->
+<section class="py-8 bg-gradient-to-b from-blue-50/30 to-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      
+      <!-- Left Side: Text -->
+      <div class="text-left">
+        <p class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-tight text-slate-800">
+          From compliance<br/>to 
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#60A5FA] bg-clip-text text-transparent">competitive advantage</span>.
+        </p>
+        <p class="text-sm md:text-base text-blue-600 font-medium mt-4">
+          Trusted by industry leaders
+        </p>
       </div>
-
-      <div class="group cursor-pointer transition-all duration-300 hover:-translate-y-1">
-        <div class="text-2xl md:text-3xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
-          SOC 2
+      
+      <!-- Right Side: Horizontal Scroll Logos -->
+      <div class="relative -ml-4 md:-ml-8 lg:-ml-12">
+        <div id="logo-scroll-container" class="overflow-x-auto scrollbar-hide" style="scrollbar-width: none; -ms-overflow-style: none;">
+          <div class="flex gap-6 md:gap-8 pb-4 min-w-max">
+            
+            {[
+              { src: '/images/nis2.webp', alt: 'NIS2' },
+              { src: '/images/dora.webp', alt: 'DORA' },
+              { src: '/images/logo-client-1.webp', alt: 'Client 3' },
+              { src: '/images/CRA.jpg', alt: 'CRA' },
+              { src: '/images/SOC-2-logo.jpg', alt: 'SOC2' },
+              { src: '/images/gdpr.webp', alt: 'GDPR' },
+            ].map((logo) => (
+              <div class="flex-shrink-0 flex items-center justify-center h-20 md:h-28 w-32 md:w-40 rounded-xl p-3 hover:scale-105 transition-all duration-300">
+                <img 
+                  src={logo.src}
+                  alt={logo.alt}
+                  class="w-full h-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+            
+          </div>
         </div>
-        <div class="text-sm text-slate-500 mt-1 group-hover:text-slate-700 transition-colors duration-300">
-          Assurance
-        </div>
+        
+        <div id="logo-dots" class="flex justify-center gap-2 mt-4"></div>
+        
       </div>
-
-      <div class="group cursor-pointer transition-all duration-300 hover:-translate-y-1">
-        <div class="text-2xl md:text-3xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
-          NIS2
-        </div>
-        <div class="text-sm text-slate-500 mt-1 group-hover:text-slate-700 transition-colors duration-300">
-          Regulation
-        </div>
-      </div>
-
-      <div class="group cursor-pointer transition-all duration-300 hover:-translate-y-1">
-        <div class="text-2xl md:text-3xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
-          DORA
-        </div>
-        <div class="text-sm text-slate-500 mt-1 group-hover:text-slate-700 transition-colors duration-300">
-          Resilience
-        </div>
-      </div>
-
+      
     </div>
-
   </div>
 </section>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<script>
+  const container = document.getElementById('logo-scroll-container');
+  const dotsContainer = document.getElementById('logo-dots');
+  
+  if (container && dotsContainer) {
+    const scrollWidth = container.scrollWidth;
+    const clientWidth = container.clientWidth;
+    const numberOfDots = Math.ceil(scrollWidth / clientWidth);
+    
+    for (let i = 0; i < numberOfDots; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'w-2 h-2 rounded-full transition-all duration-300 ' + (i === 0 ? 'bg-blue-600' : 'bg-blue-300 hover:bg-blue-400');
+      dot.addEventListener('click', () => {
+        container.scrollTo({ left: i * clientWidth, behavior: 'smooth' });
+      });
+      dotsContainer.appendChild(dot);
+    }
+    
+    container.addEventListener('scroll', () => {
+      const scrollPosition = container.scrollLeft;
+      const activeIndex = Math.round(scrollPosition / clientWidth);
+      const dots = dotsContainer.querySelectorAll('button');
+      dots.forEach((dot, idx) => {
+        if (idx === activeIndex) {
+          dot.className = 'w-2 h-2 rounded-full bg-blue-600 transition-all duration-300';
+        } else {
+          dot.className = 'w-2 h-2 rounded-full bg-blue-300 hover:bg-blue-400 transition-all duration-300';
+        }
+      });
+    });
+  }
+</script>
+
 
 <!-- Featured Packages Section -->
 <section class="py-16 bg-white">
-  <div class="max-w-6xl mx-auto px-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="text-center mb-12">
       <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-4">
-        Featured Compliance Packages
+        Featured Compliance Programs
       </h2>
-
       <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
-        Fast-track programs designed for regulated enterprises
+        Fast-track solutions designed for regulated organizations
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-      <!-- ISO 27001 -->
-      <div class="p-6 border-2 border-slate-100 rounded-xl
-                  hover:border-blue-200 hover:bg-blue-50/30
-                  hover:shadow-2xl hover:-translate-y-2
-                  hover:shadow-blue-100/50
-                  transition-all duration-300 transform-gpu
-                  flex flex-col group">
-
-        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-          ISO 27001 Fast Track
-        </h3>
-
-        <p class="text-sm text-slate-500 mb-3 leading-relaxed">
-          <span>⏱️</span> Certification-ready ISMS in 90–120 days
+      
+      <!-- ISO 27001 Card -->
+      <div class="p-6 border border-slate-200 rounded-xl hover:border-blue-300 hover:bg-blue-50/20 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col group bg-white">
+        
+        <div class="flex justify-end mb-3">
+          <div class="flex items-center gap-1.5 bg-blue-50 px-3 py-1 rounded-full">
+            <svg class="w-3.5 h-3.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-xs font-medium text-blue-600">90–120 days</span>
+          </div>
+        </div>
+        
+        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300">ISO 27001 Fast-Track</h3>
+        
+        <p class="text-sm text-slate-500 mb-4 leading-relaxed text-left">
+          Build and implement a complete ISMS with expert guidance.
         </p>
-
-        <ul class="text-sm text-slate-600 space-y-2 mb-6">
-          <li class="flex items-start gap-2">
-            <span class="text-blue-500">✓</span>
-            <span>Policy set development</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-blue-500">✓</span>
-            <span>Risk assessment & gap analysis</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-blue-500">✓</span>
-            <span>Audit preparation & support</span>
-          </li>
+        
+        <ul class="text-sm text-slate-600 space-y-2 mb-6 text-left">
+          <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Complete ISMS implementation</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Policy library with 50+ documents</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Risk assessment & gap analysis</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Audit prep & certification support</li>
         </ul>
-
-        <a href="/packages/iso-27001-fast-track"
-           class="mt-auto inline-flex items-center justify-center
-                  px-6 py-3 rounded-lg bg-slate-900 text-white
-                  hover:bg-blue-600 hover:scale-105 hover:shadow-lg
-                  transition-all duration-300 font-medium gap-2">
+        
+        <a href="/packages/iso-27001-fast-track" class="mt-auto inline-flex items-center justify-center px-3 py-2 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] bg-transparent hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#2563EB] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-1.5 w-auto">
           Start program
-          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
         </a>
-
       </div>
-
-      <!-- NIS2 -->
-      <div class="p-6 border-2 border-slate-100 rounded-xl
-                  hover:border-blue-200 hover:bg-blue-50/30
-                  hover:shadow-2xl hover:-translate-y-2
-                  hover:shadow-blue-100/50
-                  transition-all duration-300 transform-gpu
-                  flex flex-col group">
-
-        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-          NIS2 Sprint Program
-        </h3>
-
-        <p class="text-sm text-slate-500 mb-3 leading-relaxed">
-          <span>⏱️</span> Compliance roadmap in 60–90 days
+      
+      <!-- NIS2 Card -->
+      <div class="p-6 border border-slate-200 rounded-xl hover:border-blue-300 hover:bg-blue-50/20 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col group bg-white">
+        
+        <div class="flex justify-end mb-3">
+          <div class="flex items-center gap-1.5 bg-blue-50 px-3 py-1 rounded-full">
+            <svg class="w-3.5 h-3.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-xs font-medium text-blue-600">60–90 days</span>
+          </div>
+        </div>
+        
+        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300">NIS2 Sprint Program</h3>
+        
+        <p class="text-sm text-slate-500 mb-4 leading-relaxed text-left">
+          Prepare for NIS2 requirements with expert support.
         </p>
-
-        <ul class="text-sm text-slate-600 space-y-2 mb-6">
-          <li class="flex items-start gap-2">
-            <span class="text-blue-500">✓</span>
-            <span>Incident response framework</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-blue-500">✓</span>
-            <span>Risk management setup</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-blue-500">✓</span>
-            <span>Regulatory reporting readiness</span>
-          </li>
+        
+        <ul class="text-sm text-slate-600 space-y-2 mb-6 text-left">
+          <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> NIS2 gap analysis & roadmap</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Risk management framework</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Incident response framework</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Regulatory reporting setup</li>
         </ul>
-
-        <a href="/packages/nis2-sprint"
-           class="mt-auto inline-flex items-center justify-center
-                  px-6 py-3 rounded-lg bg-slate-900 text-white
-                  hover:bg-blue-600 hover:scale-105 hover:shadow-lg
-                  transition-all duration-300 font-medium gap-2">
+        
+        <a href="/packages/nis2-sprint" class="mt-auto inline-flex items-center justify-center px-3 py-2 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] bg-transparent hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#2563EB] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-1.5 w-auto">
           Start program
-          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
         </a>
-
       </div>
-
-      <!-- SOC 2 -->
-      <div class="p-6 border-2 border-slate-100 rounded-xl
-                  hover:border-blue-200 hover:bg-blue-50/30
-                  hover:shadow-2xl hover:-translate-y-2
-                  hover:shadow-blue-100/50
-                  transition-all duration-300 transform-gpu
-                  flex flex-col group">
-
-        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-          SOC 2 Readiness
-        </h3>
-
-        <p class="text-sm text-slate-500 mb-3 leading-relaxed">
-          <span>⏱️</span> Audit preparation in 12 weeks
+      
+      <!-- SOC 2 Card -->
+      <div class="p-6 border border-slate-200 rounded-xl hover:border-blue-300 hover:bg-blue-50/20 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col group bg-white">
+        
+        <div class="flex justify-end mb-3">
+          <div class="flex items-center gap-1.5 bg-blue-50 px-3 py-1 rounded-full">
+            <svg class="w-3.5 h-3.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-xs font-medium text-blue-600">12 weeks</span>
+          </div>
+        </div>
+        
+        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300">SOC 2 Readiness</h3>
+        
+        <p class="text-sm text-slate-500 mb-4 leading-relaxed text-left">
+          Prepare for SOC 2 Type I and Type II audits.
         </p>
-
-        <ul class="text-sm text-slate-600 space-y-2 mb-6">
-          <li class="flex items-start gap-2">
-            <span class="text-blue-500">✓</span>
-            <span>Control implementation</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-blue-500">✓</span>
-            <span>Evidence collection system</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-blue-500">✓</span>
-            <span>Continuous monitoring setup</span>
-          </li>
+        
+        <ul class="text-sm text-slate-600 space-y-2 mb-6 text-left">
+          <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Type I & Type II prep</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Control implementation & testing</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Evidence collection framework</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Continuous monitoring setup</li>
         </ul>
-
-        <a href="/packages/soc2-readiness-12-weeks"
-           class="mt-auto inline-flex items-center justify-center
-                  px-6 py-3 rounded-lg bg-slate-900 text-white
-                  hover:bg-blue-600 hover:scale-105 hover:shadow-lg
-                  transition-all duration-300 font-medium gap-2">
+        
+        <a href="/packages/soc2-readiness-12-weeks" class="mt-auto inline-flex items-center justify-center px-3 py-2 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] bg-transparent hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#2563EB] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-1.5 w-auto">
           Start program
-          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
         </a>
-
       </div>
-
+      
     </div>
+    
+    <!-- View All Button -->
+    <div class="text-center mt-12">
+      <a href="/packages" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#2563EB] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm gap-2">
+        View All Programs
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+    
   </div>
 </section>
+
 
 <!-- Key Services Section -->
 <section class="py-16 bg-slate-50">
