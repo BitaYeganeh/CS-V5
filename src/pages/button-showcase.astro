@@ -31,30 +31,57 @@ const buttonSizes = [
 ---
 
 <Layout {...seoConfig}>
-  <div class="max-w-6xl mx-auto px-4 py-16">
-    <h1 class="text-4xl font-bold text-center mb-12 text-slate-900">Button Showcase</h1>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 overflow-hidden">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-16">
+      
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4">
+          <span class="text-[#1E2A7A]">Button Showcase</span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+          Explore our improved button designs with enhanced UX and accessibility
+        </p>
+      </div>
+      
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 py-16">
     
+    <!-- Button Variants Section -->
     <section class="mb-16">
-      <h2 class="text-2xl font-semibold mb-6 text-slate-800">Button Variants</h2>
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#1E2A7A] mb-6">
+        Button Variants
+      </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {buttonVariants.map((item) => (
-          <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
-            <h3 class="text-lg font-medium mb-4 text-slate-700 capitalize">{item.label}</h3>
-            <div class="space-y-4">
+          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 transition-all duration-300">
+            <h3 class="text-lg font-semibold text-slate-900 mb-4 capitalize">{item.label}</h3>
+            <div class="space-y-3">
               <Button variant={item.variant} size="sm">Small</Button>
-              <Button variant={item.variant} size="md">Medium</Button>
-              <Button variant={item.variant} size="lg">Large</Button>
+              <div class="mt-2">
+                <Button variant={item.variant} size="md">Medium</Button>
+              </div>
+              <div class="mt-2">
+                <Button variant={item.variant} size="lg">Large</Button>
+              </div>
             </div>
           </div>
         ))}
       </div>
     </section>
     
+    <!-- Button States Section -->
     <section class="mb-16">
-      <h2 class="text-2xl font-semibold mb-6 text-slate-800">Button States</h2>
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#1E2A7A] mb-6">
+        Button States
+      </h2>
       <div class="space-y-6">
-        <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
-          <h3 class="text-lg font-medium mb-4 text-slate-700">Normal State</h3>
+        
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 transition-all duration-300">
+          <h3 class="text-lg font-semibold text-slate-900 mb-4">Normal State</h3>
           <div class="flex flex-wrap gap-4">
             <Button variant="primary">Primary</Button>
             <Button variant="secondary">Secondary</Button>
@@ -62,8 +89,8 @@ const buttonSizes = [
           </div>
         </div>
         
-        <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
-          <h3 class="text-lg font-medium mb-4 text-slate-700">Disabled State</h3>
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 transition-all duration-300">
+          <h3 class="text-lg font-semibold text-slate-900 mb-4">Disabled State</h3>
           <div class="flex flex-wrap gap-4">
             <Button variant="primary" disabled={true}>Primary</Button>
             <Button variant="secondary" disabled={true}>Secondary</Button>
@@ -71,23 +98,27 @@ const buttonSizes = [
           </div>
         </div>
         
-        <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
-          <h3 class="text-lg font-medium mb-4 text-slate-700">Loading State</h3>
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 transition-all duration-300">
+          <h3 class="text-lg font-semibold text-slate-900 mb-4">Loading State</h3>
           <div class="flex flex-wrap gap-4">
             <Button variant="primary" loading={true}>Loading...</Button>
             <Button variant="secondary" loading={true}>Loading...</Button>
             <Button variant="danger" loading={true}>Loading...</Button>
           </div>
         </div>
+        
       </div>
     </section>
     
+    <!-- Button Sizes Section -->
     <section class="mb-16">
-      <h2 class="text-2xl font-semibold mb-6 text-slate-800">Button Sizes</h2>
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#1E2A7A] mb-6">
+        Button Sizes
+      </h2>
       <div class="space-y-6">
         {buttonSizes.map((item) => (
-          <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
-            <h3 class="text-lg font-medium mb-4 text-slate-700">{item.label} Buttons</h3>
+          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 transition-all duration-300">
+            <h3 class="text-lg font-semibold text-slate-900 mb-4 capitalize">{item.label} Buttons</h3>
             <div class="flex flex-wrap gap-4">
               <Button variant="primary" size={item.size}>Primary</Button>
               <Button variant="secondary" size={item.size}>Secondary</Button>
@@ -100,9 +131,12 @@ const buttonSizes = [
       </div>
     </section>
     
+    <!-- Button with Icons Section -->
     <section class="mb-16">
-      <h2 class="text-2xl font-semibold mb-6 text-slate-800">Button with Icons</h2>
-      <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#1E2A7A] mb-6">
+        Button with Icons
+      </h2>
+      <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 transition-all duration-300">
         <div class="flex flex-wrap gap-4">
           <Button variant="primary">
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,9 +159,12 @@ const buttonSizes = [
       </div>
     </section>
     
+    <!-- Button Links Section -->
     <section class="mb-16">
-      <h2 class="text-2xl font-semibold mb-6 text-slate-800">Button Links</h2>
-      <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#1E2A7A] mb-6">
+        Button Links
+      </h2>
+      <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 transition-all duration-300">
         <div class="flex flex-wrap gap-4">
           <Button href="/contact" variant="primary">Contact Us</Button>
           <Button href="/services" variant="secondary">Our Services</Button>
@@ -135,5 +172,35 @@ const buttonSizes = [
         </div>
       </div>
     </section>
+    
   </div>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+          Ready to Use These Buttons?
+        </h2>
+        <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+          All buttons are consistent with our design system and fully responsive.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm sm:text-base gap-2">
+            Get in Touch
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </a>
+          <a href="/services" class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm sm:text-base gap-2">
+            View Services
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </Layout>

@@ -17,195 +17,215 @@ const description = lang === 'fi'
   title={title} 
   description={description}
 >
-  <div class="min-h-screen bg-white">
-    <!-- Hero Section -->
-    <section class="py-20 bg-gradient-to-br from-slate-50 to-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-          {title}
+
+  <!-- Hero Section - Matching homepage -->
+  <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 overflow-hidden">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-16">
+      
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4">
+          <span class="text-[#1E2A7A]">{title}</span>
         </h1>
-        <p class="text-xl text-slate-600 mb-10 max-w-3xl mx-auto">
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
           {description}
         </p>
       </div>
-    </section>
+      
+    </div>
+  </section>
 
-    <!-- Assessment Section -->
-    <section class="py-20">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-2xl shadow-lg p-8 border border-slate-200">
-          <CybersecurityAssessment />
-        </div>
+  <!-- Assessment Section -->
+  <section id="assessment" class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-8 shadow-sm hover:shadow-md transition-all duration-300">
+        <CybersecurityAssessment />
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- How It Works Section -->
-    <section class="py-20 bg-slate-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-slate-900 mb-4">
-            {lang === 'fi' ? 'Miten arviointi toimii?' : 'How the Assessment Works'}
-          </h2>
-          <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-            {lang === 'fi' 
-              ? 'Arviointi kestää vain muutaman minuutin ja antaa sinulle yksityiskohtaisen katsauksen organisaatiosi kyberturvallisuustasoon.' 
-              : 'The assessment takes just a few minutes and provides you with a detailed overview of your organization\'s cybersecurity posture.'}
-          </p>
-        </div>
+  <!-- How It Works Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+          {lang === 'fi' ? 'Miten arviointi toimii?' : 'How the Assessment Works'}
+        </h2>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+          {lang === 'fi' 
+            ? 'Arviointi kestää vain muutaman minuutin ja antaa sinulle yksityiskohtaisen katsauksen organisaatiosi kyberturvallisuustasoon.' 
+            : 'The assessment takes just a few minutes and provides you with a detailed overview of your organization\'s cybersecurity posture.'}
+        </p>
+      </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-white p-8 rounded-xl border border-slate-200 text-center">
-            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- Step 1 -->
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 text-center hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+          <div class="flex justify-center mb-4">
+            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+              <svg class="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-4">
-              {lang === 'fi' ? 'Vastaa kysymyksiin' : 'Answer Questions'}
-            </h3>
-            <p class="text-slate-600">
-              {lang === 'fi' 
-                ? 'Vastaa sarjaan kysymyksiä organisaatiosi nykytilasta, prosesseista ja teknologioista.' 
-                : 'Answer a series of questions about your organization\'s current state, processes, and technologies.'}
-            </p>
           </div>
-
-          <div class="bg-white p-8 rounded-xl border border-slate-200 text-center">
-            <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-4">
-              {lang === 'fi' ? 'Saat analyysin' : 'Get Analysis'}
-            </h3>
-            <p class="text-slate-600">
-              {lang === 'fi' 
-                ? 'Saat heti automaattisen analyysin organisaatiosi kyberturvallisuuden tasosta.' 
-                : 'Receive an instant automated analysis of your organization\'s cybersecurity posture.'}
-            </p>
-          </div>
-
-          <div class="bg-white p-8 rounded-xl border border-slate-200 text-center">
-            <div class="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-4">
-              {lang === 'fi' ? 'Saannot suositukset' : 'Get Recommendations'}
-            </h3>
-            <p class="text-slate-600">
-              {lang === 'fi' 
-                ? 'Saat personoituneet suositukset riskien lievittämiseksi ja turvallisuuden parantamiseksi.' 
-                : 'Receive personalized recommendations to mitigate risks and improve your security posture.'}
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Why Assess Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-slate-900 mb-4">
-            {lang === 'fi' ? 'Miksi tehdä kyberturvallisuusarviointi?' : 'Why Conduct a Cybersecurity Assessment?'}
-          </h2>
-          <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">
+            {lang === 'fi' ? 'Vastaa kysymyksiin' : 'Answer Questions'}
+          </h3>
+          <p class="text-sm text-slate-500">
             {lang === 'fi' 
-              ? 'Kyberturvallisuusarviointi auttaa sinua ymmärtämään nykyisen tilanteen ja tunnistamaan puutteet ennen kuin ne muuttuvat ongelmaksi.' 
-              : 'A cybersecurity assessment helps you understand your current state and identify gaps before they become problems.'}
+              ? 'Vastaa sarjaan kysymyksiä organisaatiosi nykytilasta, prosesseista ja teknologioista.' 
+              : 'Answer a series of questions about your organization\'s current state, processes, and technologies.'}
           </p>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-6">
-              {lang === 'fi' ? 'Avaintulokset arvioinnista' : 'Key Outcomes from the Assessment'}
-            </h3>
-            <ul class="space-y-4">
-              <li class="flex items-start">
-                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-slate-700">
-                  {lang === 'fi' 
-                    ? 'Riskitasojen mittaaminen ja priorisointi' 
-                    : 'Measurement and prioritization of risk levels'}
-                </span>
-              </li>
-              <li class="flex items-start">
-                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-slate-700">
-                  {lang === 'fi' 
-                    ? 'Puutteiden tunnistaminen nykyisissä toimenpiteissä' 
-                    : 'Identification of gaps in current controls'}
-                </span>
-              </li>
-              <li class="flex items-start">
-                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-slate-700">
-                  {lang === 'fi' 
-                    ? 'Priorisoitu toimiintosuositusluettelo' 
-                    : 'Prioritized action recommendation list'}
-                </span>
-              </li>
-              <li class="flex items-start">
-                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-slate-700">
-                  {lang === 'fi' 
-                    ? 'Sääntelyn noudattamisen vaatimusten arviointi' 
-                    : 'Assessment of regulatory compliance requirements'}
-                </span>
-              </li>
-            </ul>
-          </div>
-          <div class="bg-slate-50 p-8 rounded-xl border border-slate-200">
-            <h3 class="text-xl font-bold text-slate-900 mb-4">
-              {lang === 'fi' ? 'Tietoa arvioinnista' : 'About the Assessment'}
-            </h3>
-            <p class="text-slate-600 mb-4">
-              {lang === 'fi' 
-                ? 'Kyberturvallisuusarviointimme perustuu vuosien tutkimustyön ja asiakaskokemuksen yhdistämiseen. Se kattaa kaikki keskeiset kyberturvallisuuden osa-alueet ja antaa sinulle selkeän kuvan organisaatiosi nykytilasta.' 
-                : 'Our cybersecurity assessment is based on years of research and client experience. It covers all core cybersecurity domains and gives you a clear picture of your organization\'s current state.'}
-            </p>
-            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
-              <p class="text-blue-800 font-medium">
-                {lang === 'fi' 
-                  ? 'Arviointi kestää noin 5-10 minuuttia ja se on täysin anonymisoitu. Tulokset ovat salassa pidettäviä ja niitä käytetään ainoastaan suositusten laatimiseen.' 
-                  : 'The assessment takes about 5-10 minutes and is completely anonymized. Results are kept confidential and used solely for generating recommendations.'}
-              </p>
+        <!-- Step 2 -->
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 text-center hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+          <div class="flex justify-center mb-4">
+            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+              <svg class="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
             </div>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">
+            {lang === 'fi' ? 'Saat analyysin' : 'Get Analysis'}
+          </h3>
+          <p class="text-sm text-slate-500">
+            {lang === 'fi' 
+              ? 'Saat heti automaattisen analyysin organisaatiosi kyberturvallisuuden tasosta.' 
+              : 'Receive an instant automated analysis of your organization\'s cybersecurity posture.'}
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 text-center hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+          <div class="flex justify-center mb-4">
+            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+              <svg class="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">
+            {lang === 'fi' ? 'Saat suositukset' : 'Get Recommendations'}
+          </h3>
+          <p class="text-sm text-slate-500">
+            {lang === 'fi' 
+              ? 'Saat personoituneet suositukset riskien lievittämiseksi ja turvallisuuden parantamiseksi.' 
+              : 'Receive personalized recommendations to mitigate risks and improve your security posture.'}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Assess Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+          {lang === 'fi' ? 'Miksi tehdä kyberturvallisuusarviointi?' : 'Why Conduct a Cybersecurity Assessment?'}
+        </h2>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+          {lang === 'fi' 
+            ? 'Kyberturvallisuusarviointi auttaa sinua ymmärtämään nykyisen tilanteen ja tunnistamaan puutteet ennen kuin ne muuttuvat ongelmaksi.' 
+            : 'A cybersecurity assessment helps you understand your current state and identify gaps before they become problems.'}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        <div>
+          <h3 class="text-2xl font-bold text-[#1E2A7A] mb-6">
+            {lang === 'fi' ? 'Avaintulokset arvioinnista' : 'Key Outcomes from the Assessment'}
+          </h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-slate-600">
+                {lang === 'fi' 
+                  ? 'Riskitasojen mittaaminen ja priorisointi' 
+                  : 'Measurement and prioritization of risk levels'}
+              </span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-slate-600">
+                {lang === 'fi' 
+                  ? 'Puutteiden tunnistaminen nykyisissä toimenpiteissä' 
+                  : 'Identification of gaps in current controls'}
+              </span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-slate-600">
+                {lang === 'fi' 
+                  ? 'Priorisoitu toimintosuositusluettelo' 
+                  : 'Prioritized action recommendation list'}
+              </span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-slate-600">
+                {lang === 'fi' 
+                  ? 'Sääntelyn noudattamisen vaatimusten arviointi' 
+                  : 'Assessment of regulatory compliance requirements'}
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 transition-all duration-300">
+          <h3 class="text-xl font-bold text-[#1E2A7A] mb-4">
+            {lang === 'fi' ? 'Tietoa arvioinnista' : 'About the Assessment'}
+          </h3>
+          <p class="text-slate-500 mb-4 leading-relaxed">
+            {lang === 'fi' 
+              ? 'Kyberturvallisuusarviointimme perustuu vuosien tutkimustyön ja asiakaskokemuksen yhdistämiseen. Se kattaa kaikki keskeiset kyberturvallisuuden osa-alueet ja antaa sinulle selkeän kuvan organisaatiosi nykytilasta.' 
+              : 'Our cybersecurity assessment is based on years of research and client experience. It covers all core cybersecurity domains and gives you a clear picture of your organization\'s current state.'}
+          </p>
+          <div class="bg-blue-50 rounded-lg p-4 border border-blue-100 mt-4">
+            <p class="text-blue-700 text-sm">
+              {lang === 'fi' 
+                ? 'Arviointi kestää noin 5-10 minuuttia ja se on täysin anonymisoitu. Tulokset ovat salassa pidettäviä ja niitä käytetään ainoastaan suositusten laatimiseen.' 
+                : 'The assessment takes about 5-10 minutes and is completely anonymized. Results are kept confidential and used solely for generating recommendations.'}
+            </p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-blue-600 to-cyan-600 text-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+  <!-- CTA Section - Matching homepage -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
           {lang === 'fi' ? 'Aloita arviointi nyt' : 'Start Your Assessment Now'}
         </h2>
-        <p class="text-xl mb-8 opacity-90">
+        <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
           {lang === 'fi' 
             ? 'Saat välittömät tulokset ja personoituneet suositukset organisaatiosi tarpeisiin.' 
             : 'Get immediate results and personalized recommendations tailored to your organization\'s needs.'}
         </p>
         <a 
           href="#assessment" 
-          class="inline-block bg-white text-blue-600 font-bold py-3 px-8 rounded-lg hover:bg-slate-100 transition-colors text-lg"
+          class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm sm:text-base gap-2"
         >
           {lang === 'fi' ? 'Aloita arviointi' : 'Start Assessment'}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
         </a>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
+
 </Layout>
