@@ -20,19 +20,69 @@ const schema = {
   },
 };
 ---
+
 <Layout 
   title="Page Not Found" 
   description="Sorry, we couldn't find the page you're looking for. Explore our cybersecurity resources or go back to the homepage."
   schema={schema}
 >
-  <section class="py-24">
-    <div class="mx-auto max-w-xl px-4 text-center">
-      <h1 class="text-5xl font-bold tracking-tight text-slate-900 mb-6">404</h1>
-      <p class="text-lg text-slate-900 mb-8">Page not found.</p>
-      <Button href="/" variant="primary" size="sm">
-        Go Home
-      </Button>
+
+  <!-- 404 Page - Matching homepage styling -->
+  <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 min-h-[70vh] flex items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16 md:py-20">
+      
+      <div class="text-center max-w-2xl mx-auto">
+        
+        <!-- Large 404 number with gradient -->
+        <div class="text-8xl sm:text-9xl md:text-9xl font-bold tracking-tight mb-4 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] bg-clip-text text-transparent">
+          404
+        </div>
+        
+        <!-- Title -->
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-4">
+          Page not found
+        </h1>
+        
+        <!-- Description -->
+        <p class="text-base md:text-lg text-slate-500 max-w-md mx-auto leading-relaxed mb-8">
+          Sorry, we couldn't find the page you're looking for. Explore our cybersecurity resources or go back to the homepage.
+        </p>
+        
+        <!-- Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <!-- Primary button - Go Home -->
+          <a href="/" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm sm:text-base gap-2">
+            Go Home
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+          </a>
+          
+          <!-- Secondary button - Contact Support -->
+          <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm sm:text-base gap-2">
+            Contact Support
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </a>
+        </div>
+        
+        <!-- Additional helpful links -->
+        <div class="mt-8 pt-6 border-t border-slate-100">
+          <p class="text-sm text-slate-500 mb-3">You might also be interested in:</p>
+          <div class="flex flex-wrap justify-center gap-3">
+            <a href="/services" class="text-sm text-[#1E40AF] hover:text-[#3B82F6] transition-colors duration-200">Services</a>
+            <span class="text-slate-300">•</span>
+            <a href="/resources" class="text-sm text-[#1E40AF] hover:text-[#3B82F6] transition-colors duration-200">Resources</a>
+            <span class="text-slate-300">•</span>
+            <a href="/blog" class="text-sm text-[#1E40AF] hover:text-[#3B82F6] transition-colors duration-200">Blog</a>
+            <span class="text-slate-300">•</span>
+            <a href="/contact" class="text-sm text-[#1E40AF] hover:text-[#3B82F6] transition-colors duration-200">Contact</a>
+          </div>
+        </div>
+        
+      </div>
     </div>
   </section>
+  
 </Layout>
-

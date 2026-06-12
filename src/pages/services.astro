@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Button from '@/components/ui/Button.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
 // SEO Configuration (language-aware)
 const currentPath = Astro.url.pathname;
@@ -23,6 +24,7 @@ const seoConfig = {
 };
 const pageTitle = lang === 'fi' ? 'Palvelut' : 'Services';
 ---
+
 <Layout
   title={seoConfig.title}
   description={seoConfig.description}
@@ -30,85 +32,126 @@ const pageTitle = lang === 'fi' ? 'Palvelut' : 'Services';
   type={seoConfig.type}
   schema={seoConfig.schema}
 >
-  <section class="py-20 bg-gradient-to-b from-teal-50 to-white">
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 mb-6">{lang === 'fi' ? 'Täydelliset kyberturvallisuus- ja vaatimustenmukaisuuspavelut' : 'Complete Cybersecurity & Compliance Services'}</h1>
-      <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-        {lang === 'fi' ? 'Luotettava kumppanisi monimutkaisten sääntelyvaatimusten navigointiin ja vahvojen suojauskehysten rakentamiseen.' : 'Your trusted partner for navigating complex regulatory requirements and building robust security frameworks.'}
-      </p>
-      <p class="text-lg text-slate-600 max-w-3xl mx-auto mt-4">
-        {lang === 'fi' ? 'Cybersecurity.fi ymmärtää, että jokaisella organisaatiolla on ainutlaatuiset kyberturvahaasteet. Palveluvalikoimamme tarjoaa asiantuntijatukea turvallisuus- ja vaatimustenmukaisuusmatkan jokaisessa vaiheessa.' : 'At Cybersecurity.fi, we understand that every organization faces unique cybersecurity challenges. Our comprehensive service portfolio ensures you have expert support for every aspect of your security and compliance journey.'}
-      </p>
+
+  <!-- Hero Section - Matching homepage -->
+  <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 overflow-hidden">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-16">
+      
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4">
+          <span class="text-[#1E2A7A]">{lang === 'fi' ? 'Täydelliset kyberturvallisuus- ja vaatimustenmukaisuuspavelut' : 'Complete Cybersecurity & Compliance Services'}</span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+          {lang === 'fi' ? 'Luotettava kumppanisi monimutkaisten sääntelyvaatimusten navigointiin ja vahvojen suojauskehysten rakentamiseen.' : 'Your trusted partner for navigating complex regulatory requirements and building robust security frameworks.'}
+        </p>
+        <p class="text-sm md:text-base text-slate-500 max-w-3xl mx-auto leading-relaxed mt-4">
+          {lang === 'fi' ? 'Cybersecurity.fi ymmärtää, että jokaisella organisaatiolla on ainutlaatuiset kyberturvahaasteet. Palveluvalikoimamme tarjoaa asiantuntijatukea turvallisuus- ja vaatimustenmukaisuusmatkan jokaisessa vaiheessa.' : 'At Cybersecurity.fi, we understand that every organization faces unique cybersecurity challenges. Our comprehensive service portfolio ensures you have expert support for every aspect of your security and compliance journey.'}
+        </p>
+      </div>
+      
     </div>
   </section>
 
-  <section class="py-16">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <!-- Services Cards Section - Matching homepage card styling -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
         <!-- Compliance Frameworks -->
-        <div class="bg-white rounded-lg shadow-lg p-6 border border-slate-200">
-          <h2 class="text-xl font-semibold text-slate-900 mb-4">{lang === 'fi' ? 'Säädöskehikot' : 'Compliance Frameworks'}</h2>
-          <p class="text-sm text-slate-600 mb-4">{lang === 'fi' ? 'Muunna sääntelyvaatimukset liiketoimintaeduksi' : 'Transform regulatory requirements into business advantages'}</p>
-          <p class="text-xs text-slate-500 mb-4">{lang === 'fi' ? 'Nykyaikaisten yritysten on navigoitava yhä monimutkaisemmassa kyberturvallisuuden sääntelyympäristössä. Yhteensopivuuskehyksemme varmistavat, että täytät vaatimukset ja samalla rakennat aitoja turvallisuuskyvykkyyksiä.' : 'Modern businesses must navigate an increasingly complex landscape of cybersecurity regulations. Our compliance framework services ensure you meet all requirements while building genuine security capabilities that protect your organization and create competitive advantages.'}</p>
-          <ul class="space-y-2 text-sm text-slate-600">
-            <li>• {lang === 'fi' ? 'ISO 27001 -toteutus ja sertifiointituki' : 'ISO 27001 Implementation & Certification Support'}</li>
-            <li>• {lang === 'fi' ? 'SOC 2 Type I & Type II valmiusohjelmat' : 'SOC 2 Type I & Type II Readiness Programs'}</li>
-            <li>• {lang === 'fi' ? 'GDPR / tietosuojan noudattaminen' : 'GDPR/Privacy Compliance & Data Protection'}</li>
-            <li>• {lang === 'fi' ? 'NIS2-direktiivin toimeenpano ja jatkuva vaatimustenmukaisuus' : 'NIS2 Directive Implementation & Ongoing Compliance'}</li>
-            <li>• {lang === 'fi' ? 'DORA (Digital Operational Resilience Act) rahoituspalveluille' : 'DORA (Digital Operational Resilience Act) for Financial Services'}</li>
-            <li>• {lang === 'fi' ? 'Common Criteria -arviointi ja sertifiointituki' : 'Common Criteria Evaluation & Certification Support'}</li>
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 flex flex-col hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+              <svg class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">{lang === 'fi' ? 'Säädöskehikot' : 'Compliance Frameworks'}</h2>
+          <p class="text-sm text-slate-500 mb-4">{lang === 'fi' ? 'Muunna sääntelyvaatimukset liiketoimintaeduksi' : 'Transform regulatory requirements into business advantages'}</p>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">{lang === 'fi' ? 'Nykyaikaisten yritysten on navigoitava yhä monimutkaisemmassa kyberturvallisuuden sääntelyympäristössä. Yhteensopivuuskehyksemme varmistavat, että täytät vaatimukset ja samalla rakennat aitoja turvallisuuskyvykkyyksiä.' : 'Modern businesses must navigate an increasingly complex landscape of cybersecurity regulations. Our compliance framework services ensure you meet all requirements while building genuine security capabilities.'}</p>
+          <ul class="space-y-2 text-sm text-slate-600 flex-1">
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'ISO 27001 -toteutus ja sertifiointituki' : 'ISO 27001 Implementation & Certification Support'}</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'SOC 2 Type I & Type II valmiusohjelmat' : 'SOC 2 Type I & Type II Readiness Programs'}</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'GDPR / tietosuojan noudattaminen' : 'GDPR/Privacy Compliance & Data Protection'}</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'NIS2-direktiivin toimeenpano' : 'NIS2 Directive Implementation'}</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'DORA (Digital Operational Resilience Act)' : 'DORA for Financial Services'}</li>
           </ul>
         </div>
 
         <!-- Risk Management -->
-        <div class="bg-white rounded-lg shadow-lg p-6 border border-slate-200">
-          <h2 class="text-xl font-semibold text-slate-900 mb-4">{lang === 'fi' ? 'Riskienhallinta' : 'Risk Management'}</h2>
-          <p class="text-sm text-slate-600 mb-4">{lang === 'fi' ? 'Tunnista, arvioi ja vähennä kyberturvariskejä järjestelmällisesti' : 'Identify, assess, and mitigate cybersecurity risks systematically'}</p>
-          <p class="text-xs text-slate-500 mb-4">{lang === 'fi' ? 'Tehokas riskienhallinta muodostaa perustan menestyvälle kyberturvallisuusohjelmalle. Palvelumme auttavat ymmärtämään uhkakenttää, priorisoimaan turvallisuussijoituksia ja rakentamaan resilienssiä.' : 'Effective risk management forms the foundation of any successful cybersecurity program. Our risk management services help you understand your threat landscape, prioritize security investments, and build resilience against evolving cyber threats.'}</p>
-          <ul class="space-y-2 text-sm text-slate-600">
-            <li>• {lang === 'fi' ? 'Kattavat riskienarvioinnit ja hallintaohjelmat' : 'Comprehensive Risk Assessments & Management Programs'}</li>
-            <li>• {lang === 'fi' ? 'Kolmannen osapuolen riskien hallinta (TPRM) ja toimittajaturvallisuus' : 'Third-Party Risk Management (TPRM) & Vendor Security'}</li>
-            <li>• {lang === 'fi' ? 'Liiketoiminnan jatkuvuus ja kriisinhallintasuunnittelu' : 'Business Continuity & Crisis Management Planning'}</li>
-            <li>• {lang === 'fi' ? 'Uhkamallinnus ja keskeisten riskimittareiden (KRI) kehittäminen' : 'Threat Modeling & Key Risk Indicator (KRI) Development'}</li>
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 flex flex-col hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+              <svg class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">{lang === 'fi' ? 'Riskienhallinta' : 'Risk Management'}</h2>
+          <p class="text-sm text-slate-500 mb-4">{lang === 'fi' ? 'Tunnista, arvioi ja vähennä kyberturvariskejä' : 'Identify, assess, and mitigate cybersecurity risks'}</p>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">{lang === 'fi' ? 'Tehokas riskienhallinta muodostaa perustan menestyvälle kyberturvallisuusohjelmalle. Palvelumme auttavat ymmärtämään uhkakenttää, priorisoimaan turvallisuussijoituksia ja rakentamaan resilienssiä.' : 'Effective risk management forms the foundation of any successful cybersecurity program.'}</p>
+          <ul class="space-y-2 text-sm text-slate-600 flex-1">
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'Kattavat riskienarvioinnit' : 'Comprehensive Risk Assessments'}</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'Kolmannen osapuolen riskien hallinta' : 'Third-Party Risk Management'}</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'Liiketoiminnan jatkuvuussuunnittelu' : 'Business Continuity Planning'}</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'Uhkamallinnus ja riskimittarit' : 'Threat Modeling & KRI Development'}</li>
           </ul>
         </div>
 
         <!-- Governance & Policy -->
-        <div class="bg-white rounded-lg shadow-lg p-6 border border-slate-200">
-          <h2 class="text-xl font-semibold text-slate-900 mb-4">{lang === 'fi' ? 'Johtaminen & Politiikat' : 'Governance & Policy'}</h2>
-          <p class="text-sm text-slate-600 mb-4">{lang === 'fi' ? 'Perusta vahva kyberturvallisuuden johtamiskehys' : 'Establish robust cybersecurity governance frameworks'}</p>
-          <p class="text-xs text-slate-500 mb-4">{lang === 'fi' ? 'Vahva johtaminen varmistaa, että kyberturvallisuus on osa liiketoimintastrategiaa. Palvelumme auttavat rakentamaan vastuullisuutta, selkeitä politiikkoja ja tukevat päätöksentekoa kaikilla organisaatiotasoilla.' : 'Strong governance ensures cybersecurity becomes an integral part of your business strategy rather than just a technical concern. Our governance services help you build accountability, establish clear policies, and enable informed decision-making at all organizational levels.'}</p>
-          <ul class="space-y-2 text-sm text-slate-600">
-            <li>• {lang === 'fi' ? 'Kyberturvallisuuspoliittien kehitys ja toteutus' : 'Cybersecurity Policy Development & Implementation'}</li>
-            <li>• {lang === 'fi' ? 'CISO-as-a-Service ja strateginen turvallisuusjohtaminen' : 'CISO-as-a-Service & Strategic Security Leadership'}</li>
-            <li>• {lang === 'fi' ? 'Virtuaalinen CISO (V-CISO) -palvelu' : 'Virtual CISO (V-CISO) Services'}</li>
-            <li>• {lang === 'fi' ? 'Turvallisuusjohtamisen kehys' : 'Security Governance Framework Design & Implementation'}</li>
-            <li>• {lang === 'fi' ? 'Johtotason riskiraportointi ja esitykset' : 'Board-Level Risk Reporting & Executive Briefings'}</li>
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 flex flex-col hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+              <svg class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">{lang === 'fi' ? 'Johtaminen & Politiikat' : 'Governance & Policy'}</h2>
+          <p class="text-sm text-slate-500 mb-4">{lang === 'fi' ? 'Perusta vahva kyberturvallisuuden johtamiskehys' : 'Establish robust cybersecurity governance'}</p>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">{lang === 'fi' ? 'Vahva johtaminen varmistaa, että kyberturvallisuus on osa liiketoimintastrategiaa. Palvelumme auttavat rakentamaan vastuullisuutta, selkeitä politiikkoja ja tukevat päätöksentekoa.' : 'Strong governance ensures cybersecurity becomes an integral part of your business strategy.'}</p>
+          <ul class="space-y-2 text-sm text-slate-600 flex-1">
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'Kyberturvallisuuspolitiikkojen kehitys' : 'Cybersecurity Policy Development'}</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'CISO-as-a-Service' : 'CISO-as-a-Service'}</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'Virtuaalinen CISO (V-CISO)' : 'Virtual CISO (V-CISO)'}</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'Johtotason riskiraportointi' : 'Board-Level Risk Reporting'}</li>
           </ul>
         </div>
 
         <!-- Specialized Services -->
-        <div class="bg-white rounded-lg shadow-lg p-6 border border-slate-200">
-          <h2 class="text-xl font-semibold text-slate-900 mb-4">{lang === 'fi' ? 'Erikoistuneet palvelut' : 'Specialized Services'}</h2>
-          <p class="text-sm text-slate-600 mb-4">{lang === 'fi' ? 'Asiantuntijapalvelut erityistarpeisiin' : 'Expert services for specific cybersecurity needs'}</p>
-          <p class="text-xs text-slate-500 mb-4">{lang === 'fi' ? 'Joihinkin turvallisuushaasteisiin tarvitaan erityisosaamista ja kohdennettuja ratkaisuja. Erikoistuneet palvelumme vastaavat näihin tarpeisiin.' : 'Some security challenges require specialized expertise and focused solutions. Our specialized services address unique requirements that don\'t fit standard frameworks but are critical for comprehensive protection.'}</p>
-          <ul class="space-y-2 text-sm text-slate-600">
-            <li>• {lang === 'fi' ? 'Anti-fraud -palvelut ja talousrikosten ehkäisy' : 'Anti-Fraud Services & Financial Crime Prevention'}</li>
-            <li>• {lang === 'fi' ? 'eIDAS / digitaalinen luottamus -neuvonta ja toteutus' : 'eIDAS/Digital Trust Advisory & Implementation'}</li>
-            <li>• {lang === 'fi' ? 'Auditointivalmistelu ja tukipalvelut' : 'Audit Preparation & Support Services'}</li>
-            <li>• {lang === 'fi' ? 'Lead Auditor -palvelut ja riippumattomat arvioinnit' : 'Lead Auditor Services & Independent Assessments'}</li>
-            <li>• {lang === 'fi' ? 'Tietosuojavastaavan (DPO) palvelut' : 'Data Protection Officer (DPO) Services'}</li>
-            <li>• {lang === 'fi' ? 'Virtuaalinen DPO (V-DPO) -palvelu' : 'Virtual DPO (V-DPO) Services'}</li>
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 flex flex-col hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+              <svg class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">{lang === 'fi' ? 'Erikoistuneet palvelut' : 'Specialized Services'}</h2>
+          <p class="text-sm text-slate-500 mb-4">{lang === 'fi' ? 'Asiantuntijapalvelut erityistarpeisiin' : 'Expert services for unique needs'}</p>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">{lang === 'fi' ? 'Joihinkin turvallisuushaasteisiin tarvitaan erityisosaamista ja kohdennettuja ratkaisuja. Erikoistuneet palvelumme vastaavat näihin tarpeisiin.' : 'Some security challenges require specialized expertise and focused solutions.'}</p>
+          <ul class="space-y-2 text-sm text-slate-600 flex-1">
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'Anti-fraud -palvelut' : 'Anti-Fraud Services'}</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'eIDAS / digitaalinen luottamus' : 'eIDAS/Digital Trust'}</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'Auditointivalmistelu ja tuki' : 'Audit Preparation & Support'}</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'Tietosuojavastaavan (DPO) palvelut' : 'Data Protection Officer (DPO) Services'}</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> {lang === 'fi' ? 'Virtuaalinen DPO (V-DPO)' : 'Virtual DPO (V-DPO) Services'}</li>
           </ul>
         </div>
+
       </div>
 
-      <div class="mt-16 text-center">
-        <Button href="/contact" variant="primary">
+      <!-- CTA Button - Matching homepage style -->
+      <div class="text-center mt-16">
+        <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm sm:text-base gap-2">
           {lang === 'fi' ? 'Hanki ilmainen arviointi' : 'Get a Free Assessment'}
-        </Button>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
       </div>
+      
     </div>
   </section>
+  
 </Layout>
-

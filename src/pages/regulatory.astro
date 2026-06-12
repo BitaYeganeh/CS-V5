@@ -1,6 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Button from '@/components/ui/Button.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 import HeroSection from '@/components/sections/HeroSection.astro';
 import CTA from '@/components/sections/CTA.astro';
 
@@ -91,13 +92,50 @@ const regulations = [
 ---
 
 <Layout title={title}>
-  <HeroSection content={heroContent} />
-  
+
+  <!-- Hero Section - Centered (no image) -->
+  <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 overflow-hidden">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-16">
+      
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4">
+          <span class="text-[#1E2A7A]">{heroContent.title}</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+          {heroContent.subtitle}
+        </p>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+          {heroContent.description}
+        </p>
+        
+        <!-- Hero Buttons - Centered -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+          <a href={heroContent.primaryCTA.href} class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm sm:text-base">
+            {heroContent.primaryCTA.text}
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href={heroContent.secondaryCTA.href} class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm sm:text-base">
+            {heroContent.secondaryCTA.text}
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Regulations Section - Matching homepage card styling -->
   <section id="regulations" class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Regulatory Landscape</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+          Regulatory Landscape
+        </h2>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
           Stay up-to-date with the evolving cybersecurity regulatory environment. 
           Our experts monitor changes and provide actionable compliance guidance.
         </p>
@@ -105,28 +143,29 @@ const regulations = [
       
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {regulations.map(regulation => (
-          <div class="bg-white rounded-lg shadow-lg border border-slate-200 p-6 hover:shadow-xl transition-shadow">
+          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+            
             <div class="flex items-start justify-between mb-4">
               <div class="flex-1">
-                <h3 class="text-xl font-semibold text-slate-900 mb-2">{regulation.title}</h3>
-                <div class="flex items-center gap-2 mb-2">
+                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">{regulation.title}</h3>
+                <div class="flex flex-wrap items-center gap-2 mb-2">
                   <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${regulation.statusColor}`}>
                     {regulation.status}
                   </span>
-                  <span class="text-sm text-slate-500">{regulation.lastUpdated}</span>
+                  <span class="text-xs text-slate-500">{regulation.lastUpdated}</span>
                 </div>
               </div>
             </div>
             
-            <p class="text-slate-600 mb-4">{regulation.description}</p>
+            <p class="text-sm text-slate-500 mb-4 leading-relaxed">{regulation.description}</p>
             
             <div class="mb-6">
-              <h4 class="text-sm font-medium text-slate-900 mb-2">Key Points:</h4>
-              <ul class="space-y-1">
+              <h4 class="text-sm font-semibold text-slate-700 mb-2">Key Points:</h4>
+              <ul class="space-y-1.5">
                 {regulation.keyPoints.map(point => (
-                  <li class="flex items-start text-sm text-slate-700">
-                    <svg class="w-3 h-3 text-teal-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  <li class="flex items-start gap-2 text-sm text-slate-600">
+                    <svg class="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                     </svg>
                     {point}
                   </li>
@@ -134,91 +173,125 @@ const regulations = [
               </ul>
             </div>
             
-            <Button
-              href={regulation.href}
-              variant="primary"
-              className="w-full py-2 px-4"
-            >
+            <a href={regulation.href} class="inline-flex items-center justify-center w-full px-4 py-2.5 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-1.5">
               Read Full Guide
-            </Button>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="py-16 bg-slate-50">
+  <!-- Regulatory Services Section - Matching card styling with blue icons -->
+  <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Regulatory Services</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+          Regulatory Services
+        </h2>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
           We help organizations navigate complex regulatory requirements with expert guidance and practical solutions.
         </p>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white rounded-lg shadow-lg p-6">
-          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-            </svg>
+        
+        <!-- Service 1 -->
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 text-center hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+          <div class="flex justify-center mb-4">
+            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+              <svg class="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+            </div>
           </div>
-          <h3 class="text-xl font-semibold text-slate-900 mb-2 text-center">Compliance Assessment</h3>
-          <p class="text-slate-600 text-center mb-4">
+          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#1E2A7A] transition-colors duration-300">Compliance Assessment</h3>
+          <p class="text-sm text-slate-500 mb-4 leading-relaxed">
             Comprehensive assessment of your current compliance status against applicable regulations.
           </p>
-          <ul class="text-sm text-slate-700 space-y-2">
-            <li>• Gap analysis and risk assessment</li>
-            <li>• Compliance roadmap development</li>
-            <li>• Regulatory impact analysis</li>
-            <li>• Implementation planning</li>
+          <ul class="text-sm text-slate-600 space-y-2 text-left">
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> Gap analysis and risk assessment</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> Compliance roadmap development</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> Regulatory impact analysis</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> Implementation planning</li>
           </ul>
         </div>
         
-        <div class="bg-white rounded-lg shadow-lg p-6">
-          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-            </svg>
+        <!-- Service 2 -->
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 text-center hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+          <div class="flex justify-center mb-4">
+            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+              <svg class="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
           </div>
-          <h3 class="text-xl font-semibold text-slate-900 mb-2 text-center">Implementation Support</h3>
-          <p class="text-slate-600 text-center mb-4">
+          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#1E2A7A] transition-colors duration-300">Implementation Support</h3>
+          <p class="text-sm text-slate-500 mb-4 leading-relaxed">
             Hands-on support to implement compliance measures and meet regulatory requirements.
           </p>
-          <ul class="text-sm text-slate-700 space-y-2">
-            <li>• Policy and procedure development</li>
-            <li>• Control implementation</li>
-            <li>• Staff training and awareness</li>
-            <li>• Documentation and evidence</li>
+          <ul class="text-sm text-slate-600 space-y-2 text-left">
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> Policy and procedure development</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> Control implementation</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> Staff training and awareness</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> Documentation and evidence</li>
           </ul>
         </div>
         
-        <div class="bg-white rounded-lg shadow-lg p-6">
-          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
+        <!-- Service 3 -->
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 text-center hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+          <div class="flex justify-center mb-4">
+            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+              <svg class="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
           </div>
-          <h3 class="text-xl font-semibold text-slate-900 mb-2 text-center">Ongoing Monitoring</h3>
-          <p class="text-slate-600 text-center mb-4">
+          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#1E2A7A] transition-colors duration-300">Ongoing Monitoring</h3>
+          <p class="text-sm text-slate-500 mb-4 leading-relaxed">
             Continuous monitoring and updates to maintain compliance as regulations evolve.
           </p>
-          <ul class="text-sm text-slate-700 space-y-2">
-            <li>• Regulatory change monitoring</li>
-            <li>• Compliance health checks</li>
-            <li>• Incident response support</li>
-            <li>• Audit preparation and support</li>
+          <ul class="text-sm text-slate-600 space-y-2 text-left">
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> Regulatory change monitoring</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> Compliance health checks</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> Incident response support</li>
+            <li class="flex items-start gap-2"><span class="text-blue-500">✓</span> Audit preparation and support</li>
           </ul>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section - Matching homepage style -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+          Need Regulatory Compliance Help?
+        </h2>
+        <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+          Our regulatory experts can help you navigate complex compliance requirements and implement effective solutions.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact?compliance=true" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm sm:text-base gap-2">
+            Schedule Consultation
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href="/resources/guides" class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm sm:text-base gap-2">
+            View Resources
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <CTA 
-    title="Need Regulatory Compliance Help?"
-    description="Our regulatory experts can help you navigate complex compliance requirements and implement effective solutions."
-    primaryCTA={{ text: "Schedule Consultation", href: "/contact?compliance=true" }}
-    secondaryCTA={{ text: "View Resources", href: "/resources/guides" }}
-  />
 </Layout>
-
