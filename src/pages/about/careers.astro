@@ -190,12 +190,23 @@ const currentContent = content[lang];
 ---
 
 <Layout title={title}>
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-5xl font-bold mb-6">{currentContent.title}</h1>
-      <p class="text-2xl font-light mb-8">{currentContent.subtitle}</p>
-      <p class="text-xl text-slate-300 max-w-3xl mx-auto">{currentContent.heroDescription}</p>
+
+  <!-- Hero Section - Matching homepage -->
+  <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 overflow-hidden">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-16">
+      
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4">
+          <span class="text-[#1E2A7A]">{currentContent.title}</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+          {currentContent.subtitle}
+        </p>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+          {currentContent.heroDescription}
+        </p>
+      </div>
+      
     </div>
   </section>
 
@@ -203,60 +214,80 @@ const currentContent = content[lang];
   <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{currentContent.culture.title}</h2>
-        <p class="text-xl text-slate-600">{currentContent.culture.subtitle}</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+          {currentContent.culture.title}
+        </h2>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+          {currentContent.culture.subtitle}
+        </p>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="text-center p-6">
-          <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-            </svg>
+        
+        <!-- Culture 1 -->
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 text-center hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+          <div class="flex justify-center mb-4">
+            <div class="w-20 h-20 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+              <svg class="w-10 h-10 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+              </svg>
+            </div>
           </div>
-          <h3 class="text-xl font-semibold text-slate-900 mb-3">Continuous Learning</h3>
-          <p class="text-slate-600">We believe in lifelong learning and provide extensive opportunities for professional development and skill enhancement.</p>
+          <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">Continuous Learning</h3>
+          <p class="text-sm text-slate-500">We believe in lifelong learning and provide extensive opportunities for professional development.</p>
         </div>
         
-        <div class="text-center p-6">
-          <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-            </svg>
+        <!-- Culture 2 -->
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 text-center hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+          <div class="flex justify-center mb-4">
+            <div class="w-20 h-20 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+              <svg class="w-10 h-10 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
           </div>
-          <h3 class="text-xl font-semibold text-slate-900 mb-3">Collaborative Environment</h3>
-          <p class="text-slate-600">Work with talented professionals in a supportive, team-oriented culture that values diverse perspectives and innovation.</p>
+          <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">Collaborative Environment</h3>
+          <p class="text-sm text-slate-500">Work with talented professionals in a supportive, team-oriented culture.</p>
         </div>
         
-        <div class="text-center p-6">
-          <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
+        <!-- Culture 3 -->
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 text-center hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+          <div class="flex justify-center mb-4">
+            <div class="w-20 h-20 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+              <svg class="w-10 h-10 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
           </div>
-          <h3 class="text-xl font-semibold text-slate-900 mb-3">Impact & Purpose</h3>
-          <p class="text-slate-600">Make a real difference in protecting organizations and individuals from cyber threats while advancing the industry.</p>
+          <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">Impact & Purpose</h3>
+          <p class="text-sm text-slate-500">Make a real difference in protecting organizations from cyber threats.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Benefits Section -->
-  <section class="py-16 bg-slate-50">
+  <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{currentContent.benefits.title}</h2>
-        <p class="text-xl text-slate-600">{currentContent.benefits.subtitle}</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+          {currentContent.benefits.title}
+        </h2>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+          {currentContent.benefits.subtitle}
+        </p>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {companyBenefits.map((category) => (
-          <div class="bg-white p-6 rounded-lg shadow-md">
-            <h3 class="text-xl font-semibold text-slate-900 mb-4">{category.category}</h3>
+          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 hover:bg-slate-50 transition-all duration-300">
+            <h3 class="text-xl font-bold text-[#1E2A7A] mb-4">{category.category}</h3>
             <ul class="space-y-2">
               {category.benefits.map((benefit) => (
-                <li class="flex items-center text-slate-600">
-                  <div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                <li class="flex items-center gap-2 text-slate-600">
+                  <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
                   {benefit}
                 </li>
               ))}
@@ -271,36 +302,45 @@ const currentContent = content[lang];
   <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{currentContent.opportunities.title}</h2>
-        <p class="text-xl text-slate-600">{currentContent.opportunities.subtitle}</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+          {currentContent.opportunities.title}
+        </h2>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+          {currentContent.opportunities.subtitle}
+        </p>
       </div>
       
       <div class="space-y-6">
         {openPositions.map((position) => (
-          <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-md">
+          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 hover:bg-slate-50 hover:shadow-md transition-all duration-300">
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
               <div>
-                <h3 class="text-xl font-semibold text-slate-900 mb-2">{position.title}</h3>
-                <div class="flex flex-wrap gap-3 text-sm">
-                  <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">{position.location}</span>
-                  <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full">{position.type}</span>
-                  <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full">{position.department}</span>
-                  <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full">{position.experience}</span>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">{position.title}</h3>
+                <div class="flex flex-wrap gap-2 text-sm">
+                  <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full">{position.location}</span>
+                  <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full">{position.type}</span>
+                  <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full">{position.department}</span>
+                  <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full">{position.experience}</span>
                 </div>
               </div>
               <div class="mt-4 lg:mt-0">
-                <Button href="/contact" variant="brand" className="px-6 py-2">
+                <a href="/contact" class="inline-flex items-center justify-center px-5 py-2 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm">
                   Apply Now
-                </Button>
+                  <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
               </div>
             </div>
-            <p class="text-slate-600 mb-4">{position.description}</p>
+            <p class="text-sm text-slate-500 mb-3">{position.description}</p>
             <div>
-              <p class="text-sm font-medium text-slate-700 mb-2">Requirements:</p>
+              <p class="text-sm font-semibold text-slate-700 mb-2">Requirements:</p>
               <ul class="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {position.requirements.map((req) => (
-                  <li class="flex items-center text-sm text-slate-600">
-                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                  <li class="flex items-center gap-2 text-sm text-slate-600">
+                    <svg class="w-3.5 h-3.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
                     {req}
                   </li>
                 ))}
@@ -313,43 +353,61 @@ const currentContent = content[lang];
   </section>
 
   <!-- Growth Opportunities Section -->
-  <section class="py-16 bg-slate-50">
+  <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{currentContent.growth.title}</h2>
-        <p class="text-xl text-slate-600">{currentContent.growth.subtitle}</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+          {currentContent.growth.title}
+        </h2>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+          {currentContent.growth.subtitle}
+        </p>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {growthOpportunities.map((opportunity) => (
-          <div class="text-center p-6 bg-white rounded-lg shadow-md">
-            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
+          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 text-center hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+            <div class="flex justify-center mb-4">
+              <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+                <svg class="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
             </div>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2">{opportunity.title}</h3>
-            <p class="text-slate-600 text-sm">{opportunity.description}</p>
+            <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">{opportunity.title}</h3>
+            <p class="text-sm text-slate-500">{opportunity.description}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="py-16 bg-blue-600 text-white">
-    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold mb-4">Ready to Join Our Team?</h2>
-      <p class="text-xl mb-8">Don't see a position that fits? We're always looking for talented cybersecurity professionals.</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/contact" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-colors">
-          Send Your Resume
-        </a>
-        <a href="/about/contact" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-          Contact Us
-        </a>
+  <!-- CTA Section - Matching homepage -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+          Ready to Join Our Team?
+        </h2>
+        <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+          Don't see a position that fits? We're always looking for talented cybersecurity professionals.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm sm:text-base gap-2">
+            Send Your Resume
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm sm:text-base gap-2">
+            Contact Us
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
-</Layout>
 
+</Layout>

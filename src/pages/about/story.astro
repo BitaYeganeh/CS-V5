@@ -142,83 +142,121 @@ const currentContent = content[lang];
 ---
 
 <Layout title={title}>
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-5xl font-bold mb-6">{currentContent.title}</h1>
-      <p class="text-2xl font-light mb-8">{currentContent.subtitle}</p>
-      <p class="text-xl text-slate-300 max-w-3xl mx-auto">{currentContent.heroDescription}</p>
+
+  <!-- Hero Section - Matching homepage -->
+  <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 overflow-hidden">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-16">
+      
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4">
+          <span class="text-[#1E2A7A]">{currentContent.title}</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+          {currentContent.subtitle}
+        </p>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+          {currentContent.heroDescription}
+        </p>
+      </div>
+      
     </div>
   </section>
 
   <!-- Story Section -->
   <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-slate-900 mb-4">{currentContent.story.title}</h2>
-        </div>
-        
-        <div class="prose prose-lg mx-auto">
-          <p class="text-lg text-slate-600 mb-6">{currentContent.story.content}</p>
-          <p class="text-lg text-slate-600 mb-6">{currentContent.story.vision}</p>
-          <p class="text-lg text-slate-600 mb-6">{currentContent.story.growth}</p>
-        </div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+          {currentContent.story.title}
+        </h2>
+      </div>
+      
+      <div class="space-y-6">
+        <p class="text-base md:text-lg text-slate-500 leading-relaxed">{currentContent.story.content}</p>
+        <p class="text-base md:text-lg text-slate-500 leading-relaxed">{currentContent.story.vision}</p>
+        <p class="text-base md:text-lg text-slate-500 leading-relaxed">{currentContent.story.growth}</p>
       </div>
     </div>
   </section>
 
   <!-- Milestones Section -->
-  <section class="py-16 bg-slate-50">
+  <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{currentContent.milestones.title}</h2>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+          {currentContent.milestones.title}
+        </h2>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {currentContent.milestones.items.map((milestone) => (
-          <div class="text-center p-6 bg-white rounded-lg shadow-md">
-            <div class="text-4xl font-bold text-blue-600 mb-2">{milestone.year}</div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-2">{milestone.title}</h3>
-            <p class="text-slate-600">{milestone.description}</p>
+          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 text-center hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+            <div class="text-4xl font-bold text-[#1E2A7A] mb-2 group-hover:text-[#3B82F6] transition-colors duration-300">{milestone.year}</div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">{milestone.title}</h3>
+            <p class="text-sm text-slate-500">{milestone.description}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Values Section -->
+  <!-- Specialties Section -->
   <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{currentContent.values.title}</h2>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+          {currentContent.values.title}
+        </h2>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {currentContent.values.items.map((value) => (
-          <div class="p-6 border border-slate-200 rounded-lg">
-            <h3 class="text-xl font-semibold text-slate-900 mb-3">{value.title}</h3>
-            <p class="text-slate-600">{value.description}</p>
+          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 hover:bg-slate-50 hover:shadow-md transition-all duration-300 group">
+            <div class="flex items-start gap-3">
+              <div class="flex-shrink-0 mt-1">
+                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+                  <svg class="w-4 h-4 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">{value.title}</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">{value.description}</p>
+              </div>
+            </div>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="py-16 bg-blue-600 text-white">
-    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold mb-4">{currentContent.cta.title}</h2>
-      <p class="text-xl mb-8">{currentContent.cta.subtitle}</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/contact" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-colors">
-          {currentContent.cta.primaryButton}
-        </a>
-        <a href="/about/team" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-          {currentContent.cta.secondaryButton}
-        </a>
+  <!-- CTA Section - Matching homepage -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+          {currentContent.cta.title}
+        </h2>
+        <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+          {currentContent.cta.subtitle}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm sm:text-base gap-2">
+            {currentContent.cta.primaryButton}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href="/about/team" class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm sm:text-base gap-2">
+            {currentContent.cta.secondaryButton}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
-</Layout>
 
+</Layout>
