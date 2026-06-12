@@ -1,277 +1,481 @@
 ﻿---
 import Layout from '@/layouts/Layout.astro';
-import HeroSection from '@/components/sections/HeroSection.astro';
-import CTA from '@/components/sections/CTA.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
-const title = 'eIDAS Digital Trust Services';
-const description = 'Comprehensive eIDAS compliance and digital trust infrastructure with qualified electronic signatures and trusted services.';
-
-const heroContent = {
-  title: "eIDAS Digital Trust & Identity Services",
-  subtitle: "Comprehensive digital trust infrastructure with qualified electronic signatures and trusted services",
-  description: "Expert eIDAS implementation and digital identity solutions including qualified electronic signatures, seals, timestamps, and trusted service provider frameworks to enable secure digital transactions and cross-border recognition across the EU.",
-  primaryCTA: { text: "Start Digital Trust Assessment", href: "/contact?service=eidas-digital-trust" },
-  secondaryCTA: { text: "Learn About eIDAS", href: "/about" }
+// SEO Configuration
+const seoConfig = {
+  title: "eIDAS Digital Trust Services | Qualified Electronic Signatures & Trust Services",
+  description: "Comprehensive eIDAS compliance and digital trust infrastructure with qualified electronic signatures and trusted services for secure digital transactions across the EU.",
+  keywords: "eIDAS, digital trust, qualified electronic signatures, QES, electronic seals, time stamps, TSP framework",
+  type: "service" as const,
 };
 
-const eidasServices = [
-  {
-    title: "Qualified Electronic Signatures (QES)",
-    description: "Implementation of qualified electronic signatures with legal equivalence to handwritten signatures",
-    deliverables: [
-      "Qualified signature creation device (QSCD) integration",
-      "Remote qualified electronic signature services",
-      "Signature validation and verification systems",
-      "Long-term signature preservation (LTV)",
-      "Cross-border signature recognition compliance"
-    ],
-    legalValue: "Equivalent to handwritten signatures",
-    standards: "EN 319 411, EN 319 412"
-  },
-  {
-    title: "Qualified Electronic Seals (QESeal)",
-    description: "Organization-level qualified electronic seals for document integrity and authenticity",
-    deliverables: [
-      "Qualified seal creation device implementation",
-      "Automated document sealing processes",
-      "Seal validation and verification infrastructure",
-      "Bulk document sealing capabilities",
-      "Organizational identity verification frameworks"
-    ],
-    legalValue: "Legal presumption of integrity and authenticity",
-    standards: "EN 319 411, ETSI TS 119 312"
-  },
-  {
-    title: "Qualified Time Stamps (QTS)",
-    description: "Trusted time-stamping services with legal certainty for digital evidence",
-    deliverables: [
-      "Qualified time stamp authority (QTSA) services",
-      "RFC 3161 compliant time-stamping",
-      "Long-term timestamp preservation",
-      "Audit trail and non-repudiation evidence",
-      "Integration with signature and seal services"
-    ],
-    legalValue: "Legal presumption of accuracy of time and integrity",
-    standards: "EN 319 421, RFC 3161"
-  },
-  {
-    title: "Qualified Electronic Delivery Services (QEDS)",
-    description: "Secure delivery of electronic documents with evidence of sending and receipt",
-    deliverables: [
-      "Qualified electronic delivery platform",
-      "Proof of sending and receipt generation",
-      "Secure mailbox services",
-      "Legal evidence preservation",
-      "Integration with e-signature workflows"
-    ],
-    legalValue: "Legal evidence of sending, receipt and integrity",
-    standards: "EN 319 531, ETSI TS 119 524"
-  },
-  {
-    title: " Electronic Identification (eID)",
-    description: "Secure electronic identification and authentication frameworks",
-    deliverables: [
-      "eID scheme design and implementation",
-      "Multi-factor authentication integration",
-      "Cross-border eID recognition",
-      "Mobile eID solutions",
-      "Identity proofing and verification processes"
-    ],
-    legalValue: "Cross-border recognition under eIDAS",
-    standards: "EN 319 401, SAML 2.0"
-  },
-  {
-    title: "Trust Service Provider (TSP) Framework",
-    description: "Establishment and operation of qualified trust service provider infrastructure",
-    deliverables: [
-      "TSP qualification and supervision compliance",
-      "Trust service provision infrastructure",
-      "Qualified certificate authority operations",
-      "Regulatory compliance and audit frameworks",
-      "Business continuity and disaster recovery"
-    ],
-    legalValue: "Supervised trust service provider status",
-    standards: "EN 319 401, ETSI EN 319 411"
-  }
-];
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
-const eidasLevels = [
-  {
-    level: "Low",
-    assurance: "Basic identity verification",
-    requirements: ["Username/password", "Basic identity checks"],
-    useCases: ["Low-risk online services", "Information access"]
+const content = {
+  en: {
+    hero: {
+      title: "eIDAS Digital Trust & Identity Services",
+      subtitle: "Comprehensive digital trust infrastructure with qualified electronic signatures and trusted services",
+      description: "Expert eIDAS implementation and digital identity solutions including qualified electronic signatures, seals, timestamps, and trusted service provider frameworks to enable secure digital transactions and cross-border recognition across the EU.",
+      primaryCTA: { text: "Start Digital Trust Assessment", href: "/contact?service=eidas-digital-trust" },
+      secondaryCTA: { text: "Learn About eIDAS", href: "/about" }
+    },
+    eidasServices: {
+      title: "Comprehensive eIDAS Trust Services",
+      subtitle: "Complete digital trust infrastructure enabling secure digital transactions with legal certainty across the European Union.",
+      items: [
+        {
+          title: "Qualified Electronic Signatures (QES)",
+          description: "Implementation of qualified electronic signatures with legal equivalence to handwritten signatures",
+          icon: "document-check",
+          legalValue: "Equivalent to handwritten signatures",
+          standards: "EN 319 411, EN 319 412",
+          deliverables: [
+            "Qualified signature creation device (QSCD) integration",
+            "Remote qualified electronic signature services",
+            "Signature validation and verification systems",
+            "Long-term signature preservation (LTV)",
+            "Cross-border signature recognition compliance"
+          ]
+        },
+        {
+          title: "Qualified Electronic Seals (QESeal)",
+          description: "Organization-level qualified electronic seals for document integrity and authenticity",
+          icon: "shield-check",
+          legalValue: "Legal presumption of integrity and authenticity",
+          standards: "EN 319 411, ETSI TS 119 312",
+          deliverables: [
+            "Qualified seal creation device implementation",
+            "Automated document sealing processes",
+            "Seal validation and verification infrastructure",
+            "Bulk document sealing capabilities",
+            "Organizational identity verification frameworks"
+          ]
+        },
+        {
+          title: "Qualified Time Stamps (QTS)",
+          description: "Trusted time-stamping services with legal certainty for digital evidence",
+          icon: "clock",
+          legalValue: "Legal presumption of accuracy of time and integrity",
+          standards: "EN 319 421, RFC 3161",
+          deliverables: [
+            "Qualified time stamp authority (QTSA) services",
+            "RFC 3161 compliant time-stamping",
+            "Long-term timestamp preservation",
+            "Audit trail and non-repudiation evidence",
+            "Integration with signature and seal services"
+          ]
+        },
+        {
+          title: "Qualified Electronic Delivery Services (QEDS)",
+          description: "Secure delivery of electronic documents with evidence of sending and receipt",
+          icon: "mail",
+          legalValue: "Legal evidence of sending, receipt and integrity",
+          standards: "EN 319 531, ETSI TS 119 524",
+          deliverables: [
+            "Qualified electronic delivery platform",
+            "Proof of sending and receipt generation",
+            "Secure mailbox services",
+            "Legal evidence preservation",
+            "Integration with e-signature workflows"
+          ]
+        },
+        {
+          title: "Electronic Identification (eID)",
+          description: "Secure electronic identification and authentication frameworks",
+          icon: "user-check",
+          legalValue: "Cross-border recognition under eIDAS",
+          standards: "EN 319 401, SAML 2.0",
+          deliverables: [
+            "eID scheme design and implementation",
+            "Multi-factor authentication integration",
+            "Cross-border eID recognition",
+            "Mobile eID solutions",
+            "Identity proofing and verification processes"
+          ]
+        },
+        {
+          title: "Trust Service Provider (TSP) Framework",
+          description: "Establishment and operation of qualified trust service provider infrastructure",
+          icon: "building-library",
+          legalValue: "Supervised trust service provider status",
+          standards: "EN 319 401, ETSI EN 319 411",
+          deliverables: [
+            "TSP qualification and supervision compliance",
+            "Trust service provision infrastructure",
+            "Qualified certificate authority operations",
+            "Regulatory compliance and audit frameworks",
+            "Business continuity and disaster recovery"
+          ]
+        }
+      ]
+    },
+    eidasLevels: {
+      title: "eIDAS Assurance Levels",
+      subtitle: "Understanding the three levels of assurance for electronic identification under eIDAS regulation.",
+      levels: [
+        { level: "Low", assurance: "Basic identity verification", requirements: ["Username/password", "Basic identity checks"], useCases: ["Low-risk online services", "Information access"], color: "green" },
+        { level: "Substantial", assurance: "Multi-factor authentication required", requirements: ["Multi-factor authentication", "Enhanced identity verification"], useCases: ["Online banking", "Tax filing", "Healthcare services"], color: "yellow" },
+        { level: "High", assurance: "Highest level of security and identity assurance", requirements: ["Hardware security modules", "In-person identity verification"], useCases: ["Legal documents", "High-value transactions", "Government services"], color: "red" }
+      ]
+    },
+    benefits: {
+      title: "Benefits of eIDAS Compliance",
+      subtitle: "Transform your digital capabilities with legally recognized and cross-border interoperable trust services.",
+      items: [
+        { title: "Cross-Border Recognition", description: "eIDAS-qualified services are recognized across all EU member states", impact: "Seamless business operations across Europe", icon: "globe-alt" },
+        { title: "Legal Certainty", description: "Qualified services have presumption of integrity and authenticity", impact: "Reduced legal risks and disputes", icon: "gavel" },
+        { title: "Digital Transformation", description: "Enable fully digital business processes and customer journeys", impact: "Increased efficiency and customer satisfaction", icon: "trending-up" },
+        { title: "Enhanced Security", description: "Strong cryptographic protection and identity assurance", impact: "Reduced fraud and security incidents", icon: "shield" }
+      ]
+    },
+    cta: {
+      title: "Ready to Implement Digital Trust?",
+      subtitle: "Build comprehensive eIDAS-compliant digital trust infrastructure with qualified electronic signatures, seals, and trusted services.",
+      primaryCTA: { text: "Start Digital Trust Assessment", href: "/contact?service=eidas-digital-trust" },
+      secondaryCTA: { text: "Explore Trust Solutions", href: "/services/digital-trust" }
+    }
   },
-  {
-    level: "Substantial", 
-    assurance: "Multi-factor authentication required",
-    requirements: ["Multi-factor authentication", "Enhanced identity verification"],
-    useCases: ["Online banking", "Tax filing", "Healthcare services"]
-  },
-  {
-    level: "High",
-    assurance: "Highest level of security and identity assurance",
-    requirements: ["Hardware security modules", "In-person identity verification"],
-    useCases: ["Legal documents", "High-value transactions", "Government services"]
+  fi: {
+    hero: {
+      title: "eIDAS Digitaalisen luottamuksen ja identiteetin palvelut",
+      subtitle: "Kattava digitaalisen luottamuksen infrastruktuuri laatuvarmenteisilla sähköisillä allekirjoituksilla ja luotetuilla palveluilla",
+      description: "Asiantunteva eIDAS-toteutus ja digitaalisen identiteetin ratkaisut, mukaan lukien laatuvarmenteiset sähköiset allekirjoitukset, sinetit, aikaleimat ja luotettujen palveluntarjoajien kehykset turvallisten digitaalisten tapahtumien ja rajat ylittävän tunnustamisen mahdollistamiseksi EU:ssa.",
+      primaryCTA: { text: "Aloita digitaalisen luottamuksen arviointi", href: "/contact?service=eidas-digital-trust" },
+      secondaryCTA: { text: "Tutustu eIDAS:aan", href: "/about" }
+    },
+    eidasServices: {
+      title: "Kattavat eIDAS-luottamuspalvelut",
+      subtitle: "Täydellinen digitaalisen luottamuksen infrastruktuuri, joka mahdollistaa turvalliset digitaaliset tapahtumat oikeudellisella varmuudella koko Euroopan unionin alueella.",
+      items: [
+        {
+          title: "Laatuvarmenteiset sähköiset allekirjoitukset (QES)",
+          description: "Laatuvarmenteisten sähköisten allekirjoitusten toteutus oikeudellisesti käsin kirjoitettuja allekirjoituksia vastaavina",
+          icon: "document-check",
+          legalValue: "Vastaavat käsin kirjoitettuja allekirjoituksia",
+          standards: "EN 319 411, EN 319 412",
+          deliverables: ["Laatuvarmenteisen allekirjoituksen luontilaitteen (QSCD) integrointi", "Etälaatuvarmenteiset sähköiset allekirjoituspalvelut", "Allekirjoituksen validointi- ja varmennusjärjestelmät", "Pitkäaikainen allekirjoitusten säilytys (LTV)", "Rajat ylittävän allekirjoituksen tunnustamisen vaatimustenmukaisuus"]
+        },
+        {
+          title: "Laatuvarmenteiset sähköiset sinetit (QESeal)",
+          description: "Organisaatiotason laatuvarmenteiset sähköiset sinetit asiakirjojen eheydelle ja aitoudelle",
+          icon: "shield-check",
+          legalValue: "Oikeudellinen oletus eheydestä ja aitoudesta",
+          standards: "EN 319 411, ETSI TS 119 312",
+          deliverables: ["Laatuvarmenteisen sinetin luontilaitteen toteutus", "Automaattiset asiakirjojen sinetöintiprosessit", "Sinetin validointi- ja varmennusinfrastruktuuri", "Massasinetöintikyvykkyydet", "Organisaation identiteetin varmennuskehykset"]
+        },
+        {
+          title: "Laatuvarmenteiset aikaleimat (QTS)",
+          description: "Luotetut aikaleimapalvelut oikeudellisella varmuudella digitaalista todisteaineistoa varten",
+          icon: "clock",
+          legalValue: "Oikeudellinen oletus ajan tarkkuudesta ja eheydestä",
+          standards: "EN 319 421, RFC 3161",
+          deliverables: ["Laatuvarmenteisen aikaleima-auktoriteetin (QTSA) palvelut", "RFC 3161 -yhteensopiva aikaleimaus", "Pitkäaikainen aikaleimojen säilytys", "Tarkastuspolku ja kiistämättömyystodisteet", "Integrointi allekirjoitus- ja sinetipalveluihin"]
+        },
+        {
+          title: "Laatuvarmenteiset sähköiset toimituspalvelut (QEDS)",
+          description: "Asiakirjojen turvallinen toimitus todisteilla lähettämisestä ja vastaanottamisesta",
+          icon: "mail",
+          legalValue: "Oikeudellinen todiste lähettämisestä, vastaanottamisesta ja eheydestä",
+          standards: "EN 319 531, ETSI TS 119 524",
+          deliverables: ["Laatuvarmenteinen sähköinen toimitusalusta", "Lähettämis- ja vastaanottotodisteiden tuottaminen", "Turvalliset postilaatikkopalvelut", "Oikeudellisen todisteaineiston säilytys", "Integrointi sähköisen allekirjoituksen työnkulkuihin"]
+        },
+        {
+          title: "Sähköinen tunnistaminen (eID)",
+          description: "Turvalliset sähköisen tunnistamisen ja todennuksen kehykset",
+          icon: "user-check",
+          legalValue: "Rajat ylittävä tunnustaminen eIDAS-asetuksen nojalla",
+          standards: "EN 319 401, SAML 2.0",
+          deliverables: ["eID-järjestelmän suunnittelu ja toteutus", "Monivaiheisen todennuksen integrointi", "Rajat ylittävä eID-tunnustaminen", "Mobiili-eID-ratkaisut", "Identiteetin todentamis- ja varmennusprosessit"]
+        },
+        {
+          title: "Luotetun palveluntarjoajan (TSP) kehys",
+          description: "Laatuvarmenteisen luotetun palveluntarjoajan infrastruktuurin perustaminen ja ylläpito",
+          icon: "building-library",
+          legalValue: "Valvottu luotetun palveluntarjoajan asema",
+          standards: "EN 319 401, ETSI EN 319 411",
+          deliverables: ["TSP-pätevyys ja valvonnan vaatimustenmukaisuus", "Luottamuspalvelujen tarjoamisen infrastruktuuri", "Laatuvarmenteisen varmenteiden myöntäjän toiminta", "Sääntelyn vaatimustenmukaisuus- ja auditointikehykset", "Liiketoiminnan jatkuvuus ja katastrofipalautus"]
+        }
+      ]
+    },
+    eidasLevels: {
+      title: "eIDAS-varmuustasot",
+      subtitle: "Ymmärrys kolmesta sähköisen tunnistamisen varmuustasosta eIDAS-asetuksen nojalla.",
+      levels: [
+        { level: "Matala", assurance: "Perustason identiteetin varmennus", requirements: ["Käyttäjätunnus/salasana", "Perustason henkilöllisyystarkistukset"], useCases: ["Pienen riskin verkkopalvelut", "Tiedon saatavuus"], color: "green" },
+        { level: "Merkittävä", assurance: "Monivaiheinen tunnistautuminen vaaditaan", requirements: ["Monivaiheinen tunnistautuminen", "Tehostettu henkilöllisyyden varmennus"], useCases: ["Verkkopankki", "Veroilmoitus", "Terveyspalvelut"], color: "yellow" },
+        { level: "Korkea", assurance: "Korkein turvallisuuden ja identiteetin varmuustaso", requirements: ["Laitteistoturvamoduulit", "Henkilökohtainen henkilöllisyyden varmennus"], useCases: ["Oikeudelliset asiakirjat", "Suuren arvon tapahtumat", "Julkishallinnon palvelut"], color: "red" }
+      ]
+    },
+    benefits: {
+      title: "eIDAS-vaatimustenmukaisuuden edut",
+      subtitle: "Muuta digitaalisia kyvykkyyksiäsi oikeudellisesti tunnustetuilla ja rajat ylittävästi yhteentoimivilla luottamuspalveluilla.",
+      items: [
+        { title: "Rajat ylittävä tunnustaminen", description: "eIDAS-laatuvarmenteiset palvelut tunnustetaan kaikissa EU:n jäsenvaltioissa", impact: "Saumaton liiketoiminta Euroopassa", icon: "globe-alt" },
+        { title: "Oikeudellinen varmuus", description: "Laatuvarmenteisilla palveluilla on oletus eheydestä ja aitoudesta", impact: "Vähentyneet oikeudelliset riskit ja erimielisyydet", icon: "gavel" },
+        { title: "Digitaalinen muutos", description: "Mahdollista täysin digitaaliset liiketoimintaprosessit ja asiakaspolut", impact: "Lisääntynyt tehokkuus ja asiakastyytyväisyys", icon: "trending-up" },
+        { title: "Tehostettu turvallisuus", description: "Vahva kryptografinen suoja ja identiteetin varmuus", impact: "Vähentyneet petokset ja turvallisuuspoikkeamat", icon: "shield" }
+      ]
+    },
+    cta: {
+      title: "Valmis toteuttamaan digitaalisen luottamuksen?",
+      subtitle: "Rakenna kattava eIDAS-yhteensopiva digitaalisen luottamuksen infrastruktuuri laatuvarmenteisilla sähköisillä allekirjoituksilla, sineteillä ja luotetuilla palveluilla.",
+      primaryCTA: { text: "Aloita digitaalisen luottamuksen arviointi", href: "/contact?service=eidas-digital-trust" },
+      secondaryCTA: { text: "Tutustu luottamusratkaisuihin", href: "/services/digital-trust" }
+    }
   }
-];
+};
 
-const benefits = [
-  {
-    title: "Cross-Border Recognition",
-    description: "eIDAS-qualified services are recognized across all EU member states",
-    impact: "Seamless business operations across Europe"
-  },
-  {
-    title: "Legal Certainty",
-    description: "Qualified services have presumption of integrity and authenticity",
-    impact: "Reduced legal risks and disputes"
-  },
-  {
-    title: "Digital Transformation",
-    description: "Enable fully digital business processes and customer journeys",
-    impact: "Increased efficiency and customer satisfaction"
-  },
-  {
-    title: "Enhanced Security",
-    description: "Strong cryptographic protection and identity assurance",
-    impact: "Reduced fraud and security incidents"
-  }
-];
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={description}>
-  <HeroSection content={heroContent} />
-  
-  <!-- eIDAS Services -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">Comprehensive eIDAS Trust Services</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Complete digital trust infrastructure enabling secure digital transactions with legal certainty across the European Union.
-        </p>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
+      <div>{currentContent.hero.title}</div>
+      <div class="mt-2">
+        <span class="bg-gradient-to-r from-[#1E2A7A] to-[#60A5FA] bg-clip-text text-transparent">{currentContent.hero.subtitle}</span>
       </div>
+    </h1>
+    
+    <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
       
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {eidasServices.map((service) => (
-          <div class="bg-gradient-to-br from-purple-50 to-white p-8 rounded-xl border border-slate-200 hover:shadow-xl transition-all duration-300">
-            <h3 class="text-xl font-bold text-slate-900 mb-4">{service.title}</h3>
-            <p class="text-slate-600 mb-6">{service.description}</p>
-            
-            <div class="mb-6">
-              <h4 class="font-semibold text-slate-900 mb-3">Key Deliverables</h4>
-              <ul class="space-y-2">
-                {service.deliverables.map((deliverable) => (
-                  <li class="flex items-start text-slate-600">
-                    <svg class="w-4 h-4 text-purple-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    {deliverable}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div class="pt-4 border-t border-slate-200">
-              <div class="mb-2">
-                <span class="text-sm font-semibold text-purple-600">Legal Value: </span>
-                <span class="text-sm text-slate-600">{service.legalValue}</span>
-              </div>
-              <div>
-                <span class="text-sm font-semibold text-purple-600">Standards: </span>
-                <span class="text-sm text-slate-600">{service.standards}</span>
-              </div>
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- eIDAS Services Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.eidasServices.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.eidasServices.subtitle}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {currentContent.eidasServices.items.map((service) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <!-- Icon - Top Right -->
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={service.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
             </div>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- eIDAS Assurance Levels -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">eIDAS Assurance Levels</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Understanding the three levels of assurance for electronic identification under eIDAS regulation.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {eidasLevels.map((level, index) => (
-          <div class={`p-8 rounded-xl border-2 hover:shadow-xl transition-all duration-300 ${
-            index === 0 ? 'border-green-200 bg-green-50' :
-            index === 1 ? 'border-yellow-200 bg-yellow-50' : 'border-red-200 bg-red-50'
-          }`}>
-            <div class="text-center mb-6">
-              <h3 class={`text-2xl font-bold mb-2 ${
-                index === 0 ? 'text-green-900' :
-                index === 1 ? 'text-yellow-900' : 'text-red-900'
-              }`}>
-                {level.level} Level
-              </h3>
-              <p class="text-slate-600">{level.assurance}</p>
-            </div>
-            
-            <div class="mb-6">
-              <h4 class="font-semibold text-slate-900 mb-3">Requirements</h4>
-              <ul class="space-y-2">
-                {level.requirements.map((req) => (
-                  <li class="flex items-start text-slate-600">
-                    <svg class="w-4 h-4 text-slate-400 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path>
-                    </svg>
-                    {req}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div>
-              <h4 class="font-semibold text-slate-900 mb-3">Use Cases</h4>
-              <ul class="space-y-1">
-                {level.useCases.map((useCase) => (
-                  <li class="text-sm text-slate-600">• {useCase}</li>
-                ))}
-              </ul>
+          
+          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {service.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left mb-4">
+            {service.description}
+          </p>
+          
+          <div class="mb-4">
+            <h4 class="font-semibold text-slate-800 text-sm mb-2">
+              {lang === 'fi' ? 'Keskeiset toimitettavat' : 'Key Deliverables'}
+            </h4>
+            <ul class="space-y-1.5">
+              {service.deliverables.slice(0, 4).map((deliverable) => (
+                <li class="flex items-start text-xs text-slate-500">
+                  <svg class="w-3 h-3 text-blue-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  {deliverable}
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div class="mt-auto pt-4 border-t border-slate-100">
+            <div class="flex flex-wrap gap-4 text-xs">
+              <span class="text-slate-500">
+                <span class="font-semibold text-slate-700">{lang === 'fi' ? 'Oikeudellinen arvo:' : 'Legal Value:'}</span> {service.legalValue}
+              </span>
+              <span class="text-slate-500">
+                <span class="font-semibold text-slate-700">{lang === 'fi' ? 'Standardit:' : 'Standards:'}</span> {service.standards}
+              </span>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Benefits -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">Benefits of eIDAS Compliance</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Transform your digital capabilities with legally recognized and cross-border interoperable trust services.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {benefits.map((benefit) => (
-          <div class="text-center">
-            <h3 class="text-lg font-bold text-slate-900 mb-3">{benefit.title}</h3>
-            <p class="text-slate-600 mb-4">{benefit.description}</p>
-            <div class="text-sm font-medium text-purple-600 bg-purple-50 px-3 py-2 rounded-lg">
-              {benefit.impact}
+<!-- eIDAS Assurance Levels Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.eidasLevels.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.eidasLevels.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {currentContent.eidasLevels.levels.map((level, index) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300">
+          
+          <div class="text-center mb-4">
+            <h3 class={`text-2xl font-bold mb-1 text-[#1E2A7A]`}>
+              {level.level}
+            </h3>
+            <p class="text-sm text-slate-500">{level.assurance}</p>
+          </div>
+          
+          <div class="mb-4">
+            <h4 class="font-semibold text-slate-800 text-sm mb-2">
+              {lang === 'fi' ? 'Vaatimukset' : 'Requirements'}
+            </h4>
+            <ul class="space-y-1">
+              {level.requirements.map((req) => (
+                <li class="flex items-start text-xs text-slate-500">
+                  <svg class="w-3 h-3 text-blue-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path>
+                  </svg>
+                  {req}
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-slate-800 text-sm mb-2">
+              {lang === 'fi' ? 'Käyttötapaukset' : 'Use Cases'}
+            </h4>
+            <ul class="space-y-1">
+              {level.useCases.map((useCase) => (
+                <li class="text-xs text-slate-500">• {useCase}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.benefits.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.benefits.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {currentContent.benefits.items.map((benefit) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 text-center border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="flex justify-center mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={benefit.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
             </div>
           </div>
-        ))}
-      </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+            {benefit.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm mb-3">
+            {benefit.description}
+          </p>
+          
+          <div class="text-xs font-medium text-blue-600 bg-blue-50 px-3 py-2 rounded-lg">
+            {benefit.impact}
+          </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <CTA 
-    title="Ready to Implement Digital Trust?"
-    description="Build comprehensive eIDAS-compliant digital trust infrastructure with qualified electronic signatures, seals, and trusted services."
-    primaryCTA={{ text: "Start Digital Trust Assessment", href: "/contact?service=eidas-digital-trust" }}
-    secondaryCTA={{ text: "Explore Trust Solutions", href: "/services/digital-trust" }}
-  />
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 </Layout>
-

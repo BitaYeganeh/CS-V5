@@ -1,219 +1,375 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-import Button from '@/components/ui/Button.astro';
+
+// SEO Configuration
+const seoConfig = {
+  title: "Risk Management | Enterprise Risk Framework & Governance",
+  description: "Establish a practical risk framework, registers, KRIs, and governance that guide security decisions. Comprehensive risk management across all organizational levels.",
+  keywords: "risk management, risk framework, risk register, KRI metrics, risk governance, operational risk",
+  type: "service" as const,
+};
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
-const title = lang === 'fi' ? 'Riskienhallinta' : 'Risk Management';
-const description = lang === 'fi' 
-  ? 'Rakenna käytännöllinen riskikehikko, rekisterit, KRI-mittarit ja hallintamalli, joka ohjaa turvallisuuspäätöksiä.'
-  : 'Establish a practical risk framework, registers, KRIs, and governance that guide security decisions.';
-
-const riskFrameworks = [
-  {
-    icon: 'target',
-    titleFi: 'Riskikehikko',
-    titleEn: 'Risk Framework',
-    descFi: 'ISO 27005/NIST-pohjainen riskienhallintakehikko',
-    descEn: 'ISO 27005/NIST-based risk management framework'
+const content = {
+  en: {
+    hero: {
+      title: "Risk Management",
+      subtitle: "Enterprise Risk Framework & Governance",
+      description: "Establish a practical risk framework, registers, KRIs, and governance that guide security decisions. A comprehensive risk management system that guides decision-making and ensures your organization focuses on the right risks in the right order.",
+      primaryCTA: { text: "Get in Touch", href: "/contact" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    },
+    components: {
+      title: "Risk Management Components",
+      subtitle: "Comprehensive approach to risk management across all organizational levels.",
+      items: [
+        { title: "Risk Framework", description: "ISO 27005/NIST-based risk management framework", icon: "target" },
+        { title: "Risk Register", description: "Centralized risk register with tracking and reporting", icon: "database" },
+        { title: "KRI Metrics", description: "Key Risk Indicator monitoring and alerting", icon: "trending-up" },
+        { title: "Governance Model", description: "Roles, responsibilities and decision-making processes", icon: "users" }
+      ]
+    },
+    riskTypes: {
+      title: "Risk Types",
+      subtitle: "We cover all key risk categories in your organization.",
+      items: [
+        { title: "Cybersecurity Risks", description: "Technology risks, vulnerabilities and cyber threats", icon: "shield" },
+        { title: "Operational Risks", description: "Process, personnel and operational risks", icon: "users" },
+        { title: "Third-Party Risks", description: "Vendor, partner and supply chain risks", icon: "building" },
+        { title: "Regulatory Risks", description: "Compliance risks and regulatory changes", icon: "book-open" }
+      ]
+    },
+    process: {
+      title: "Risk Management Process",
+      subtitle: "Structured approach to risk management throughout the entire lifecycle.",
+      steps: [
+        { title: "Identification", items: ["Threat mapping", "Vulnerability analysis", "Impact analysis", "Risk scenario development"] },
+        { title: "Assessment", items: ["Probability assessment", "Impact assessment", "Risk classification", "Priority ranking"] },
+        { title: "Treatment", items: ["Control design", "Risk acceptance", "Risk transfer", "Risk avoidance"] },
+        { title: "Monitoring", items: ["KRI monitoring", "Regular reviews", "Executive reporting", "Continuous improvement"] }
+      ]
+    },
+    implementation: {
+      title: "Implementation Process",
+      subtitle: "Step-by-step approach to effective risk management.",
+      steps: [
+        { step: "01", title: "Framework Design", description: "Risk framework and methodology definition" },
+        { step: "02", title: "Risk Identification", description: "Comprehensive risk mapping and documentation" },
+        { step: "03", title: "Assessment & Prioritization", description: "Risk assessment and priority ranking" },
+        { step: "04", title: "Control Design", description: "Risk treatment approach design" },
+        { step: "05", title: "Implementation & Monitoring", description: "KRI metrics and monitoring processes" }
+      ]
+    },
+    cta: {
+      title: "Ready to build risk management?",
+      subtitle: "Let's discuss your organization's risk profile and design an effective management model.",
+      primaryCTA: { text: "Get in Touch", href: "/contact" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    }
   },
-  {
-    icon: 'database',
-    titleFi: 'Riskirekisteri',
-    titleEn: 'Risk Register',
-    descFi: 'Keskitetty riskirekisteri seurannalla ja raportoinnilla',
-    descEn: 'Centralized risk register with tracking and reporting'
-  },
-  {
-    icon: 'trending-up',
-    titleFi: 'KRI-mittarit',
-    titleEn: 'KRI Metrics',
-    descFi: 'Keskeisten riskiindikaattoreiden seuranta ja hälytykset',
-    descEn: 'Key Risk Indicator monitoring and alerting'
-  },
-  {
-    icon: 'users',
-    titleFi: 'Hallintamalli',
-    titleEn: 'Governance Model',
-    descFi: 'Roolit, vastuut ja päätöksentekoprosessit',
-    descEn: 'Roles, responsibilities and decision-making processes'
+  fi: {
+    hero: {
+      title: "Riskienhallinta",
+      subtitle: "Yrityksen riskikehys & hallintamalli",
+      description: "Rakenna käytännöllinen riskikehikko, rekisterit, KRI-mittarit ja hallintamalli, joka ohjaa turvallisuuspäätöksiä. Kattava riskienhallintajärjestelmä, joka ohjaa päätöksentekoa ja varmistaa, että organisaatiosi keskittyy oikeisiin riskeihin oikeassa järjestyksessä.",
+      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    },
+    components: {
+      title: "Riskienhallintakomponentit",
+      subtitle: "Kokonaisvaltainen lähestymistapa riskien hallintaan organisaation kaikilla tasoilla.",
+      items: [
+        { title: "Riskikehikko", description: "ISO 27005/NIST-pohjainen riskienhallintakehikko", icon: "target" },
+        { title: "Riskirekisteri", description: "Keskitetty riskirekisteri seurannalla ja raportoinnilla", icon: "database" },
+        { title: "KRI-mittarit", description: "Keskeisten riskiindikaattoreiden seuranta ja hälytykset", icon: "trending-up" },
+        { title: "Hallintamalli", description: "Roolit, vastuut ja päätöksentekoprosessit", icon: "users" }
+      ]
+    },
+    riskTypes: {
+      title: "Riskityypit",
+      subtitle: "Kattamme kaikki keskeiset riskikategoriat organisaatiossanne.",
+      items: [
+        { title: "Kyberturvariskit", description: "Teknologiariskit, haavoittuvuudet ja kyberuhkat", icon: "shield" },
+        { title: "Operatiiviset riskit", description: "Prosessi-, henkilöstö- ja toimintariskit", icon: "users" },
+        { title: "Kolmannen osapuolen riskit", description: "Toimittaja-, kumppani- ja toimitusketjuriskit", icon: "building" },
+        { title: "Sääntelyriskit", description: "Compliance-riskit ja säädösmuutokset", icon: "book-open" }
+      ]
+    },
+    process: {
+      title: "Riskienhallintaprosessi",
+      subtitle: "Strukturoitu lähestymistapa riskien hallintaan koko elinkaaren ajan.",
+      steps: [
+        { title: "Tunnistaminen", items: ["Uhkien kartoitus", "Haavoittuvuusanalyysi", "Vaikutusanalyysi", "Riskiskenaarioiden kehittäminen"] },
+        { title: "Arviointi", items: ["Todennäköisyyden arviointi", "Vaikutuksen arviointi", "Riskin luokittelu", "Prioriteettijärjestys"] },
+        { title: "Käsittely", items: ["Kontrollien suunnittelu", "Riskien hyväksyminen", "Riskien siirtäminen", "Riskien välttäminen"] },
+        { title: "Seuranta", items: ["KRI-seuranta", "Säännölliset katselmukset", "Raportointi johdolle", "Jatkuva parantaminen"] }
+      ]
+    },
+    implementation: {
+      title: "Toteutusprosessi",
+      subtitle: "Vaiheittainen lähestymistapa tehokkaaseen riskienhallintaan.",
+      steps: [
+        { step: "01", title: "Kehyksen suunnittelu", description: "Riskikehikon ja menetelmien määrittely" },
+        { step: "02", title: "Riskien tunnistus", description: "Kattava riskien kartoitus ja dokumentointi" },
+        { step: "03", title: "Arviointi ja priorisointi", description: "Riskien arviointi ja tärkeysjärjestys" },
+        { step: "04", title: "Kontrollien suunnittelu", description: "Riskien käsittelytapojen suunnittelu" },
+        { step: "05", title: "Toteutus ja seuranta", description: "KRI-mittarit ja seurantaprosessit" }
+      ]
+    },
+    cta: {
+      title: "Rakennetaanko riskienhallinta?",
+      subtitle: "Keskustellaan organisaationne riskiprofiilista ja suunnitellaan tehokas hallintamalli.",
+      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    }
   }
-];
+};
 
-const riskTypes = [
-  {
-    icon: 'shield',
-    titleFi: 'Kyberturvariskit',
-    titleEn: 'Cybersecurity Risks',
-    descFi: 'Teknologiariskit, haavoittuvuudet ja kyberuhkat',
-    descEn: 'Technology risks, vulnerabilities and cyber threats'
-  },
-  {
-    icon: 'users',
-    titleFi: 'Operatiiviset riskit',
-    titleEn: 'Operational Risks',
-    descFi: 'Prosessi-, henkilöstö- ja toimintariskit',
-    descEn: 'Process, personnel and operational risks'
-  },
-  {
-    icon: 'building',
-    titleFi: 'Kolmannen osapuolen riskit',
-    titleEn: 'Third-Party Risks',
-    descFi: 'Toimittaja-, kumppani- ja toimitusketjuriskit',
-    descEn: 'Vendor, partner and supply chain risks'
-  },
-  {
-    icon: 'book-open',
-    titleFi: 'Sääntelyriskit',
-    titleEn: 'Regulatory Risks',
-    descFi: 'Compliance-riskit ja säädösmuutokset',
-    descEn: 'Compliance risks and regulatory changes'
-  }
-];
-
-const riskProcess = [
-  {
-    titleFi: 'Tunnistaminen',
-    titleEn: 'Identification',
-    itemsFi: ['Uhkien kartoitus', 'Haavoittuvuusanalyysi', 'Vaikutusanalyysi', 'Riskiskenaarioiden kehittäminen'],
-    itemsEn: ['Threat mapping', 'Vulnerability analysis', 'Impact analysis', 'Risk scenario development']
-  },
-  {
-    titleFi: 'Arviointi',
-    titleEn: 'Assessment',
-    itemsFi: ['Todennäköisyyden arviointi', 'Vaikutuksen arviointi', 'Riskin luokittelu', 'Prioriteettijärjestys'],
-    itemsEn: ['Probability assessment', 'Impact assessment', 'Risk classification', 'Priority ranking']
-  },
-  {
-    titleFi: 'Käsittely',
-    titleEn: 'Treatment',
-    itemsFi: ['Kontrollien suunnittelu', 'Riskien hyväksyminen', 'Riskien siirtäminen', 'Riskien välttäminen'],
-    itemsEn: ['Control design', 'Risk acceptance', 'Risk transfer', 'Risk avoidance']
-  },
-  {
-    titleFi: 'Seuranta',
-    titleEn: 'Monitoring',
-    itemsFi: ['KRI-seuranta', 'Säännölliset katselmukset', 'Raportointi johdolle', 'Jatkuva parantaminen'],
-    itemsEn: ['KRI monitoring', 'Regular reviews', 'Executive reporting', 'Continuous improvement']
-  }
-];
-
-const implementationSteps = [
-  { step: '1', fi: 'Kehyksen suunnittelu', en: 'Framework Design', fiDesc: 'Riskikehikon ja menetelmien määrittely', enDesc: 'Risk framework and methodology definition' },
-  { step: '2', fi: 'Riskien tunnistus', en: 'Risk Identification', fiDesc: 'Kattava riskien kartoitus ja dokumentointi', enDesc: 'Comprehensive risk mapping and documentation' },
-  { step: '3', fi: 'Arviointi ja priorisointi', en: 'Assessment and Prioritization', fiDesc: 'Riskien arviointi ja tärkeysjärjestys', enDesc: 'Risk assessment and priority ranking' },
-  { step: '4', fi: 'Kontrollien suunnittelu', en: 'Control Design', fiDesc: 'Riskien käsittelytapojen suunnittelu', enDesc: 'Risk treatment approach design' },
-  { step: '5', fi: 'Toteutus ja seuranta', en: 'Implementation and Monitoring', fiDesc: 'KRI-mittarit ja seurantaprosessit', enDesc: 'KRI metrics and monitoring processes' }
-];
+const currentContent = content[lang];
 ---
-<Layout title={title} description={description}>
-  <section class="bg-gradient-to-br from-red-50 via-white to-orange-50 py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl">
-        <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">{title}</h1>
-        <p class="text-xl text-slate-600 mb-8">{description}</p>
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
-          <h2 class="text-lg font-semibold text-slate-900 mb-4">{lang==='fi' ? 'Mitä saat?' : 'What you get'}</h2>
-          <p class="text-slate-600">{lang==='fi' ? 'Kattavan riskienhallintajärjestelmän, joka ohjaa päätöksentekoa ja varmistaa, että organisaatiosi keskittyy oikeisiin riskeihin oikeassa järjestyksessä.' : 'A comprehensive risk management system that guides decision-making and ensures your organization focuses on the right risks in the right order.'}</p>
+
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
+      <div>{currentContent.hero.title}</div>
+      <div class="mt-2">
+        <span class="bg-gradient-to-r from-[#1E2A7A] to-[#60A5FA] bg-clip-text text-transparent">{currentContent.hero.subtitle}</span>
+      </div>
+    </h1>
+    
+    <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- Risk Management Components Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.components.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.components.subtitle}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {currentContent.components.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {item.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left">
+            {item.description}
+          </p>
         </div>
-      </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang==='fi' ? 'Riskienhallintakomponentit' : 'Risk Management Components'}</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">{lang==='fi' ? 'Kokonaisvaltainen lähestymistapa riskien hallintaan organisaation kaikilla tasoilla.' : 'Comprehensive approach to risk management across all organizational levels.'}</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {riskFrameworks.map(rf => (
-          <div class="bg-gradient-to-br from-slate-50 to-white p-8 rounded-xl border border-slate-200 hover:shadow-xl transition-all duration-300">
-            <div class="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mb-6">
-              <Icon name={rf.icon} className="w-8 h-8 text-red-600" />
+<!-- Risk Types Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.riskTypes.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.riskTypes.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {currentContent.riskTypes.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl p-5 border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="flex items-start gap-3">
+            <div class="flex-shrink-0">
+              <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+                <Icon name={item.icon} class="w-5 h-5 text-blue-600 group-hover:text-white transition-colors duration-300" />
+              </div>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-2">{lang==='fi' ? rf.titleFi : rf.titleEn}</h3>
-            <p class="text-slate-600">{lang==='fi' ? rf.descFi : rf.descEn}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang==='fi' ? 'Riskityypit' : 'Risk Types'}</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">{lang==='fi' ? 'Kattamme kaikki keskeiset riskikategoriat organisaatiossanne.' : 'We cover all key risk categories in your organization.'}</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {riskTypes.map(rt => (
-          <div class="bg-white p-6 rounded-xl border border-slate-200 hover:shadow-lg transition-all duration-300">
-            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-              <Icon name={rt.icon} className="w-6 h-6 text-red-600" />
+            <div>
+              <h3 class="text-base font-bold text-slate-900 mb-1 group-hover:text-blue-700 transition-colors duration-300">
+                {item.title}
+              </h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                {item.description}
+              </p>
             </div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">{lang==='fi' ? rt.titleFi : rt.titleEn}</h3>
-            <p class="text-slate-600 text-sm">{lang==='fi' ? rt.descFi : rt.descEn}</p>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang==='fi' ? 'Riskienhallintaprosessi' : 'Risk Management Process'}</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">{lang==='fi' ? 'Strukturoitu lähestymistapa riskien hallintaan koko elinkaaren ajan.' : 'Structured approach to risk management throughout the entire lifecycle.'}</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {riskProcess.map((process, index) => (
-          <div class="bg-gradient-to-br from-slate-50 to-white p-8 rounded-xl border border-slate-200">
-            <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4 text-white font-bold">{index + 1}</div>
-            <h3 class="text-xl font-bold text-slate-900 mb-4">{lang==='fi' ? process.titleFi : process.titleEn}</h3>
-            <ul class="space-y-2">
-              {(lang==='fi' ? process.itemsFi : process.itemsEn).map(item => (
-                <li class="flex items-start">
-                  <Icon name="check" className="w-5 h-5 text-green-600 mt-0.5 mr-3 flex-shrink-0" />
-                  <span class="text-slate-600">{item}</span>
-                </li>
-              ))}
-            </ul>
+<!-- Risk Management Process Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.process.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.process.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {currentContent.process.steps.map((step, index) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="w-10 h-10 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-lg flex items-center justify-center text-white font-bold mb-4">
+            {index + 1}
           </div>
-        ))}
-      </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-4 group-hover:text-blue-700 transition-colors duration-300">
+            {step.title}
+          </h3>
+          
+          <ul class="space-y-2">
+            {step.items.map((item) => (
+              <li class="flex items-start text-sm text-slate-600">
+                <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang==='fi' ? 'Toteutusprosessi' : 'Implementation Process'}</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">{lang==='fi' ? 'Vaiheittainen lähestymistapa tehokkaaseen riskienhallintaan.' : 'Step-by-step approach to effective risk management.'}</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
-        {implementationSteps.map(step => (
-          <div class="text-center">
-            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-xl font-bold">{step.step}</div>
-            <h3 class="text-lg font-semibold text-slate-900 mb-1">{lang==='fi' ? step.fi : step.en}</h3>
-            <p class="text-slate-600 text-sm">{lang==='fi' ? step.fiDesc : step.enDesc}</p>
+<!-- Implementation Process Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.implementation.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.implementation.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+      {currentContent.implementation.steps.map((step) => (
+        <div class="bg-slate-50/50 rounded-xl p-5 text-center border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">
+            {step.step}
           </div>
-        ))}
-      </div>
+          
+          <h3 class="text-sm font-bold text-slate-900 mb-1 group-hover:text-blue-700 transition-colors duration-300">
+            {step.title}
+          </h3>
+          
+          <p class="text-slate-500 text-xs leading-relaxed">
+            {step.description}
+          </p>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="py-20 bg-slate-900 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold mb-6">{lang==='fi' ? 'Rakennetaanko riskienhallinta?' : 'Ready to build risk management?'}</h2>
-      <p class="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">{lang==='fi' ? 'Keskustellaan organisaationne riskiprofiilista ja suunnitellaan tehokas hallintamalli.' : 'Let\'s discuss your organization\'s risk profile and design an effective management model.'}</p>
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/contact" variant="primary" className="text-lg px-8 py-3">{lang==='fi' ? 'Ota yhteyttä' : 'Get in Touch'}</Button>
-        <Button href="/contact?consultation=true" variant="secondary" className="text-lg px-8 py-3">{lang==='fi' ? 'Varaa konsultaatio' : 'Book Consultation'}</Button>
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
       </div>
-    </div>
-  </section>
-</Layout>
 
+    </div>
+  </div>
+</section>
+
+</Layout>

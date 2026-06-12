@@ -1,252 +1,451 @@
 ﻿---
 import Layout from '@/layouts/Layout.astro';
-import HeroSection from '@/components/sections/HeroSection.astro';
-import CTA from '@/components/sections/CTA.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
-const title = 'GDPR & Privacy Services';
-const description = 'Comprehensive GDPR compliance and privacy excellence with privacy-by-design implementation and sustainable governance.';
-
-const heroContent = {
-  title: "GDPR & Privacy Excellence Services",
-  subtitle: "Comprehensive data protection compliance with privacy-by-design and sustainable privacy governance",
-  description: "Expert GDPR implementation and privacy program management including data mapping, privacy impact assessments, consent management, data subject rights automation, and continuous compliance monitoring to build competitive advantage through privacy excellence.",
-  primaryCTA: { text: "Start Privacy Assessment", href: "/contact?service=gdpr-privacy" },
-  secondaryCTA: { text: "View Privacy Resources", href: "/resources" }
+// SEO Configuration
+const seoConfig = {
+  title: "GDPR & Privacy Services | Data Protection Compliance & Privacy Excellence",
+  description: "Comprehensive GDPR compliance and privacy excellence with privacy-by-design implementation and sustainable governance.",
+  keywords: "GDPR compliance, data protection, privacy services, DPIA, data mapping, subject rights, privacy-by-design",
+  type: "service" as const,
 };
 
-const privacyServices = [
-  {
-    title: "Data Protection Impact Assessment (DPIA)",
-    description: "Systematic privacy impact assessments for high-risk processing activities",
-    deliverables: [
-      "DPIA methodology and framework development",
-      "High-risk processing identification and assessment",
-      "Stakeholder consultation and privacy expert review",
-      "Mitigation measures and residual risk evaluation",
-      "Ongoing monitoring and review processes"
-    ],
-    timeline: "4-8 weeks per assessment",
-    compliance: "Mandatory for high-risk processing"
-  },
-  {
-    title: "Comprehensive Data Mapping & Inventory",
-    description: "Complete mapping of personal data flows and processing activities",
-    deliverables: [
-      "Personal data inventory and classification",
-      "Data flow mapping across systems and processes",
-      "Legal basis identification and documentation",
-      "Data retention and disposal schedules",
-      "Third-party data sharing agreements"
-    ],
-    timeline: "6-12 weeks",
-    compliance: "Foundation for GDPR compliance"
-  },
-  {
-    title: "Data Subject Rights Management",
-    description: "Automated systems for managing individual privacy rights",
-    deliverables: [
-      "Subject access request (SAR) automation",
-      "Right to rectification and erasure procedures",
-      "Data portability and structured export capabilities",
-      "Consent management and withdrawal systems",
-      "Objection and automated decision-making opt-outs"
-    ],
-    timeline: "8-16 weeks",
-    compliance: "Response within 30 days required"
-  },
-  {
-    title: "Privacy-by-Design Implementation",
-    description: "Integration of privacy principles into systems and processes",
-    deliverables: [
-      "Privacy impact assessment integration",
-      "System design privacy reviews",
-      "Default privacy settings implementation",
-      "Data minimization and purpose limitation controls",
-      "Privacy-enhancing technology deployment"
-    ],
-    timeline: "12-24 weeks",
-    compliance: "Proactive privacy protection"
-  },
-  {
-    title: "Records of Processing Activities (RoPA)",
-    description: "Comprehensive documentation of all data processing activities",
-    deliverables: [
-      "Article 30 records of processing activities",
-      "Processing purpose and legal basis documentation",
-      "Data categories and retention period schedules",
-      "Recipient and transfer documentation",
-      "Regular review and update procedures"
-    ],
-    timeline: "4-8 weeks",
-    compliance: "Mandatory documentation requirement"
-  },
-  {
-    title: "International Transfer Compliance",
-    description: "Lawful frameworks for cross-border data transfers",
-    deliverables: [
-      "Transfer impact assessments (TIAs)",
-      "Standard Contractual Clauses (SCCs) implementation",
-      "Adequacy decision compliance verification",
-      "Binding Corporate Rules (BCRs) for multinationals",
-      "Supplementary measures and safeguards"
-    ],
-    timeline: "6-12 weeks",
-    compliance: "Transfers must have legal basis"
-  }
-];
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
-const gdprPrinciples = [
-  {
-    principle: "Lawfulness, Fairness & Transparency",
-    description: "Clear legal basis and transparent processing",
-    penalty: "Up to €20M or 4% annual turnover"
+const content = {
+  en: {
+    hero: {
+      title: "GDPR & Privacy Excellence Services",
+      subtitle: "Data Protection Compliance & Privacy Governance",
+      description: "Expert GDPR implementation and privacy program management including data mapping, privacy impact assessments, consent management, data subject rights automation, and continuous compliance monitoring to build competitive advantage through privacy excellence.",
+      primaryCTA: { text: "Start Privacy Assessment", href: "/contact?service=gdpr-privacy" },
+      secondaryCTA: { text: "View Privacy Resources", href: "/resources" }
+    },
+    services: {
+      title: "Comprehensive Privacy Services",
+      subtitle: "End-to-end GDPR compliance services that transform privacy obligations into competitive advantages through excellence in data protection.",
+      items: [
+        {
+          title: "Data Protection Impact Assessment (DPIA)",
+          description: "Systematic privacy impact assessments for high-risk processing activities",
+          icon: "shield-check",
+          timeline: "4-8 weeks per assessment",
+          compliance: "Mandatory for high-risk processing",
+          deliverables: [
+            "DPIA methodology and framework development",
+            "High-risk processing identification and assessment",
+            "Stakeholder consultation and privacy expert review",
+            "Mitigation measures and residual risk evaluation",
+            "Ongoing monitoring and review processes"
+          ]
+        },
+        {
+          title: "Comprehensive Data Mapping & Inventory",
+          description: "Complete mapping of personal data flows and processing activities",
+          icon: "database",
+          timeline: "6-12 weeks",
+          compliance: "Foundation for GDPR compliance",
+          deliverables: [
+            "Personal data inventory and classification",
+            "Data flow mapping across systems and processes",
+            "Legal basis identification and documentation",
+            "Data retention and disposal schedules",
+            "Third-party data sharing agreements"
+          ]
+        },
+        {
+          title: "Data Subject Rights Management",
+          description: "Automated systems for managing individual privacy rights",
+          icon: "users",
+          timeline: "8-16 weeks",
+          compliance: "Response within 30 days required",
+          deliverables: [
+            "Subject access request (SAR) automation",
+            "Right to rectification and erasure procedures",
+            "Data portability and structured export capabilities",
+            "Consent management and withdrawal systems",
+            "Objection and automated decision-making opt-outs"
+          ]
+        },
+        {
+          title: "Privacy-by-Design Implementation",
+          description: "Integration of privacy principles into systems and processes",
+          icon: "cog",
+          timeline: "12-24 weeks",
+          compliance: "Proactive privacy protection",
+          deliverables: [
+            "Privacy impact assessment integration",
+            "System design privacy reviews",
+            "Default privacy settings implementation",
+            "Data minimization and purpose limitation controls",
+            "Privacy-enhancing technology deployment"
+          ]
+        },
+        {
+          title: "Records of Processing Activities (RoPA)",
+          description: "Comprehensive documentation of all data processing activities",
+          icon: "document-check",
+          timeline: "4-8 weeks",
+          compliance: "Mandatory documentation requirement",
+          deliverables: [
+            "Article 30 records of processing activities",
+            "Processing purpose and legal basis documentation",
+            "Data categories and retention period schedules",
+            "Recipient and transfer documentation",
+            "Regular review and update procedures"
+          ]
+        },
+        {
+          title: "International Transfer Compliance",
+          description: "Lawful frameworks for cross-border data transfers",
+          icon: "globe-alt",
+          timeline: "6-12 weeks",
+          compliance: "Transfers must have legal basis",
+          deliverables: [
+            "Transfer impact assessments (TIAs)",
+            "Standard Contractual Clauses (SCCs) implementation",
+            "Adequacy decision compliance verification",
+            "Binding Corporate Rules (BCRs) for multinationals",
+            "Supplementary measures and safeguards"
+          ]
+        }
+      ]
+    },
+    principles: {
+      title: "GDPR Principles & Compliance Requirements",
+      subtitle: "Understanding the core GDPR principles and potential penalties for non-compliance.",
+      items: [
+        { principle: "Lawfulness, Fairness & Transparency", description: "Clear legal basis and transparent processing", penalty: "Up to €20M or 4% annual turnover" },
+        { principle: "Purpose Limitation", description: "Specified, explicit and legitimate purposes", penalty: "Up to €20M or 4% annual turnover" },
+        { principle: "Data Minimisation", description: "Adequate, relevant and limited processing", penalty: "Up to €20M or 4% annual turnover" },
+        { principle: "Accuracy", description: "Accurate and up-to-date personal data", penalty: "Up to €20M or 4% annual turnover" },
+        { principle: "Storage Limitation", description: "Limited retention periods", penalty: "Up to €20M or 4% annual turnover" },
+        { principle: "Security", description: "Appropriate technical and organisational measures", penalty: "Up to €10M or 2% annual turnover" }
+      ]
+    },
+    benefits: {
+      title: "Privacy as Competitive Advantage",
+      subtitle: "Transform GDPR compliance from regulatory burden into business advantage through privacy excellence.",
+      items: [
+        { title: "Customer Trust Building", description: "Demonstrate commitment to privacy protection, building stronger customer relationships and brand loyalty", icon: "users" },
+        { title: "Cost Reduction", description: "Avoid significant regulatory fines while reducing data management costs through privacy-by-design", icon: "chart-line" },
+        { title: "Market Differentiation", description: "Use privacy excellence as competitive differentiator in privacy-conscious markets", icon: "star" }
+      ]
+    },
+    cta: {
+      title: "Ready to Achieve Privacy Excellence?",
+      subtitle: "Transform GDPR compliance from regulatory burden into competitive advantage with comprehensive privacy services and expert guidance.",
+      primaryCTA: { text: "Start Privacy Assessment", href: "/contact?service=gdpr-privacy" },
+      secondaryCTA: { text: "Explore GDPR Framework", href: "/frameworks/gdpr" }
+    }
   },
-  {
-    principle: "Purpose Limitation",
-    description: "Specified, explicit and legitimate purposes",
-    penalty: "Up to €20M or 4% annual turnover"
-  },
-  {
-    principle: "Data Minimisation",
-    description: "Adequate, relevant and limited processing",
-    penalty: "Up to €20M or 4% annual turnover"
-  },
-  {
-    principle: "Accuracy",
-    description: "Accurate and up-to-date personal data",
-    penalty: "Up to €20M or 4% annual turnover"
-  },
-  {
-    principle: "Storage Limitation",
-    description: "Limited retention periods",
-    penalty: "Up to €20M or 4% annual turnover"
-  },
-  {
-    principle: "Security",
-    description: "Appropriate technical and organisational measures",
-    penalty: "Up to €10M or 2% annual turnover"
+  fi: {
+    hero: {
+      title: "GDPR- ja tietosuojapalvelut",
+      subtitle: "Tietosuojavaatimustenmukaisuus & tietosuojahallinta",
+      description: "Asiantunteva GDPR-toteutus ja tietosuojaohjelman hallinta, mukaan lukien tietokartoitus, tietosuojan vaikutusten arvioinnit, suostumushallinta, rekisteröityjen oikeuksien automatisointi ja jatkuva vaatimustenmukaisuuden seuranta kilpailuedun rakentamiseksi tietosuojan huippuosaamisen avulla.",
+      primaryCTA: { text: "Aloita tietosuoja-arviointi", href: "/contact?service=gdpr-privacy" },
+      secondaryCTA: { text: "Tutustu tietosuojaresursseihin", href: "/resources" }
+    },
+    services: {
+      title: "Kattavat tietosuojapalvelut",
+      subtitle: "Päästä päähän -GDPR-vaatimustenmukaisuuspalvelut, jotka muuttavat tietosuojavelvoitteet kilpailueduiksi tietosuojan huippuosaamisen avulla.",
+      items: [
+        {
+          title: "Tietosuojan vaikutusten arviointi (DPIA)",
+          description: "Systemaattiset tietosuojan vaikutusten arvioinnit riskialttiille tietojenkäsittelytoimille",
+          icon: "shield-check",
+          timeline: "4-8 viikkoa per arviointi",
+          compliance: "Pakollinen riskialttiille käsittelylle",
+          deliverables: ["DPIA-menetelmän ja -kehyksen kehittäminen", "Riskialttiin käsittelyn tunnistaminen ja arviointi", "Sidosryhmien kuuleminen ja tietosuoja-asiantuntijan arvio", "Hallintatoimenpiteet ja jäännösriskin arviointi", "Jatkuvan seurannan ja tarkistuksen prosessit"]
+        },
+        {
+          title: "Kattava tietokartoitus ja inventaario",
+          description: "Täydellinen henkilötietojen virtojen ja käsittelytoimien kartoitus",
+          icon: "database",
+          timeline: "6-12 viikkoa",
+          compliance: "GDPR-vaatimustenmukaisuuden perusta",
+          deliverables: ["Henkilötietojen inventaario ja luokittelu", "Tietovirtojen kartoitus järjestelmien ja prosessien välillä", "Oikeudellisen perusteen tunnistaminen ja dokumentointi", "Tietojen säilytys- ja poistoaikataulut", "Kolmannen osapuolen tietojakamisjärjestelyt"]
+        },
+        {
+          title: "Rekisteröityjen oikeuksien hallinta",
+          description: "Automatisoidut järjestelmät yksilöiden tietosuojaoikeuksien hallintaan",
+          icon: "users",
+          timeline: "8-16 viikkoa",
+          compliance: "Vastaus 30 päivän kuluessa vaaditaan",
+          deliverables: ["Tarkastuspyyntöjen (SAR) automatisointi", "Oikaisu- ja poistamisoikeusmenettelyt", "Tietojen siirrettävyys ja jäsennelty vientikyvykkyys", "Suostumushallinta- ja peruuttamisjärjestelmät", "Vastustamis- ja automatisoidun päätöksenteon poistumismahdollisuudet"]
+        },
+        {
+          title: "Tietosuoja-by-design -toteutus",
+          description: "Tietosuojaperiaatteiden integrointi järjestelmiin ja prosesseihin",
+          icon: "cog",
+          timeline: "12-24 viikkoa",
+          compliance: "Ennakoiva tietosuojaus",
+          deliverables: ["Tietosuojavaikutusten arvioinnin integrointi", "Järjestelmäsuunnittelun tietosuojakatselmukset", "Oletusarvoisten tietosuoja-asetusten toteutus", "Tietojen minimointi- ja tarkoitussidonnaisuuskontrollit", "Tietosuojaa parantavan teknologian käyttöönotto"]
+        },
+        {
+          title: "Kirjanpito käsittelytoimista (RoPA)",
+          description: "Kattava dokumentointi kaikista tietojenkäsittelytoimista",
+          icon: "document-check",
+          timeline: "4-8 viikkoa",
+          compliance: "Pakollinen dokumentointivaatimus",
+          deliverables: ["Artikla 30:n mukainen kirjanpito käsittelytoimista", "Käsittelytarkoituksen ja oikeudellisen perusteen dokumentointi", "Tietoluokat ja säilytysaikataulut", "Vastaanottaja- ja siirtodokumentointi", "Säännölliset tarkistus- ja päivitysmenettelyt"]
+        },
+        {
+          title: "Kansainvälisten siirtojen vaatimustenmukaisuus",
+          description: "Lailliset puitteet rajat ylittäville tietosiirroille",
+          icon: "globe-alt",
+          timeline: "6-12 viikkoa",
+          compliance: "Siirroilla on oltava laillinen peruste",
+          deliverables: ["Siirron vaikutusten arvioinnit (TIA)", "Vakiosopimuslausekkeiden (SCC) käyttöönotto", "Riittävyyspäätösvaatimustenmukaisuuden varmennus", "Sitovat yrityssäännöt (BCR) monikansallisille yrityksille", "Lisätoimenpiteet ja suojatoimet"]
+        }
+      ]
+    },
+    principles: {
+      title: "GDPR-periaatteet ja vaatimustenmukaisuusvaatimukset",
+      subtitle: "GDPR:n keskeisten periaatteiden ja mahdollisten seuraamusten ymmärtäminen.",
+      items: [
+        { principle: "Laillisuus, asianmukaisuus ja läpinäkyvyys", description: "Selkeä laillinen peruste ja läpinäkyvä käsittely", penalty: "Jopa 20 miljoonaa euroa tai 4% vuosiliikevaihdosta" },
+        { principle: "Tarkoituksen sidonnaisuus", description: "Erityiset, nimenomaiset ja lailliset tarkoitukset", penalty: "Jopa 20 miljoonaa euroa tai 4% vuosiliikevaihdosta" },
+        { principle: "Tietojen minimointi", description: "Riittävä, olennainen ja rajoitettu käsittely", penalty: "Jopa 20 miljoonaa euroa tai 4% vuosiliikevaihdosta" },
+        { principle: "Tarkkuus", description: "Tarkka ja ajantasainen henkilötieto", penalty: "Jopa 20 miljoonaa euroa tai 4% vuosiliikevaihdosta" },
+        { principle: "Säilytyksen rajoittaminen", description: "Rajoitetut säilytysajat", penalty: "Jopa 20 miljoonaa euroa tai 4% vuosiliikevaihdosta" },
+        { principle: "Turvallisuus", description: "Asianmukaiset tekniset ja organisatoriset toimenpiteet", penalty: "Jopa 10 miljoonaa euroa tai 2% vuosiliikevaihdosta" }
+      ]
+    },
+    benefits: {
+      title: "Tietosuoja kilpailuetuna",
+      subtitle: "Muuta GDPR-vaatimustenmukaisuus sääntelytaakasta liiketoimintaeduksi tietosuojan huippuosaamisen avulla.",
+      items: [
+        { title: "Asiakasluottamuksen rakentaminen", description: "Osoita sitoutuminen tietosuojaan, rakentaen vahvempia asiakassuhteita ja brändiuskollisuutta", icon: "users" },
+        { title: "Kustannusten vähentäminen", description: "Vältä merkittävät sääntelysakot vähentäen samalla tietojenhallintakustannuksia tietosuoja-by-designin avulla", icon: "chart-line" },
+        { title: "Markkinaerottautuminen", description: "Käytä tietosuojan huippuosaamista kilpailullisena erottautumistekijänä tietosuojatietoisilla markkinoilla", icon: "star" }
+      ]
+    },
+    cta: {
+      title: "Valmis saavuttamaan tietosuojan huippuosaamisen?",
+      subtitle: "Muuta GDPR-vaatimustenmukaisuus sääntelytaakasta kilpailueduksi kattavilla tietosuojapalveluilla ja asiantuntijaohjauksella.",
+      primaryCTA: { text: "Aloita tietosuoja-arviointi", href: "/contact?service=gdpr-privacy" },
+      secondaryCTA: { text: "Tutustu GDPR-kehykseen", href: "/frameworks/gdpr" }
+    }
   }
-];
+};
+
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={description}>
-  <HeroSection content={heroContent} />
-  
-  <!-- Privacy Services -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">Comprehensive Privacy Services</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          End-to-end GDPR compliance services that transform privacy obligations into competitive advantages through excellence in data protection.
-        </p>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
+      <div>{currentContent.hero.title}</div>
+      <div class="mt-2">
+        <span class="bg-gradient-to-r from-[#1E2A7A] to-[#60A5FA] bg-clip-text text-transparent">{currentContent.hero.subtitle}</span>
       </div>
+    </h1>
+    
+    <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
       
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {privacyServices.map((service) => (
-          <div class="bg-gradient-to-br from-green-50 to-white p-8 rounded-xl border border-slate-200 hover:shadow-xl transition-all duration-300">
-            <div class="flex justify-between items-start mb-4">
-              <h3 class="text-xl font-bold text-slate-900">{service.title}</h3>
-              <div class="text-right">
-                <div class="text-sm font-medium text-green-600 bg-green-100 px-3 py-1 rounded-full">
-                  {service.timeline}
-                </div>
-                <div class="text-xs text-slate-500 mt-1">{service.compliance}</div>
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- Privacy Services Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.services.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.services.subtitle}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {currentContent.services.items.map((service) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-between items-start mb-4">
+            <div></div>
+            <div class="flex justify-end">
+              <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+                <Icon name={service.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
               </div>
             </div>
-            <p class="text-slate-600 mb-6">{service.description}</p>
-            <div>
-              <h4 class="font-semibold text-slate-900 mb-3">Key Deliverables</h4>
-              <ul class="space-y-2">
-                {service.deliverables.map((deliverable) => (
-                  <li class="flex items-start text-slate-600">
-                    <svg class="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    {deliverable}
-                  </li>
-                ))}
-              </ul>
+          </div>
+          
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors duration-300">
+              {service.title}
+            </h3>
+            <div class="text-right">
+              <span class="text-xs font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
+                {service.timeline}
+              </span>
+              <p class="text-xs text-slate-400 mt-1">{service.compliance}</p>
             </div>
           </div>
-        ))}
-      </div>
+          
+          <p class="text-slate-500 text-sm leading-relaxed mb-4">
+            {service.description}
+          </p>
+          
+          <div class="mt-auto">
+            <h4 class="font-semibold text-slate-800 text-sm mb-2">
+              {lang === 'fi' ? 'Keskeiset toimitettavat' : 'Key Deliverables'}
+            </h4>
+            <ul class="space-y-1.5">
+              {service.deliverables.slice(0, 4).map((deliverable) => (
+                <li class="flex items-start text-xs text-slate-500">
+                  <svg class="w-3 h-3 text-blue-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  {deliverable}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- GDPR Principles & Penalties -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">GDPR Principles & Compliance Requirements</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Understanding the core GDPR principles and potential penalties for non-compliance.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {gdprPrinciples.map((principle) => (
-          <div class="bg-white p-6 rounded-xl border border-slate-200 hover:shadow-lg transition-shadow">
-            <h3 class="text-lg font-bold text-slate-900 mb-3">{principle.principle}</h3>
-            <p class="text-slate-600 mb-4">{principle.description}</p>
-            <div class="pt-3 border-t border-slate-200">
-              <p class="text-sm font-medium text-red-600">Max Penalty: {principle.penalty}</p>
+<!-- GDPR Principles Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.principles.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.principles.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {currentContent.principles.items.map((principle) => (
+        <div class="bg-slate-50/50 rounded-xl p-5 border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-lg transition-all duration-300">
+          
+          <h3 class="text-base font-bold text-slate-900 mb-2">{principle.principle}</h3>
+          <p class="text-slate-500 text-xs mb-3">{principle.description}</p>
+          <div class="pt-2 border-t border-slate-100">
+            <p class="text-xs font-medium text-red-600">{lang === 'fi' ? 'Enimmäisseuraamus:' : 'Max Penalty:'} {principle.penalty}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.benefits.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.benefits.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {currentContent.benefits.items.map((benefit) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 text-center border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="flex justify-center mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={benefit.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
             </div>
           </div>
-        ))}
-      </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300">
+            {benefit.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed">
+            {benefit.description}
+          </p>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Benefits Section -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">Privacy as Competitive Advantage</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Transform GDPR compliance from regulatory burden into business advantage through privacy excellence.
-        </p>
-      </div>
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
       
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-6">
-            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-4">🤝 Customer Trust Building</h3>
-          <p class="text-slate-600">Demonstrate commitment to privacy protection, building stronger customer relationships and brand loyalty</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-6">
-            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-4"> Cost Reduction</h3>
-          <p class="text-slate-600">Avoid significant regulatory fines while reducing data management costs through privacy-by-design</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-6">
-            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.414-4.414a2 2 0 010 2.828L9.828 17.657a2 2 0 01-2.828 0L3.172 13.828a2 2 0 010-2.828L9.757 4.414a2 2 0 012.828 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-4">Market Differentiation</h3>
-          <p class="text-slate-600">Use privacy excellence as competitive differentiator in privacy-conscious markets</p>
-        </div>
-      </div>
-    </div>
-  </section>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
 
-  <CTA 
-    title="Ready to Achieve Privacy Excellence?"
-    description="Transform GDPR compliance from regulatory burden into competitive advantage with comprehensive privacy services and expert guidance."
-    primaryCTA={{ text: "Start Privacy Assessment", href: "/contact?service=gdpr-privacy" }}
-    secondaryCTA={{ text: "Explore GDPR Framework", href: "/frameworks/gdpr" }}
-  />
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 </Layout>
-

@@ -1,235 +1,433 @@
 ﻿---
 import Layout from '@/layouts/Layout.astro';
-import HeroSection from '@/components/sections/HeroSection.astro';
-import CTA from '@/components/sections/CTA.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
-const title = 'DORA Compliance Services';
-const description = 'Comprehensive Digital Operational Resilience Act compliance for financial institutions and critical ICT service providers.';
-
-const heroContent = {
-  title: " DORA Digital Operational Resilience Services",
-  subtitle: "Comprehensive EU financial services cybersecurity compliance for operational resilience excellence",
-  description: "Expert DORA implementation for Finnish financial institutions covering ICT risk management, incident response, operational resilience testing, third-party management, and information sharing to ensure business continuity and regulatory compliance.",
-  primaryCTA: { text: "Start DORA Assessment", href: "/contact?service=dora-compliance" },
-  secondaryCTA: { text: "View Financial Services", href: "/industries/financial-services" }
+// SEO Configuration
+const seoConfig = {
+  title: "DORA Compliance Services | Digital Operational Resilience Act Implementation",
+  description: "Comprehensive Digital Operational Resilience Act compliance for financial institutions and critical ICT service providers.",
+  keywords: "DORA compliance, Digital Operational Resilience Act, DORA Finland, financial services cybersecurity",
+  type: "service" as const,
 };
 
-const doraAreas = [
-  {
-    title: " ICT Risk Management Framework",
-    description: "Comprehensive ICT risk management integrated with overall operational risk management",
-    capabilities: [
-      "ICT risk management policy with board oversight",
-      "Risk assessment methodologies and treatment processes",
-      "ICT asset inventory and dependency mapping",
-      "Risk monitoring and key risk indicator frameworks",
-      "Integration with business strategy and operational risk"
-    ],
-    timeline: "6-9 months",
-    entities: "All financial entities"
-  },
-  {
-    title: "ICT-Related Incident Management",
-    description: "24/7 incident detection, response, and regulatory reporting capabilities",
-    capabilities: [
-      "Computer security incident detection and response",
-      "Incident classification and severity assessment",
-      "Regulatory reporting to competent authorities",
-      "Root cause analysis and lessons learned",
-      "Cross-border coordination and communication"
-    ],
-    timeline: "4-6 months",
-    entities: "Mandatory for all entities"
-  },
-  {
-    title: " Digital Operational Resilience Testing",
-    description: "Comprehensive testing framework for ICT systems and operational processes",
-    capabilities: [
-      "Threat-led penetration testing (TLPT) programs",
-      "Vulnerability assessments and penetration testing",
-      "Scenario-based operational resilience testing",
-      "Testing documentation and remediation tracking",
-      "Advanced red team and purple team exercises"
-    ],
-    timeline: "Ongoing cycles",
-    entities: "TLPT for significant entities"
-  },
-  {
-    title: "🤝 Third-Party ICT Provider Management",
-    description: "Comprehensive oversight of critical ICT service providers and supply chain",
-    capabilities: [
-      "Critical ICT service provider identification",
-      "Contractual arrangements with DORA requirements",
-      "Continuous monitoring and performance oversight",
-      "Exit strategies and contingency planning",
-      "Subcontracting oversight and fourth-party risk"
-    ],
-    timeline: "12-18 months",
-    entities: "Enhanced oversight requirements"
-  }
-];
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
-const applicableEntities = [
-  {
-    category: "Credit Institutions",
-    examples: ["Banks", "Credit unions", "Building societies"],
-    requirements: "All DORA pillars apply"
+const content = {
+  en: {
+    hero: {
+      title: "DORA Digital Operational Resilience Services",
+      subtitle: "EU Financial Services Cybersecurity Compliance",
+      description: "Expert DORA implementation for Finnish financial institutions covering ICT risk management, incident response, operational resilience testing, third-party management, and information sharing to ensure business continuity and regulatory compliance.",
+      primaryCTA: { text: "Start DORA Assessment", href: "/contact?service=dora-compliance" },
+      secondaryCTA: { text: "View Financial Services", href: "/industries/financial-services" }
+    },
+    doraAreas: {
+      title: "DORA Compliance Service Areas",
+      subtitle: "Comprehensive support across all five DORA pillars to ensure your financial institution achieves digital operational resilience excellence.",
+      items: [
+        {
+          title: "ICT Risk Management Framework",
+          description: "Comprehensive ICT risk management integrated with overall operational risk management",
+          icon: "shield-check",
+          timeline: "6-9 months",
+          entities: "All financial entities",
+          capabilities: [
+            "ICT risk management policy with board oversight",
+            "Risk assessment methodologies and treatment processes",
+            "ICT asset inventory and dependency mapping",
+            "Risk monitoring and key risk indicator frameworks"
+          ]
+        },
+        {
+          title: "ICT-Related Incident Management",
+          description: "24/7 incident detection, response, and regulatory reporting capabilities",
+          icon: "bolt",
+          timeline: "4-6 months",
+          entities: "Mandatory for all entities",
+          capabilities: [
+            "Computer security incident detection and response",
+            "Incident classification and severity assessment",
+            "Regulatory reporting to competent authorities",
+            "Root cause analysis and lessons learned"
+          ]
+        },
+        {
+          title: "Digital Operational Resilience Testing",
+          description: "Comprehensive testing framework for ICT systems and operational processes",
+          icon: "refresh-cw",
+          timeline: "Ongoing cycles",
+          entities: "TLPT for significant entities",
+          capabilities: [
+            "Threat-led penetration testing (TLPT) programs",
+            "Vulnerability assessments and penetration testing",
+            "Scenario-based operational resilience testing",
+            "Advanced red team and purple team exercises"
+          ]
+        },
+        {
+          title: "Third-Party ICT Provider Management",
+          description: "Comprehensive oversight of critical ICT service providers and supply chain",
+          icon: "cog",
+          timeline: "12-18 months",
+          entities: "Enhanced oversight requirements",
+          capabilities: [
+            "Critical ICT service provider identification",
+            "Contractual arrangements with DORA requirements",
+            "Continuous monitoring and performance oversight",
+            "Exit strategies and contingency planning"
+          ]
+        }
+      ]
+    },
+    entities: {
+      title: "DORA Applicable Entities",
+      subtitle: "Understanding which organizations are subject to DORA requirements and compliance obligations.",
+      items: [
+        { category: "Credit Institutions", examples: ["Banks", "Credit unions", "Building societies"], requirements: "All DORA pillars apply" },
+        { category: "Investment Firms", examples: ["Investment services", "Portfolio management", "Investment advice"], requirements: "Full DORA compliance required" },
+        { category: "Insurance & Reinsurance", examples: ["Insurance companies", "Reinsurance undertakings", "Insurance intermediaries"], requirements: "Operational resilience focus" },
+        { category: "Critical ICT Third-Party Providers", examples: ["Cloud service providers", "Software providers", "Data analytics services"], requirements: "Enhanced oversight regime" }
+      ]
+    },
+    timeline: {
+      title: "DORA Implementation Timeline",
+      subtitle: "Key milestones and deadlines for DORA compliance preparation and implementation.",
+      items: [
+        { date: "January 16, 2023", milestone: "DORA Entry into Force", status: "completed" },
+        { date: "January 17, 2024", milestone: "Technical Standards Development", status: "in-progress" },
+        { date: "January 17, 2025", milestone: "DORA Application Date", status: "mandatory" }
+      ]
+    },
+    cta: {
+      title: "Ready for DORA Compliance?",
+      subtitle: "Ensure your financial institution meets the January 17, 2025 deadline with comprehensive digital operational resilience capabilities.",
+      primaryCTA: { text: "Start DORA Assessment", href: "/contact?service=dora-compliance" },
+      secondaryCTA: { text: "Explore DORA Framework", href: "/frameworks/dora" }
+    }
   },
-  {
-    category: "Investment Firms",
-    examples: ["Investment services", "Portfolio management", "Investment advice"],
-    requirements: "Full DORA compliance required"
-  },
-  {
-    category: "Insurance & Reinsurance",
-    examples: ["Insurance companies", "Reinsurance undertakings", "Insurance intermediaries"],
-    requirements: "Operational resilience focus"
-  },
-  {
-    category: "Critical ICT Third-Party Providers",
-    examples: ["Cloud service providers", "Software providers", "Data analytics services"],
-    requirements: "Enhanced oversight regime"
+  fi: {
+    hero: {
+      title: "DORA Digitaalisen toimintakyvyn palvelut",
+      subtitle: "EU:n rahoituspalvelujen kyberturvallisuusvaatimustenmukaisuus",
+      description: "Asiantunteva DORA-toteutus suomalaisille rahoituslaitoksille kattaen ICT-riskienhallinnan, tapahtumien hallinnan, toimintakyvyn testauksen, kolmannen osapuolen hallinnan ja tiedonjaon.",
+      primaryCTA: { text: "Aloita DORA-arviointi", href: "/contact?service=dora-compliance" },
+      secondaryCTA: { text: "Tutustu rahoituspalveluihin", href: "/industries/financial-services" }
+    },
+    doraAreas: {
+      title: "DORA-vaatimustenmukaisuuden palvelualueet",
+      subtitle: "Kattava tuki kaikkien viiden DORA-pilarin osalta varmistaaksesi, että rahoituslaitoksesi saavuttaa digitaalisen toimintakyvyn huippuosaamisen.",
+      items: [
+        {
+          title: "ICT-riskienhallintakehys",
+          description: "Kattava ICT-riskienhallinta integroituna yleiseen operatiiviseen riskienhallintaan",
+          icon: "shield-check",
+          timeline: "6-9 kuukautta",
+          entities: "Kaikki rahoitustoimijat",
+          capabilities: ["ICT-riskienhallintapolitiikka hallituksen valvonnassa", "Riskinarviointimenetelmät ja käsittelyprosessit", "ICT-omaisuusluettelo ja riippuvuuskartoitus", "Riskien seuranta ja keskeiset riski-indikaattorit"]
+        },
+        {
+          title: "ICT-tapahtumien hallinta",
+          description: "24/7 tapahtumien havaitseminen, reagointi ja sääntelyraportointikyvykkyydet",
+          icon: "bolt",
+          timeline: "4-6 kuukautta",
+          entities: "Pakollinen kaikille toimijoille",
+          capabilities: ["Tietoturvatapahtumien havaitseminen ja reagointi", "Tapahtumien luokittelu ja vakavuusasteen arviointi", "Sääntelyraportointi toimivaltaisille viranomaisille", "Perimmäisen syyn analyysi ja opitut asiat"]
+        },
+        {
+          title: "Digitaalisen toimintakyvyn testaus",
+          description: "Kattava testauskehys ICT-järjestelmille ja operatiivisille prosesseille",
+          icon: "refresh-cw",
+          timeline: "Jatkuvat syklit",
+          entities: "TLPT merkittäville toimijoille",
+          capabilities: ["Uhkajohtoiset penetraatiotestaus (TLPT) -ohjelmat", "Haavoittuvuusarvioinnit ja penetraatiotestaus", "Skenaariopohjainen toimintakyvyn testaus", "Edistyneet punaisten ja purppuratiimien harjoitukset"]
+        },
+        {
+          title: "Kolmannen osapuolen ICT-palveluntarjoajien hallinta",
+          description: "Kattava valvonta kriittisille ICT-palveluntarjoajille ja toimitusketjulle",
+          icon: "cog",
+          timeline: "12-18 kuukautta",
+          entities: "Tehostetut valvontavaatimukset",
+          capabilities: ["Kriittisten ICT-palveluntarjoajien tunnistaminen", "Sopimusjärjestelyt DORA-vaatimuksilla", "Jatkuva seuranta ja suorituskyvyn valvonta", "Poistumisstrategiat ja varautumissuunnittelu"]
+        }
+      ]
+    },
+    entities: {
+      title: "DORA:n soveltamisalaan kuuluvat toimijat",
+      subtitle: "Ymmärrys siitä, mitkä organisaatiot ovat DORA-vaatimusten ja noudattamisvelvoitteiden alaisia.",
+      items: [
+        { category: "Luottolaitokset", examples: ["Pankit", "Osuuspankit", "Asuntolainayhteisöt"], requirements: "Kaikki DORA-pilarit soveltuvat" },
+        { category: "Sijoituspalveluyritykset", examples: ["Sijoituspalvelut", "Salkunhoito", "Sijoitusneuvonta"], requirements: "Täysi DORA-vaatimustenmukaisuus vaaditaan" },
+        { category: "Vakuutus- ja jälleenvakuutus", examples: ["Vakuutusyhtiöt", "Jälleenvakuutusyritykset", "Vakuutusvälittäjät"], requirements: "Toiminnallisen resilienssin painopiste" },
+        { category: "Kriittiset ICT-kolmannen osapuolen palveluntarjoajat", examples: ["Pilvipalveluntarjoajat", "Ohjelmistotoimittajat", "Data-analytiikkapalvelut"], requirements: "Tehostettu valvontajärjestelmä" }
+      ]
+    },
+    timeline: {
+      title: "DORA-toteutuksen aikataulu",
+      subtitle: "Tärkeimmät virstanpylväät ja määräajat DORA-vaatimustenmukaisuuden valmistelulle ja toteutukselle.",
+      items: [
+        { date: "16. tammikuuta 2023", milestone: "DORA:n voimaantulo", status: "completed" },
+        { date: "17. tammikuuta 2024", milestone: "Teknisten standardien kehitys", status: "in-progress" },
+        { date: "17. tammikuuta 2025", milestone: "DORA:n soveltamispäivä", status: "mandatory" }
+      ]
+    },
+    cta: {
+      title: "Valmis DORA-vaatimustenmukaisuuteen?",
+      subtitle: "Varmista, että rahoituslaitoksesi täyttää 17. tammikuuta 2025 määräajan kattavilla digitaalisen toimintakyvyn ominaisuuksilla.",
+      primaryCTA: { text: "Aloita DORA-arviointi", href: "/contact?service=dora-compliance" },
+      secondaryCTA: { text: "Tutustu DORA-kehykseen", href: "/frameworks/dora" }
+    }
   }
-];
+};
 
-const timeline = [
-  {
-    date: "January 16, 2023",
-    milestone: "DORA Entry into Force",
-    status: "Completed"
-  },
-  {
-    date: "January 17, 2024",
-    milestone: "Technical Standards Development",
-    status: "In Progress"
-  },
-  {
-    date: "January 17, 2025",
-    milestone: "DORA Application Date",
-    status: "Mandatory Deadline"
+const currentContent = content[lang];
+
+function getStatusColor(status: string) {
+  switch(status) {
+    case 'completed': return 'bg-green-100 text-green-700';
+    case 'in-progress': return 'bg-blue-100 text-blue-700';
+    case 'mandatory': return 'bg-red-100 text-red-700';
+    default: return 'bg-slate-100 text-slate-700';
   }
-];
+}
+
+function getStatusText(status: string, lang: string) {
+  if (lang === 'fi') {
+    switch(status) {
+      case 'completed': return 'Valmis';
+      case 'in-progress': return 'Käynnissä';
+      case 'mandatory': return 'Pakollinen';
+      default: return status;
+    }
+  } else {
+    switch(status) {
+      case 'completed': return 'Completed';
+      case 'in-progress': return 'In Progress';
+      case 'mandatory': return 'Mandatory';
+      default: return status;
+    }
+  }
+}
 ---
 
-<Layout title={title} description={description}>
-  <HeroSection content={heroContent} />
-  
-  <!-- DORA Service Areas -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">DORA Compliance Service Areas</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Comprehensive support across all five DORA pillars to ensure your financial institution achieves digital operational resilience excellence.
-        </p>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image, matching home style -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
+      <div>{currentContent.hero.title}</div>
+      <div class="mt-2">
+        <span class="bg-gradient-to-r from-[#1E2A7A] to-[#60A5FA] bg-clip-text text-transparent">{currentContent.hero.subtitle}</span>
       </div>
+    </h1>
+    
+    <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
       
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {doraAreas.map((area) => (
-          <div class="bg-gradient-to-br from-blue-50 to-white p-8 rounded-xl border border-slate-200 hover:shadow-xl transition-all duration-300">
-            <div class="flex justify-between items-start mb-4">
-              <h3 class="text-xl font-bold text-slate-900">{area.title}</h3>
-              <div class="text-right">
-                <div class="text-sm font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
-                  {area.timeline}
-                </div>
-                <div class="text-xs text-slate-500 mt-1">{area.entities}</div>
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- DORA Service Areas Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.doraAreas.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.doraAreas.subtitle}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {currentContent.doraAreas.items.map((area) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <!-- Icon - Top Right (matching home page) -->
+          <div class="flex justify-between items-start mb-4">
+            <div></div>
+            <div class="flex justify-end">
+              <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+                <Icon name={area.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
               </div>
-            </div>
-            <p class="text-slate-600 mb-6">{area.description}</p>
-            <div>
-              <h4 class="font-semibold text-slate-900 mb-3">Key Capabilities</h4>
-              <ul class="space-y-2">
-                {area.capabilities.map((capability) => (
-                  <li class="flex items-start text-slate-600">
-                    <svg class="w-4 h-4 text-blue-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path>
-                    </svg>
-                    {capability}
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Applicable Entities -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">DORA Applicable Entities</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Understanding which organizations are subject to DORA requirements and compliance obligations.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {applicableEntities.map((entity) => (
-          <div class="bg-white p-6 rounded-xl border border-slate-200 hover:shadow-lg transition-shadow">
-            <h3 class="text-lg font-bold text-slate-900 mb-3">{entity.category}</h3>
-            <div class="mb-4">
-              <h4 class="text-sm font-semibold text-slate-700 mb-2">Examples:</h4>
-              <ul class="text-sm text-slate-600 space-y-1">
-                {entity.examples.map((example) => (
-                  <li>• {example}</li>
-                ))}
-              </ul>
-            </div>
-            <div class="pt-3 border-t border-slate-200">
-              <p class="text-xs font-medium text-blue-600">{entity.requirements}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Implementation Timeline -->
-  <section class="py-20 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">DORA Implementation Timeline</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Key milestones and deadlines for DORA compliance preparation and implementation.
-        </p>
-      </div>
-      
-      <div class="space-y-8">
-        {timeline.map((item, index) => (
-          <div class="flex items-center gap-6">
-            <div class="flex-shrink-0">
-              <div class={`w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-lg ${
-                item.status === 'Completed' ? 'bg-green-500' : 
-                item.status === 'In Progress' ? 'bg-blue-500' : 'bg-red-500'
-              }`}>
-                {index + 1}
-              </div>
-            </div>
-            <div class="flex-1 bg-slate-50 p-6 rounded-xl">
-              <div class="flex items-center justify-between mb-2">
-                <h3 class="text-xl font-bold text-slate-900">{item.milestone}</h3>
-                <span class="text-lg font-semibold text-slate-600">{item.date}</span>
-              </div>
-              <span class={`inline-block px-3 py-1 rounded-full text-sm font-medium ${
-                item.status === 'Completed' ? 'bg-green-100 text-green-800' :
-                item.status === 'In Progress' ? 'bg-blue-100 text-blue-800' : 'bg-red-100 text-red-800'
-              }`}>
-                {item.status}
+          
+          <div class="flex justify-between items-center mb-3">
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors duration-300">
+              {area.title}
+            </h3>
+            <div class="text-right">
+              <span class="text-xs font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
+                {area.timeline}
               </span>
             </div>
           </div>
-        ))}
-      </div>
+          
+          <p class="text-slate-500 text-sm leading-relaxed mb-4">
+            {area.description}
+          </p>
+          <p class="text-xs text-slate-400 mb-4">{area.entities}</p>
+          
+          <div class="mt-auto">
+            <ul class="space-y-1.5">
+              {area.capabilities.map((capability) => (
+                <li class="flex items-start text-xs text-slate-500">
+                  <svg class="w-3 h-3 text-blue-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  {capability}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <CTA 
-    title="Ready for DORA Compliance?"
-    description="Ensure your financial institution meets the January 17, 2025 deadline with comprehensive digital operational resilience capabilities."
-    primaryCTA={{ text: "Start DORA Assessment", href: "/contact?service=dora-compliance" }}
-    secondaryCTA={{ text: "Explore DORA Framework", href: "/frameworks/dora" }}
-  />
+<!-- Applicable Entities Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.entities.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.entities.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {currentContent.entities.items.map((entity) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-lg transition-all duration-300">
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-3">{entity.category}</h3>
+          
+          <div class="mb-4">
+            <ul class="space-y-1">
+              {entity.examples.map((example) => (
+                <li class="text-sm text-slate-600">• {example}</li>
+              ))}
+            </ul>
+          </div>
+          
+          <div class="pt-3 border-t border-slate-100">
+            <p class="text-xs font-medium text-blue-600">{entity.requirements}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Implementation Timeline Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.timeline.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.timeline.subtitle}
+      </p>
+    </div>
+    
+    <div class="space-y-4">
+      {currentContent.timeline.items.map((item, index) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-5
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-lg transition-all duration-300">
+          <div class="flex flex-col md:flex-row gap-4 items-start">
+            
+            <div class="flex-shrink-0">
+              <div class="w-10 h-10 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                {index + 1}
+              </div>
+            </div>
+            
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center gap-3 mb-2">
+                <h3 class="text-lg font-bold text-slate-900">{item.milestone}</h3>
+                <span class="inline-flex items-center px-2 py-1 text-xs rounded-full font-medium {getStatusColor(item.status)}">
+                  {getStatusText(item.status, lang)}
+                </span>
+                <span class="text-sm text-slate-400">{item.date}</span>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section - Matching home style -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 </Layout>
