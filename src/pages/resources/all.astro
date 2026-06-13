@@ -3,18 +3,48 @@ import Layout from '@/layouts/Layout.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
-const title = lang === 'fi' ? 'Kaikki resurssit' : 'All Resources';
-const description = lang === 'fi' ? 'Resurssisivu on siirretty. Päivitetty luettelo löytyy pääresurssisivulta.' : 'The comprehensive resources list has moved. View updated resources on the main resources page.';
+
+const content = {
+  en: {
+    title: "All Resources",
+    description: "The comprehensive resources list has moved. View updated resources on the main resources page.",
+    buttonText: "Go to Resources",
+    buttonHref: "/resources"
+  },
+  fi: {
+    title: "Kaikki resurssit",
+    description: "Resurssisivu on siirretty. Päivitetty luettelo löytyy pääresurssisivulta.",
+    buttonText: "Siirry resurssisivulle",
+    buttonHref: "/fi/resources"
+  }
+};
+
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={description}>
-  <section class="py-24">
-    <div class="max-w-3xl mx-auto px-4 text-center">
-      <h1 class="text-4xl font-bold tracking-tight mb-6">{title}</h1>
-      <p class="text-lg text-slate-600 mb-8">{description}</p>
-      <a href="/resources" class="inline-flex items-center justify-center px-6 py-3 text-center font-medium text-white bg-teal-800 hover:bg-teal-700 rounded-lg transition-colors duration-300">
-        {lang === 'fi' ? 'Siirry resurssisivulle' : 'Go to Resources'}
+<Layout title={currentContent.title} description={currentContent.description}>
+  <!-- Hero Section - Centered, NO image -->
+  <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-28 md:py-36">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-[#1E2A7A]">
+        {currentContent.title}
+      </h1>
+      
+      <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+        {currentContent.description}
+      </p>
+      
+      <a 
+        href={currentContent.buttonHref} 
+        class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm sm:text-base gap-2"
+      >
+        {currentContent.buttonText}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
       </a>
+      
     </div>
   </section>
 </Layout>

@@ -1,277 +1,413 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
-const title = 'DORA Compliance - Digital Operational Resilience Act';
-const description = 'Learn about DORA (Digital Operational Resilience Act) and how it protects financial institutions and their customers from cybersecurity threats.';
+// SEO Configuration
+const seoConfig = {
+  title: "DORA Compliance - Digital Operational Resilience Act",
+  description: "Learn about DORA (Digital Operational Resilience Act) and how it protects financial institutions and their customers from cybersecurity threats.",
+  keywords: "DORA, Digital Operational Resilience Act, EU regulation, financial services cybersecurity, operational resilience",
+  type: "framework" as const,
+};
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const content = {
+  en: {
+    hero: {
+      title: "DORA: Digital Operational Resilience Act",
+      subtitle: "EU Regulation for Cybersecurity and Operational Resilience",
+      description: "Protecting financial institutions and their customers from cyber threats and scams"
+    },
+    sections: {
+      whatIs: {
+        title: "What is DORA?",
+        description: "DORA (Digital Operational Resilience Act) is a new EU regulation that sets cybersecurity and operational resilience requirements for financial institutions, fintech companies, and their service providers. Effective since January 2023, DORA aims to strengthen the resilience of the EU financial system against cyber attacks, fraud, and operational disruptions."
+      },
+      objectives: {
+        title: "Key Objectives of DORA",
+        items: [
+          { title: "Strengthen Cybersecurity", description: "Set strict cybersecurity requirements to prevent unauthorized access, data breaches, and malware attacks.", icon: "shield" },
+          { title: "Ensure Business Continuity", description: "Require organizations to maintain operational resilience during cyber incidents and maintain critical functions.", icon: "refresh-cw" },
+          { title: "Minimize Recovery Time", description: "Establish incident response times and recovery procedures to minimize financial impact and customer harm.", icon: "clock" },
+          { title: "Transparency & Reporting", description: "Require organizations to report cyber incidents and maintain transparency about their security posture.", icon: "document-check" },
+          { title: "Protect Customers", description: "Safeguard customer data and protect against fraud, scams, and unauthorized transactions.", icon: "users" }
+        ]
+      },
+      whoMustComply: {
+        title: "Who Must Comply with DORA?",
+        items: [
+          { title: "Financial Institutions", description: "Banks, insurance companies, investment firms, payment processors" },
+          { title: "Fintech Companies", description: "Cryptocurrency exchanges, digital payment providers, robo-advisors" },
+          { title: "Third-Party Service Providers", description: "Cloud providers, IT vendors, security firms serving financial institutions" },
+          { title: "Payment Service Providers", description: "Companies processing digital payments and transfers" }
+        ]
+      },
+      requirements: {
+        title: "Main DORA Requirements",
+        items: [
+          { title: "ICT Security Requirements", icon: "lock-closed", points: ["Multi-factor authentication (MFA) for critical systems", "Data encryption for sensitive information", "Regular security assessments and penetration testing", "Access controls and privilege management", "Logging and monitoring of all security events"] },
+          { title: "Incident Reporting", icon: "alert-triangle", points: ["Report major incidents within 24 hours to regulators", "Notify customers of data breaches promptly", "Maintain detailed incident logs", "Conduct post-incident reviews"] },
+          { title: "Third-Party Risk Management", icon: "building", points: ["Assess security of all vendors and suppliers", "Include security requirements in contracts", "Monitor third-party compliance", "Have exit strategies for critical providers"] },
+          { title: "Testing & Resilience", icon: "search", points: ["Conduct regular penetration testing", "Test disaster recovery plans annually", "Perform threat-led penetration testing (TLPT)", "Maintain business continuity procedures"] },
+          { title: "Governance & Training", icon: "users", points: ["Designate ICT Risk Officer", "Provide cybersecurity training to all staff", "Implement governance frameworks", "Board-level cyber risk oversight"] }
+        ]
+      },
+      protection: {
+        title: "How DORA Protects You",
+        items: ["Stronger Security: Financial institutions must implement robust security measures", "Faster Incident Response: Organizations are required to respond quickly to cyber attacks", "Better Transparency: You'll be informed promptly if your data is compromised", "Reduced Fraud Risk: Enhanced controls help prevent scams and unauthorized transactions", "Customer Protection: Your financial data and transactions are better protected", "Vendor Accountability: All service providers must meet security standards"]
+      },
+      scams: {
+        title: "How DORA Helps Against Scams",
+        items: ["Multi-factor Authentication: Makes it harder for scammers to access accounts even with stolen credentials", "Fraud Detection: Enhanced monitoring detects suspicious transactions and activities", "Security Awareness: Regulated institutions provide better customer education on fraud", "Quick Response: Incident response requirements mean faster action against fraud", "Vendor Security: All connected services must meet security standards, reducing supply chain fraud"]
+      },
+      timeline: {
+        title: "DORA Timeline",
+        items: [
+          { date: "January 2023", description: "DORA regulation enters into force", status: "completed" },
+          { date: "January 2024 - June 2025", description: "Transitional period for organizations to implement requirements", status: "in-progress" },
+          { date: "July 2025", description: "Full compliance deadline for all regulated entities", status: "upcoming" }
+        ]
+      },
+      cta: {
+        title: "Questions about DORA Compliance?",
+        subtitle: "Contact us to learn more about how DORA compliance strengthens cybersecurity for your organization.",
+        email: "info@cybersecurity.fi"
+      }
+    }
+  },
+  fi: {
+    hero: {
+      title: "DORA: Digitaalisen toimintakyvyn säädös",
+      subtitle: "EU:n asetus kyberturvallisuudesta ja operatiivisesta resilienssistä",
+      description: "Rahoituslaitosten ja niiden asiakkaiden suojaaminen kyberuhkilta ja huijauksilta"
+    },
+    sections: {
+      whatIs: {
+        title: "Mikä on DORA?",
+        description: "DORA (Digital Operational Resilience Act) on uusi EU-asetus, joka asettaa kyberturvallisuus- ja operatiivista resilienssiä koskevat vaatimukset rahoituslaitoksille, fintech-yrityksille ja niiden palveluntarjoajille. Voimassa tammikuusta 2023 lähtien, DORA pyrkii vahvistamaan EU:n rahoitusjärjestelmän resilienssiä kyberhyökkäyksiä, petoksia ja operatiivisia häiriöitä vastaan."
+      },
+      objectives: {
+        title: "DORA:n keskeiset tavoitteet",
+        items: [
+          { title: "Kyberturvallisuuden vahvistaminen", description: "Aseta tiukat kyberturvallisuusvaatimukset luvattoman pääsyn, tietomurtojen ja haittaohjelmahyökkäysten estämiseksi.", icon: "shield" },
+          { title: "Liiketoiminnan jatkuvuuden varmistaminen", description: "Vaadi organisaatioita ylläpitämään operatiivista resilienssiä kybertapahtumien aikana ja ylläpitämään kriittisiä toimintoja.", icon: "refresh-cw" },
+          { title: "Palautumisajan minimointi", description: "Perusta tapahtumien reagointiajat ja palautusmenettelyt taloudellisen vaikutuksen ja asiakasvahinkojen minimoimiseksi.", icon: "clock" },
+          { title: "Läpinäkyvyys ja raportointi", description: "Vaadi organisaatioita raportoimaan kybertapahtumista ja ylläpitämään läpinäkyvyyttä turvallisuusasemastaan.", icon: "document-check" },
+          { title: "Asiakkaiden suojaaminen", description: "Turvaa asiakastiedot ja suojaa petoksilta, huijauksilta ja luvattomilta tapahtumilta.", icon: "users" }
+        ]
+      },
+      whoMustComply: {
+        title: "Ketkä ovat DORA:n vaatimusten alaisia?",
+        items: [
+          { title: "Rahoituslaitokset", description: "Pankit, vakuutusyhtiöt, sijoituspalveluyritykset, maksunvälittäjät" },
+          { title: "Fintech-yritykset", description: "Kryptovaluuttapörssit, digitaaliset maksupalveluntarjoajat, roboneuvojat" },
+          { title: "Kolmannen osapuolen palveluntarjoajat", description: "Pilvipalveluntarjoajat, IT-toimittajat, rahoituslaitoksia palvelevat tietoturvayritykset" },
+          { title: "Maksupalveluntarjoajat", description: "Digitaalisia maksuja ja siirtoja käsittelevät yritykset" }
+        ]
+      },
+      requirements: {
+        title: "DORA:n tärkeimmät vaatimukset",
+        items: [
+          { title: "ICT-turvallisuusvaatimukset", icon: "lock-closed", points: ["Monivaiheinen tunnistautuminen (MFA) kriittisille järjestelmille", "Tietojen salaus arkaluonteisille tiedoille", "Säännölliset turvallisuusarvioinnit ja tunkeutumistestaukset", "Käyttöoikeuksien ja etuoikeuksien hallinta", "Kaikkien turvallisuustapahtumien kirjaaminen ja seuranta"] },
+          { title: "Tapahtumaraportointi", icon: "alert-triangle", points: ["Ilmoita merkittävistä tapahtumista 24 tunnin kuluessa sääntelyviranomaisille", "Ilmoita asiakkaille tietomurroista viipymättä", "Ylläpidä yksityiskohtaisia tapahtumalokeja", "Suorita tapahtuman jälkeisiä katselmuksia"] },
+          { title: "Kolmannen osapuolen riskienhallinta", icon: "building", points: ["Arvioi kaikkien toimittajien ja alihankkijoiden turvallisuus", "Sisällytä turvallisuusvaatimukset sopimuksiin", "Seuraa kolmannen osapuolen vaatimustenmukaisuutta", "Laadi poistumisstrategiat kriittisille palveluntarjoajille"] },
+          { title: "Testaus ja resilienssi", icon: "search", points: ["Suorita säännöllisiä tunkeutumistestejä", "Testaa katastrofipalautussuunnitelmat vuosittain", "Suorita uhkajohtoinen penetraatiotestaus (TLPT)", "Ylläpidä liiketoiminnan jatkuvuusmenettelyjä"] },
+          { title: "Hallinto ja koulutus", icon: "users", points: ["Nimeä ICT-riskipäällikkö", "Järjestä kyberturvallisuuskoulutusta kaikille työntekijöille", "Toteuta hallintokehykset", "Hallitustason kyberriskin valvonta"] }
+        ]
+      },
+      protection: {
+        title: "Kuinka DORA suojaa sinua",
+        items: ["Vahvempi turvallisuus: Rahoituslaitosten on toteutettava vankat turvatoimet", "Nopeampi tapahtumien reagointi: Organisaatioiden on reagoitava nopeasti kyberhyökkäyksiin", "Parempi läpinäkyvyys: Sinulle ilmoitetaan viipymättä, jos tietosi vaarantuvat", "Vähentynyt petosriski: Tehostetut valvontatoimet auttavat estämään huijauksia ja luvattomia tapahtumia", "Asiakassuoja: Rahatietosi ja tapahtumasi ovat paremmin suojattuja", "Toimittajan vastuullisuus: Kaikkien palveluntarjoajien on täytettävä turvallisuusstandardit"]
+      },
+      scams: {
+        title: "Kuinka DORA auttaa huijauksia vastaan",
+        items: ["Monivaiheinen tunnistautuminen: Vaikeuttaa huijareiden pääsyä tileille varastetuilla tunnuksilla", "Petosten havaitseminen: Tehostettu seuranta havaitsee epäilyttävät tapahtumat ja toiminnot", "Turvallisuustietoisuus: Säännellyt laitokset tarjoavat parempaa asiakaskoulutusta petoksista", "Nopea reagointi: Tapahtumien reagointivaatimukset merkitsevät nopeampaa toimintaa petoksia vastaan", "Toimittajaturvallisuus: Kaikkien yhdistettyjen palvelujen on täytettävä turvallisuusstandardit, mikä vähentää toimitusketjupetoksia"]
+      },
+      timeline: {
+        title: "DORA-aikataulu",
+        items: [
+          { date: "Tammikuu 2023", description: "DORA-asetus tulee voimaan", status: "completed" },
+          { date: "Tammikuu 2024 - Kesäkuu 2025", description: "Siirtymäkausi organisaatioille vaatimusten käyttöönottamiseksi", status: "in-progress" },
+          { date: "Heinäkuu 2025", description: "Täyden vaatimustenmukaisuuden määräaika kaikille säännellyille yhteisöille", status: "upcoming" }
+        ]
+      },
+      cta: {
+        title: "Kysyttävää DORA-vaatimustenmukaisuudesta?",
+        subtitle: "Ota yhteyttä saadaksesi lisätietoja siitä, kuinka DORA-vaatimustenmukaisuus vahvistaa kyberturvallisuutta organisaatiossasi.",
+        email: "info@cybersecurity.fi"
+      }
+    }
+  }
+};
+
+const currentContent = content[lang];
+
+function getStatusStyles(status: string) {
+  switch(status) {
+    case 'completed': return 'bg-green-100 text-green-800';
+    case 'in-progress': return 'bg-blue-100 text-blue-800';
+    case 'upcoming': return 'bg-yellow-100 text-yellow-800';
+    default: return 'bg-slate-100 text-slate-800';
+  }
+}
+
+function getStatusText(status: string, lang: string) {
+  if (lang === 'fi') {
+    switch(status) {
+      case 'completed': return 'Valmis';
+      case 'in-progress': return 'Käynnissä';
+      case 'upcoming': return 'Tulossa';
+      default: return status;
+    }
+  } else {
+    switch(status) {
+      case 'completed': return 'Completed';
+      case 'in-progress': return 'In Progress';
+      case 'upcoming': return 'Upcoming';
+      default: return status;
+    }
+  }
+}
 ---
 
-<Layout title={title} description={description}>
-  <div class="min-h-screen bg-white">
-    <!-- Hero Section -->
-    <section class="w-full text-white py-8 sm:py-12" style="background-color: #6b21a8;">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl sm:text-4xl font-bold mb-3">🛡️ DORA: Digital Operational Resilience Act</h1>
-        <p class="text-base sm:text-lg mb-4 font-semibold">
-          EU Regulation for Cybersecurity and Operational Resilience
-        </p>
-        <p class="text-purple-100 text-sm sm:text-base">
-          Protecting financial institutions and their customers from cyber threats and scams
-        </p>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
-    </section>
-
-    <!-- Main Content -->
-    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-      
-      <!-- What is DORA -->
-      <div class="mb-8">
-        <h2 class="text-2xl font-bold text-slate-900 mb-4">What is DORA?</h2>
-        <p class="text-slate-700 text-base mb-3">
-          <strong>DORA (Digital Operational Resilience Act)</strong> is a new EU regulation that sets cybersecurity and operational resilience requirements for financial institutions, fintech companies, and their service providers.
-        </p>
-        <p class="text-slate-700 text-base">
-          Effective since January 2023, DORA aims to strengthen the resilience of the EU financial system against cyber attacks, fraud, and operational disruptions.
-        </p>
-      </div>
-
-      <!-- Key Objectives -->
-      <div class="mb-8">
-        <h2 class="text-2xl font-bold text-slate-900 mb-4">Key Objectives of DORA</h2>
-        <div class="space-y-4">
-          <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
-            <h3 class="font-bold text-slate-900 mb-2">🎯 1. Strengthen Cybersecurity</h3>
-            <p class="text-slate-700 text-sm">
-              Set strict cybersecurity requirements to prevent unauthorized access, data breaches, and malware attacks.
-            </p>
-          </div>
-
-          <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
-            <h3 class="font-bold text-slate-900 mb-2">🔄 2. Ensure Business Continuity</h3>
-            <p class="text-slate-700 text-sm">
-              Require organizations to maintain operational resilience during cyber incidents and maintain critical functions.
-            </p>
-          </div>
-
-          <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
-            <h3 class="font-bold text-slate-900 mb-2">🕐 3. Minimize Recovery Time</h3>
-            <p class="text-slate-700 text-sm">
-              Establish incident response times and recovery procedures to minimize financial impact and customer harm.
-            </p>
-          </div>
-
-          <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
-            <h3 class="font-bold text-slate-900 mb-2">📊 4. Transparency & Reporting</h3>
-            <p class="text-slate-700 text-sm">
-              Require organizations to report cyber incidents and maintain transparency about their security posture.
-            </p>
-          </div>
-
-          <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
-            <h3 class="font-bold text-slate-900 mb-2">🛡️ 5. Protect Customers</h3>
-            <p class="text-slate-700 text-sm">
-              Safeguard customer data and protect against fraud, scams, and unauthorized transactions.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Who Must Comply -->
-      <div class="mb-8">
-        <h2 class="text-2xl font-bold text-slate-900 mb-4">Who Must Comply with DORA?</h2>
-        <div class="space-y-3">
-          <div class="flex items-start gap-3">
-            <span class="text-purple-600 font-bold text-lg">✓</span>
-            <div>
-              <p class="font-semibold text-slate-900">Financial Institutions</p>
-              <p class="text-slate-700 text-sm">Banks, insurance companies, investment firms, payment processors</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="text-purple-600 font-bold text-lg">✓</span>
-            <div>
-              <p class="font-semibold text-slate-900">Fintech Companies</p>
-              <p class="text-slate-700 text-sm">Cryptocurrency exchanges, digital payment providers, robo-advisors</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="text-purple-600 font-bold text-lg">✓</span>
-            <div>
-              <p class="font-semibold text-slate-900">Third-Party Service Providers</p>
-              <p class="text-slate-700 text-sm">Cloud providers, IT vendors, security firms serving financial institutions</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="text-purple-600 font-bold text-lg">✓</span>
-            <div>
-              <p class="font-semibold text-slate-900">Payment Service Providers</p>
-              <p class="text-slate-700 text-sm">Companies processing digital payments and transfers</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Main Requirements -->
-      <div class="mb-8">
-        <h2 class="text-2xl font-bold text-slate-900 mb-4">Main DORA Requirements</h2>
-        <div class="space-y-4">
-          <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-            <h3 class="font-bold text-slate-900 mb-2">🔐 ICT Security Requirements</h3>
-            <ul class="space-y-1 text-slate-700 text-sm">
-              <li>• Multi-factor authentication (MFA) for critical systems</li>
-              <li>• Data encryption for sensitive information</li>
-              <li>• Regular security assessments and penetration testing</li>
-              <li>• Access controls and privilege management</li>
-              <li>• Logging and monitoring of all security events</li>
-            </ul>
-          </div>
-
-          <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-            <h3 class="font-bold text-slate-900 mb-2">🚨 Incident Reporting</h3>
-            <ul class="space-y-1 text-slate-700 text-sm">
-              <li>• Report major incidents within 24 hours to regulators</li>
-              <li>• Notify customers of data breaches promptly</li>
-              <li>• Maintain detailed incident logs</li>
-              <li>• Conduct post-incident reviews</li>
-            </ul>
-          </div>
-
-          <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-            <h3 class="font-bold text-slate-900 mb-2">📋 Third-Party Risk Management</h3>
-            <ul class="space-y-1 text-slate-700 text-sm">
-              <li>• Assess security of all vendors and suppliers</li>
-              <li>• Include security requirements in contracts</li>
-              <li>• Monitor third-party compliance</li>
-              <li>• Have exit strategies for critical providers</li>
-            </ul>
-          </div>
-
-          <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-            <h3 class="font-bold text-slate-900 mb-2">🧪 Testing & Resilience</h3>
-            <ul class="space-y-1 text-slate-700 text-sm">
-              <li>• Conduct regular penetration testing</li>
-              <li>• Test disaster recovery plans annually</li>
-              <li>• Perform threat-led penetration testing (TLPT)</li>
-              <li>• Maintain business continuity procedures</li>
-            </ul>
-          </div>
-
-          <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-            <h3 class="font-bold text-slate-900 mb-2">👥 Governance & Training</h3>
-            <ul class="space-y-1 text-slate-700 text-sm">
-              <li>• Designate ICT Risk Officer</li>
-              <li>• Provide cybersecurity training to all staff</li>
-              <li>• Implement governance frameworks</li>
-              <li>• Board-level cyber risk oversight</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- How DORA Protects You -->
-      <div class="mb-8 bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
-        <h2 class="text-2xl font-bold text-slate-900 mb-4">✅ How DORA Protects You</h2>
-        <ul class="space-y-2 text-slate-700 text-sm">
-          <li>✓ <strong>Stronger Security:</strong> Financial institutions must implement robust security measures</li>
-          <li>✓ <strong>Faster Incident Response:</strong> Organizations are required to respond quickly to cyber attacks</li>
-          <li>✓ <strong>Better Transparency:</strong> You'll be informed promptly if your data is compromised</li>
-          <li>✓ <strong>Reduced Fraud Risk:</strong> Enhanced controls help prevent scams and unauthorized transactions</li>
-          <li>✓ <strong>Customer Protection:</strong> Your financial data and transactions are better protected</li>
-          <li>✓ <strong>Vendor Accountability:</strong> All service providers must meet security standards</li>
-        </ul>
-      </div>
-
-      <!-- Connection to Scams -->
-      <div class="mb-8 bg-yellow-50 p-6 rounded-lg border-l-4 border-yellow-500">
-        <h2 class="text-2xl font-bold text-slate-900 mb-4">⚠️ How DORA Helps Against Scams</h2>
-        <p class="text-slate-700 text-sm mb-3">
-          DORA strengthens the financial ecosystem against scams by:
-        </p>
-        <ul class="space-y-2 text-slate-700 text-sm">
-          <li>🔐 <strong>Multi-factor Authentication:</strong> Makes it harder for scammers to access accounts even with stolen credentials</li>
-          <li>🛡️ <strong>Fraud Detection:</strong> Enhanced monitoring detects suspicious transactions and activities</li>
-          <li>📱 <strong>Security Awareness:</strong> Regulated institutions provide better customer education on fraud</li>
-          <li>🚀 <strong>Quick Response:</strong> Incident response requirements mean faster action against fraud</li>
-          <li>🔍 <strong>Vendor Security:</strong> All connected services must meet security standards, reducing supply chain fraud</li>
-        </ul>
-      </div>
-
-      <!-- DORA Timeline -->
-      <div class="mb-8">
-        <h2 class="text-2xl font-bold text-slate-900 mb-4">📅 DORA Timeline</h2>
-        <div class="space-y-3">
-          <div class="flex items-start gap-4">
-            <div class="bg-purple-600 text-white font-bold rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-              ✓
-            </div>
-            <div>
-              <p class="font-semibold text-slate-900">January 2023</p>
-              <p class="text-slate-700 text-sm">DORA regulation enters into force</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-4">
-            <div class="bg-purple-600 text-white font-bold rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-              🔄
-            </div>
-            <div>
-              <p class="font-semibold text-slate-900">January 2024 - June 2025</p>
-              <p class="text-slate-700 text-sm">Transitional period for organizations to implement requirements</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-4">
-            <div class="bg-purple-600 text-white font-bold rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-              📌
-            </div>
-            <div>
-              <p class="font-semibold text-slate-900">July 2025</p>
-              <p class="text-slate-700 text-sm">Full compliance deadline for all regulated entities</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Key Takeaways -->
-      <div class="mb-8 bg-slate-900 text-white p-6 rounded-lg">
-        <h3 class="text-xl font-bold mb-3">🎯 Key Takeaways</h3>
-        <ul class="space-y-2 text-sm">
-          <li>✓ DORA is an EU regulation strengthening cybersecurity for financial institutions</li>
-          <li>✓ It protects customers from cyber attacks, fraud, and scams</li>
-          <li>✓ All financial institutions must comply by July 2025</li>
-          <li>✓ Requirements include strong security, incident reporting, and testing</li>
-          <li>✓ You benefit from stronger protections against scams and fraud</li>
-        </ul>
-      </div>
-
-      <!-- Related Resources -->
-      <div class="mb-8">
-        <h2 class="text-2xl font-bold text-slate-900 mb-4">📚 Related Resources</h2>
-        <div class="grid md:grid-cols-2 gap-4">
-          <a 
-            href="/resources/scam-awareness" 
-            class="block p-4 bg-gradient-to-r from-red-50 to-orange-50 rounded-lg border-l-4 border-red-500 hover:shadow-md transition-all duration-200"
-          >
-            <h3 class="font-bold text-slate-900 mb-2">🚨 Scam Awareness Guide</h3>
-            <p class="text-slate-700 text-sm">Learn how to protect yourself from scams impersonating our company</p>
-          </a>
-
-          <a 
-            href="/" 
-            class="block p-4 bg-gradient-to-r from-blue-50 to-teal-50 rounded-lg border-l-4 border-blue-500 hover:shadow-md transition-all duration-200"
-          >
-            <h3 class="font-bold text-slate-900 mb-2">🏠 Back to Home</h3>
-            <p class="text-slate-700 text-sm">Return to Cyber Security Finland homepage</p>
-          </a>
-        </div>
-      </div>
-
-      <!-- Contact Section -->
-      <div class="mb-8 bg-purple-50 p-6 rounded-lg border-l-4 border-purple-500">
-        <h3 class="text-xl font-bold text-slate-900 mb-3">📞 Questions?</h3>
-        <p class="text-slate-700 text-sm mb-3">
-          Want to know more about how DORA compliance strengthens cybersecurity? Contact us:
-        </p>
-        <p class="text-sm"><strong>📧 Email:</strong> <a href="mailto:info@cybersecurity.fi" class="text-purple-600 hover:underline font-semibold">info@cybersecurity.fi</a></p>
-        <p class="text-sm"><strong>🌐 Website:</strong> <a href="https://cybersecurity.fi" target="_blank" class="text-purple-600 hover:underline font-semibold">cybersecurity.fi</a></p>
-      </div>
-    </section>
+    </div>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
+      {currentContent.hero.description}
+    </p>
+    
   </div>
+</section>
+
+<!-- What is DORA -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-slate-50/50 rounded-2xl p-8 border border-slate-100">
+      <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-4">{currentContent.sections.whatIs.title}</h2>
+      <p class="text-slate-600 leading-relaxed">{currentContent.sections.whatIs.description}</p>
+    </div>
+  </div>
+</section>
+
+<!-- Key Objectives -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.sections.objectives.title}
+      </h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {currentContent.sections.objectives.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 border-l-4 border-blue-500 hover:shadow-lg transition-all duration-300">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+              <Icon name={item.icon} class="w-5 h-5 text-blue-600" />
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">{item.title}</h3>
+          </div>
+          <p class="text-slate-600 text-sm">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Who Must Comply -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.sections.whoMustComply.title}
+      </h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {currentContent.sections.whoMustComply.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl p-5 border border-slate-100 hover:shadow-lg transition-all duration-300">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-blue-600 font-bold text-lg">✓</span>
+            <h3 class="font-bold text-slate-900">{item.title}</h3>
+          </div>
+          <p class="text-slate-600 text-sm">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Main Requirements -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.sections.requirements.title}
+      </h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {currentContent.sections.requirements.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-4 group-hover:text-blue-700 transition-colors duration-300">
+            {item.title}
+          </h3>
+          
+          <ul class="space-y-2">
+            {item.points.map((point) => (
+              <li class="flex items-start text-sm text-slate-600">
+                <span class="text-blue-500 mr-2">•</span> {point}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- How DORA Protects You -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-green-50 rounded-2xl p-8 border-l-4 border-green-500">
+      <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4">✅ {currentContent.sections.protection.title}</h2>
+      <ul class="space-y-2">
+        {currentContent.sections.protection.items.map((item) => (
+          <li class="flex items-start gap-2 text-slate-700 text-sm">
+            <span class="text-green-600 font-bold">✓</span> {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- How DORA Helps Against Scams -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-yellow-50 rounded-2xl p-8 border-l-4 border-yellow-500">
+      <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">⚠️ {currentContent.sections.scams.title}</h2>
+      <ul className="space-y-2">
+        {currentContent.sections.scams.items.map((item) => (
+          <li class="flex items-start gap-2 text-slate-700 text-sm">
+            <span class="text-yellow-600 font-bold">🔐</span> {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DORA Timeline -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        📅 {currentContent.sections.timeline.title}
+      </h2>
+    </div>
+    
+    <div class="space-y-4">
+      {currentContent.sections.timeline.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-5
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-lg transition-all duration-300">
+          <div class="flex flex-col md:flex-row gap-4 items-start">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold">
+                ✓
+              </div>
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center gap-3 mb-2">
+                <h3 class="text-lg font-bold text-slate-900">{item.date}</h3>
+                <span class={`inline-flex items-center px-2 py-1 text-xs rounded-full font-medium ${getStatusStyles(item.status)}`}>
+                  {getStatusText(item.status, lang)}
+                </span>
+              </div>
+              <p class="text-slate-600 text-sm">{item.description}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.sections.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-6 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.sections.cta.subtitle}
+      </p>
+
+      <p class="text-lg mb-8">
+        <a href="mailto:{currentContent.sections.cta.email}" class="text-[#1E2A7A] hover:text-[#3B82F6] font-semibold underline">
+          📧 {currentContent.sections.cta.email}
+        </a>
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href="/contact" 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          Contact Us
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href="/" 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          Back to Home
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 </Layout>

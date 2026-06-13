@@ -1,7 +1,14 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-import Button from '@/components/ui/Button.astro';
+
+// SEO Configuration
+const seoConfig = {
+  title: "Resource Library | Cybersecurity Guides, Templates & Checklists",
+  description: "Download guides, templates, and checklists for cybersecurity and compliance. ISO 27001, NIS2, GDPR, DORA resources available.",
+  keywords: "cybersecurity resources, compliance guides, templates, checklists, ISO 27001, NIS2, GDPR, DORA",
+  type: "library" as const,
+};
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
@@ -97,157 +104,194 @@ const frameworks = [
 ];
 ---
 
-<Layout 
-  title={lang === 'fi' ? 'Resurssikirjasto' : 'Resource Library'} 
-  description={lang === 'fi' 
-    ? 'Lataa oppaita, malleja ja tarkistuslistoja kyberturvallisuuden ja sääntelyn noudattamiseksi.' 
-    : 'Download guides, templates, and checklists for cybersecurity and compliance.'}
->
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-slate-50 via-white to-teal-50 py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto text-center">
-        <h1 class="text-4xl font-bold text-slate-900 mb-6">
-          {lang === 'fi' ? 'Resurssikirjasto' : 'Resource Library'}
-        </h1>
-        <p class="text-xl text-slate-600 mb-8">
-          {lang === 'fi' 
-            ? 'Lataa oppaita, malleja ja tarkistuslistoja kyberturvallisuuden ja sääntelyn noudattamiseksi.' 
-            : 'Download guides, templates, and checklists for cybersecurity and compliance.'}
-        </p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <Button href="/contact" variant="primary">
-            {lang === 'fi' ? 'Pyydä konsultaatio' : 'Request Consultation'}
-          </Button>
-          <Button href="/services" variant="secondary">
-            {lang === 'fi' ? 'Tutustu palveluihimme' : 'Explore Our Services'}
-          </Button>
-        </div>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="document-check" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-[#1E2A7A]">
+      {lang === 'fi' ? 'Resurssikirjasto' : 'Resource Library'}
+    </h1>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {lang === 'fi' 
+        ? 'Lataa oppaita, malleja ja tarkistuslistoja kyberturvallisuuden ja sääntelyn noudattamiseksi.' 
+        : 'Download guides, templates, and checklists for cybersecurity and compliance.'}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href="/contact" class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {lang === 'fi' ? 'Pyydä konsultaatio' : 'Request Consultation'}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      
+      <a href="/services" class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {lang === 'fi' ? 'Tutustu palveluihimme' : 'Explore Our Services'}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
 
-  <!-- Filters Section -->
-  <section class="py-8 bg-white border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row gap-6">
-        <!-- Category Filter -->
-        <div class="flex-1">
-          <h3 class="text-sm font-medium text-slate-900 mb-3">
-            {lang === 'fi' ? 'Kategoria' : 'Category'}
-          </h3>
-          <div class="flex flex-wrap gap-2">
-            {categories.map(cat => (
-              <button
-                class={`px-3 py-1.5 text-sm rounded-full ${
-                  cat.id === 'all' 
-                    ? 'bg-teal-100 text-teal-800 border border-teal-300' 
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                }`}
-              >
-                {cat.label} ({cat.count})
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <!-- Framework Filter -->
-        <div class="flex-1">
-          <h3 class="text-sm font-medium text-slate-900 mb-3">
-            {lang === 'fi' ? 'Standardi' : 'Framework'}
-          </h3>
-          <div class="flex flex-wrap gap-2">
-            {frameworks.map(framework => (
-              <button
-                class={`px-3 py-1.5 text-sm rounded-full ${
-                  framework.id === 'all' 
-                    ? 'bg-cyan-100 text-cyan-800 border border-cyan-300' 
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                }`}
-              >
-                {framework.label} ({framework.count})
-              </button>
-            ))}
-          </div>
+<!-- Filters Section -->
+<section class="py-8 bg-white border-b border-slate-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row gap-6">
+      
+      <!-- Category Filter -->
+      <div class="flex-1">
+        <h3 class="text-sm font-semibold text-slate-700 mb-3">
+          {lang === 'fi' ? 'Kategoria' : 'Category'}
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {categories.map(cat => (
+            <button
+              class={`px-3 py-1.5 text-sm rounded-full transition-all duration-200 ${
+                cat.id === 'all' 
+                  ? 'bg-[#1E2A7A] text-white' 
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              {cat.label} ({cat.count})
+            </button>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Resources Grid -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {resources.map(resource => (
-          <div class="bg-gradient-to-br from-white to-slate-50 rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
-            <div class="p-6">
-              <div class="flex justify-between items-start mb-4">
-                <div>
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-800">
-                    {resource.category}
+      <!-- Framework Filter -->
+      <div class="flex-1">
+        <h3 class="text-sm font-semibold text-slate-700 mb-3">
+          {lang === 'fi' ? 'Standardi' : 'Framework'}
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {frameworks.map(framework => (
+            <button
+              class={`px-3 py-1.5 text-sm rounded-full transition-all duration-200 ${
+                framework.id === 'all' 
+                  ? 'bg-[#1E2A7A] text-white' 
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              {framework.label} ({framework.count})
+            </button>
+          ))}
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Resources Grid -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {resources.map(resource => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full group">
+          
+          <div class="p-6 flex flex-col h-full">
+            
+            <div class="flex justify-between items-start mb-4">
+              <div class="flex flex-wrap gap-2">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
+                  {resource.category}
+                </span>
+                {resource.framework && (
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700">
+                    {resource.framework}
                   </span>
-                  {resource.framework && (
-                    <span class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-cyan-100 text-cyan-800">
-                      {resource.framework}
-                    </span>
-                  )}
-                </div>
-                <div class="flex-shrink-0">
-                  {resource.type === 'download' ? (
-                    <Icon name="arrowDownTray" class="h-5 w-5 text-slate-400" />
-                  ) : (
-                    <Icon name="eye" class="h-5 w-5 text-slate-400" />
-                  )}
+                )}
+              </div>
+              <div class="flex-shrink-0">
+                <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center
+                            transition-all duration-300
+                            group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6]">
+                  <Icon name={resource.type === 'download' ? 'arrowDownTray' : 'eye'} class="w-5 h-5 text-blue-600 group-hover:text-white transition-colors duration-300" />
                 </div>
               </div>
-              
-              <h3 class="text-lg font-semibold text-slate-900 mb-2">
-                {resource.title}
-              </h3>
-              <p class="text-slate-600 text-sm mb-4">
-                {resource.description}
-              </p>
-              
-              <div class="flex items-center justify-between text-xs text-slate-500 mb-4">
-                <span>{resource.date}</span>
-                <span>{resource.readTime}</span>
-              </div>
-              
-              <a 
-                href={resource.url}
-                class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700"
-              >
-                {resource.type === 'download' 
-                  ? (lang === 'fi' ? 'Lataa nyt' : 'Download Now') 
-                  : (lang === 'fi' ? 'Lue lisää' : 'Read More')}
-                <Icon name={resource.type === 'download' ? 'arrowDownTray' : 'arrowRight'} class="ml-2 -mr-1 h-4 w-4" />
-              </a>
             </div>
+            
+            <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+              {resource.title}
+            </h3>
+            
+            <p class="text-slate-500 text-sm mb-4 flex-1">
+              {resource.description}
+            </p>
+            
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-5">
+              <span>{resource.date}</span>
+              <span>{resource.readTime}</span>
+            </div>
+            
+            <a 
+              href={resource.url}
+              class="inline-flex items-center justify-center w-full px-4 py-2.5 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm gap-2"
+            >
+              {resource.type === 'download' 
+                ? (lang === 'fi' ? 'Lataa nyt' : 'Download Now') 
+                : (lang === 'fi' ? 'Lue lisää' : 'Read More')}
+              <Icon name={resource.type === 'download' ? 'arrowDownTray' : 'arrowRight'} class="w-4 h-4" />
+            </a>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CTA Section -->
-  <section class="py-16 bg-gradient-to-r from-teal-600 to-cyan-600 text-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold mb-4">
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
         {lang === 'fi' ? 'Tarvitsetko apua resurssien käytössä?' : 'Need help using these resources?'}
       </h2>
-      <p class="text-xl mb-8 opacity-90">
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
         {lang === 'fi' 
-          ? 'Asiantuntijatietoomme auttaa sinua hyödyntämään näitä resursseja tehokkaasti organisaatiossaasi.' 
-          : 'Our expertise can help you leverage these resources effectively in your organization.'}
+          ? 'Asiantuntijamme voivat auttaa sinua hyödyntämään näitä resursseja tehokkaasti organisaatiossasi.' 
+          : 'Our experts can help you leverage these resources effectively in your organization.'}
       </p>
+
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/contact" variant="white">
+        
+        <a href="/contact" 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
           {lang === 'fi' ? 'Ota yhteyttä' : 'Contact Us'}
-        </Button>
-        <Button href="/services" variant="outline-white">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href="/services" 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
           {lang === 'fi' ? 'Tutustu palveluihimme' : 'View Our Services'}
-        </Button>
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
 </Layout>

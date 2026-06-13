@@ -1,8 +1,14 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
-const title = 'Scam Awareness - Cyber Security Finland';
-const description = 'Learn about scams impersonating Cyber Security Finland Oy. Protect yourself from fraudulent messages, calls, and crypto scams.';
+// SEO Configuration
+const seoConfig = {
+  title: 'Scam Awareness - Cyber Security Finland',
+  description: 'Learn about scams impersonating Cyber Security Finland Oy. Protect yourself from fraudulent messages, calls, and crypto scams.',
+  keywords: 'scam awareness, fraud alert, cybersecurity scams, impersonation, crypto scams',
+  type: 'awareness' as const,
+};
 
 const path = Astro.url.pathname;
 const currentLang = path.startsWith('/it') ? 'it' : path.startsWith('/de') ? 'de' : 'en';
@@ -31,7 +37,6 @@ const translations = {
     whatWeDontDo: '📋 What Cyber Security Finland Does NOT Do',
     strengthenSecurity: '🛡️ Strengthen Your Cybersecurity',
     learnMore: 'Learn More About DORA',
-    languages: 'Available Languages',
   },
   it: {
     title: '⚠️ Avviso di Truffa: Rappresentazione Fraudolenta di Cyber Security Finland',
@@ -56,7 +61,6 @@ const translations = {
     whatWeDontDo: '📋 Cosa Cyber Security Finland NON Fa',
     strengthenSecurity: '🛡️ Rafforza la Tua Sicurezza Informatica',
     learnMore: 'Scopri di più su DORA',
-    languages: 'Lingue Disponibili',
   },
   de: {
     title: '⚠️ Betrugwarnung: Betrügerische Darstellung von Cyber Security Finland',
@@ -81,270 +85,288 @@ const translations = {
     whatWeDontDo: '📋 Was Cyber Security Finland NICHT Tut',
     strengthenSecurity: '🛡️ Stärken Sie Ihre Cybersicherheit',
     learnMore: 'Mehr über DORA erfahren',
-    languages: 'Verfügbare Sprachen',
   }
 };
 
 const t = translations[currentLang] || translations.en;
-
-// Language selector links
-const langLinks = {
-  en: '/resources/scam-awareness',
-  it: '/it/resources/scam-awareness',
-  de: '/de/resources/scam-awareness'
-};
 ---
 
-<Layout title={title} description={description}>
-  <div class="min-h-screen bg-white">
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered -->
+<section class="bg-gradient-to-br from-red-600 to-red-800 text-white py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
     
-
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-red-600 via-red-700 to-red-800 text-white py-16 sm:py-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl sm:text-5xl font-bold mb-6">{t.title}</h1>
-        <p class="text-xl sm:text-2xl font-light mb-8 max-w-3xl mx-auto">
-          {t.subtitle}
-        </p>
-        <div class="bg-red-900/50 p-6 rounded-lg border border-red-400/30 max-w-3xl mx-auto">
-          <p class="font-semibold text-lg">
-            {t.warning}
-          </p>
-        </div>
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
+        <Icon name="alert-triangle" class="w-8 h-8 text-white" />
       </div>
-    </section>
-
-    <!-- Main Content -->
-    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-      <!-- Quick Facts -->
-      <div class="mb-8">
-        <h2 class="text-3xl font-bold text-slate-900 mb-6">{t.whatHappening}</h2>
-        <p class="text-slate-700 text-base mb-3">
-          <strong>{t.whatHappeningText}</strong>
-        </p>
-        <p class="text-slate-700 text-base">
-          <strong>{t.weHaveNothing}</strong>
-        </p>
-      </div>
-
-      <!-- Our Real Contact -->
-      <div class="mb-8 bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
-        <h3 class="text-xl font-bold text-slate-900 mb-3">{t.ourContact}</h3>
-        <p class="text-slate-700 mb-3 font-semibold">{t.onlyTrust}</p>
-        <p class="text-slate-700 text-lg"><strong>{t.email}</strong> info@cybersecurity.fi</p>
-        <p class="text-slate-700 text-lg"><strong>{t.website}</strong> cybersecurity.fi</p>
-        <p class="text-red-600 font-bold mt-4">{t.neverUse}</p>
-      </div>
-
-      <!-- Common Scam Methods -->
-      <div class="mb-8">
-        <h2 class="text-3xl font-bold text-slate-900 mb-6">{t.commonScams}</h2>
-        
-        <div class="space-y-4">
-          <!-- Scam Method 1 -->
-          <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
-            <h3 class="font-bold text-slate-900 mb-2">1️⃣ Cryptocurrency Recovery Scams</h3>
-            <p class="text-slate-700 text-sm mb-2">
-              They claim you have "blocked money" in crypto (Bitcoin, Ethereum, etc.) that was found in fraud investigations. They say it needs recovery through Trust Wallet.
-            </p>
-            <div class="bg-red-100 p-2 rounded text-xs text-slate-700 space-y-1">
-              <p class="font-semibold">🚫 RED FLAGS:</p>
-              <ul class="list-disc list-inside space-y-0.5">
-                <li>Specific amount mentioned (91,654 EUR, etc.)</li>
-                <li>Claims about OLAF (EU anti-fraud office)</li>
-                <li>Asking to download AnyDesk, UltraViewer, TeamViewer</li>
-                <li>Demanding Trust Wallet or MetaMask access</li>
-                <li>"No upfront costs" followed by "processing fee" requests</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Scam Method 2 -->
-          <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
-            <h3 class="font-bold text-slate-900 mb-2">2️⃣ WhatsApp & SMS Impersonation</h3>
-            <p class="text-slate-700 text-sm mb-2">
-              Scammers contact you via WhatsApp or SMS claiming to be from Cyber Security Finland. They use fake names and create urgency.
-            </p>
-            <div class="bg-red-100 p-2 rounded text-xs text-slate-700 space-y-1">
-              <p class="font-semibold">🚫 RED FLAGS:</p>
-              <ul class="list-disc list-inside space-y-0.5">
-                <li>Messages on WhatsApp from "official" channel</li>
-                <li>Fake employee names (Richard Maxwell, Andrea Lazzari)</li>
-                <li>"For privacy, contact on WhatsApp" instead of official email</li>
-                <li>Urgent tone: "Immediate action required"</li>
-                <li>Fake support@cyber-agency.cc email addresses</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Scam Method 3 -->
-          <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
-            <h3 class="font-bold text-slate-900 mb-2">3️⃣ Personal Information Harvesting</h3>
-            <p class="text-slate-700 text-sm mb-2">
-              They request ID documents, passport copies, bank statements as "verification" for processing.
-            </p>
-            <div class="bg-red-100 p-2 rounded text-xs text-slate-700 space-y-1">
-              <p class="font-semibold">🚫 RED FLAGS:</p>
-              <ul class="list-disc list-inside space-y-0.5">
-                <li>Requests for "POI" (Proof of Identity)</li>
-                <li>Demands for "POR" (Proof of Residence)</li>
-                <li>Asking for passport or national ID photos</li>
-                <li>Requesting bank account numbers or statements</li>
-                <li>Pressure to send quickly</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Scam Method 4 -->
-          <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
-            <h3 class="font-bold text-slate-900 mb-2">4️⃣ Money Requests (The Final Step)</h3>
-            <p class="text-slate-700 text-sm mb-2">
-              After gaining trust through the above methods, they ask for money via bank transfer or cryptocurrency.
-            </p>
-            <div class="bg-red-100 p-2 rounded text-xs text-slate-700 space-y-1">
-              <p class="font-semibold">🚫 RED FLAGS:</p>
-              <ul class="list-disc list-inside space-y-0.5">
-                <li>First request: 1,100 EUR "processing fee"</li>
-                <li>Second request: 20,000 EUR "legal fees"</li>
-                <li>Third request: 100,000 EUR "platform recovery"</li>
-                <li>Requests never stop - always more money needed</li>
-                <li>Pressure to act quickly</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Real Examples -->
-      <div class="mb-8">
-        <h2 class="text-3xl font-bold text-slate-900 mb-6">{t.realExamples}</h2>
-        
-        <div class="space-y-4">
-          <!-- Example 1 -->
-          <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
-            <p class="font-bold text-slate-900 mb-2">📧 Example 1: Fake Email About Blocked Crypto</p>
-            <div class="bg-white p-3 rounded text-sm mb-2 font-mono text-slate-700 border border-slate-200">
-              <p><strong>From:</strong> support@cyber-agency.cc ❌ (NOT our domain!)</p>
-              <p><strong>Subject:</strong> "Investigation into fraudulent platforms - Your funds recovered"</p>
-              <p class="mt-2"><strong>Message:</strong></p>
-              <p class="text-xs mt-1">"Your account has been identified in an investigation. Over 75 fake platforms were seized. We found 91,654 EUR in blocked cryptocurrency under your name. Use Trust Wallet and AnyDesk to recover your funds. No upfront costs."</p>
-            </div>
-            <p class="text-red-600 font-bold text-sm">🚫 This is 100% SCAM - We NEVER send emails from cyber-agency.cc</p>
-          </div>
-
-          <!-- Example 2 -->
-          <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
-            <p class="font-bold text-slate-900 mb-2">💬 Example 2: WhatsApp Impersonation</p>
-            <div class="bg-white p-3 rounded text-sm mb-2 text-slate-700 border border-slate-200">
-              <p><strong>Sender:</strong> "Richard Maxwell - Cyber Security Finland" ❌</p>
-              <p class="mt-2"><strong>Message:</strong></p>
-              <p class="text-xs mt-1">"Hi, this is Richard Maxwell from Cyber Security Finland. We found suspicious activity on your account. Please open your Trust Wallet and download AnyDesk so we can verify your identity and secure your crypto. Reply on WhatsApp for privacy."</p>
-            </div>
-            <p class="text-red-600 font-bold text-sm">🚫 We NEVER use WhatsApp for official business or ask for wallet access</p>
-          </div>
-
-          <!-- Example 3 -->
-          <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
-            <p class="font-bold text-slate-900 mb-2">🔐 Example 3: Document & Money Request</p>
-            <div class="bg-white p-3 rounded text-sm mb-2 text-slate-700 border border-slate-200">
-              <p><strong>Sender:</strong> "Andrea Lazzari - Cyber Security FI" ❌</p>
-              <p class="mt-2"><strong>Message:</strong></p>
-              <p class="text-xs mt-1">"We need POI (Proof of Identity) and POR (Proof of Residence) to process your recovery. Send passport, ID, and bank statements. Processing fee is 1,100 EUR (refundable). Send via bank transfer or crypto."</p>
-            </div>
-            <p class="text-red-600 font-bold text-sm">🚫 Legitimate companies NEVER ask for IDs via email or demand upfront fees</p>
-          </div>
-
-          <!-- Example 4 -->
-          <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
-            <p class="font-bold text-slate-900 mb-2">💰 Example 4: Progressive Money Requests</p>
-            <div class="bg-white p-3 rounded text-sm mb-2 text-slate-700 border border-slate-200">
-              <p><strong>Pattern:</strong> Scammers ask for increasing amounts of money</p>
-              <p class="text-xs mt-2">- First: "1,100 EUR processing fee" ✓ (victim pays)</p>
-              <p class="text-xs">- Second: "20,000 EUR for legal fees" ✓ (victim pays)</p>
-              <p class="text-xs">- Third: "100,000 EUR for platform recovery" ✗ (victim realizes it's a scam)</p>
-            </div>
-            <p class="text-red-600 font-bold text-sm">🚫 Money requests never stop - they keep asking for more</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Protection Tips -->
-      <div class="mb-8">
-        <h2 class="text-3xl font-bold text-slate-900 mb-6">{t.protect}</h2>
-        <div class="grid md:grid-cols-2 gap-4">
-          <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
-            <h3 class="font-bold text-green-900 mb-3">{t.doThis}</h3>
-            <ul class="space-y-2 text-sm text-slate-700">
-              <li>✓ Check the sender's email address carefully</li>
-              <li>✓ Contact us directly at info@cybersecurity.fi if unsure</li>
-              <li>✓ Report suspicious messages to the platform</li>
-              <li>✓ Never download software from unknown links</li>
-              <li>✓ Enable two-factor authentication</li>
-            </ul>
-          </div>
-
-          <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
-            <h3 class="font-bold text-red-900 mb-3">{t.neverDo}</h3>
-            <ul class="space-y-2 text-sm text-slate-700">
-              <li>✗ Share passport or ID documents</li>
-              <li>✗ Download AnyDesk, UltraViewer, or similar</li>
-              <li>✗ Send money for "recovery" or "fees"</li>
-              <li>✗ Share cryptocurrency wallet info</li>
-              <li>✗ Trust WhatsApp messages claiming to be us</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- If Scammed -->
-      <div class="mb-8 bg-orange-50 p-6 rounded-lg border-l-4 border-orange-500">
-        <h2 class="text-2xl font-bold text-orange-900 mb-4">{t.ifScammed}</h2>
-        <ol class="space-y-3 text-slate-700">
-          <li class="text-sm"><strong>1. Call local police</strong> - File a fraud report</li>
-          <li class="text-sm"><strong>2. Contact your bank</strong> - Report the fraud, they may reverse transfers</li>
-          <li class="text-sm"><strong>3. Change passwords</strong> - Update all important account passwords</li>
-          <li class="text-sm"><strong>4. Email us</strong> - Send details to info@cybersecurity.fi</li>
-          <li class="text-sm"><strong>5. Report the account</strong> - Report the scammer on WhatsApp/email platform</li>
-        </ol>
-      </div>
-
-      <!-- Contact Section -->
-      <div class="mb-8 bg-slate-900 text-white p-6 rounded-lg">
-        <h3 class="text-xl font-bold mb-3">{t.contactUs}</h3>
-        <p class="mb-3 text-sm">Questions or need to report a scam?</p>
-        <p class="text-sm"><strong>📧 Email:</strong> <a href="mailto:info@cybersecurity.fi" class="text-blue-400 hover:underline">info@cybersecurity.fi</a></p>
-        <p class="text-sm"><strong>🌐 Website:</strong> <a href="https://cybersecurity.fi" target="_blank" class="text-blue-400 hover:underline">cybersecurity.fi</a></p>
-        <p class="text-xs text-slate-400 mt-4">For scam reports: Contact your local police</p>
-      </div>
-
-      <!-- What We Don't Do -->
-      <div class="mb-8 bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
-        <h3 class="text-xl font-bold text-slate-900 mb-3">{t.whatWeDontDo}</h3>
-        <ul class="space-y-2 text-slate-700 text-sm">
-          <li>❌ Contact via WhatsApp or chat apps</li>
-          <li>❌ Ask for personal documents (ID, passport)</li>
-          <li>❌ Request cryptocurrency recovery help</li>
-          <li>❌ Ask for bank statements or financial info</li>
-          <li>❌ Demand immediate money transfers</li>
-          <li>❌ Use fake email domains</li>
-          <li>❌ Ask you to download remote access software</li>
-        </ul>
-      </div>
-
-      <!-- DORA Link -->
-      <div class="mb-8 bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-lg border-l-4 border-purple-500">
-        <h3 class="text-xl font-bold text-slate-900 mb-3">{t.strengthenSecurity}</h3>
-        <p class="text-slate-700 text-sm mb-4">
-          Learn about DORA (Digital Operational Resilience Act) and how proper cybersecurity practices protect you and your organization from threats like these scams.
-        </p>
-        <a 
-          href="/resources/dora-compliance" 
-          class="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-md active:scale-95"
-        >
-          {t.learnMore}
-          <span>→</span>
-        </a>
-      </div>
-    </section>
+    </div>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+      {t.title}
+    </h1>
+    
+    <p class="text-xl text-red-100 mb-8 max-w-2xl mx-auto">
+      {t.subtitle}
+    </p>
+    
+    <div class="bg-red-900/50 p-6 rounded-2xl border border-red-400/30 max-w-2xl mx-auto">
+      <p class="font-semibold text-lg">
+        {t.warning}
+      </p>
+    </div>
+    
   </div>
+</section>
+
+<!-- Main Content -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Quick Facts -->
+    <div class="mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {t.whatHappening}
+      </h2>
+      <p class="text-slate-700 text-base mb-3">
+        <strong>{t.whatHappeningText}</strong>
+      </p>
+      <div class="bg-red-50 p-4 rounded-xl border-l-4 border-red-500">
+        <p class="text-red-700 font-bold">{t.weHaveNothing}</p>
+      </div>
+    </div>
+
+    <!-- Our Real Contact -->
+    <div class="mb-12 bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500">
+      <h3 class="text-xl font-bold text-[#1E2A7A] mb-3">{t.ourContact}</h3>
+      <p class="text-slate-700 mb-3 font-semibold">{t.onlyTrust}</p>
+      <div class="space-y-2">
+        <p class="text-slate-700"><strong>{t.email}</strong> <span class="font-mono">info@cybersecurity.fi</span></p>
+        <p class="text-slate-700"><strong>{t.website}</strong> <span class="font-mono">cybersecurity.fi</span></p>
+      </div>
+      <p class="text-red-600 font-bold mt-4">{t.neverUse}</p>
+    </div>
+
+    <!-- Common Scam Methods -->
+    <div class="mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-6">
+        {t.commonScams}
+      </h2>
+      
+      <div class="space-y-4">
+        <!-- Scam Method 1 -->
+        <div class="bg-red-50 p-5 rounded-xl border-l-4 border-red-500 hover:shadow-md transition-all duration-300">
+          <h3 class="font-bold text-slate-900 mb-2">1️⃣ Cryptocurrency Recovery Scams</h3>
+          <p class="text-slate-700 text-sm mb-3">
+            They claim you have "blocked money" in crypto (Bitcoin, Ethereum, etc.) that was found in fraud investigations. They say it needs recovery through Trust Wallet.
+          </p>
+          <div class="bg-white p-3 rounded-lg text-xs text-slate-700 space-y-1 border border-red-200">
+            <p class="font-semibold text-red-600">🚫 RED FLAGS:</p>
+            <ul class="list-disc list-inside space-y-0.5">
+              <li>Specific amount mentioned (91,654 EUR, etc.)</li>
+              <li>Claims about OLAF (EU anti-fraud office)</li>
+              <li>Asking to download AnyDesk, UltraViewer, TeamViewer</li>
+              <li>Demanding Trust Wallet or MetaMask access</li>
+              <li>"No upfront costs" followed by "processing fee" requests</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Scam Method 2 -->
+        <div class="bg-red-50 p-5 rounded-xl border-l-4 border-red-500 hover:shadow-md transition-all duration-300">
+          <h3 class="font-bold text-slate-900 mb-2">2️⃣ WhatsApp & SMS Impersonation</h3>
+          <p class="text-slate-700 text-sm mb-3">
+            Scammers contact you via WhatsApp or SMS claiming to be from Cyber Security Finland. They use fake names and create urgency.
+          </p>
+          <div class="bg-white p-3 rounded-lg text-xs text-slate-700 space-y-1 border border-red-200">
+            <p class="font-semibold text-red-600">🚫 RED FLAGS:</p>
+            <ul class="list-disc list-inside space-y-0.5">
+              <li>Messages on WhatsApp from "official" channel</li>
+              <li>Fake employee names (Richard Maxwell, Andrea Lazzari)</li>
+              <li>"For privacy, contact on WhatsApp" instead of official email</li>
+              <li>Urgent tone: "Immediate action required"</li>
+              <li>Fake support@cyber-agency.cc email addresses</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Scam Method 3 -->
+        <div class="bg-red-50 p-5 rounded-xl border-l-4 border-red-500 hover:shadow-md transition-all duration-300">
+          <h3 class="font-bold text-slate-900 mb-2">3️⃣ Personal Information Harvesting</h3>
+          <p class="text-slate-700 text-sm mb-3">
+            They request ID documents, passport copies, bank statements as "verification" for processing.
+          </p>
+          <div class="bg-white p-3 rounded-lg text-xs text-slate-700 space-y-1 border border-red-200">
+            <p class="font-semibold text-red-600">🚫 RED FLAGS:</p>
+            <ul class="list-disc list-inside space-y-0.5">
+              <li>Requests for "POI" (Proof of Identity)</li>
+              <li>Demands for "POR" (Proof of Residence)</li>
+              <li>Asking for passport or national ID photos</li>
+              <li>Requesting bank account numbers or statements</li>
+              <li>Pressure to send quickly</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Scam Method 4 -->
+        <div class="bg-red-50 p-5 rounded-xl border-l-4 border-red-500 hover:shadow-md transition-all duration-300">
+          <h3 class="font-bold text-slate-900 mb-2">4️⃣ Money Requests (The Final Step)</h3>
+          <p class="text-slate-700 text-sm mb-3">
+            After gaining trust through the above methods, they ask for money via bank transfer or cryptocurrency.
+          </p>
+          <div class="bg-white p-3 rounded-lg text-xs text-slate-700 space-y-1 border border-red-200">
+            <p class="font-semibold text-red-600">🚫 RED FLAGS:</p>
+            <ul class="list-disc list-inside space-y-0.5">
+              <li>First request: 1,100 EUR "processing fee"</li>
+              <li>Second request: 20,000 EUR "legal fees"</li>
+              <li>Third request: 100,000 EUR "platform recovery"</li>
+              <li>Requests never stop - always more money needed</li>
+              <li>Pressure to act quickly</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real Examples -->
+    <div class="mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-6">
+        {t.realExamples}
+      </h2>
+      
+      <div class="space-y-4">
+        <!-- Example 1 -->
+        <div class="bg-yellow-50 p-5 rounded-xl border-l-4 border-yellow-500 hover:shadow-md transition-all duration-300">
+          <p class="font-bold text-slate-900 mb-2">📧 Example 1: Fake Email About Blocked Crypto</p>
+          <div class="bg-white p-3 rounded-lg text-sm mb-2 font-mono text-slate-700 border border-slate-200">
+            <p><strong>From:</strong> support@cyber-agency.cc ❌ (NOT our domain!)</p>
+            <p><strong>Subject:</strong> "Investigation into fraudulent platforms - Your funds recovered"</p>
+            <p class="mt-2"><strong>Message:</strong></p>
+            <p class="text-xs mt-1">"Your account has been identified in an investigation. Over 75 fake platforms were seized. We found 91,654 EUR in blocked cryptocurrency under your name. Use Trust Wallet and AnyDesk to recover your funds. No upfront costs."</p>
+          </div>
+          <p class="text-red-600 font-bold text-sm">🚫 This is 100% SCAM - We NEVER send emails from cyber-agency.cc</p>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="bg-yellow-50 p-5 rounded-xl border-l-4 border-yellow-500 hover:shadow-md transition-all duration-300">
+          <p class="font-bold text-slate-900 mb-2">💬 Example 2: WhatsApp Impersonation</p>
+          <div class="bg-white p-3 rounded-lg text-sm mb-2 text-slate-700 border border-slate-200">
+            <p><strong>Sender:</strong> "Richard Maxwell - Cyber Security Finland" ❌</p>
+            <p class="mt-2"><strong>Message:</strong></p>
+            <p class="text-xs mt-1">"Hi, this is Richard Maxwell from Cyber Security Finland. We found suspicious activity on your account. Please open your Trust Wallet and download AnyDesk so we can verify your identity and secure your crypto. Reply on WhatsApp for privacy."</p>
+          </div>
+          <p class="text-red-600 font-bold text-sm">🚫 We NEVER use WhatsApp for official business or ask for wallet access</p>
+        </div>
+
+        <!-- Example 3 -->
+        <div class="bg-yellow-50 p-5 rounded-xl border-l-4 border-yellow-500 hover:shadow-md transition-all duration-300">
+          <p class="font-bold text-slate-900 mb-2">🔐 Example 3: Document & Money Request</p>
+          <div class="bg-white p-3 rounded-lg text-sm mb-2 text-slate-700 border border-slate-200">
+            <p><strong>Sender:</strong> "Andrea Lazzari - Cyber Security FI" ❌</p>
+            <p class="mt-2"><strong>Message:</strong></p>
+            <p class="text-xs mt-1">"We need POI (Proof of Identity) and POR (Proof of Residence) to process your recovery. Send passport, ID, and bank statements. Processing fee is 1,100 EUR (refundable). Send via bank transfer or crypto."</p>
+          </div>
+          <p class="text-red-600 font-bold text-sm">🚫 Legitimate companies NEVER ask for IDs via email or demand upfront fees</p>
+        </div>
+
+        <!-- Example 4 -->
+        <div class="bg-yellow-50 p-5 rounded-xl border-l-4 border-yellow-500 hover:shadow-md transition-all duration-300">
+          <p class="font-bold text-slate-900 mb-2">💰 Example 4: Progressive Money Requests</p>
+          <div class="bg-white p-3 rounded-lg text-sm mb-2 text-slate-700 border border-slate-200">
+            <p><strong>Pattern:</strong> Scammers ask for increasing amounts of money</p>
+            <p class="text-xs mt-2">- First: "1,100 EUR processing fee" ✓ (victim pays)</p>
+            <p class="text-xs">- Second: "20,000 EUR for legal fees" ✓ (victim pays)</p>
+            <p class="text-xs">- Third: "100,000 EUR for platform recovery" ✗ (victim realizes it's a scam)</p>
+          </div>
+          <p class="text-red-600 font-bold text-sm">🚫 Money requests never stop - they keep asking for more</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Protection Tips -->
+    <div class="mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-6">
+        {t.protect}
+      </h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-green-50 p-6 rounded-xl border-l-4 border-green-500">
+          <h3 class="font-bold text-green-800 mb-3">{t.doThis}</h3>
+          <ul class="space-y-2 text-sm text-slate-700">
+            <li class="flex items-start gap-2"><span class="text-green-600">✓</span> Check the sender's email address carefully</li>
+            <li class="flex items-start gap-2"><span class="text-green-600">✓</span> Contact us directly at info@cybersecurity.fi if unsure</li>
+            <li class="flex items-start gap-2"><span class="text-green-600">✓</span> Report suspicious messages to the platform</li>
+            <li class="flex items-start gap-2"><span class="text-green-600">✓</span> Never download software from unknown links</li>
+            <li class="flex items-start gap-2"><span class="text-green-600">✓</span> Enable two-factor authentication</li>
+          </ul>
+        </div>
+
+        <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-500">
+          <h3 class="font-bold text-red-800 mb-3">{t.neverDo}</h3>
+          <ul class="space-y-2 text-sm text-slate-700">
+            <li class="flex items-start gap-2"><span class="text-red-600">✗</span> Share passport or ID documents</li>
+            <li class="flex items-start gap-2"><span class="text-red-600">✗</span> Download AnyDesk, UltraViewer, or similar</li>
+            <li class="flex items-start gap-2"><span class="text-red-600">✗</span> Send money for "recovery" or "fees"</li>
+            <li class="flex items-start gap-2"><span class="text-red-600">✗</span> Share cryptocurrency wallet info</li>
+            <li class="flex items-start gap-2"><span class="text-red-600">✗</span> Trust WhatsApp messages claiming to be us</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- If Scammed -->
+    <div class="mb-12 bg-orange-50 p-6 rounded-xl border-l-4 border-orange-500">
+      <h2 class="text-2xl font-bold text-orange-800 mb-4">{t.ifScammed}</h2>
+      <ol class="space-y-2 text-slate-700">
+        <li class="text-sm"><strong>1.</strong> Call local police - File a fraud report</li>
+        <li class="text-sm"><strong>2.</strong> Contact your bank - Report the fraud, they may reverse transfers</li>
+        <li class="text-sm"><strong>3.</strong> Change passwords - Update all important account passwords</li>
+        <li class="text-sm"><strong>4.</strong> Email us - Send details to info@cybersecurity.fi</li>
+        <li class="text-sm"><strong>5.</strong> Report the account - Report the scammer on WhatsApp/email platform</li>
+      </ol>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="mb-12 bg-[#1E2A7A] text-white p-6 rounded-xl">
+      <h3 class="text-xl font-bold mb-3">{t.contactUs}</h3>
+      <p class="mb-3 text-sm text-slate-300">Questions or need to report a scam?</p>
+      <p class="text-sm"><strong>📧 Email:</strong> <a href="mailto:info@cybersecurity.fi" class="text-blue-300 hover:underline">info@cybersecurity.fi</a></p>
+      <p class="text-sm"><strong>🌐 Website:</strong> <a href="https://cybersecurity.fi" target="_blank" class="text-blue-300 hover:underline">cybersecurity.fi</a></p>
+      <p class="text-xs text-slate-400 mt-4">For scam reports: Contact your local police</p>
+    </div>
+
+    <!-- What We Don't Do -->
+    <div class="mb-12 bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500">
+      <h3 class="text-xl font-bold text-[#1E2A7A] mb-3">{t.whatWeDontDo}</h3>
+      <div class="grid md:grid-cols-2 gap-2 text-sm text-slate-700">
+        <p>❌ Contact via WhatsApp or chat apps</p>
+        <p>❌ Ask for personal documents (ID, passport)</p>
+        <p>❌ Request cryptocurrency recovery help</p>
+        <p>❌ Ask for bank statements or financial info</p>
+        <p>❌ Demand immediate money transfers</p>
+        <p>❌ Use fake email domains</p>
+        <p>❌ Ask you to download remote access software</p>
+      </div>
+    </div>
+
+    <!-- DORA Link -->
+    <div class="mb-8 bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-xl border-l-4 border-purple-500">
+      <h3 class="text-xl font-bold text-[#1E2A7A] mb-3">{t.strengthenSecurity}</h3>
+      <p class="text-slate-700 text-sm mb-4">
+        Learn about DORA (Digital Operational Resilience Act) and how proper cybersecurity practices protect you and your organization from threats like these scams.
+      </p>
+      <a 
+        href="/resources/dora-compliance" 
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm"
+      >
+        {t.learnMore}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
+
 </Layout>
