@@ -1,6 +1,15 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 import { t, getLanguageFromPath, getLanguagePrefix } from '@/utils/language';
+
+// SEO Configuration
+const seoConfig = {
+  title: "Regulatory Compliance Services | EU Cybersecurity & Data Protection",
+  description: "Comprehensive regulatory compliance services for NIS2, DORA, GDPR, eIDAS, and ePrivacy. Expert guidance for Finnish organizations.",
+  keywords: "regulatory compliance, NIS2, DORA, GDPR, eIDAS, ePrivacy, Finland",
+  type: "service" as const,
+};
 
 const currentPath = Astro.url.pathname;
 const lang = getLanguageFromPath(currentPath);
@@ -8,55 +17,178 @@ const langPrefix = getLanguagePrefix(lang);
 
 const title = t('regulatoryComplianceTitle', lang);
 const tagline = t('regulatoryComplianceTagline', lang);
+
 const items = [
   {
     title: t('nis2ComplianceTitle', lang),
     href: `${langPrefix}/services/regulatory-compliance/nis2-compliance`,
-    description: t('nis2ComplianceDesc', lang)
+    description: t('nis2ComplianceDesc', lang),
+    icon: "shield-check"
   },
   {
     title: t('doraComplianceTitle', lang),
     href: `${langPrefix}/services/regulatory-compliance/dora-compliance`,
-    description: t('doraComplianceDesc', lang)
+    description: t('doraComplianceDesc', lang),
+    icon: "building-library"
   },
   {
     title: t('gdprPrivacyTitle', lang),
     href: `${langPrefix}/services/regulatory-compliance/gdpr-privacy-services`,
-    description: t('gdprPrivacyDesc', lang)
+    description: t('gdprPrivacyDesc', lang),
+    icon: "lock-closed"
   },
   {
     title: t('eidasDigitalTrustTitle', lang),
     href: `${langPrefix}/services/regulatory-compliance/eidas-digital-trust`,
-    description: t('eidasDigitalTrustDesc', lang)
+    description: t('eidasDigitalTrustDesc', lang),
+    icon: "globe-alt"
   },
   {
     title: t('eprivacyCookieTitle', lang),
     href: `${langPrefix}/services/regulatory-compliance/eprivacy-cookie-compliance`,
-    description: t('eprivacyCookieDesc', lang)
+    description: t('eprivacyCookieDesc', lang),
+    icon: "cookie"
   }
+];
+
+const stats = [
+  { value: "5+", label: lang === 'fi' ? 'Säädöskehikkoa' : 'Regulatory Frameworks' },
+  { value: "100%", label: lang === 'fi' ? 'Vaatimusten kattavuus' : 'Requirements Coverage' },
+  { value: "24/7", label: lang === 'fi' ? 'Asiantuntijatuki' : 'Expert Support' },
+  { value: "98%", label: lang === 'fi' ? 'Asiakastyytyväisyys' : 'Client Satisfaction' }
 ];
 ---
 
-<Layout title={title} description={tagline}>
-  <section class="bg-gradient-to-br from-teal-50 via-white to-blue-50 py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-3xl md:text-4xl font-bold text-slate-900">{title}</h1>
-      <p class="mt-3 text-slate-600 text-lg">{tagline}</p>
-    </div>
-  </section>
+<Layout {...seoConfig}>
 
-  <section class="py-12 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        {items.map((s) => (
-          <a href={s.href} class="group block rounded-xl border border-gray-200 p-6 bg-white hover:bg-gray-50 transition-colors">
-            <h3 class="text-lg font-semibold text-gray-900 group-hover:text-gray-700">{s.title}</h3>
-            <p class="mt-2 text-gray-600 text-sm">{s.description}</p>
-            <span class="inline-flex items-center mt-4 text-gray-900 font-medium">{t('readMore', lang)} →</span>
-          </a>
-        ))}
+<!-- Hero Section - Centered -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
-</Layout>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {title}
+    </h1>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
+      {tagline}
+    </p>
+    
+  </div>
+</section>
 
+<!-- Stats Section -->
+<section class="py-12 bg-white border-b border-slate-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {stats.map((stat) => (
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold text-[#1E2A7A] mb-2">
+            {stat.value}
+          </div>
+          <div class="text-slate-500 text-sm">
+            {stat.label}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Services Grid Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {lang === 'fi' ? 'Sääntelypalvelumme' : 'Our Regulatory Services'}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {lang === 'fi' 
+          ? 'Kattavat ratkaisut kaikkiin keskeisiin kyberturvallisuuden ja tietosuojan sääntelyvaatimuksiin.'
+          : 'Comprehensive solutions for all key cybersecurity and data protection regulatory requirements.'}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {items.map((item) => (
+        <a href={item.href} class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group cursor-pointer">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {item.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left flex-1">
+            {item.description}
+          </p>
+          
+          <div class="mt-5 pt-4 border-t border-slate-100 flex justify-start">
+            <span class="inline-flex items-center text-[#1E40AF] group-hover:text-[#3B82F6] font-semibold text-sm gap-1 transition-all duration-300">
+              {lang === 'fi' ? 'Tutustu palveluun' : 'Explore Service'}
+              <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {lang === 'fi' ? 'Tarvitsetko apua sääntelyvaatimusten kanssa?' : 'Need Help with Regulatory Requirements?'}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {lang === 'fi' 
+          ? 'Asiantuntijamme auttavat sinua navigoimaan monimutkaisissa sääntelyvaatimuksissa ja saavuttamaan täyden vaatimustenmukaisuuden.'
+          : 'Our experts help you navigate complex regulatory requirements and achieve full compliance.'}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href="/contact" 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {lang === 'fi' ? 'Ota yhteyttä' : 'Contact Us'}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href="/services" 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {lang === 'fi' ? 'Kaikki palvelut' : 'All Services'}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</Layout>

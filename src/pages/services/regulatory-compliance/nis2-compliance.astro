@@ -1,0 +1,418 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
+
+// SEO Configuration
+const seoConfig = {
+  title: "NIS2 Compliance Services | EU Cybersecurity Directive Implementation",
+  description: "Comprehensive NIS2 Directive compliance for essential and important entities with expert Finnish regulatory guidance. Gap assessment, risk management, incident response, and regulatory reporting.",
+  keywords: "NIS2 compliance, NIS2 Finland, NIS2 directive, cybersecurity directive, Traficom NIS2, critical infrastructure security, EU cybersecurity",
+  type: "service" as const,
+  schema: {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "NIS2 Compliance Services",
+    "provider": {
+      "@type": "Organization",
+      "name": "Cyber Security Finland"
+    },
+    "description": "Comprehensive NIS2 Directive compliance for essential and important entities with expert Finnish regulatory guidance.",
+    "serviceType": "Regulatory Compliance"
+  }
+};
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const content = {
+  en: {
+    hero: {
+      title: "NIS2 Compliance Services",
+      subtitle: "EU Cybersecurity Directive Implementation",
+      description: "Comprehensive NIS2 Directive compliance for essential and important entities with expert Finnish regulatory guidance. Gap assessment, risk management implementation, 24/7 incident response capabilities, and regulatory reporting to ensure full compliance while building resilient cybersecurity foundations.",
+      primaryCTA: { text: "Start NIS2 Assessment", href: "/contact?service=nis2-compliance" },
+      secondaryCTA: { text: "View NIS2 Framework", href: "/frameworks/nis2" }
+    },
+    
+    serviceAreas: {
+      title: "NIS2 Compliance Service Areas",
+      subtitle: "Comprehensive support across all NIS2 requirements to ensure your organization achieves and maintains compliance while building cybersecurity resilience.",
+      items: [
+        {
+          title: "NIS2 Gap Assessment & Scoping",
+          description: "Comprehensive evaluation of current cybersecurity posture against NIS2 requirements",
+          icon: "search",
+          deliverables: ["Entity classification (Essential vs Important services)", "Detailed gap analysis against all NIS2 requirements", "Risk assessment and threat landscape analysis", "Implementation roadmap with prioritized actions", "Resource planning and budget estimation"]
+        },
+        {
+          title: "Cybersecurity Risk Management Framework",
+          description: "Implementation of comprehensive risk management aligned with NIS2 requirements",
+          icon: "shield",
+          deliverables: ["Risk management policies and procedures", "ICT asset inventory and classification", "Supply chain security framework", "Business continuity and crisis management", "Regular risk assessment and monitoring processes"]
+        },
+        {
+          title: "Incident Response & Reporting System",
+          description: "24/7 incident detection, response, and regulatory reporting capabilities",
+          icon: "bolt",
+          deliverables: ["24/7 security monitoring and detection", "Incident classification and severity assessment", "Regulatory reporting to Traficom within required timeframes", "Crisis communication and escalation procedures", "Recovery and lessons learned processes"]
+        },
+        {
+          title: "Technical Security Controls Implementation",
+          description: "Deployment of appropriate technical and organizational cybersecurity measures",
+          icon: "lock-closed",
+          deliverables: ["Multi-factor authentication and access controls", "Network security and segmentation", "Encryption and data protection measures", "Backup and disaster recovery systems", "Vulnerability management and security testing"]
+        }
+      ]
+    },
+    
+    timeline: {
+      title: "NIS2 Compliance Timeline",
+      subtitle: "Key dates and milestones for NIS2 implementation and compliance requirements.",
+      items: [
+        { milestone: "NIS2 Directive Entry into Force", date: "January 16, 2023", status: "completed", description: "EU NIS2 Directive officially entered into force" },
+        { milestone: "National Implementation Deadline", date: "October 17, 2024", status: "active", description: "EU Member States must transpose directive into national law" },
+        { milestone: "Entity Compliance Deadline", date: "October 17, 2024", status: "mandatory", description: "Organizations must be fully compliant with NIS2 requirements" }
+      ]
+    },
+    
+    penalties: {
+      title: "NIS2 Penalties & Sanctions",
+      subtitle: "Understanding the potential consequences of non-compliance with NIS2 requirements.",
+      items: [
+        { violation: "Administrative Fines", penalty: "Up to €10 million or 2% of annual turnover", scope: "Non-compliance with cybersecurity measures", icon: "alert-triangle" },
+        { violation: "Management Liability", penalty: "Personal sanctions for senior management", scope: "Failure to implement required measures", icon: "users" },
+        { violation: "Operational Sanctions", penalty: "Suspension of services", scope: "Severe non-compliance cases", icon: "building" }
+      ]
+    },
+    
+    cta: {
+      title: "Ready to Achieve NIS2 Compliance?",
+      subtitle: "Don't wait until the deadline. Start your NIS2 compliance journey today with expert Finnish regulatory guidance and proven implementation methodologies.",
+      primaryCTA: { text: "Start NIS2 Assessment", href: "/contact?service=nis2-compliance" },
+      secondaryCTA: { text: "View NIS2 Framework", href: "/frameworks/nis2" }
+    }
+  },
+  
+  fi: {
+    hero: {
+      title: "NIS2 Yhteensopivuuspalvelut",
+      subtitle: "EU:n kyberturvallisuusdirektiivin toteutus",
+      description: "Kattava NIS2-direktiivin yhteensopivuus oleellisille ja tärkeille toimijoille asiantuntevan suomalaisen sääntelyohjauksen avulla. Tilannekatsaus, riskienhallinnan toteutus, 24/7 häiriönhallintakyvyt ja sääntelyraportointi täyden yhteensopivuuden varmistamiseksi.",
+      primaryCTA: { text: "Aloita NIS2-arviointi", href: "/contact?service=nis2-compliance" },
+      secondaryCTA: { text: "Katso NIS2-kehys", href: "/frameworks/nis2" }
+    },
+    
+    serviceAreas: {
+      title: "NIS2 Yhteensopivuuspalvelualueet",
+      subtitle: "Kattava tuki kaikkien NIS2:n vaatimusten yli varmistaen että organisaationne saavuttaa ja ylläpitää yhteensopivuutta rakentaen kyberturvallisuusresilienssiä.",
+      items: [
+        {
+          title: "NIS2-tilannekatsaus ja laajuuden määrittely",
+          description: "Kattava arviointi nykyisestä kyberturvallisuusasemasta NIS2:n vaatimusten vastapainossa",
+          icon: "search",
+          deliverables: ["Toimijaluokitus (Oleelliset vs Tärkeät palvelut)", "Yksityiskohtainen aukkoanalyysi kaikkia NIS2:n vaatimuksia vastaan", "Riskinarviointi ja uhkakentän analyysi", "Toteutussuunnitelma priorisoituina toimina", "Resursointisuunnittelu ja budjetointi"]
+        },
+        {
+          title: "Kyberturvallisuuden riskienhallintakehys",
+          description: "Kattavan riskienhallinnan toteutus NIS2:n vaatimusten mukaisesti",
+          icon: "shield",
+          deliverables: ["Riskienhallintakäytännöt ja menettelyt", "ICT-omaisuuden inventointi ja luokittelu", "Toimittajaturvallisuuskehys", "Liiketoiminnan jatkuvuus ja kriisinhallinta", "Säännölliset riskinarvioinnit ja seurantaprosessit"]
+        },
+        {
+          title: "Häiriönhallinta ja raportointijärjestelmä",
+          description: "24/7 häiriönhavaitseminen, vastaaminen ja sääntelyraportointikyvyt",
+          icon: "bolt",
+          deliverables: ["24/7 tietoturvan valvonta ja havaitseminen", "Häiriöiden luokitteleminen ja vakavuusasteen arviointi", "Sääntelyraportointi Traficomiin määräaikojen mukaan", "Kriisiviestintä ja eskalointiprosessit", "Palautuminen ja oppimisen prosessit"]
+        },
+        {
+          title: "Teknisten tietoturvaohjainten toteutus",
+          description: "Sopivan teknisten ja organisaatiollisten kyberturvatoimien käyttöönotto",
+          icon: "lock-closed",
+          deliverables: ["Monivaiheinen tunnistautuminen ja käyttöoikeusohjaimet", "Verkkoturvallisuus ja segmentointi", "Salaus ja tietojen suojaustoimet", "Varmuuskopiointi ja katastrofipalautusjärjestelmät", "Haavoittuvuuden hallinta ja tietoturvatestaus"]
+        }
+      ]
+    },
+    
+    timeline: {
+      title: "NIS2 Yhteensopivuusaikataulu",
+      subtitle: "Avainpäivät ja etapit NIS2:n toteutukseen ja yhteensopivuusvaatimuksiin.",
+      items: [
+        { milestone: "NIS2-direktiivin voimaantulo", date: "January 16, 2023", status: "completed", description: "EU:n NIS2-direktiivi astui virallisesti voimaan" },
+        { milestone: "Kansallisen toteutuksen määräpäivä", date: "October 17, 2024", status: "active", description: "EU:n jäsenvaltioiden on saatettava direktiivi osaksi kansallista lainsäädäntöään" },
+        { milestone: "Toimijan yhteensopivuuden määräpäivä", date: "October 17, 2024", status: "mandatory", description: "Organisaatioiden on oltava täysin yhteensopivia NIS2:n vaatimusten kanssa" }
+      ]
+    },
+    
+    penalties: {
+      title: "NIS2 Sanktiot ja Seuraamukset",
+      subtitle: "Ymmärrä mahdolliset seuraukset NIS2:n vaatimusten noudattamatta jättämisestä.",
+      items: [
+        { violation: "Hallinnolliset sakot", penalty: "Up to €10 million or 2% of annual turnover", scope: "Tietoturvasäädösten noudattamatta jättö", icon: "alert-triangle" },
+        { violation: "Johtohenkilöstön vastuu", penalty: "Henkilökohtaiset seuraamukset johtohenkilöstölle", scope: "Vaadittujen toimenpiteiden toteuttamatta jättö", icon: "users" },
+        { violation: "Operaattorisanktiot", penalty: "Palvelujen keskeyttäminen", scope: "Vakavat noudattamatta jättötapaukset", icon: "building" }
+      ]
+    },
+    
+    cta: {
+      title: "Oletko valmis saavuttamaan NIS2-yhteensopivuuden?",
+      subtitle: "Älä odota määräpäivään. Aloita NIS2:n yhteensopivuusmatkasi jo tänään asiantuntevan suomalaisen sääntelyohjauksen ja todistettujen toteutusmetodologioiden avulla.",
+      primaryCTA: { text: "Aloita NIS2-arviointi", href: "/contact?service=nis2-compliance" },
+      secondaryCTA: { text: "Katso NIS2-kehys", href: "/frameworks/nis2" }
+    }
+  }
+};
+
+const currentContent = content[lang];
+
+function getStatusColor(status: string) {
+  switch(status) {
+    case 'completed': return 'bg-green-100 text-green-700';
+    case 'active': return 'bg-blue-100 text-blue-700';
+    case 'mandatory': return 'bg-red-100 text-red-700';
+    default: return 'bg-slate-100 text-slate-700';
+  }
+}
+
+function getStatusBadgeText(status: string, lang: string) {
+  if (lang === 'fi') {
+    switch(status) {
+      case 'completed': return 'Valmis';
+      case 'active': return 'Aktiivinen';
+      case 'mandatory': return 'Pakollinen';
+      default: return status;
+    }
+  } else {
+    switch(status) {
+      case 'completed': return 'Completed';
+      case 'active': return 'Active';
+      case 'mandatory': return 'Mandatory';
+      default: return status;
+    }
+  }
+}
+---
+
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered without image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
+      <div>{currentContent.hero.title}</div>
+      <div class="mt-2">
+        <span class="bg-gradient-to-r from-[#1E2A7A] to-[#60A5FA] bg-clip-text text-transparent">{currentContent.hero.subtitle}</span>
+      </div>
+    </h1>
+    
+    <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- Service Areas Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.serviceAreas.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.serviceAreas.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      {currentContent.serviceAreas.items.map((area) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={area.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {area.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left mb-4">
+            {area.description}
+          </p>
+          
+          <div class="mt-auto">
+            <h4 class="font-semibold text-slate-800 text-sm mb-2">
+              {lang === 'fi' ? 'Avainläpäisijät' : 'Key Deliverables'}
+            </h4>
+            <ul class="space-y-1.5">
+              {area.deliverables.map((deliverable) => (
+                <li class="flex items-start text-xs text-slate-500">
+                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  {deliverable}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Compliance Timeline Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.timeline.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.timeline.subtitle}
+      </p>
+    </div>
+    
+    <div class="space-y-4">
+      {currentContent.timeline.items.map((item, index) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-5
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-lg transition-all duration-300
+                    group">
+          <div class="flex flex-col md:flex-row gap-4 items-start">
+            
+            <div class="flex-shrink-0">
+              <div class="w-10 h-10 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                {index + 1}
+              </div>
+            </div>
+            
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center gap-3 mb-2">
+                <h3 class="text-lg font-bold text-slate-900 group-hover:text-blue-700 transition-colors duration-300">
+                  {item.milestone}
+                </h3>
+                <span class="inline-flex items-center px-2 py-1 text-xs rounded-full font-medium {getStatusColor(item.status)}">
+                  {getStatusBadgeText(item.status, lang)}
+                </span>
+                <span class="text-sm text-slate-400">{item.date}</span>
+              </div>
+              <p class="text-slate-500 text-sm">{item.description}</p>
+            </div>
+            
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Penalties Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.penalties.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.penalties.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      {currentContent.penalties.items.map((penalty) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100 text-center
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="flex justify-center mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={penalty.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+            {penalty.violation}
+          </h3>
+          
+          <div class="text-2xl font-bold text-[#1E2A7A] mb-2">
+            {penalty.penalty}
+          </div>
+          
+          <p class="text-slate-500 text-sm">
+            {penalty.scope}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</Layout>
