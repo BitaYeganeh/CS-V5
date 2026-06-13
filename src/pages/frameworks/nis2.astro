@@ -1,311 +1,295 @@
 ﻿---
 import Layout from '@/layouts/Layout.astro';
-import HeroSection from '@/components/sections/HeroSection.astro';
-import CTA from '@/components/sections/CTA.astro';
-import Button from '@/components/ui/Button.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
-const title = "NIS2 Compliance";
+// SEO Configuration
+const seoConfig = {
+  title: "NIS2 Network and Information Security Directive | EU Cybersecurity Compliance",
+  description: "Comprehensive EU cybersecurity compliance for critical infrastructure and essential service providers. Expert NIS2 implementation for Finnish organizations.",
+  keywords: "NIS2, NIS2 directive, EU cybersecurity, critical infrastructure, essential services, Finland",
+  type: "framework" as const,
+};
+
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
-// Check if this is the homepage to show promotional content
-const isHomepage = Astro.url.pathname === '/' || Astro.url.pathname === '';
-
-const heroContent = {
-  title: isHomepage ? "NIS2 Network and Information Security Directive" : "NIS2 Network and Information Security Directive",
-  subtitle: isHomepage ? "Comprehensive EU cybersecurity compliance for critical infrastructure and essential service providers" : "EU cybersecurity compliance for critical infrastructure and essential service providers",
-  description: isHomepage ? "Cybersecurity.fi specializes in NIS2 Directive implementation, helping Finnish organizations achieve full compliance with enhanced cybersecurity requirements while building resilient digital infrastructure that protects critical operations and ensures regulatory alignment across the EU." : "Expert NIS2 Directive implementation helping Finnish organizations achieve compliance with enhanced cybersecurity requirements while building resilient digital infrastructure.",
-  primaryCTA: { text: "Start NIS2 Compliance Journey", href: "/contact" },
-  secondaryCTA: { text: "View Our Services", href: "/services/nis2" },
-  image: "/images/certifications/nis2.svg"
+const content = {
+  en: {
+    hero: {
+      title: "NIS2 Network and Information Security Directive",
+      subtitle: "EU Cybersecurity Compliance for Critical Infrastructure",
+      description: "Cybersecurity.fi specializes in NIS2 Directive implementation, helping Finnish organizations achieve full compliance with enhanced cybersecurity requirements while building resilient digital infrastructure that protects critical operations and ensures regulatory alignment across the EU.",
+      primaryCTA: { text: "Start NIS2 Compliance Journey", href: "/contact" },
+      secondaryCTA: { text: "View Our Services", href: "/services/nis2" }
+    },
+    benefits: {
+      title: "Why Choose Our NIS2 Services",
+      subtitle: "We deliver NIS2 compliance with Finnish market expertise, ensuring your organization meets EU cybersecurity requirements while maintaining business operations.",
+      items: [
+        { title: "Regulatory Compliance Assurance", description: "Achieve full NIS2 compliance with expert guidance through complex EU cybersecurity requirements, ensuring your organization meets all mandatory obligations and avoids significant penalties.", icon: "target" },
+        { title: "Finnish Market Specialization", description: "Deep understanding of Finnish implementation of EU directives, local business context, and Traficom requirements and reporting procedures.", icon: "flag" },
+        { title: "Accelerated Implementation", description: "Achieve NIS2 compliance in 12-16 weeks with our proven methodology, expert guidance, and parallel workstream approach that minimizes business disruption.", icon: "lightning" },
+        { title: "24/7 Incident Response", description: "Robust incident detection, reporting, and response capabilities meeting EU cybersecurity requirements with 24-hour, 72-hour, and monthly reporting timelines.", icon: "bell" },
+        { title: "Risk-Based Security Framework", description: "Comprehensive risk assessment and management aligned with NIS2 requirements, integrating cybersecurity risk management with business strategy.", icon: "shield" },
+        { title: "Supply Chain Protection", description: "Advanced third-party risk management and supply chain security controls protecting against cascade failures and ensuring partner ecosystem security alignment.", icon: "link" }
+      ]
+    },
+    requirements: {
+      title: "NIS2 Directive Requirements",
+      subtitle: "Our NIS2 implementation covers all key requirements, ensuring comprehensive compliance with EU cybersecurity standards.",
+      items: [
+        { title: "Cybersecurity Risk Management", description: "Implement comprehensive cybersecurity risk management framework with policies, procedures, and continuous monitoring", icon: "chart-line", timeline: "3-4 months", penalty: "Up to €10M or 2% annual turnover", controls: ["Risk analysis and information system security policies", "Incident handling and business continuity management", "Supply chain security and vendor risk management", "Security in acquisition, development and maintenance", "Policies to assess effectiveness of cybersecurity measures"] },
+        { title: "ICT-Related Incident Management", description: "Establish 24/7 incident detection, response, and regulatory reporting capabilities with specific timelines", icon: "bell", timeline: "2-3 months", penalty: "Personal liability for senior management", controls: ["Computer security incident detection and response", "Early warning systems and threat monitoring", "24-hour initial notification to authorities", "72-hour detailed incident report submission", "Monthly progress reports and final incident assessment"] },
+        { title: "Technical & Organizational Measures", description: "Deploy appropriate technical and organizational cybersecurity measures proportionate to identified risks", icon: "shield", timeline: "4-6 months", penalty: "Operational sanctions and service suspension", controls: ["Multi-factor authentication and secure communications", "Encryption mechanisms and cryptographic security", "Network security and network segmentation", "Backup mechanisms and disaster recovery", "Security testing and vulnerability management"] },
+        { title: "Third-Party ICT Provider Management", description: "Comprehensive management of ICT service provider relationships and supply chain security", icon: "link", timeline: "2-4 months", penalty: "Enhanced supervisory measures", controls: ["Third-party risk assessment and due diligence", "Contractual security requirements and SLAs", "Continuous monitoring of provider performance", "Incident coordination and information sharing", "Exit strategies and contingency planning"] },
+        { title: "Digital Operational Resilience Testing", description: "Regular testing of cybersecurity measures and operational resilience capabilities", icon: "magnifying-glass", timeline: "Ongoing", penalty: "Compliance monitoring and audit requirements", controls: ["Vulnerability assessments and penetration testing", "Security testing programs and methodologies", "Testing documentation and reporting procedures", "Remediation tracking and validation processes", "Advanced testing for critical entities (TLPT)"] },
+        { title: "Information Sharing & Reporting", description: "Participate in cybersecurity information sharing and maintain comprehensive documentation", icon: "share", timeline: "Ongoing", penalty: "Regulatory enforcement actions", controls: ["Cyber threat intelligence sharing arrangements", "Participation in information sharing platforms", "Documentation of cybersecurity measures", "Regular reporting to competent authorities", "Cooperation with supervisory authorities"] }
+      ]
+    },
+    phases: {
+      title: "6-Month Implementation Roadmap",
+      subtitle: "Structured approach ensuring successful NIS2 compliance within 6 months while maintaining business continuity.",
+      items: [
+        { phase: "Phase 1: Scope Assessment & Legal Analysis", duration: "Months 1-2", activities: ["NIS2 applicability determination and entity classification", "Comprehensive gap analysis against all NIS2 requirements", "Current cybersecurity posture assessment", "Stakeholder engagement and commitment securing", "Risk assessment methodology development", "Regulatory mapping and Traficom requirements analysis"], deliverables: ["NIS2 Legal Applicability Assessment", "Comprehensive Gap Analysis Report", "Current State Assessment", "Project Charter", "Risk Assessment Framework", "Regulatory Compliance Roadmap"] },
+        { phase: "Phase 2: Cybersecurity Framework Design", duration: "Months 3-4", activities: ["Cybersecurity governance framework development", "Risk management policies and procedures", "Technical security control framework design", "Incident response framework development", "Supply chain security framework", "Training and awareness program design"], deliverables: ["Cybersecurity Governance Charter", "Complete NIS2 Policy Suite", "Technical Security Control Framework", "Incident Response Plan", "Supply Chain Security Framework", "Training Program Materials"] },
+        { phase: "Phase 3: Technical Implementation & Controls Deployment", duration: "Months 5-6", activities: ["Technical security controls implementation", "24/7 security monitoring deployment", "Multi-factor authentication implementation", "Network segmentation and encryption", "Backup and disaster recovery systems", "Vulnerability management program"], deliverables: ["Deployed Technical Security Controls", "24/7 SOC Capabilities", "IAM System", "Network Security Architecture", "BCP/DR Tested Procedures", "Vulnerability Management Program"] },
+        { phase: "Phase 4: Compliance Validation & Certification", duration: "Months 7-8", activities: ["Compliance testing and validation", "Internal audit program execution", "Incident response testing", "Regulatory reporting system testing", "Staff training delivery", "Continuous monitoring program"], deliverables: ["NIS2 Compliance Validation Report", "Internal Audit Results", "Tested Incident Response Capabilities", "Regulatory Reporting System", "Trained Staff Records", "Continuous Compliance Monitoring Program"] }
+      ]
+    },
+    industries: {
+      title: "Industry-Specific Success Stories",
+      subtitle: "See how we've helped organizations across different critical sectors achieve NIS2 compliance.",
+      items: [
+        { industry: "Energy Sector", challenge: "Securing critical energy infrastructure while meeting NIS2 requirements", solution: "Integrated OT/IT security approach with energy-specific controls", outcome: "NIS2 compliance achieved with enhanced infrastructure protection" },
+        { industry: "Financial Services", challenge: "Meeting FIN-FSA and NIS2 requirements simultaneously", solution: "Unified compliance framework addressing both regulatory regimes", outcome: "Comprehensive compliance with reduced implementation complexity" },
+        { industry: "Healthcare", challenge: "Protecting patient care systems under NIS2 and GDPR", solution: "Privacy-by-design security framework with healthcare focus", outcome: "NIS2 compliance with enhanced patient data protection" }
+      ]
+    },
+    related: {
+      title: "Related Services",
+      subtitle: "Enhance your cybersecurity posture with our complementary services and frameworks.",
+      items: [
+        { title: "ISO 27001 Implementation", description: "Information security management", href: "/frameworks/iso-27001" },
+        { title: "Risk Assessment", description: "Comprehensive risk evaluation", href: "/frameworks/risk-assessments" },
+        { title: "Incident Response", description: "Security incident management", href: "/frameworks/incident-response" },
+        { title: "Business Continuity", description: "BCP and DR planning", href: "/frameworks/business-continuity" }
+      ]
+    },
+    cta: {
+      title: "Ready to Achieve NIS2 Compliance?",
+      subtitle: "Join Finnish organizations that have successfully implemented NIS2 with our expert guidance. Let's discuss how we can help you meet EU cybersecurity requirements.",
+      primaryCTA: { text: "Start Your NIS2 Journey", href: "/contact" },
+      secondaryCTA: { text: "View Our Services", href: "/services/nis2" }
+    }
+  },
+  fi: {
+    hero: {
+      title: "NIS2-verkko- ja tietoturvadirektiivi",
+      subtitle: "EU:n kyberturvallisuusvaatimustenmukaisuus kriittiselle infrastruktuurille",
+      description: "Cybersecurity.fi on erikoistunut NIS2-direktiivin toteutukseen auttaen suomalaisia organisaatioita saavuttamaan täyden vaatimustenmukaisuuden tehostetuilla kyberturvallisuusvaatimuksilla samalla kun rakennetaan joustavaa digitaalista infrastruktuuria, joka suojaa kriittisiä toimintoja ja varmistaa sääntelyn yhdenmukaisuuden EU:ssa.",
+      primaryCTA: { text: "Aloita NIS2-vaatimustenmukaisuusmatka", href: "/contact" },
+      secondaryCTA: { text: "Tutustu palveluihimme", href: "/services/nis2" }
+    },
+    benefits: {
+      title: "Miksi valita NIS2-palvelumme",
+      subtitle: "Tarjoamme NIS2-vaatimustenmukaisuuden Suomen markkinaosaamisella varmistaen, että organisaatiosi täyttää EU:n kyberturvallisuusvaatimukset samalla kun ylläpidät liiketoimintaa.",
+      items: [
+        { title: "Sääntelyvaatimustenmukaisuuden varmistus", description: "Saavuta täysi NIS2-vaatimustenmukaisuus asiantuntijaohjauksella monimutkaisten EU:n kyberturvallisuusvaatimusten läpi varmistaen, että organisaatiosi täyttää kaikki pakolliset velvoitteet ja välttää merkittävät seuraamukset.", icon: "target" },
+        { title: "Suomen markkinoiden erikoisosaaminen", description: "Syvä ymmärrys EU-direktiivien Suomen täytäntöönpanosta, paikallisesta liiketoimintakontekstista sekä Traficomin vaatimuksista ja raportointimenettelyistä.", icon: "flag" },
+        { title: "Nopeutettu toteutus", description: "Saavuta NIS2-vaatimustenmukaisuus 12-16 viikossa todistetulla metodologiallamme, asiantuntijaohjauksella ja rinnakkaisella työnkulkulähestymistavalla, joka minimoi liiketoimintahäiriöt.", icon: "lightning" },
+        { title: "24/7 tapahtumien hallinta", description: "Vankka tapahtumien havaitsemis-, raportointi- ja reagointikyvykkyys, joka täyttää EU:n kyberturvallisuusvaatimukset 24 tunnin, 72 tunnin ja kuukausittaisilla raportointiaikatauluilla.", icon: "bell" },
+        { title: "Riskipohjainen turvallisuuskehys", description: "Kattava riskinarviointi ja -hallinta NIS2-vaatimusten mukaisesti, joka integroi kyberturvallisuusriskienhallinnan liiketoimintastrategiaan.", icon: "shield" },
+        { title: "Toimitusketjun suoja", description: "Edistynyt kolmannen osapuolen riskienhallinta ja toimitusketjun turvallisuuskontrollit suojaavat kaskadivaurioilta ja varmistavat kumppaniekosysteemin turvallisuuden yhdenmukaisuuden.", icon: "link" }
+      ]
+    },
+    requirements: {
+      title: "NIS2-direktiivin vaatimukset",
+      subtitle: "NIS2-toteutuksemme kattaa kaikki keskeiset vaatimukset varmistaen kattavan vaatimustenmukaisuuden EU:n kyberturvallisuusstandardien kanssa.",
+      items: [
+        { title: "Kyberturvallisuusriskien hallinta", description: "Toteuta kattava kyberturvallisuusriskienhallintakehys politiikoilla, menettelyillä ja jatkuvalla seurannalla", icon: "chart-line", timeline: "3-4 kuukautta", penalty: "Jopa 10 miljoonaa euroa tai 2% vuosiliikevaihdosta", controls: ["Riskianalyysi ja tietojärjestelmien turvallisuuspolitiikat", "Tapahtumien hallinta ja liiketoiminnan jatkuvuuden hallinta", "Toimitusketjun turvallisuus ja toimittajariskien hallinta", "Turvallisuus hankinnassa, kehityksessä ja ylläpidossa", "Politiikat kyberturvatoimien tehokkuuden arvioimiseksi"] },
+        { title: "ICT-tapahtumien hallinta", description: "Perusta 24/7 tapahtumien havaitsemis-, reagointi- ja sääntelyraportointikyvykkyydet erityisillä aikatauluilla", icon: "bell", timeline: "2-3 kuukautta", penalty: "Johdon henkilökohtainen vastuu", controls: ["Tietoturvatapahtumien havaitseminen ja reagointi", "Ennakkovaroitusjärjestelmät ja uhkien seuranta", "24 tunnin alkuilmoitus viranomaisille", "72 tunnin yksityiskohtainen tapahtumaraportti", "Kuukausittaiset edistymisraportit ja lopullinen tapahtuma-arviointi"] },
+        { title: "Tekniset ja organisatoriset toimenpiteet", description: "Käytä asianmukaisia teknisiä ja organisatorisia kyberturvatoimia, jotka ovat oikeassa suhteessa tunnistettuihin riskeihin", icon: "shield", timeline: "4-6 kuukautta", penalty: "Operatiiviset seuraamukset ja palvelun keskeytys", controls: ["Monivaiheinen tunnistautuminen ja turvallinen viestintä", "Salausmekanismit ja kryptografinen turvallisuus", "Verkkoturvallisuus ja verkon segmentointi", "Varmuuskopiointimekanismit ja katastrofipalautus", "Turvallisuustestaus ja haavoittuvuuksien hallinta"] },
+        { title: "Kolmannen osapuolen ICT-palveluntarjoajien hallinta", description: "Kattava ICT-palveluntarjoajasuhteiden ja toimitusketjun turvallisuuden hallinta", icon: "link", timeline: "2-4 kuukautta", penalty: "Tehostetut valvontatoimenpiteet", controls: ["Kolmannen osapuolen riskinarviointi ja due diligence", "Sopimukselliset turvallisuusvaatimukset ja SLAt", "Palveluntarjoajan suorituskyvyn jatkuva seuranta", "Tapahtumien koordinointi ja tiedonjako", "Poistumisstrategiat ja varautumissuunnittelu"] },
+        { title: "Digitaalisen toimintakyvyn testaus", description: "Kyberturvatoimien ja operatiivisen resilienssin säännöllinen testaus", icon: "magnifying-glass", timeline: "Jatkuva", penalty: "Vaatimustenmukaisuuden seuranta ja auditointivaatimukset", controls: ["Haavoittuvuusarvioinnit ja tunkeutumistestaus", "Turvallisuustestausohjelmat ja -menetelmät", "Testausdokumentaatio ja raportointimenettelyt", "Korjaustoimien seuranta ja validointiprosessit", "Edistynyt testaus kriittisille toimijoille (TLPT)"] },
+        { title: "Tiedonjako ja raportointi", description: "Osallistu kyberturvallisuustiedonjakoon ja ylläpidä kattavaa dokumentaatiota", icon: "share", timeline: "Jatkuva", penalty: "Sääntelyn täytäntöönpanotoimet", controls: ["Kyberuhkatiedustelun jakamisjärjestelyt", "Osallistuminen tiedonjakoalustoille", "Kyberturvatoimien dokumentointi", "Säännöllinen raportointi toimivaltaisille viranomaisille", "Yhteistyö valvontaviranomaisten kanssa"] }
+      ]
+    },
+    phases: {
+      title: "6 kuukauden toteutussuunnitelma",
+      subtitle: "Rakenteinen lähestymistapa varmistaa onnistuneen NIS2-vaatimustenmukaisuuden 6 kuukauden kuluessa samalla kun liiketoiminnan jatkuvuus säilyy.",
+      items: [
+        { phase: "Vaihe 1: Laajuuden arviointi ja oikeudellinen analyysi", duration: "Kuukaudet 1-2", activities: ["NIS2-sovellettavuuden määrittely ja toimijaluokitus", "Kattava aukkoanalyysi NIS2-vaatimuksia vastaan", "Nykyisen kyberturvallisuustason arviointi", "Sidosryhmien osallistaminen ja sitoutumisen varmistaminen", "Riskinarviointimenetelmän kehitys", "Sääntelykartoitus ja Traficomin vaatimusanalyysi"], deliverables: ["NIS2-oikeudellinen sovellettavuusarviointi", "Kattava aukkoanalyysiraportti", "Nykytilan arviointi", "Projektisuunnitelma", "Riskinarviointikehys", "Sääntelyn vaatimustenmukaisuuden tiekartta"] },
+        { phase: "Vaihe 2: Kyberturvallisuuskehyksen suunnittelu", duration: "Kuukaudet 3-4", activities: ["Kyberturvallisuuden hallintakehyksen kehitys", "Riskienhallintapolitiikat ja -menettelyt", "Teknisten turvakontrollien kehyssuunnittelu", "Tapahtumien hallintakehyksen kehitys", "Toimitusketjun turvallisuuskehys", "Koulutus- ja tietoisuusohjelman suunnittelu"], deliverables: ["Kyberturvallisuuden hallintaperuskirja", "Täydellinen NIS2-politiikkakokonaisuus", "Tekninen turvakontrollikehys", "Tapahtumien hallintasuunnitelma", "Toimitusketjun turvallisuuskehys", "Koulutusohjelman materiaalit"] },
+        { phase: "Vaihe 3: Tekninen toteutus ja kontrollien käyttöönotto", duration: "Kuukaudet 5-6", activities: ["Teknisten turvakontrollien toteutus", "24/7 turvallisuusseurannan käyttöönotto", "Monivaiheisen tunnistautumisen toteutus", "Verkon segmentointi ja salaus", "Varmuuskopiointi- ja katastrofipalautusjärjestelmät", "Haavoittuvuuksien hallintaohjelma"], deliverables: ["Käyttöönotetut tekniset turvakontrollit", "24/7 SOC-kyvykkyydet", "IAM-järjestelmä", "Verkkoturva-arkkitehtuuri", "BCP/DR-testatut menettelyt", "Haavoittuvuuksien hallintaohjelma"] },
+        { phase: "Vaihe 4: Vaatimustenmukaisuuden validointi ja sertifiointi", duration: "Kuukaudet 7-8", activities: ["Vaatimustenmukaisuustestaus ja validointi", "Sisäisen auditointiohjelman toteutus", "Tapahtumien hallinnan testaus", "Sääntelyraportointijärjestelmän testaus", "Henkilöstön koulutuksen toteutus", "Jatkuvan seurannan ohjelma"], deliverables: ["NIS2-vaatimustenmukaisuuden validointiraportti", "Sisäiset auditoinnitulokset", "Testatut tapahtumien hallintakyvykkyydet", "Sääntelyraportointijärjestelmä", "Koulutetun henkilöstön tiedot", "Jatkuvan vaatimustenmukaisuuden seurantaohjelma"] }
+      ]
+    },
+    industries: {
+      title: "Toimialakohtaiset menestystarinat",
+      subtitle: "Katso, kuinka olemme auttaneet organisaatioita eri kriittisillä toimialoilla saavuttamaan NIS2-vaatimustenmukaisuuden.",
+      items: [
+        { industry: "Energiasektori", challenge: "Kriittisen energiainfrastruktuurin turvaaminen samalla kun NIS2-vaatimukset täytetään", solution: "Integroitu OT/IT-turvallisuuslähestymistapa energiaspesifisillä kontrolleilla", outcome: "NIS2-vaatimustenmukaisuus saavutettu parannetulla infrastruktuurin suojauksella" },
+        { industry: "Rahoituspalvelut", challenge: "FIN-FSA- ja NIS2-vaatimusten täyttäminen samanaikaisesti", solution: "Yhtenäinen vaatimustenmukaisuuskehys, joka kattaa molemmat sääntelyjärjestelmät", outcome: "Kattava vaatimustenmukaisuus vähentyneellä toteutuksen monimutkaisuudella" },
+        { industry: "Terveydenhuolto", challenge: "Potilaiden hoitojärjestelmien suojaaminen NIS2:n ja GDPR:n alaisuudessa", solution: "Tietosuoja-by-design -turvallisuuskehys terveydenhuollon painopisteellä", outcome: "NIS2-vaatimustenmukaisuus parannetulla potilastietojen suojauksella" }
+      ]
+    },
+    related: {
+      title: "Aiheeseen liittyvät palvelut",
+      subtitle: "Paranna kyberturvallisuusasemaasi täydentävillä palveluillamme ja kehyksillämme.",
+      items: [
+        { title: "ISO 27001 -toteutus", description: "Tietoturvallisuuden hallinta", href: "/frameworks/iso-27001" },
+        { title: "Riskiarviointi", description: "Kattava riskien arviointi", href: "/frameworks/risk-assessments" },
+        { title: "Tapahtumien hallinta", description: "Tietoturvatapahtumien hallinta", href: "/frameworks/incident-response" },
+        { title: "Liiketoiminnan jatkuvuus", description: "BCP- ja DR-suunnittelu", href: "/frameworks/business-continuity" }
+      ]
+    },
+    cta: {
+      title: "Valmis saavuttamaan NIS2-vaatimustenmukaisuuden?",
+      subtitle: "Liity suomalaisten organisaatioiden joukkoon, jotka ovat onnistuneesti toteuttaneet NIS2:n asiantuntijaohjauksellamme. Keskustellaan, kuinka voimme auttaa sinua täyttämään EU:n kyberturvallisuusvaatimukset.",
+      primaryCTA: { text: "Aloita NIS2-matkasi", href: "/contact" },
+      secondaryCTA: { text: "Tutustu palveluihimme", href: "/services/nis2" }
+    }
+  }
 };
 
-const keyBenefits = [
-  {
-    title: " Regulatory Compliance Assurance",
-    description: "Achieve full NIS2 compliance with expert guidance through complex EU cybersecurity requirements, ensuring your organization meets all mandatory obligations and avoids significant penalties.",
-    icon: "target"
-  },
-  {
-    title: " Finnish Market Specialization",
-    description: "Deep understanding of Finnish implementation of EU directives, local business context, and Traficom (Finnish Transport and Communications Agency) requirements and reporting procedures.",
-    icon: "flag"
-  },
-  {
-    title: "⚡ Accelerated Implementation",
-    description: "Achieve NIS2 compliance in 12-16 weeks with our proven methodology, expert guidance, and parallel workstream approach that minimizes business disruption.",
-    icon: "lightning"
-  },
-  {
-    title: "24/7 Incident Response",
-    description: "Robust incident detection, reporting, and response capabilities meeting EU cybersecurity requirements with 24-hour, 72-hour, and monthly reporting timelines to authorities.",
-    icon: "bell"
-  },
-  {
-    title: "Risk-Based Security Framework",
-    description: "Comprehensive risk assessment and management aligned with NIS2 requirements, integrating cybersecurity risk management with business strategy and operational resilience.",
-    icon: "shield"
-  },
-  {
-    title: "🤝 Supply Chain Protection",
-    description: "Advanced third-party risk management and supply chain security controls protecting against cascade failures and ensuring partner ecosystem security alignment.",
-    icon: "link"
-  }
-];
-
-const nis2Requirements = [
-  {
-    requirement: " Cybersecurity Risk Management",
-    description: "Implement comprehensive cybersecurity risk management framework with policies, procedures, and continuous monitoring",
-    controls: [
-      "Risk analysis and information system security policies",
-      "Incident handling and business continuity management", 
-      "Supply chain security and vendor risk management",
-      "Security in acquisition, development and maintenance",
-      "Policies to assess effectiveness of cybersecurity measures"
-    ],
-    icon: "chart-line",
-    timeline: "3-4 months",
-    penalty: "Up to €10M or 2% annual turnover"
-  },
-  {
-    requirement: "ICT-Related Incident Management",
-    description: "Establish 24/7 incident detection, response, and regulatory reporting capabilities with specific timelines",
-    controls: [
-      "Computer security incident detection and response",
-      "Early warning systems and threat monitoring",
-      "24-hour initial notification to authorities",
-      "72-hour detailed incident report submission", 
-      "Monthly progress reports and final incident assessment"
-    ],
-    icon: "bell",
-    timeline: "2-3 months",
-    penalty: "Personal liability for senior management"
-  },
-  {
-    requirement: "Technical & Organizational Measures",
-    description: "Deploy appropriate technical and organizational cybersecurity measures proportionate to identified risks",
-    controls: [
-      "Multi-factor authentication and secure communications",
-      "Encryption mechanisms and cryptographic security",
-      "Network security and network segmentation",
-      "Backup mechanisms and disaster recovery",
-      "Security testing and vulnerability management"
-    ],
-    icon: "shield",
-    timeline: "4-6 months", 
-    penalty: "Operational sanctions and service suspension"
-  },
-  {
-    requirement: "🤝 Third-Party ICT Provider Management",
-    description: "Comprehensive management of ICT service provider relationships and supply chain security",
-    controls: [
-      "Third-party risk assessment and due diligence",
-      "Contractual security requirements and SLAs",
-      "Continuous monitoring of provider performance",
-      "Incident coordination and information sharing",
-      "Exit strategies and contingency planning"
-    ],
-    icon: "link",
-    timeline: "2-4 months",
-    penalty: "Enhanced supervisory measures"
-  },
-  {
-    requirement: "🧪 Digital Operational Resilience Testing",
-    description: "Regular testing of cybersecurity measures and operational resilience capabilities",
-    controls: [
-      "Vulnerability assessments and penetration testing",
-      "Security testing programs and methodologies", 
-      "Testing documentation and reporting procedures",
-      "Remediation tracking and validation processes",
-      "Advanced testing for critical entities (TLPT)"
-    ],
-    icon: "magnifying-glass",
-    timeline: "Ongoing - quarterly/annually",
-    penalty: "Compliance monitoring and audit requirements"
-  },
-  {
-    requirement: "Information Sharing & Reporting",
-    description: "Participate in cybersecurity information sharing and maintain comprehensive documentation",
-    controls: [
-      "Cyber threat intelligence sharing arrangements",
-      "Participation in information sharing platforms",
-      "Documentation of cybersecurity measures",
-      "Regular reporting to competent authorities",
-      "Cooperation with supervisory authorities"
-    ],
-    icon: "share",
-    timeline: "Ongoing",
-    penalty: "Regulatory enforcement actions"
-  }
-];
-
-const implementationPhases = [
-  {
-    phase: "Phase 1: Scope Assessment & Legal Analysis ",
-    duration: "Months 1-2",
-    activities: [
-      "NIS2 applicability determination and entity classification (Essential vs Important)",
-      "Comprehensive gap analysis against all NIS2 cybersecurity requirements",
-      "Current cybersecurity posture assessment and maturity evaluation",
-      "Stakeholder engagement and senior management commitment securing",
-      "Risk assessment methodology development and threat landscape analysis",
-      "Regulatory mapping and Traficom reporting requirements analysis"
-    ],
-    deliverables: [
-      "NIS2 Legal Applicability Assessment Report",
-      "Comprehensive Gap Analysis with prioritized action plan",
-      "Current State Cybersecurity Assessment",
-      "Project Charter with executive sponsorship",
-      "Risk Assessment Framework aligned with NIS2",
-      "Regulatory Compliance Roadmap"
-    ]
-  },
-  {
-    phase: "Phase 2: Cybersecurity Framework Design ",
-    duration: "Months 3-4",
-    activities: [
-      "Cybersecurity governance framework development with board oversight",
-      "Risk management policies and procedures creation",
-      "Technical security control framework design and selection",
-      "Incident response and crisis management framework development",
-      "Supply chain security and third-party risk management framework",
-      "Training and awareness program design"
-    ],
-    deliverables: [
-      "Cybersecurity Governance Charter with board approval",
-      "Complete NIS2 Policy and Procedure Suite",
-      "Technical Security Control Framework",
-      "Incident Response Plan with regulatory reporting procedures",
-      "Supply Chain Security Framework",
-      "Training and Awareness Program materials"
-    ]
-  },
-  {
-    phase: "Phase 3: Technical Implementation & Controls Deployment ",
-    duration: "Months 5-6",
-    activities: [
-      "Technical security controls implementation across all systems",
-      "24/7 security monitoring and incident detection capabilities deployment",
-      "Multi-factor authentication and access control system implementation",
-      "Network segmentation and encryption deployment",
-      "Backup, disaster recovery, and business continuity system implementation",
-      "Vulnerability management and security testing program establishment"
-    ],
-    deliverables: [
-      "Deployed Technical Security Controls with documentation",
-      "24/7 Security Operations Center (SOC) capabilities",
-      "Identity and Access Management (IAM) system",
-      "Network Security Architecture with segmentation",
-      "Business Continuity and Disaster Recovery tested procedures",
-      "Vulnerability Management Program with automated scanning"
-    ]
-  },
-  {
-    phase: "Phase 4: Compliance Validation & Certification ",
-    duration: "Months 7-8",
-    activities: [
-      "Comprehensive compliance testing and validation against NIS2 requirements",
-      "Internal audit program execution and effectiveness assessment",
-      "Incident response testing and tabletop exercises",
-      "Regulatory reporting system testing and Traficom integration",
-      "Staff training delivery and competency validation",
-      "Continuous monitoring and improvement program establishment"
-    ],
-    deliverables: [
-      "NIS2 Compliance Validation Report with certification",
-      "Internal Audit Results and remediation tracking",
-      "Tested Incident Response Capabilities",
-      "Regulatory Reporting System with automated workflows",
-      "Trained Staff with competency records",
-      "Continuous Compliance Monitoring Program"
-    ]
-  }
-];
-
-const industryExamples = [
-  {
-    industry: "Energy Sector",
-    challenge: "Securing critical energy infrastructure while meeting NIS2 requirements",
-    solution: "Integrated OT/IT security approach with energy-specific controls",
-    outcome: "NIS2 compliance achieved with enhanced infrastructure protection"
-  },
-  {
-    industry: "Financial Services",
-    challenge: "Meeting FIN-FSA and NIS2 requirements simultaneously",
-    solution: "Unified compliance framework addressing both regulatory regimes",
-    outcome: "Comprehensive compliance with reduced implementation complexity"
-  },
-  {
-    industry: "Healthcare",
-    challenge: "Protecting patient care systems under NIS2 and GDPR",
-    solution: "Privacy-by-design security framework with healthcare focus",
-    outcome: "NIS2 compliance with enhanced patient data protection"
-  }
-];
-
-const relatedServices = [
-  { title: "ISO 27001 Implementation", href: "/frameworks/iso-27001", description: "Information security management" },
-  { title: "Risk Assessment", href: "/frameworks/risk-assessments", description: "Comprehensive risk evaluation" },
-  { title: "Incident Response", href: "/frameworks/incident-response", description: "Security incident management" },
-  { title: "Business Continuity", href: "/frameworks/business-continuity", description: "BCP and DR planning" }
-];
+const currentContent = content[lang];
 ---
 
-<Layout title={title}>
-  <HeroSection content={heroContent} />
-  
-  <!-- Key Benefits Section -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">Why Choose Our NIS2 Services</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          We deliver NIS2 compliance with Finnish market expertise, ensuring your organization meets EU cybersecurity requirements while maintaining business operations.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {keyBenefits.map((benefit) => (
-          <div class="bg-gradient-to-br from-slate-50 to-white p-8 rounded-xl border border-slate-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
-              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-4">{benefit.title}</h3>
-            <p class="text-slate-600 leading-relaxed">{benefit.description}</p>
-          </div>
-        ))}
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
-
-  <!-- NIS2 Requirements Section -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">NIS2 Directive Requirements</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Our NIS2 implementation covers all key requirements, ensuring comprehensive compliance with EU cybersecurity standards.
-        </p>
-      </div>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {nis2Requirements.map((requirement) => (
-          <div class="bg-white p-8 rounded-xl border border-slate-200 hover:shadow-lg transition-shadow">
-            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
-              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- Key Benefits Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.benefits.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.benefits.subtitle}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {currentContent.benefits.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
             </div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-4">{requirement.requirement}</h3>
-            <p class="text-slate-600 mb-6">{requirement.description}</p>
-            <h4 class="font-semibold text-slate-900 mb-3">Key Controls:</h4>
-            <ul class="space-y-2">
-              {requirement.controls.map((control) => (
-                <li class="flex items-center text-slate-600">
-                  <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {item.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left">
+            {item.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- NIS2 Requirements Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.requirements.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.requirements.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {currentContent.requirements.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex justify-end">
+              <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+                <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
+                {item.timeline}
+              </span>
+              <p class="text-xs text-red-600 mt-1 font-semibold">{item.penalty}</p>
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {item.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left mb-4">
+            {item.description}
+          </p>
+          
+          <div class="mt-auto">
+            <h4 class="font-semibold text-slate-800 text-sm mb-2">Key Controls:</h4>
+            <ul class="space-y-1.5">
+              {item.controls.slice(0, 4).map((control) => (
+                <li class="flex items-start text-xs text-slate-500">
+                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
                   {control}
@@ -313,134 +297,192 @@ const relatedServices = [
               ))}
             </ul>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Implementation Phases Section -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">6-Month Implementation Roadmap</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Structured approach ensuring successful NIS2 compliance within 6 months while maintaining business continuity.
-        </p>
-      </div>
-      
-      <div class="space-y-8">
-        {implementationPhases.map((phase, index) => (
-          <div class="bg-slate-50 p-8 rounded-xl border border-slate-200 shadow-lg">
-            <div class="flex items-start gap-6">
-              <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
-                  {index + 1}
-                </div>
+<!-- Implementation Phases Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.phases.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.phases.subtitle}
+      </p>
+    </div>
+    
+    <div class="space-y-6">
+      {currentContent.phases.items.map((phase, index) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-lg transition-all duration-300
+                    group">
+          
+          <div class="flex flex-col md:flex-row gap-6">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold text-lg">
+                {index + 1}
               </div>
-              <div class="flex-1">
-                <div class="flex items-center gap-4 mb-4">
-                  <h3 class="text-2xl font-bold text-slate-900">{phase.phase}</h3>
-                  <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                    {phase.duration}
-                  </span>
+            </div>
+            
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center gap-3 mb-4">
+                <h3 class="text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors duration-300">
+                  {phase.phase}
+                </h3>
+                <span class="inline-flex items-center px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-700">
+                  {phase.duration}
+                </span>
+              </div>
+              
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 class="font-semibold text-slate-800 text-sm mb-2">Key Activities</h4>
+                  <ul class="space-y-1.5">
+                    {phase.activities.slice(0, 5).map((activity) => (
+                      <li class="flex items-start text-xs text-slate-500">
+                        <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        {activity}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div class="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <h4 class="font-semibold text-slate-900 mb-3">Key Activities</h4>
-                    <ul class="space-y-2">
-                      {phase.activities.map((activity) => (
-                        <li class="flex items-center text-slate-600">
-                          <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                          {activity}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-slate-900 mb-3">Deliverables</h4>
-                    <ul class="space-y-2">
-                      {phase.deliverables.map((deliverable) => (
-                        <li class="flex items-center text-slate-600">
-                          <svg class="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                          </svg>
-                          {deliverable}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                
+                <div>
+                  <h4 class="font-semibold text-slate-800 text-sm mb-2">Deliverables</h4>
+                  <ul class="space-y-1.5">
+                    {phase.deliverables.slice(0, 5).map((deliverable) => (
+                      <li class="flex items-start text-xs text-slate-500">
+                        <svg class="w-3 h-3 text-blue-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        {deliverable}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Industry Examples Section -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">Industry-Specific Success Stories</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          See how we've helped organizations across different critical sectors achieve NIS2 compliance.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {industryExamples.map((example) => (
-          <div class="bg-white p-8 rounded-xl border border-slate-200">
-            <div class="mb-4">
-              <span class="inline-block bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
-                {example.industry}
-              </span>
-            </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-4">Challenge</h3>
-            <p class="text-slate-600 mb-6">{example.challenge}</p>
-            <h4 class="text-lg font-semibold text-slate-900 mb-3">Our Solution</h4>
-            <p class="text-slate-600 mb-6">{example.solution}</p>
-            <h4 class="text-lg font-semibold text-slate-900 mb-3">Outcome</h4>
-            <p class="text-slate-600">{example.outcome}</p>
+<!-- Industry Examples Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.industries.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.industries.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      {currentContent.industries.items.map((example) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="mb-4">
+            <span class="inline-block bg-blue-100 text-blue-700 text-xs font-medium px-3 py-1 rounded-full group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:text-white transition-all duration-300">
+              {example.industry}
+            </span>
           </div>
-        ))}
-      </div>
+          
+          <h4 class="font-semibold text-slate-800 text-sm mb-2">Challenge:</h4>
+          <p class="text-slate-500 text-xs mb-3">{example.challenge}</p>
+          
+          <h4 class="font-semibold text-slate-800 text-sm mb-2">Our Solution:</h4>
+          <p class="text-slate-500 text-xs mb-3">{example.solution}</p>
+          
+          <h4 class="font-semibold text-slate-800 text-sm mb-2">Outcome:</h4>
+          <p class="text-slate-500 text-xs">{example.outcome}</p>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Related Services Section -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">Related Services</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Enhance your cybersecurity posture with our complementary services and frameworks.
-        </p>
-      </div>
+<!-- Related Services Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.related.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.related.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-4 gap-6">
+      {currentContent.related.items.map((service) => (
+        <a href={service.href} class="bg-slate-50/50 rounded-xl border border-slate-100 p-5 text-center
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-md transition-all duration-300
+                    group block">
+          
+          <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+            {service.title}
+          </h3>
+          <p class="text-slate-500 text-xs">{service.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {relatedServices.map((service) => (
-          <a href={service.href} class="group">
-            <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:shadow-lg transition-shadow group-hover:border-blue-300">
-              <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
-                {service.title}
-              </h3>
-              <p class="text-slate-600 text-sm">{service.description}</p>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
 
-  <!-- CTA Section -->
-  <CTA 
-    title="Ready to Achieve NIS2 Compliance?"
-    description="Join Finnish organizations that have successfully implemented NIS2 with our expert guidance. Let's discuss how we can help you meet EU cybersecurity requirements."
-    primaryCTA={{ text: "Start Your NIS2 Journey", href: "/contact" }}
-    secondaryCTA={{ text: "View Our Services", href: "/services/nis2" }}
-  />
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 </Layout>
-
