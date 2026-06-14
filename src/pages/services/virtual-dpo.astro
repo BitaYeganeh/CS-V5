@@ -1,515 +1,625 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-import Button from '@/components/ui/Button.astro';
+
+// SEO Configuration
+const seoConfig = {
+  title: "Virtual DPO (V-DPO) | Data Protection Officer Services",
+  description: "Experienced Data Protection Officer service for GDPR and privacy governance needs without full-time recruitment. Full-service, advisory, and project-based V-DPO models.",
+  keywords: "virtual DPO, V-DPO, data protection officer, GDPR compliance, privacy governance, Finland",
+  type: "service" as const,
+};
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
-const title = lang === 'fi' ? 'Virtuaalinen DPO' : 'Virtual DPO (V-DPO)';
-const description = lang === 'fi' 
-  ? 'Kokeneen tietosuojavastaavan palvelu GDPR:n ja tietosuojan hallinnan tarpeisiin ilman pysyvää rekrytointia.' 
-  : 'Experienced Data Protection Officer service for GDPR and privacy governance needs without full-time recruitment.';
-
-const serviceModels = [
-  {
-    title: lang === 'fi' ? 'Täyspalvelu V-DPO' : 'Full-Service V-DPO',
-    description: lang === 'fi' 
-      ? 'Kokonaisvaltainen tietosuojan hallintaratkaisu, joka kattaa kaikki GDPR-vaatimukset ja tietosuojan hallinnolliset toiminnot.' 
-      : 'Comprehensive privacy governance solution covering all GDPR requirements and data protection operations.',
-    icon: 'shieldCheck',
-    features: [
-      lang === 'fi' ? 'GDPR-sääntelyn noudattaminen' : 'GDPR Compliance',
-      lang === 'fi' ? 'Tietosuojaselosteet' : 'Privacy Notices',
-      lang === 'fi' ? 'Tietosuojavaikutusten arviointi (DPIA)' : 'Data Protection Impact Assessments (DPIA)',
-      lang === 'fi' ? 'Käsittelytietojen rekisteröinti (RoPA)' : 'Records of Processing Activities (RoPA)',
-      lang === 'fi' ? 'Tietoturvaloukkausten hallinta' : 'Data Breach Management',
-      lang === 'fi' ? 'Sääntelyviranomaisten yhteistyö' : 'Regulatory Authority Liaison'
-    ]
+const content = {
+  en: {
+    hero: {
+      title: "Virtual DPO (V-DPO)",
+      subtitle: "Experienced Data Protection Officer Service",
+      description: "Experienced Data Protection Officer service for GDPR and privacy governance needs without full-time recruitment. We meet GDPR Article 37 requirements and provide strategic privacy guidance to your organization.",
+      primaryCTA: { text: "Contact Us", href: "/contact?service=vdpo" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    },
+    overview: {
+      title: "Service Overview",
+      description: "Our Virtual DPO service provides experienced Data Protection Officer expertise for GDPR requirements and privacy governance without full-time recruitment. We offer the expertise needed for privacy management, compliance oversight, and stakeholder communication.",
+      compliance: "We meet GDPR Article 37 requirements and provide strategic privacy guidance to your organization."
+    },
+    serviceModels: {
+      title: "Service Models",
+      subtitle: "Choose the V-DPO service model that best fits your organization's needs",
+      items: [
+        {
+          title: "Full-Service V-DPO",
+          description: "Comprehensive privacy governance solution covering all GDPR requirements and data protection operations.",
+          icon: "shield-check",
+          features: ["GDPR Compliance", "Privacy Notices", "Data Protection Impact Assessments (DPIA)", "Records of Processing Activities (RoPA)", "Data Breach Management", "Regulatory Authority Liaison"]
+        },
+        {
+          title: "Advisory V-DPO",
+          description: "Provides expertise and guidance on privacy governance without daily operational responsibility.",
+          icon: "light-bulb",
+          features: ["Privacy Strategic Planning", "Privacy Policy Development", "Staff Training", "Privacy Assessments", "Privacy Governance Framework Design", "Privacy Questionnaires"]
+        },
+        {
+          title: "Project V-DPO",
+          description: "Supports specific privacy projects such as DPIAs, certifications, or crisis management.",
+          icon: "clipboard",
+          features: ["Data Protection Impact Assessments (DPIA)", "Privacy Governance Framework Implementation", "Data Breach Response", "Privacy Audits", "Vendor Privacy Management", "Contract Documentation"]
+        }
+      ]
+    },
+    requirements: {
+      title: "GDPR Requirements",
+      subtitle: "Comprehensive coverage of key GDPR requirements",
+      items: [
+        "Article 30 - Records of Processing Activities (RoPA)",
+        "Article 35 - Data Protection Impact Assessments (DPIA)",
+        "Article 37 - DPO Appointment Requirements",
+        "Article 33/34 - Breach Notification",
+        "Article 13/14 - Privacy Notices",
+        "Article 7 - Consent Management"
+      ]
+    },
+    benefits: {
+      title: "V-DPO Benefits",
+      subtitle: "Why choose our Virtual DPO service?",
+      items: [
+        "Save costs compared to full-time DPO",
+        "Access to privacy expertise",
+        "Flexible engagement as needed",
+        "Meet GDPR requirements",
+        "Avoid regulatory risks and fines",
+        "Improve customer trust"
+      ]
+    },
+    deliverables: {
+      title: "What You Get",
+      items: [
+        "Data Protection Officer appointment",
+        "Data Protection Impact Assessments (DPIA)",
+        "Records of Processing Activities (RoPA)",
+        "Privacy policies and procedures",
+        "Data breach response procedures",
+        "Staff training programs",
+        "Regulatory correspondence",
+        "Privacy governance framework"
+      ]
+    },
+    outcomes: {
+      title: "Key Outcomes",
+      items: [
+        "Full GDPR compliance",
+        "Enhanced privacy governance framework",
+        "Improved customer and stakeholder trust",
+        "Reduced regulatory risks and potential fines"
+      ]
+    },
+    caseStudies: {
+      title: "Case Studies",
+      subtitle: "Real examples of how our V-DPO service has helped organizations improve their privacy governance.",
+      items: [
+        {
+          title: "Financial Services Group",
+          description: "Multinational financial group that needed GDPR and DORA compliance across operations in Europe and the US.",
+          challenge: "Extensive data processing activities across multiple countries and need to align GDPR and DORA requirements.",
+          solution: "Implemented a full-service V-DPO model focusing on RoPA management, DPIA execution, and regulatory authority liaison.",
+          results: ["Full GDPR and DORA compliance achieved in 10 months", "Data privacy incidents reduced by 90%", "Regulatory audit score improved to Grade A", "Customer trust increased by 35%"]
+        },
+        {
+          title: "Healthcare Services Company",
+          description: "Healthcare services company providing specialized care with critical patient data processing activities.",
+          challenge: "Highly sensitive personal data processing activities with strict GDPR requirements where errors could result in severe penalties.",
+          solution: "Implemented an advisory V-DPO model focusing on privacy policy development, staff training, and DPIA execution.",
+          results: ["Full GDPR compliance achieved with zero audit findings", "Patient data processing procedures optimized by 40%", "Staff privacy awareness increased by 85%", "Privacy incidents reduced by 95%"]
+        }
+      ]
+    },
+    metrics: {
+      title: "Success Metrics & Outcomes",
+      subtitle: "Evidence of how our V-DPO service impacts our clients' organizations.",
+      items: [
+        { value: "98%", label: "Compliance Rate", description: "of clients achieve full GDPR compliance with V-DPO service" },
+        { value: "75%", label: "Privacy Incidents Reduction", description: "reduction in privacy incidents after V-DPO implementation" },
+        { value: "60%", label: "Cost Reduction", description: "average cost savings compared to hiring an internal DPO" },
+        { value: "95%", label: "Client Satisfaction", description: "of clients report that our V-DPO service meets or exceeds expectations" }
+      ],
+      advantages: {
+        regulatory: ["Full GDPR and privacy compliance", "DPIA and RoPA process management", "Regulatory authority liaison"],
+        organizational: ["Improved customer trust", "Increased staff privacy awareness", "Reduced breach risk exposure"]
+      }
+    },
+    cta: {
+      title: "Ready to start V-DPO service?",
+      subtitle: "Let's discuss your organization's privacy needs and the most suitable V-DPO service model.",
+      primaryCTA: { text: "Get Started", href: "/contact?service=vdpo" },
+      secondaryCTA: { text: "Schedule Meeting", href: "/contact?consultation=true" }
+    }
   },
-  {
-    title: lang === 'fi' ? 'Konsultoiva V-DPO' : 'Advisory V-DPO',
-    description: lang === 'fi' 
-      ? 'Tarjoaa asiantuntemusta ja ohjausta tietosuojan hallintaan ilman päivittäistä operatiivista vastuuta.' 
-      : 'Provides expertise and guidance on privacy governance without daily operational responsibility.',
-    icon: 'lightBulb',
-    features: [
-      lang === 'fi' ? 'Tietosuojan strateginen suunnittelu' : 'Privacy Strategic Planning',
-      lang === 'fi' ? 'Tietosuojakäytäntöjen kehittäminen' : 'Privacy Policy Development',
-      lang === 'fi' ? 'Henkilöstökoulutus' : 'Staff Training',
-      lang === 'fi' ? 'Tietosuojan arviointi' : 'Privacy Assessments',
-      lang === 'fi' ? 'Tietosuojan hallintakehyksen suunnittelu' : 'Privacy Governance Framework Design',
-      lang === 'fi' ? 'Tietosuojaa koskevat kyselyt' : 'Privacy Questionnaires'
-    ]
-  },
-  {
-    title: lang === 'fi' ? 'Projekti-V-DPO' : 'Project V-DPO',
-    description: lang === 'fi' 
-      ? 'Tukee tiettyjä tietosuojaprojekteja kuten DPIA-arviointeja, sertifiointeja tai kriisinhallintaa.' 
-      : 'Supports specific privacy projects such as DPIAs, certifications, or crisis management.',
-    icon: 'clipboard',
-    features: [
-      lang === 'fi' ? 'Tietosuojavaikutusten arviointi (DPIA)' : 'Data Protection Impact Assessments (DPIA)',
-      lang === 'fi' ? 'Tietosuojan hallintakehyksen toteutus' : 'Privacy Governance Framework Implementation',
-      lang === 'fi' ? 'Tietoturvaloukkausten hallinta' : 'Data Breach Response',
-      lang === 'fi' ? 'Tietosuojaa koskevat tarkastukset' : 'Privacy Audits',
-      lang === 'fi' ? 'Toimittajien tietosuojan hallinta' : 'Vendor Privacy Management',
-      lang === 'fi' ? 'Sopimusasiakirjat' : 'Contract Documentation'
-    ]
+  fi: {
+    hero: {
+      title: "Virtuaalinen DPO (V-DPO)",
+      subtitle: "Kokenut tietosuojavastaavan palvelu",
+      description: "Kokeneen tietosuojavastaavan palvelu GDPR:n ja tietosuojan hallinnan tarpeisiin ilman pysyvää rekrytointia. Täytämme GDPR-artiklan 37 vaatimukset ja tarjoamme strategista tietosuojan ohjausta organisaatiollesi.",
+      primaryCTA: { text: "Ota yhteyttä", href: "/contact?service=vdpo" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    },
+    overview: {
+      title: "Yleiskatsaus palveluun",
+      description: "Virtuaalinen DPO -palvelumme tarjoaa kokeneen tietosuojavastaavan osaamisen GDPR-vaatimusten ja tietosuojan hallinnan tarpeisiin ilman pysyvää rekrytointia. Tarjoamme asiantuntemusta, jota tarvitaan tietosuojan hallinnassa, sääntelyn noudattamisessa ja sidosryhmien kanssa käytävässä viestinnässä.",
+      compliance: "Täytämme GDPR-artiklan 37 vaatimukset ja tarjoamme strategista tietosuojan ohjausta organisaatiollesi."
+    },
+    serviceModels: {
+      title: "Palvelumallit",
+      subtitle: "Valitse organisaatiosi tarpeisiin sopivin V-DPO-palvelumalli",
+      items: [
+        {
+          title: "Täyspalvelu V-DPO",
+          description: "Kokonaisvaltainen tietosuojan hallintaratkaisu, joka kattaa kaikki GDPR-vaatimukset ja tietosuojan hallinnolliset toiminnot.",
+          icon: "shield-check",
+          features: ["GDPR-sääntelyn noudattaminen", "Tietosuojaselosteet", "Tietosuojavaikutusten arviointi (DPIA)", "Käsittelytietojen rekisteröinti (RoPA)", "Tietoturvaloukkausten hallinta", "Sääntelyviranomaisten yhteistyö"]
+        },
+        {
+          title: "Konsultoiva V-DPO",
+          description: "Tarjoaa asiantuntemusta ja ohjausta tietosuojan hallintaan ilman päivittäistä operatiivista vastuuta.",
+          icon: "light-bulb",
+          features: ["Tietosuojan strateginen suunnittelu", "Tietosuojakäytäntöjen kehittäminen", "Henkilöstökoulutus", "Tietosuojan arviointi", "Tietosuojan hallintakehyksen suunnittelu", "Tietosuojaa koskevat kyselyt"]
+        },
+        {
+          title: "Projekti-V-DPO",
+          description: "Tukee tiettyjä tietosuojaprojekteja kuten DPIA-arviointeja, sertifiointeja tai kriisinhallintaa.",
+          icon: "clipboard",
+          features: ["Tietosuojavaikutusten arviointi (DPIA)", "Tietosuojan hallintakehyksen toteutus", "Tietoturvaloukkausten hallinta", "Tietosuojaa koskevat tarkastukset", "Toimittajien tietosuojan hallinta", "Sopimusasiakirjat"]
+        }
+      ]
+    },
+    requirements: {
+      title: "GDPR-vaatimukset",
+      subtitle: "Kattava kattavuus keskeisiin GDPR-vaatimuksiin",
+      items: [
+        "Artikla 30 - Käsittelytietojen rekisteröinti (RoPA)",
+        "Artikla 35 - Tietosuojavaikutusten arviointi (DPIA)",
+        "Artikla 37 - Tietosuojavastaavan nimittämisvaatimukset",
+        "Artiklat 33/34 - Tietoturvaloukkauksesta ilmoittaminen",
+        "Artiklat 13/14 - Tietosuojaselosteet",
+        "Artikla 7 - Suostumushallinta"
+      ]
+    },
+    benefits: {
+      title: "V-DPO:n edut",
+      subtitle: "Miksi valita virtuaalinen DPO -palvelumme?",
+      items: [
+        "Säästä kustannuksia kokopäiväisen DPO:n sijaan",
+        "Pääsy kokeneeseen tietosuojan asiantuntijaan",
+        "Joustava käyttöönotto tarpeen mukaan",
+        "GDPR-vaatimusten täyttäminen",
+        "Vältä sääntelyriskejä ja sakkoja",
+        "Paranna asiakasluottamusta"
+      ]
+    },
+    deliverables: {
+      title: "Mitä saat",
+      items: [
+        "Tietosuojavastaavan nimitys",
+        "Tietosuojavaikutusten arviointi (DPIA)",
+        "Käsittelytietojen rekisteröinti (RoPA)",
+        "Tietosuojakäytännöt ja -menettelyt",
+        "Tietoturvaloukkausten hallintamenettelyt",
+        "Henkilöstökoulutusohjelmat",
+        "Sääntelyviranomaisten vastineet",
+        "Tietosuojan hallintakehys"
+      ]
+    },
+    outcomes: {
+      title: "Tärkeimmät tulokset",
+      items: [
+        "GDPR-vaatimusten täysi noudattaminen",
+        "Parannettu tietosuojan hallintakehys",
+        "Parannettu asiakas- ja sidosryhmäluottamus",
+        "Vähemmän sääntelyriskejä ja mahdollisia sakkoja"
+      ]
+    },
+    caseStudies: {
+      title: "Toteutetut tapaukset",
+      subtitle: "Todellisia esimerkkejä siitä, miten V-DPO-palvelumme on auttanut organisaatioita parantamaan tietosuojan hallintaa.",
+      items: [
+        {
+          title: "Finanssialan konserni",
+          description: "Monikansallinen finanssikonserni, jolla oli tarve GDPR:n ja DORA-sääntelyn yhteensopivuuteen Euroopassa ja Yhdysvalloissa.",
+          challenge: "Laajat tietojenkäsittelyprosessit useissa maissa ja tarve yhdistää GDPR- ja DORA-vaatimukset.",
+          solution: "Toteutimme täyspalvelu V-DPO-mallin, jossa keskityttiin RoPA:n hallintaan, DPIA-suorituksiin ja sääntelyviranomaisten kanssa viestintään.",
+          results: ["Täysi GDPR- ja DORA-yhteensopivuus saavutettu 10 kuukaudessa", "Tietosuojahaaviointien määrä väheni 90%", "Sääntelytarkastusten arvosana parani A-luokkaan", "Asiakasluottamus parani 35%"]
+        },
+        {
+          title: "Terveyspalveluyritys",
+          description: "Erityispalveluita tarjoava terveysalan yritys, jolla oli kriittisiä potilastietoja käsitteleviä prosesseja.",
+          challenge: "Erittäin herkkiä henkilötietoja käsittelevät prosessit, joissa GDPR-vaatimukset olivat tiukat ja virheet voivat aiheuttaa vakavia seuraamuksia.",
+          solution: "Toteutimme konsultoivan V-DPO-mallin, jossa keskityttiin tietosuojakäytäntöjen kehittämiseen, henkilöstökoulutukseen ja DPIA-suorituksiin.",
+          results: ["Täysi GDPR-yhteensopivuus saavutettu ilman tarkastuspuutteita", "Potilastietojen käsittelyprosessit optimoitiin 40%", "Henkilöstön tietosuojatietoisuus nousi 85%", "Tietosuojahaaviointien määrä väheni 95%"]
+        }
+      ]
+    },
+    metrics: {
+      title: "Menestyksen mittarit ja tulokset",
+      subtitle: "Todisteet siitä, miten V-DPO-palvelumme vaikuttaa asiakkaidemme organisaatioihin.",
+      items: [
+        { value: "98%", label: "Yhteensopivuuden taso", description: "asiakkaistamme saavuttaa täyden GDPR-yhteensopivuuden V-DPO:n avulla" },
+        { value: "75%", label: "Tietosuojahaaviointien väheneminen", description: "vähemmän tietosuojahaaviointeja keskimäärin V-DPO:n käytön jälkeen" },
+        { value: "60%", label: "Kustannusten vähentäminen", description: "keskimääräinen kustannushyöty verrattuna sisäiseen DPO:n palkkaamiseen" },
+        { value: "95%", label: "Asiakastyytyväisyys", description: "asiakkaistamme kokee, että V-DPO-palvelumme vastaa odotuksiinsa tai ylittää ne" }
+      ],
+      advantages: {
+        regulatory: ["Täysi GDPR- ja tietosuojan yhteensopivuus", "DPIA- ja RoPA-prosessien hallinta", "Sääntelyviranomaisten kanssa viestintä"],
+        organizational: ["Parannettu asiakasluottamus", "Henkilöstön tietosuojatietoisuuden kasvu", "Rikkomisriskien vähentäminen"]
+      }
+    },
+    cta: {
+      title: "Aloitetaan V-DPO-palvelu?",
+      subtitle: "Keskustellaan organisaatiosi tietosuojan tarpeista ja sopivimmasta V-DPO-palvelumallista.",
+      primaryCTA: { text: "Aloita nyt", href: "/contact?service=vdpo" },
+      secondaryCTA: { text: "Aseta tapaaminen", href: "/contact?consultation=true" }
+    }
   }
-];
+};
 
-const benefits = [
-  lang === 'fi' ? 'Säästä kustannuksia kokopäiväisen DPO:n sijaan' : 'Save costs compared to full-time DPO',
-  lang === 'fi' ? 'Pääsy kokeneeseen tietosuojan asiantuntijaan' : 'Access to privacy expertise',
-  lang === 'fi' ? 'Joustava käyttöönotto tarpeen mukaan' : 'Flexible engagement as needed',
-  lang === 'fi' ? 'GDPR-vaatimusten täyttäminen' : 'Meet GDPR requirements',
-  lang === 'fi' ? 'Vältä sääntelyriskejä ja sakkoja' : 'Avoid regulatory risks and fines',
-  lang === 'fi' ? 'Paranna asiakasluottamusta' : 'Improve customer trust'
-];
-
-const deliverables = [
-  lang === 'fi' ? 'Tietosuojavastaavan nimitys' : 'Data Protection Officer appointment',
-  lang === 'fi' ? 'Tietosuojavaikutusten arviointi (DPIA)' : 'Data Protection Impact Assessments (DPIA)',
-  lang === 'fi' ? 'Käsittelytietojen rekisteröinti (RoPA)' : 'Records of Processing Activities (RoPA)',
-  lang === 'fi' ? 'Tietosuojakäytännöt ja -menettelyt' : 'Privacy policies and procedures',
-  lang === 'fi' ? 'Tietoturvaloukkausten hallintamenettelyt' : 'Data breach response procedures',
-  lang === 'fi' ? 'Henkilöstökoulutusohjelmat' : 'Staff training programs',
-  lang === 'fi' ? 'Sääntelyviranomaisten vastineet' : 'Regulatory correspondence',
-  lang === 'fi' ? 'Tietosuojan hallintakehys' : 'Privacy governance framework'
-];
-
-const gdprRequirements = [
-  "Article 30 - Records of Processing Activities (RoPA)",
-  "Article 35 - Data Protection Impact Assessments (DPIA)",
-  "Article 37 - DPO Appointment Requirements",
-  "Article 33/34 - Breach Notification",
-  "Article 13/14 - Privacy Notices",
-  "Article 7 - Consent Management"
-];
-
-const caseStudies = [
-  {
-    title: lang === 'fi' ? 'Finanssialan konserni' : 'Financial Services Group',
-    description: lang === 'fi'
-      ? 'Monikansallinen finanssikonserni, jolla oli tarve GDPR:n ja DORA-sääntelyn yhteensopivuuteen Euroopassa ja Yhdysvalloissa.'
-      : 'Multinational financial group that needed GDPR and DORA compliance across operations in Europe and the US.',
-    challenge: lang === 'fi'
-      ? 'Laajat tietojenkäsittelyprosessit useissa maissa ja tarve yhdistää GDPR- ja DORA-vaatimukset.'
-      : 'Extensive data processing activities across multiple countries and need to align GDPR and DORA requirements.',
-    solution: lang === 'fi'
-      ? 'Toteutimme täyspalvelu V-DPO-mallin, jossa keskityttiin RoPA:n hallintaan, DPIA-suorituksiin ja sääntelyviranomaisten kanssa viestintään.'
-      : 'Implemented a full-service V-DPO model focusing on RoPA management, DPIA execution, and regulatory authority liaison.',
-    results: [
-      lang === 'fi' ? 'Täysi GDPR- ja DORA-yhteensopivuus saavutettu 10 kuukaudessa' : 'Full GDPR and DORA compliance achieved in 10 months',
-      lang === 'fi' ? 'Tietosuojahaaviointien määrä väheni 90%' : 'Data privacy incidents reduced by 90%',
-      lang === 'fi' ? 'Sääntelytarkastusten arvosana parani A-luokkaan' : 'Regulatory audit score improved to Grade A',
-      lang === 'fi' ? 'Asiakasluottamus parani 35%' : 'Customer trust increased by 35%'
-    ]
-  },
-  {
-    title: lang === 'fi' ? 'Terveyspalveluyritys' : 'Healthcare Services Company',
-    description: lang === 'fi'
-      ? 'Erityispalveluita tarjoava terveysalan yritys, jolla oli kriittisiä potilastietoja käsitteleviä prosesseja.'
-      : 'Healthcare services company providing specialized care with critical patient data processing activities.',
-    challenge: lang === 'fi'
-      ? 'Erittäin herkkiä henkilötietoja käsittelevät prosessit, joissa GDPR-vaatimukset olivat tiukat ja virheet voivat aiheuttaa vakavia seuraamuksia.'
-      : 'Highly sensitive personal data processing activities with strict GDPR requirements where errors could result in severe penalties.',
-    solution: lang === 'fi'
-      ? 'Toteutimme konsultoivan V-DPO-mallin, jossa keskityttiin tietosuojakäytäntöjen kehittämiseen, henkilöstökoulutukseen ja DPIA-suorituksiin.'
-      : 'Implemented an advisory V-DPO model focusing on privacy policy development, staff training, and DPIA execution.',
-    results: [
-      lang === 'fi' ? 'Täysi GDPR-yhteensopivuus saavutettu ilman tarkastuspuutteita' : 'Full GDPR compliance achieved with zero audit findings',
-      lang === 'fi' ? 'Potilastietojen käsittelyprosessit optimoitiin 40%' : 'Patient data processing procedures optimized by 40%',
-      lang === 'fi' ? 'Henkilöstön tietosuojatietoisuus nousi 85%' : 'Staff privacy awareness increased by 85%',
-      lang === 'fi' ? 'Tietosuojahaaviointien määrä väheni 95%' : 'Privacy incidents reduced by 95%'
-    ]
-  }
-];
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={description}>
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-cyan-50 via-white to-blue-50 py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl">
-        <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-          {title}
-        </h1>
-        <p class="text-xl text-slate-600 mb-8">
-          {description}
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <Button href="/contact?service=vdpo" variant="primary">
-            {lang === 'fi' ? 'Ota yhteyttä' : 'Contact Us'}
-          </Button>
-          <Button href="/contact?consultation=true" variant="secondary">
-            {lang === 'fi' ? 'Varaa konsultaatio' : 'Book Consultation'}
-          </Button>
-        </div>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
-
-  <!-- Overview Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-bold text-slate-900 mb-8">
-          {lang === 'fi' ? 'Yleiskatsaus palveluun' : 'Service Overview'}
-        </h2>
-        <div class="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-8 border border-cyan-200">
-          <p class="text-lg text-slate-700 mb-6">
-            {lang === 'fi' 
-              ? 'Virtuaalinen DPO -palvelumme tarjoaa kokeneen tietosuojavastaavan osaamisen GDPR-vaatimusten ja tietosuojan hallinnan tarpeisiin ilman pysyvää rekrytointia. Tarjoamme asiantuntemusta, jota tarvitaan tietosuojan hallinnassa, sääntelyn noudattamisessa ja sidosryhmien kanssa käytävässä viestinnässä.' 
-              : 'Our Virtual DPO service provides experienced Data Protection Officer expertise for GDPR requirements and privacy governance without full-time recruitment. We offer the expertise needed for privacy management, compliance oversight, and stakeholder communication.'}
-          </p>
-          <p class="text-lg text-slate-700">
-            {lang === 'fi' 
-              ? 'Täytämme GDPR-artiklan 37 vaatimukset ja tarjoamme strategista tietosuojan ohjausta organisaatiollesi.' 
-              : 'We meet GDPR Article 37 requirements and provide strategic privacy guidance to your organization.'}
-          </p>
-        </div>
-      </div>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
     </div>
-  </section>
+    
+  </div>
+</section>
 
-  <!-- Service Models -->
-  <section class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Palvelumallit' : 'Service Models'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-          {lang === 'fi' ? 'Valitse organisaatiosi tarpeisiin sopivin V-DPO-palvelumalli' : 'Choose the V-DPO service model that best fits your organization\'s needs'}
-        </p>
-      </div>
-      <div class="grid md:grid-cols-3 gap-8">
-        {serviceModels.map((model) => (
-          <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-100">
-            <div class="flex items-center mb-4">
-              <Icon name={model.icon} class="h-8 w-8 text-cyan-600 mr-3" />
-              <h3 class="text-xl font-bold text-slate-900">{model.title}</h3>
+<!-- Service Overview Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-slate-50/50 rounded-2xl p-8 border border-slate-100">
+      <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-4">{currentContent.overview.title}</h2>
+      <p class="text-slate-600 leading-relaxed mb-4">{currentContent.overview.description}</p>
+      <p class="text-slate-600 leading-relaxed font-semibold text-blue-600">{currentContent.overview.compliance}</p>
+    </div>
+  </div>
+</section>
+
+<!-- Service Models Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.serviceModels.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.serviceModels.subtitle}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {currentContent.serviceModels.items.map((model) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={model.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
             </div>
-            <p class="text-slate-600 mb-6">{model.description}</p>
-            <ul class="space-y-2">
+          </div>
+          
+          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {model.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left mb-4">
+            {model.description}
+          </p>
+          
+          <div class="mt-auto">
+            <ul class="space-y-1.5">
               {model.features.map((feature) => (
-                <li class="flex items-center">
-                  <Icon name="check" class="h-5 w-5 text-green-600 mr-2" />
-                  <span class="text-slate-700">{feature}</span>
+                <li class="flex items-start text-xs text-slate-500">
+                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  {feature}
                 </li>
               ))}
             </ul>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- GDPR Requirements -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'GDPR-vaatimukset' : 'GDPR Requirements'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-          {lang === 'fi' ? 'Kattava kattavuus keskeisiin GDPR-vaatimuksiin' : 'Comprehensive coverage of key GDPR requirements'}
-        </p>
-      </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {gdprRequirements.map((requirement) => (
-          <div class="bg-gradient-to-br from-cyan-50 to-blue-50 p-6 rounded-lg border border-cyan-200 text-center">
-            <h3 class="font-semibold text-slate-900">{requirement}</h3>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Benefits Section -->
-  <section class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'V-DPO:n edut' : 'V-DPO Benefits'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-          {lang === 'fi' ? 'Miksi valita virtuaalinen DPO -palvelumme?' : 'Why choose our Virtual DPO service?'}
-        </p>
-      </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {benefits.map((benefit) => (
-          <div class="bg-white p-6 rounded-lg border border-slate-200">
-            <div class="flex items-start">
-              <Icon name="star" class="h-6 w-6 text-cyan-600 mr-3 mt-0.5 flex-shrink-0" />
-              <p class="text-slate-700 font-medium">{benefit}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Deliverables Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-12 items-start">
-        <div>
-          <h2 class="text-3xl font-bold text-slate-900 mb-8">
-            {lang === 'fi' ? 'Mitä saat' : 'What You Get'}
-          </h2>
-          <ul class="space-y-4">
-            {deliverables.map((deliverable) => (
-              <li class="flex items-start">
-                <Icon name="check" class="h-6 w-6 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-                <span class="text-slate-700">{deliverable}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h2 class="text-3xl font-bold text-slate-900 mb-8">
-            {lang === 'fi' ? 'Tärkeimmät tulokset' : 'Key Outcomes'}
-          </h2>
-          <ul class="space-y-4">
-            <li class="flex items-start">
-              <Icon name="shieldCheck" class="h-6 w-6 text-cyan-600 mr-3 mt-0.5 flex-shrink-0" />
-              <span class="text-slate-700">
-                {lang === 'fi' 
-                  ? 'GDPR-vaatimusten täysi noudattaminen' 
-                  : 'Full GDPR compliance'}
-              </span>
-            </li>
-            <li class="flex items-start">
-              <Icon name="documentText" class="h-6 w-6 text-cyan-600 mr-3 mt-0.5 flex-shrink-0" />
-              <span class="text-slate-700">
-                {lang === 'fi' 
-                  ? 'Parannettu tietosuojan hallintakehys' 
-                  : 'Enhanced privacy governance framework'}
-              </span>
-            </li>
-            <li class="flex items-start">
-              <Icon name="userGroup" class="h-6 w-6 text-cyan-600 mr-3 mt-0.5 flex-shrink-0" />
-              <span class="text-slate-700">
-                {lang === 'fi' 
-                  ? 'Parannettu asiakas- ja sidosryhmäluottamus' 
-                  : 'Improved customer and stakeholder trust'}
-              </span>
-            </li>
-            <li class="flex items-start">
-              <Icon name="exclamationTriangle" class="h-6 w-6 text-cyan-600 mr-3 mt-0.5 flex-shrink-0" />
-              <span class="text-slate-700">
-                {lang === 'fi' 
-                  ? 'Vähemmän sääntelyriskejä ja mahdollisia sakkoja' 
-                  : 'Reduced regulatory risks and potential fines'}
-              </span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Case Studies Section -->
-  <section class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Toteutetut tapaukset' : 'Case Studies'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-          {lang === 'fi'
-            ? 'Todellisia esimerkkejä siitä, miten V-DPO-palvelumme on auttanut organisaatioita parantamaan tietosuojan hallintaa.'
-            : 'Real examples of how our V-DPO service has helped organizations improve their privacy governance.'}
-        </p>
-      </div>
-
-      <div class="space-y-12">
-        {caseStudies.map((study, index) => (
-          <div class={`bg-gradient-to-br ${index % 2 === 0 ? 'from-cyan-50 to-blue-50' : 'from-blue-50 to-teal-50'} rounded-2xl p-8 border border-slate-200`}>
-            <div class="flex flex-col md:flex-row gap-8">
-              <div class="md:w-1/3 flex items-center justify-center">
-                <div class="bg-white p-6 rounded-xl shadow-lg w-16 h-16 flex items-center justify-center">
-                  <Icon name="shieldCheck" class="h-8 w-8 text-cyan-600" />
-                </div>
-              </div>
-              <div class="md:w-2/3">
-                <h3 class="text-2xl font-bold text-slate-900 mb-2">{study.title}</h3>
-                <p class="text-slate-700 mb-4">{study.description}</p>
-
-                <div class="grid md:grid-cols-3 gap-6 mt-6">
-                  <div>
-                    <h4 class="font-semibold text-slate-900 mb-2">
-                      {lang === 'fi' ? 'Haaste' : 'Challenge'}
-                    </h4>
-                    <p class="text-slate-600 text-sm">{study.challenge}</p>
-                  </div>
-
-                  <div>
-                    <h4 class="font-semibold text-slate-900 mb-2">
-                      {lang === 'fi' ? 'Ratkaisu' : 'Solution'}
-                    </h4>
-                    <p class="text-slate-600 text-sm">{study.solution}</p>
-                  </div>
-
-                  <div>
-                    <h4 class="font-semibold text-slate-900 mb-2">
-                      {lang === 'fi' ? 'Tulokset' : 'Results'}
-                    </h4>
-                    <ul class="space-y-1">
-                      {study.results.map((result, idx) => (
-                        <li key={idx} class="flex items-start">
-                          <Icon name="check" class="h-4 w-4 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
-                          <span class="text-slate-600 text-sm">{result}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Success Metrics Section -->
-  <section class="py-16 bg-gradient-to-br from-slate-50 to-cyan-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Menestyksen mittarit ja tulokset' : 'Success Metrics & Outcomes'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-          {lang === 'fi'
-            ? 'Todisteet siitä, miten V-DPO-palvelumme vaikuttaa asiakkaidemme organisaatioihin.'
-            : 'Evidence of how our V-DPO service impacts our clients\' organizations.'}
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-          <div class="text-4xl font-bold text-cyan-600 mb-2">98%</div>
-          <h3 class="font-semibold text-slate-900 mb-2">
-            {lang === 'fi' ? 'Yhteensopivuuden taso' : 'Compliance Rate'}
-          </h3>
-          <p class="text-slate-600 text-sm">
-            {lang === 'fi'
-              ? 'asiakkaistamme saavuttaa täyden GDPR-yhteensopivuuden V-DPO:n avulla'
-              : 'of clients achieve full GDPR compliance with V-DPO service'}
-          </p>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-          <div class="text-4xl font-bold text-cyan-600 mb-2">75%</div>
-          <h3 class="font-semibold text-slate-900 mb-2">
-            {lang === 'fi' ? 'Tietosuojahaaviointien väheneminen' : 'Privacy Incidents Reduction'}
-          </h3>
-          <p class="text-slate-600 text-sm">
-            {lang === 'fi'
-              ? 'vähemmän tietosuojahaaviointeja keskimäärin V-DPO:n käytön jälkeen'
-              : 'reduction in privacy incidents on average after V-DPO implementation'}
-          </p>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-          <div class="text-4xl font-bold text-cyan-600 mb-2">60%</div>
-          <h3 class="font-semibold text-slate-900 mb-2">
-            {lang === 'fi' ? 'Kustannusten vähentäminen' : 'Cost Reduction'}
-          </h3>
-          <p class="text-slate-600 text-sm">
-            {lang === 'fi'
-              ? 'keskimääräinen kustannushyöty verrattuna sisäiseen DPO:n palkkaamiseen'
-              : 'average cost savings compared to hiring an internal DPO'}
-          </p>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-          <div class="text-4xl font-bold text-cyan-600 mb-2">95%</div>
-          <h3 class="font-semibold text-slate-900 mb-2">
-            {lang === 'fi' ? 'Asiakastyytyväisyys' : 'Client Satisfaction'}
-          </h3>
-          <p class="text-slate-600 text-sm">
-            {lang === 'fi'
-              ? 'asiakkaistamme kokee, että V-DPO-palvelumme vastaa odotuksiinsa tai ylittää ne'
-              : 'of clients report that our V-DPO service meets or exceeds expectations'}
-          </p>
-        </div>
-      </div>
-
-      <div class="mt-12 bg-white rounded-2xl p-8 border border-cyan-200">
-        <h3 class="text-2xl font-bold text-slate-900 mb-4 text-center">
-          {lang === 'fi' ? 'Tyypilliset tulokset V-DPO-palvelun käytöstä' : 'Typical Outcomes from V-DPO Service'}
-        </h3>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <h4 class="font-semibold text-slate-900 mb-3 flex items-center">
-              <Icon name="shieldCheck" class="h-5 w-5 text-cyan-600 mr-2" />
-              {lang === 'fi' ? 'Sääntelyetu' : 'Regulatory Advantages'}
-            </h4>
-            <ul class="space-y-2">
-              <li class="flex items-start">
-                <Icon name="checkCircle" class="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span class="text-slate-700">{lang === 'fi' ? 'Täysi GDPR- ja tietosuojan yhteensopivuus' : 'Full GDPR and privacy compliance'}</span>
-              </li>
-              <li class="flex items-start">
-                <Icon name="checkCircle" class="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span class="text-slate-700">{lang === 'fi' ? 'DPIA- ja RoPA-prosessien hallinta' : 'DPIA and RoPA process management'}</span>
-              </li>
-              <li class="flex items-start">
-                <Icon name="checkCircle" class="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span class="text-slate-700">{lang === 'fi' ? 'Sääntelyviranomaisten kanssa viestintä' : 'Regulatory authority liaison'}</span>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 class="font-semibold text-slate-900 mb-3 flex items-center">
-              <Icon name="userGroup" class="h-5 w-5 text-cyan-600 mr-2" />
-              {lang === 'fi' ? 'Organisaatioetu' : 'Organizational Benefits'}
-            </h4>
-            <ul class="space-y-2">
-              <li class="flex items-start">
-                <Icon name="checkCircle" class="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span class="text-slate-700">{lang === 'fi' ? 'Parannettu asiakasluottamus' : 'Improved customer trust'}</span>
-              </li>
-              <li class="flex items-start">
-                <Icon name="checkCircle" class="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span class="text-slate-700">{lang === 'fi' ? 'Henkilöstön tietosuojatietoisuuden kasvu' : 'Increased staff privacy awareness'}</span>
-              </li>
-              <li class="flex items-start">
-                <Icon name="checkCircle" class="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span class="text-slate-700">{lang === 'fi' ? 'Rikkomisriskien vähentäminen' : 'Reduced breach risk exposure'}</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-16 bg-cyan-600 text-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-4xl font-bold mb-4">
-        {lang === 'fi' ? 'Aloitetaan V-DPO-palvelu?' : 'Ready to start V-DPO service?'}
+<!-- GDPR Requirements Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.requirements.title}
       </h2>
-      <p class="text-xl mb-8">
-        {lang === 'fi'
-          ? 'Keskustellaan organisaatiosi tietosuojan tarpeista ja sopivimmasta V-DPO-palvelumallista.'
-          : 'Let\'s discuss your organization\'s privacy needs and the most suitable V-DPO service model.'}
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.requirements.subtitle}
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/contact?service=vdpo" variant="white">
-          {lang === 'fi' ? 'Aloita nyt' : 'Get Started'}
-        </Button>
-        <Button href="/contact?consultation=true" variant="outline-white">
-          {lang === 'fi' ? 'Aseta tapaaminen' : 'Schedule Meeting'}
-        </Button>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {currentContent.requirements.items.map((req) => (
+        <div class="bg-slate-50/50 rounded-xl p-4 border border-slate-100 text-center
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-md transition-all duration-300">
+          <p class="text-sm font-medium text-slate-700">{req}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.benefits.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.benefits.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {currentContent.benefits.items.map((benefit) => (
+        <div class="bg-slate-50/50 rounded-xl p-4 border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-md transition-all duration-300">
+          <div class="flex items-center gap-3">
+            <Icon name="star" class="w-5 h-5 text-blue-600" />
+            <span class="text-slate-700 text-sm">{benefit}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Deliverables & Outcomes Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-2 gap-12">
+      
+      <!-- Deliverables -->
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-6">{currentContent.deliverables.title}</h2>
+        <ul class="space-y-3">
+          {currentContent.deliverables.items.map((item) => (
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-slate-600 text-sm">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <!-- Outcomes -->
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-6">{currentContent.outcomes.title}</h2>
+        <ul class="space-y-3">
+          {currentContent.outcomes.items.map((item) => (
+            <li class="flex items-start gap-3">
+              <Icon name="shield-check" class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+              <span class="text-slate-600 text-sm">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Case Studies Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.caseStudies.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.caseStudies.subtitle}
+      </p>
+    </div>
+    
+    <div class="space-y-8">
+      {currentContent.caseStudies.items.map((study, idx) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-lg transition-all duration-300">
+          
+          <div class="flex flex-col md:flex-row gap-6">
+            <div class="md:w-1/4">
+              <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center">
+                <Icon name="shield-check" class="w-8 h-8 text-blue-600" />
+              </div>
+            </div>
+            <div class="md:w-3/4">
+              <h3 class="text-xl font-bold text-slate-900 mb-2">{study.title}</h3>
+              <p class="text-slate-500 text-sm mb-4">{study.description}</p>
+              
+              <div class="grid md:grid-cols-3 gap-4 mt-4">
+                <div>
+                  <h4 class="font-semibold text-slate-800 text-sm mb-2">Challenge:</h4>
+                  <p class="text-slate-500 text-xs">{study.challenge}</p>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-slate-800 text-sm mb-2">Solution:</h4>
+                  <p class="text-slate-500 text-xs">{study.solution}</p>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-slate-800 text-sm mb-2">Results:</h4>
+                  <ul class="space-y-1">
+                    {study.results.map((result) => (
+                      <li class="flex items-start text-xs text-slate-500">
+                        <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        {result}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Metrics Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.metrics.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.metrics.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-4 gap-6 mb-12">
+      {currentContent.metrics.items.map((metric) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 text-center border border-slate-100
+                    hover:border-blue-300 hover:shadow-md transition-all duration-300">
+          <div class="text-3xl md:text-4xl font-bold text-[#1E2A7A] mb-2">{metric.value}</div>
+          <p class="text-slate-700 text-sm font-semibold mb-2">{metric.label}</p>
+          <p class="text-slate-500 text-xs">{metric.description}</p>
+        </div>
+      ))}
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100">
+        <h3 class="text-lg font-bold text-[#1E2A7A] mb-4 flex items-center gap-2">
+          <Icon name="shield-check" class="w-5 h-5" /> Regulatory Advantages
+        </h3>
+        <ul class="space-y-2">
+          {currentContent.metrics.advantages.regulatory.map((item) => (
+            <li class="flex items-start gap-2 text-sm text-slate-600">
+              <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100">
+        <h3 class="text-lg font-bold text-[#1E2A7A] mb-4 flex items-center gap-2">
+          <Icon name="users" class="w-5 h-5" /> Organizational Benefits
+        </h3>
+        <ul class="space-y-2">
+          {currentContent.metrics.advantages.organizational.map((item) => (
+            <li class="flex items-start gap-2 text-sm text-slate-600">
+              <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 </Layout>

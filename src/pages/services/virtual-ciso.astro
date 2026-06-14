@@ -1,493 +1,576 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-import Button from '@/components/ui/Button.astro';
+
+// SEO Configuration
+const seoConfig = {
+  title: "Virtual CISO (V-CISO) | Chief Information Security Officer Services",
+  description: "Experienced Chief Information Security Officer expertise without full-time recruitment. From strategy to execution in security leadership. Full-service, strategic, and project-based V-CISO models.",
+  keywords: "virtual CISO, V-CISO, security leadership, cybersecurity strategy, risk management, Finland",
+  type: "service" as const,
+};
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
-const title = lang === 'fi' ? 'Virtuaalinen CISO' : 'Virtual CISO (V-CISO)';
-const description = lang === 'fi' 
-  ? 'Kokeneen Chief Information Security Officerin palvelu osaamisella ilman pysyvää rekrytointia. Strategiaa toteutukseen turvallisuuden johtamisessa.' 
-  : 'Experienced Chief Information Security Officer expertise without full-time recruitment. From strategy to execution in security leadership.';
-
-const serviceModels = [
-  {
-    title: lang === 'fi' ? 'Täyspalvelu V-CISO' : 'Full-Service V-CISO',
-    description: lang === 'fi' 
-      ? 'Kokonaisvaltainen turvallisuuden johtamisratkaisu, joka kattaa kaikki kyberturvan hallinnolliset ja strategiset toiminnot.' 
-      : 'Comprehensive security leadership solution covering all aspects of cybersecurity governance and strategy.',
-    icon: 'userCircle',
-    features: [
-      lang === 'fi' ? 'Strateginen suunnittelu' : 'Strategic Planning',
-      lang === 'fi' ? 'Hallintamallin rakentaminen' : 'Governance Framework Development',
-      lang === 'fi' ? 'Riskinhallintastrategia' : 'Risk Management Strategy',
-      lang === 'fi' ? 'Sidosryhmäraportointi' : 'Stakeholder Reporting',
-      lang === 'fi' ? 'Kriisinhallinta' : 'Crisis Management',
-      lang === 'fi' ? 'Tietosuojan hallinta' : 'Privacy Governance'
-    ]
+const content = {
+  en: {
+    hero: {
+      title: "Virtual CISO (V-CISO)",
+      subtitle: "Chief Information Security Officer Service",
+      description: "Experienced Chief Information Security Officer expertise without full-time recruitment. From strategy to execution in security leadership. We build security strategy, governance, and hands-on execution from a single partner.",
+      primaryCTA: { text: "Contact Us", href: "/contact?service=vciso" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    },
+    overview: {
+      title: "Service Overview",
+      description: "Our Virtual CISO service provides experienced Chief Information Security Officer expertise without full-time recruitment. We offer strategic leadership, compliance oversight, and risk management tailored to your organization's needs.",
+      highlight: "We build security strategy, governance, and hands-on execution from a single partner."
+    },
+    serviceModels: {
+      title: "Service Models",
+      subtitle: "Choose the V-CISO service model that best fits your organization's needs",
+      items: [
+        {
+          title: "Full-Service V-CISO",
+          description: "Comprehensive security leadership solution covering all aspects of cybersecurity governance and strategy.",
+          icon: "user-circle",
+          features: ["Strategic Planning", "Governance Framework Development", "Risk Management Strategy", "Stakeholder Reporting", "Crisis Management", "Privacy Governance"]
+        },
+        {
+          title: "Strategic V-CISO",
+          description: "Focuses on strategic planning, governance development, and long-term security vision.",
+          icon: "chart-bar",
+          features: ["Security Strategy Development", "Governance Model Design", "Risk Prioritization", "Stakeholder Training", "Board Meetings", "Investment Plans"]
+        },
+        {
+          title: "Project V-CISO",
+          description: "Supports specific projects such as certifications, incident response, or crisis management.",
+          icon: "clipboard",
+          features: ["Certification Projects", "Incident Response Management", "Crisis Management Planning", "Security Audits", "Vendor Risk Management", "Contract Negotiations"]
+        }
+      ]
+    },
+    benefits: {
+      title: "V-CISO Benefits",
+      subtitle: "Why choose our Virtual CISO service?",
+      items: [
+        "Save 60-70% compared to full-time CISO salary",
+        "Access to senior expertise",
+        "Flexible engagement model",
+        "Quick deployment",
+        "No recruitment costs",
+        "Scalable support as needed"
+      ]
+    },
+    deliverables: {
+      title: "What You Get",
+      items: [
+        "Security strategy and roadmap",
+        "Governance model and practices",
+        "Risk management framework",
+        "Stakeholder reporting",
+        "Training programs",
+        "Crisis management plans",
+        "Cybersecurity risk management plans",
+        "Compliance assurance"
+      ]
+    },
+    outcomes: {
+      title: "Metrics & Outcomes",
+      items: [
+        "Improved cybersecurity posture",
+        "Assured compliance with regulations",
+        "Enhanced governance practices",
+        "Improved stakeholder confidence"
+      ]
+    },
+    caseStudies: {
+      title: "Case Studies",
+      subtitle: "Real examples of how our V-CISO service has helped organizations improve their cybersecurity posture.",
+      items: [
+        {
+          title: "Financial Services Company",
+          description: "Mid-sized financial services company that needed comprehensive cybersecurity leadership without a full-time CISO hire.",
+          challenge: "Lacked a cohesive security strategy and fragmented governance model, leading to multiple minor security incidents.",
+          solution: "Implemented a strategic V-CISO service focusing on governance model development, risk management, and stakeholder reporting.",
+          results: ["100% reduction in security incidents within one year", "ISO 27001 certification achieved in 6 months", "Stakeholder confidence improved by 40%", "Operational costs reduced by 25%"]
+        },
+        {
+          title: "Healthcare Organization",
+          description: "Regional hospital that needed GDPR and HIPAA compliance along with broader privacy governance.",
+          challenge: "Complex regulatory environment and patient data handling required specialized expertise not available internally.",
+          solution: "Implemented a full-service V-CISO model focusing on compliance, privacy governance, and staff training.",
+          results: ["Full GDPR and HIPAA compliance achieved in 8 months", "Privacy incidents reduced by 95%", "Staff security training pass rate increased to 98%", "Regulatory audit score improved to Grade A"]
+        }
+      ]
+    },
+    metrics: {
+      title: "Success Metrics & Outcomes",
+      subtitle: "Evidence of how our V-CISO service impacts our clients' organizations.",
+      items: [
+        { value: "95%", label: "Client Satisfaction", description: "of clients report that our V-CISO service meets or exceeds expectations" },
+        { value: "87%", label: "Risk Response Time", description: "faster average response time to risks with V-CISO service" },
+        { value: "40%", label: "Cost Reduction", description: "average cost savings compared to hiring an internal CISO" },
+        { value: "92%", label: "Compliance Rate", description: "of clients achieve or exceed regulatory compliance goals" }
+      ],
+      advantages: {
+        strategic: ["Clear security strategy and roadmap", "Enhanced governance and oversight", "Increased stakeholder confidence"],
+        operational: ["Reduction in security incidents", "Faster response to threats", "Improved certification success rates"]
+      }
+    },
+    cta: {
+      title: "Ready to start V-CISO service?",
+      subtitle: "Let's discuss your organization's needs and the most suitable V-CISO service model.",
+      primaryCTA: { text: "Get Started", href: "/contact?service=vciso" },
+      secondaryCTA: { text: "Schedule Meeting", href: "/contact?consultation=true" }
+    }
   },
-  {
-    title: lang === 'fi' ? 'Strateginen V-CISO' : 'Strategic V-CISO',
-    description: lang === 'fi' 
-      ? 'Keskittyy strategiseen suunnitteluun, hallintamallin kehittämiseen ja pitkän aikavälin turvallisuusvision luomiseen.' 
-      : 'Focuses on strategic planning, governance development, and long-term security vision.',
-    icon: 'chartBar',
-    features: [
-      lang === 'fi' ? 'Turvallisuusstrategian kehittäminen' : 'Security Strategy Development',
-      lang === 'fi' ? 'Hallintamallin suunnittelu' : 'Governance Model Design',
-      lang === 'fi' ? 'Riskien priorisointi' : 'Risk Prioritization',
-      lang === 'fi' ? 'Sidosryhmäkoulutus' : 'Stakeholder Training',
-      lang === 'fi' ? 'Kokoukset johtokunnan kanssa' : 'Board Meetings',
-      lang === 'fi' ? 'Sijoitussuunnitelmat' : 'Investment Plans'
-    ]
-  },
-  {
-    title: lang === 'fi' ? 'Projekti-V-CISO' : 'Project V-CISO',
-    description: lang === 'fi'
-      ? 'Tukee tiettyjä projekteja kuten sertifiointeja, vaarallisten tilanteiden hallintaa tai kriisinhallintaa.'
-      : 'Supports specific projects such as certifications, incident response, or crisis management.',
-    icon: 'clipboard',
-    features: [
-      lang === 'fi' ? 'Sertifiointiprojektit' : 'Certification Projects',
-      lang === 'fi' ? 'Tietoturvaloukkausten hallinta' : 'Incident Response Management',
-      lang === 'fi' ? 'Kriisinhallintasuunnittelu' : 'Crisis Management Planning',
-      lang === 'fi' ? 'Tietoturvaa koskevat tarkastukset' : 'Security Audits',
-      lang === 'fi' ? 'Toimittajien riskien hallinta' : 'Vendor Risk Management',
-      lang === 'fi' ? 'Sopimusneuvottelut' : 'Contract Negotiations'
-    ]
+  fi: {
+    hero: {
+      title: "Virtuaalinen CISO (V-CISO)",
+      subtitle: "Chief Information Security Officer -palvelu",
+      description: "Kokeneen Chief Information Security Officerin palvelu osaamisella ilman pysyvää rekrytointia. Strategiaa toteutukseen turvallisuuden johtamisessa. Rakennamme turvallisuusstrategian, hallintamallin ja käytännön toteutuksen yhden kumppanin kautta.",
+      primaryCTA: { text: "Ota yhteyttä", href: "/contact?service=vciso" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    },
+    overview: {
+      title: "Yleiskatsaus palveluun",
+      description: "Virtuaalinen CISO -palvelumme tarjoaa kokeneen Chief Information Security Officerin osaamisen ilman pysyvää rekrytointia. Tarjoamme strategista johtajuutta, sääntelyn noudattamista ja riskienhallintaa organisaatiosi tarpeisiin sopivalla mallilla.",
+      highlight: "Rakennamme turvallisuusstrategian, hallintamallin ja käytännön toteutuksen yhden kumppanin kautta."
+    },
+    serviceModels: {
+      title: "Palvelumallit",
+      subtitle: "Valitse organisaatiosi tarpeisiin sopivin V-CISO-palvelumalli",
+      items: [
+        {
+          title: "Täyspalvelu V-CISO",
+          description: "Kokonaisvaltainen turvallisuuden johtamisratkaisu, joka kattaa kaikki kyberturvan hallinnolliset ja strategiset toiminnot.",
+          icon: "user-circle",
+          features: ["Strateginen suunnittelu", "Hallintamallin rakentaminen", "Riskinhallintastrategia", "Sidosryhmäraportointi", "Kriisinhallinta", "Tietosuojan hallinta"]
+        },
+        {
+          title: "Strateginen V-CISO",
+          description: "Keskittyy strategiseen suunnitteluun, hallintamallin kehittämiseen ja pitkän aikavälin turvallisuusvision luomiseen.",
+          icon: "chart-bar",
+          features: ["Turvallisuusstrategian kehittäminen", "Hallintamallin suunnittelu", "Riskien priorisointi", "Sidosryhmäkoulutus", "Kokoukset johtokunnan kanssa", "Sijoitussuunnitelmat"]
+        },
+        {
+          title: "Projekti-V-CISO",
+          description: "Tukee tiettyjä projekteja kuten sertifiointeja, vaarallisten tilanteiden hallintaa tai kriisinhallintaa.",
+          icon: "clipboard",
+          features: ["Sertifiointiprojektit", "Tietoturvaloukkausten hallinta", "Kriisinhallintasuunnittelu", "Tietoturvaa koskevat tarkastukset", "Toimittajien riskien hallinta", "Sopimusneuvottelut"]
+        }
+      ]
+    },
+    benefits: {
+      title: "V-CISO:n edut",
+      subtitle: "Miksi valita virtuaalinen CISO -palvelumme?",
+      items: [
+        "Säästä 60-70% kokopäiväisen CISON palkasta",
+        "Pääsy kokeneeseen asiantuntijaosaamiseen",
+        "Joustava käyttöönotto",
+        "Nopea käynnistys",
+        "Ilman rekrytointikustannuksia",
+        "Skaalautuva tuki tarpeen mukaan"
+      ]
+    },
+    deliverables: {
+      title: "Mitä saat",
+      items: [
+        "Turvallisuusstrategia ja roadmap",
+        "Hallintamalli ja käytännöt",
+        "Riskinhallintakehys",
+        "Sidosryhmäraportointi",
+        "Koulutussuunnitelmat",
+        "Kriisinhallintasuunnitelmat",
+        "Tietoturvariskien hallintasuunnitelmat",
+        "Sääntelyn noudattamisen takaaminen"
+      ]
+    },
+    outcomes: {
+      title: "Mittarit ja tulokset",
+      items: [
+        "Parannettu kyberturvallisuuden asema",
+        "Sääntelyn noudattamisen varmistus",
+        "Kehittyneet hallintakäytännöt",
+        "Parannettu sidosryhmäluottamus"
+      ]
+    },
+    caseStudies: {
+      title: "Toteutetut tapaukset",
+      subtitle: "Todellisia esimerkkejä siitä, miten V-CISO-palvelumme on auttanut organisaatioita parantamaan kyberturvallisuuttaan.",
+      items: [
+        {
+          title: "Finanssialan yritys",
+          description: "Keskitetty finanssialan toimija, jolla oli tarve kattavalle kyberturvallisuuden johtamiselle ilman pysyvää CISO-rekisteröintiä.",
+          challenge: "Puutteellinen turvallisuusstrategia ja hajanainen hallintamalli, joka johti useisiin pienempiin tietoturvahaaviointeihin.",
+          solution: "Toteutimme strategisen V-CISO-palvelun, jossa keskityttiin hallintamallin rakentamiseen, riskienhallintaan ja sidosryhmäraportointiin.",
+          results: ["100% vähennetty tietoturva-incidenttien määrä vuoden sisällä", "ISO 27001 sertifiointi 6 kuukaudessa", "Sidosryhmäluottamus parani 40%", "Operatiiviset kustannukset laskivat 25%"]
+        },
+        {
+          title: "Terveydenhuoltosektori",
+          description: "Alueellinen sairaala, jolla oli tarve GDPR- ja HIPAA-yhteensopivuuteen sekä laajempaan tietosuojan hallintaan.",
+          challenge: "Monimutkainen sääntelyympäristö ja potilastietojen käsittely vaativat erikoisosaamista, jota ei ollut sisäisesti saatavilla.",
+          solution: "Toteutimme täyspalvelu V-CISO-mallin, jossa keskityttiin sääntelyn noudattamiseen, tietosuojan hallintaan ja henkilöstökoulutukseen.",
+          results: ["Täysi GDPR- ja HIPAA-yhteensopivuus saavutettu 8 kuukaudessa", "Tietosuojahaaviointien määrä väheni 95%", "Henkilöstön tietoturvakoulutuksen läpäisyaste nousi 98%", "Sääntelytarkastusten arvosana parani A-luokkaan"]
+        }
+      ]
+    },
+    metrics: {
+      title: "Menestyksen mittarit ja tulokset",
+      subtitle: "Todisteet siitä, miten V-CISO-palvelumme vaikuttaa asiakkaidemme organisaatioihin.",
+      items: [
+        { value: "95%", label: "Asiakastyytyväisyys", description: "asiakkaistamme kokee, että V-CISO-palvelumme vastaa odotuksiinsa tai ylittää ne" },
+        { value: "87%", label: "Riskeihin vastaaminen", description: "nopeampi keskimääräinen reagointiaika riskeihin V-CISO:n ansiosta" },
+        { value: "40%", label: "Kustannusten vähentäminen", description: "keskimääräinen kustannushyöty verrattuna sisäiseen CISO:n palkkaamiseen" },
+        { value: "92%", label: "Sääntelyn noudattaminen", description: "asiakkaistamme saavuttaa tai ylittää sääntelytavoitteensa V-CISO:n kanssa" }
+      ],
+      advantages: {
+        strategic: ["Selkeä turvallisuusstrategia ja roadmap", "Parannettu hallinto ja valvonta", "Sidosryhmäluottamuksen kasvu"],
+        operational: ["Tietoturva-incidenttien määrän väheneminen", "Nopeampi reagointi uhkiin", "Parannettu sertifiointimenestys"]
+      }
+    },
+    cta: {
+      title: "Aloitetaan V-CISO-palvelu?",
+      subtitle: "Keskustellaan organisaatiosi tarpeista ja sopivimmasta V-CISO-palvelumallista.",
+      primaryCTA: { text: "Aloita nyt", href: "/contact?service=vciso" },
+      secondaryCTA: { text: "Aseta tapaaminen", href: "/contact?consultation=true" }
+    }
   }
-];
+};
 
-const benefits = [
-  lang === 'fi' ? 'Säästä 60-70% kokopäiväisen CISON palkasta' : 'Save 60-70% compared to full-time CISO salary',
-  lang === 'fi' ? 'Pääsy kokeneeseen asiantuntijaosaamiseen' : 'Access to senior expertise',
-  lang === 'fi' ? 'Joustava käyttöönotto' : 'Flexible engagement model',
-  lang === 'fi' ? 'Nopea käynnistys' : 'Quick deployment',
-  lang === 'fi' ? 'Ilman rekrytointikustannuksia' : 'No recruitment costs',
-  lang === 'fi' ? 'Skaalautuva tuki tarpeen mukaan' : 'Scalable support as needed'
-];
-
-const deliverables = [
-  lang === 'fi' ? 'Turvallisuusstrategia ja roadmap' : 'Security strategy and roadmap',
-  lang === 'fi' ? 'Hallintamalli ja käytännöt' : 'Governance model and practices',
-  lang === 'fi' ? 'Riskinhallintakehys' : 'Risk management framework',
-  lang === 'fi' ? 'Sidosryhmäraportointi' : 'Stakeholder reporting',
-  lang === 'fi' ? 'Koulutussuunnitelmat' : 'Training programs',
-  lang === 'fi' ? 'Kriisinhallintasuunnitelmat' : 'Crisis management plans',
-  lang === 'fi' ? 'Tietoturvariskien hallintasuunnitelmat' : 'Cybersecurity risk management plans',
-  lang === 'fi' ? 'Sääntelyn noudattamisen takaaminen' : 'Compliance assurance'
-];
-
-const caseStudies = [
-  {
-    title: lang === 'fi' ? 'Finanssialan yritys' : 'Financial Services Company',
-    description: lang === 'fi'
-      ? 'Keskitetty finanssialan toimija, jolla oli tarve kattavalle kyberturvallisuuden johtamiselle ilman pysyvää CISO-rekisteröintiä.'
-      : 'Mid-sized financial services company that needed comprehensive cybersecurity leadership without a full-time CISO hire.',
-    challenge: lang === 'fi'
-      ? 'Puutteellinen turvallisuusstrategia ja hajanainen hallintamalli, joka johti useisiin pienempiin tietoturvahaaviointeihin.'
-      : 'Lacked a cohesive security strategy and fragmented governance model, leading to multiple minor security incidents.',
-    solution: lang === 'fi'
-      ? 'Toteutimme strategisen V-CISO-palvelun, jossa keskityttiin hallintamallin rakentamiseen, riskienhallintaan ja sidosryhmäraportointiin.'
-      : 'Implemented a strategic V-CISO service focusing on governance model development, risk management, and stakeholder reporting.',
-    results: [
-      lang === 'fi' ? '100% vähennetty tietoturva-incidenttien määrä vuoden sisällä' : '100% reduction in security incidents within one year',
-      lang === 'fi' ? 'ISO 27001 sertifiointi 6 kuukaudessa' : 'ISO 27001 certification achieved in 6 months',
-      lang === 'fi' ? 'Sidosryhmäluottamus parani 40%' : 'Stakeholder confidence improved by 40%',
-      lang === 'fi' ? 'Operatiiviset kustannukset laskivat 25%' : 'Operational costs reduced by 25%'
-    ]
-  },
-  {
-    title: lang === 'fi' ? 'Terveydenhuoltosektori' : 'Healthcare Organization',
-    description: lang === 'fi'
-      ? 'Alueellinen sairaala, jolla oli tarve GDPR- ja HIPAA-yhteensopivuuteen sekä laajempaan tietosuojan hallintaan.'
-      : 'Regional hospital that needed GDPR and HIPAA compliance along with broader privacy governance.',
-    challenge: lang === 'fi'
-      ? 'Monimutkainen sääntelyympäristö ja potilastietojen käsittely vaativat erikoisosaamista, jota ei ollut sisäisesti saatavilla.'
-      : 'Complex regulatory environment and patient data handling required specialized expertise not available internally.',
-    solution: lang === 'fi'
-      ? 'Toteutimme täyspalvelu V-CISO-mallin, jossa keskityttiin sääntelyn noudattamiseen, tietosuojan hallintaan ja henkilöstökoulutukseen.'
-      : 'Implemented a full-service V-CISO model focusing on compliance, privacy governance, and staff training.',
-    results: [
-      lang === 'fi' ? 'Täysi GDPR- ja HIPAA-yhteensopivuus saavutettu 8 kuukaudessa' : 'Full GDPR and HIPAA compliance achieved in 8 months',
-      lang === 'fi' ? 'Tietosuojahaaviointien määrä väheni 95%' : 'Privacy incidents reduced by 95%',
-      lang === 'fi' ? 'Henkilöstön tietoturvakoulutuksen läpäisyaste nousi 98%' : 'Staff security training pass rate increased to 98%',
-      lang === 'fi' ? 'Sääntelytarkastusten arvosana parani A-luokkaan' : 'Regulatory audit score improved to Grade A'
-    ]
-  }
-];
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={description}>
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-teal-50 via-white to-blue-50 py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl">
-        <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-          {title}
-        </h1>
-        <p class="text-xl text-slate-600 mb-8">
-          {description}
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <Button href="/contact?service=vciso" variant="primary">
-            {lang === 'fi' ? 'Ota yhteyttä' : 'Contact Us'}
-          </Button>
-          <Button href="/contact?consultation=true" variant="secondary">
-            {lang === 'fi' ? 'Varaa konsultaatio' : 'Book Consultation'}
-          </Button>
-        </div>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
-
-  <!-- Overview Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-bold text-slate-900 mb-8">
-          {lang === 'fi' ? 'Yleiskatsaus palveluun' : 'Service Overview'}
-        </h2>
-        <div class="bg-gradient-to-r from-teal-50 to-blue-50 rounded-xl p-8 border border-teal-200">
-          <p class="text-lg text-slate-700 mb-6">
-            {lang === 'fi' 
-              ? 'Virtuaalinen CISO -palvelumme tarjoaa kokeneen Chief Information Security Officerin osaamisen ilman pysyvää rekrytointia. Tarjoamme strategista johtajuutta, sääntelyn noudattamista ja riskienhallintaa organisaatiosi tarpeisiin sopivalla mallilla.' 
-              : 'Our Virtual CISO service provides experienced Chief Information Security Officer expertise without full-time recruitment. We offer strategic leadership, compliance oversight, and risk management tailored to your organization\'s needs.'}
-          </p>
-          <p class="text-lg text-slate-700">
-            {lang === 'fi' 
-              ? 'Rakennamme turvallisuusstrategian, hallintamallin ja käytännön toteutuksen yhden kumppanin kautta.' 
-              : 'We build security strategy, governance, and hands-on execution from a single partner.'}
-          </p>
-        </div>
-      </div>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
     </div>
-  </section>
+    
+  </div>
+</section>
 
-  <!-- Service Models -->
-  <section class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Palvelumallit' : 'Service Models'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-          {lang === 'fi' ? 'Valitse organisaatiosi tarpeisiin sopivin V-CISO-palvelumalli' : 'Choose the V-CISO service model that best fits your organization\'s needs'}
-        </p>
-      </div>
-      <div class="grid md:grid-cols-3 gap-8">
-        {serviceModels.map((model) => (
-          <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-100">
-            <div class="flex items-center mb-4">
-              <Icon name={model.icon} class="h-8 w-8 text-teal-600 mr-3" />
-              <h3 class="text-xl font-bold text-slate-900">{model.title}</h3>
+<!-- Service Overview Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-slate-50/50 rounded-2xl p-8 border border-slate-100">
+      <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-4">{currentContent.overview.title}</h2>
+      <p class="text-slate-600 leading-relaxed mb-4">{currentContent.overview.description}</p>
+      <p class="text-slate-600 leading-relaxed font-semibold text-blue-600">{currentContent.overview.highlight}</p>
+    </div>
+  </div>
+</section>
+
+<!-- Service Models Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.serviceModels.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.serviceModels.subtitle}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {currentContent.serviceModels.items.map((model) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={model.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
             </div>
-            <p class="text-slate-600 mb-6">{model.description}</p>
-            <ul class="space-y-2">
+          </div>
+          
+          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {model.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left mb-4">
+            {model.description}
+          </p>
+          
+          <div class="mt-auto">
+            <ul class="space-y-1.5">
               {model.features.map((feature) => (
-                <li class="flex items-center">
-                  <Icon name="check" class="h-5 w-5 text-green-600 mr-2" />
-                  <span class="text-slate-700">{feature}</span>
+                <li class="flex items-start text-xs text-slate-500">
+                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  {feature}
                 </li>
               ))}
             </ul>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Benefits Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'V-CISO:n edut' : 'V-CISO Benefits'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-          {lang === 'fi' ? 'Miksi valita virtuaalinen CISO -palvelumme?' : 'Why choose our Virtual CISO service?'}
-        </p>
-      </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {benefits.map((benefit) => (
-          <div class="bg-gradient-to-br from-teal-50 to-blue-50 p-6 rounded-lg border border-teal-200">
-            <div class="flex items-start">
-              <Icon name="star" class="h-6 w-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-              <p class="text-slate-700 font-medium">{benefit}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Deliverables Section -->
-  <section class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Mitä saat' : 'What You Get'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-          {lang === 'fi' ? 'Konkreettiset toimitukset ja mitattavat tulokset V-CISO-palvelusta' : 'Concrete deliverables and measurable outcomes from V-CISO service'}
-        </p>
-      </div>
-      <div class="grid md:grid-cols-2 gap-8">
-        <div>
-          <h3 class="text-xl font-bold text-slate-900 mb-6">
-            {lang === 'fi' ? 'Keskeiset toimitukset' : 'Key Deliverables'}
-          </h3>
-          <ul class="space-y-4">
-            {deliverables.map((deliverable) => (
-              <li class="flex items-start">
-                <Icon name="checkCircle" class="h-6 w-6 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-                <span class="text-slate-700">{deliverable}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-xl font-bold text-slate-900 mb-6">
-            {lang === 'fi' ? 'Mittarit ja tulokset' : 'Metrics & Outcomes'}
-          </h3>
-          <ul class="space-y-4">
-            <li class="flex items-start">
-              <Icon name="chartBar" class="h-6 w-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-              <span class="text-slate-700">
-                {lang === 'fi' 
-                  ? 'Parannettu kyberturvallisuuden asema' 
-                  : 'Improved cybersecurity posture'}
-              </span>
-            </li>
-            <li class="flex items-start">
-              <Icon name="shieldCheck" class="h-6 w-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-              <span class="text-slate-700">
-                {lang === 'fi' 
-                  ? 'Sääntelyn noudattamisen varmistus' 
-                  : 'Assured compliance with regulations'}
-              </span>
-            </li>
-            <li class="flex items-start">
-              <Icon name="documentText" class="h-6 w-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-              <span class="text-slate-700">
-                {lang === 'fi' 
-                  ? 'Kehittyneet hallintakäytännöt' 
-                  : 'Enhanced governance practices'}
-              </span>
-            </li>
-            <li class="flex items-start">
-              <Icon name="userGroup" class="h-6 w-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-              <span class="text-slate-700">
-                {lang === 'fi' 
-                  ? 'Parannettu sidosryhmäluottamus' 
-                  : 'Improved stakeholder confidence'}
-              </span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Case Studies Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Toteutetut tapaukset' : 'Case Studies'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-          {lang === 'fi'
-            ? 'Todellisia esimerkkejä siitä, miten V-CISO-palvelumme on auttanut organisaatioita parantamaan kyberturvallisuuttaan.'
-            : 'Real examples of how our V-CISO service has helped organizations improve their cybersecurity posture.'}
-        </p>
-      </div>
-
-      <div class="space-y-12">
-        {caseStudies.map((study, index) => (
-          <div class={`bg-gradient-to-br ${index % 2 === 0 ? 'from-teal-50 to-blue-50' : 'from-cyan-50 to-teal-50'} rounded-2xl p-8 border border-slate-200`}>
-            <div class="flex flex-col md:flex-row gap-8">
-              <div class="md:w-1/3 flex items-center justify-center">
-                <div class="bg-white p-6 rounded-xl shadow-lg w-16 h-16 flex items-center justify-center">
-                  <Icon name="lightBulb" class="h-8 w-8 text-teal-600" />
-                </div>
-              </div>
-              <div class="md:w-2/3">
-                <h3 class="text-2xl font-bold text-slate-900 mb-2">{study.title}</h3>
-                <p class="text-slate-700 mb-4">{study.description}</p>
-
-                <div class="grid md:grid-cols-3 gap-6 mt-6">
-                  <div>
-                    <h4 class="font-semibold text-slate-900 mb-2">
-                      {lang === 'fi' ? 'Haaste' : 'Challenge'}
-                    </h4>
-                    <p class="text-slate-600 text-sm">{study.challenge}</p>
-                  </div>
-
-                  <div>
-                    <h4 class="font-semibold text-slate-900 mb-2">
-                      {lang === 'fi' ? 'Ratkaisu' : 'Solution'}
-                    </h4>
-                    <p class="text-slate-600 text-sm">{study.solution}</p>
-                  </div>
-
-                  <div>
-                    <h4 class="font-semibold text-slate-900 mb-2">
-                      {lang === 'fi' ? 'Tulokset' : 'Results'}
-                    </h4>
-                    <ul class="space-y-1">
-                      {study.results.map((result, idx) => (
-                        <li key={idx} class="flex items-start">
-                          <Icon name="check" class="h-4 w-4 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
-                          <span class="text-slate-600 text-sm">{result}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Success Metrics Section -->
-  <section class="py-16 bg-gradient-to-br from-slate-50 to-teal-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Menestyksen mittarit ja tulokset' : 'Success Metrics & Outcomes'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-          {lang === 'fi'
-            ? 'Todisteet siitä, miten V-CISO-palvelumme vaikuttaa asiakkaidemme organisaatioihin.'
-            : 'Evidence of how our V-CISO service impacts our clients\' organizations.'}
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-          <div class="text-4xl font-bold text-teal-600 mb-2">95%</div>
-          <h3 class="font-semibold text-slate-900 mb-2">
-            {lang === 'fi' ? 'Asiakastyytyväisyys' : 'Client Satisfaction'}
-          </h3>
-          <p class="text-slate-600 text-sm">
-            {lang === 'fi'
-              ? 'asiakkaistamme kokee, että V-CISO-palvelumme vastaa odotuksiinsa tai ylittää ne'
-              : 'of clients report that our V-CISO service meets or exceeds expectations'}
-          </p>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-          <div class="text-4xl font-bold text-teal-600 mb-2">87%</div>
-          <h3 class="font-semibold text-slate-900 mb-2">
-            {lang === 'fi' ? 'Riskeihin vastaaminen' : 'Risk Response Time'}
-          </h3>
-          <p class="text-slate-600 text-sm">
-            {lang === 'fi'
-              ? 'nopeampi keskimääräinen reagointiaika riskeihin V-CISO:n ansiosta'
-              : 'faster average response time to risks with V-CISO service'}
-          </p>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-          <div class="text-4xl font-bold text-teal-600 mb-2">40%</div>
-          <h3 class="font-semibold text-slate-900 mb-2">
-            {lang === 'fi' ? 'Kustannusten vähentäminen' : 'Cost Reduction'}
-          </h3>
-          <p class="text-slate-600 text-sm">
-            {lang === 'fi'
-              ? 'keskimääräinen kustannushyöty verrattuna sisäiseen CISO:n palkkaamiseen'
-              : 'average cost savings compared to hiring an internal CISO'}
-          </p>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-          <div class="text-4xl font-bold text-teal-600 mb-2">92%</div>
-          <h3 class="font-semibold text-slate-900 mb-2">
-            {lang === 'fi' ? 'Sääntelyn noudattaminen' : 'Compliance Rate'}
-          </h3>
-          <p class="text-slate-600 text-sm">
-            {lang === 'fi'
-              ? 'asiakkaistamme saavuttaa tai ylittää sääntelytavoitteensa V-CISO:n kanssa'
-              : 'of clients achieve or exceed regulatory compliance goals with V-CISO'}
-          </p>
-        </div>
-      </div>
-
-      <div class="mt-12 bg-white rounded-2xl p-8 border border-teal-200">
-        <h3 class="text-2xl font-bold text-slate-900 mb-4 text-center">
-          {lang === 'fi' ? 'Tyypilliset tulokset V-CISO-palvelun käytöstä' : 'Typical Outcomes from V-CISO Service'}
-        </h3>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <h4 class="font-semibold text-slate-900 mb-3 flex items-center">
-              <Icon name="chartBar" class="h-5 w-5 text-teal-600 mr-2" />
-              {lang === 'fi' ? 'Strateginen etu' : 'Strategic Advantages'}
-            </h4>
-            <ul class="space-y-2">
-              <li class="flex items-start">
-                <Icon name="checkCircle" class="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span class="text-slate-700">{lang === 'fi' ? 'Selkeä turvallisuusstrategia ja roadmap' : 'Clear security strategy and roadmap'}</span>
-              </li>
-              <li class="flex items-start">
-                <Icon name="checkCircle" class="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span class="text-slate-700">{lang === 'fi' ? 'Parannettu hallinto ja valvonta' : 'Enhanced governance and oversight'}</span>
-              </li>
-              <li class="flex items-start">
-                <Icon name="checkCircle" class="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span class="text-slate-700">{lang === 'fi' ? 'Sidosryhmäluottamuksen kasvu' : 'Increased stakeholder confidence'}</span>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 class="font-semibold text-slate-900 mb-3 flex items-center">
-              <Icon name="shieldCheck" class="h-5 w-5 text-teal-600 mr-2" />
-              {lang === 'fi' ? 'Operaattorinen etu' : 'Operational Benefits'}
-            </h4>
-            <ul class="space-y-2">
-              <li class="flex items-start">
-                <Icon name="checkCircle" class="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span class="text-slate-700">{lang === 'fi' ? 'Tietoturva-incidenttien määrän väheneminen' : 'Reduction in security incidents'}</span>
-              </li>
-              <li class="flex items-start">
-                <Icon name="checkCircle" class="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span class="text-slate-700">{lang === 'fi' ? 'Nopeampi reagointi uhkiin' : 'Faster response to threats'}</span>
-              </li>
-              <li class="flex items-start">
-                <Icon name="checkCircle" class="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span class="text-slate-700">{lang === 'fi' ? 'Parannettu sertifiointimenestys' : 'Improved certification success rates'}</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-16 bg-teal-600 text-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-4xl font-bold mb-4">
-        {lang === 'fi' ? 'Aloitetaan V-CISO-palvelu?' : 'Ready to start V-CISO service?'}
+<!-- Benefits Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.benefits.title}
       </h2>
-      <p class="text-xl mb-8">
-        {lang === 'fi'
-          ? 'Keskustellaan organisaatiosi tarpeista ja sopivimmasta V-CISO-palvelumallista.'
-          : 'Let\'s discuss your organization\'s needs and the most suitable V-CISO service model.'}
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.benefits.subtitle}
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/contact?service=vciso" variant="white">
-          {lang === 'fi' ? 'Aloita nyt' : 'Get Started'}
-        </Button>
-        <Button href="/contact?consultation=true" variant="outline-white">
-          {lang === 'fi' ? 'Aseta tapaaminen' : 'Schedule Meeting'}
-        </Button>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {currentContent.benefits.items.map((benefit) => (
+        <div class="bg-slate-50/50 rounded-xl p-4 border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-md transition-all duration-300">
+          <div class="flex items-center gap-3">
+            <Icon name="star" class="w-5 h-5 text-blue-600" />
+            <span class="text-slate-700 text-sm">{benefit}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Deliverables & Outcomes Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-2 gap-12">
+      
+      <!-- Deliverables -->
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-6">{currentContent.deliverables.title}</h2>
+        <ul class="space-y-3">
+          {currentContent.deliverables.items.map((item) => (
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-slate-600 text-sm">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <!-- Outcomes -->
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-6">{currentContent.outcomes.title}</h2>
+        <ul class="space-y-3">
+          {currentContent.outcomes.items.map((item) => (
+            <li class="flex items-start gap-3">
+              <Icon name="shield-check" class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+              <span class="text-slate-600 text-sm">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Case Studies Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.caseStudies.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.caseStudies.subtitle}
+      </p>
+    </div>
+    
+    <div class="space-y-8">
+      {currentContent.caseStudies.items.map((study, idx) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-lg transition-all duration-300">
+          
+          <div class="flex flex-col md:flex-row gap-6">
+            <div class="md:w-1/4">
+              <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center">
+                <Icon name="light-bulb" class="w-8 h-8 text-blue-600" />
+              </div>
+            </div>
+            <div class="md:w-3/4">
+              <h3 class="text-xl font-bold text-slate-900 mb-2">{study.title}</h3>
+              <p class="text-slate-500 text-sm mb-4">{study.description}</p>
+              
+              <div class="grid md:grid-cols-3 gap-4 mt-4">
+                <div>
+                  <h4 class="font-semibold text-slate-800 text-sm mb-2">Challenge:</h4>
+                  <p class="text-slate-500 text-xs">{study.challenge}</p>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-slate-800 text-sm mb-2">Solution:</h4>
+                  <p class="text-slate-500 text-xs">{study.solution}</p>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-slate-800 text-sm mb-2">Results:</h4>
+                  <ul class="space-y-1">
+                    {study.results.map((result) => (
+                      <li class="flex items-start text-xs text-slate-500">
+                        <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        {result}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Metrics Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.metrics.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.metrics.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-4 gap-6 mb-12">
+      {currentContent.metrics.items.map((metric) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 text-center border border-slate-100
+                    hover:border-blue-300 hover:shadow-md transition-all duration-300">
+          <div class="text-3xl md:text-4xl font-bold text-[#1E2A7A] mb-2">{metric.value}</div>
+          <p class="text-slate-700 text-sm font-semibold mb-2">{metric.label}</p>
+          <p class="text-slate-500 text-xs">{metric.description}</p>
+        </div>
+      ))}
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100">
+        <h3 class="text-lg font-bold text-[#1E2A7A] mb-4 flex items-center gap-2">
+          <Icon name="chart-bar" class="w-5 h-5" /> Strategic Advantages
+        </h3>
+        <ul class="space-y-2">
+          {currentContent.metrics.advantages.strategic.map((item) => (
+            <li class="flex items-start gap-2 text-sm text-slate-600">
+              <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100">
+        <h3 class="text-lg font-bold text-[#1E2A7A] mb-4 flex items-center gap-2">
+          <Icon name="shield-check" class="w-5 h-5" /> Operational Benefits
+        </h3>
+        <ul class="space-y-2">
+          {currentContent.metrics.advantages.operational.map((item) => (
+            <li class="flex items-start gap-2 text-sm text-slate-600">
+              <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 </Layout>

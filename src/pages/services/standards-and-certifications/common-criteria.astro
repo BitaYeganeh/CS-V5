@@ -1,170 +1,304 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Button from '@/components/ui/Button.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
 
-const title = 'Common Criteria';
-const description = 'Security Targets, Protection Profiles, and evaluation guidance for Common Criteria certification.';
+// SEO Configuration
+const seoConfig = {
+  title: "Common Criteria | Security Evaluation & Certification",
+  description: "Security Targets, Protection Profiles, and evaluation guidance for Common Criteria certification. Expert support for EAL1-EAL7 levels.",
+  keywords: "Common Criteria, security evaluation, certification, EAL, security targets, protection profiles, Finland",
+  type: "service" as const,
+};
 
-const services = [
-  {
-    title: 'Security Targets (ST)',
-    description: 'Comprehensive Security Target development for your IT products',
-    features: [
-      'Security objective identification',
-      'Threat and risk analysis',
-      'Security functional requirements',
-      'Security assurance requirements'
-    ],
-    icon: 'target'
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const content = {
+  en: {
+    hero: {
+      title: "Common Criteria",
+      subtitle: "Security Evaluation & Certification",
+      description: "Security Targets, Protection Profiles, and evaluation guidance for Common Criteria certification. Expert guidance for every aspect of Common Criteria certification including Security Target development, Protection Profile compliance, and evaluation support.",
+      primaryCTA: { text: "Start Evaluation", href: "/contact" },
+      secondaryCTA: { text: "Learn More", href: "#services" }
+    },
+    services: {
+      title: "Our Common Criteria Services",
+      subtitle: "Expert guidance for every aspect of Common Criteria certification",
+      items: [
+        {
+          title: "Security Targets (ST)",
+          description: "Comprehensive Security Target development for your IT products",
+          icon: "target",
+          features: ["Security objective identification", "Threat and risk analysis", "Security functional requirements", "Security assurance requirements"]
+        },
+        {
+          title: "Protection Profiles (PP)",
+          description: "Industry-standard Protection Profile development and compliance",
+          icon: "shield",
+          features: ["PP compliance assessment", "Custom PP development", "Security requirements mapping", "Industry alignment verification"]
+        },
+        {
+          title: "Evaluation Guidance",
+          description: "Expert guidance throughout the Common Criteria evaluation process",
+          icon: "clipboard-check",
+          features: ["Evaluation lab selection", "Evaluation process support", "Evidence preparation", "Evaluator interaction management"]
+        },
+        {
+          title: "Certification Support",
+          description: "End-to-end support for successful Common Criteria certification",
+          icon: "certificate",
+          features: ["Certification body liaison", "Documentation review", "Compliance verification", "Certification maintenance"]
+        }
+      ]
+    },
+    evaluationLevels: {
+      title: "Evaluation Assurance Levels (EAL)",
+      subtitle: "We support certification at all EAL levels",
+      items: [
+        { level: "EAL1", description: "Functionally tested" },
+        { level: "EAL2", description: "Structurally tested" },
+        { level: "EAL3", description: "Methodically tested and checked" },
+        { level: "EAL4", description: "Methodically designed, tested, and reviewed" },
+        { level: "EAL5", description: "Semiformally designed and tested" },
+        { level: "EAL6", description: "Semiformally verified design and tested" },
+        { level: "EAL7", description: "Formally verified design and tested" }
+      ]
+    },
+    cta: {
+      title: "Ready for Common Criteria Certification?",
+      subtitle: "Get expert guidance for successful evaluation and certification",
+      primaryCTA: { text: "Contact Our Experts", href: "/contact" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    }
   },
-  {
-    title: 'Protection Profiles (PP)',
-    description: 'Industry-standard Protection Profile development and compliance',
-    features: [
-      'PP compliance assessment',
-      'Custom PP development',
-      'Security requirements mapping',
-      'Industry alignment verification'
-    ],
-    icon: 'shield'
-  },
-  {
-    title: 'Evaluation Guidance',
-    description: 'Expert guidance throughout the Common Criteria evaluation process',
-    features: [
-      'Evaluation lab selection',
-      'Evaluation process support',
-      'Evidence preparation',
-      'Evaluator interaction management'
-    ],
-    icon: 'clipboard-check'
-  },
-  {
-    title: 'Certification Support',
-    description: 'End-to-end support for successful Common Criteria certification',
-    features: [
-      'Certification body liaison',
-      'Documentation review',
-      'Compliance verification',
-      'Certification maintenance'
-    ],
-    icon: 'certificate'
+  fi: {
+    hero: {
+      title: "Common Criteria",
+      subtitle: "Turvallisuusarviointi ja sertifiointi",
+      description: "Turvallisuustavoitteet, suojausprofiilit ja arviointiohjaus Common Criteria -sertifiointiin. Asiantuntevaa ohjausta jokaiseen Common Criteria -sertifioinnin osa-alueeseen, mukaan lukien Security Target -kehitys, Protection Profile -vaatimustenmukaisuus ja arviointituki.",
+      primaryCTA: { text: "Aloita arviointi", href: "/contact" },
+      secondaryCTA: { text: "Lue lisää", href: "#services" }
+    },
+    services: {
+      title: "Common Criteria -palvelumme",
+      subtitle: "Asiantuntevaa ohjausta jokaiseen Common Criteria -sertifioinnin osa-alueeseen",
+      items: [
+        {
+          title: "Turvallisuustavoitteet (ST)",
+          description: "Kattava Security Target -kehitys IT-tuotteillesi",
+          icon: "target",
+          features: ["Turvallisuustavoitteiden tunnistaminen", "Uhka- ja riskianalyysi", "Turvallisuustoiminnalliset vaatimukset", "Turvallisuusvarmuusvaatimukset"]
+        },
+        {
+          title: "Suojausprofiilit (PP)",
+          description: "Toimialastandardien mukainen Protection Profile -kehitys ja vaatimustenmukaisuus",
+          icon: "shield",
+          features: ["PP-vaatimustenmukaisuusarviointi", "Mukautettu PP-kehitys", "Turvallisuusvaatimusten kartoitus", "Toimialojen yhdenmukaisuuden varmennus"]
+        },
+        {
+          title: "Arviointiohjaus",
+          description: "Asiantuntevaa ohjausta koko Common Criteria -arviointiprosessin ajan",
+          icon: "clipboard-check",
+          features: ["Arviointilaboratorion valinta", "Arviointiprosessin tuki", "Todisteiden valmistelu", "Arvioijan vuorovaikutuksen hallinta"]
+        },
+        {
+          title: "Sertifiointituki",
+          description: "Päästä päähän -tuki onnistuneeseen Common Criteria -sertifiointiin",
+          icon: "certificate",
+          features: ["Sertifiointielimen yhteistyö", "Dokumentoinnin tarkistus", "Vaatimustenmukaisuuden varmennus", "Sertifioinnin ylläpito"]
+        }
+      ]
+    },
+    evaluationLevels: {
+      title: "Arvioinnin varmuustasot (EAL)",
+      subtitle: "Tuemme sertifiointia kaikilla EAL-tasoilla",
+      items: [
+        { level: "EAL1", description: "Toiminnallisesti testattu" },
+        { level: "EAL2", description: "Rakenteellisesti testattu" },
+        { level: "EAL3", description: "Menetelmällisesti testattu ja tarkistettu" },
+        { level: "EAL4", description: "Menetelmällisesti suunniteltu, testattu ja tarkastettu" },
+        { level: "EAL5", description: "Puoliformaalisti suunniteltu ja testattu" },
+        { level: "EAL6", description: "Puoliformaalisti varmennettu suunnittelu ja testaus" },
+        { level: "EAL7", description: "Formaalisti varmennettu suunnittelu ja testaus" }
+      ]
+    },
+    cta: {
+      title: "Valmis Common Criteria -sertifiointiin?",
+      subtitle: "Saa asiantuntevaa ohjausta onnistuneeseen arviointiin ja sertifiointiin",
+      primaryCTA: { text: "Ota yhteyttä asiantuntijoihimme", href: "/contact" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    }
   }
-];
+};
 
-const evaluationLevels = [
-  { level: 'EAL1', description: 'Functionally tested' },
-  { level: 'EAL2', description: 'Structurally tested' },
-  { level: 'EAL3', description: 'Methodically tested and checked' },
-  { level: 'EAL4', description: 'Methodically designed, tested, and reviewed' },
-  { level: 'EAL5', description: 'Semiformally designed and tested' },
-  { level: 'EAL6', description: 'Semiformally verified design and tested' },
-  { level: 'EAL7', description: 'Formally verified design and tested' }
-];
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={description}>
-  <!-- Hero Section -->
-  <section class="py-20 bg-gradient-to-br from-green-50 to-emerald-100">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-          {title}
-        </h1>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-          {description}
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button href="/contact" variant="primary">
-            Start Evaluation
-          </Button>
-          <Button href="#services" variant="secondary">
-            Learn More
-          </Button>
-        </div>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
 
-  <!-- Services Grid -->
-  <section id="services" class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">
-          Our Common Criteria Services
-        </h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-          Expert guidance for every aspect of Common Criteria certification
-        </p>
-      </div>
+<!-- Services Section -->
+<section id="services" class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div class="grid md:grid-cols-2 gap-8">
-        {services.map((service) => (
-          <div class="bg-gradient-to-br from-gray-50 to-green-50 rounded-lg p-8 hover:shadow-lg transition-shadow">
-            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-              <Icon name={service.icon} class="w-6 h-6 text-green-600" />
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.services.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.services.subtitle}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {currentContent.services.items.map((service) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={service.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
             </div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-3">
-              {service.title}
-            </h3>
-            <p class="text-gray-600 mb-4">
-              {service.description}
-            </p>
-            <ul class="space-y-2">
+          </div>
+          
+          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {service.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left mb-4">
+            {service.description}
+          </p>
+          
+          <div class="mt-auto">
+            <ul class="space-y-1.5">
               {service.features.map((feature) => (
-                <li class="flex items-start text-sm text-gray-600">
-                  <Icon name="check" class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                <li class="flex items-start text-xs text-slate-500">
+                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
                   {feature}
                 </li>
               ))}
             </ul>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Evaluation Assurance Levels -->
-  <section class="py-20 bg-gray-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">
-          Evaluation Assurance Levels (EAL)
-        </h2>
-        <p class="text-lg text-gray-600">
-          We support certification at all EAL levels
-        </p>
-      </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {evaluationLevels.map((eal) => (
-          <div class="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
-            <div class="flex items-center mb-3">
-              <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                <span class="text-green-600 font-bold text-sm">{eal.level.slice(-1)}</span>
-              </div>
-              <h3 class="font-semibold text-gray-900">{eal.level}</h3>
-            </div>
-            <p class="text-gray-600 text-sm">{eal.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-20 bg-gradient-to-r from-green-600 to-emerald-600">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-white mb-4">
-        Ready for Common Criteria Certification?
+<!-- Evaluation Assurance Levels Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.evaluationLevels.title}
       </h2>
-      <p class="text-xl text-green-100 mb-8">
-        Get expert guidance for successful evaluation and certification
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.evaluationLevels.subtitle}
       </p>
-      <Button href="/contact" variant="secondary">
-        Contact Our Experts
-      </Button>
     </div>
-  </section>
-</Layout>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {currentContent.evaluationLevels.items.map((eal) => (
+        <div class="bg-slate-50/50 rounded-xl p-5 border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-md transition-all duration-300
+                    flex items-center gap-4">
+          <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+            <span class="text-blue-600 font-bold text-sm">{eal.level.slice(-1)}</span>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-900">{eal.level}</h3>
+            <p class="text-slate-500 text-xs">{eal.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</Layout>
