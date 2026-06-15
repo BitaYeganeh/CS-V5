@@ -266,11 +266,10 @@ const latestResources = [
 
 <!-- Hero Section -->
 <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 md:min-h-screen flex items-center relative overflow-hidden">
-<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-16 -mt-4 md:mt-0">
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-16 -mt-4 md:mt-0">
     
     <!-- Mobile layout (stacked vertically) -->
     <div class="flex flex-col items-center justify-center gap-6 mb-12 md:hidden">
-      
       <!-- Mobile: image -->
       <img 
         src="/images/Frame 1-2.png"
@@ -278,7 +277,6 @@ const latestResources = [
         class="w-full max-w-md object-cover"
         loading="eager"
       />
-      
     </div>
     
     <!-- Wrapper to center buttons across both columns -->
@@ -289,16 +287,20 @@ const latestResources = [
         <!-- Left Side: Content -->
         <div class="text-center">
           
-          <!-- -mt-16 ONLY on desktop, not on mobile -->
-          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-6 leading-tight text-center md:-mt-16">
-            <div>Enterprise Cybersecurity</div>
-            <div class="pl-4 sm:pl-10 md:pl-18 mt-1">
-              <span class="text-3xl sm:text-4xl md:text-5xl">&</span>
-            </div>
-            <div class="mt-2">
-              <span class="bg-gradient-to-r from-[#1E2A7A] to-[#60A5FA] bg-clip-text text-transparent">Compliance Advisory</span>
+          <!-- Title with Montserrat font, 35px size on desktop -->
+          <h1 class="font-bold tracking-tight mb-6 leading-tight text-center md:-mt-16"
+              style="font-family: 'Montserrat', sans-serif; font-size: 35px;">
+            <div>Enterprise Cybersecurity &</div>
+            <div class="bg-gradient-to-r from-[#1E2A7A] to-[#60A5FA] bg-clip-text text-transparent">
+              Compliance Advisory
             </div>
           </h1>
+          
+          <!-- Subtitle text with 15px size -->
+          <p class="text-slate-600 max-w-md mx-auto leading-relaxed"
+             style="font-family: 'Montserrat', sans-serif; font-size: 15px;">
+            Strategic guidance for complex regulatory environments. ISO 27001, NIS2, GDPR, and DORA implementation with proven methodologies trusted by global organizations.
+          </p>
 
         </div>
         
@@ -307,23 +309,29 @@ const latestResources = [
           <img 
             src="/images/Frame 1-2.png"
             alt="Cybersecurity strategy concept"
-            class="w-full max-w-2xl lg:max-w-3xl mx-auto object-cover -mt-20 -ml-20
+            class="w-full max-w-2xl lg:max-w-3xl mx-auto object-cover -mt-20 -ml-20"
             loading="eager"
           />
         </div>
         
       </div>
       
-      <!-- Buttons -->
-      <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center mt-10 md:mt-14">
-        <a href="/contact" class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+      <!-- Buttons with consistent font -->
+      <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center mt-10 md:mt-14"
+           style="font-family: 'Montserrat', sans-serif;">
+        
+        <a href="/contact" 
+           class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base"
+           style="font-size: 15px;">
           Request Consultation
           <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
           </svg>
         </a>
         
-        <a href="/services" class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        <a href="/services" 
+           class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base"
+           style="font-size: 15px;">
           Explore Services
           <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -334,6 +342,7 @@ const latestResources = [
     </div>
   </div>
 </section>
+
 
 <!-- Trust Bar -->
 <section class="py-8 bg-gradient-to-b from-blue-50/30 to-white overflow-hidden">
