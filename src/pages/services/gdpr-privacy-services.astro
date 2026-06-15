@@ -1,370 +1,399 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-import Button from '@/components/ui/Button.astro';
+
+// SEO Configuration
+const seoConfig = {
+  title: "GDPR and Privacy Services | Data Protection Compliance",
+  description: "Professional GDPR compliance and privacy services. We help organizations protect personal data and meet EU General Data Protection Regulation requirements.",
+  keywords: "GDPR, privacy services, data protection, compliance, personal data, EU regulation, Finland",
+  type: "service" as const,
+};
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
-const title = lang === 'fi' ? "GDPR ja Tietosuoja" : "GDPR and Privacy Services";
-const description = lang === 'fi' 
-  ? "Ammattimaiset GDPR yhteensopivuus- ja tietosuoja- palvelut. Autamme organisaatioita suojaamaan henkilötietoja ja täyttämään EU:n tietosuoja-asetuksen vaatimukset."
-  : "Professional GDPR compliance and privacy services. We help organizations protect personal data and meet EU General Data Protection Regulation requirements.";
-
-const gdprPrinciples = [
-  {
-    title: lang === 'fi' ? "Lainmukaisuus" : "Lawfulness",
-    description: lang === 'fi' 
-      ? "Henkilötietojen käsittely on oltava laillista ja oikeutettua"
-      : "Personal data processing must be lawful and justified",
-    icon: "check",
-    requirements: [
-      lang === 'fi' ? "Suostumus" : "Consent",
-      lang === 'fi' ? "Sopimus" : "Contract",
-      lang === 'fi' ? "Lainmukainen etu" : "Legitimate interest"
-    ]
+const content = {
+  en: {
+    hero: {
+      title: "GDPR and Privacy Services",
+      subtitle: "Data Protection Compliance",
+      description: "Professional GDPR compliance and privacy services. We help organizations protect personal data and meet EU General Data Protection Regulation requirements. Protect personal data and meet GDPR requirements. We help organizations build a strong privacy foundation and achieve EU General Data Protection Regulation compliance.",
+      primaryCTA: { text: "Get in Touch", href: "/contact" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    },
+    principles: {
+      title: "GDPR Principles",
+      subtitle: "GDPR is based on six principles that define the rules for personal data processing.",
+      items: [
+        { title: "Lawfulness", description: "Personal data processing must be lawful and justified", icon: "check", requirements: ["Consent", "Contract", "Legitimate interest"] },
+        { title: "Purpose Limitation", description: "Personal data is processed only for specified purposes", icon: "target", requirements: ["Clear purposes", "No incompatible uses", "Purpose documentation"] },
+        { title: "Data Minimization", description: "Only necessary personal data is processed", icon: "minus", requirements: ["Minimum data", "Adequate data", "No excessive data"] },
+        { title: "Accuracy", description: "Personal data is up-to-date and accurate", icon: "check", requirements: ["Data updates", "Error correction", "Verification processes"] },
+        { title: "Storage Limitation", description: "Personal data is stored only for necessary time", icon: "clock", requirements: ["Retention periods", "Deletion processes", "Archiving"] },
+        { title: "Security and Confidentiality", description: "Personal data is protected with appropriate technical and organizational measures", icon: "shield", requirements: ["Encryption", "Access controls", "Security policies"] }
+      ]
+    },
+    services: {
+      title: "Our Privacy Services",
+      subtitle: "Comprehensive services for GDPR compliance and privacy.",
+      items: [
+        { title: "GDPR Assessment", description: "Assess current GDPR compliance and identify gaps", icon: "chart", features: ["Compliance audit", "Risk assessment", "Recommendations"] },
+        { title: "Privacy by Design", description: "Integrate privacy into system design from the start", icon: "shield", features: ["Privacy impact assessment", "Design guidelines", "Testing"] },
+        { title: "Privacy Documentation", description: "Create required privacy documents and processes", icon: "document", features: ["Privacy notices", "Policy documentation", "Process descriptions"] },
+        { title: "Personal Data Management", description: "Manage personal data throughout its lifecycle", icon: "user", features: ["Data mapping", "Processing register", "Deletion processes"] }
+      ]
+    },
+    process: {
+      title: "Implementation Process",
+      subtitle: "Clear and structured process for GDPR compliance.",
+      steps: [
+        { step: "1", title: "GDPR Assessment", description: "Assess current privacy and GDPR compliance" },
+        { step: "2", title: "Gap Analysis", description: "Identify gaps and plan remediation measures" },
+        { step: "3", title: "Planning", description: "Plan GDPR compliance program" },
+        { step: "4", title: "Implementation", description: "Implement required privacy measures" },
+        { step: "5", title: "Monitoring", description: "Continuous compliance monitoring and updates" }
+      ]
+    },
+    benefits: {
+      title: "GDPR Compliance Benefits",
+      subtitle: "Achieve concrete benefits with GDPR compliance.",
+      items: [
+        "Meet EU GDPR requirements",
+        "Protect personal data",
+        "Reduce privacy risks",
+        "Improve customer trust",
+        "Avoid fines and sanctions"
+      ]
+    },
+    cta: {
+      title: "Ready to start your GDPR compliance?",
+      subtitle: "Contact us and let's start your GDPR compliance process.",
+      primaryCTA: { text: "Get in Touch", href: "/contact" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    }
   },
-  {
-    title: lang === 'fi' ? "Tarkoituksenmukaisuus" : "Purpose Limitation",
-    description: lang === 'fi' 
-      ? "Henkilötietoja käsitellään vain määriteltyihin tarkoituksiin"
-      : "Personal data is processed only for specified purposes",
-    icon: "target",
-    requirements: [
-      lang === 'fi' ? "Selkeät tarkoitukset" : "Clear purposes",
-      lang === 'fi' ? "Ei yhteensopimattomia käyttötarkoituksia" : "No incompatible uses",
-      lang === 'fi' ? "Tarkoituksen dokumentointi" : "Purpose documentation"
-    ]
-  },
-  {
-    title: lang === 'fi' ? "Tietojen Minimointi" : "Data Minimization",
-    description: lang === 'fi' 
-      ? "Käsitellään vain tarvittavat henkilötiedot"
-      : "Only necessary personal data is processed",
-    icon: "minus",
-    requirements: [
-      lang === 'fi' ? "Vähimmäistieto" : "Minimum data",
-      lang === 'fi' ? "Tarkoituksenmukaiset tiedot" : "Adequate data",
-      lang === 'fi' ? "Ei ylimääräisiä tietoja" : "No excessive data"
-    ]
-  },
-  {
-    title: lang === 'fi' ? "Tarkkuus" : "Accuracy",
-    description: lang === 'fi' 
-      ? "Henkilötiedot ovat ajan tasalla ja tarkkoja"
-      : "Personal data is up-to-date and accurate",
-    icon: "check",
-    requirements: [
-      lang === 'fi' ? "Tietojen päivitys" : "Data updates",
-      lang === 'fi' ? "Virheiden korjaus" : "Error correction",
-      lang === 'fi' ? "Tarkistusprosessit" : "Verification processes"
-    ]
-  },
-  {
-    title: lang === 'fi' ? "Tallennusrajoitukset" : "Storage Limitation",
-    description: lang === 'fi' 
-      ? "Henkilötiedot säilytetään vain tarvittavan ajan"
-      : "Personal data is stored only for necessary time",
-    icon: "clock",
-    requirements: [
-      lang === 'fi' ? "Säilytysajat" : "Retention periods",
-      lang === 'fi' ? "Poistoprosessit" : "Deletion processes",
-      lang === 'fi' ? "Arkkivointi" : "Archiving"
-    ]
-  },
-  {
-    title: lang === 'fi' ? "Tietoturva ja Luottamuksellisuus" : "Security and Confidentiality",
-    description: lang === 'fi' 
-      ? "Henkilötiedot suojataan asianmukaisilla teknisillä ja organisatorisilla toimenpiteillä"
-      : "Personal data is protected with appropriate technical and organizational measures",
-    icon: "shield",
-    requirements: [
-      lang === 'fi' ? "Salaus" : "Encryption",
-      lang === 'fi' ? "Käyttöoikeudet" : "Access controls",
-      lang === 'fi' ? "Tietoturvapolitiikat" : "Security policies"
-    ]
+  fi: {
+    hero: {
+      title: "GDPR ja Tietosuoja",
+      subtitle: "Tietosuojan Vaatimustenmukaisuus",
+      description: "Ammattimaiset GDPR yhteensopivuus- ja tietosuoja-palvelut. Autamme organisaatioita suojaamaan henkilötietoja ja täyttämään EU:n tietosuoja-asetuksen vaatimukset. Suojaa henkilötietoja ja täytä GDPR vaatimukset. Autamme organisaatioita rakentamaan vahvan tietosuoja-perustan ja saavuttamaan EU:n tietosuoja-asetuksen yhteensopivuuden.",
+      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    },
+    principles: {
+      title: "GDPR Periaatteet",
+      subtitle: "GDPR perustuu kuuteen periaatteeseen, jotka määrittelevät henkilötietojen käsittelyn säännöt.",
+      items: [
+        { title: "Lainmukaisuus", description: "Henkilötietojen käsittely on oltava laillista ja oikeutettua", icon: "check", requirements: ["Suostumus", "Sopimus", "Lainmukainen etu"] },
+        { title: "Tarkoituksenmukaisuus", description: "Henkilötietoja käsitellään vain määriteltyihin tarkoituksiin", icon: "target", requirements: ["Selkeät tarkoitukset", "Ei yhteensopimattomia käyttötarkoituksia", "Tarkoituksen dokumentointi"] },
+        { title: "Tietojen Minimointi", description: "Käsitellään vain tarvittavat henkilötiedot", icon: "minus", requirements: ["Vähimmäistieto", "Tarkoituksenmukaiset tiedot", "Ei ylimääräisiä tietoja"] },
+        { title: "Tarkkuus", description: "Henkilötiedot ovat ajan tasalla ja tarkkoja", icon: "check", requirements: ["Tietojen päivitys", "Virheiden korjaus", "Tarkistusprosessit"] },
+        { title: "Tallennusrajoitukset", description: "Henkilötiedot säilytetään vain tarvittavan ajan", icon: "clock", requirements: ["Säilytysajat", "Poistoprosessit", "Arkkivointi"] },
+        { title: "Tietoturva ja Luottamuksellisuus", description: "Henkilötiedot suojataan asianmukaisilla teknisillä ja organisatorisilla toimenpiteillä", icon: "shield", requirements: ["Salaus", "Käyttöoikeudet", "Tietoturvapolitiikat"] }
+      ]
+    },
+    services: {
+      title: "Tietosuoja Palvelumme",
+      subtitle: "Kattavat palvelut GDPR yhteensopivuuteen ja tietosuojaan.",
+      items: [
+        { title: "GDPR Arviointi", description: "Arvioidaan nykyinen GDPR yhteensopivuus ja tunnistetaan puutteet", icon: "chart", features: ["Yhteensopivuusauditointi", "Riskien arviointi", "Suositukset"] },
+        { title: "Tietosuoja Suunnittelu", description: "Integroidaan tietosuoja jo järjestelmien suunnitteluvaiheessa", icon: "shield", features: ["Tietosuoja-analyysi", "Suunnitteluohjeet", "Testaus"] },
+        { title: "Tietosuoja Dokumentaatio", description: "Luodaan tarvittavat tietosuoja-asiakirjat ja prosessit", icon: "document", features: ["Tietosuojaselosteet", "Käytäntöjen dokumentointi", "Prosessikuvaukset"] },
+        { title: "Henkilötietojen Hallinta", description: "Hallitaan henkilötietojen koko elinkaari", icon: "user", features: ["Tietojen kartoitus", "Käsittelyrekisteri", "Poistoprosessit"] }
+      ]
+    },
+    process: {
+      title: "Toteutusprosessi",
+      subtitle: "Selkeä ja strukturoitu prosessi GDPR yhteensopivuuteen.",
+      steps: [
+        { step: "1", title: "GDPR Arviointi", description: "Arvioidaan nykyinen tietosuoja ja GDPR yhteensopivuus" },
+        { step: "2", title: "Gap Analysis", description: "Tunnistetaan puutteet ja suunnitellaan korjauskeinot" },
+        { step: "3", title: "Suunnittelu", description: "Suunnitellaan GDPR yhteensopivuusohjelma" },
+        { step: "4", title: "Toteutus", description: "Toteutetaan tarvittavat tietosuoja-toimenpiteet" },
+        { step: "5", title: "Valvonta", description: "Jatkuva yhteensopivuuden valvonta ja päivitys" }
+      ]
+    },
+    benefits: {
+      title: "GDPR Yhteensopivuuden Edut",
+      subtitle: "Saavuta konkreettisia hyötyjä GDPR yhteensopivuuden avulla.",
+      items: [
+        "Täytä EU tietosuoja-asetuksen vaatimukset",
+        "Suojaa henkilötietoja",
+        "Vähennä tietosuoja-riskejä",
+        "Paranna asiakkaiden luottamusta",
+        "Vältä sakot ja sanktiot"
+      ]
+    },
+    cta: {
+      title: "Valmiit aloittamaan GDPR yhteensopivuuden?",
+      subtitle: "Ota yhteyttä meihin ja aloitetaan GDPR yhteensopivuusprosessi.",
+      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    }
   }
-];
+};
 
-const privacyServices = [
-  {
-    title: lang === 'fi' ? "GDPR Arviointi" : "GDPR Assessment",
-    description: lang === 'fi' 
-      ? "Arvioidaan nykyinen GDPR yhteensopivuus ja tunnistetaan puutteet"
-      : "Assess current GDPR compliance and identify gaps",
-    icon: "chart",
-    features: [
-      lang === 'fi' ? "Yhteensopivuusauditointi" : "Compliance audit",
-      lang === 'fi' ? "Riskien arviointi" : "Risk assessment",
-      lang === 'fi' ? "Suositukset" : "Recommendations"
-    ]
-  },
-  {
-    title: lang === 'fi' ? "Tietosuoja Suunnittelu" : "Privacy by Design",
-    description: lang === 'fi' 
-      ? "Integroidaan tietosuoja jo järjestelmien suunnitteluvaiheessa"
-      : "Integrate privacy into system design from the start",
-    icon: "shield",
-    features: [
-      lang === 'fi' ? "Tietosuoja-analyysi" : "Privacy impact assessment",
-      lang === 'fi' ? "Suunnitteluohjeet" : "Design guidelines",
-      lang === 'fi' ? "Testaus" : "Testing"
-    ]
-  },
-  {
-    title: lang === 'fi' ? "Tietosuoja Dokumentaatio" : "Privacy Documentation",
-    description: lang === 'fi' 
-      ? "Luodaan tarvittavat tietosuoja-asiakirjat ja prosessit"
-      : "Create required privacy documents and processes",
-    icon: "document",
-    features: [
-      lang === 'fi' ? "Tietosuojaselosteet" : "Privacy notices",
-      lang === 'fi' ? "Käytäntöjen dokumentointi" : "Policy documentation",
-      lang === 'fi' ? "Prosessikuvaukset" : "Process descriptions"
-    ]
-  },
-  {
-    title: lang === 'fi' ? "Henkilötietojen Hallinta" : "Personal Data Management",
-    description: lang === 'fi' 
-      ? "Hallitaan henkilötietojen koko elinkaari"
-      : "Manage personal data throughout its lifecycle",
-    icon: "user",
-    features: [
-      lang === 'fi' ? "Tietojen kartoitus" : "Data mapping",
-      lang === 'fi' ? "Käsittelyrekisteri" : "Processing register",
-      lang === 'fi' ? "Poistoprosessit" : "Deletion processes"
-    ]
-  }
-];
-
-const implementationSteps = [
-  {
-    step: "1",
-    title: lang === 'fi' ? "GDPR Arviointi" : "GDPR Assessment",
-    description: lang === 'fi' 
-      ? "Arvioidaan nykyinen tietosuoja ja GDPR yhteensopivuus"
-      : "Assess current privacy and GDPR compliance"
-  },
-  {
-    step: "2",
-    title: lang === 'fi' ? "Gap Analysis" : "Gap Analysis",
-    description: lang === 'fi' 
-      ? "Tunnistetaan puutteet ja suunnitellaan korjauskeinot"
-      : "Identify gaps and plan remediation measures"
-  },
-  {
-    step: "3",
-    title: lang === 'fi' ? "Suunnittelu" : "Planning",
-    description: lang === 'fi' 
-      ? "Suunnitellaan GDPR yhteensopivuusohjelma"
-      : "Plan GDPR compliance program"
-  },
-  {
-    step: "4",
-    title: lang === 'fi' ? "Toteutus" : "Implementation",
-    description: lang === 'fi' 
-      ? "Toteutetaan tarvittavat tietosuoja-toimenpiteet"
-      : "Implement required privacy measures"
-  },
-  {
-    step: "5",
-    title: lang === 'fi' ? "Valvonta" : "Monitoring",
-    description: lang === 'fi' 
-      ? "Jatkuva yhteensopivuuden valvonta ja päivitys"
-      : "Continuous compliance monitoring and updates"
-  }
-];
-
-const benefits = [
-  lang === 'fi' ? "Täytä EU tietosuoja-asetuksen vaatimukset" : "Meet EU GDPR requirements",
-  lang === 'fi' ? "Suojaa henkilötietoja" : "Protect personal data",
-  lang === 'fi' ? "Vähennä tietosuoja-riskejä" : "Reduce privacy risks",
-  lang === 'fi' ? "Paranna asiakkaiden luottamusta" : "Improve customer trust",
-  lang === 'fi' ? "Vältä sakot ja sanktiot" : "Avoid fines and sanctions"
-];
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={description}>
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl">
-        <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-          {title}
-        </h1>
-        <p class="text-xl text-slate-600 mb-8">
-          {lang === 'fi' 
-            ? "Suojaa henkilötietoja ja täytä GDPR vaatimukset. Autamme organisaatioita rakentamaan vahvan tietosuoja-perustan ja saavuttamaan EU:n tietosuoja-asetuksen yhteensopivuuden."
-            : "Protect personal data and meet GDPR requirements. We help organizations build a strong privacy foundation and achieve EU General Data Protection Regulation compliance."
-          }
-        </p>
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
-          <h2 class="text-lg font-semibold text-slate-900 mb-4">
-            {lang === 'fi' ? 'Mikä on GDPR?' : 'What is GDPR?'}
-          </h2>
-          <p class="text-slate-600 mb-4">
-            {lang === 'fi'
-              ? "GDPR on EU:n yleinen tietosuoja-asetus, joka koskee kaikkia organisaatioita, jotka käsittelevät EU:n kansalaisten henkilötietoja. Se asettaa kattavat vaatimukset henkilötietojen suojalle."
-              : "GDPR is the EU General Data Protection Regulation that applies to all organizations processing EU citizens' personal data. It sets comprehensive requirements for personal data protection."
-            }
-          </p>
-        </div>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
-
-  <!-- GDPR Principles -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'GDPR Periaatteet' : 'GDPR Principles'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi'
-            ? "GDPR perustuu kuuteen periaatteeseen, jotka määrittelevät henkilötietojen käsittelyn säännöt."
-            : "GDPR is based on six principles that define the rules for personal data processing."
-          }
-        </p>
-      </div>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {gdprPrinciples.map((principle) => (
-          <div class="bg-gradient-to-br from-slate-50 to-white p-8 rounded-xl border border-slate-200 hover:shadow-xl transition-all duration-300">
-            <div class="w-16 h-16 bg-indigo-100 rounded-xl flex items-center justify-center mb-6">
-              <Icon name={principle.icon} className="w-8 h-8 text-indigo-600" />
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- Principles Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.principles.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.principles.subtitle}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {currentContent.principles.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
             </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-4">{principle.title}</h3>
-            <p class="text-slate-600 mb-6">{principle.description}</p>
-            <ul class="space-y-2">
-              {principle.requirements.map((requirement) => (
-                <li class="flex items-center text-sm text-slate-600">
-                  <Icon name="check" className="w-4 h-4 text-green-500 mr-2" />
-                  {requirement}
+          </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {item.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left mb-4">
+            {item.description}
+          </p>
+          
+          <div class="mt-auto">
+            <ul class="space-y-1.5">
+              {item.requirements.map((req) => (
+                <li class="flex items-start text-xs text-slate-500">
+                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  {req}
                 </li>
               ))}
             </ul>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Privacy Services -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Tietosuoja Palvelumme' : 'Our Privacy Services'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi'
-            ? "Kattavat palvelut GDPR yhteensopivuuteen ja tietosuojaan."
-            : "Comprehensive services for GDPR compliance and privacy."
-          }
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {privacyServices.map((service) => (
-          <div class="bg-white p-8 rounded-xl border border-slate-200 hover:shadow-xl transition-all duration-300">
-            <div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
-              <Icon name={service.icon} className="w-8 h-8 text-purple-600" />
+<!-- Services Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.services.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.services.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      {currentContent.services.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
             </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-4">{service.title}</h3>
-            <p class="text-slate-600 mb-6">{service.description}</p>
-            <ul class="space-y-2">
-              {service.features.map((feature) => (
-                <li class="flex items-center text-sm text-slate-600">
-                  <Icon name="check" className="w-4 h-4 text-green-500 mr-2" />
+          </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {item.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left mb-4">
+            {item.description}
+          </p>
+          
+          <div class="mt-auto">
+            <ul class="space-y-1.5">
+              {item.features.map((feature) => (
+                <li class="flex items-start text-xs text-slate-500">
+                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
                   {feature}
                 </li>
               ))}
             </ul>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Implementation Process -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Toteutusprosessi' : 'Implementation Process'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi'
-            ? "Selkeä ja strukturoitu prosessi GDPR yhteensopivuuteen."
-            : "Clear and structured process for GDPR compliance."
-          }
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-        {implementationSteps.map((step) => (
-          <div class="text-center">
-            <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-xl font-bold">
-              {step.step}
-            </div>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2">{step.title}</h3>
-            <p class="text-slate-600 text-sm">{step.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Benefits Section -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'GDPR Yhteensopivuuden Edut' : 'GDPR Compliance Benefits'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi'
-            ? "Saavuta konkreettisia hyötyjä GDPR yhteensopivuuden avulla."
-            : "Achieve concrete benefits with GDPR compliance."
-          }
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {benefits.map((benefit) => (
-          <div class="text-center">
-            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Icon name="check" className="w-8 h-8 text-green-600" />
-            </div>
-            <p class="text-slate-700 font-medium">{benefit}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-20 bg-slate-900 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold mb-6">
-        {lang === 'fi' ? 'Valmiit aloittamaan GDPR yhteensopivuuden?' : 'Ready to start your GDPR compliance?'}
+<!-- Process Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.process.title}
       </h2>
-      <p class="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
-        {lang === 'fi'
-          ? "Ota yhteyttä meihin ja aloitetaan GDPR yhteensopivuusprosessi."
-          : "Contact us and let's start your GDPR compliance process."
-        }
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.process.subtitle}
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/contact" variant="primary" className="text-lg px-8 py-3">
-          {lang === 'fi' ? 'Ota yhteyttä' : 'Get in Touch'}
-        </Button>
-        <Button href="/contact?consultation=true" variant="secondary" className="text-lg px-8 py-3">
-          {lang === 'fi' ? 'Varaa konsultaatio' : 'Book Consultation'}
-        </Button>
-      </div>
     </div>
-  </section>
-</Layout>
+    
+    <div class="grid md:grid-cols-5 gap-6">
+      {currentContent.process.steps.map((step) => (
+        <div class="bg-slate-50/50 rounded-xl p-5 text-center border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">
+            {step.step}
+          </div>
+          
+          <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+            {step.title}
+          </h3>
+          
+          <p class="text-slate-500 text-xs leading-relaxed">
+            {step.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
+<!-- Benefits Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.benefits.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.benefits.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-6">
+      {currentContent.benefits.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 text-center border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-md transition-all duration-300
+                    flex items-center justify-center">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <span class="text-slate-700 text-sm font-medium">{item}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</Layout>

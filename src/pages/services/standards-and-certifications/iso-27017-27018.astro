@@ -1,307 +1,409 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
-const title = 'ISO 27017 & 27018 Cloud Security Services';
-const description = 'Comprehensive cloud security implementation with ISO 27017 for cloud computing security and ISO 27018 for cloud privacy protection. Secure your cloud infrastructure and data.';
+// SEO Configuration
+const seoConfig = {
+  title: "ISO 27017 & 27018 Cloud Security Services | Cloud Computing Security & Privacy",
+  description: "Comprehensive cloud security implementation with ISO 27017 for cloud computing security and ISO 27018 for cloud privacy protection. Secure your cloud infrastructure and data.",
+  keywords: "ISO 27017, ISO 27018, cloud security, cloud privacy, cloud computing security, Finland",
+  type: "service" as const,
+};
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const content = {
+  en: {
+    hero: {
+      title: "ISO 27017 & 27018 Cloud Security",
+      subtitle: "Cloud Computing Security & Privacy Protection",
+      description: "Comprehensive cloud security implementation covering both cloud computing security controls (ISO 27017) and cloud privacy protection (ISO 27018).",
+      primaryCTA: { text: "Secure Your Cloud Infrastructure", href: "/contact" },
+      secondaryCTA: { text: "View Our Services", href: "/services" }
+    },
+    standards: {
+      title: "Cloud Security Standards",
+      subtitle: "Two complementary standards that provide comprehensive security and privacy controls for cloud environments.",
+      items: [
+        {
+          title: "ISO 27017",
+          subtitle: "Cloud Computing Security",
+          description: "Provides specific security controls for cloud services, extending ISO 27001/27002 with cloud-specific guidance for both cloud service providers and customers.",
+          icon: "cloud",
+          features: ["Cloud service security architecture", "Shared responsibility model", "Cloud-specific risk management"],
+          color: "blue"
+        },
+        {
+          title: "ISO 27018",
+          subtitle: "Cloud Privacy Protection",
+          description: "Focuses specifically on protecting personally identifiable information (PII) in public clouds, providing guidance for cloud service providers handling personal data.",
+          icon: "shield",
+          features: ["PII protection in cloud environments", "Transparency and communication", "Data location and portability"],
+          color: "cyan"
+        }
+      ]
+    },
+    process: {
+      title: "Cloud Security Implementation Process",
+      subtitle: "Comprehensive approach to implementing both ISO 27017 and ISO 27018 standards for complete cloud security coverage.",
+      steps: [
+        { step: "1", title: "Cloud Assessment", description: "Comprehensive assessment of current cloud infrastructure, services, and security posture." },
+        { step: "2", title: "Control Mapping", description: "Map ISO 27017 & 27018 controls to your cloud environment and identify implementation gaps." },
+        { step: "3", title: "Security Implementation", description: "Implement cloud-specific security and privacy controls across your infrastructure." },
+        { step: "4", title: "Continuous Monitoring", description: "Establish ongoing monitoring and compliance validation for cloud environments." }
+      ]
+    },
+    services: {
+      title: "Comprehensive Cloud Security Services",
+      items: [
+        {
+          title: "ISO 27017 Implementation",
+          icon: "cloud",
+          features: ["Cloud service customer/provider guidance", "Shared responsibility model documentation", "Cloud-specific security controls", "Multi-cloud security architecture", "Cloud service agreement review"]
+        },
+        {
+          title: "ISO 27018 Implementation",
+          icon: "shield",
+          features: ["PII identification and classification", "Cloud privacy notice development", "Data location transparency controls", "Data portability and return procedures", "Third-party audit and transparency"]
+        }
+      ]
+    },
+    platforms: {
+      title: "Multi-Cloud Platform Expertise",
+      subtitle: "We support ISO 27017 & 27018 implementation across all major cloud platforms.",
+      items: ["AWS", "Azure", "GCP", "Multi-Cloud"]
+    },
+    cta: {
+      title: "Secure Your Cloud Infrastructure Today",
+      subtitle: "Implement comprehensive cloud security with ISO 27017 & 27018 standards across your entire cloud ecosystem.",
+      primaryCTA: { text: "Start Cloud Security Assessment", href: "/contact" },
+      secondaryCTA: { text: "Learn More About Us", href: "/about" }
+    }
+  },
+  fi: {
+    hero: {
+      title: "ISO 27017 & 27018 -pilvipalveluiden turvallisuus",
+      subtitle: "Pilvipalveluiden turvallisuus ja tietosuojaus",
+      description: "Kattava pilvipalveluiden turvallisuustoteutus, joka kattaa sekä pilvipalveluiden turvallisuuskontrollit (ISO 27017) että pilvipalveluiden tietosuojauksen (ISO 27018).",
+      primaryCTA: { text: "Turvaa pilvi-infrastruktuurisi", href: "/contact" },
+      secondaryCTA: { text: "Tutustu palveluihimme", href: "/services" }
+    },
+    standards: {
+      title: "Pilvipalveluiden turvallisuusstandardit",
+      subtitle: "Kaksi toisiaan täydentävää standardia, jotka tarjoavat kattavat turvallisuus- ja tietosuojakontrollit pilviympäristöille.",
+      items: [
+        {
+          title: "ISO 27017",
+          subtitle: "Pilvipalveluiden turvallisuus",
+          description: "Tarjoaa erityisiä turvakontrolleja pilvipalveluille, laajentaen ISO 27001/27002:ta pilvikohtaisella ohjeistuksella sekä pilvipalveluntarjoajille että asiakkaille.",
+          icon: "cloud",
+          features: ["Pilvipalveluiden turvallisuusarkkitehtuuri", "Jaettu vastuumalli", "Pilvikohtainen riskienhallinta"],
+          color: "blue"
+        },
+        {
+          title: "ISO 27018",
+          subtitle: "Pilvipalveluiden tietosuojaus",
+          description: "Keskittyy erityisesti henkilötietojen suojaamiseen julkisissa pilvissä tarjoten ohjeistusta pilvipalveluntarjoajille, jotka käsittelevät henkilötietoja.",
+          icon: "shield",
+          features: ["Henkilötietojen suojaaminen pilviympäristöissä", "Läpinäkyvyys ja viestintä", "Tietojen sijainti ja siirrettävyys"],
+          color: "cyan"
+        }
+      ]
+    },
+    process: {
+      title: "Pilvipalveluiden turvallisuuden toteutusprosessi",
+      subtitle: "Kattava lähestymistapa sekä ISO 27017- että ISO 27018 -standardien toteuttamiseen täydellistä pilvipalveluiden turvallisuuskattavuutta varten.",
+      steps: [
+        { step: "1", title: "Pilvipalveluarviointi", description: "Kattava arviointi nykyisestä pilvi-infrastruktuurista, palveluista ja turvallisuustilanteesta." },
+        { step: "2", title: "Kontrollien kartoitus", description: "Kartuta ISO 27017- ja 27018 -kontrollit pilviympäristöösi ja tunnista toteutuspuutteet." },
+        { step: "3", title: "Turvallisuuden toteutus", description: "Toteuta pilvikohtaiset turvallisuus- ja tietosuojakontrollit infrastruktuurissasi." },
+        { step: "4", title: "Jatkuva seuranta", description: "Perusta jatkuva seuranta ja vaatimustenmukaisuuden validointi pilviympäristöille." }
+      ]
+    },
+    services: {
+      title: "Kattavat pilvipalveluiden turvallisuuspalvelut",
+      items: [
+        {
+          title: "ISO 27017 -toteutus",
+          icon: "cloud",
+          features: ["Pilvipalveluasiakkaan/tarjoajan ohjeistus", "Jaetun vastuumallin dokumentointi", "Pilvikohtaiset turvallisuuskontrollit", "Monipilvipalveluiden turvallisuusarkkitehtuuri", "Pilvipalvelusopimuksen tarkistus"]
+        },
+        {
+          title: "ISO 27018 -toteutus",
+          icon: "shield",
+          features: ["Henkilötietojen tunnistaminen ja luokittelu", "Pilvipalveluiden tietosuojailmoituksen kehitys", "Tietojen sijainnin läpinäkyvyyskontrollit", "Tietojen siirrettävyys- ja palautusmenettelyt", "Kolmannen osapuolen auditointi ja läpinäkyvyys"]
+        }
+      ]
+    },
+    platforms: {
+      title: "Monipilvialustojen asiantuntemus",
+      subtitle: "Tuemme ISO 27017- ja 27018 -standardien toteutusta kaikilla merkittävimmillä pilvialustoilla.",
+      items: ["AWS", "Azure", "GCP", "Monipilvi"]
+    },
+    cta: {
+      title: "Turvaa pilvi-infrastruktuurisi jo tänään",
+      subtitle: "Toteuta kattava pilvipalveluiden turvallisuus ISO 27017- ja 27018 -standardeilla koko pilviekosysteemissäsi.",
+      primaryCTA: { text: "Aloita pilvipalveluiden turvallisuusarviointi", href: "/contact" },
+      secondaryCTA: { text: "Tutustu meihin paremmin", href: "/about" }
+    }
+  }
+};
+
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={description}>
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-blue-50 via-white to-cyan-50 py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-          ISO 27017 & 27018 Cloud Security
-        </h1>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-          Comprehensive cloud security implementation covering both cloud computing security controls (ISO 27017) and cloud privacy protection (ISO 27018).
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contact" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors">
-            Secure Your Cloud Infrastructure
-          </a>
-          <a href="/services" class="inline-flex items-center px-8 py-3 border border-slate-300 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50 transition-colors">
-            View Our Services
-          </a>
-        </div>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="cloud" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
-
-  <!-- Standards Overview -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Cloud Security Standards</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Two complementary standards that provide comprehensive security and privacy controls for cloud environments.
-        </p>
-      </div>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
       
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-xl">
-          <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-slate-900 mb-4">ISO 27017</h3>
-          <h4 class="text-lg font-semibold text-blue-700 mb-3">Cloud Computing Security</h4>
-          <p class="text-slate-600 mb-4">
-            Provides specific security controls for cloud services, extending ISO 27001/27002 with cloud-specific guidance for both cloud service providers and customers.
-          </p>
-          <ul class="space-y-2 text-slate-600">
-            <li class="flex items-center">
-              <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Cloud service security architecture
-            </li>
-            <li class="flex items-center">
-              <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Shared responsibility model
-            </li>
-            <li class="flex items-center">
-              <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Cloud-specific risk management
-            </li>
-          </ul>
-        </div>
-        
-        <div class="bg-gradient-to-br from-cyan-50 to-teal-50 p-8 rounded-xl">
-          <div class="w-16 h-16 bg-cyan-100 rounded-lg flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-slate-900 mb-4">ISO 27018</h3>
-          <h4 class="text-lg font-semibold text-cyan-700 mb-3">Cloud Privacy Protection</h4>
-          <p class="text-slate-600 mb-4">
-            Focuses specifically on protecting personally identifiable information (PII) in public clouds, providing guidance for cloud service providers handling personal data.
-          </p>
-          <ul class="space-y-2 text-slate-600">
-            <li class="flex items-center">
-              <svg class="w-4 h-4 text-cyan-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              PII protection in cloud environments
-            </li>
-            <li class="flex items-center">
-              <svg class="w-4 h-4 text-cyan-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Transparency and communication
-            </li>
-            <li class="flex items-center">
-              <svg class="w-4 h-4 text-cyan-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Data location and portability
-            </li>
-          </ul>
-        </div>
-      </div>
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
     </div>
-  </section>
+    
+  </div>
+</section>
 
-  <!-- Implementation Process -->
-  <section class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Cloud Security Implementation Process</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Comprehensive approach to implementing both ISO 27017 and ISO 27018 standards for complete cloud security coverage.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-2xl font-bold text-blue-600">1</span>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Cloud Assessment</h3>
-          <p class="text-slate-600">Comprehensive assessment of current cloud infrastructure, services, and security posture.</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-2xl font-bold text-cyan-600">2</span>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Control Mapping</h3>
-          <p class="text-slate-600">Map ISO 27017 & 27018 controls to your cloud environment and identify implementation gaps.</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-2xl font-bold text-teal-600">3</span>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Security Implementation</h3>
-          <p class="text-slate-600">Implement cloud-specific security and privacy controls across your infrastructure.</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-2xl font-bold text-indigo-600">4</span>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Continuous Monitoring</h3>
-          <p class="text-slate-600">Establish ongoing monitoring and compliance validation for cloud environments.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- Standards Overview Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-  <!-- Key Services -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Comprehensive Cloud Security Services</h2>
-      </div>
-      
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div class="bg-slate-50 p-8 rounded-xl">
-          <h3 class="text-xl font-bold text-slate-900 mb-4">ISO 27017 Implementation</h3>
-          <ul class="space-y-3 text-slate-600">
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Cloud service customer/provider guidance
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Shared responsibility model documentation
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Cloud-specific security controls
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Multi-cloud security architecture
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Cloud service agreement review
-            </li>
-          </ul>
-        </div>
-        
-        <div class="bg-slate-50 p-8 rounded-xl">
-          <h3 class="text-xl font-bold text-slate-900 mb-4">ISO 27018 Implementation</h3>
-          <ul class="space-y-3 text-slate-600">
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              PII identification and classification
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Cloud privacy notice development
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Data location transparency controls
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Data portability and return procedures
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Third-party audit and transparency
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Cloud Providers Support -->
-  <section class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Multi-Cloud Platform Expertise</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          We support ISO 27017 & 27018 implementation across all major cloud platforms.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-            <svg class="w-8 h-8 text-orange-600" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M13.5 15.5h-3v3h3v-3zm-3-1h3v-3h-3v3zm4 1h3v-3h-3v3zm0 1v3h3v-3h-3zm1-5h3v-3h-3v3zm-1 0v-3h-3v3h3zm-4-1v-3h-3v3h3zm-1 1h-3v3h3v-3z"/>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900">AWS</h3>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-            <svg class="w-8 h-8 text-blue-600" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M11.998 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900">Azure</h3>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-            <svg class="w-8 h-8 text-red-600" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900">GCP</h3>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900">Multi-Cloud</h3>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-16 bg-gradient-to-r from-blue-600 to-cyan-600">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-white mb-4">Secure Your Cloud Infrastructure Today</h2>
-      <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-        Implement comprehensive cloud security with ISO 27017 & 27018 standards across your entire cloud ecosystem.
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.standards.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.standards.subtitle}
       </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {currentContent.standards.items.map((standard) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={standard.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-bold text-slate-900 mb-1 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {standard.title}
+          </h3>
+          <p class="text-sm font-semibold text-blue-600 mb-3 text-left">{standard.subtitle}</p>
+          <p class="text-slate-500 text-sm leading-relaxed mb-4 text-left">{standard.description}</p>
+          
+          <div class="mt-auto">
+            <ul class="space-y-1.5">
+              {standard.features.map((feature) => (
+                <li class="flex items-start text-xs text-slate-500">
+                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Implementation Process Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.process.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.process.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-4 gap-6">
+      {currentContent.process.steps.map((step) => (
+        <div class="bg-slate-50/50 rounded-xl p-5 text-center border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">
+            {step.step}
+          </div>
+          
+          <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+            {step.title}
+          </h3>
+          
+          <p class="text-slate-500 text-xs leading-relaxed">
+            {step.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.services.title}
+      </h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      {currentContent.services.items.map((service) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={service.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-bold text-slate-900 mb-4 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {service.title}
+          </h3>
+          
+          <ul class="space-y-2">
+            {service.features.map((feature) => (
+              <li class="flex items-start text-sm text-slate-600">
+                <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Platforms Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.platforms.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.platforms.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {currentContent.platforms.items.map((platform) => (
+        <div class="bg-slate-50/50 rounded-xl p-5 text-center border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-md transition-all duration-300
+                    group">
+          
+          <div class="flex justify-center mb-3">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6]">
+              <Icon name="cloud" class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+          
+          <h3 class="text-sm font-semibold text-slate-800 group-hover:text-blue-700 transition-colors duration-300">
+            {platform}
+          </h3>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/contact" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 transition-colors">
-          Start Cloud Security Assessment
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
         </a>
-        <a href="/about" class="inline-flex items-center px-8 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-blue-700 transition-colors">
-          Learn More About Us
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
         </a>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
 </Layout>

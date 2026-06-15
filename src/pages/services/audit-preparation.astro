@@ -1,209 +1,378 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-import Button from '@/components/ui/Button.astro';
+
+// SEO Configuration
+const seoConfig = {
+  title: "Audit Preparation and Internal Audits | ISO 27001, SOC 2, NIS2/DORA",
+  description: "We prepare and lead audits (ISO 27001, SOC 2, NIS2/DORA) with no surprises. Comprehensive audit preparation and internal audit services.",
+  keywords: "audit preparation, internal audits, ISO 27001 audit, SOC 2 audit, NIS2, DORA, Finland",
+  type: "service" as const,
+};
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
-const title = lang === 'fi' ? 'Auditointien valmistelu ja sisäiset auditoinnit' : 'Audit Preparation and Internal Audits';
-const description = lang === 'fi' ? 'Valmistelemme ja johdamme auditoinnit (ISO 27001, SOC 2, NIS2/DORA) ilman yllätyksiä.' : 'We prepare and lead audits (ISO 27001, SOC 2, NIS2/DORA) with no surprises.';
-
-const offerings = [
-  { 
-    icon:'check', 
-    fi:'Aukkoanalyysi ja korjaukset', 
-    en:'Gap analysis and remediation',
-    fiDesc: 'Tunnistamme puutteet ja korjaamme ne ennen auditointia',
-    enDesc: 'Identify gaps and remediate them before the audit'
+const content = {
+  en: {
+    hero: {
+      title: "Audit Preparation and Internal Audits",
+      subtitle: "ISO 27001, SOC 2, NIS2/DORA",
+      description: "We prepare and lead audits (ISO 27001, SOC 2, NIS2/DORA) with no surprises. Comprehensive audit preparation and internal audit services to ensure your audit proceeds smoothly and objectives are achieved.",
+      primaryCTA: { text: "Get in Touch", href: "/contact" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    },
+    offerings: {
+      title: "Audit Preparation",
+      subtitle: "We ensure your audit proceeds smoothly and objectives are achieved.",
+      items: [
+        { title: "Gap analysis and remediation", description: "Identify gaps and remediate them before the audit", icon: "check" },
+        { title: "Evidence management", description: "Documentation and evidence properly organized", icon: "document" },
+        { title: "Auditor coordination", description: "Smooth communication and scheduling", icon: "user" },
+        { title: "Internal auditing", description: "Pre-audit and preparation activities", icon: "shield" }
+      ]
+    },
+    standards: {
+      title: "Supported Standards",
+      subtitle: "We help prepare for all major cybersecurity and compliance audits.",
+      items: [
+        { title: "ISO 27001", description: "Information Security Management System certification", icon: "shield-check" },
+        { title: "SOC 2", description: "SOC 2 Type I and Type II reports", icon: "building" },
+        { title: "NIS2 & DORA", description: "EU cybersecurity and financial regulation", icon: "globe" },
+        { title: "ISO 22301", description: "Business Continuity Management", icon: "award" }
+      ]
+    },
+    phases: {
+      title: "Audit Phases",
+      subtitle: "We support your organization at each phase to achieve a successful audit.",
+      items: [
+        { title: "Pre-preparation", features: ["Requirements mapping", "Gap analysis", "Remediation actions", "Evidence collection"] },
+        { title: "Preparation", features: ["Documentation organization", "Staff training", "Process testing", "Internal audit"] },
+        { title: "Audit", features: ["Auditor support", "Interview support", "Documentation assistance", "Technical support"] }
+      ]
+    },
+    process: {
+      title: "Preparation Process",
+      subtitle: "Systematic approach to audit success.",
+      steps: [
+        { step: "1", title: "Initial Assessment", description: "Current state and objectives definition" },
+        { step: "2", title: "Gap Analysis", description: "Gap identification and prioritization" },
+        { step: "3", title: "Remediation Plan", description: "Action plan and timeline" },
+        { step: "4", title: "Implementation", description: "Control implementation and testing" },
+        { step: "5", title: "Readiness", description: "Final preparation and audit" }
+      ]
+    },
+    cta: {
+      title: "Start your audit preparation",
+      subtitle: "Contact us to schedule your preparation and internal audits.",
+      primaryCTA: { text: "Get in Touch", href: "/contact" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    }
   },
-  { 
-    icon:'document', 
-    fi:'Evidenssien hallinta', 
-    en:'Evidence management',
-    fiDesc: 'Dokumentaatio ja todistusaineisto kunnossa',
-    enDesc: 'Documentation and evidence properly organized'
-  },
-  { 
-    icon:'user', 
-    fi:'Auditoijan koordinointi', 
-    en:'Auditor coordination',
-    fiDesc: 'Sujuva kommunikaatio ja aikataulutus',
-    enDesc: 'Smooth communication and scheduling'
-  },
-  { 
-    icon:'shield', 
-    fi:'Sisäinen auditointi', 
-    en:'Internal auditing',
-    fiDesc: 'Ennakkoauditointi ja valmistautuminen',
-    enDesc: 'Pre-audit and preparation activities'
+  fi: {
+    hero: {
+      title: "Auditointien valmistelu ja sisäiset auditoinnit",
+      subtitle: "ISO 27001, SOC 2, NIS2/DORA",
+      description: "Valmistelemme ja johdamme auditoinnit (ISO 27001, SOC 2, NIS2/DORA) ilman yllätyksiä. Kattava auditointien valmistelu- ja sisäiset auditointipalvelut varmistamaan, että auditointinne sujuu ongelmitta ja tavoitteet saavutetaan.",
+      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    },
+    offerings: {
+      title: "Auditointivalmistelu",
+      subtitle: "Varmistamme, että auditointinne sujuu ongelmitta ja tavoitteet saavutetaan.",
+      items: [
+        { title: "Aukkoanalyysi ja korjaukset", description: "Tunnistamme puutteet ja korjaamme ne ennen auditointia", icon: "check" },
+        { title: "Evidenssien hallinta", description: "Dokumentaatio ja todistusaineisto kunnossa", icon: "document" },
+        { title: "Auditoijan koordinointi", description: "Sujuva kommunikaatio ja aikataulutus", icon: "user" },
+        { title: "Sisäinen auditointi", description: "Ennakkoauditointi ja valmistautuminen", icon: "shield" }
+      ]
+    },
+    standards: {
+      title: "Tuetut standardit",
+      subtitle: "Autamme valmistautumaan kaikkiin keskeisimpiin kyberturva- ja compliance-auditointeihin.",
+      items: [
+        { title: "ISO 27001", description: "Tietoturvan hallintajärjestelmän sertifiointi", icon: "shield-check" },
+        { title: "SOC 2", description: "SOC 2 Type I ja Type II raportit", icon: "building" },
+        { title: "NIS2 & DORA", description: "EU:n kyberturva- ja rahoitussääntely", icon: "globe" },
+        { title: "ISO 22301", description: "Liiketoiminnan jatkuvuuden hallinta", icon: "award" }
+      ]
+    },
+    phases: {
+      title: "Auditointivaiheet",
+      subtitle: "Jokaisessa vaiheessa tuemme organisaatiotanne menestyksekkään auditoinnin saavuttamiseksi.",
+      items: [
+        { title: "Ennakkovalmistelu", features: ["Vaatimusten kartoitus", "Aukkoanalyysi", "Korjaustoimenpiteet", "Evidenssien keruu"] },
+        { title: "Valmistelu", features: ["Dokumentaation organisointi", "Henkilöstön koulutus", "Prosessien testaus", "Sisäinen auditointi"] },
+        { title: "Auditointi", features: ["Auditoijan tuki", "Haastattelutuki", "Dokumentaatio-apu", "Tekninen tuki"] }
+      ]
+    },
+    process: {
+      title: "Valmisteluprosessi",
+      subtitle: "Systemaattinen lähestymistapa auditointimenestykseen.",
+      steps: [
+        { step: "1", title: "Alkukartoitus", description: "Nykytilan ja tavoitteiden määrittely" },
+        { step: "2", title: "Aukkoanalyysi", description: "Puutteiden tunnistaminen ja priorisointi" },
+        { step: "3", title: "Korjaussuunnitelma", description: "Toimenpidesuunnitelma ja aikataulu" },
+        { step: "4", title: "Toteutus", description: "Kontrollien käyttöönotto ja testaus" },
+        { step: "5", title: "Valmius", description: "Lopullinen valmistelu ja auditointi" }
+      ]
+    },
+    cta: {
+      title: "Aloita auditointivalmistelu",
+      subtitle: "Ota yhteyttä niin aikataulutamme valmistelun ja sisäiset auditoinnit.",
+      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    }
   }
-];
+};
 
-const standards = [
-  {
-    icon: 'shield-check',
-    titleFi: 'ISO 27001',
-    titleEn: 'ISO 27001',
-    descFi: 'Tietoturvan hallintajärjestelmän sertifiointi',
-    descEn: 'Information Security Management System certification'
-  },
-  {
-    icon: 'building',
-    titleFi: 'SOC 2',
-    titleEn: 'SOC 2',
-    descFi: 'SOC 2 Type I ja Type II raportit',
-    descEn: 'SOC 2 Type I and Type II reports'
-  },
-  {
-    icon: 'globe',
-    titleFi: 'NIS2 & DORA',
-    titleEn: 'NIS2 & DORA',
-    descFi: 'EU:n kyberturva- ja rahoitussääntely',
-    descEn: 'EU cybersecurity and financial regulation'
-  },
-  {
-    icon: 'award',
-    titleFi: 'ISO 22301',
-    titleEn: 'ISO 22301',
-    descFi: 'Liiketoiminnan jatkuvuuden hallinta',
-    descEn: 'Business Continuity Management'
-  }
-];
-
-const auditPhases = [
-  {
-    titleFi: 'Ennakkovalmistelu',
-    titleEn: 'Pre-preparation',
-    itemsFi: ['Vaatimusten kartoitus', 'Aukkoanalyysi', 'Korjaustoimenpiteet', 'Evidenssien keruu'],
-    itemsEn: ['Requirements mapping', 'Gap analysis', 'Remediation actions', 'Evidence collection']
-  },
-  {
-    titleFi: 'Valmistelu',
-    titleEn: 'Preparation',
-    itemsFi: ['Dokumentaation organisointi', 'Henkilöstön koulutus', 'Prosessien testaus', 'Sisäinen auditointi'],
-    itemsEn: ['Documentation organization', 'Staff training', 'Process testing', 'Internal audit']
-  },
-  {
-    titleFi: 'Auditointi',
-    titleEn: 'Audit',
-    itemsFi: ['Auditoijan tuki', 'Haastattelu-tuki', 'Dokumentaatio-apu', 'Tekninen tuki'],
-    itemsEn: ['Auditor support', 'Interview support', 'Documentation assistance', 'Technical support']
-  }
-];
-
-const process = [
-  { step: '1', fi: 'Alkukartoitus', en: 'Initial Assessment', fiDesc: 'Nykytilan ja tavoitteiden määrittely', enDesc: 'Current state and objectives definition' },
-  { step: '2', fi: 'Aukkoanalyysi', en: 'Gap Analysis', fiDesc: 'Puutteiden tunnistaminen ja priorisointi', enDesc: 'Gap identification and prioritization' },
-  { step: '3', fi: 'Korjaussuunnitelma', en: 'Remediation Plan', fiDesc: 'Toimenpidesuunnitelma ja aikataulu', enDesc: 'Action plan and timeline' },
-  { step: '4', fi: 'Toteutus', en: 'Implementation', fiDesc: 'Kontrollien käyttöönotto ja testaus', enDesc: 'Control implementation and testing' },
-  { step: '5', fi: 'Valmius', en: 'Readiness', fiDesc: 'Lopullinen valmistelu ja auditointi', enDesc: 'Final preparation and audit' }
-];
-
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={description}>
-  <section class="bg-gradient-to-br from-slate-50 via-white to-blue-50 py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl">
-        <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">{title}</h1>
-        <p class="text-xl text-slate-600">{description}</p>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
-
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang==='fi' ? 'Auditointivalmistelu' : 'Audit Preparation'}</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">{lang==='fi' ? 'Varmistamme, että auditointinne sujuu ongelmitta ja tavoitteet saavutetaan.' : 'We ensure your audit proceeds smoothly and objectives are achieved.'}</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {offerings.map(o => (
-          <div class="bg-gradient-to-br from-slate-50 to-white p-8 rounded-xl border border-slate-200 hover:shadow-xl transition-all duration-300">
-            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6"><Icon name={o.icon} className="w-8 h-8 text-blue-600" /></div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">{lang==='fi'?o.fi:o.en}</h3>
-            <p class="text-slate-600 text-sm">{lang==='fi'?o.fiDesc:o.enDesc}</p>
-          </div>
-        ))}
-      </div>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
     </div>
-  </section>
+    
+  </div>
+</section>
 
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang==='fi' ? 'Tuetut standardit' : 'Supported Standards'}</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">{lang==='fi' ? 'Autamme valmistautumaan kaikkiin keskeisimpiin kyberturva- ja compliance-auditointeihin.' : 'We help prepare for all major cybersecurity and compliance audits.'}</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {standards.map(s => (
-          <div class="bg-white p-6 rounded-xl border border-slate-200 hover:shadow-lg transition-all duration-300">
-            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-              <Icon name={s.icon} className="w-6 h-6 text-blue-600" />
+<!-- Offerings Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.offerings.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.offerings.subtitle}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {currentContent.offerings.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
             </div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">{lang==='fi' ? s.titleFi : s.titleEn}</h3>
-            <p class="text-slate-600 text-sm">{lang==='fi' ? s.descFi : s.descEn}</p>
           </div>
-        ))}
-      </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {item.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left">
+            {item.description}
+          </p>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang==='fi' ? 'Auditointivaiheet' : 'Audit Phases'}</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">{lang==='fi' ? 'Jokaisessa vaiheessa tuemme organisaatiotanne menestyksekkään auditoinnin saavuttamiseksi.' : 'We support your organization at each phase to achieve a successful audit.'}</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {auditPhases.map((phase, index) => (
-          <div class="bg-gradient-to-br from-slate-50 to-white p-8 rounded-xl border border-slate-200">
-            <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4 text-white font-bold">{index + 1}</div>
-            <h3 class="text-xl font-bold text-slate-900 mb-4">{lang==='fi' ? phase.titleFi : phase.titleEn}</h3>
-            <ul class="space-y-2">
-              {(lang==='fi' ? phase.itemsFi : phase.itemsEn).map(item => (
-                <li class="flex items-start">
-                  <Icon name="check" className="w-5 h-5 text-green-600 mt-0.5 mr-3 flex-shrink-0" />
-                  <span class="text-slate-600">{item}</span>
-                </li>
-              ))}
-            </ul>
+<!-- Standards Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.standards.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.standards.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {currentContent.standards.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl p-5 border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="flex items-start gap-3">
+            <div class="flex-shrink-0">
+              <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6]">
+                <Icon name={item.icon} class="w-5 h-5 text-blue-600 group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-800 mb-1 group-hover:text-blue-700 transition-colors duration-300">
+                {item.title}
+              </h3>
+              <p class="text-slate-500 text-xs">{item.description}</p>
+            </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang==='fi' ? 'Valmisteluprosessi' : 'Preparation Process'}</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">{lang==='fi' ? 'Systemaattinen lähestymistapa auditointimenestykseen.' : 'Systematic approach to audit success.'}</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
-        {process.map(p => (
-          <div class="text-center">
-            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-xl font-bold">{p.step}</div>
-            <h3 class="text-lg font-semibold text-slate-900 mb-1">{lang==='fi' ? p.fi : p.en}</h3>
-            <p class="text-slate-600 text-sm">{lang==='fi' ? p.fiDesc : p.enDesc}</p>
+<!-- Audit Phases Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.phases.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.phases.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      {currentContent.phases.items.map((phase, index) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="w-10 h-10 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-lg flex items-center justify-center text-white font-bold mb-4">
+            {index + 1}
           </div>
-        ))}
-      </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-4 group-hover:text-blue-700 transition-colors duration-300">
+            {phase.title}
+          </h3>
+          
+          <ul class="space-y-2">
+            {phase.features.map((feature) => (
+              <li class="flex items-start text-sm text-slate-600">
+                <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="py-20 bg-slate-900 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold mb-6">{lang==='fi' ? 'Aloita auditointivalmistelu' : 'Start your audit preparation'}</h2>
-      <p class="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">{lang==='fi' ? 'Ota yhteyttä niin aikataulutamme valmistelun ja sisäiset auditoinnit.' : 'Contact us to schedule your preparation and internal audits.'}</p>
+<!-- Process Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.process.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.process.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-5 gap-6">
+      {currentContent.process.steps.map((step) => (
+        <div class="bg-slate-50/50 rounded-xl p-5 text-center border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">
+            {step.step}
+          </div>
+          
+          <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+            {step.title}
+          </h3>
+          
+          <p class="text-slate-500 text-xs leading-relaxed">
+            {step.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/contact" variant="primary" className="text-lg px-8 py-3">{lang==='fi' ? 'Ota yhteyttä' : 'Get in Touch'}</Button>
-        <Button href="/contact?consultation=true" variant="secondary" className="text-lg px-8 py-3">{lang==='fi' ? 'Varaa konsultaatio' : 'Book Consultation'}</Button>
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
 </Layout>
-
-
-

@@ -1,192 +1,339 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-import Button from '@/components/ui/Button.astro';
+
+// SEO Configuration
+const seoConfig = {
+  title: "Payment Controls and Recovery Playbooks | Fraud Protection",
+  description: "Harden payment processes and prepare recovery – bank contacts, payment stop, police report. Comprehensive payment fraud protection.",
+  keywords: "payment controls, recovery playbooks, fraud protection, payment stop, incident response, Finland",
+  type: "service" as const,
+};
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
-const title = lang === 'fi' ? 'Maksukontrollit ja palautumisen playbookit' : 'Payment Controls and Recovery Playbooks';
-const description = lang === 'fi' ? 'Vahvista maksuprosessit ja varaudu palautumiseen – pankkikontaktit, STOP‑maksu, rikosilmoitukset.' : 'Harden payment processes and prepare recovery – bank contacts, payment stop, police report.';
-
-const tracks = [
-  { 
-    icon:'document', 
-    fi:'Prosessi‑ ja järjestelmäkontrollit', 
-    en:'Process and system controls',
-    fiDesc: 'Nelisilmäperiaate, maksulimittien ja muutoshallinta',
-    enDesc: 'Four-eyes principle, payment limits and change management'
+const content = {
+  en: {
+    hero: {
+      title: "Payment Controls and Recovery Playbooks",
+      subtitle: "Fraud Protection & Incident Response",
+      description: "Harden payment processes and prepare recovery – bank contacts, payment stop, police report. Comprehensive payment fraud protection for your organization.",
+      primaryCTA: { text: "Get in Touch", href: "/contact" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    },
+    tracks: {
+      title: "Building Payment Controls",
+      subtitle: "Three-dimensional approach to payment fraud risk management.",
+      items: [
+        { title: "Process and system controls", description: "Four-eyes principle, payment limits and change management", icon: "document" },
+        { title: "Training and verification", description: "Staff training and phone verification processes", icon: "user" },
+        { title: "Incident playbooks", description: "Ready action models for fraud incident handling", icon: "alert" }
+      ]
+    },
+    recoverySteps: {
+      title: "Recovery Playbooks",
+      subtitle: "Ready action models for fast and effective payment fraud incident handling.",
+      items: [
+        { title: "Payment Stop", description: "Immediate payment stop through bank", icon: "stop-circle", actions: ["Call bank contact person", "Provide payment identifiers", "Written confirmation"] },
+        { title: "Incident Investigation", description: "Fraud scope and impact assessment", icon: "search", actions: ["Event reconstruction", "Impact assessment", "Evidence collection"] },
+        { title: "Authority Notification", description: "Police and other authorities notification", icon: "phone", actions: ["Police report filing", "Bank notification", "Insurance company contact"] },
+        { title: "Recovery", description: "Control strengthening and lessons learned", icon: "refresh-cw", actions: ["Vulnerability remediation", "Control updates", "Staff retraining"] }
+      ]
+    },
+    preventiveControls: {
+      title: "Preventive Controls",
+      subtitle: "Comprehensive control suite for payment fraud risk prevention.",
+      items: [
+        { title: "Technical Protection", features: ["SPF/DKIM/DMARC configuration", "Anti-spoofing filters", "MFA for all accounts", "ERP integrations"], icon: "shield" },
+        { title: "Process Controls", features: ["Four-eyes payment approval", "Vendor data locking", "Payment limit setting", "Change process monitoring"], icon: "clipboard" },
+        { title: "Human Controls", features: ["Regular fraud training", "Phone verification processes", "Reporting channels", "Simulations and tests"], icon: "users" }
+      ]
+    },
+    cta: {
+      title: "Schedule a payments hardening",
+      subtitle: "We'll build controls and recovery playbooks for your organization.",
+      primaryCTA: { text: "Get in Touch", href: "/contact" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    }
   },
-  { 
-    icon:'user', 
-    fi:'Koulutus ja todennus', 
-    en:'Training and verification',
-    fiDesc: 'Henkilöstökoulutus ja puhelinvahvistusprosessit',
-    enDesc: 'Staff training and phone verification processes'
-  },
-  { 
-    icon:'alert', 
-    fi:'Incident‑playbookit', 
-    en:'Incident playbooks',
-    fiDesc: 'Valmiit toimintamallit petostapausten käsittelyyn',
-    enDesc: 'Ready action models for fraud incident handling'
+  fi: {
+    hero: {
+      title: "Maksukontrollit ja palautumisen playbookit",
+      subtitle: "Petossuoja & tapahtumien hallinta",
+      description: "Vahvista maksuprosessit ja varaudu palautumiseen – pankkikontaktit, STOP-maksu, rikosilmoitukset. Kattava maksupetossuoja organisaatiollesi.",
+      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    },
+    tracks: {
+      title: "Maksukontrollien rakentaminen",
+      subtitle: "Kolmiulotteinen lähestymistapa maksupetosriskien hallintaan.",
+      items: [
+        { title: "Prosessi‑ ja järjestelmäkontrollit", description: "Nelisilmäperiaate, maksulimittien ja muutoshallinta", icon: "document" },
+        { title: "Koulutus ja todennus", description: "Henkilöstökoulutus ja puhelinvahvistusprosessit", icon: "user" },
+        { title: "Incident‑playbookit", description: "Valmiit toimintamallit petostapausten käsittelyyn", icon: "alert" }
+      ]
+    },
+    recoverySteps: {
+      title: "Palautumisplaybookit",
+      subtitle: "Valmiit toimintamallit maksupetostapausten nopeaan ja tehokkaaseen käsittelyyn.",
+      items: [
+        { title: "Maksun pysäytys", description: "Välitön maksun pysäytys pankin kautta", icon: "stop-circle", actions: ["Pankin yhteyshenkilön soitto", "Maksun tunnistetietojen välitys", "Kirjallinen vahvistus"] },
+        { title: "Tapauksen selvitys", description: "Petoksen laajuuden ja vaikutusten selvitys", icon: "search", actions: ["Tapahtumien rekonstruointi", "Vaikutusten arviointi", "Todistusaineiston keruu"] },
+        { title: "Viranomaisilmoitus", description: "Poliisin ja muiden viranomaisten informointi", icon: "phone", actions: ["Rikosilmoituksen teko", "Pankin ilmoitus", "Vakuutusyhtiön kontakti"] },
+        { title: "Palautuminen", description: "Kontrollien vahvistaminen ja oppiminen", icon: "refresh-cw", actions: ["Haavoittuvuuksien korjaus", "Kontrollien päivitys", "Henkilöstön koulutus"] }
+      ]
+    },
+    preventiveControls: {
+      title: "Ennaltaehkäisevät kontrollit",
+      subtitle: "Kattava kontrollien valikoima maksupetosriskien ennaltaehkäisyyn.",
+      items: [
+        { title: "Tekninen suojaus", features: ["SPF/DKIM/DMARC konfigurointi", "Anti-spoofing suodattimet", "MFA kaikille tileille", "ERP-integraatiot"], icon: "shield" },
+        { title: "Prosessikontrollit", features: ["Nelisilmäperiaate maksuille", "Toimittajatietojen lukitseminen", "Maksulimittien asettaminen", "Muutosprosessien valvonta"], icon: "clipboard" },
+        { title: "Henkilöstökontrollit", features: ["Säännöllinen petoskoulutus", "Puhelinvahvistusprosessit", "Raportointikanavat", "Simulaatiot ja testit"], icon: "users" }
+      ]
+    },
+    cta: {
+      title: "Tilaa maksuprosessien kovennus",
+      subtitle: "Rakennamme kontrollit ja palautumisplaybookit organisaatiollesi.",
+      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    }
   }
-];
+};
 
-const recoverySteps = [
-  {
-    icon: 'stop-circle',
-    titleFi: 'Maksun pysäytys',
-    titleEn: 'Payment Stop',
-    descFi: 'Välitön maksun pysäytys pankin kautta',
-    enDesc: 'Immediate payment stop through bank',
-    actionsFi: ['Pankin yhteyshenkilön soitto', 'Maksun tunnistetietojen välitys', 'Kirjallinen vahvistus'],
-    actionsEn: ['Call bank contact person', 'Provide payment identifiers', 'Written confirmation']
-  },
-  {
-    icon: 'search',
-    titleFi: 'Tapauksen selvitys',
-    titleEn: 'Incident Investigation',
-    descFi: 'Petoksen laajuuden ja vaikutusten selvitys',
-    enDesc: 'Fraud scope and impact assessment',
-    actionsFi: ['Tapahtumien rekonstruointi', 'Vaikutusten arviointi', 'Todistusaineiston keruu'],
-    actionsEn: ['Event reconstruction', 'Impact assessment', 'Evidence collection']
-  },
-  {
-    icon: 'phone',
-    titleFi: 'Viranomaisilmoitus',
-    titleEn: 'Authority Notification',
-    descFi: 'Poliisin ja muiden viranomaisten informointi',
-    enDesc: 'Police and other authorities notification',
-    actionsFi: ['Rikosilmoituksen teko', 'Pankin ilmoitus', 'Vakuutusyhtiön kontakti'],
-    actionsEn: ['Police report filing', 'Bank notification', 'Insurance company contact']
-  },
-  {
-    icon: 'refresh-cw',
-    titleFi: 'Palautuminen',
-    titleEn: 'Recovery',
-    descFi: 'Kontrollien vahvistaminen ja oppiminen',
-    enDesc: 'Control strengthening and lessons learned',
-    actionsFi: ['Haavoittuvuuksien korjaus', 'Kontrollien päivitys', 'Henkilöstön koulutus'],
-    actionsEn: ['Vulnerability remediation', 'Control updates', 'Staff retraining']
-  }
-];
-
-const preventiveControls = [
-  {
-    titleFi: 'Tekninen suojaus',
-    titleEn: 'Technical Protection',
-    itemsFi: ['SPF/DKIM/DMARC konfigurointi', 'Anti-spoofing suodattimet', 'MFA kaikille tileille', 'ERP-integraatiot'],
-    itemsEn: ['SPF/DKIM/DMARC configuration', 'Anti-spoofing filters', 'MFA for all accounts', 'ERP integrations']
-  },
-  {
-    titleFi: 'Prosessikontrollit',
-    titleEn: 'Process Controls',
-    itemsFi: ['Nelisilmäperiaate maksuille', 'Toimittajatietojen lukitseminen', 'Maksulimittien asettaminen', 'Muutosprosessien valvonta'],
-    itemsEn: ['Four-eyes payment approval', 'Vendor data locking', 'Payment limit setting', 'Change process monitoring']
-  },
-  {
-    titleFi: 'Henkilöstökontrollit',
-    titleEn: 'Human Controls',
-    itemsFi: ['Säännöllinen petoskoulutus', 'Puhelinvahvistusprosessit', 'Raportointikanavat', 'Simulaatiot ja testit'],
-    itemsEn: ['Regular fraud training', 'Phone verification processes', 'Reporting channels', 'Simulations and tests']
-  }
-];
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={description}>
-  <section class="bg-gradient-to-br from-emerald-50 via-white to-teal-50 py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl">
-        <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">{title}</h1>
-        <p class="text-xl text-slate-600">{description}</p>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
-
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang==='fi' ? 'Maksukontrollien rakentaminen' : 'Building Payment Controls'}</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">{lang==='fi' ? 'Kolmiulotteinen lähestymistapa maksupetosriskien hallintaan.' : 'Three-dimensional approach to payment fraud risk management.'}</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {tracks.map(t => (
-          <div class="bg-gradient-to-br from-slate-50 to-white p-8 rounded-xl border border-slate-200 hover:shadow-xl transition-all duration-300">
-            <div class="w-16 h-16 bg-emerald-100 rounded-xl flex items-center justify-center mb-6"><Icon name={t.icon} className="w-8 h-8 text-emerald-600" /></div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">{lang==='fi'?t.fi:t.en}</h3>
-            <p class="text-slate-600 text-sm">{lang==='fi'?t.fiDesc:t.enDesc}</p>
-          </div>
-        ))}
-      </div>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
     </div>
-  </section>
+    
+  </div>
+</section>
 
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang==='fi' ? 'Palautumisplaybookit' : 'Recovery Playbooks'}</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">{lang==='fi' ? 'Valmiit toimintamallit maksupetostapausten nopeaan ja tehokkaaseen käsittelyyn.' : 'Ready action models for fast and effective payment fraud incident handling.'}</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {recoverySteps.map((step, index) => (
-          <div class="bg-white p-6 rounded-xl border border-slate-200 hover:shadow-lg transition-all duration-300">
-            <div class="w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center mb-4 text-white font-bold">{index + 1}</div>
-            <div class="w-8 h-8 mb-3">
-              <Icon name={step.icon} className="w-8 h-8 text-emerald-600" />
+<!-- Tracks Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.tracks.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.tracks.subtitle}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {currentContent.tracks.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
             </div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">{lang==='fi' ? step.titleFi : step.titleEn}</h3>
-            <p class="text-slate-600 text-sm mb-4">{lang==='fi' ? step.descFi : step.enDesc}</p>
-            <ul class="space-y-1">
-              {(lang==='fi' ? step.actionsFi : step.actionsEn).map(action => (
-                <li class="flex items-start text-xs">
-                  <Icon name="check" className="w-3 h-3 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
-                  <span class="text-slate-600">{action}</span>
-                </li>
-              ))}
-            </ul>
           </div>
-        ))}
-      </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {item.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left">
+            {item.description}
+          </p>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang==='fi' ? 'Ennaltaehkäisevät kontrollit' : 'Preventive Controls'}</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">{lang==='fi' ? 'Kattava kontrollien valikoima maksupetosriskien ennaltaehkäisyyn.' : 'Comprehensive control suite for payment fraud risk prevention.'}</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {preventiveControls.map((control, index) => (
-          <div class="bg-gradient-to-br from-slate-50 to-white p-8 rounded-xl border border-slate-200">
-            <div class="w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center mb-4 text-white font-bold">{index + 1}</div>
-            <h3 class="text-xl font-bold text-slate-900 mb-4">{lang==='fi' ? control.titleFi : control.titleEn}</h3>
-            <ul class="space-y-2">
-              {(lang==='fi' ? control.itemsFi : control.itemsEn).map(item => (
-                <li class="flex items-start">
-                  <Icon name="check" className="w-5 h-5 text-green-600 mt-0.5 mr-3 flex-shrink-0" />
-                  <span class="text-slate-600">{item}</span>
-                </li>
-              ))}
-            </ul>
+<!-- Recovery Steps Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.recoverySteps.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.recoverySteps.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {currentContent.recoverySteps.items.map((step, index) => (
+        <div class="bg-slate-50/50 rounded-xl p-5 border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="w-10 h-10 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-lg flex items-center justify-center text-white font-bold mb-3">
+            {index + 1}
           </div>
-        ))}
-      </div>
+          
+          <div class="flex justify-end mb-3">
+            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6]">
+              <Icon name={step.icon} class="w-5 h-5 text-blue-600 group-hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+          
+          <h3 class="text-base font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+            {step.title}
+          </h3>
+          
+          <p class="text-slate-500 text-xs mb-3">
+            {step.description}
+          </p>
+          
+          <ul class="space-y-1">
+            {step.actions.map((action) => (
+              <li class="flex items-start text-xs text-slate-500">
+                <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                {action}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="py-20 bg-slate-900 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold mb-6">{lang==='fi' ? 'Tilaa maksuprosessien kovennus' : 'Schedule a payments hardening'}</h2>
-      <p class="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">{lang==='fi' ? 'Rakennamme kontrollit ja palautumisplaybookit organisaatiollesi.' : 'We’ll build controls and recovery playbooks for your organization.'}</p>
+<!-- Preventive Controls Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.preventiveControls.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.preventiveControls.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      {currentContent.preventiveControls.items.map((control, index) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={control.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+          
+          <div class="w-10 h-10 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-lg flex items-center justify-center text-white font-bold mb-4">
+            {index + 1}
+          </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-4 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {control.title}
+          </h3>
+          
+          <ul class="space-y-2">
+            {control.features.map((feature) => (
+              <li class="flex items-start text-sm text-slate-600">
+                <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/contact" variant="primary" className="text-lg px-8 py-3">{lang==='fi' ? 'Ota yhteyttä' : 'Get in Touch'}</Button>
-        <Button href="/contact?consultation=true" variant="secondary" className="text-lg px-8 py-3">{lang==='fi' ? 'Varaa konsultaatio' : 'Book Consultation'}</Button>
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
 </Layout>
-
-
-

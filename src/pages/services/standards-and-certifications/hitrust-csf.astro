@@ -1,24 +1,200 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-const title = "HITRUST CSF";
-const description = "Readiness, control mapping, and validated assessment support.";
+import Icon from '@/components/ui/icons/Icon.astro';
+
+// SEO Configuration
+const seoConfig = {
+  title: "HITRUST CSF | Risk Management & Compliance Framework",
+  description: "Readiness, control mapping, and validated assessment support for HITRUST CSF certification. Expert guidance for healthcare and regulated industries.",
+  keywords: "HITRUST CSF, HITRUST certification, risk management, compliance framework, validated assessment, Finland",
+  type: "service" as const,
+};
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const content = {
+  en: {
+    hero: {
+      title: "HITRUST CSF",
+      subtitle: "Risk Management & Compliance Framework",
+      description: "HITRUST CSF is a certifiable framework for managing regulatory compliance and risk. We provide readiness assessments, control mapping, and validated assessment support to help organizations achieve HITRUST certification.",
+      primaryCTA: { text: "Get HITRUST Support", href: "/contact" },
+      secondaryCTA: { text: "Learn More", href: "/services" }
+    },
+    overview: {
+      title: "Overview",
+      description: "HITRUST CSF is a certifiable framework for managing regulatory compliance and risk. We provide readiness assessments, control mapping, and validated assessment support to help organizations achieve HITRUST certification."
+    },
+    services: {
+      title: "Our Services",
+      items: [
+        "Readiness assessments and gap analysis",
+        "Control mapping and documentation",
+        "Validated assessment support",
+        "Remediation planning"
+      ]
+    },
+    cta: {
+      title: "Ready for HITRUST CSF Certification?",
+      subtitle: "Contact us for HITRUST CSF readiness and certification support.",
+      primaryCTA: { text: "Contact Us", href: "/contact" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    }
+  },
+  fi: {
+    hero: {
+      title: "HITRUST CSF",
+      subtitle: "Riskienhallinta- ja vaatimustenmukaisuuskehys",
+      description: "HITRUST CSF on sertifioitava kehys sääntelyn vaatimustenmukaisuuden ja riskien hallintaan. Tarjoamme valmiusarviointeja, kontrollikartoitusta ja validoituja arviointitukipalveluita auttaaksemme organisaatioita saavuttamaan HITRUST-sertifioinnin.",
+      primaryCTA: { text: "Pyydä HITRUST-tukea", href: "/contact" },
+      secondaryCTA: { text: "Lue lisää", href: "/services" }
+    },
+    overview: {
+      title: "Yleiskatsaus",
+      description: "HITRUST CSF on sertifioitava kehys sääntelyn vaatimustenmukaisuuden ja riskien hallintaan. Tarjoamme valmiusarviointeja, kontrollikartoitusta ja validoituja arviointitukipalveluita auttaaksemme organisaatioita saavuttamaan HITRUST-sertifioinnin."
+    },
+    services: {
+      title: "Palvelumme",
+      items: [
+        "Valmiusarviot ja aukkoanalyysit",
+        "Kontrollien kartoitus ja dokumentointi",
+        "Validoitu arviointituki",
+        "Korjaustoimenpiteiden suunnittelu"
+      ]
+    },
+    cta: {
+      title: "Valmis HITRUST CSF -sertifiointiin?",
+      subtitle: "Ota yhteyttä HITRUST CSF -valmius- ja sertifiointitukea varten.",
+      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    }
+  }
+};
+
+const currentContent = content[lang];
 ---
 
-<Layout title={title}>
-  <section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-3xl font-bold text-slate-900 mb-6">HITRUST CSF</h1>
-      <p class="text-lg text-slate-600 mb-8">Readiness, control mapping, and validated assessment support.</p>
-      <h2 class="text-2xl font-semibold text-slate-900 mb-4">Overview</h2>
-      <p class="text-slate-700 mb-6">HITRUST CSF is a certifiable framework for managing regulatory compliance and risk. We provide readiness assessments, control mapping, and validated assessment support to help organizations achieve HITRUST certification.</p>
-      <h2 class="text-2xl font-semibold text-slate-900 mb-4">Our Services</h2>
-      <ul class="list-disc pl-6 text-slate-700 mb-8">
-        <li>Readiness assessments and gap analysis</li>
-        <li>Control mapping and documentation</li>
-        <li>Validated assessment support</li>
-        <li>Remediation planning</li>
-      </ul>
-      <p class="text-slate-700">Contact us for HITRUST CSF readiness and certification support.</p>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
+      </div>
     </div>
-  </section>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- Overview Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-slate-50/50 rounded-2xl p-8 border border-slate-100">
+      <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-4">{currentContent.overview.title}</h2>
+      <p class="text-slate-600 leading-relaxed">{currentContent.overview.description}</p>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.services.title}
+      </h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-6">
+      {currentContent.services.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-lg hover:-translate-y-1
+                    transition-all duration-300
+                    flex items-center gap-4 group">
+          <div class="flex-shrink-0">
+            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6]">
+              <svg class="w-5 h-5 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+          </div>
+          <span class="text-slate-700 text-sm font-medium">{item}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 </Layout>

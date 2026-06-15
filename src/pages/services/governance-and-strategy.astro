@@ -1,47 +1,219 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
-const title = 'Governance & Strategy';
-const tagline = 'Build robust security governance frameworks';
-const items = [
-  {
-    title: 'Policy Governance',
-    href: '/services/governance-and-strategy/policy-governance',
-    description: 'Develop and maintain a clear policy architecture with ownership, lifecycle, and compliance mapping.'
+// SEO Configuration
+const seoConfig = {
+  title: "Governance & Strategy | Security Governance Frameworks",
+  description: "Build robust security governance frameworks. Policy Governance, Business Continuity, and Audit Preparation services for your organization.",
+  keywords: "governance, strategy, policy governance, business continuity, audit preparation, Finland",
+  type: "service" as const,
+};
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const content = {
+  en: {
+    hero: {
+      title: "Governance & Strategy",
+      subtitle: "Build robust security governance frameworks",
+      description: "Professional governance and strategy services to build robust security governance frameworks. We help organizations establish effective security governance structures.",
+      primaryCTA: { text: "Explore Services", href: "#services" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    },
+    items: [
+      {
+        title: "Policy Governance",
+        href: "/services/governance-and-strategy/policy-governance",
+        description: "Develop and maintain a clear policy architecture with ownership, lifecycle, and compliance mapping.",
+        icon: "document"
+      },
+      {
+        title: "Business Continuity",
+        href: "/services/governance-and-strategy/business-continuity",
+        description: "Design and operate a BCMS: BIA, continuity strategies, plans, exercises, and continual improvement.",
+        icon: "refresh-cw"
+      },
+      {
+        title: "Audit Preparation",
+        href: "/services/governance-and-strategy/audit-preparation",
+        description: "Prepare for internal and external audits with evidence readiness and remediation tracking.",
+        icon: "clipboard"
+      }
+    ],
+    cta: {
+      title: "Ready to strengthen your security governance?",
+      subtitle: "Contact us to discuss your governance and strategy needs.",
+      primaryCTA: { text: "Get in Touch", href: "/contact" },
+      secondaryCTA: { text: "Explore Services", href: "#services" }
+    }
   },
-  {
-    title: 'Business Continuity',
-    href: '/services/governance-and-strategy/business-continuity',
-    description: 'Design and operate a BCMS: BIA, continuity strategies, plans, exercises, and continual improvement.'
-  },
-  {
-    title: 'Audit Preparation',
-    href: '/services/governance-and-strategy/audit-preparation',
-    description: 'Prepare for internal and external audits with evidence readiness and remediation tracking.'
+  fi: {
+    hero: {
+      title: "Hallinta & Strategia",
+      subtitle: "Rakenna vankkoja turvallisuushallintakehyksiä",
+      description: "Ammattimaiset hallinta- ja strategiapalvelut vankkojen turvallisuushallintakehysten rakentamiseen. Autamme organisaatioita luomaan tehokkaita turvallisuushallintarakenteita.",
+      primaryCTA: { text: "Tutustu palveluihin", href: "#services" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    },
+    items: [
+      {
+        title: "Politiikkahallinta",
+        href: "/services/governance-and-strategy/policy-governance",
+        description: "Kehitä ja ylläpidä selkeää politiikka-arkkitehtuuria omistajuudella, elinkaaressa ja compliance-kartoituksella.",
+        icon: "document"
+      },
+      {
+        title: "Liiketoiminnan Jatkuvuus",
+        href: "/services/governance-and-strategy/business-continuity",
+        description: "Suunnittele ja operoi BCMS: BIA, jatkuvuusstrategiat, suunnitelmat, harjoitukset ja jatkuva parantaminen.",
+        icon: "refresh-cw"
+      },
+      {
+        title: "Auditointivalmistelu",
+        href: "/services/governance-and-strategy/audit-preparation",
+        description: "Valmistaudu sisäisiin ja ulkoisiin auditointeihin todistevalmiudella ja korjaustoimien seurannalla.",
+        icon: "clipboard"
+      }
+    ],
+    cta: {
+      title: "Valmis vahvistamaan turvallisuushallintaasi?",
+      subtitle: "Ota yhteyttä keskustellaksesi hallinta- ja strategiatarpeistasi.",
+      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
+      secondaryCTA: { text: "Tutustu palveluihin", href: "#services" }
+    }
   }
-];
+};
+
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={tagline}>
-  <section class="bg-gradient-to-br from-teal-50 via-white to-blue-50 py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-3xl md:text-4xl font-bold text-slate-900">{title}</h1>
-      <p class="mt-3 text-slate-600 text-lg">{tagline}</p>
-    </div>
-  </section>
+<Layout {...seoConfig}>
 
-  <section class="py-12 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        {items.map((s) => (
-          <a href={s.href} class="group block rounded-xl border border-slate-200 p-6 bg-white hover:bg-slate-50 transition-colors">
-            <h3 class="text-lg font-semibold text-slate-900 group-hover:text-teal-700">{s.title}</h3>
-            <p class="mt-2 text-slate-600 text-sm">{s.description}</p>
-            <span class="inline-flex items-center mt-4 text-teal-700 font-medium">Read more →</span>
-          </a>
-        ))}
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
-</Layout>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
 
+<!-- Services Section -->
+<section id="services" class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {lang === 'fi' ? 'Palvelumme' : 'Our Services'}
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {currentContent.items.map((item) => (
+        <a href={item.href} class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group cursor-pointer">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {item.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left flex-1">
+            {item.description}
+          </p>
+          
+          <div class="mt-5 pt-4 border-t border-slate-100 flex justify-start">
+            <span class="inline-flex items-center text-[#1E40AF] group-hover:text-[#3B82F6] font-semibold text-sm gap-1 transition-all duration-300">
+              {lang === 'fi' ? 'Lue lisää' : 'Read more'}
+              <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</Layout>

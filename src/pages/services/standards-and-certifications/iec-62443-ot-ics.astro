@@ -1,205 +1,352 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-import Button from '@/components/ui/Button.astro';
+
+// SEO Configuration
+const seoConfig = {
+  title: "IEC 62443 (OT/ICS) Security | Industrial Control Systems Compliance",
+  description: "Comprehensive maturity assessments and remediation for industrial automation and control systems (OT/ICS) based on IEC 62443 standards.",
+  keywords: "IEC 62443, OT security, ICS security, industrial cybersecurity, operational technology, Finland",
+  type: "service" as const,
+};
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
-const title = "IEC 62443 (OT/ICS) Security";
-const description = "Comprehensive maturity assessments and remediation for industrial automation and control systems (OT/ICS) based on IEC 62443 standards.";
-
-const features = [
-  {
-    title: "Maturity Assessment",
-    description: "Comprehensive evaluation of your OT/ICS security posture against IEC 62443 maturity levels",
-    icon: "chart"
+const content = {
+  en: {
+    hero: {
+      title: "IEC 62443 (OT/ICS) Security",
+      subtitle: "Industrial Control Systems Compliance",
+      description: "Expert IEC 62443 compliance services to secure your industrial automation and control systems (OT/ICS) infrastructure. IEC 62443 is the leading international standard for industrial cybersecurity. Our specialized team provides comprehensive maturity assessments, gap analysis, and remediation strategies to protect your critical operational technology from cyber threats.",
+      primaryCTA: { text: "Get OT Security Assessment", href: "/contact?service=iec-62443" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    },
+    overview: {
+      title: "Overview",
+      description: "IEC 62443 is the international standard for security of industrial automation and control systems (IACS). It provides a comprehensive framework for securing operational technology (OT) environments across manufacturing, energy, utilities, and critical infrastructure sectors.",
+      highlight: "Our expert team specializes in OT/ICS cybersecurity, offering maturity assessments, remediation planning, and implementation support to help organizations achieve IEC 62443 compliance while maintaining operational safety and availability."
+    },
+    features: {
+      title: "Our IEC 62443 Services",
+      subtitle: "Comprehensive OT/ICS security services covering all aspects of IEC 62443 compliance",
+      items: [
+        { title: "Maturity Assessment", description: "Comprehensive evaluation of your OT/ICS security posture against IEC 62443 maturity levels", icon: "chart" },
+        { title: "Gap Analysis & Remediation", description: "Detailed gap analysis with prioritized remediation roadmap for industrial control systems", icon: "wrench" },
+        { title: "Zone & Conduit Design", description: "Strategic segmentation and secure communication design for industrial networks", icon: "network" },
+        { title: "Risk Assessment", description: "OT-specific risk assessments considering safety, availability, and security requirements", icon: "shield" },
+        { title: "Control Implementation", description: "Implementation of IEC 62443 security controls tailored for operational technology", icon: "cog" },
+        { title: "Certification Support", description: "Expert guidance through IEC 62443 certification process and compliance validation", icon: "award" }
+      ]
+    },
+    industries: {
+      title: "Industries We Serve",
+      subtitle: "Specialized IEC 62443 expertise across critical industrial sectors",
+      items: [
+        "Manufacturing",
+        "Energy & Utilities",
+        "Oil & Gas",
+        "Chemical Processing",
+        "Water Treatment",
+        "Transportation",
+        "Critical Infrastructure"
+      ]
+    },
+    deliverables: {
+      title: "What You Get",
+      items: [
+        "IEC 62443 maturity assessment report",
+        "OT/ICS security gap analysis",
+        "Zone and conduit architecture design",
+        "Security requirements specification",
+        "Remediation roadmap and timeline",
+        "Control implementation guidelines",
+        "Incident response procedures for OT",
+        "Ongoing monitoring and maintenance plan"
+      ]
+    },
+    benefits: {
+      title: "Key Benefits",
+      items: [
+        "Protect critical industrial infrastructure",
+        "Meet international OT security standards",
+        "Reduce operational disruption risks",
+        "Demonstrate security maturity to stakeholders",
+        "Comply with industrial cybersecurity regulations"
+      ]
+    },
+    cta: {
+      title: "Secure Your Industrial Systems",
+      subtitle: "Contact us today to start your IEC 62443 compliance journey",
+      primaryCTA: { text: "Get Started", href: "/contact?service=iec-62443" },
+      secondaryCTA: { text: "Schedule Assessment", href: "/contact?consultation=true" }
+    }
   },
-  {
-    title: "Gap Analysis & Remediation",
-    description: "Detailed gap analysis with prioritized remediation roadmap for industrial control systems",
-    icon: "wrench"
-  },
-  {
-    title: "Zone & Conduit Design",
-    description: "Strategic segmentation and secure communication design for industrial networks",
-    icon: "network"
-  },
-  {
-    title: "Risk Assessment",
-    description: "OT-specific risk assessments considering safety, availability, and security requirements",
-    icon: "shield"
-  },
-  {
-    title: "Control Implementation",
-    description: "Implementation of IEC 62443 security controls tailored for operational technology",
-    icon: "cog"
-  },
-  {
-    title: "Certification Support",
-    description: "Expert guidance through IEC 62443 certification process and compliance validation",
-    icon: "award"
+  fi: {
+    hero: {
+      title: "IEC 62443 (OT/ICS) -turvallisuus",
+      subtitle: "Teollisuuden ohjausjärjestelmien vaatimustenmukaisuus",
+      description: "Asiantuntevat IEC 62443 -vaatimustenmukaisuuspalvelut teollisuuden automaatio- ja ohjausjärjestelmien (OT/ICS) infrastruktuurin suojaamiseen. IEC 62443 on johtava kansainvälinen standardi teollisuuden kyberturvallisuudelle. Erikoistunut tiimimme tarjoaa kattavia kypsyysarviointeja, aukkoanalyysejä ja korjausstrategioita kriittisen operatiivisen teknologian suojaamiseksi kyberuhilta.",
+      primaryCTA: { text: "Pyydä OT-turvallisuusarviointi", href: "/contact?service=iec-62443" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    },
+    overview: {
+      title: "Yleiskatsaus",
+      description: "IEC 62443 on kansainvälinen standardi teollisuuden automaatio- ja ohjausjärjestelmien (IACS) turvallisuudelle. Se tarjoaa kattavan kehyksen operatiivisen teknologian (OT) ympäristöjen turvaamiseen valmistuksen, energian, vesihuollon ja kriittisen infrastruktuurin sektoreilla.",
+      highlight: "Erikoistunut tiimimme keskittyy OT/ICS-kyberturvallisuuteen tarjoten kypsyysarviointeja, korjausten suunnittelua ja toteutustukea auttaaksemme organisaatioita saavuttamaan IEC 62443 -vaatimustenmukaisuuden samalla kun ylläpidetään toiminnan turvallisuutta ja käytettävyyttä."
+    },
+    features: {
+      title: "IEC 62443 -palvelumme",
+      subtitle: "Kattavat OT/ICS-turvallisuuspalvelut, jotka kattavat kaikki IEC 62443 -vaatimustenmukaisuuden näkökohdat",
+      items: [
+        { title: "Kypsyysarviointi", description: "Kattava arviointi OT/ICS-turvallisuustilanteestasi IEC 62443 -kypsyystasoja vastaan", icon: "chart" },
+        { title: "Aukkoanalyysi ja korjaus", description: "Yksityiskohtainen aukkoanalyysi priorisoidulla korjaussuunnitelmalla teollisuuden ohjausjärjestelmille", icon: "wrench" },
+        { title: "Vyöhyke- ja väyläsuunnittelu", description: "Strateginen segmentointi ja turvallinen viestintäsuunnittelu teollisuusverkoille", icon: "network" },
+        { title: "Riskinarviointi", description: "OT-spesifiset riskinarvioinnit, joissa huomioidaan turvallisuus-, käytettävyys- ja suojausvaatimukset", icon: "shield" },
+        { title: "Kontrollien toteutus", description: "IEC 62443 -turvakontrollien toteutus operatiiviselle teknologialle räätälöitynä", icon: "cog" },
+        { title: "Sertifiointituki", description: "Asiantunteva ohjaus IEC 62443 -sertifiointiprosessin ja vaatimustenmukaisuuden validoinnin läpi", icon: "award" }
+      ]
+    },
+    industries: {
+      title: "Toimialat joita palvelemme",
+      subtitle: "Erikoistunut IEC 62443 -asiantuntemus kriittisillä teollisuudenaloilla",
+      items: [
+        "Teollisuus",
+        "Energia ja vesihuolto",
+        "Öljy ja kaasu",
+        "Kemiallinen prosessointi",
+        "Vedenkäsittely",
+        "Liikenne",
+        "Kriittinen infrastruktuuri"
+      ]
+    },
+    deliverables: {
+      title: "Mitä saat",
+      items: [
+        "IEC 62443 -kypsyysarviointiraportti",
+        "OT/ICS-turvallisuuden aukkoanalyysi",
+        "Vyöhyke- ja väyläarkkitehtuurisuunnittelu",
+        "Turvallisuusvaatimusten määrittely",
+        "Korjausten tiekartta ja aikataulu",
+        "Kontrollien toteutusohjeet",
+        "Tapahtumien hallintamenettelyt OT:lle",
+        "Jatkuvan seurannan ja ylläpidon suunnitelma"
+      ]
+    },
+    benefits: {
+      title: "Keskeiset edut",
+      items: [
+        "Suojaa kriittistä teollisuusinfrastruktuuria",
+        "Täytä kansainväliset OT-turvallisuusstandardit",
+        "Vähennä operatiivisten häiriöiden riskejä",
+        "Osoita turvallisuuskypsyyttä sidosryhmille",
+        "Noudata teollisuuden kyberturvallisuusmääräyksiä"
+      ]
+    },
+    cta: {
+      title: "Turvaa teolliset järjestelmäsi",
+      subtitle: "Ota yhteyttä jo tänään aloittaaksesi IEC 62443 -vaatimustenmukaisuusmatkasi",
+      primaryCTA: { text: "Aloita nyt", href: "/contact?service=iec-62443" },
+      secondaryCTA: { text: "Varaa arviointi", href: "/contact?consultation=true" }
+    }
   }
-];
+};
 
-const benefits = [
-  "Protect critical industrial infrastructure",
-  "Meet international OT security standards",
-  "Reduce operational disruption risks",
-  "Demonstrate security maturity to stakeholders",
-  "Comply with industrial cybersecurity regulations"
-];
-
-const deliverables = [
-  "IEC 62443 maturity assessment report",
-  "OT/ICS security gap analysis",
-  "Zone and conduit architecture design",
-  "Security requirements specification",
-  "Remediation roadmap and timeline",
-  "Control implementation guidelines",
-  "Incident response procedures for OT",
-  "Ongoing monitoring and maintenance plan"
-];
-
-const industries = [
-  "Manufacturing",
-  "Energy & Utilities", 
-  "Oil & Gas",
-  "Chemical Processing",
-  "Water Treatment",
-  "Transportation",
-  "Critical Infrastructure"
-];
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={description}>
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-orange-50 via-white to-red-50 py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl">
-        <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-          {title}
-        </h1>
-        <p class="text-xl text-slate-600 mb-8">
-          Expert IEC 62443 compliance services to secure your industrial automation and control systems (OT/ICS) infrastructure
-        </p>
-        <p class="text-lg text-slate-500 mb-10">
-          IEC 62443 is the leading international standard for industrial cybersecurity. Our specialized team provides comprehensive maturity assessments, gap analysis, and remediation strategies to protect your critical operational technology from cyber threats.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <Button href="/contact?service=iec-62443" variant="primary">
-            Get OT Security Assessment
-          </Button>
-          <Button href="/contact?consultation=true" variant="secondary">
-            Book Consultation
-          </Button>
-        </div>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
-
-  <!-- Overview Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-bold text-slate-900 mb-8">Overview</h2>
-        <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-8 border border-orange-200">
-          <p class="text-lg text-slate-700 mb-6">
-            IEC 62443 is the international standard for security of industrial automation and control systems (IACS). It provides a comprehensive framework for securing operational technology (OT) environments across manufacturing, energy, utilities, and critical infrastructure sectors.
-          </p>
-          <p class="text-lg text-slate-700">
-            Our expert team specializes in OT/ICS cybersecurity, offering maturity assessments, remediation planning, and implementation support to help organizations achieve IEC 62443 compliance while maintaining operational safety and availability.
-          </p>
-        </div>
-      </div>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
     </div>
-  </section>
+    
+  </div>
+</section>
 
-  <!-- Features Grid -->
-  <section class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Our IEC 62443 Services</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Comprehensive OT/ICS security services covering all aspects of IEC 62443 compliance
-        </p>
-      </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {features.map((feature) => (
-          <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-100">
-            <div class="flex items-center mb-4">
-              <Icon name={feature.icon} class="h-8 w-8 text-orange-600" />
-              <h3 class="text-xl font-bold text-slate-900 ml-3">{feature.title}</h3>
+<!-- Overview Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-slate-50/50 rounded-2xl p-8 border border-slate-100">
+      <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-4">{currentContent.overview.title}</h2>
+      <p class="text-slate-600 leading-relaxed mb-4">{currentContent.overview.description}</p>
+      <p class="text-slate-600 leading-relaxed font-semibold text-blue-600">{currentContent.overview.highlight}</p>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.features.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.features.subtitle}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {currentContent.features.items.map((feature) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={feature.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
             </div>
-            <p class="text-slate-600">{feature.description}</p>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Industries Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Industries We Serve</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-          Specialized IEC 62443 expertise across critical industrial sectors
-        </p>
-      </div>
-      <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {industries.map((industry) => (
-          <div class="bg-gradient-to-br from-orange-50 to-red-50 p-6 rounded-lg border border-orange-200 text-center">
-            <h3 class="font-semibold text-slate-900">{industry}</h3>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Deliverables Section -->
-  <section class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-12 items-start">
-        <div>
-          <h2 class="text-3xl font-bold text-slate-900 mb-8">What You Get</h2>
-          <ul class="space-y-4">
-            {deliverables.map((deliverable) => (
-              <li class="flex items-start">
-                <Icon name="check" class="h-6 w-6 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-                <span class="text-slate-700">{deliverable}</span>
-              </li>
-            ))}
-          </ul>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {feature.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left">
+            {feature.description}
+          </p>
         </div>
-        <div>
-          <h2 class="text-3xl font-bold text-slate-900 mb-8">Key Benefits</h2>
-          <ul class="space-y-4">
-            {benefits.map((benefit) => (
-              <li class="flex items-start">
-                <Icon name="star" class="h-6 w-6 text-orange-600 mr-3 mt-0.5 flex-shrink-0" />
-                <span class="text-slate-700">{benefit}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CTA Section -->
-  <section class="py-16 bg-orange-600 text-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-4xl font-bold mb-4">Secure Your Industrial Systems</h2>
-      <p class="text-xl mb-8">Contact us today to start your IEC 62443 compliance journey</p>
+<!-- Industries Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.industries.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.industries.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {currentContent.industries.items.map((industry) => (
+        <div class="bg-slate-50/50 rounded-xl p-4 border border-slate-100 text-center
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-md transition-all duration-300">
+          <p class="text-sm font-medium text-slate-700">{industry}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Deliverables & Benefits Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-2 gap-12">
+      
+      <!-- Deliverables -->
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-6">{currentContent.deliverables.title}</h2>
+        <ul class="space-y-3">
+          {currentContent.deliverables.items.map((item) => (
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-slate-600 text-sm">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <!-- Benefits -->
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-6">{currentContent.benefits.title}</h2>
+        <ul class="space-y-3">
+          {currentContent.benefits.items.map((item) => (
+            <li class="flex items-start gap-3">
+              <Icon name="star" class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+              <span class="text-slate-600 text-sm">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/contact?service=iec-62443" variant="white">
-          Get Started
-        </Button>
-        <Button href="/contact?consultation=true" variant="outline-white">
-          Schedule Assessment
-        </Button>
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
 </Layout>

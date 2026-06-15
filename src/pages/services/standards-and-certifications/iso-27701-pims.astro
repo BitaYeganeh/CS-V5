@@ -1,209 +1,325 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
-const title = 'ISO 27701 (PIMS) Services';
-const description = 'Extend your ISMS to privacy management with ISO 27701 Privacy Information Management System implementation and GDPR-aligned certification readiness.';
+// SEO Configuration
+const seoConfig = {
+  title: "ISO 27701 (PIMS) Services | Privacy Information Management System",
+  description: "Extend your ISMS to privacy management with ISO 27701 Privacy Information Management System implementation and GDPR-aligned certification readiness.",
+  keywords: "ISO 27701, PIMS, privacy management, GDPR alignment, privacy information management system, Finland",
+  type: "service" as const,
+};
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const content = {
+  en: {
+    hero: {
+      title: "ISO 27701 (PIMS) Implementation",
+      subtitle: "Privacy Information Management System",
+      description: "Extend your ISMS to privacy; GDPR-aligned certification readiness with comprehensive Privacy Information Management System implementation. Build on your existing ISO 27001 ISMS to create a comprehensive privacy management framework that ensures GDPR compliance and demonstrates privacy leadership.",
+      primaryCTA: { text: "Start ISO 27701 Implementation", href: "/contact" },
+      secondaryCTA: { text: "View Our Services", href: "/services" }
+    },
+    benefits: {
+      title: "Why Choose ISO 27701 (PIMS)?",
+      subtitle: "Build on your existing ISO 27001 ISMS to create a comprehensive privacy management framework that ensures GDPR compliance and demonstrates privacy leadership.",
+      items: [
+        { title: "GDPR Alignment", description: "Seamlessly integrate privacy requirements with your information security management system.", icon: "shield-check" },
+        { title: "Extend Existing ISMS", description: "Build upon your ISO 27001 foundation without duplicating effort or resources.", icon: "refresh-cw" },
+        { title: "Competitive Advantage", description: "Demonstrate privacy leadership and gain competitive advantage in privacy-conscious markets.", icon: "trending-up" }
+      ]
+    },
+    process: {
+      title: "Our ISO 27701 Implementation Process",
+      subtitle: "Structured approach to extend your existing ISMS with privacy management capabilities.",
+      steps: [
+        { step: "1", title: "Privacy Gap Analysis", description: "Assess current privacy controls against ISO 27701 requirements and GDPR obligations." },
+        { step: "2", title: "PIMS Design", description: "Design Privacy Information Management System extending your existing ISMS framework." },
+        { step: "3", title: "Implementation", description: "Implement privacy controls, processes, and documentation aligned with ISO 27701." },
+        { step: "4", title: "Certification Readiness", description: "Prepare for certification audit with comprehensive readiness assessment and support." }
+      ]
+    },
+    services: {
+      title: "Comprehensive ISO 27701 Services",
+      items: [
+        {
+          title: "Privacy Management System Development",
+          icon: "shield",
+          features: ["Privacy policy framework development", "Data processing inventory and mapping", "Privacy impact assessment procedures", "Data subject rights management"]
+        },
+        {
+          title: "GDPR Integration & Compliance",
+          icon: "document-check",
+          features: ["GDPR compliance gap analysis", "Privacy by design implementation", "Breach notification procedures", "Third-party processor agreements"]
+        }
+      ]
+    },
+    cta: {
+      title: "Ready to Implement ISO 27701 (PIMS)?",
+      subtitle: "Extend your existing ISMS with comprehensive privacy management capabilities and achieve GDPR-aligned certification readiness.",
+      primaryCTA: { text: "Start Your PIMS Implementation", href: "/contact" },
+      secondaryCTA: { text: "Learn More About Us", href: "/about" }
+    }
+  },
+  fi: {
+    hero: {
+      title: "ISO 27701 (PIMS) -toteutus",
+      subtitle: "Tietosuojaa koskeva hallintajärjestelmä",
+      description: "Laajenna ISMS:si kattamaan tietosuoja; GDPR-yhteensopiva sertifiointivalmius kattavalla tietosuojan hallintajärjestelmän toteutuksella. Rakenna olemassa olevan ISO 27001 ISMS:si päälle luodaksesi kattavan tietosuojakehyksen, joka varmistaa GDPR-vaatimustenmukaisuuden ja osoittaa tietosuojan johtajuutta.",
+      primaryCTA: { text: "Aloita ISO 27701 -toteutus", href: "/contact" },
+      secondaryCTA: { text: "Tutustu palveluihimme", href: "/services" }
+    },
+    benefits: {
+      title: "Miksi valita ISO 27701 (PIMS)?",
+      subtitle: "Rakenna olemassa olevan ISO 27001 ISMS:si päälle luodaksesi kattavan tietosuojakehyksen, joka varmistaa GDPR-vaatimustenmukaisuuden ja osoittaa tietosuojan johtajuutta.",
+      items: [
+        { title: "GDPR-yhdenmukaistaminen", description: "Yhdenmukaista tietosuojavaatimukset saumattomasti tietoturvallisuuden hallintajärjestelmäsi kanssa.", icon: "shield-check" },
+        { title: "Laajenna olemassa olevaa ISMS:ää", description: "Rakenna ISO 27001 -pohjasi päälle ilman työn tai resurssien päällekkäisyyttä.", icon: "refresh-cw" },
+        { title: "Kilpailuetu", description: "Osoita tietosuojan johtajuutta ja saavuta kilpailuetua tietosuojatietoisilla markkinoilla.", icon: "trending-up" }
+      ]
+    },
+    process: {
+      title: "ISO 27701 -toteutusprosessimme",
+      subtitle: "Rakenteinen lähestymistapa olemassa olevan ISMS:si laajentamiseksi tietosuojakyvykkyyksillä.",
+      steps: [
+        { step: "1", title: "Tietosuojan aukkoanalyysi", description: "Arvioi nykyiset tietosuojakontrollit ISO 27701 -vaatimuksia ja GDPR-velvoitteita vastaan." },
+        { step: "2", title: "PIMS:n suunnittelu", description: "Suunnittele tietosuojaa koskeva hallintajärjestelmä, joka laajentaa olemassa olevaa ISMS-kehystäsi." },
+        { step: "3", title: "Toteutus", description: "Toteuta tietosuojakontrollit, -prosessit ja -dokumentaatio ISO 27701 -standardin mukaisesti." },
+        { step: "4", title: "Sertifiointivalmius", description: "Valmistaudu sertifiointiauditointiin kattavalla valmiusarvioinnilla ja tuella." }
+      ]
+    },
+    services: {
+      title: "Kattavat ISO 27701 -palvelut",
+      items: [
+        {
+          title: "Tietosuojan hallintajärjestelmän kehitys",
+          icon: "shield",
+          features: ["Tietosuojapolitiikkakehyksen kehitys", "Tietojenkäsittelyinventaario ja kartoitus", "Tietosuojan vaikutusten arviointimenettelyt", "Rekisteröityjen oikeuksien hallinta"]
+        },
+        {
+          title: "GDPR-integraatio ja vaatimustenmukaisuus",
+          icon: "document-check",
+          features: ["GDPR-vaatimustenmukaisuuden aukkoanalyysi", "Tietosuoja-by-design -toteutus", "Tietoturvaloukkauksen ilmoitusmenettelyt", "Kolmannen osapuolen käsittelijäsopimukset"]
+        }
+      ]
+    },
+    cta: {
+      title: "Valmis toteuttamaan ISO 27701 (PIMS)?",
+      subtitle: "Laajenna olemassa olevaa ISMS:ääsi kattavilla tietosuojakyvykkyyksillä ja saavuta GDPR-yhteensopiva sertifiointivalmius.",
+      primaryCTA: { text: "Aloita PIMS-toteutus", href: "/contact" },
+      secondaryCTA: { text: "Tutustu meihin paremmin", href: "/about" }
+    }
+  }
+};
+
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={description}>
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-purple-50 via-white to-blue-50 py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-          ISO 27701 (PIMS) Implementation
-        </h1>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-          Extend your ISMS to privacy; GDPR-aligned certification readiness with comprehensive Privacy Information Management System implementation.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contact" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 transition-colors">
-            Start ISO 27701 Implementation
-          </a>
-          <a href="/services" class="inline-flex items-center px-8 py-3 border border-slate-300 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50 transition-colors">
-            View Our Services
-          </a>
-        </div>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
-
-  <!-- Key Benefits -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Why Choose ISO 27701 (PIMS)?</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Build on your existing ISO 27001 ISMS to create a comprehensive privacy management framework that ensures GDPR compliance and demonstrates privacy leadership.
-        </p>
-      </div>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-slate-50 p-6 rounded-xl">
-          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">GDPR Alignment</h3>
-          <p class="text-slate-600">Seamlessly integrate privacy requirements with your information security management system.</p>
-        </div>
-        
-        <div class="bg-slate-50 p-6 rounded-xl">
-          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Extend Existing ISMS</h3>
-          <p class="text-slate-600">Build upon your ISO 27001 foundation without duplicating effort or resources.</p>
-        </div>
-        
-        <div class="bg-slate-50 p-6 rounded-xl">
-          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Competitive Advantage</h3>
-          <p class="text-slate-600">Demonstrate privacy leadership and gain competitive advantage in privacy-conscious markets.</p>
-        </div>
-      </div>
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
     </div>
-  </section>
+    
+  </div>
+</section>
 
-  <!-- Implementation Process -->
-  <section class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Our ISO 27701 Implementation Process</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Structured approach to extend your existing ISMS with privacy management capabilities.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-2xl font-bold text-purple-600">1</span>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Privacy Gap Analysis</h3>
-          <p class="text-slate-600">Assess current privacy controls against ISO 27701 requirements and GDPR obligations.</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-2xl font-bold text-green-600">2</span>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">PIMS Design</h3>
-          <p class="text-slate-600">Design Privacy Information Management System extending your existing ISMS framework.</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-2xl font-bold text-blue-600">3</span>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Implementation</h3>
-          <p class="text-slate-600">Implement privacy controls, processes, and documentation aligned with ISO 27701.</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-2xl font-bold text-teal-600">4</span>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Certification Readiness</h3>
-          <p class="text-slate-600">Prepare for certification audit with comprehensive readiness assessment and support.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- Benefits Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-  <!-- Key Services -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Comprehensive ISO 27701 Services</h2>
-      </div>
-      
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div class="bg-slate-50 p-8 rounded-xl">
-          <h3 class="text-xl font-bold text-slate-900 mb-4">Privacy Management System Development</h3>
-          <ul class="space-y-3 text-slate-600">
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Privacy policy framework development
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Data processing inventory and mapping
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Privacy impact assessment procedures
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Data subject rights management
-            </li>
-          </ul>
-        </div>
-        
-        <div class="bg-slate-50 p-8 rounded-xl">
-          <h3 class="text-xl font-bold text-slate-900 mb-4">GDPR Integration & Compliance</h3>
-          <ul class="space-y-3 text-slate-600">
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              GDPR compliance gap analysis
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Privacy by design implementation
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Breach notification procedures
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Third-party processor agreements
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-16 bg-gradient-to-r from-purple-600 to-blue-600">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-white mb-4">Ready to Implement ISO 27701 (PIMS)?</h2>
-      <p class="text-xl text-purple-100 mb-8 max-w-3xl mx-auto">
-        Extend your existing ISMS with comprehensive privacy management capabilities and achieve GDPR-aligned certification readiness.
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.benefits.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.benefits.subtitle}
       </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {currentContent.benefits.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {item.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left">
+            {item.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Implementation Process Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.process.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.process.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-4 gap-6">
+      {currentContent.process.steps.map((step) => (
+        <div class="bg-slate-50/50 rounded-xl p-5 text-center border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">
+            {step.step}
+          </div>
+          
+          <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+            {step.title}
+          </h3>
+          
+          <p class="text-slate-500 text-xs leading-relaxed">
+            {step.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.services.title}
+      </h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      {currentContent.services.items.map((service) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={service.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-bold text-slate-900 mb-4 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {service.title}
+          </h3>
+          
+          <ul class="space-y-2">
+            {service.features.map((feature) => (
+              <li class="flex items-start text-sm text-slate-600">
+                <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/contact" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-purple-600 bg-white hover:bg-gray-50 transition-colors">
-          Start Your PIMS Implementation
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
         </a>
-        <a href="/about" class="inline-flex items-center px-8 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-purple-700 transition-colors">
-          Learn More About Us
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
         </a>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
 </Layout>

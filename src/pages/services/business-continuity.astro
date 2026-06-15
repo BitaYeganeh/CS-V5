@@ -1,346 +1,393 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-import Button from '@/components/ui/Button.astro';
+
+// SEO Configuration
+const seoConfig = {
+  title: "Business Continuity | Disaster Recovery Planning Services",
+  description: "Professional business continuity and disaster recovery planning services. We help organizations ensure operational continuity during crisis situations.",
+  keywords: "business continuity, disaster recovery, crisis management, BCP, DR planning, Finland",
+  type: "service" as const,
+};
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
-const title = lang === 'fi' ? "Liiketoiminnan Jatkuvuus" : "Business Continuity";
-const description = lang === 'fi' 
-  ? "Ammattimaiset liiketoiminnan jatkuvuus- ja katastrofien palautumissuunnittelupalvelut. Autamme organisaatioita varmistamaan toimintojen jatkuvuuden kriisitilanteissa."
-  : "Professional business continuity and disaster recovery planning services. We help organizations ensure operational continuity during crisis situations.";
-
-const bcComponents = [
-  {
-    title: lang === 'fi' ? "Liiketoiminnan Jatkuvuus Suunnittelu" : "Business Continuity Planning",
-    description: lang === 'fi' 
-      ? "Suunnitellaan organisaation toimintojen jatkuvuus kriisitilanteissa"
-      : "Plan organizational operational continuity during crisis situations",
-    icon: "target",
-    features: [
-      lang === 'fi' ? "Kriisitilanteiden tunnistus" : "Crisis identification",
-      lang === 'fi' ? "Kriittisten toimintojen määrittely" : "Critical operations definition",
-      lang === 'fi' ? "Jatkuvuusstrategiat" : "Continuity strategies"
-    ]
+const content = {
+  en: {
+    hero: {
+      title: "Business Continuity",
+      subtitle: "Disaster Recovery & Crisis Management",
+      description: "Professional business continuity and disaster recovery planning services. We help organizations ensure operational continuity during crisis situations. Ensure your organization's operational continuity during crisis situations. We help organizations build a strong business continuity and disaster recovery plan.",
+      primaryCTA: { text: "Get in Touch", href: "/contact" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    },
+    components: {
+      title: "Business Continuity Components",
+      subtitle: "Business continuity consists of four main components.",
+      items: [
+        { title: "Business Continuity Planning", description: "Plan organizational operational continuity during crisis situations", icon: "target", features: ["Crisis identification", "Critical operations definition", "Continuity strategies"] },
+        { title: "Disaster Recovery", description: "Plan IT systems and data recovery", icon: "refresh", features: ["RTO and RPO definition", "Recovery plans", "Testing and validation"] },
+        { title: "Crisis Communication", description: "Plan effective communication during crisis situations", icon: "chat", features: ["Communication plans", "Stakeholder communication", "Media relations"] },
+        { title: "Crisis Management", description: "Plan crisis management and response", icon: "alert", features: ["Crisis management team", "Response processes", "Training and simulation"] }
+      ]
+    },
+    threats: {
+      title: "Threats and Risks",
+      subtitle: "Business continuity is threatened by various threats and risks.",
+      items: [
+        { title: "Natural Disasters", description: "Earthquakes, floods, storms and other natural disasters", icon: "cloud", examples: ["Earthquakes", "Floods", "Storms"] },
+        { title: "Cyber Threats", description: "Ransomware, DDoS attacks and data breaches", icon: "shield", examples: ["Ransomware", "DDoS attacks", "Data breaches"] },
+        { title: "Technical Failures", description: "System failures, power outages and hardware failures", icon: "computer", examples: ["System failures", "Power outages", "Hardware failures"] },
+        { title: "Pandemic and Health", description: "Pandemics, diseases and health threats", icon: "user", examples: ["Pandemic", "Diseases", "Health threats"] }
+      ]
+    },
+    process: {
+      title: "Implementation Process",
+      subtitle: "Clear and structured process for implementing business continuity.",
+      steps: [
+        { step: "1", title: "BCM Assessment", description: "Assess current business continuity and identify gaps" },
+        { step: "2", title: "Gap Analysis", description: "Identify gaps and plan remediation measures" },
+        { step: "3", title: "Planning", description: "Plan business continuity program" },
+        { step: "4", title: "Implementation", description: "Implement required continuity measures" },
+        { step: "5", title: "Testing & Monitoring", description: "Test and monitor continuity processes" }
+      ]
+    },
+    benefits: {
+      title: "Business Continuity Benefits",
+      subtitle: "Achieve concrete benefits with business continuity.",
+      items: [
+        "Ensure operational continuity",
+        "Reduce crisis impacts",
+        "Improve customer trust",
+        "Meet regulatory requirements",
+        "Strengthen competitive advantage"
+      ]
+    },
+    cta: {
+      title: "Ready to start your business continuity?",
+      subtitle: "Contact us and let's start your business continuity planning.",
+      primaryCTA: { text: "Get in Touch", href: "/contact" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    }
   },
-  {
-    title: lang === 'fi' ? "Katastrofien Palautuminen" : "Disaster Recovery",
-    description: lang === 'fi' 
-      ? "Suunnitellaan IT-järjestelmien ja tietojen palautuminen"
-      : "Plan IT systems and data recovery",
-    icon: "refresh",
-    features: [
-      lang === 'fi' ? "RTO ja RPO määrittely" : "RTO and RPO definition",
-      lang === 'fi' ? "Palautumissuunnitelmat" : "Recovery plans",
-      lang === 'fi' ? "Testaus ja validointi" : "Testing and validation"
-    ]
-  },
-  {
-    title: lang === 'fi' ? "Kriisiviestintä" : "Crisis Communication",
-    description: lang === 'fi' 
-      ? "Suunnitellaan tehokas viestintä kriisitilanteissa"
-      : "Plan effective communication during crisis situations",
-    icon: "chat",
-    features: [
-      lang === 'fi' ? "Viestintäsuunnitelmat" : "Communication plans",
-      lang === 'fi' ? "Sidosryhmäviestintä" : "Stakeholder communication",
-      lang === 'fi' ? "Media suhdet" : "Media relations"
-    ]
-  },
-  {
-    title: lang === 'fi' ? "Kriisienhallinta" : "Crisis Management",
-    description: lang === 'fi' 
-      ? "Suunnitellaan kriisien hallinta ja vastaus"
-      : "Plan crisis management and response",
-    icon: "alert",
-    features: [
-      lang === 'fi' ? "Kriisienhallintatiimi" : "Crisis management team",
-      lang === 'fi' ? "Vastausprosessit" : "Response processes",
-      lang === 'fi' ? "Koulutus ja simulointi" : "Training and simulation"
-    ]
+  fi: {
+    hero: {
+      title: "Liiketoiminnan Jatkuvuus",
+      subtitle: "Katastrofien Palautuminen & Kriisienhallinta",
+      description: "Ammattimaiset liiketoiminnan jatkuvuus- ja katastrofien palautumissuunnittelupalvelut. Autamme organisaatioita varmistamaan toimintojen jatkuvuuden kriisitilanteissa. Varmista organisaatiosi toimintojen jatkuvuus kriisitilanteissa. Autamme organisaatioita rakentamaan vahvan liiketoiminnan jatkuvuus- ja katastrofien palautumissuunnitelman.",
+      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    },
+    components: {
+      title: "Liiketoiminnan Jatkuvuuden Komponentit",
+      subtitle: "Liiketoiminnan jatkuvuus koostuu neljästä pääkomponentista.",
+      items: [
+        { title: "Liiketoiminnan Jatkuvuus Suunnittelu", description: "Suunnitellaan organisaation toimintojen jatkuvuus kriisitilanteissa", icon: "target", features: ["Kriisitilanteiden tunnistus", "Kriittisten toimintojen määrittely", "Jatkuvuusstrategiat"] },
+        { title: "Katastrofien Palautuminen", description: "Suunnitellaan IT-järjestelmien ja tietojen palautuminen", icon: "refresh", features: ["RTO ja RPO määrittely", "Palautumissuunnitelmat", "Testaus ja validointi"] },
+        { title: "Kriisiviestintä", description: "Suunnitellaan tehokas viestintä kriisitilanteissa", icon: "chat", features: ["Viestintäsuunnitelmat", "Sidosryhmäviestintä", "Mediasuhteet"] },
+        { title: "Kriisienhallinta", description: "Suunnitellaan kriisien hallinta ja vastaus", icon: "alert", features: ["Kriisienhallintatiimi", "Vastausprosessit", "Koulutus ja simulointi"] }
+      ]
+    },
+    threats: {
+      title: "Uhat ja Riskit",
+      subtitle: "Liiketoiminnan jatkuvuutta uhkaavat erilaiset uhat ja riskit.",
+      items: [
+        { title: "Luonnonkatastrofit", description: "Maat, tulvat, myrskyt ja muut luonnonkatastrofit", icon: "cloud", examples: ["Maat", "Tulvat", "Myrskyt"] },
+        { title: "Kybertuhkat", description: "Ransomware, DDoS hyökkäykset ja tietomurrot", icon: "shield", examples: ["Ransomware", "DDoS hyökkäykset", "Tietomurrot"] },
+        { title: "Tekniset Viat", description: "Järjestelmäviat, sähkökatkot ja laitteistoviat", icon: "computer", examples: ["Järjestelmäviat", "Sähkökatkot", "Laitteistoviat"] },
+        { title: "Pandemia ja Terveys", description: "Pandemia, sairaudet ja terveysuhkat", icon: "user", examples: ["Pandemia", "Sairaudet", "Terveysuhkat"] }
+      ]
+    },
+    process: {
+      title: "Toteutusprosessi",
+      subtitle: "Selkeä ja strukturoitu prosessi liiketoiminnan jatkuvuuden toteuttamiseen.",
+      steps: [
+        { step: "1", title: "BCM Arviointi", description: "Arvioidaan nykyinen liiketoiminnan jatkuvuus ja tunnistetaan puutteet" },
+        { step: "2", title: "Gap Analysis", description: "Tunnistetaan puutteet ja suunnitellaan korjauskeinot" },
+        { step: "3", title: "Suunnittelu", description: "Suunnitellaan liiketoiminnan jatkuvuusohjelma" },
+        { step: "4", title: "Toteutus", description: "Toteutetaan tarvittavat jatkuvuustoimenpiteet" },
+        { step: "5", title: "Testaus ja Valvonta", description: "Testataan ja valvotaan jatkuvuusprosesseja" }
+      ]
+    },
+    benefits: {
+      title: "Liiketoiminnan Jatkuvuuden Edut",
+      subtitle: "Saavuta konkreettisia hyötyjä liiketoiminnan jatkuvuuden avulla.",
+      items: [
+        "Varmista toimintojen jatkuvuus",
+        "Vähennä kriisien vaikutuksia",
+        "Paranna asiakkaiden luottamusta",
+        "Täytä sääntelyvaatimukset",
+        "Vahvista kilpailuetua"
+      ]
+    },
+    cta: {
+      title: "Valmiit aloittamaan liiketoiminnan jatkuvuuden?",
+      subtitle: "Ota yhteyttä meihin ja aloitetaan liiketoiminnan jatkuvuussuunnittelu.",
+      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    }
   }
-];
+};
 
-const threats = [
-  {
-    title: lang === 'fi' ? "Luonnonkatastrofit" : "Natural Disasters",
-    description: lang === 'fi' 
-      ? "Maat, tulvat, myrskyt ja muut luonnonkatastrofit"
-      : "Earthquakes, floods, storms and other natural disasters",
-    icon: "cloud",
-    examples: [
-      lang === 'fi' ? "Maat" : "Earthquakes",
-      lang === 'fi' ? "Tulvat" : "Floods",
-      lang === 'fi' ? "Myrskyt" : "Storms"
-    ]
-  },
-  {
-    title: lang === 'fi' ? "Kybertuhkat" : "Cyber Threats",
-    description: lang === 'fi' 
-      ? "Ransomware, DDoS hyökkäykset ja tietomurrot"
-      : "Ransomware, DDoS attacks and data breaches",
-    icon: "shield",
-    examples: [
-      lang === 'fi' ? "Ransomware" : "Ransomware",
-      lang === 'fi' ? "DDoS hyökkäykset" : "DDoS attacks",
-      lang === 'fi' ? "Tietomurrot" : "Data breaches"
-    ]
-  },
-  {
-    title: lang === 'fi' ? "Tekniset Viat" : "Technical Failures",
-    description: lang === 'fi' 
-      ? "Järjestelmäviat, sähkökatkot ja laitteistoviat"
-      : "System failures, power outages and hardware failures",
-    icon: "computer",
-    examples: [
-      lang === 'fi' ? "Järjestelmäviat" : "System failures",
-      lang === 'fi' ? "Sähkökatkot" : "Power outages",
-      lang === 'fi' ? "Laitteistoviat" : "Hardware failures"
-    ]
-  },
-  {
-    title: lang === 'fi' ? "Pandemia ja Terveys" : "Pandemic and Health",
-    description: lang === 'fi' 
-      ? "Pandemia, sairaudet ja terveysuhkat"
-      : "Pandemics, diseases and health threats",
-    icon: "user",
-    examples: [
-      lang === 'fi' ? "Pandemia" : "Pandemic",
-      lang === 'fi' ? "Sairaudet" : "Diseases",
-      lang === 'fi' ? "Terveysuhkat" : "Health threats"
-    ]
-  }
-];
-
-const implementationSteps = [
-  {
-    step: "1",
-    title: lang === 'fi' ? "BCM Arviointi" : "BCM Assessment",
-    description: lang === 'fi' 
-      ? "Arvioidaan nykyinen liiketoiminnan jatkuvuus ja tunnistetaan puutteet"
-      : "Assess current business continuity and identify gaps"
-  },
-  {
-    step: "2",
-    title: lang === 'fi' ? "Gap Analysis" : "Gap Analysis",
-    description: lang === 'fi' 
-      ? "Tunnistetaan puutteet ja suunnitellaan korjauskeinot"
-      : "Identify gaps and plan remediation measures"
-  },
-  {
-    step: "3",
-    title: lang === 'fi' ? "Suunnittelu" : "Planning",
-    description: lang === 'fi' 
-      ? "Suunnitellaan liiketoiminnan jatkuvuusohjelma"
-      : "Plan business continuity program"
-  },
-  {
-    step: "4",
-    title: lang === 'fi' ? "Toteutus" : "Implementation",
-    description: lang === 'fi' 
-      ? "Toteutetaan tarvittavat jatkuvuustoimenpiteet"
-      : "Implement required continuity measures"
-  },
-  {
-    step: "5",
-    title: lang === 'fi' ? "Testaus ja Valvonta" : "Testing and Monitoring",
-    description: lang === 'fi' 
-      ? "Testataan ja valvotaan jatkuvuusprosesseja"
-      : "Test and monitor continuity processes"
-  }
-];
-
-const benefits = [
-  lang === 'fi' ? "Varmista toimintojen jatkuvuus" : "Ensure operational continuity",
-  lang === 'fi' ? "Vähennä kriisien vaikutuksia" : "Reduce crisis impacts",
-  lang === 'fi' ? "Paranna asiakkaiden luottamusta" : "Improve customer trust",
-  lang === 'fi' ? "Täytä sääntelyvaatimukset" : "Meet regulatory requirements",
-  lang === 'fi' ? "Vahvista kilpailuetua" : "Strengthen competitive advantage"
-];
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={description}>
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-emerald-50 via-white to-teal-50 py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl">
-        <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-          {title}
-        </h1>
-        <p class="text-xl text-slate-600 mb-8">
-          {lang === 'fi' 
-            ? "Varmista organisaatiosi toimintojen jatkuvuus kriisitilanteissa. Autamme organisaatioita rakentamaan vahvan liiketoiminnan jatkuvuus- ja katastrofien palautumissuunnitelman."
-            : "Ensure your organization's operational continuity during crisis situations. We help organizations build a strong business continuity and disaster recovery plan."
-          }
-        </p>
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
-          <h2 class="text-lg font-semibold text-slate-900 mb-4">
-            {lang === 'fi' ? 'Miksi Liiketoiminnan Jatkuvuus?' : 'Why Business Continuity?'}
-          </h2>
-          <p class="text-slate-600 mb-4">
-            {lang === 'fi'
-              ? "Liiketoiminnan jatkuvuus varmistaa, että organisaatio pystyy toimimaan ja palvelemaan asiakkaitaan myös kriisitilanteissa. Se on kriittinen liiketoiminnan kestävyydelle."
-              : "Business continuity ensures that an organization can operate and serve customers even during crisis situations. It's critical for business resilience."
-            }
-          </p>
-        </div>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
-
-  <!-- Business Continuity Components -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Liiketoiminnan Jatkuvuuden Komponentit' : 'Business Continuity Components'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi'
-            ? "Liiketoiminnan jatkuvuus koostuu neljästä pääkomponentista."
-            : "Business continuity consists of four main components."
-          }
-        </p>
-      </div>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {bcComponents.map((component) => (
-          <div class="bg-gradient-to-br from-slate-50 to-white p-8 rounded-xl border border-slate-200 hover:shadow-xl transition-all duration-300">
-            <div class="w-16 h-16 bg-emerald-100 rounded-xl flex items-center justify-center mb-6">
-              <Icon name={component.icon} className="w-8 h-8 text-emerald-600" />
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- Components Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.components.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.components.subtitle}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {currentContent.components.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
             </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-4">{component.title}</h3>
-            <p class="text-slate-600 mb-6">{component.description}</p>
-            <ul class="space-y-2">
-              {component.features.map((feature) => (
-                <li class="flex items-center text-sm text-slate-600">
-                  <Icon name="check" className="w-4 h-4 text-green-500 mr-2" />
+          </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {item.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left mb-4">
+            {item.description}
+          </p>
+          
+          <div class="mt-auto">
+            <ul class="space-y-1.5">
+              {item.features.map((feature) => (
+                <li class="flex items-start text-xs text-slate-500">
+                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
                   {feature}
                 </li>
               ))}
             </ul>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Threats and Risks -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Uhat ja Riskit' : 'Threats and Risks'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi'
-            ? "Liiketoiminnan jatkuvuutta uhkaavat erilaiset uhat ja riskit."
-            : "Business continuity is threatened by various threats and risks."
-          }
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {threats.map((threat) => (
-          <div class="bg-white p-8 rounded-xl border border-slate-200 hover:shadow-xl transition-all duration-300">
-            <div class="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-6">
-              <Icon name={threat.icon} className="w-8 h-8 text-teal-600" />
-            </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-4">{threat.title}</h3>
-            <p class="text-slate-600 mb-6">{threat.description}</p>
-            <ul class="space-y-2">
-              {threat.examples.map((example) => (
-                <li class="flex items-center text-sm text-slate-600">
-                  <Icon name="alert" className="w-4 h-4 text-orange-500 mr-2" />
-                  {example}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Implementation Process -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Toteutusprosessi' : 'Implementation Process'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi'
-            ? "Selkeä ja strukturoitu prosessi liiketoiminnan jatkuvuuden toteuttamiseen."
-            : "Clear and structured process for implementing business continuity."
-          }
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-        {implementationSteps.map((step) => (
-          <div class="text-center">
-            <div class="w-16 h-16 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-xl font-bold">
-              {step.step}
-            </div>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2">{step.title}</h3>
-            <p class="text-slate-600 text-sm">{step.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Benefits Section -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Liiketoiminnan Jatkuvuuden Edut' : 'Business Continuity Benefits'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi'
-            ? "Saavuta konkreettisia hyötyjä liiketoiminnan jatkuvuuden avulla."
-            : "Achieve concrete benefits with business continuity."
-          }
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {benefits.map((benefit) => (
-          <div class="text-center">
-            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Icon name="check" className="w-8 h-8 text-green-600" />
-            </div>
-            <p class="text-slate-700 font-medium">{benefit}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-20 bg-slate-900 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold mb-6">
-        {lang === 'fi' ? 'Valmiit aloittamaan liiketoiminnan jatkuvuuden?' : 'Ready to start your business continuity?'}
+<!-- Threats Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.threats.title}
       </h2>
-      <p class="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
-        {lang === 'fi'
-          ? "Ota yhteyttä meihin ja aloitetaan liiketoiminnan jatkuvuussuunnittelu."
-          : "Contact us and let's start your business continuity planning."
-        }
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.threats.subtitle}
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/contact" variant="primary" className="text-lg px-8 py-3">
-          {lang === 'fi' ? 'Ota yhteyttä' : 'Get in Touch'}
-        </Button>
-        <Button href="/contact?consultation=true" variant="secondary" className="text-lg px-8 py-3">
-          {lang === 'fi' ? 'Varaa konsultaatio' : 'Book Consultation'}
-        </Button>
-      </div>
     </div>
-  </section>
-</Layout>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      {currentContent.threats.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+                <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+                {item.title}
+              </h3>
+              <p class="text-slate-500 text-sm leading-relaxed mb-3">
+                {item.description}
+              </p>
+              <div class="flex flex-wrap gap-2">
+                {item.examples.map((example) => (
+                  <span class="inline-flex items-center gap-1 text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
+                    <span class="text-orange-500">⚠️</span> {example}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
+<!-- Process Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.process.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.process.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-5 gap-6">
+      {currentContent.process.steps.map((step) => (
+        <div class="bg-slate-50/50 rounded-xl p-5 text-center border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">
+            {step.step}
+          </div>
+          
+          <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+            {step.title}
+          </h3>
+          
+          <p class="text-slate-500 text-xs leading-relaxed">
+            {step.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.benefits.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.benefits.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-6">
+      {currentContent.benefits.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 text-center border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-md transition-all duration-300
+                    flex items-center justify-center">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <span class="text-slate-700 text-sm font-medium">{item}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</Layout>

@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
@@ -9,7 +10,7 @@ const seoConfig = {
   description: lang === 'fi'
     ? "Cyber Security Finlandin tietosuojakäytäntö. Lue kuinka käsittelemme ja suojaamme henkilötietojasi."
     : "Privacy Policy of Cyber Security Finland. Learn how we process and protect your personal data.",
-  type: "website" as const
+  type: "legal" as const
 };
 
 const content = {
@@ -105,20 +106,44 @@ const c = content[lang];
 ---
 
 <Layout {...seoConfig}>
-  <section class="py-16 bg-gradient-to-b from-slate-50 to-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl font-bold text-slate-900 mb-4">{c.title}</h1>
-      <p class="text-sm text-slate-500 mb-8">{c.lastUpdated}</p>
-      <p class="text-lg text-slate-600 mb-12">{c.intro}</p>
+  
+  <!-- Hero Section - Centered with icon -->
+  <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <div class="flex justify-center mb-4">
+        <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+          <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
+        </div>
+      </div>
+      
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+        {c.title}
+      </h1>
+      
+      <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
+        {c.intro}
+      </p>
+      
+    </div>
+  </section>
 
-      <div class="space-y-8">
+  <!-- Content Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <p class="text-sm text-slate-400 mb-8 text-center">{c.lastUpdated}</p>
+
+      <div class="space-y-6">
         {c.sections.map((section) => (
-          <div class="bg-white p-6 rounded-lg border border-slate-200">
-            <h2 class="text-xl font-semibold text-slate-900 mb-3">{section.title}</h2>
+          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 hover:bg-slate-50 transition-all duration-300">
+            <h2 class="text-xl font-bold text-[#1E2A7A] mb-3">{section.title}</h2>
             <p class="text-slate-600 leading-relaxed">{section.content}</p>
           </div>
         ))}
       </div>
+      
     </div>
   </section>
+
 </Layout>

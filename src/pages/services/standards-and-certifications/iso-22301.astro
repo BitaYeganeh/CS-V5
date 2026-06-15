@@ -1,319 +1,370 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
-const title = 'ISO 22301 Business Continuity Management Services';
-const description = 'Comprehensive business continuity and disaster recovery planning with ISO 22301 implementation. Ensure operational resilience and minimize business disruptions.';
+// SEO Configuration
+const seoConfig = {
+  title: "ISO 22301 Business Continuity Management Services",
+  description: "Comprehensive business continuity and disaster recovery planning with ISO 22301 implementation. Ensure operational resilience and minimize business disruptions.",
+  keywords: "ISO 22301, business continuity, disaster recovery, BCM, operational resilience, Finland",
+  type: "service" as const,
+};
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const content = {
+  en: {
+    hero: {
+      title: "ISO 22301 Business Continuity Management",
+      subtitle: "Operational Resilience & Disaster Recovery",
+      description: "Business continuity and disaster recovery planning to ensure your organization maintains operations during disruptions and recovers quickly from incidents. Build operational resilience with comprehensive BCM implementation.",
+      primaryCTA: { text: "Build Business Resilience", href: "/contact" },
+      secondaryCTA: { text: "View Our Services", href: "/services" }
+    },
+    benefits: {
+      title: "Why ISO 22301 Business Continuity?",
+      subtitle: "Protect your organization from disruptions and ensure rapid recovery with internationally recognized business continuity management standards.",
+      items: [
+        { title: "Operational Resilience", description: "Maintain critical operations during incidents and minimize business impact from disruptions.", icon: "shield-check" },
+        { title: "Rapid Recovery", description: "Structured approach to recover operations quickly and return to business as usual.", icon: "refresh-cw" },
+        { title: "Stakeholder Confidence", description: "Demonstrate preparedness to customers, suppliers, and regulators through proven BCM capabilities.", icon: "users" },
+        { title: "Cost Management", description: "Reduce potential losses from business interruptions through proactive planning and preparation.", icon: "chart-line" },
+        { title: "Regulatory Compliance", description: "Meet regulatory requirements for business continuity and operational resilience across industries.", icon: "document-check" },
+        { title: "Organizational Learning", description: "Continuous improvement culture with lessons learned from exercises and real incidents.", icon: "trending-up" }
+      ]
+    },
+    process: {
+      title: "ISO 22301 Implementation Process",
+      subtitle: "Comprehensive approach to building and implementing a robust Business Continuity Management System (BCMS).",
+      steps: [
+        { step: "1", title: "Business Impact Analysis", description: "Identify critical business processes, dependencies, and impact of potential disruptions." },
+        { step: "2", title: "Risk Assessment", description: "Evaluate threats, vulnerabilities, and risks that could disrupt business operations." },
+        { step: "3", title: "Strategy Development", description: "Develop business continuity strategies and recovery solutions for critical processes." },
+        { step: "4", title: "Plan Implementation", description: "Implement business continuity plans with testing, training, and continuous improvement." }
+      ]
+    },
+    services: {
+      title: "Comprehensive BCM Services",
+      items: [
+        {
+          title: "BCMS Development & Implementation",
+          icon: "shield",
+          items: ["Business impact analysis (BIA)", "Risk assessment and treatment", "Business continuity strategy development", "BCMS policy and procedure development", "Crisis management framework"]
+        },
+        {
+          title: "Testing & Maintenance",
+          icon: "refresh-cw",
+          items: ["Business continuity plan testing", "Crisis simulation exercises", "Emergency response training", "Continuous improvement programs", "Management system audits"]
+        }
+      ]
+    },
+    industries: {
+      title: "Industry Applications",
+      subtitle: "ISO 22301 BCM is applicable across all industries, with particular importance in sectors with high operational dependencies.",
+      items: [
+        "Financial Services", "Healthcare", "Manufacturing", "Energy & Utilities", "Government", "Technology"
+      ]
+    },
+    cta: {
+      title: "Build Operational Resilience with ISO 22301",
+      subtitle: "Protect your business from disruptions and ensure rapid recovery with comprehensive business continuity management.",
+      primaryCTA: { text: "Start BCM Implementation", href: "/contact" },
+      secondaryCTA: { text: "Learn More About Us", href: "/about" }
+    }
+  },
+  fi: {
+    hero: {
+      title: "ISO 22301 -liiketoiminnan jatkuvuuden hallinta",
+      subtitle: "Operatiivinen resilienssi ja katastrofipalautus",
+      description: "Liiketoiminnan jatkuvuus- ja katastrofipalautussuunnittelu varmistaakseen, että organisaatiosi ylläpitää toimintoja häiriöiden aikana ja toipuu nopeasti tapahtumista. Rakenna operatiivista resilienssiä kattavalla BCM-toteutuksella.",
+      primaryCTA: { text: "Rakenna liiketoiminnan resilienssiä", href: "/contact" },
+      secondaryCTA: { text: "Tutustu palveluihimme", href: "/services" }
+    },
+    benefits: {
+      title: "Miksi ISO 22301 -liiketoiminnan jatkuvuus?",
+      subtitle: "Suojaa organisaatiosi häiriöiltä ja varmista nopea palautuminen kansainvälisesti tunnetuilla liiketoiminnan jatkuvuuden hallintastandardeilla.",
+      items: [
+        { title: "Operatiivinen resilienssi", description: "Ylläpidä kriittisiä toimintoja tapahtumien aikana ja minimoi liiketoimintavaikutukset häiriöistä.", icon: "shield-check" },
+        { title: "Nopea palautuminen", description: "Rakenteellinen lähestymistapa toimintojen nopeaan palauttamiseen ja normaaliin toimintaan palaamiseen.", icon: "refresh-cw" },
+        { title: "Sidosryhmäluottamus", description: "Osoita valmistautumista asiakkaille, toimittajille ja sääntelyviranomaisille todistetuilla BCM-kyvykkyyksillä.", icon: "users" },
+        { title: "Kustannusten hallinta", description: "Vähennä mahdollisia tappioita liiketoiminnan keskeytyksistä ennakoivalla suunnittelulla ja valmistelulla.", icon: "chart-line" },
+        { title: "Sääntelyn vaatimustenmukaisuus", description: "Täytä liiketoiminnan jatkuvuuden ja operatiivisen resilienssin sääntelyvaatimukset eri toimialoilla.", icon: "document-check" },
+        { title: "Organisaation oppiminen", description: "Jatkuva parantamiskulttuuri harjoituksista ja todellisista tapahtumista opituilla asioilla.", icon: "trending-up" }
+      ]
+    },
+    process: {
+      title: "ISO 22301 -toteutusprosessi",
+      subtitle: "Kattava lähestymistapa vankan liiketoiminnan jatkuvuuden hallintajärjestelmän (BCMS) rakentamiseen ja toteuttamiseen.",
+      steps: [
+        { step: "1", title: "Liiketoimintavaikutusanalyysi", description: "Tunnista kriittiset liiketoimintaprosessit, riippuvuudet ja mahdollisten häiriöiden vaikutukset." },
+        { step: "2", title: "Riskinarviointi", description: "Arvioi uhat, haavoittuvuudet ja riskit, jotka voivat häiritä liiketoimintaa." },
+        { step: "3", title: "Strategian kehittäminen", description: "Kehitä liiketoiminnan jatkuvuusstrategiat ja palautusratkaisut kriittisille prosesseille." },
+        { step: "4", title: "Suunnitelmien toteutus", description: "Toteuta liiketoiminnan jatkuvuussuunnitelmat testauksella, koulutuksella ja jatkuvalla parantamisella." }
+      ]
+    },
+    services: {
+      title: "Kattavat BCM-palvelut",
+      items: [
+        {
+          title: "BCMS:n kehitys ja toteutus",
+          icon: "shield",
+          items: ["Liiketoimintavaikutusanalyysi (BIA)", "Riskinarviointi ja käsittely", "Liiketoiminnan jatkuvuusstrategian kehitys", "BCMS-käytäntöjen ja menettelyjen kehitys", "Kriisinhallintakehys"]
+        },
+        {
+          title: "Testaus ja ylläpito",
+          icon: "refresh-cw",
+          items: ["Liiketoiminnan jatkuvuussuunnitelmien testaus", "Kriisisimulaatioharjoitukset", "Hätätilannekoulutus", "Jatkuvat parannusohjelmat", "Hallintajärjestelmäauditoinnit"]
+        }
+      ]
+    },
+    industries: {
+      title: "Toimialasovellukset",
+      subtitle: "ISO 22301 BCM soveltuu kaikille toimialoille, ja sillä on erityinen merkitys aloilla, joilla on korkeat operatiiviset riippuvuudet.",
+      items: [
+        "Rahoituspalvelut", "Terveydenhuolto", "Teollisuus", "Energia ja vesihuolto", "Julkinen sektori", "Teknologia"
+      ]
+    },
+    cta: {
+      title: "Rakenna operatiivista resilienssiä ISO 22301:n avulla",
+      subtitle: "Suojaa liiketoimintasi häiriöiltä ja varmista nopea palautuminen kattavalla liiketoiminnan jatkuvuuden hallinnalla.",
+      primaryCTA: { text: "Aloita BCM-toteutus", href: "/contact" },
+      secondaryCTA: { text: "Tutustu meihin paremmin", href: "/about" }
+    }
+  }
+};
+
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={description}>
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-emerald-50 via-white to-green-50 py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-          ISO 22301 Business Continuity Management
-        </h1>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-          Business continuity and disaster recovery planning to ensure your organization maintains operations during disruptions and recovers quickly from incidents.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contact" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 transition-colors">
-            Build Business Resilience
-          </a>
-          <a href="/services" class="inline-flex items-center px-8 py-3 border border-slate-300 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50 transition-colors">
-            View Our Services
-          </a>
-        </div>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
-
-  <!-- Key Benefits -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Why ISO 22301 Business Continuity?</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Protect your organization from disruptions and ensure rapid recovery with internationally recognized business continuity management standards.
-        </p>
-      </div>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-slate-50 p-6 rounded-xl">
-          <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Operational Resilience</h3>
-          <p class="text-slate-600">Maintain critical operations during incidents and minimize business impact from disruptions.</p>
-        </div>
-        
-        <div class="bg-slate-50 p-6 rounded-xl">
-          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Rapid Recovery</h3>
-          <p class="text-slate-600">Structured approach to recover operations quickly and return to business as usual.</p>
-        </div>
-        
-        <div class="bg-slate-50 p-6 rounded-xl">
-          <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Stakeholder Confidence</h3>
-          <p class="text-slate-600">Demonstrate preparedness to customers, suppliers, and regulators through proven BCM capabilities.</p>
-        </div>
-        
-        <div class="bg-slate-50 p-6 rounded-xl">
-          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Cost Management</h3>
-          <p class="text-slate-600">Reduce potential losses from business interruptions through proactive planning and preparation.</p>
-        </div>
-        
-        <div class="bg-slate-50 p-6 rounded-xl">
-          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Regulatory Compliance</h3>
-          <p class="text-slate-600">Meet regulatory requirements for business continuity and operational resilience across industries.</p>
-        </div>
-        
-        <div class="bg-slate-50 p-6 rounded-xl">
-          <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Organizational Learning</h3>
-          <p class="text-slate-600">Continuous improvement culture with lessons learned from exercises and real incidents.</p>
-        </div>
-      </div>
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
     </div>
-  </section>
+    
+  </div>
+</section>
 
-  <!-- Implementation Process -->
-  <section class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">ISO 22301 Implementation Process</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Comprehensive approach to building and implementing a robust Business Continuity Management System (BCMS).
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-2xl font-bold text-emerald-600">1</span>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Business Impact Analysis</h3>
-          <p class="text-slate-600">Identify critical business processes, dependencies, and impact of potential disruptions.</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-2xl font-bold text-green-600">2</span>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Risk Assessment</h3>
-          <p class="text-slate-600">Evaluate threats, vulnerabilities, and risks that could disrupt business operations.</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-2xl font-bold text-teal-600">3</span>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Strategy Development</h3>
-          <p class="text-slate-600">Develop business continuity strategies and recovery solutions for critical processes.</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-2xl font-bold text-blue-600">4</span>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Plan Implementation</h3>
-          <p class="text-slate-600">Implement business continuity plans with testing, training, and continuous improvement.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- Benefits Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-  <!-- Key Services -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Comprehensive BCM Services</h2>
-      </div>
-      
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div class="bg-slate-50 p-8 rounded-xl">
-          <h3 class="text-xl font-bold text-slate-900 mb-4">BCMS Development & Implementation</h3>
-          <ul class="space-y-3 text-slate-600">
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Business impact analysis (BIA)
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Risk assessment and treatment
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Business continuity strategy development
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              BCMS policy and procedure development
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Crisis management framework
-            </li>
-          </ul>
-        </div>
-        
-        <div class="bg-slate-50 p-8 rounded-xl">
-          <h3 class="text-xl font-bold text-slate-900 mb-4">Testing & Maintenance</h3>
-          <ul class="space-y-3 text-slate-600">
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Business continuity plan testing
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Crisis simulation exercises
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Emergency response training
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Continuous improvement programs
-            </li>
-            <li class="flex items-start">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              Management system audits
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Industry Applications -->
-  <section class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Industry Applications</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          ISO 22301 BCM is applicable across all industries, with particular importance in sectors with high operational dependencies.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-            </svg>
-          </div>
-          <h3 class="text-sm font-semibold text-slate-900">Financial Services</h3>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-sm font-semibold text-slate-900">Healthcare</h3>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-            </svg>
-          </div>
-          <h3 class="text-sm font-semibold text-slate-900">Manufacturing</h3>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
-          </div>
-          <h3 class="text-sm font-semibold text-slate-900">Energy & Utilities</h3>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-            <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m13 0h-6m-8-4V7a4 4 0 118 0v10a4 4 0 01-8 0V7a4 4 0 118 0v10a4 4 0 01-8 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-sm font-semibold text-slate-900">Government</h3>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-            <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
-            </svg>
-          </div>
-          <h3 class="text-sm font-semibold text-slate-900">Technology</h3>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-16 bg-gradient-to-r from-emerald-600 to-green-600">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-white mb-4">Build Operational Resilience with ISO 22301</h2>
-      <p class="text-xl text-emerald-100 mb-8 max-w-3xl mx-auto">
-        Protect your business from disruptions and ensure rapid recovery with comprehensive business continuity management.
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.benefits.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.benefits.subtitle}
       </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {currentContent.benefits.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {item.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left">
+            {item.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Implementation Process Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.process.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.process.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-4 gap-6">
+      {currentContent.process.steps.map((step) => (
+        <div class="bg-slate-50/50 rounded-xl p-5 text-center border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">
+            {step.step}
+          </div>
+          
+          <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+            {step.title}
+          </h3>
+          
+          <p class="text-slate-500 text-xs leading-relaxed">
+            {step.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.services.title}
+      </h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      {currentContent.services.items.map((service) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={service.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-bold text-slate-900 mb-4 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {service.title}
+          </h3>
+          
+          <ul class="space-y-2">
+            {service.items.map((item) => (
+              <li class="flex items-start text-sm text-slate-600">
+                <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Industries Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.industries.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.industries.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      {currentContent.industries.items.map((industry) => (
+        <div class="bg-slate-50/50 rounded-xl p-4 text-center border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-md transition-all duration-300">
+          <p class="text-sm font-medium text-slate-700">{industry}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/contact" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-emerald-600 bg-white hover:bg-gray-50 transition-colors">
-          Start BCM Implementation
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
         </a>
-        <a href="/about" class="inline-flex items-center px-8 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-emerald-700 transition-colors">
-          Learn More About Us
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
         </a>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
 </Layout>

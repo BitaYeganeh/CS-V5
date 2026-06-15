@@ -1,337 +1,401 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-import Button from '@/components/ui/Button.astro';
+
+// SEO Configuration
+const seoConfig = {
+  title: "eIDAS and Digital Trust | EU Digital Identity Services",
+  description: "Professional eIDAS compliance and digital trust services. We help organizations build a strong foundation for digital identity and trust.",
+  keywords: "eIDAS, digital trust, digital identity, electronic signatures, trust services, EU regulation, Finland",
+  type: "service" as const,
+};
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
-const title = lang === 'fi' ? "eIDAS ja Digitaalinen Luottamus" : "eIDAS and Digital Trust";
-const description = lang === 'fi' 
-  ? "Ammattimaiset eIDAS yhteensopivuus- ja digitaalisen luottamuksen palvelut. Autamme organisaatioita rakentamaan vahvan digitaalisen identiteetin ja luottamuksen perustan."
-  : "Professional eIDAS compliance and digital trust services. We help organizations build a strong foundation for digital identity and trust.";
-
-const eidasServices = [
-  {
-    title: lang === 'fi' ? "Digitaalinen Identiteetti" : "Digital Identity",
-    description: lang === 'fi' 
-      ? "Rakennetaan vahva ja luotettava digitaalinen identiteetti"
-      : "Build strong and reliable digital identity",
-    icon: "user",
-    features: [
-      lang === 'fi' ? "Identiteetin vahvistus" : "Identity verification",
-      lang === 'fi' ? "Luotettavuustasot" : "Trust levels",
-      lang === 'fi' ? "Identiteetin hallinta" : "Identity management"
-    ]
+const content = {
+  en: {
+    hero: {
+      title: "eIDAS and Digital Trust",
+      subtitle: "EU Digital Identity Services",
+      description: "Professional eIDAS compliance and digital trust services. We help organizations build a strong foundation for digital identity and trust. Build strong digital trust according to eIDAS standard. We help organizations achieve EU digital identity and trust requirements.",
+      primaryCTA: { text: "Get in Touch", href: "/contact" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    },
+    services: {
+      title: "eIDAS Services",
+      subtitle: "eIDAS provides comprehensive services for digital identity and trust.",
+      items: [
+        { title: "Digital Identity", description: "Build strong and reliable digital identity", icon: "user", features: ["Identity verification", "Trust levels", "Identity management"] },
+        { title: "Digital Signature", description: "Secure and legally binding digital signatures", icon: "document", features: ["QES signatures", "AES signatures", "SES signatures"] },
+        { title: "Electronic Mail", description: "Reliable and secure electronic communication", icon: "mail", features: ["Message encryption", "Sender verification", "Recipient verification"] },
+        { title: "Trust Services", description: "eIDAS trust services and certification", icon: "shield", features: ["Trust service providers", "Certification", "Supervision"] }
+      ]
+    },
+    levels: {
+      title: "Trust Levels",
+      subtitle: "eIDAS defines three trust levels for digital services.",
+      items: [
+        { level: "Low", title: "Low Trust", description: "Basic level digital identity and signature", icon: "minus", requirements: ["Email address", "Password", "Basic security"] },
+        { level: "Substantial", title: "Substantial Trust", description: "Medium level digital identity and signature", icon: "check", requirements: ["Identity verification", "Two-factor authentication", "Encryption"] },
+        { level: "High", title: "High Trust", description: "High level digital identity and signature", icon: "shield", requirements: ["Identity verification", "Two-factor authentication", "Encryption and certificates"] }
+      ]
+    },
+    process: {
+      title: "Implementation Process",
+      subtitle: "Clear and structured process for eIDAS compliance.",
+      steps: [
+        { step: "1", title: "eIDAS Assessment", description: "Assess current digital trust and eIDAS compliance" },
+        { step: "2", title: "Gap Analysis", description: "Identify gaps and plan remediation measures" },
+        { step: "3", title: "Planning", description: "Plan eIDAS compliance program" },
+        { step: "4", title: "Implementation", description: "Implement required digital trust measures" },
+        { step: "5", title: "Monitoring", description: "Continuous compliance monitoring and updates" }
+      ]
+    },
+    benefits: {
+      title: "eIDAS Compliance Benefits",
+      subtitle: "Achieve concrete benefits with eIDAS compliance.",
+      items: [
+        "Meet EU eIDAS requirements",
+        "Strengthen digital trust",
+        "Improve customer trust",
+        "Accelerate digital processes",
+        "Competitive advantage in markets"
+      ]
+    },
+    cta: {
+      title: "Ready to start your eIDAS compliance?",
+      subtitle: "Contact us and let's start your eIDAS compliance process.",
+      primaryCTA: { text: "Get in Touch", href: "/contact" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    }
   },
-  {
-    title: lang === 'fi' ? "Digitaalinen Allekirjoitus" : "Digital Signature",
-    description: lang === 'fi' 
-      ? "Turvalliset ja laillisesti sitovat digitaaliset allekirjoitukset"
-      : "Secure and legally binding digital signatures",
-    icon: "document",
-    features: [
-      lang === 'fi' ? "QES allekirjoitukset" : "QES signatures",
-      lang === 'fi' ? "AES allekirjoitukset" : "AES signatures",
-      lang === 'fi' ? "SES allekirjoitukset" : "SES signatures"
-    ]
-  },
-  {
-    title: lang === 'fi' ? "Sähköinen Posti" : "Electronic Mail",
-    description: lang === 'fi' 
-      ? "Luotettava ja turvallinen sähköinen viestintä"
-      : "Reliable and secure electronic communication",
-    icon: "mail",
-    features: [
-      lang === 'fi' ? "Viestien salaus" : "Message encryption",
-      lang === 'fi' ? "Lähettäjän vahvistus" : "Sender verification",
-      lang === 'fi' ? "Vastaanottajan vahvistus" : "Recipient verification"
-    ]
-  },
-  {
-    title: lang === 'fi' ? "Luotettavat Palvelut" : "Trust Services",
-    description: lang === 'fi' 
-      ? "eIDAS luotettavat palvelut ja sertifiointi"
-      : "eIDAS trust services and certification",
-    icon: "shield",
-    features: [
-      lang === 'fi' ? "Luotettavuuspalveluntarjoajat" : "Trust service providers",
-      lang === 'fi' ? "Sertifiointi" : "Certification",
-      lang === 'fi' ? "Valvonta" : "Supervision"
-    ]
+  fi: {
+    hero: {
+      title: "eIDAS ja Digitaalinen Luottamus",
+      subtitle: "EU:n Digitaalisen Identiteetin Palvelut",
+      description: "Ammattimaiset eIDAS yhteensopivuus- ja digitaalisen luottamuksen palvelut. Autamme organisaatioita rakentamaan vahvan digitaalisen identiteetin ja luottamuksen perustan. Rakennetaan vahva digitaalinen luottamus eIDAS standardin mukaisesti. Autamme organisaatioita saavuttamaan EU:n digitaalisen identiteetin ja luottamuksen vaatimukset.",
+      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    },
+    services: {
+      title: "eIDAS Palvelut",
+      subtitle: "eIDAS tarjoaa kattavat palvelut digitaaliseen identiteettiin ja luottamukseen.",
+      items: [
+        { title: "Digitaalinen Identiteetti", description: "Rakennetaan vahva ja luotettava digitaalinen identiteetti", icon: "user", features: ["Identiteetin vahvistus", "Luotettavuustasot", "Identiteetin hallinta"] },
+        { title: "Digitaalinen Allekirjoitus", description: "Turvalliset ja laillisesti sitovat digitaaliset allekirjoitukset", icon: "document", features: ["QES allekirjoitukset", "AES allekirjoitukset", "SES allekirjoitukset"] },
+        { title: "Sähköinen Posti", description: "Luotettava ja turvallinen sähköinen viestintä", icon: "mail", features: ["Viestien salaus", "Lähettäjän vahvistus", "Vastaanottajan vahvistus"] },
+        { title: "Luotettavat Palvelut", description: "eIDAS luotettavat palvelut ja sertifiointi", icon: "shield", features: ["Luotettavuuspalveluntarjoajat", "Sertifiointi", "Valvonta"] }
+      ]
+    },
+    levels: {
+      title: "Luotettavuustasot",
+      subtitle: "eIDAS määrittelee kolme luotettavuustasoa digitaalisille palveluille.",
+      items: [
+        { level: "Low", title: "Matala Luotettavuus", description: "Perustason digitaalinen identiteetti ja allekirjoitus", icon: "minus", requirements: ["Sähköpostiosoite", "Salasana", "Perustason tietoturva"] },
+        { level: "Substantial", title: "Merkittävä Luotettavuus", description: "Keskitasoinen digitaalinen identiteetti ja allekirjoitus", icon: "check", requirements: ["Henkilöllisyyden vahvistus", "Kaksi tekijän autentikaatio", "Salaus"] },
+        { level: "High", title: "Korkea Luotettavuus", description: "Korkeatason digitaalinen identiteetti ja allekirjoitus", icon: "shield", requirements: ["Henkilöllisyyden vahvistus", "Kaksi tekijän autentikaatio", "Salaus ja sertifikaatit"] }
+      ]
+    },
+    process: {
+      title: "Toteutusprosessi",
+      subtitle: "Selkeä ja strukturoitu prosessi eIDAS yhteensopivuuteen.",
+      steps: [
+        { step: "1", title: "eIDAS Arviointi", description: "Arvioidaan nykyinen digitaalinen luottamus ja eIDAS yhteensopivuus" },
+        { step: "2", title: "Gap Analysis", description: "Tunnistetaan puutteet ja suunnitellaan korjauskeinot" },
+        { step: "3", title: "Suunnittelu", description: "Suunnitellaan eIDAS yhteensopivuusohjelma" },
+        { step: "4", title: "Toteutus", description: "Toteutetaan tarvittavat digitaalisen luottamuksen toimenpiteet" },
+        { step: "5", title: "Valvonta", description: "Jatkuva yhteensopivuuden valvonta ja päivitys" }
+      ]
+    },
+    benefits: {
+      title: "eIDAS Yhteensopivuuden Edut",
+      subtitle: "Saavuta konkreettisia hyötyjä eIDAS yhteensopivuuden avulla.",
+      items: [
+        "Täytä EU eIDAS vaatimukset",
+        "Vahvista digitaalinen luottamus",
+        "Paranna asiakkaiden luottamusta",
+        "Nopeuta digitaalisia prosesseja",
+        "Kilpailuetu markkinoilla"
+      ]
+    },
+    cta: {
+      title: "Valmiit aloittamaan eIDAS yhteensopivuuden?",
+      subtitle: "Ota yhteyttä meihin ja aloitetaan eIDAS yhteensopivuusprosessi.",
+      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    }
   }
-];
+};
 
-const trustLevels = [
-  {
-    level: "Low",
-    title: lang === 'fi' ? "Matala Luotettavuus" : "Low Trust",
-    description: lang === 'fi' 
-      ? "Perustason digitaalinen identiteetti ja allekirjoitus"
-      : "Basic level digital identity and signature",
-    icon: "minus",
-    requirements: [
-      lang === 'fi' ? "Sähköpostiosoite" : "Email address",
-      lang === 'fi' ? "Salasana" : "Password",
-      lang === 'fi' ? "Perustason tietoturva" : "Basic security"
-    ]
-  },
-  {
-    level: "Substantial",
-    title: lang === 'fi' ? "Merkittävä Luotettavuus" : "Substantial Trust",
-    description: lang === 'fi' 
-      ? "Keskitasoinen digitaalinen identiteetti ja allekirjoitus"
-      : "Medium level digital identity and signature",
-    icon: "check",
-    requirements: [
-      lang === 'fi' ? "Henkilöllisyyden vahvistus" : "Identity verification",
-      lang === 'fi' ? "Kaksi tekijän autentikaatio" : "Two-factor authentication",
-      lang === 'fi' ? "Salaus" : "Encryption"
-    ]
-  },
-  {
-    level: "High",
-    title: lang === 'fi' ? "Korkea Luotettavuus" : "High Trust",
-    description: lang === 'fi' 
-      ? "Korkeatason digitaalinen identiteetti ja allekirjoitus"
-      : "High level digital identity and signature",
-    icon: "shield",
-    requirements: [
-      lang === 'fi' ? "Henkilöllisyyden vahvistus" : "Identity verification",
-      lang === 'fi' ? "Kaksi tekijän autentikaatio" : "Two-factor authentication",
-      lang === 'fi' ? "Salaus ja sertifikaatit" : "Encryption and certificates"
-    ]
-  }
-];
-
-const implementationSteps = [
-  {
-    step: "1",
-    title: lang === 'fi' ? "eIDAS Arviointi" : "eIDAS Assessment",
-    description: lang === 'fi' 
-      ? "Arvioidaan nykyinen digitaalinen luottamus ja eIDAS yhteensopivuus"
-      : "Assess current digital trust and eIDAS compliance"
-  },
-  {
-    step: "2",
-    title: lang === 'fi' ? "Gap Analysis" : "Gap Analysis",
-    description: lang === 'fi' 
-      ? "Tunnistetaan puutteet ja suunnitellaan korjauskeinot"
-      : "Identify gaps and plan remediation measures"
-  },
-  {
-    step: "3",
-    title: lang === 'fi' ? "Suunnittelu" : "Planning",
-    description: lang === 'fi' 
-      ? "Suunnitellaan eIDAS yhteensopivuusohjelma"
-      : "Plan eIDAS compliance program"
-  },
-  {
-    step: "4",
-    title: lang === 'fi' ? "Toteutus" : "Implementation",
-    description: lang === 'fi' 
-      ? "Toteutetaan tarvittavat digitaalisen luottamuksen toimenpiteet"
-      : "Implement required digital trust measures"
-  },
-  {
-    step: "5",
-    title: lang === 'fi' ? "Valvonta" : "Monitoring",
-    description: lang === 'fi' 
-      ? "Jatkuva yhteensopivuuden valvonta ja päivitys"
-      : "Continuous compliance monitoring and updates"
-  }
-];
-
-const benefits = [
-  lang === 'fi' ? "Täytä EU eIDAS vaatimukset" : "Meet EU eIDAS requirements",
-  lang === 'fi' ? "Vahvista digitaalinen luottamus" : "Strengthen digital trust",
-  lang === 'fi' ? "Paranna asiakkaiden luottamusta" : "Improve customer trust",
-  lang === 'fi' ? "Nopeuta digitaalisia prosesseja" : "Accelerate digital processes",
-  lang === 'fi' ? "Kilpailuetu markkinoilla" : "Competitive advantage in markets"
-];
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={description}>
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-cyan-50 via-white to-blue-50 py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl">
-        <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-          {title}
-        </h1>
-        <p class="text-xl text-slate-600 mb-8">
-          {lang === 'fi' 
-            ? "Rakennetaan vahva digitaalinen luottamus eIDAS standardin mukaisesti. Autamme organisaatioita saavuttamaan EU:n digitaalisen identiteetin ja luottamuksen vaatimukset."
-            : "Build strong digital trust according to eIDAS standard. We help organizations achieve EU digital identity and trust requirements."
-          }
-        </p>
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
-          <h2 class="text-lg font-semibold text-slate-900 mb-4">
-            {lang === 'fi' ? 'Mikä on eIDAS?' : 'What is eIDAS?'}
-          </h2>
-          <p class="text-slate-600 mb-4">
-            {lang === 'fi'
-              ? "eIDAS on EU:n digitaalisen identiteetin ja luottamuksen palveluiden sääntely, joka määrittelee digitaalisten allekirjoitusten, identiteetin ja luottamuksen standardit."
-              : "eIDAS is the EU regulation for digital identity and trust services that defines standards for digital signatures, identity, and trust."
-            }
-          </p>
-        </div>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
-
-  <!-- eIDAS Services -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'eIDAS Palvelut' : 'eIDAS Services'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi'
-            ? "eIDAS tarjoaa kattavat palvelut digitaaliseen identiteettiin ja luottamukseen."
-            : "eIDAS provides comprehensive services for digital identity and trust."
-          }
-        </p>
-      </div>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {eidasServices.map((service) => (
-          <div class="bg-gradient-to-br from-slate-50 to-white p-8 rounded-xl border border-slate-200 hover:shadow-xl transition-all duration-300">
-            <div class="w-16 h-16 bg-cyan-100 rounded-xl flex items-center justify-center mb-6">
-              <Icon name={service.icon} className="w-8 h-8 text-cyan-600" />
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.services.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.services.subtitle}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {currentContent.services.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
             </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-4">{service.title}</h3>
-            <p class="text-slate-600 mb-6">{service.description}</p>
-            <ul class="space-y-2">
-              {service.features.map((feature) => (
-                <li class="flex items-center text-sm text-slate-600">
-                  <Icon name="check" className="w-4 h-4 text-green-500 mr-2" />
+          </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {item.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left mb-4">
+            {item.description}
+          </p>
+          
+          <div class="mt-auto">
+            <ul class="space-y-1.5">
+              {item.features.map((feature) => (
+                <li class="flex items-start text-xs text-slate-500">
+                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
                   {feature}
                 </li>
               ))}
             </ul>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Trust Levels -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Luotettavuustasot' : 'Trust Levels'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi'
-            ? "eIDAS määrittelee kolme luotettavuustasoa digitaalisille palveluille."
-            : "eIDAS defines three trust levels for digital services."
-          }
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {trustLevels.map((level) => (
-          <div class="bg-white p-8 rounded-xl border border-slate-200 hover:shadow-xl transition-all duration-300">
-            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
-              <Icon name={level.icon} className="w-8 h-8 text-blue-600" />
+<!-- Trust Levels Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.levels.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.levels.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      {currentContent.levels.items.map((level) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex justify-end">
+              <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+                <Icon name={level.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+              </div>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-4">{level.title}</h3>
-            <p class="text-slate-600 mb-6">{level.description}</p>
-            <ul class="space-y-2">
-              {level.requirements.map((requirement) => (
-                <li class="flex items-center text-sm text-slate-600">
-                  <Icon name="check" className="w-4 h-4 text-green-500 mr-2" />
-                  {requirement}
+            <div class="text-right">
+              <span class="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
+                {level.level}
+              </span>
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {level.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left mb-4">
+            {level.description}
+          </p>
+          
+          <div class="mt-auto">
+            <ul class="space-y-1.5">
+              {level.requirements.map((req) => (
+                <li class="flex items-start text-xs text-slate-500">
+                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  {req}
                 </li>
               ))}
             </ul>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Implementation Process -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'Toteutusprosessi' : 'Implementation Process'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi'
-            ? "Selkeä ja strukturoitu prosessi eIDAS yhteensopivuuteen."
-            : "Clear and structured process for eIDAS compliance."
-          }
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-        {implementationSteps.map((step) => (
-          <div class="text-center">
-            <div class="w-16 h-16 bg-cyan-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-xl font-bold">
-              {step.step}
-            </div>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2">{step.title}</h3>
-            <p class="text-slate-600 text-sm">{step.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Benefits Section -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">
-          {lang === 'fi' ? 'eIDAS Yhteensopivuuden Edut' : 'eIDAS Compliance Benefits'}
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi'
-            ? "Saavuta konkreettisia hyötyjä eIDAS yhteensopivuuden avulla."
-            : "Achieve concrete benefits with eIDAS compliance."
-          }
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {benefits.map((benefit) => (
-          <div class="text-center">
-            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Icon name="check" className="w-8 h-8 text-green-600" />
-            </div>
-            <p class="text-slate-700 font-medium">{benefit}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-20 bg-slate-900 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold mb-6">
-        {lang === 'fi' ? 'Valmiit aloittamaan eIDAS yhteensopivuuden?' : 'Ready to start your eIDAS compliance?'}
+<!-- Process Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.process.title}
       </h2>
-      <p class="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
-        {lang === 'fi'
-          ? "Ota yhteyttä meihin ja aloitetaan eIDAS yhteensopivuusprosessi."
-          : "Contact us and let's start your eIDAS compliance process."
-        }
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.process.subtitle}
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/contact" variant="primary" className="text-lg px-8 py-3">
-          {lang === 'fi' ? 'Ota yhteyttä' : 'Get in Touch'}
-        </Button>
-        <Button href="/contact?consultation=true" variant="secondary" className="text-lg px-8 py-3">
-          {lang === 'fi' ? 'Varaa konsultaatio' : 'Book Consultation'}
-        </Button>
-      </div>
     </div>
-  </section>
-</Layout>
+    
+    <div class="grid md:grid-cols-5 gap-6">
+      {currentContent.process.steps.map((step) => (
+        <div class="bg-slate-50/50 rounded-xl p-5 text-center border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    group">
+          
+          <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">
+            {step.step}
+          </div>
+          
+          <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+            {step.title}
+          </h3>
+          
+          <p class="text-slate-500 text-xs leading-relaxed">
+            {step.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
+<!-- Benefits Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.benefits.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.benefits.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-6">
+      {currentContent.benefits.items.map((item) => (
+        <div class="bg-slate-50/50 rounded-xl p-6 text-center border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50
+                    hover:shadow-md transition-all duration-300
+                    flex items-center justify-center">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <span class="text-slate-700 text-sm font-medium">{item}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
+      </h2>
+
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</Layout>

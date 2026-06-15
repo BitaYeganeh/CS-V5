@@ -1,133 +1,246 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Button from '@/components/ui/Button.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
 
-const title = 'SOC 2 Readiness';
-const description = 'Map controls to Trust Services Criteria, collect evidence, and prepare for Type I/II audits.';
+// SEO Configuration
+const seoConfig = {
+  title: "SOC 2 Readiness | Trust Services Criteria Compliance",
+  description: "Map controls to Trust Services Criteria, collect evidence, and prepare for Type I/II audits. Comprehensive preparation for successful SOC 2 Type I and Type II audits.",
+  keywords: "SOC 2, SOC 2 readiness, trust services criteria, Type I audit, Type II audit, Finland",
+  type: "service" as const,
+};
 
-const services = [
-  {
-    title: 'Controls Mapping',
-    description: 'Map your existing controls to SOC 2 Trust Services Criteria',
-    features: [
-      'Security controls assessment',
-      'Availability controls review',
-      'Processing integrity evaluation',
-      'Confidentiality controls mapping'
-    ],
-    icon: 'map'
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const content = {
+  en: {
+    hero: {
+      title: "SOC 2 Readiness",
+      subtitle: "Trust Services Criteria Compliance",
+      description: "Map controls to Trust Services Criteria, collect evidence, and prepare for Type I/II audits. Comprehensive preparation for successful SOC 2 Type I and Type II audits.",
+      primaryCTA: { text: "Start Assessment", href: "/contact" },
+      secondaryCTA: { text: "Learn More", href: "#services" }
+    },
+    services: {
+      title: "Our SOC 2 Readiness Services",
+      subtitle: "Comprehensive preparation for successful SOC 2 Type I and Type II audits",
+      items: [
+        {
+          title: "Controls Mapping",
+          description: "Map your existing controls to SOC 2 Trust Services Criteria",
+          icon: "map",
+          features: ["Security controls assessment", "Availability controls review", "Processing integrity evaluation", "Confidentiality controls mapping"]
+        },
+        {
+          title: "Evidence Collection",
+          description: "Systematic evidence gathering and documentation for audit readiness",
+          icon: "folder",
+          features: ["Evidence identification and collection", "Documentation standardization", "Control testing procedures", "Evidence repository setup"]
+        },
+        {
+          title: "Type I Preparation",
+          description: "Prepare for SOC 2 Type I audit focusing on control design",
+          icon: "clipboard",
+          features: ["Control design assessment", "Policy and procedure review", "Gap analysis and remediation", "Pre-audit readiness check"]
+        },
+        {
+          title: "Type II Preparation",
+          description: "Full operational effectiveness testing for Type II audit",
+          icon: "shield-check",
+          features: ["Operating effectiveness testing", "Continuous monitoring setup", "Exception management", "Auditor engagement support"]
+        }
+      ]
+    },
+    cta: {
+      title: "Ready for SOC 2 Certification?",
+      subtitle: "Get expert guidance to ensure audit success",
+      primaryCTA: { text: "Contact Our Experts", href: "/contact" },
+      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    }
   },
-  {
-    title: 'Evidence Collection',
-    description: 'Systematic evidence gathering and documentation for audit readiness',
-    features: [
-      'Evidence identification and collection',
-      'Documentation standardization',
-      'Control testing procedures',
-      'Evidence repository setup'
-    ],
-    icon: 'folder'
-  },
-  {
-    title: 'Type I Preparation',
-    description: 'Prepare for SOC 2 Type I audit focusing on control design',
-    features: [
-      'Control design assessment',
-      'Policy and procedure review',
-      'Gap analysis and remediation',
-      'Pre-audit readiness check'
-    ],
-    icon: 'clipboard'
-  },
-  {
-    title: 'Type II Preparation',
-    description: 'Full operational effectiveness testing for Type II audit',
-    features: [
-      'Operating effectiveness testing',
-      'Continuous monitoring setup',
-      'Exception management',
-      'Auditor engagement support'
-    ],
-    icon: 'shield-check'
+  fi: {
+    hero: {
+      title: "SOC 2 -valmius",
+      subtitle: "Trust Services -kriteerien vaatimustenmukaisuus",
+      description: "Kartta kontrollit Trust Services -kriteereihin, kerää todisteita ja valmistaudu tyyppi I/II auditointeihin. Kattava valmistautuminen onnistuneisiin SOC 2 Type I ja Type II auditointeihin.",
+      primaryCTA: { text: "Aloita arviointi", href: "/contact" },
+      secondaryCTA: { text: "Lue lisää", href: "#services" }
+    },
+    services: {
+      title: "SOC 2 -valmiuspalvelumme",
+      subtitle: "Kattava valmistautuminen onnistuneisiin SOC 2 Type I ja Type II auditointeihin",
+      items: [
+        {
+          title: "Kontrollien kartoitus",
+          description: "Kartta olemassa olevat kontrollisi SOC 2 Trust Services -kriteereihin",
+          icon: "map",
+          features: ["Turvallisuuskontrollien arviointi", "Saatavuuskontrollien tarkistus", "Käsittelyn eheyden arviointi", "Luottamuksellisuuskontrollien kartoitus"]
+        },
+        {
+          title: "Todisteiden keruu",
+          description: "Systemaattinen todisteiden keruu ja dokumentointi auditointivalmiutta varten",
+          icon: "folder",
+          features: ["Todisteiden tunnistaminen ja keruu", "Dokumentoinnin standardointi", "Kontrollien testausmenettelyt", "Todisteiden arkiston perustaminen"]
+        },
+        {
+          title: "Tyypin I valmistelu",
+          description: "Valmistaudu SOC 2 Type I -auditointiin, joka keskittyy kontrollien suunnitteluun",
+          icon: "clipboard",
+          features: ["Kontrollien suunnittelun arviointi", "Käytäntöjen ja menettelyjen tarkistus", "Aukkoanalyysi ja korjaukset", "Esisertifioinnin valmiusarviointi"]
+        },
+        {
+          title: "Tyypin II valmistelu",
+          description: "Täydellinen operatiivisen tehokkuuden testaus tyypin II auditointia varten",
+          icon: "shield-check",
+          features: ["Operatiivisen tehokkuuden testaus", "Jatkuvan seurannan asennus", "Poikkeamien hallinta", "Auditorin sitoutumisen tuki"]
+        }
+      ]
+    },
+    cta: {
+      title: "Valmis SOC 2 -sertifiointiin?",
+      subtitle: "Hanki asiantuntijaohjausta varmistaaksesi auditoinnin onnistuminen",
+      primaryCTA: { text: "Ota yhteyttä asiantuntijoihimme", href: "/contact" },
+      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    }
   }
-];
+};
+
+const currentContent = content[lang];
 ---
 
-<Layout title={title} description={description}>
-  <!-- Hero Section -->
-  <section class="py-20 bg-gradient-to-br from-purple-50 to-pink-100">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-          {title}
-        </h1>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-          {description}
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button href="/contact" variant="primary">
-            Start Assessment
-          </Button>
-          <Button href="#services" variant="secondary">
-            Learn More
-          </Button>
-        </div>
+<Layout {...seoConfig}>
+
+<!-- Hero Section - Centered, NO image -->
+<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="flex justify-center mb-4">
+      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
       </div>
     </div>
-  </section>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+      {currentContent.hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+      {currentContent.hero.subtitle}
+    </p>
+    
+    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      {currentContent.hero.description}
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
+      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+        {currentContent.hero.primaryCTA.text}
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      
+      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
+        {currentContent.hero.secondaryCTA.text}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
 
-  <!-- Services Grid -->
-  <section id="services" class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">
-          Our SOC 2 Readiness Services
-        </h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-          Comprehensive preparation for successful SOC 2 Type I and Type II audits
-        </p>
-      </div>
+<!-- Services Section -->
+<section id="services" class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div class="grid md:grid-cols-2 gap-8">
-        {services.map((service) => (
-          <div class="bg-gradient-to-br from-gray-50 to-purple-50 rounded-lg p-8 hover:shadow-lg transition-shadow">
-            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
-              <Icon name={service.icon} class="w-6 h-6 text-purple-600" />
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+        {currentContent.services.title}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        {currentContent.services.subtitle}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {currentContent.services.items.map((service) => (
+        <div class="bg-slate-50/50 rounded-xl border border-slate-100
+                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
+                    transition-all duration-300
+                    flex flex-col h-full p-6 group">
+          
+          <div class="flex justify-end mb-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+              <Icon name={service.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
             </div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-3">
-              {service.title}
-            </h3>
-            <p class="text-gray-600 mb-4">
-              {service.description}
-            </p>
-            <ul class="space-y-2">
+          </div>
+          
+          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+            {service.title}
+          </h3>
+          
+          <p class="text-slate-500 text-sm leading-relaxed text-left mb-4">
+            {service.description}
+          </p>
+          
+          <div class="mt-auto">
+            <ul class="space-y-1.5">
               {service.features.map((feature) => (
-                <li class="flex items-start text-sm text-gray-600">
-                  <Icon name="check" class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                <li class="flex items-start text-xs text-slate-500">
+                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
                   {feature}
                 </li>
               ))}
             </ul>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CTA Section -->
-  <section class="py-20 bg-gradient-to-r from-purple-600 to-pink-600">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-white mb-4">
-        Ready for SOC 2 Certification?
+<!-- CTA Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+      
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
+        {currentContent.cta.title}
       </h2>
-      <p class="text-xl text-purple-100 mb-8">
-        Get expert guidance to ensure audit success
-      </p>
-      <Button href="/contact" variant="secondary">
-        Contact Our Experts
-      </Button>
-    </div>
-  </section>
-</Layout>
 
+      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {currentContent.cta.subtitle}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href={currentContent.cta.primaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+          {currentContent.cta.primaryCTA.text}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        
+        <a href={currentContent.cta.secondaryCTA.href} 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+          {currentContent.cta.secondaryCTA.text}
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</Layout>
