@@ -266,15 +266,26 @@ const latestResources = [
 
 <!-- Hero Section -->
 <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 md:min-h-screen flex items-center relative overflow-hidden">
+
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-2 md:py-4 -mt-4 md:mt-0">
     
+    <!-- TITLE AT THE VERY TOP - CENTERED -->
+    <div class="text-center mb-4 md:mb-20">
+      <h1 class="font-bold tracking-tight leading-tight"
+          style="font-family: 'Montserrat', sans-serif; font-size: clamp(24px, 5vw, 45px);">
+        <span class="bg-gradient-to-r from-[#1E2A7A] to-[#60A5FA] bg-clip-text text-transparent">
+          Enterprise Cybersecurity &amp; Compliance Advisory
+        </span>
+      </h1>
+    </div>
+
     <!-- Mobile layout (stacked vertically) -->
-    <div class="flex flex-col items-center justify-center gap-6 mb-12 md:hidden">
+    <div class="flex flex-col items-center justify-center gap-6 mb-8 md:hidden">
       <!-- Mobile: image -->
       <img 
         src="/images/Frame 1-2.png"
         alt="cybersecurity concept"
-        class="w-full max-w-md object-cover"
+        class="w-full max-w-xs object-cover"
         loading="eager"
       />
     </div>
@@ -285,23 +296,23 @@ const latestResources = [
       <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
         
         <!-- Left Side: Content -->
-        <div class="text-center md:text-left">
+        <div class="text-center">
           
-          <!-- Title with Montserrat font - CENTERED ON MOBILE, LEFT ON DESKTOP -->
-          <h1 class="font-bold tracking-tight mb-6 leading-tight text-center md:text-left md:-mt-2"
-              style="font-family: 'Montserrat', sans-serif; font-size: 38px;">
-            <div>Enterprise Cybersecurity &</div>
-            <div class="bg-gradient-to-r from-[#1E2A7A] to-[#60A5FA] bg-clip-text text-transparent">
-              Compliance Advisory
+          <!-- Subtitle text - CENTERED ON BOTH MOBILE AND DESKTOP -->
+          <div class="text-center">
+            <!-- Decorative element - HIDDEN ON MOBILE, SHOWN ON DESKTOP -->
+            <div class="hidden md:flex items-center justify-center gap-4 mb-4">
+              <div class="h-px w-12 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
+              <span class="text-[#1E2A7A]">✦</span>
+              <div class="h-px w-12 bg-gradient-to-l from-transparent to-[#1E2A7A]"></div>
             </div>
-          </h1>
-          
-          <!-- Subtitle text - CENTERED ON MOBILE, LEFT ON DESKTOP -->
-          <p class="text-slate-600 leading-relaxed text-center md:text-left"
-             style="font-family: 'Montserrat', sans-serif; font-size: 15px;">
-            Strategic guidance for complex regulatory environments. ISO 27001,<br class="hidden md:block">NIS2, GDPR, and DORA implementation with proven methodologies trusted by global organizations.
-          </p>
-
+            
+            <!-- RESPONSIVE PARAGRAPH - CENTERED ON ALL SCREENS -->
+            <p class="text-slate-600 leading-relaxed mx-auto text-center"
+               style="font-family: 'Montserrat', sans-serif; font-size: clamp(16px, 2.5vw, 25px); max-width: 600px;">
+              Strategic guidance for complex regulatory environments. ISO 27001, NIS2, GDPR, and DORA implementation with proven methodologies trusted by global organizations.
+            </p>
+          </div>
         </div>
         
         <!-- Right Side: Frame 1-2.png image -->
@@ -317,8 +328,8 @@ const latestResources = [
         
       </div>
       
-      <!-- Buttons with consistent font - STACKED ON MOBILE, SIDE BY SIDE ON DESKTOP -->
-      <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center mt-10 md:mt-14"
+      <!-- Buttons - FULL WIDTH ON MOBILE, SIDE BY SIDE ON DESKTOP -->
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center mt-8 md:mt-14"
            style="font-family: 'Montserrat', sans-serif;">
         
         <a href="/contact" 
