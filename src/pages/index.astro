@@ -266,7 +266,7 @@ const latestResources = [
 
 <!-- Hero Section -->
 <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 md:min-h-screen flex items-center relative overflow-hidden">
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-16 -mt-4 md:mt-0">
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-2 md:py-4 -mt-4 md:mt-0">
     
     <!-- Mobile layout (stacked vertically) -->
     <div class="flex flex-col items-center justify-center gap-6 mb-12 md:hidden">
@@ -285,21 +285,21 @@ const latestResources = [
       <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
         
         <!-- Left Side: Content -->
-        <div class="text-center">
+        <div class="text-center md:text-left">
           
-          <!-- Title with Montserrat font, 35px size on desktop -->
-          <h1 class="font-bold tracking-tight mb-6 leading-tight text-center md:-mt-16"
-              style="font-family: 'Montserrat', sans-serif; font-size: 35px;">
+          <!-- Title with Montserrat font - CENTERED ON MOBILE, LEFT ON DESKTOP -->
+          <h1 class="font-bold tracking-tight mb-6 leading-tight text-center md:text-left md:-mt-2"
+              style="font-family: 'Montserrat', sans-serif; font-size: 38px;">
             <div>Enterprise Cybersecurity &</div>
             <div class="bg-gradient-to-r from-[#1E2A7A] to-[#60A5FA] bg-clip-text text-transparent">
               Compliance Advisory
             </div>
           </h1>
           
-          <!-- Subtitle text with 15px size -->
-          <p class="text-slate-600 max-w-md mx-auto leading-relaxed"
+          <!-- Subtitle text - CENTERED ON MOBILE, LEFT ON DESKTOP -->
+          <p class="text-slate-600 leading-relaxed text-center md:text-left"
              style="font-family: 'Montserrat', sans-serif; font-size: 15px;">
-            Strategic guidance for complex regulatory environments. ISO 27001, NIS2, GDPR, and DORA implementation with proven methodologies trusted by global organizations.
+            Strategic guidance for complex regulatory environments. ISO 27001,<br class="hidden md:block">NIS2, GDPR, and DORA implementation with proven methodologies trusted by global organizations.
           </p>
 
         </div>
@@ -309,14 +309,15 @@ const latestResources = [
           <img 
             src="/images/Frame 1-2.png"
             alt="Cybersecurity strategy concept"
-            class="w-full max-w-2xl lg:max-w-3xl mx-auto object-cover -mt-20 -ml-20"
+            class="object-contain -mt-8"
+            style="width: 100%; max-width: 600px; height: auto;"
             loading="eager"
           />
         </div>
         
       </div>
       
-      <!-- Buttons with consistent font -->
+      <!-- Buttons with consistent font - STACKED ON MOBILE, SIDE BY SIDE ON DESKTOP -->
       <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center mt-10 md:mt-14"
            style="font-family: 'Montserrat', sans-serif;">
         
@@ -342,8 +343,6 @@ const latestResources = [
     </div>
   </div>
 </section>
-
-
 <!-- Trust Bar -->
 <section class="py-8 bg-gradient-to-b from-blue-50/30 to-white overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
