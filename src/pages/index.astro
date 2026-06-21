@@ -278,12 +278,13 @@ const latestResources = [
     
     <!-- TITLE AT THE VERY TOP - CENTERED -->
     <div class="text-center mb-4 md:mb-20">
-      <h1 class="font-bold tracking-tight leading-tight"
-          style="font-family: 'Montserrat', sans-serif; font-size: clamp(24px, 5vw, 45px);">
-        <span class="bg-gradient-to-r from-black to-[#3B82F6] bg-clip-text text-transparent">
-          Enterprise Cybersecurity &amp; Compliance Advisory
-        </span>
-      </h1>
+<h1 class="font-bold tracking-tight leading-tight"
+    style="font-family: 'Montserrat', sans-serif; font-size: clamp(24px, 5vw, 45px);">
+  <span class="bg-gradient-to-r from-[#1E2A7A] via-[#3B82F6] to-[#3bb1f6] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+    Enterprise Cybersecurity &amp; Compliance Advisory
+  </span>
+</h1>
+
     </div>
 
     <!-- Mobile layout (stacked vertically) -->
@@ -354,6 +355,25 @@ const latestResources = [
       
     </div>
   </div>
+
+<style>
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 4s ease infinite;
+  background-size: 200% 200%;
+}
+</style>
 </section>
 
 <!-- Trust Bar - WHITE BACKGROUND with subtle border -->
