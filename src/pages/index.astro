@@ -340,21 +340,15 @@ const latestResources = [
            style="font-family: 'Montserrat', sans-serif;">
         
         <a href="/contact" 
-           class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base"
+           class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white rounded-full hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base"
            style="font-size: 15px;">
-          Request Consultation
-          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
+          Request a Consultation
         </a>
         
         <a href="/services" 
            class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base"
            style="font-size: 15px;">
           Explore Services
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
         </a>
       </div>
       
@@ -577,7 +571,7 @@ const latestResources = [
     
     <!-- View All Button -->
     <div class="text-center mt-12">
-      <a href="/packages" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] text-white hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-lg font-medium text-sm gap-2">
+      <a href="/packages" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-lg font-medium text-sm gap-2">
         View All Programs
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -587,65 +581,131 @@ const latestResources = [
     
   </div>
 </section>
-<!-- Key Services Section - WHITE BACKGROUND with subtle gray background behind cards -->
-<section class="py-16 bg-slate-50">
+
+
+<!-- Core Capabilities Section -->
+<section class="py-16 bg-white relative overflow-hidden">
+  <!-- Subtle decorative elements -->
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6] to-transparent opacity-30"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6] to-transparent opacity-20"></div>
+  
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.services.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.services.description}
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-      {keyServices.map((service) => (
-        <div class="bg-white rounded-xl border border-slate-100 shadow-sm
-                    hover:shadow-xl hover:-translate-y-1
-                    transition-all duration-300
-                    flex flex-col h-full p-6 group">
-
-          {/* Icon - Top Right */}
-          <div class="flex justify-end mb-4">
-            <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-              <Icon
-                name={service.icon}
-                class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300"
-              />
-            </div>
-          </div>
-
-          {/* Title - Left aligned */}
-          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
-            {service.title}
-          </h3>
-
-          {/* Description - Left aligned */}
-          <p class="text-slate-500 text-sm leading-relaxed text-left flex-1">
-            {service.description}
-          </p>
-
-          {/* Link - Left aligned */}
-          <div class="mt-5 pt-4 border-t border-slate-100 flex justify-start">
-            <a
-              href={service.href}
-              class="inline-flex items-center text-[#1E40AF] hover:text-[#3B82F6] font-semibold text-sm gap-1 transition-all duration-300 group/link"
-            >
-              {lang === 'fi' ? 'Lue lisää' : 'Learn more'}
-              <Icon
-                name="arrowRight"
-                class="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1"
-              />
-            </a>
-          </div>
-
+    <div class="grid md:grid-cols-5 gap-10 items-start">
+      
+      <!-- Left Side: Title & Description - Takes 2 columns -->
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="h-px w-8 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
+          <span class="text-[#1E2A7A] text-2xl font-bold">✦</span>
+          <div class="h-px w-8 bg-gradient-to-l from-transparent to-[#1E2A7A]"></div>
         </div>
-      ))}
+        
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-40">
+          {currentContent.services.title}
+        </h2>
+        
+        <p class="text-base md:text-lg text-slate-500 leading-relaxed">
+          {currentContent.services.description}
+        </p>
+        
+        <!-- Scroll indicator -->
+        <div class="mt-6 flex items-center gap-2 text-sm text-slate-400">
+          <svg class="w-4 h-4 animate-bounce-x" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+          <span>Scroll to explore all capabilities</span>
+        </div>
+      </div>
+      
+      <!-- Right Side: Horizontal Scrollable Cards - Takes 3 columns -->
+      <div class="md:col-span-3 overflow-x-auto overflow-y-hidden pb-4 scrollbar-thin scrollbar-thumb-[#3B82F6] scrollbar-track-slate-100">
+        
+        <!-- Custom scrollbar styles -->
+        <style>
+          .scrollbar-thin::-webkit-scrollbar {
+            height: 4px;
+          }
+          .scrollbar-thin::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+          }
+          .scrollbar-thin::-webkit-scrollbar-thumb {
+            background: #3B82F6;
+            border-radius: 10px;
+          }
+          .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+            background: #3bb1f6;
+          }
+          @keyframes bounce-x {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(8px); }
+          }
+          .animate-bounce-x {
+            animation: bounce-x 1.5s infinite;
+          }
+        </style>
+        
+        <!-- Cards container - horizontal layout -->
+        <div class="flex gap-6" style="width: max-content; min-width: 100%;">
+          
+          {keyServices.map((service, index) => {
+            const colors = ['from-[#3B82F6] to-[#3bb1f6]', 'from-[#1E2A7A] to-[#3B82F6]', 'from-[#3bb1f6] to-[#1E2A7A]', 'from-[#3B82F6] to-[#1E2A7A]'];
+            const colorClass = colors[index % colors.length];
+            
+            return (
+              <div class="bg-white rounded-xl border border-slate-100 shadow-sm
+                          hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] hover:border-2
+                          transition-all duration-300
+                          flex flex-col p-6 group relative overflow-hidden
+                          w-[280px] md:w-[300px] flex-shrink-0">
+      
+                {/* Colored top border */}
+                <div class={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${colorClass}`}></div>
+      
+                {/* Icon - Top Right */}
+                <div class="flex justify-end mb-4 relative z-10">
+                  <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center
+                              transition-all duration-300
+                              group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg">
+                    <Icon
+                      name={service.icon}
+                      class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300"
+                    />
+                  </div>
+                </div>
+      
+                {/* Title - LEFT ALIGNED */}
+                <h3 class="text-xl font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+                  {service.title}
+                </h3>
+      
+                {/* Description - LEFT ALIGNED */}
+                <p class="text-slate-500 text-sm leading-relaxed text-left flex-1 relative z-10">
+                  {service.description}
+                </p>
+      
+                {/* Link - LEFT ALIGNED */}
+                <div class="mt-5 pt-4 border-t border-slate-100 flex justify-start relative z-10">
+                  <a
+                    href={service.href}
+                    class="inline-flex items-center text-[#1E40AF] hover:text-[#3bb1f6] font-semibold text-sm gap-1 transition-all duration-300 group/link"
+                  >
+                    {lang === 'fi' ? 'Lue lisää' : 'Learn more'}
+                    <Icon
+                      name="arrowRight"
+                      class="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1"
+                    />
+                  </a>
+                </div>
+      
+              </div>
+            );
+          })}
+          
+        </div>
+      </div>
+      
     </div>
   </div>
 </section>
