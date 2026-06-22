@@ -91,6 +91,15 @@ const menu = getMenu(lang);
     overflow-y: auto;
     padding-bottom: 2rem;
   }
+
+  /* Bold on hover only */
+  .nav-link {
+    transition: all 0.2s ease;
+  }
+  
+  .nav-link:hover {
+    font-weight: 700;
+  }
 </style>
 
 <div data-scam-banner>
@@ -100,18 +109,19 @@ const menu = getMenu(lang);
 <header class="sticky top-0 z-50">
   
   <!-- Blue Top Bar - Better responsive stacking -->
-<div class="bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white text-sm py-2 font-bold" style="font-family: 'Montserrat', sans-serif;">    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white text-sm py-2 font-bold" style="font-family: 'Montserrat', sans-serif;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Stack on mobile, row on tablet+ -->
       <div class="flex flex-col md:flex-row justify-between items-center gap-1 md:gap-0">
         
         <!-- Left side - wraps on mobile -->
         <div class="flex flex-wrap items-center justify-center gap-3 md:gap-6">
           <span class="inline-flex items-center gap-1 text-xs sm:text-sm">
-  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-  </svg>
-  info@cybersecurity.fi
-</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            info@cybersecurity.fi
+          </span>
         </div>
         
         <!-- Right side -->
@@ -156,7 +166,7 @@ const menu = getMenu(lang);
             if (hasChildren) {
               return (
                 <div class="relative group">
-                  <button class="flex items-center gap-1 text-sm font-medium transition-colors duration-200 text-slate-600 hover:text-[#1E40AF] group-hover:text-[#1E40AF]">
+                  <button class="flex items-center gap-1 text-sm font-medium transition-all duration-200 text-slate-600 hover:text-[#3B82F6] hover:font-bold group-hover:text-[#3B82F6]">
                     {label}
                     <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -171,7 +181,7 @@ const menu = getMenu(lang);
                         return (
                           <a 
                             href={childHref} 
-                            class={`block px-4 py-2 text-sm transition-colors duration-200 ${isChildActive ? 'text-[#1E40AF] bg-slate-50' : 'text-slate-600 hover:bg-slate-50 hover:text-[#1E40AF]'}`}
+                            class={`block px-4 py-2 text-sm font-medium transition-all duration-200 ${isChildActive ? 'text-[#1E40AF] bg-slate-50' : 'text-slate-600 hover:bg-slate-50 hover:text-[#3B82F6] hover:font-bold'}`}
                           >
                             {childLabel}
                           </a>
@@ -185,7 +195,7 @@ const menu = getMenu(lang);
               return (
                 <a 
                   href={href} 
-                  class={`text-sm font-medium transition-colors duration-200 ${isActive ? 'text-[#1E40AF]' : 'text-slate-600 hover:text-[#1E40AF]'}`}
+                  class={`text-sm font-medium transition-all duration-200 nav-link ${isActive ? 'text-[#1E40AF]' : 'text-slate-600 hover:text-[#3B82F6]'}`}
                 >
                   {label}
                 </a>
@@ -199,7 +209,7 @@ const menu = getMenu(lang);
           <LanguageSelector />
           <a
             href={lang === 'fi' ? '/fi/contact' : '/contact'}
-            class="px-4 py-1.5 md:px-5 md:py-2 text-xs md:text-sm font-medium text-white bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] rounded-full hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:sha rounded-full transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/30"
+            class="px-4 py-1.5 md:px-5 md:py-2 text-xs md:text-sm font-medium text-white bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] rounded-full hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/30"
           >
             {lang === 'fi' ? 'Ota yhteyttä' : 'Contact'}
           </a>
@@ -245,8 +255,8 @@ const menu = getMenu(lang);
       if (hasChildren) {
         return (
           <details class="mb-2" open={isActive}>
-            <summary class={`block p-3 rounded-lg cursor-pointer ${isActive ? 'bg-slate-50 text-[#1E40AF]' : 'text-slate-700 hover:bg-slate-50'}`}>
-              <span class="font-medium text-sm">{label}</span>
+            <summary class={`block p-3 rounded-lg cursor-pointer font-medium text-sm transition-all duration-200 ${isActive ? 'bg-slate-50 text-[#1E40AF]' : 'text-slate-700 hover:bg-slate-50 hover:text-[#3B82F6] hover:font-bold'}`}>
+              {label}
             </summary>
             <div class="ml-4 mt-1 space-y-1">
               {item.children.map(child => {
@@ -254,9 +264,9 @@ const menu = getMenu(lang);
                 const childLabel = child.label;
                 const isChildActive = currentPath === childHref || currentPath.startsWith(childHref + '/');
                 return (
-                  <a
-                    href={childHref}
-                    class={`block p-2 rounded-lg text-sm transition-colors duration-200 ${isChildActive ? 'text-[#1E40AF] bg-slate-50' : 'text-slate-600 hover:bg-slate-50 hover:text-[#1E40AF]'}`}
+                  <a 
+                    href={childHref} 
+                    class={`block px-4 py-2 text-sm font-medium transition-all duration-200 ${isChildActive ? 'text-[#1E40AF] bg-slate-50' : 'text-slate-600 hover:bg-slate-50 hover:text-[#3B82F6] hover:font-bold'}`}
                   >
                     {childLabel}
                   </a>
@@ -269,9 +279,9 @@ const menu = getMenu(lang);
         return (
           <a
             href={href}
-            class={`block p-3 mb-2 rounded-lg ${isActive ? 'bg-slate-50 text-[#1E40AF]' : 'text-slate-700 hover:bg-slate-50 hover:text-[#1E40AF]'}`}
+            class={`block p-3 mb-2 rounded-lg font-medium text-sm transition-all duration-200 ${isActive ? 'bg-slate-50 text-[#1E40AF]' : 'text-slate-700 hover:bg-slate-50 hover:text-[#3B82F6] hover:font-bold'}`}
           >
-            <span class="font-medium text-sm">{label}</span>
+            {label}
           </a>
         );
       }
