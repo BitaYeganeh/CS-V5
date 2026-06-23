@@ -270,11 +270,8 @@ const latestResources = [
   <!-- Fade overlay at top -->
   <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent"></div>
   
-  <!-- Fade overlay at bottom -->
-  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
-  
-  <!-- Content -->
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-2 md:py-4 -mt-4 md:mt-0">
+<!-- Fade with blur effect -->
+<div class="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-t from-white via-white/80 to-transparent backdrop-blur-sm"></div>  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-2 md:py-4 -mt-4 md:mt-0">
     
     <!-- TITLE AT THE VERY TOP - CENTERED -->
     <div class="text-center mb-4 md:mb-20">
@@ -949,10 +946,16 @@ const latestResources = [
 
 
 
-<!-- Compliance Frameworks Section -->
-<section class="py-16 bg-cover bg-center bg-no-repeat" style="background-image: url('/images/bgf.jpg')">
+<!-- Compliance Frameworks Section - WITH FADE OVERLAYS -->
+<section class="py-16 relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('/images/bgf.jpg')">
   
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Top fade overlay -->
+  <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent"></div>
+  
+  <!-- Bottom fade overlay -->
+  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <div class="text-center mb-12">
       <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#3B82F6] mb-4">
@@ -966,15 +969,21 @@ const latestResources = [
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {complianceFrameworks.map((framework, index) => (
-        <div class="bg-white rounded-xl p-6 border border-slate-100 shadow-sm
-                    hover:shadow-xl hover:-translate-y-1
-                    transition-all duration-300
-                    group">
-          
-          <div class="flex items-start gap-4">
-            {/* Icon with gradient on hover */}
-            <div class="flex-shrink-0">
+      {complianceFrameworks.map((framework, index) => {
+        const colors = ['from-[#3B82F6] to-[#3bb1f6]', 'from-[#1E2A7A] to-[#3B82F6]', 'from-[#3bb1f6] to-[#1E2A7A]', 'from-[#3B82F6] to-[#1E2A7A]', 'from-[#1E2A7A] to-[#3bb1f6]', 'from-[#3B82F6] to-[#1E2A7A]'];
+        const colorClass = colors[index % colors.length];
+        
+        return (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-6 group relative overflow-hidden">
+            
+            {/* Colored top border */}
+            <div class={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${colorClass} group-hover:h-[6px] transition-all duration-300 z-20`}></div>
+            
+            {/* Icon - Top Right */}
+            <div class="flex justify-end mb-4 relative z-10">
               <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center
                           transition-all duration-300
                           group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg">
@@ -982,31 +991,35 @@ const latestResources = [
               </div>
             </div>
             
-            <div class="flex-1">
-              <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-[#3bb1f6] transition-colors duration-300">
-                {framework.title}
-              </h3>
-              <p class="text-slate-500 text-sm leading-relaxed group-hover:text-slate-600 transition-colors duration-300">
-                {framework.description}
-              </p>
+            {/* Title - left */}
+            <h3 class="text-xl font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+              {framework.title}
+            </h3>
+            
+            {/* Description - Left */}
+            <p class="text-sm text-slate-500 leading-relaxed text-left flex-1 relative z-10">
+              {framework.description}
+            </p>
+            
+            {/* Link - left */}
+            <div class="mt-5 pt-4 flex text-left relative z-10">
+              <a
+                href={framework.href}
+                class="inline-flex items-center text-sm text-[#1E40AF] hover:text-[#3B82F6] font-semibold gap-1 transition-all duration-300 group/link"
+              >
+                {lang === 'fi' ? 'Lue lisää' : 'Learn more'}
+                <Icon name="arrowRight" class="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+              </a>
             </div>
           </div>
-          
-          {/* Link */}
-          <div class="mt-5 pt-4">
-            <a
-              href={framework.href}
-              class="inline-flex items-center text-sm text-[#1E40AF] hover:text-[#3B82F6] font-medium gap-1 transition-all duration-300 group/link"
-            >
-              {lang === 'fi' ? 'Lue lisää' : 'Learn more'}
-              <Icon name="arrowRight" class="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1" />
-            </a>
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   </div>
 </section>
+
+
+
 <!-- Industries Section - WHITE BACKGROUND with subtle gray -->
 <section class="py-16 bg-slate-50 overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
