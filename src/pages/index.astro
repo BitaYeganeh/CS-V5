@@ -275,7 +275,7 @@ const latestResources = [
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-2 md:py-4 -mt-4 md:mt-0">
     
     <!-- TITLE AT THE VERY TOP - CENTERED -->
-    <div class="text-center mb-4 md:mb-12 lg:mb-20">
+    <div class="text-center mb-6 md:mb-12 lg:mb-20">
       <h1 class="font-bold tracking-tight leading-tight"
           style="font-family: 'Montserrat', sans-serif; font-size: clamp(24px, 5vw, 45px);">
         <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
@@ -712,7 +712,7 @@ const latestResources = [
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <!-- Mobile: Title & Description at top -->
-    <div class="md:hidden text-center mb-8">
+    <div class="md:hidden text-center mb-8 px-2">
       <!-- Decorative element -->
       <div class="flex items-center justify-center gap-4 mb-4">
         <div class="h-px w-8 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
@@ -811,6 +811,17 @@ const latestResources = [
               .card-item {
                 width: 280px !important;
                 flex-shrink: 0;
+              }
+              /* Ensure cards scroll horizontally on mobile */
+              #cardsContainer {
+                -webkit-overflow-scrolling: touch;
+                scroll-snap-type: x mandatory;
+                overflow-x: auto !important;
+                display: flex !important;
+                width: 100%;
+              }
+              .card-item {
+                scroll-snap-align: start;
               }
             }
           </style>
@@ -945,7 +956,6 @@ const latestResources = [
 </section>
 
 
-
 <!-- Compliance Frameworks Section - WITH FADE OVERLAYS -->
 <section class="py-16 relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('/images/bgf.jpg')">
   
@@ -1071,7 +1081,7 @@ const latestResources = [
               <h3 class="text-xl font-bold mb-2 text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
                 {industry.name}
               </h3>
-              <p class="text-sm text-slate-500 leading-relaxed flex-1 group-hover:text-slate-600 transition-colors duration-300">
+              <p class="text-xs md:text-sm text-slate-500 leading-relaxed flex-1 group-hover:text-slate-600 transition-colors duration-300">
                 {industry.description}
               </p>
               
@@ -1300,7 +1310,7 @@ const latestResources = [
           <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
-          <span class="text-xs font-medium text-white">September 15, 2025</span>
+          <span class="text-xs font-medium text-white">Sep 15, 2025</span>
         </div>
         
         <h3 class="text-lg font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
@@ -1336,7 +1346,7 @@ const latestResources = [
           <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
-          <span class="text-xs font-medium text-white">September 22, 2025</span>
+          <span class="text-xs font-medium text-white">Sep 22, 2025</span>
         </div>
         
         <h3 class="text-lg font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
@@ -1372,7 +1382,7 @@ const latestResources = [
           <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
-          <span class="text-xs font-medium text-white">September 29, 2025</span>
+          <span class="text-xs font-medium text-white">Sep 29, 2025</span>
         </div>
         
         <h3 class="text-lg font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
@@ -1446,12 +1456,6 @@ const latestResources = [
           <a href="/contact?assessment=true" class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30 font-medium text-sm gap-2 group">
             Get Free Assessment
             <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
-          <a href="/contact" class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm group">
-            Start Today
-            <svg class="w-3.5 h-3.5 ml-1 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           </a>
