@@ -708,7 +708,7 @@ const latestResources = [
 
 
 <!-- Core Capabilities Section - WHITE BACKGROUND -->
-<section class="py-8 md:py-20 bg-white relative overflow-hidden">
+<section class="py-8 md:py-20 bg-white relative">
   <!-- Subtle decorative elements -->
   <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6] to-transparent opacity-30"></div>
   <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6] to-transparent opacity-20"></div>
@@ -770,10 +770,9 @@ const latestResources = [
         <div class="relative">
           
           <!-- Cards container -->
-          <div class="overflow-x-auto overflow-y-hidden pb-2 scrollbar-thin scrollbar-thumb-[#3B82F6] scrollbar-track-slate-100" 
-               id="cardsContainer"
-               style="-webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; display: flex; width: 100%;">
-            
+<div class="overflow-x-auto overflow-y-hidden pb-2"
+     id="cardsContainer"
+     style="-webkit-overflow-scrolling: touch; scroll-snap-type: x proximity;">            
             <style>
               /* Hide scrollbar */
               #cardsContainer::-webkit-scrollbar {
@@ -799,43 +798,47 @@ const latestResources = [
                 animation: bounce-x 1.5s infinite;
               }
 
-              /* Mobile */
-              @media (max-width: 767px) {
-                #cardsContainer {
-                  scroll-snap-type: x mandatory;
-                  -webkit-overflow-scrolling: touch;
-                  overflow-x: auto !important;
-                  display: flex !important;
-                  width: 100%;
-                  padding-bottom: 8px;
-                }
-                .card-item {
-                  min-width: 280px !important;
-                  max-width: 280px !important;
-                  flex-shrink: 0 !important;
-                  scroll-snap-align: start;
-                }
-                .card-container {
-                  display: flex !important;
-                  gap: 1rem !important;
-                  width: max-content !important;
-                  min-width: 100% !important;
-                }
-                /* Gradient fade on right to show more content */
-                #cardsContainer::after {
-                  content: '';
-                  position: sticky;
-                  right: 0;
-                  top: 0;
-                  width: 60px;
-                  height: 100%;
-                  min-height: 300px;
-                  background: linear-gradient(to right, transparent, white);
-                  pointer-events: none;
-                  flex-shrink: 0;
-                }
-              }
-              
+/* Mobile */
+@media (max-width: 767px) {
+
+  #cardsContainer {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+
+    width: 100%;
+    display: block !important;
+
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    padding-bottom: 10px;
+  }
+
+  #cardsContainer::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card-container {
+    display: flex !important;
+    gap: 16px !important;
+
+    width: max-content !important;
+    min-width: auto !important;
+  }
+
+  .card-item {
+    flex: 0 0 85vw !important;
+
+    width: 85vw !important;
+    min-width: 85vw !important;
+    max-width: 85vw !important;
+
+    scroll-snap-align: start;
+  }
+}              
               @media (min-width: 768px) {
                 .card-item {
                   min-width: 300px !important;
@@ -845,8 +848,7 @@ const latestResources = [
               }
             </style>
             
-            <div class="flex gap-4 md:gap-6 card-container" style="width: max-content; min-width: 100%;">
-              
+<div class="flex gap-4 md:gap-6 card-container">              
               {keyServices.map((service, index) => {
                 const colors = ['from-[#3B82F6] to-[#3bb1f6]', 'from-[#1E2A7A] to-[#3B82F6]', 'from-[#3bb1f6] to-[#1E2A7A]', 'from-[#3B82F6] to-[#1E2A7A]'];
                 const colorClass = colors[index % colors.length];
@@ -907,7 +909,12 @@ const latestResources = [
                   const container = document.getElementById('cardsContainer');
                   if (!container) return;
                   const isMobile = window.innerWidth < 768;
-                  const cardWidth = isMobile ? 280 + 16 : 300 + 24;
+                  const firstCard = container.querySelector('.card-item');
+
+if (!firstCard) return;
+
+const gap = isMobile ? 16 : 24;
+const cardWidth = firstCard.offsetWidth + gap;
                   container.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
                 }}
               />
@@ -946,7 +953,12 @@ const latestResources = [
       function updateActiveDot() {
         const scrollLeft = container.scrollLeft;
         const isMobile = window.innerWidth < 768;
-        const cardWidth = isMobile ? 280 + 16 : 300 + 24;
+        const firstCard = container.querySelector('.card-item');
+
+if (!firstCard) return;
+
+const gap = isMobile ? 16 : 24;
+const cardWidth = firstCard.offsetWidth + gap;
         
         const activeIndex = Math.round(scrollLeft / cardWidth);
         const safeIndex = Math.min(Math.max(activeIndex, 0), dots.length - 1);
