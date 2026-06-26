@@ -91,15 +91,6 @@ const menu = getMenu(lang);
     overflow-y: auto;
     padding-bottom: 2rem;
   }
-
-  /* Bold on hover only */
-  .nav-link {
-    transition: all 0.2s ease;
-  }
-  
-  .nav-link:hover {
-    font-weight: 700;
-  }
 </style>
 
 <div data-scam-banner>
@@ -166,7 +157,7 @@ const menu = getMenu(lang);
             if (hasChildren) {
               return (
                 <div class="relative group">
-                  <button class="flex items-center gap-1 text-sm font-medium transition-all duration-200 text-slate-600 hover:text-[#3B82F6] hover:font-bold group-hover:text-[#3B82F6]">
+                  <button class="flex items-center gap-1 text-sm font-semibold transition-colors duration-200 text-slate-600 hover:text-[#3B82F6] group-hover:text-[#3B82F6]">
                     {label}
                     <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -181,7 +172,7 @@ const menu = getMenu(lang);
                         return (
                           <a 
                             href={childHref} 
-                            class={`block px-4 py-2 text-sm font-medium transition-all duration-200 ${isChildActive ? 'text-[#1E40AF] bg-slate-50' : 'text-slate-600 hover:bg-slate-50 hover:text-[#3B82F6] hover:font-bold'}`}
+                            class={`block px-4 py-2 text-sm font-semibold transition-colors duration-200 ${isChildActive ? 'text-[#1E40AF] bg-slate-50' : 'text-slate-600 hover:bg-slate-50 hover:text-[#3B82F6]'}`}
                           >
                             {childLabel}
                           </a>
@@ -195,7 +186,7 @@ const menu = getMenu(lang);
               return (
                 <a 
                   href={href} 
-                  class={`text-sm font-medium transition-all duration-200 nav-link ${isActive ? 'text-[#1E40AF]' : 'text-slate-600 hover:text-[#3B82F6]'}`}
+                  class={`text-sm font-semibold transition-colors duration-200 ${isActive ? 'text-[#1E40AF]' : 'text-slate-600 hover:text-[#3B82F6]'}`}
                 >
                   {label}
                 </a>
@@ -225,6 +216,8 @@ const menu = getMenu(lang);
       </nav>
     </div>
     
+    <!-- Blue gradient line at bottom of header -->
+    <div class="h-0.5 bg-gradient-to-r from-[#3bb1f6] to-[#3B82F6]"></div>
     
   </div>
 </header>
@@ -253,8 +246,8 @@ const menu = getMenu(lang);
       if (hasChildren) {
         return (
           <details class="mb-2" open={isActive}>
-            <summary class={`block p-3 rounded-lg cursor-pointer font-medium text-sm transition-all duration-200 ${isActive ? 'bg-slate-50 text-[#1E40AF]' : 'text-slate-700 hover:bg-slate-50 hover:text-[#3B82F6] hover:font-bold'}`}>
-              {label}
+            <summary class={`block p-3 rounded-lg cursor-pointer ${isActive ? 'bg-slate-50 text-[#1E40AF]' : 'text-slate-700 hover:bg-slate-50'}`}>
+              <span class="font-semibold text-sm">{label}</span>
             </summary>
             <div class="ml-4 mt-1 space-y-1">
               {item.children.map(child => {
@@ -264,7 +257,7 @@ const menu = getMenu(lang);
                 return (
                   <a 
                     href={childHref} 
-                    class={`block px-4 py-2 text-sm font-medium transition-all duration-200 ${isChildActive ? 'text-[#1E40AF] bg-slate-50' : 'text-slate-600 hover:bg-slate-50 hover:text-[#3B82F6] hover:font-bold'}`}
+                    class={`block px-4 py-2 text-sm font-bold transition-colors duration-200 ${isChildActive ? 'text-[#1E40AF] bg-slate-50' : 'text-slate-600 hover:bg-slate-50 hover:text-[#3B82F6]'}`}
                   >
                     {childLabel}
                   </a>
@@ -277,7 +270,7 @@ const menu = getMenu(lang);
         return (
           <a
             href={href}
-            class={`block p-3 mb-2 rounded-lg font-medium text-sm transition-all duration-200 ${isActive ? 'bg-slate-50 text-[#1E40AF]' : 'text-slate-700 hover:bg-slate-50 hover:text-[#3B82F6] hover:font-bold'}`}
+            class={`block p-3 mb-2 rounded-lg font-semibold text-sm ${isActive ? 'bg-slate-50 text-[#1E40AF]' : 'text-slate-700 hover:bg-slate-50 hover:text-[#3B82F6]'}`}
           >
             {label}
           </a>
@@ -287,7 +280,7 @@ const menu = getMenu(lang);
 
     <a
       href={lang === 'fi' ? '/fi/contact' : '/contact'}
-      class="block w-full mt-4 px-4 py-3 text-center text-white bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] rounded-full hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 text-sm font-medium"
+      class="block w-full mt-4 px-4 py-3 text-center text-white bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] rounded-full hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 text-sm font-semibold"
     >
       {lang === 'fi' ? 'Ota yhteyttä' : 'Contact Us'}
     </a>

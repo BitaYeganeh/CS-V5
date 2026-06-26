@@ -4,116 +4,339 @@ import Button from '@/components/ui/Button.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
 
 const currentPath = Astro.url.pathname;
-const lang = 'en';
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const title = "Contact";
 
-const contactInfo = {
-  title: "Get in Touch",
-  subtitle: "Ready to Transform Your Business?",
-  description: "Connect with our team of cybersecurity experts and discover how we can help you achieve compliance, enhance security, and drive business growth.",
-  contactMethods: [
-    {
-      title: "Phone",
-      value: "+358 44 5040308",
-      icon: "phone",
-      description: "Mon-Fri, 9:00-17:00"
+const content = {
+  en: {
+    title: "Contact",
+    subtitle: "Get in Touch",
+    heroDescription: "Connect with our team of cybersecurity experts and discover how we can help you achieve compliance, enhance security, and drive business growth.",
+    contactInfo: {
+      title: "Contact Information",
+      description: "We're here to help you navigate the complex world of cybersecurity and compliance.",
+      phone: "Phone",
+      email: "Email",
+      address: "Address",
+      hours: "Business Hours"
     },
-    {
-      title: "Email",
-      value: "info@cybersecurity.fi",
-      icon: "envelope",
-      description: "We typically respond within 24 hours"
+    form: {
+      title: "Send Us a Message",
+      description: "Fill out the form below and our experts will get back to you as soon as possible.",
+      firstName: "First Name",
+      lastName: "Last Name",
+      company: "Company",
+      email: "Email",
+      phone: "Phone Number",
+      service: "Service Interest",
+      message: "Message",
+      submit: "Send Message",
+      placeholder: {
+        firstName: "Enter your first name",
+        lastName: "Enter your last name",
+        company: "Enter your company name",
+        email: "Enter your email address",
+        phone: "Enter your phone number",
+        service: "Select a service",
+        message: "Describe your needs or questions..."
+      }
     },
-    {
-      title: "Location",
-      value: "Helsinki, Finland",
-      icon: "locationMarker",
-      description: "Serving clients globally"
+    services: {
+      title: "Our Services",
+      description: "Need compliance services? We have the expertise across all areas of cybersecurity and regulatory compliance.",
+      items: [
+        { title: "ISO 27001", desc: "Complete ISMS implementation in 90 days" },
+        { title: "NIS2 Compliance", desc: "Prepare for NIS2 directive requirements" },
+        { title: "GDPR Compliance", desc: "Data protection and privacy management" },
+        { title: "DORA Compliance", desc: "Digital operational resilience" },
+        { title: "V-CISO Service", desc: "Virtual CISO guidance" },
+        { title: "V-DPO Service", desc: "Virtual Data Protection Officer" }
+      ]
+    },
+    whyChoose: {
+      title: "Why Choose Us?",
+      items: [
+        "Expert team based in Finland",
+        "Proven methodologies with 90-day implementation",
+        "Ongoing support and expertise",
+        "Industry-specific expertise"
+      ]
+    },
+    cta: {
+      title: "Ready to Get Started?",
+      subtitle: "Join hundreds of organizations that trust us with their cybersecurity and compliance needs.",
+      button: "Schedule a Consultation"
     }
-  ],
-  services: [
-    { name: "ISO 27001", description: "Complete ISMS implementation in 90 days" },
-    { name: "NIS2 Compliance", description: "Prepare for NIS2 directive requirements" },
-    { name: "GDPR Compliance", description: "Data protection and privacy management" },
-    { name: "DORA Compliance", description: "Digital operational resilience" },
-    { name: "V-CISO Service", description: "Virtual CISO guidance" },
-    { name: "V-DPO Service", description: "Virtual Data Protection Officer" }
-  ]
+  },
+  fi: {
+    title: "Ota yhteyttä",
+    subtitle: "Valmiit muuttamaan liiketoimintasi?",
+    heroDescription: "Yhdistä meidän kyberturvallisuusasiantuntijoiden tiimiin ja löydä, miten voimme auttaa sinua saavuttamaan yhteensopivuuden, parantamaan turvallisuutta ja edistämään liiketoiminnan kasvua.",
+    contactInfo: {
+      title: "Yhteystiedot",
+      description: "Olemme täällä auttaaksemme sinua navigoimaan kyberturvallisuuden ja yhteensopivuuden monimutkaisessa maailmassa.",
+      phone: "Puhelin",
+      email: "Sähköposti",
+      address: "Osoite",
+      hours: "Aukioloajat"
+    },
+    form: {
+      title: "Lähetä meille viesti",
+      description: "Täytä alla oleva lomake ja asiantuntijamme vastaavat sinulle mahdollisimman pian.",
+      firstName: "Etunimi",
+      lastName: "Sukunimi",
+      company: "Yritys",
+      email: "Sähköposti",
+      phone: "Puhelinnumero",
+      service: "Palvelu",
+      message: "Viesti",
+      submit: "Lähetä viesti",
+      placeholder: {
+        firstName: "Syötä etunimesi",
+        lastName: "Syötä sukunimesi",
+        company: "Syötä yrityksen nimi",
+        email: "Syötä sähköpostiosoite",
+        phone: "Syötä puhelinnumero",
+        service: "Valitse palvelu",
+        message: "Kuvaile tarpeitasi tai kysymyksiä..."
+      }
+    },
+    services: {
+      title: "Palvelumme",
+      description: "Tarvitsetko noudattamispalveluita? Meillä on asiantuntemusta kaikilla kyberturvallisuuden ja sääntelyn noudattamisen alueilla.",
+      items: [
+        { title: "ISO 27001", desc: "Täydellinen ISMS-toteutus 90 päivässä" },
+        { title: "NIS2-vaatimustenmukaisuus", desc: "Valmistaudu NIS2-direktiivin vaatimuksiin" },
+        { title: "GDPR-vaatimustenmukaisuus", desc: "Tietosuoja- ja yksityisyydenhallinta" },
+        { title: "DORA-vaatimustenmukaisuus", desc: "Digitaalinen toimintakyky" },
+        { title: "V-CISO-palvelu", desc: "Virtuaalinen CISO-ohjaus" },
+        { title: "V-DPO-palvelu", desc: "Virtuaalinen tietosuojavastaava" }
+      ]
+    },
+    whyChoose: {
+      title: "Miksi valita meidät?",
+      items: [
+        "Asiantuntijatiimi Suomessa",
+        "Todistetut menetelmät 90 päivän toteutuksella",
+        "Jatkuva tuki ja asiantuntemus",
+        "Toimialakohtainen asiantuntemus"
+      ]
+    },
+    cta: {
+      title: "Valmiit aloittamaan?",
+      subtitle: "Liity satoihin organisaatioihin, jotka luottavat meihin kyberturvallisuus- ja yhteensopivuustarpeissaan.",
+      button: "Aikatauluta konsultaatio"
+    }
+  }
 };
+
+const currentContent = content[lang];
 ---
 
-<Layout title="Contact Us - Cyber Security Finland" description="Contact Cyber Security Finland's expert team. We offer ISO 27001, NIS2, GDPR, and DORA compliance services globally.">
+<Layout title={title}>
 
-  <!-- Hero Section - With contact.avif image -->
-  <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 overflow-hidden">
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-16">
-      
-      <!-- Mobile layout (stacked vertically) -->
-      <div class="flex flex-col items-center justify-center gap-6 mb-8 md:hidden">
-        <img 
-          src="/images/contact.avif"
-          alt="Contact Cyber Security Finland"
-          class="w-full max-w-md object-cover rounded-2xl"
-          loading="eager"
-        />
-      </div>
-      
-      <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-        
-        <!-- Left Side: Content -->
-        <div class="text-center md:text-left">
-          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4 leading-tight">
-            <span class="text-[#1E2A7A]">Get in Touch</span>
+  <!-- FULL PAGE WRAPPER WITH WHITE BACKGROUND -->
+  <div class="min-h-screen bg-white">
+    
+    <!-- Hero Section -->
+    <section class="pt-12 md:pt-16 pb-4">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
+            <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+              {currentContent.subtitle}
+            </span>
           </h1>
-          <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
-            Ready to Transform Your Business?
-          </p>
-          <p class="text-base md:text-lg text-slate-500 max-w-2xl leading-relaxed">
-            Connect with our team of cybersecurity experts and discover how we can help you achieve compliance, enhance security, and drive business growth.
+          <p class="text-lg md:text-xl text-slate-600 leading-relaxed max-w-3xl">
+            {currentContent.heroDescription}
           </p>
         </div>
-        
-        <!-- Right Side: contact.avif image (desktop only) -->
-        <div class="hidden md:block">
-          <img 
-            src="/images/contact.avif"
-            alt="Contact Cyber Security Finland"
-            class="w-full max-w-2xl lg:max-w-3xl mx-auto object-cover rounded-2xl"
-            loading="eager"
-          />
-        </div>
-        
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact Methods Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-          Contact Information
-        </h2>
-        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-          Reach out to us through any of these channels
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        {contactInfo.contactMethods.map(method => (
-          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-8 text-center hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
-              <Icon name={method.icon} class="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" />
+    <!-- Contact Information Cards -->
+    <section class="py-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Phone -->
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 p-6 text-center group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            <div class="flex justify-center mb-3">
+              <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg group-hover:border-transparent transition-all duration-300">
+                <svg class="w-6 h-6 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
+              </div>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">{method.title}</h3>
-            <p class="text-slate-600 font-medium text-lg mb-2">{method.value}</p>
-            <p class="text-slate-500 text-sm">{method.description}</p>
+            <h3 class="text-base font-bold text-[#1E40AF] mb-1 group-hover:text-[#3bb1f6] transition-colors duration-300">Phone</h3>
+            <p class="text-sm text-slate-500 group-hover:text-slate-600 transition-colors duration-300">+358 44 5040308</p>
+            <p class="text-xs text-slate-400 mt-1">Mon-Fri, 9:00-17:00</p>
           </div>
-        ))}
+          
+          <!-- Email -->
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 p-6 text-center group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            <div class="flex justify-center mb-3">
+              <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg group-hover:border-transparent transition-all duration-300">
+                <svg class="w-6 h-6 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-base font-bold text-[#1E40AF] mb-1 group-hover:text-[#3bb1f6] transition-colors duration-300">Email</h3>
+            <p class="text-sm text-slate-500 group-hover:text-slate-600 transition-colors duration-300">info@cybersecurity.fi</p>
+            <p class="text-xs text-slate-400 mt-1">We respond within 24 hours</p>
+          </div>
+          
+          <!-- Location -->
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 p-6 text-center group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            <div class="flex justify-center mb-3">
+              <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg group-hover:border-transparent transition-all duration-300">
+                <svg class="w-6 h-6 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-base font-bold text-[#1E40AF] mb-1 group-hover:text-[#3bb1f6] transition-colors duration-300">Location</h3>
+            <p class="text-sm text-slate-500 group-hover:text-slate-600 transition-colors duration-300">Helsinki, Finland</p>
+            <p class="text-xs text-slate-400 mt-1">Serving clients globally</p>
+          </div>
+          
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Rest of your contact form and CTA sections remain the same -->
-  <!-- ... (keep your existing form and CTA code) ... -->
+    <!-- Contact Form & Services Section -->
+    <section class="py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-3 gap-8">
+          
+          <!-- Form Column -->
+          <div class="lg:col-span-2">
+            <div class="text-left mb-8">
+              <h2 class="text-2xl md:text-3xl font-bold text-[#3B82F6] mb-2">
+                {currentContent.form.title}
+              </h2>
+              <p class="text-base text-[#1E2A7A] leading-relaxed">
+                {currentContent.form.description}
+              </p>
+            </div>
+            
+            <form class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6 md:p-8">
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label for="firstName" class="block text-sm font-medium text-[#1E2A7A] mb-2">{currentContent.form.firstName} *</label>
+                  <input type="text" id="firstName" name="firstName" required 
+                    placeholder={currentContent.form.placeholder.firstName}
+                    class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 bg-white placeholder:text-slate-400">
+                </div>
+                <div>
+                  <label for="lastName" class="block text-sm font-medium text-[#1E2A7A] mb-2">{currentContent.form.lastName} *</label>
+                  <input type="text" id="lastName" name="lastName" required 
+                    placeholder={currentContent.form.placeholder.lastName}
+                    class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 bg-white placeholder:text-slate-400">
+                </div>
+              </div>
+              
+              <div class="grid md:grid-cols-2 gap-6 mt-6">
+                <div>
+                  <label for="company" class="block text-sm font-medium text-[#1E2A7A] mb-2">{currentContent.form.company}</label>
+                  <input type="text" id="company" name="company" 
+                    placeholder={currentContent.form.placeholder.company}
+                    class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 bg-white placeholder:text-slate-400">
+                </div>
+                <div>
+                  <label for="email" class="block text-sm font-medium text-[#1E2A7A] mb-2">{currentContent.form.email} *</label>
+                  <input type="email" id="email" name="email" required 
+                    placeholder={currentContent.form.placeholder.email}
+                    class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 bg-white placeholder:text-slate-400">
+                </div>
+              </div>
+              
+              <div class="grid md:grid-cols-2 gap-6 mt-6">
+                <div>
+                  <label for="phone" class="block text-sm font-medium text-[#1E2A7A] mb-2">{currentContent.form.phone}</label>
+                  <input type="tel" id="phone" name="phone" 
+                    placeholder={currentContent.form.placeholder.phone}
+                    class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 bg-white placeholder:text-slate-400">
+                </div>
+                <div>
+                  <label for="service" class="block text-sm font-medium text-[#1E2A7A] mb-2">{currentContent.form.service}</label>
+                  <select id="service" name="service" 
+                    class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 bg-white text-slate-600">
+                    <option value="" class="text-slate-400">{currentContent.form.placeholder.service}</option>
+                    <option value="iso-27001">ISO 27001</option>
+                    <option value="nis2">NIS2</option>
+                    <option value="gdpr">GDPR</option>
+                    <option value="dora">DORA</option>
+                    <option value="v-ciso">V-CISO</option>
+                    <option value="v-dpo">V-DPO</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="mt-6">
+                <label for="message" class="block text-sm font-medium text-[#1E2A7A] mb-2">{currentContent.form.message} *</label>
+                <textarea id="message" name="message" rows="5" required 
+                  placeholder={currentContent.form.placeholder.message}
+                  class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 bg-white placeholder:text-slate-400 resize-none"></textarea>
+              </div>
+              
+              <div class="mt-6">
+                <button type="submit" class="w-full md:w-auto inline-flex items-center justify-center px-8 py-3 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-lg font-medium text-sm gap-2">
+                  {currentContent.form.submit}
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+          
+          <!-- Sidebar -->
+          <div class="space-y-6">
+            <!-- Services Card -->
+            <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6">
+              <h3 class="text-xl font-bold text-[#1E2A7A] mb-3">Our Services</h3>
+              <p class="text-sm text-slate-500 mb-4">Need compliance services? We have the expertise across all areas.</p>
+              <ul class="space-y-3">
+                {currentContent.services.items.map((item) => (
+                  <li class="flex items-start gap-2 text-sm">
+                    <svg class="w-4 h-4 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                    <div>
+                      <span class="font-semibold text-slate-800">{item.title}</span>
+                      <span class="text-slate-500"> — {item.desc}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <!-- Why Choose Us Card -->
+            <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6">
+              <h3 class="text-xl font-bold text-[#1E2A7A] mb-3">Why Choose Us?</h3>
+              <ul class="space-y-3">
+                {currentContent.whyChoose.items.map((item) => (
+                  <li class="flex items-start gap-2 text-sm text-slate-600">
+                    <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+  </div>
 
 </Layout>
