@@ -708,7 +708,7 @@ const latestResources = [
 
 
 <!-- Core Capabilities Section - WHITE BACKGROUND -->
-<section class="py-8 md:py-20 bg-white relative">
+<section class="py-8 md:py-20 bg-white relative overflow-hidden">
   <!-- Subtle decorative elements -->
   <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6] to-transparent opacity-30"></div>
   <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6] to-transparent opacity-20"></div>
@@ -763,92 +763,44 @@ const latestResources = [
         </style>
       </div>
       
-      <!-- Right Side: Horizontal Scrollable Cards -->
+      <!-- Right Side: Cards -->
       <div class="md:col-span-3">
         
-        <!-- Wrapper with gradient fade on right -->
-        <div class="relative">
+        <!-- DESKTOP: Horizontal scrollable - CONTAINED -->
+        <div class="hidden md:block relative">
           
-          <!-- Cards container -->
-<div class="overflow-x-auto overflow-y-hidden pb-2"
-     id="cardsContainer"
-     style="-webkit-overflow-scrolling: touch; scroll-snap-type: x proximity;">            
+          <!-- This wrapper contains the horizontal scroll -->
+          <div class="overflow-x-auto overflow-y-hidden pb-4 scroll-smooth" 
+               style="-webkit-overflow-scrolling: touch;
+                      scrollbar-width: thin;
+                      scrollbar-color: #3B82F6 #f1f1f1;">
+            
             <style>
-              /* Hide scrollbar */
-              #cardsContainer::-webkit-scrollbar {
-                height: 4px;
+              /* Custom scrollbar styling */
+              .overflow-x-auto::-webkit-scrollbar {
+                height: 6px;
               }
-              #cardsContainer::-webkit-scrollbar-track {
+              .overflow-x-auto::-webkit-scrollbar-track {
                 background: #f1f1f1;
                 border-radius: 10px;
               }
-              #cardsContainer::-webkit-scrollbar-thumb {
+              .overflow-x-auto::-webkit-scrollbar-thumb {
                 background: #3B82F6;
                 border-radius: 10px;
               }
-              #cardsContainer::-webkit-scrollbar-thumb:hover {
+              .overflow-x-auto::-webkit-scrollbar-thumb:hover {
                 background: #3bb1f6;
               }
               
-              @keyframes bounce-x {
-                0%, 100% { transform: translateX(0); }
-                50% { transform: translateX(8px); }
-              }
-              .animate-bounce-x {
-                animation: bounce-x 1.5s infinite;
-              }
-
-/* Mobile */
-@media (max-width: 767px) {
-
-  #cardsContainer {
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-
-    width: 100%;
-    display: block !important;
-
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
-
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-
-    padding-bottom: 10px;
-  }
-
-  #cardsContainer::-webkit-scrollbar {
-    display: none;
-  }
-
-  .card-container {
-    display: flex !important;
-    gap: 16px !important;
-
-    width: max-content !important;
-    min-width: auto !important;
-  }
-
-  .card-item {
-    flex: 0 0 85vw !important;
-
-    width: 85vw !important;
-    min-width: 85vw !important;
-    max-width: 85vw !important;
-
-    scroll-snap-align: start;
-  }
-}              
-              @media (min-width: 768px) {
-                .card-item {
-                  min-width: 300px !important;
-                  max-width: 300px !important;
-                  flex-shrink: 0 !important;
-                }
+              /* Prevent page scroll on desktop */
+              body {
+                overflow-x: hidden !important;
               }
             </style>
             
-<div class="flex gap-4 md:gap-6 card-container">              
+            <!-- Cards container - uses inline-block to prevent width expansion -->
+            <div class="flex gap-6" style="width: fit-content;">
+              
               {keyServices.map((service, index) => {
                 const colors = ['from-[#3B82F6] to-[#3bb1f6]', 'from-[#1E2A7A] to-[#3B82F6]', 'from-[#3bb1f6] to-[#1E2A7A]', 'from-[#3B82F6] to-[#1E2A7A]'];
                 const colorClass = colors[index % colors.length];
@@ -858,10 +810,10 @@ const latestResources = [
                               hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
                               transition-all duration-300
                               flex flex-col p-5 md:p-6 group relative overflow-hidden
-                              card-item">
-        
+                              min-w-[280px] max-w-[280px] flex-shrink-0">
+          
                     <div class={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${colorClass} group-hover:h-[6px] transition-all duration-300 z-20`}></div>
-        
+          
                     <div class="flex justify-end mb-3 md:mb-4 relative z-10">
                       <div class="w-10 h-10 md:w-12 md:h-12 bg-blue-50 rounded-xl flex items-center justify-center
                                   transition-all duration-300
@@ -869,22 +821,22 @@ const latestResources = [
                         <Icon name={service.icon} class="w-5 h-5 md:w-6 md:h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
                       </div>
                     </div>
-        
+          
                     <h3 class="text-lg md:text-xl font-bold text-[#1E40AF] mb-2 md:mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
                       {service.title}
                     </h3>
-        
+          
                     <p class="text-xs md:text-sm text-slate-500 leading-relaxed text-left flex-1 relative z-10">
                       {service.description}
                     </p>
-        
+          
                     <div class="mt-4 md:mt-5 pt-3 md:pt-4 flex justify-start relative z-10">
                       <a href={service.href} class="inline-flex items-center text-[#1E40AF] hover:text-[#3bb1f6] font-semibold text-xs md:text-sm gap-1 transition-all duration-300 group/link">
                         {lang === 'fi' ? 'Lue lisää' : 'Read more'}
                         <Icon name="arrowRight" class="w-3 h-3 md:w-4 md:h-4 transition-transform duration-300 group-hover/link:translate-x-1" />
                       </a>
                     </div>
-        
+          
                   </div>
                 );
               })}
@@ -892,110 +844,62 @@ const latestResources = [
             </div>
           </div>
           
-          <!-- Scroll Dots - VISIBLE on mobile -->
-          <div class="flex items-center justify-center gap-3 mt-4" id="dotsContainer">
-            {keyServices.map((_, index) => (
-              <button 
-                key={index}
-                class="h-2.5 rounded-full transition-all duration-300 cursor-pointer focus:outline-none"
-                style={{
-                  width: index === 0 ? '24px' : '10px',
-                  backgroundColor: index === 0 ? '#3B82F6' : '#cbd5e1',
-                  boxShadow: index === 0 ? '0 0 8px rgba(59, 130, 246, 0.4)' : 'none'
-                }}
-                data-index={index}
-                aria-label={`Go to card ${index + 1}`}
-                onClick={() => {
-                  const container = document.getElementById('cardsContainer');
-                  if (!container) return;
-                  const isMobile = window.innerWidth < 768;
-                  const firstCard = container.querySelector('.card-item');
-
-if (!firstCard) return;
-
-const gap = isMobile ? 16 : 24;
-const cardWidth = firstCard.offsetWidth + gap;
-                  container.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
-                }}
-              />
-            ))}
+          <!-- Scroll hint -->
+          <div class="text-right text-xs text-slate-400 mt-2 select-none">
+            ← Scroll to explore →
           </div>
+        </div>
+        
+        <!-- MOBILE: Vertical stacked (no scrolling) -->
+        <div class="md:hidden flex flex-col gap-4">
           
-          <!-- Counter indicator - shows which card you're on -->
-          <div class="text-center text-xs text-slate-400 mt-2 md:hidden" id="cardCounter">
-            <span id="currentCard">1</span> / <span id="totalCards">{keyServices.length}</span>
-          </div>
+          {keyServices.map((service, index) => {
+            const colors = ['from-[#3B82F6] to-[#3bb1f6]', 'from-[#1E2A7A] to-[#3B82F6]', 'from-[#3bb1f6] to-[#1E2A7A]', 'from-[#3B82F6] to-[#1E2A7A]'];
+            const colorClass = colors[index % colors.length];
+            
+            return (
+              <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                          hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                          transition-all duration-300
+                          flex flex-col p-5 group relative overflow-hidden">
+        
+                <div class={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${colorClass} group-hover:h-[6px] transition-all duration-300 z-20`}></div>
+        
+                <div class="flex justify-end mb-3 relative z-10">
+                  <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center
+                              transition-all duration-300
+                              group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg">
+                    <Icon name={service.icon} class="w-5 h-5 text-blue-600 group-hover:text-white transition-colors duration-300" />
+                  </div>
+                </div>
+        
+                <h3 class="text-lg font-bold text-[#1E40AF] mb-2 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+                  {service.title}
+                </h3>
+        
+                <p class="text-xs text-slate-500 leading-relaxed text-left flex-1 relative z-10">
+                  {service.description}
+                </p>
+        
+                <div class="mt-4 pt-3 flex justify-start relative z-10">
+                  <a href={service.href} class="inline-flex items-center text-[#1E40AF] hover:text-[#3bb1f6] font-semibold text-xs gap-1 transition-all duration-300 group/link">
+                    {lang === 'fi' ? 'Lue lisää' : 'Read more'}
+                    <Icon name="arrowRight" class="w-3 h-3 transition-transform duration-300 group-hover/link:translate-x-1" />
+                  </a>
+                </div>
+        
+              </div>
+            );
+          })}
           
-          <!-- Scroll indicator with arrow - mobile only -->
-          <div class="flex items-center justify-center gap-2 text-sm text-slate-400 mt-1 md:hidden">
-            <svg class="w-4 h-4 animate-bounce-x" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
-            <span>Swipe to explore all {keyServices.length} capabilities</span>
-          </div>
         </div>
         
       </div>
       
     </div>
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const container = document.getElementById('cardsContainer');
-      const dots = document.querySelectorAll('#dotsContainer button');
-      const currentCardSpan = document.getElementById('currentCard');
-      const totalCardsSpan = document.getElementById('totalCards');
-      
-      if (!container || !dots.length) return;
-      
-      // Update active dot and counter
-      function updateActiveDot() {
-        const scrollLeft = container.scrollLeft;
-        const isMobile = window.innerWidth < 768;
-        const firstCard = container.querySelector('.card-item');
-
-if (!firstCard) return;
-
-const gap = isMobile ? 16 : 24;
-const cardWidth = firstCard.offsetWidth + gap;
-        
-        const activeIndex = Math.round(scrollLeft / cardWidth);
-        const safeIndex = Math.min(Math.max(activeIndex, 0), dots.length - 1);
-        
-        // Update dots
-        dots.forEach((dot, index) => {
-          if (index === safeIndex) {
-            dot.style.width = '24px';
-            dot.style.backgroundColor = '#3B82F6';
-            dot.style.boxShadow = '0 0 8px rgba(59, 130, 246, 0.4)';
-          } else {
-            dot.style.width = '10px';
-            dot.style.backgroundColor = '#cbd5e1';
-            dot.style.boxShadow = 'none';
-          }
-        });
-        
-        // Update counter
-        if (currentCardSpan) {
-          currentCardSpan.textContent = safeIndex + 1;
-        }
-      }
-      
-      container.addEventListener('scroll', updateActiveDot);
-      
-      let resizeTimeout;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(updateActiveDot, 100);
-      });
-      
-      // Initial update
-      setTimeout(updateActiveDot, 200);
-      setTimeout(updateActiveDot, 500);
-    });
-  </script>
 </section>
+
 
 <!-- Compliance Frameworks Section - WITH FADE OVERLAYS -->
 <section class="py-16 relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('/images/bgf.jpg')">
