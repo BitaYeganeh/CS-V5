@@ -272,21 +272,20 @@ const latestResources = [
   <!-- Fade with blur effect -->
   <div class="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-t from-white via-white/80 to-transparent backdrop-blur-sm"></div>
   
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-2 md:py-4 -mt-4 md:mt-0">
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 md:py-4">
     
     <!-- TITLE AT THE VERY TOP - CENTERED -->
     <div class="text-center mb-6 md:mb-12 lg:mb-20">
       <h1 class="font-bold tracking-tight leading-tight"
           style="font-family: 'Montserrat', sans-serif; font-size: clamp(24px, 5vw, 45px);">
         <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
-          Enterprise Cybersecurity &amp; Compliance Advisory
+          {lang === 'fi' ? content.fi.hero.title : content.en.hero.title}
         </span>
       </h1>
     </div>
 
     <!-- Mobile layout (stacked vertically) -->
     <div class="flex flex-col items-center justify-center gap-6 mb-8 md:hidden">
-      <!-- Mobile: image -->
       <img 
         src="/images/cyber.webp"
         alt="cybersecurity concept"
@@ -295,27 +294,22 @@ const latestResources = [
       />
     </div>
     
-    <!-- Wrapper to center buttons across both columns -->
     <div class="text-center">
       
       <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
         
         <!-- Left Side: Content -->
         <div class="text-center">
-          
-          <!-- Subtitle text - CENTERED ON BOTH MOBILE AND DESKTOP -->
           <div class="text-center">
-            <!-- Decorative element - BIGGER, HIGHER, BLUER with SLOW PULSE -->
             <div class="hidden md:flex items-center justify-center gap-4 mb-4 -mt-20">
               <div class="h-px w-16 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
               <span class="text-[#1E2A7A] text-3xl font-bold animate-pulse" style="animation-duration: 2s;">✦</span>
               <div class="h-px w-16 bg-gradient-to-l from-transparent to-[#1E2A7A]"></div>
             </div>
             
-            <!-- RESPONSIVE PARAGRAPH with visible shadow -->
             <p class="text-slate-600 leading-relaxed mx-auto text-center"
                style="font-family: 'Montserrat', sans-serif; font-size: clamp(16px, 2.5vw, 25px); max-width: 600px; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);">
-              Strategic guidance for complex regulatory environments. ISO 27001, NIS2, GDPR, and DORA implementation with proven methodologies trusted by global organizations.
+              {lang === 'fi' ? content.fi.hero.subtitle : content.en.hero.subtitle}
             </p>
           </div>
         </div>
@@ -333,20 +327,18 @@ const latestResources = [
         
       </div>
       
-      <!-- Buttons - FULL WIDTH ON MOBILE, SIDE BY SIDE ON DESKTOP -->
+      <!-- Buttons -->
       <div class="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center mt-8 md:mt-14"
            style="font-family: 'Montserrat', sans-serif;">
         
         <a href="/contact" 
-           class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white rounded-full hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base"
-           style="font-size: 15px;">
-          Request a Consultation
+           class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white rounded-full hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+          {lang === 'fi' ? content.fi.hero.primaryCTA.text : content.en.hero.primaryCTA.text}
         </a>
         
         <a href="/services" 
-           class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base"
-           style="font-size: 15px;">
-          Explore Services
+           class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#3B82F6] text-[#3B82F6] rounded-full hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm sm:text-base">
+          {lang === 'fi' ? content.fi.hero.secondaryCTA.text : content.en.hero.secondaryCTA.text}
         </a>
       </div>
       
@@ -355,24 +347,16 @@ const latestResources = [
 
   <style>
   @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
-
   .animate-gradient {
     animation: gradient 4s ease infinite;
     background-size: 200% 200%;
   }
   </style>
 </section>
-
 
 <!-- Trust Bar - WHITE BACKGROUND with subtle border -->
 <section class="py-8 bg-white border-y border-slate-100">
@@ -399,21 +383,11 @@ const latestResources = [
         <!-- Rating -->
         <div class="flex items-center gap-3 mt-3 md:justify-start justify-center">
           <div class="flex items-center gap-0.5">
-            <svg class="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-              <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-            </svg>
-            <svg class="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-              <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-            </svg>
-            <svg class="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-              <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-            </svg>
-            <svg class="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-              <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-            </svg>
-            <svg class="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-              <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-            </svg>
+            {[...Array(5)].map((_, i) => (
+              <svg key={i} class="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+              </svg>
+            ))}
           </div>
           <span class="text-xs text-slate-500">4.9/5 (200+ reviews)</span>
         </div>
@@ -446,7 +420,7 @@ const latestResources = [
               { src: '/images/SOC-2-logo.jpg', alt: 'SOC2' },
               { src: '/images/gdpr.webp', alt: 'GDPR' },
             ].map((logo, idx) => (
-              <div class="flex-shrink-0 flex items-center justify-center h-16 md:h-20 w-24 md:w-32 rounded-xl p-2 md:p-3 hover:scale-105 transition-all duration-300">
+              <div key={idx} class="flex-shrink-0 flex items-center justify-center h-16 md:h-20 w-24 md:w-32 rounded-xl p-2 md:p-3 hover:scale-105 transition-all duration-300">
                 <img 
                   src={logo.src}
                   alt={logo.alt}
@@ -490,7 +464,6 @@ const latestResources = [
   }
 </style>
 
-
 <!-- Featured Packages Section - MATCHING HERO SECTION STYLE -->
 <section class="text-slate-900 md:min-h-screen flex items-center relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('/images/bgf.jpg')">
   
@@ -500,7 +473,7 @@ const latestResources = [
   <!-- Bottom fade overlay -->
   <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
   
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-2 md:py-4 -mt-4 md:mt-0">  
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 md:py-12">  
     
     <div class="text-center mb-12">
       <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#3B82F6] mb-4">
@@ -519,13 +492,10 @@ const latestResources = [
                   transition-all duration-300
                   flex flex-col p-6 group">
         
-        <!-- Badge - Left aligned -->
+        <!-- Badge - Blue Border -->
         <div class="flex justify-center mb-4">
-          <div class="flex items-center gap-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] px-3 py-1 rounded-full shadow-sm">
-            <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span class="text-xs font-medium text-white">Become certification-ready in 90–120 days</span>
+          <div class="inline-block px-3 py-1 text-xs font-medium text-[#3B82F6] bg-white rounded-full border-2 border-[#3B82F6] group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+            Become certification-ready in 90–120 days
           </div>
         </div>
 
@@ -539,7 +509,7 @@ const latestResources = [
           Build and implement a complete ISMS with expert guidance.
         </p>        
         
-        <!-- Features List - Clean with better spacing -->
+        <!-- Features List -->
         <ul class="text-sm text-slate-600 space-y-2.5 mb-6 text-left">
           <li class="flex items-start gap-2.5">
             <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
@@ -567,8 +537,8 @@ const latestResources = [
           </li>
         </ul>
         
-        <!-- Button - Centered -->
-        <a href="/packages/iso-27001-fast-track" class="mt-auto inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] bg-transparent hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm w-fit self-center">
+        <!-- Button -->
+        <a href="/packages/iso-27001-fast-track" class="mt-auto inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] bg-white hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm w-fit self-center">
           Start program
         </a>
       </div>
@@ -579,26 +549,24 @@ const latestResources = [
                   transition-all duration-300
                   flex flex-col p-6 group">
         
-        <!-- Badge - Left aligned -->
-<div class="flex justify-center mb-4">
-  <div class="flex items-center gap-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] px-3 py-1 rounded-full shadow-sm">
-    <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
-    <span class="text-xs font-medium text-white">Become NIS2 compliant in 60–90 days</span>
-  </div>
-</div>
+        <!-- Badge - Blue Border -->
+        <div class="flex justify-center mb-4">
+          <div class="inline-block px-3 py-1 text-xs font-medium text-[#3B82F6] bg-white rounded-full border-2 border-[#3B82F6] group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+            Become NIS2 compliant in 60–90 days
+          </div>
+        </div>
+        
         <!-- Title - Centered -->
         <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 text-center">
           NIS2 Sprint Program
         </h3>
         
-        <!-- Description - More prominent -->
+        <!-- Description -->
         <p class="text-base font-semibold text-[#1E2A7A] mb-6 leading-relaxed text-center">
           Prepare for NIS2 requirements with expert support.
         </p>        
         
-        <!-- Features List - Clean with better spacing -->
+        <!-- Features List -->
         <ul class="text-sm text-slate-600 space-y-2.5 mb-6 text-left">
           <li class="flex items-start gap-2.5">
             <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
@@ -612,25 +580,22 @@ const latestResources = [
             <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
             <span>Incident response framework and procedures</span>
           </li>
-                    <li class="flex items-start gap-2.5">
+          <li class="flex items-start gap-2.5">
             <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
             <span>Supply chain security and third-party risk controls</span>
           </li>
-
           <li class="flex items-start gap-2.5">
             <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
             <span>Regulatory reporting setup for audit readiness</span>
           </li>
-
-                    <li class="flex items-start gap-2.5">
+          <li class="flex items-start gap-2.5">
             <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
             <span>Executive and board-level compliance training</span>
           </li>
-
         </ul>
         
-        <!-- Button - Centered -->
-        <a href="/packages/nis2-sprint" class="mt-auto inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] bg-transparent hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm w-fit self-center">
+        <!-- Button -->
+        <a href="/packages/nis2-sprint" class="mt-auto inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] bg-white hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm w-fit self-center">
           Start program
         </a>
       </div>
@@ -641,27 +606,24 @@ const latestResources = [
                   transition-all duration-300
                   flex flex-col p-6 group">
         
-        <!-- Badge - Left aligned -->
+        <!-- Badge - Blue Border -->
         <div class="flex justify-center mb-4">
-          <div class="flex items-center gap-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] px-3 py-1 rounded-full shadow-sm">
-            <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span class="text-xs font-medium text-white">Become SOC 2 ready in 12 weeks</span>
+          <div class="inline-block px-3 py-1 text-xs font-medium text-[#3B82F6] bg-white rounded-full border-2 border-[#3B82F6] group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+            Become SOC 2 ready in 12 weeks
           </div>
         </div>
 
-        <!-- Title - Centered -->
+        <!-- Title -->
         <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 text-center">
           SOC 2 Readiness
         </h3>
         
-        <!-- Description - More prominent -->
+        <!-- Description -->
         <p class="text-base font-semibold text-[#1E2A7A] mb-6 leading-relaxed text-center">
           Prepare for SOC 2 Type I and Type II audits.
         </p>        
         
-        <!-- Features List - Clean with better spacing -->
+        <!-- Features List -->
         <ul class="text-sm text-slate-600 space-y-2.5 mb-6 text-left">
           <li class="flex items-start gap-2.5">
             <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
@@ -685,8 +647,8 @@ const latestResources = [
           </li>
         </ul>
         
-        <!-- Button - Centered -->
-        <a href="/packages/soc2-readiness-12-weeks" class="mt-auto inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] bg-transparent hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm w-fit self-center">
+        <!-- Button -->
+        <a href="/packages/soc2-readiness-12-weeks" class="mt-auto inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] bg-white hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm w-fit self-center">
           Start program
         </a>
       </div>
@@ -705,7 +667,6 @@ const latestResources = [
     
   </div>
 </section>
-
 
 <!-- Core Capabilities Section - WHITE BACKGROUND -->
 <section class="py-8 md:py-20 bg-white relative overflow-hidden">
@@ -798,7 +759,7 @@ const latestResources = [
               }
             </style>
             
-            <!-- Cards container - uses inline-block to prevent width expansion -->
+            <!-- Cards container -->
             <div class="flex gap-6" style="width: fit-content;">
               
               {keyServices.map((service, index) => {
@@ -814,11 +775,14 @@ const latestResources = [
           
                     <div class={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${colorClass} group-hover:h-[6px] transition-all duration-300 z-20`}></div>
           
+                    <!-- Icon with Blue Border - Normal View -->
                     <div class="flex justify-end mb-3 md:mb-4 relative z-10">
-                      <div class="w-10 h-10 md:w-12 md:h-12 bg-blue-50 rounded-xl flex items-center justify-center
+                      <div class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl flex items-center justify-center
+                                  border-2 border-[#3B82F6]
                                   transition-all duration-300
-                                  group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg">
-                        <Icon name={service.icon} class="w-5 h-5 md:w-6 md:h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+                                  group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                                  group-hover:border-transparent">
+                        <Icon name={service.icon} class="w-5 h-5 md:w-6 md:h-6 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
                       </div>
                     </div>
           
@@ -865,11 +829,14 @@ const latestResources = [
         
                 <div class={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${colorClass} group-hover:h-[6px] transition-all duration-300 z-20`}></div>
         
+                <!-- Icon with Blue Border - Normal View (Mobile) -->
                 <div class="flex justify-end mb-3 relative z-10">
-                  <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center
+                  <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                              border-2 border-[#3B82F6]
                               transition-all duration-300
-                              group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg">
-                    <Icon name={service.icon} class="w-5 h-5 text-blue-600 group-hover:text-white transition-colors duration-300" />
+                              group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                              group-hover:border-transparent">
+                    <Icon name={service.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
                   </div>
                 </div>
         
@@ -900,8 +867,7 @@ const latestResources = [
   </div>
 </section>
 
-
-<!-- Compliance Frameworks Section - WITH FADE OVERLAYS -->
+<!-- Compliance Frameworks Section - REFINED -->
 <section class="py-16 relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('/images/bgf.jpg')">
   
   <!-- Top fade overlay -->
@@ -937,26 +903,28 @@ const latestResources = [
             {/* Colored top border */}
             <div class={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${colorClass} group-hover:h-[6px] transition-all duration-300 z-20`}></div>
             
-            {/* Icon - Top Right */}
+            {/* Refined Icon - Blue Border Normal, Gradient on Hover */}
             <div class="flex justify-end mb-4 relative z-10">
-              <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center
+              <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
                           transition-all duration-300
-                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg">
-                <Icon name={framework.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={framework.icon} class="w-6 h-6 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
               </div>
-            </div>
+            </div>            
             
-            {/* Title - left */}
+            {/* Title */}
             <h3 class="text-xl font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
               {framework.title}
             </h3>
             
-            {/* Description - Left */}
+            {/* Description */}
             <p class="text-sm text-slate-500 leading-relaxed text-left flex-1 relative z-10">
               {framework.description}
             </p>
             
-            {/* Learn more Link - left */}
+            {/* Learn more Link */}
             <div class="mt-5 pt-4 flex text-left relative z-10">
               <a
                 href={framework.href}
@@ -972,8 +940,6 @@ const latestResources = [
     </div>
   </div>
 </section>
-
-
 
 <!-- Industries Section - WHITE BACKGROUND -->
 <section class="py-16 bg-slate-50 overflow-hidden">
@@ -1011,7 +977,7 @@ const latestResources = [
             {/* Colored top border */}
             <div class={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${colorClass} group-hover:h-[6px] transition-all duration-300 z-20`}></div>
             
-            {/* Image Container - FIXED responsive height */}
+            {/* Image Container */}
             <div class="w-full h-48 md:h-56 rounded-lg mb-4 overflow-hidden bg-gradient-to-br from-slate-100 to-white border-2 border-slate-200 group-hover:border-[#3B82F6] transition-all duration-300">
               <img 
                 src={industry.image} 
@@ -1030,7 +996,7 @@ const latestResources = [
                 {industry.description}
               </p>
               
-              <!-- Explore framework Link -->
+              {/* Explore framework Link */}
               <div class="mt-4 pt-4 flex justify-center">
                 <span class="inline-flex items-center text-sm text-[#1E40AF] group-hover:text-[#3B82F6] font-semibold gap-1 transition-all duration-300">
                   {lang === 'fi' ? 'Lue lisää' : 'Explore framework'}
@@ -1080,21 +1046,11 @@ const latestResources = [
         
         <!-- Star rating -->
         <div class="flex justify-center gap-1 mb-4">
-          <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-          </svg>
-          <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-          </svg>
-          <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-          </svg>
-          <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-          </svg>
-          <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-          </svg>
+          {[...Array(5)].map((_, i) => (
+            <svg key={i} class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+              <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+            </svg>
+          ))}
         </div>
         
         <blockquote class="text-[#1E2A7A] mb-6 text-base md:text-lg leading-relaxed text-center font-medium">
@@ -1126,7 +1082,6 @@ const latestResources = [
     </div>
   </div>
 </section>
-
 
 <!-- Latest Resources Section - WHITE BACKGROUND -->
 <section class="py-16 bg-white relative overflow-hidden">
@@ -1167,12 +1122,16 @@ const latestResources = [
             {/* Colored top border */}
             <div class={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${colorClass} group-hover:h-[6px] transition-all duration-300 z-20`}></div>
             
-{/* Category Badge - TOP RIGHT */}
-<div class="flex justify-end mb-4 relative z-10">
-  <span class="inline-block px-3 py-1 text-sm font-semibold text-[#1E40AF] bg-slate-100 rounded-full group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] transition-all duration-300">
-    {resource.category}
-  </span>
-</div>            
+            {/* Category Badge - TOP RIGHT with Blue Border */}
+            <div class="flex justify-end mb-4 relative z-10">
+              <span class="inline-block px-3 py-1 text-sm font-semibold text-[#3B82F6] bg-white rounded-full 
+                           border-2 border-[#3B82F6]
+                           transition-all duration-300
+                           group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] 
+                           group-hover:border-transparent">
+                {resource.category}
+              </span>
+            </div>            
             <h3 class="text-xl font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
               {resource.title}
             </h3>
@@ -1209,7 +1168,6 @@ const latestResources = [
     
   </div>
 </section>
-
 
 <!-- Webinars Section - WITH BACKGROUND IMAGE -->
 <section class="py-16 relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('/images/bgf.jpg')">
@@ -1250,12 +1208,15 @@ const latestResources = [
         {/* Colored top border */}
         <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
         
-        {/* Date - With gradient background */}
-        <div class="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] px-3 py-1 rounded-full mb-4 mx-auto relative z-10">
-          <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {/* Date - Blue Border */}
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full mb-4 mx-auto relative z-10
+                    text-[#3B82F6] bg-white border-2 border-[#3B82F6]
+                    group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent
+                    transition-all duration-300">
+          <svg class="w-3.5 h-3.5 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
-          <span class="text-xs font-medium text-white">Sep 15, 2025</span>
+          <span class="text-xs font-medium">Sep 15, 2025</span>
         </div>
         
         <h3 class="text-lg font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
@@ -1268,7 +1229,7 @@ const latestResources = [
         
         <div class="relative z-10">
           <a href="/resources/webinars" 
-             class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-1.5">
+             class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] bg-white hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-1.5">
             Register
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -1286,12 +1247,15 @@ const latestResources = [
         {/* Colored top border */}
         <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
         
-        {/* Date - With gradient background */}
-        <div class="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] px-3 py-1 rounded-full mb-4 mx-auto relative z-10">
-          <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {/* Date - Blue Border */}
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full mb-4 mx-auto relative z-10
+                    text-[#3B82F6] bg-white border-2 border-[#3B82F6]
+                    group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent
+                    transition-all duration-300">
+          <svg class="w-3.5 h-3.5 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
-          <span class="text-xs font-medium text-white">Sep 22, 2025</span>
+          <span class="text-xs font-medium">Sep 22, 2025</span>
         </div>
         
         <h3 class="text-lg font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
@@ -1304,7 +1268,7 @@ const latestResources = [
         
         <div class="relative z-10">
           <a href="/resources/webinars" 
-             class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-1.5">
+             class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] bg-white hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-1.5">
             Register
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -1322,12 +1286,15 @@ const latestResources = [
         {/* Colored top border */}
         <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3bb1f6] to-[#1E2A7A] group-hover:h-[6px] transition-all duration-300 z-20"></div>
         
-        {/* Date - With gradient background */}
-        <div class="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] px-3 py-1 rounded-full mb-4 mx-auto relative z-10">
-          <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {/* Date - Blue Border */}
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full mb-4 mx-auto relative z-10
+                    text-[#3B82F6] bg-white border-2 border-[#3B82F6]
+                    group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent
+                    transition-all duration-300">
+          <svg class="w-3.5 h-3.5 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
-          <span class="text-xs font-medium text-white">Sep 29, 2025</span>
+          <span class="text-xs font-medium">Sep 29, 2025</span>
         </div>
         
         <h3 class="text-lg font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
@@ -1340,7 +1307,7 @@ const latestResources = [
         
         <div class="relative z-10">
           <a href="/resources/webinars" 
-             class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-1.5">
+             class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] bg-white hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-1.5">
             Register
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -1351,20 +1318,19 @@ const latestResources = [
 
     </div>
     
-<!-- View All Webinars Button -->
-<div class="text-center mt-10">
-  <a href="/resources/webinars" 
-     class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-lg font-medium text-sm gap-2">
-    View all webinars
-    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-    </svg>
-  </a>
-</div>
+    <!-- View All Webinars Button -->
+    <div class="text-center mt-10">
+      <a href="/resources/webinars" 
+         class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-lg font-medium text-sm gap-2">
+        View all webinars
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
 
   </div>
 </section>
-
 
 <!-- CTA Section - WITH ANIMATED BORDER -->
 <section class="py-12 relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('/images/bgf.jpg')">
@@ -1379,7 +1345,7 @@ const latestResources = [
     
     <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-6 md:p-10 text-center relative overflow-hidden">
       
-      {/* Animated gradient border - NARROWER */}
+      {/* Animated gradient border */}
       <div class="absolute -inset-0.5 bg-gradient-to-r from-[#3B82F6] via-[#3bb1f6] to-[#1E2A7A] rounded-2xl opacity-75 animate-spin-slow blur-sm"></div>
       
       <div class="relative bg-white/90 backdrop-blur-sm rounded-2xl p-6 md:p-10">
@@ -1425,103 +1391,103 @@ const latestResources = [
   }
 </style>
 
-  <!-- Simplified CSS for clean animations -->
-  <style>
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
+<!-- Simplified CSS for clean animations -->
+<style>
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Simple card hover effects */
+  .hover\:shadow-lg:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Enhanced transitions */
+  button, a[href] {
+    transition: all 0.3s ease;
+  }
+
+  /* Responsive animations - respect user preferences */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
+  }
 
-    /* Simple card hover effects */
-    .hover\:shadow-lg:hover {
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* Performance optimizations */
+  .transform {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+
+  /* Subtle animations on load */
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
     }
+  }
 
-    /* Enhanced transitions */
-    button, a[href] {
-      transition: all 0.3s ease;
+  /* Staggered delays for cards */
+  .fade-in:nth-child(1) { animation-delay: 0ms; }
+  .fade-in:nth-child(2) { animation-delay: 150ms; }
+  .fade-in:nth-child(3) { animation-delay: 300ms; }
+  .fade-in:nth-child(4) { animation-delay: 450ms; }
+  .fade-in:nth-child(5) { animation-delay: 600ms; }
+  .fade-in:nth-child(6) { animation-delay: 750ms; }
+
+  /* Animated border spin */
+  @keyframes spin-slow {
+    0% {
+      transform: rotate(0deg);
     }
-
-    /* Responsive animations - respect user preferences */
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
+    100% {
+      transform: rotate(360deg);
     }
+  }
 
-    /* Performance optimizations */
-    .transform {
-      transform-style: preserve-3d;
-      backface-visibility: hidden;
-    }
+  .animate-spin-slow {
+    animation: spin-slow 4s linear infinite;
+  }
+</style>
 
-    /* Subtle animations on load */
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 0.6s ease-out forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    /* Staggered delays for cards */
-    .fade-in:nth-child(1) { animation-delay: 0ms; }
-    .fade-in:nth-child(2) { animation-delay: 150ms; }
-    .fade-in:nth-child(3) { animation-delay: 300ms; }
-    .fade-in:nth-child(4) { animation-delay: 450ms; }
-    .fade-in:nth-child(5) { animation-delay: 600ms; }
-    .fade-in:nth-child(6) { animation-delay: 750ms; }
-
-    /* Animated border spin */
-    @keyframes spin-slow {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    .animate-spin-slow {
-      animation: spin-slow 4s linear infinite;
-    }
-  </style>
-
-  <!-- Simplified JavaScript for basic interactions -->
-  <script>
-    // Simple fade-in animation on page load
-    document.addEventListener('DOMContentLoaded', () => {
-      // Add fade-in class to sections for smooth loading
-      const sections = document.querySelectorAll('section');
-      sections.forEach((section, index) => {
+<!-- Simplified JavaScript for basic interactions -->
+<script>
+  // Simple fade-in animation on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    // Add fade-in class to sections for smooth loading
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section, index) => {
+      if (!(section instanceof HTMLElement)) return;
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(20px)';
+      section.style.transition = 'all 0.6s ease-out';
+      
+      setTimeout(() => {
         if (!(section instanceof HTMLElement)) return;
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'all 0.6s ease-out';
-        
-        setTimeout(() => {
-          if (!(section instanceof HTMLElement)) return;
-          section.style.opacity = '1';
-          section.style.transform = 'translateY(0)';
-        }, index * 100);
-      });
+        section.style.opacity = '1';
+        section.style.transform = 'translateY(0)';
+      }, index * 100);
+    });
 
-      // Simple hover effects for cards
-      const cards = document.querySelectorAll('[class*="hover:"]');
-      cards.forEach(card => {
-        if (!(card instanceof HTMLElement)) return;
-        card.addEventListener('mouseenter', () => {
-          card.style.transform = 'translateY(-4px)';
-        });
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'translateY(0)';
-        });
+    // Simple hover effects for cards
+    const cards = document.querySelectorAll('[class*="hover:"]');
+    cards.forEach(card => {
+      if (!(card instanceof HTMLElement)) return;
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-4px)';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
       });
     });
-  </script>
+  });
+</script>
 </Layout>
