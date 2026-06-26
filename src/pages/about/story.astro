@@ -1,5 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
@@ -12,9 +14,9 @@ const content = {
     heroDescription: "CSF provides comprehensive cybersecurity services to protect organizations and maintain safe digital environments worldwide.",
     story: {
       title: "About CSF",
-      content: "CSF provides Governance, Risk & Compliance Services, Security Testing, Supply Chain Information Risk Management, Secure Code Testing, Security Awareness Training, Virtual CISO Service, Red Team Testing, Information Security Threat & Risk Assessments, Information Security Management Systems, Social Engineering, Gap Analysis, Risk Assessment, PCI DSS, DPA & GDPR, ISO 27001, SOC 2 Type 2, Cyber Essentials and Penetration Testing.",
-      vision: "Our goal is to create and maintain safe environments by providing threat analysis, protection, investigations, consulting, intelligence and security training services everywhere clients go. We created an easier, safer and faster way to collaborate and manage your security and penetration testing projects and programs. CSF's team of seasoned experts customize services based on specific client needs and work around the clock to discreetly prevent security issues before they occur. While our proactive approach sets us apart, our highly respected employees and efficient results have made us the global standard in protective and investigative services worldwide.",
-      growth: "Cybersecurity Support includes Security Assessments, Computer Network Operations and Defense, Security Certification and Accreditation, Perimeter Defense Design and Implementation, and Independent Security Testing and Evaluation. Founded in 2021 and headquartered in Helsinki, Uusimaa, we are a Computer and Network Security company with 11-50 employees specializing in cyber security, risk assessment, risk management, penetration testing, and vulnerability management. Website: https://www.cybersecurity.fi | Phone: +358402211119"
+      content: "CSF delivers a comprehensive suite of Governance, Risk & Compliance Services, Security Testing, Supply Chain Information Risk Management, Secure Code Testing, Security Awareness Training, Virtual CISO Service, Red Team Testing, Information Security Threat & Risk Assessments, Information Security Management Systems, Social Engineering, Gap Analysis, Risk Assessment, PCI DSS, DPA & GDPR, ISO 27001, SOC 2 Type 2, Cyber Essentials and Penetration Testing.",
+      vision: "Our mission is to create and maintain secure digital environments through threat analysis, protection, investigations, consulting, intelligence, and security training services. We've developed an efficient, secure, and streamlined approach to managing security and penetration testing projects. Our seasoned experts deliver customized solutions tailored to each client's unique needs, working proactively to prevent security incidents before they occur. This dedication, combined with our team's expertise and proven results, has established CSF as the global benchmark for protective and investigative services.",
+      growth: "Our comprehensive Cybersecurity Support encompasses Security Assessments, Computer Network Operations and Defense, Security Certification and Accreditation, Perimeter Defense Design and Implementation, and Independent Security Testing and Evaluation. Founded in 2021 and headquartered in Helsinki, Finland, we are a leading Computer and Network Security company with 11-50 specialized professionals. Our expertise spans cyber security, risk assessment, risk management, penetration testing, and vulnerability management."
     },
     milestones: {
       title: "Company Information",
@@ -22,22 +24,22 @@ const content = {
         {
           year: "2021",
           title: "Founded",
-          description: "Cyber Security Finland established in Helsinki, Uusimaa"
+          description: "Established in Helsinki, Finland"
         },
         {
           year: "11-50",
           title: "Team Size",
-          description: "Employees specializing in cybersecurity services"
+          description: "Cybersecurity specialists"
         },
         {
           year: "Finland",
           title: "Headquarters",
-          description: "Based in Helsinki, serving clients globally"
+          description: "Based in Helsinki, serving globally"
         },
         {
           year: "Global",
           title: "Reach",
-          description: "Protective and investigative services worldwide"
+          description: "Worldwide protective services"
         }
       ]
     },
@@ -46,31 +48,25 @@ const content = {
       items: [
         {
           title: "Cyber Security",
-          description: "Comprehensive cybersecurity solutions and threat management services."
+          description: "Comprehensive security solutions and threat management."
         },
         {
           title: "Risk Assessment",
-          description: "Thorough risk analysis and assessment methodologies for your organization."
+          description: "Thorough analysis and assessment methodologies."
         },
         {
           title: "Risk Management",
-          description: "Strategic risk management frameworks and implementation guidance."
+          description: "Strategic frameworks and implementation guidance."
         },
         {
           title: "Penetration Testing",
-          description: "Advanced penetration testing and vulnerability assessment services."
+          description: "Advanced testing and vulnerability assessment."
         },
         {
           title: "Vulnerability Management",
-          description: "Continuous vulnerability management and remediation strategies."
+          description: "Continuous management and remediation strategies."
         }
       ]
-    },
-    cta: {
-      title: "Ready to Secure Your Organization?",
-      subtitle: "Contact CSF today to discuss your cybersecurity needs.",
-      primaryButton: "Get Started",
-      secondaryButton: "Visit Our Website"
     }
   },
   fi: {
@@ -89,22 +85,22 @@ const content = {
         {
           year: "2018",
           title: "Perustaminen",
-          description: "Yritys perustettu ISO 27001 -toteutuksen fokuksella"
+          description: "Yritys perustettu"
         },
         {
           year: "2020",
           title: "Laajentuminen",
-          description: "Lisätty NIS2- ja GDPR-palvelut, tiimi laajennettu 15 ammattilaiseen"
+          description: "Tiimi laajennettu"
         },
         {
           year: "2022",
           title: "Kasvu",
-          description: "Käynnistetty DORA-noudattamispalvelut, avattu toimisto Tukholmaan"
+          description: "DORA-palvelut käynnistetty"
         },
         {
           year: "2024",
           title: "Johtajuus",
-          description: "Tunnustettu Suomen parhaaksi kyberturvallisuuskonsultiksi"
+          description: "Tunnustettu parhaaksi"
         }
       ]
     },
@@ -113,27 +109,21 @@ const content = {
       items: [
         {
           title: "Erinomaisuus",
-          description: "Pyrimme erinomaisuuteen jokaisessa työsuhteessa, tarjoamalla korkealaatuisia ratkaisuja, jotka ylittävät odotukset."
+          description: "Pyrimme erinomaisuuteen jokaisessa työsuhteessa."
         },
         {
           title: "Rehellisyys",
-          description: "Toimimme korkeimmilla eettisillä standardeilla ja ylläpidämme täydellistä läpinäkyvyyttä kaikissa vuorovaikutuksissamme."
+          description: "Toimimme korkeimmilla eettisillä standardeilla."
         },
         {
           title: "Innovaatio",
-          description: "Jatkuvasti innovoimme lähestymistapojamme pysyäksemme kehittyvien kyberturvallisuushaasteiden edellä."
+          description: "Jatkuvasti innovoimme lähestymistapojamme."
         },
         {
           title: "Kumppanuus",
-          description: "Rakennamme pitkäaikaisia kumppanuuksia asiakkaidemme kanssa, tukien heidän kyberturvallisuusmatkaansa jokaisessa vaiheessa."
+          description: "Rakennamme pitkäaikaisia kumppanuuksia."
         }
       ]
-    },
-    cta: {
-      title: "Liity Matkaamme",
-      subtitle: "Valmiina rakentamaan yhdessä turvallisemman tulevaisuuden?",
-      primaryButton: "Aloita",
-      secondaryButton: "Lue Lisää Tiimistämme"
     }
   }
 };
@@ -143,120 +133,88 @@ const currentContent = content[lang];
 
 <Layout title={title}>
 
-  <!-- Hero Section - Matching homepage -->
-  <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 overflow-hidden">
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-16">
-      
-      <div class="text-center max-w-4xl mx-auto">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4">
-          <span class="text-[#1E2A7A]">{currentContent.title}</span>
-        </h1>
-        <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
-          {currentContent.subtitle}
-        </p>
-        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-          {currentContent.heroDescription}
-        </p>
+  <!-- FULL PAGE WRAPPER WITH WHITE BACKGROUND -->
+  <div class="min-h-screen bg-white">
+    
+    <!-- Hero Section -->
+    <section class="pt-12 md:pt-16 pb-4">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
+            <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+              {currentContent.subtitle}
+            </span>
+          </h1>
+          <p class="text-lg md:text-xl text-slate-600 leading-relaxed max-w-3xl">
+            {currentContent.heroDescription}
+          </p>
+        </div>
       </div>
-      
-    </div>
-  </section>
+    </section>
 
-  <!-- Story Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-          {currentContent.story.title}
-        </h2>
+    <!-- Story Section -->
+    <section class="py-12 md:py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl">
+          <h2 class="text-2xl md:text-3xl font-bold text-[#3B82F6] mb-6">
+            {currentContent.story.title}
+          </h2>
+          
+          <div class="space-y-4 text-slate-600 text-base md:text-lg leading-relaxed text-justify">
+            <p>{currentContent.story.content}</p>
+            <p>{currentContent.story.vision}</p>
+            <p>{currentContent.story.growth}</p>
+          </div>
+        </div>
       </div>
-      
-      <div class="space-y-6">
-        <p class="text-base md:text-lg text-slate-500 leading-relaxed">{currentContent.story.content}</p>
-        <p class="text-base md:text-lg text-slate-500 leading-relaxed">{currentContent.story.vision}</p>
-        <p class="text-base md:text-lg text-slate-500 leading-relaxed">{currentContent.story.growth}</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Milestones Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+    <!-- Company Information Section -->
+    <section class="py-12 md:py-16 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-[#3B82F6] mb-6">
           {currentContent.milestones.title}
         </h2>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {currentContent.milestones.items.map((item) => (
+            <div class="bg-white rounded-xl border border-slate-200 p-5 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <div class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-1">{item.year}</div>
+              <div class="font-semibold text-slate-800 mb-1">{item.title}</div>
+              <div class="text-sm text-slate-500">{item.description}</div>
+            </div>
+          ))}
+        </div>
       </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {currentContent.milestones.items.map((milestone) => (
-          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 text-center hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-            <div class="text-4xl font-bold text-[#1E2A7A] mb-2 group-hover:text-[#3B82F6] transition-colors duration-300">{milestone.year}</div>
-            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">{milestone.title}</h3>
-            <p class="text-sm text-slate-500">{milestone.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Specialties Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+    <!-- Specialties Section -->
+    <section class="py-12 md:py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-[#3B82F6] mb-6">
           {currentContent.values.title}
         </h2>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {currentContent.values.items.map((value) => (
-          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 hover:bg-slate-50 hover:shadow-md transition-all duration-300 group">
-            <div class="flex items-start gap-3">
-              <div class="flex-shrink-0 mt-1">
-                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
-                  <svg class="w-4 h-4 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {currentContent.values.items.map((item) => (
+            <div class="bg-white rounded-xl border border-slate-200 p-5 hover:shadow-lg hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300">
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-4 h-4 text-[#3B82F6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">{value.title}</h3>
-                <p class="text-sm text-slate-500 leading-relaxed">{value.description}</p>
+                <div>
+                  <h3 class="font-bold text-slate-800 mb-1">{item.title}</h3>
+                  <p class="text-sm text-slate-500 leading-relaxed">{item.description}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section - Matching homepage -->
-  <section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
-          {currentContent.cta.title}
-        </h2>
-        <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
-          {currentContent.cta.subtitle}
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm sm:text-base gap-2">
-            {currentContent.cta.primaryButton}
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
-          <a href="/about/team" class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm sm:text-base gap-2">
-            {currentContent.cta.secondaryButton}
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+  </div>
 
 </Layout>
