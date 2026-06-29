@@ -1,272 +1,251 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Icon from "@ui/icons/Icon.astro";
-import Button from "@ui/Button.astro";
+import Icon from '@/components/ui/icons/Icon.astro';
 import Button from '@/components/ui/Button.astro';
 
-const title = "GDPR and Privacy";
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const title = "GDPR";
 
 const content = {
   en: {
-    title: "GDPR and Privacy",
-    subtitle: "General Data Protection Regulation Compliance",
-    description: "Navigate GDPR compliance requirements with expert guidance and proven implementation strategies for data protection and privacy.",
-    whoFor: "For organizations that process personal data of EU residents and need to ensure GDPR compliance.",
-    whatYouAchieve: "Full GDPR compliance with enhanced data protection and privacy capabilities.",
-    
-    gdprTitle: "What is GDPR?",
-    gdprDescription: "The General Data Protection Regulation (GDPR) is a comprehensive EU data protection law that governs how organizations collect, process, store, and protect personal data of EU residents.",
-    
-    principlesTitle: "GDPR Key Principles",
-    principlesSubtitle: "Seven fundamental principles of data protection",
-    principles: [
-      { title: "Lawfulness, Fairness & Transparency", description: "Process data lawfully, fairly, and transparently" },
-      { title: "Purpose Limitation", description: "Collect data for specified, explicit, and legitimate purposes" },
-      { title: "Data Minimization", description: "Collect only data that is adequate, relevant, and necessary" },
-      { title: "Accuracy", description: "Ensure data is accurate and kept up to date" },
-      { title: "Storage Limitation", description: "Retain data only for as long as necessary" },
-      { title: "Integrity & Confidentiality", description: "Process data securely and protect against unauthorized access" },
-      { title: "Accountability", description: "Demonstrate compliance with GDPR principles" }
-    ],
-    
-    complianceTitle: "GDPR Compliance Requirements",
-    complianceSubtitle: "Essential areas for achieving compliance",
-    complianceAreas: [
-      { title: "Data Mapping", description: "Identify and document all personal data processing activities" },
-      { title: "Legal Basis", description: "Establish legal basis for data processing activities" },
-      { title: "Consent Management", description: "Implement effective consent collection and management" },
-      { title: "Data Subject Rights", description: "Enable data subjects to exercise their rights" },
-      { title: "Data Protection Impact Assessment", description: "Conduct DPIAs for high-risk processing activities" },
-      { title: "Breach Notification", description: "Establish data breach detection and notification procedures" }
-    ],
-    
-    whyChooseTitle: "Why Choose Our GDPR Services?",
-    whyChooseSubtitle: "Expert guidance for data protection compliance",
-    whyChoosePoints: [
-      "Deep understanding of GDPR requirements",
-      "Experience with data protection implementation",
-      "Proven compliance methodologies and frameworks",
-      "Ongoing support and maintenance services",
-      "Industry best practices and standards"
-    ],
-    
-    benefitsTitle: "Benefits of GDPR Compliance",
-    benefitsSubtitle: "Strategic advantages of achieving compliance",
-    benefitsList: [
-      "Enhanced data protection and privacy",
-      "Improved customer trust and confidence",
-      "Reduced regulatory and legal risks",
-      "Better data governance and management",
-      "Competitive advantage in the market"
-    ],
-    
-    implementationTitle: "Implementation Steps",
-    implementationSubtitle: "Systematic approach to GDPR compliance",
-    steps: [
-      { number: "01", title: "Data Audit", description: "Conduct comprehensive data audit and mapping exercise" },
-      { number: "02", title: "Gap Analysis", description: "Assess current practices against GDPR requirements" },
-      { number: "03", title: "Policy Development", description: "Develop and implement data protection policies" },
-      { number: "04", title: "Process Implementation", description: "Implement required data protection processes" },
-      { number: "05", title: "Training & Awareness", description: "Train staff on GDPR requirements and procedures" }
-    ],
-    
-    ctaTitle: "Ready to Achieve GDPR Compliance?",
-    ctaSubtitle: "Get expert guidance for data protection and privacy",
-    ctaButton: "Start GDPR Assessment",
-    ctaDescription: "Our GDPR experts will help you navigate the requirements and achieve compliance efficiently."
+    title: "GDPR",
+    subtitle: "General Data Protection Regulation",
+    heroDescription: "Navigate GDPR compliance requirements with expert guidance and proven implementation strategies for data protection and privacy.",
+    forWho: "For organizations that process personal data of EU residents and need to ensure GDPR compliance.",
+    achieve: "Full GDPR compliance with enhanced data protection and privacy capabilities.",
+    gdpr: {
+      title: "What is GDPR?",
+      description: "The General Data Protection Regulation (GDPR) is a comprehensive EU data protection law that governs how organizations collect, process, store, and protect personal data of EU residents."
+    },
+    principles: {
+      title: "GDPR Key Principles",
+      subtitle: "Seven fundamental principles of data protection",
+      items: [
+        { title: "Lawfulness, Fairness & Transparency", description: "Process data lawfully, fairly, and transparently" },
+        { title: "Purpose Limitation", description: "Collect data for specified, explicit, and legitimate purposes" },
+        { title: "Data Minimization", description: "Collect only data that is adequate, relevant, and necessary" },
+        { title: "Accuracy", description: "Ensure data is accurate and kept up to date" },
+        { title: "Storage Limitation", description: "Retain data only for as long as necessary" },
+        { title: "Integrity & Confidentiality", description: "Process data securely and protect against unauthorized access" },
+        { title: "Accountability", description: "Demonstrate compliance with GDPR principles" }
+      ]
+    },
+    compliance: {
+      title: "GDPR Compliance Requirements",
+      subtitle: "Essential areas for achieving compliance",
+      items: [
+        { title: "Data Mapping", description: "Identify and document all personal data processing activities" },
+        { title: "Legal Basis", description: "Establish legal basis for data processing activities" },
+        { title: "Consent Management", description: "Implement effective consent collection and management" },
+        { title: "Data Subject Rights", description: "Enable data subjects to exercise their rights" },
+        { title: "Data Protection Impact Assessment", description: "Conduct DPIAs for high-risk processing activities" },
+        { title: "Breach Notification", description: "Establish data breach detection and notification procedures" }
+      ]
+    },
+    steps: {
+      title: "Implementation Steps",
+      subtitle: "Systematic approach to GDPR compliance",
+      items: [
+        { number: "01", title: "Data Audit", description: "Conduct comprehensive data audit and mapping exercise" },
+        { number: "02", title: "Gap Analysis", description: "Assess current practices against GDPR requirements" },
+        { number: "03", title: "Policy Development", description: "Develop and implement data protection policies" },
+        { number: "04", title: "Process Implementation", description: "Implement required data protection processes" },
+        { number: "05", title: "Training & Awareness", description: "Train staff on GDPR requirements and procedures" }
+      ]
+    },
+    benefits: {
+      title: "Benefits of GDPR Compliance",
+      subtitle: "Strategic advantages of achieving compliance",
+      items: [
+        "Enhanced data protection and privacy",
+        "Improved customer trust and confidence",
+        "Reduced regulatory and legal risks",
+        "Better data governance and management",
+        "Competitive advantage in the market"
+      ]
+    }
   },
-  
   fi: {
-    title: "GDPR ja yksityisyys",
-    subtitle: "Yleisen tietosuoja-asetuksen yhteensopivuus",
-    description: "Navigoi GDPR yhteensopivuusvaatimukset asiantuntevan ohjauksen ja todistettujen toteutusstrategioiden avulla tietojen suojelun ja yksityisyyden osalta.",
-    whoFor: "Organisaatioille, jotka käsittelevät EU:n asukkaiden henkilötietoja ja tarvitsevat GDPR yhteensopivuuden.",
-    whatYouAchieve: "Täysi GDPR yhteensopivuus parannetulla tietojen suojelulla ja yksityisyyskyvyillä.",
-    
-    gdprTitle: "Mikä on GDPR?",
-    gdprDescription: "Yleinen tietosuoja-asetus (GDPR) on kattava EU:n tietosuoja-laki, joka säätelee miten organisaatiot keräävät, käsittelevät, säilyttävät ja suojaavat EU:n asukkaiden henkilötietoja.",
-    
-    principlesTitle: "GDPR:n keskeiset periaatteet",
-    principlesSubtitle: "Tietojen suojelun seitsemän perusperiaatetta",
-    principles: [
-      { title: "Laillisuus, oikeudenmukaisuus ja läpinäkyvyys", description: "Käsittele tietoja laillisesti, oikeudenmukaisesti ja läpinäkyvästi" },
-      { title: "Tarkoituksen rajoittaminen", description: "Kerää tietoja määritellyihin, selkeisiin ja oikeutettuihin tarkoituksiin" },
-      { title: "Tietojen minimointi", description: "Kerää vain riittäviä, asiaankuuluvia ja tarpeellisia tietoja" },
-      { title: "Tarkkuus", description: "Varmista että tiedot ovat tarkkoja ja ajan tasalla" },
-      { title: "Säilytysajan rajoittaminen", description: "Säilytä tietoja vain niin kauan kuin tarpeen" },
-      { title: "Eheys ja luottamuksellisuus", description: "Käsittele tietoja turvallisesti ja suojaa luvattomalta pääsyltä" },
-      { title: "Vastuullisuus", description: "Näytä GDPR periaatteiden noudattaminen" }
-    ],
-    
-    complianceTitle: "GDPR yhteensopivuusvaatimukset",
-    complianceSubtitle: "Yhteensopivuuden saavuttamisen keskeiset alueet",
-    complianceAreas: [
-      { title: "Tietojen kartoitus", description: "Tunnista ja dokumentoi kaikki henkilötietojen käsittelytoiminnot" },
-      { title: "Oikeusperusta", description: "Perusta oikeusperusta tietojen käsittelytoiminnoille" },
-      { title: "Suostumuksen hallinta", description: "Toteuta tehokas suostumuksen keräys ja hallinta" },
-      { title: "Tietojen subjektin oikeudet", description: "Mahdollista tietojen subjektien oikeuksien käyttö" },
-      { title: "Tietojen suojelun vaikutusarviointi", description: "Suorita TSVA:t korkeariskisille käsittelytoiminnoille" },
-      { title: "Tietoturvaloukkauksen ilmoittaminen", description: "Perusta tietoturvaloukkauksen tunnistus- ja ilmoitusproseduurit" }
-    ],
-    
-    whyChooseTitle: "Miksi valita GDPR-palvelumme?",
-    whyChooseSubtitle: "Asiantuntevaa ohjausta tietojen suojelun yhteensopivuudelle",
-    whyChoosePoints: [
-      "Syvä ymmärrys GDPR vaatimuksista",
-      "Kokemus tietojen suojelun toteutuksesta",
-      "Todistetut yhteensopivuusmetodologiat ja kehykset",
-      "Jatkuva tuki ja ylläpito",
-      "Toimialan parhaat käytännöt ja standardit"
-    ],
-    
-    benefitsTitle: "GDPR yhteensopivuuden edut",
-    benefitsSubtitle: "Yhteensopivuuden saavuttamisen strategiset edut",
-    benefitsList: [
-      "Parannettu tietojen suojelu ja yksityisyys",
-      "Parannettu asiakkaiden luottamus ja varmuus",
-      "Alennettu sääntely- ja oikeusriski",
-      "Parempi tietojen hallinta ja johtaminen",
-      "Kilpailuetu markkinoilla"
-    ],
-    
-    implementationTitle: "Toteutusvaiheet",
-    implementationSubtitle: "Systemaattinen lähestymistapa GDPR yhteensopivuuteen",
-    steps: [
-      { number: "01", title: "Tietojen auditointi", description: "Suorita kattava tietojen auditointi ja kartoitus" },
-      { number: "02", title: "Aukkoanalyysi", description: "Arvioi nykyiset käytännöt GDPR vaatimuksia vastaan" },
-      { number: "03", title: "Politiikkojen kehitys", description: "Kehitä ja toteuta tietojen suojelupolitiikat" },
-      { number: "04", title: "Prosessien toteutus", description: "Toteuta vaaditut tietojen suojeluprosessit" },
-      { number: "05", title: "Koulutus ja tietoisuus", description: "Kouluta henkilökuntaa GDPR vaatimuksista ja proseduureista" }
-    ],
-    
-    ctaTitle: "Valmiina saavuttamaan GDPR yhteensopivuuden?",
-    ctaSubtitle: "Saa asiantuntevaa ohjausta tietojen suojeluun ja yksityisyyteen",
-    ctaButton: "Aloita GDPR arviointi",
-    ctaDescription: "GDPR asiantuntijamme auttavat sinua navigoimaan vaatimukset ja saavuttamaan yhteensopivuuden tehokkaasti."
+    title: "GDPR",
+    subtitle: "Yleinen tietosuoja-asetus",
+    heroDescription: "Navigoi GDPR yhteensopivuusvaatimukset asiantuntevan ohjauksen ja todistettujen toteutusstrategioiden avulla tietojen suojelun ja yksityisyyden osalta.",
+    forWho: "Organisaatioille, jotka käsittelevät EU:n asukkaiden henkilötietoja ja tarvitsevat GDPR yhteensopivuuden.",
+    achieve: "Täysi GDPR yhteensopivuus parannetulla tietojen suojelulla ja yksityisyyskyvyillä.",
+    gdpr: {
+      title: "Mikä on GDPR?",
+      description: "Yleinen tietosuoja-asetus (GDPR) on kattava EU:n tietosuoja-laki, joka säätelee miten organisaatiot keräävät, käsittelevät, säilyttävät ja suojaavat EU:n asukkaiden henkilötietoja."
+    },
+    principles: {
+      title: "GDPR:n keskeiset periaatteet",
+      subtitle: "Tietojen suojelun seitsemän perusperiaatetta",
+      items: [
+        { title: "Laillisuus, oikeudenmukaisuus ja läpinäkyvyys", description: "Käsittele tietoja laillisesti, oikeudenmukaisesti ja läpinäkyvästi" },
+        { title: "Tarkoituksen rajoittaminen", description: "Kerää tietoja määritellyihin, selkeisiin ja oikeutettuihin tarkoituksiin" },
+        { title: "Tietojen minimointi", description: "Kerää vain riittäviä, asiaankuuluvia ja tarpeellisia tietoja" },
+        { title: "Tarkkuus", description: "Varmista että tiedot ovat tarkkoja ja ajan tasalla" },
+        { title: "Säilytysajan rajoittaminen", description: "Säilytä tietoja vain niin kauan kuin tarpeen" },
+        { title: "Eheys ja luottamuksellisuus", description: "Käsittele tietoja turvallisesti ja suojaa luvattomalta pääsyltä" },
+        { title: "Vastuullisuus", description: "Näytä GDPR periaatteiden noudattaminen" }
+      ]
+    },
+    compliance: {
+      title: "GDPR yhteensopivuusvaatimukset",
+      subtitle: "Yhteensopivuuden saavuttamisen keskeiset alueet",
+      items: [
+        { title: "Tietojen kartoitus", description: "Tunnista ja dokumentoi kaikki henkilötietojen käsittelytoiminnot" },
+        { title: "Oikeusperusta", description: "Perusta oikeusperusta tietojen käsittelytoiminnoille" },
+        { title: "Suostumuksen hallinta", description: "Toteuta tehokas suostumuksen keräys ja hallinta" },
+        { title: "Tietojen subjektin oikeudet", description: "Mahdollista tietojen subjektien oikeuksien käyttö" },
+        { title: "Tietojen suojelun vaikutusarviointi", description: "Suorita TSVA:t korkeariskisille käsittelytoiminnoille" },
+        { title: "Tietoturvaloukkauksen ilmoittaminen", description: "Perusta tietoturvaloukkauksen tunnistus- ja ilmoitusproseduurit" }
+      ]
+    },
+    steps: {
+      title: "Toteutusvaiheet",
+      subtitle: "Systemaattinen lähestymistapa GDPR yhteensopivuuteen",
+      items: [
+        { number: "01", title: "Tietojen auditointi", description: "Suorita kattava tietojen auditointi ja kartoitus" },
+        { number: "02", title: "Aukkoanalyysi", description: "Arvioi nykyiset käytännöt GDPR vaatimuksia vastaan" },
+        { number: "03", title: "Politiikkojen kehitys", description: "Kehitä ja toteuta tietojen suojelupolitiikat" },
+        { number: "04", title: "Prosessien toteutus", description: "Toteuta vaaditut tietojen suojeluprosessit" },
+        { number: "05", title: "Koulutus ja tietoisuus", description: "Kouluta henkilökuntaa GDPR vaatimuksista ja proseduureista" }
+      ]
+    },
+    benefits: {
+      title: "GDPR yhteensopivuuden edut",
+      subtitle: "Yhteensopivuuden saavuttamisen strategiset edut",
+      items: [
+        "Parannettu tietojen suojelu ja yksityisyys",
+        "Parannettu asiakkaiden luottamus ja varmuus",
+        "Alennettu sääntely- ja oikeusriski",
+        "Parempi tietojen hallinta ja johtaminen",
+        "Kilpailuetu markkinoilla"
+      ]
+    }
   }
 };
 
 const currentContent = content[lang];
+const isFi = lang === 'fi';
 ---
 
 <Layout title={title}>
 
-  <!-- Hero Section - Matching homepage -->
-  <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 overflow-hidden">
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-16">
-      
-      <div class="max-w-4xl">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4">
-          <span class="text-[#1E2A7A]">{currentContent.title}</span>
+  <!-- Hero Section -->
+  <section class="pt-12 md:pt-16 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
         </h1>
-        <p class="text-base md:text-lg text-slate-500 max-w-3xl leading-relaxed mb-6">
-          {currentContent.description}
+        <p class="text-lg md:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
         </p>
         
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 mt-6">
-          <p class="text-sm text-slate-500 mb-3">{lang === 'fi' ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}</p>
-          <p class="text-slate-700 font-medium mb-4">{currentContent.whoFor}</p>
-          <p class="text-sm text-slate-500 mb-2">{lang === 'fi' ? 'Mitä saavutat?' : 'What will you achieve?'}</p>
-          <p class="text-slate-700 font-medium">{currentContent.whatYouAchieve}</p>
+        <!-- Info Section - Two Column Layout (Centered) -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <!-- Who is this for? -->
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-sm font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- What will you achieve? -->
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-sm font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      
     </div>
   </section>
 
   <!-- What is GDPR Section -->
-  <section class="py-16 bg-white">
+  <section class="py-12 md:py-16 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-          {currentContent.gdprTitle}
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-[#3B82F6] mb-4">
+          {currentContent.gdpr.title}
         </h2>
-        <p class="text-base md:text-lg text-slate-500 max-w-4xl mx-auto leading-relaxed">
-          {currentContent.gdprDescription}
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.gdpr.description}
         </p>
-      </div>
-      
-      <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-8">
-        <div class="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 class="text-xl font-bold text-[#1E2A7A] mb-4">EU Regulation</h3>
-            <ul class="space-y-3">
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-blue-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-slate-600">Comprehensive data protection law</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-blue-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-slate-600">Applies to EU residents' data</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-blue-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-slate-600">Enforceable since May 2018</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-xl font-bold text-[#1E2A7A] mb-4">Key Objectives</h3>
-            <ul class="space-y-3">
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-blue-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-slate-600">Protect personal data rights</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-blue-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-slate-600">Ensure data processing transparency</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-blue-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-slate-600">Strengthen data security</span>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
   <!-- Key Principles Section -->
-  <section class="py-16 bg-white">
+  <section class="py-12 md:py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-          {currentContent.principlesTitle}
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.principles.title}
         </h2>
-        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-          {currentContent.principlesSubtitle}
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.principles.subtitle}
         </p>
       </div>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {currentContent.principles.map((principle) => (
-          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 hover:bg-slate-50 hover:shadow-md transition-all duration-300 group">
-            <div class="flex items-start gap-3">
-              <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {currentContent.principles.items.map((item) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-5 md:p-6 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center flex-shrink-0
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <svg class="w-4 h-4 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
               <div>
-                <h3 class="text-lg font-bold text-slate-900 mb-1">{principle.title}</h3>
-                <p class="text-sm text-slate-500">{principle.description}</p>
+                <h3 class="text-base font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+                  {item.title}
+                </h3>
               </div>
             </div>
+            <p class="text-xs md:text-sm text-slate-500 leading-relaxed text-left pl-11 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {item.description}
+            </p>
           </div>
         ))}
       </div>
@@ -274,31 +253,44 @@ const currentContent = content[lang];
   </section>
 
   <!-- Compliance Requirements Section -->
-  <section class="py-16 bg-white">
+  <section class="py-12 md:py-16 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-          {currentContent.complianceTitle}
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.compliance.title}
         </h2>
-        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-          {currentContent.complianceSubtitle}
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.compliance.subtitle}
         </p>
       </div>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {currentContent.complianceAreas.map((area) => (
-          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-5 hover:border-blue-300 hover:bg-slate-50 transition-all duration-300">
-            <div class="flex items-start gap-3">
-              <div class="w-6 h-6 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {currentContent.compliance.items.map((item) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-5 md:p-6 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center flex-shrink-0
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <svg class="w-4 h-4 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
               <div>
-                <h3 class="text-base font-bold text-slate-900 mb-1">{area.title}</h3>
-                <p class="text-xs text-slate-500">{area.description}</p>
+                <h3 class="text-base font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+                  {item.title}
+                </h3>
               </div>
             </div>
+            <p class="text-xs md:text-sm text-slate-500 leading-relaxed text-left pl-11 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {item.description}
+            </p>
           </div>
         ))}
       </div>
@@ -306,144 +298,80 @@ const currentContent = content[lang];
   </section>
 
   <!-- Implementation Steps Section -->
-  <section class="py-16 bg-white">
+  <section class="py-12 md:py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-          {currentContent.implementationTitle}
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.steps.title}
         </h2>
-        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-          {currentContent.implementationSubtitle}
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.steps.subtitle}
         </p>
       </div>
       
-      <div class="space-y-4">
-        {currentContent.steps.map((step, index) => (
-          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-5 hover:border-blue-300 hover:bg-slate-50 transition-all duration-300">
-            <div class="flex flex-col md:flex-row md:items-center gap-4">
-              <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-xl flex items-center justify-center text-lg font-bold">
-                  {step.number}
-                </div>
+      <div class="max-w-4xl mx-auto space-y-4">
+        {currentContent.steps.items.map((step) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col md:flex-row md:items-center gap-4 p-5 md:p-6 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-12 h-12 bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white rounded-xl flex items-center justify-center text-lg font-bold">
+                {step.number}
               </div>
-              <div class="flex-1">
-                <h3 class="text-lg font-bold text-slate-900 mb-1">{step.title}</h3>
-                <p class="text-sm text-slate-500">{step.description}</p>
-              </div>
+            </div>
+            <div class="flex-1 relative z-10">
+              <h3 class="text-base md:text-lg font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                {step.title}
+              </h3>
+              <p class="text-sm text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                {step.description}
+              </p>
             </div>
           </div>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Choose Us Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-          {currentContent.whyChooseTitle}
-        </h2>
-        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-          {currentContent.whyChooseSubtitle}
-        </p>
-      </div>
-      
-      <div class="grid md:grid-cols-2 gap-12">
-        <div class="space-y-4">
-          {currentContent.whyChoosePoints.map((point) => (
-            <div class="flex items-start gap-3">
-              <div class="w-6 h-6 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <p class="text-slate-600">{point}</p>
-            </div>
-          ))}
-        </div>
-        
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6">
-          <h3 class="text-xl font-bold text-[#1E2A7A] mb-4">Our Privacy Expertise</h3>
-          <div class="space-y-3">
-            <div class="flex items-center gap-2">
-              <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-              <span class="text-slate-600 text-sm">Data protection specialists</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-              <span class="text-slate-600 text-sm">GDPR implementation experience</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-              <span class="text-slate-600 text-sm">Proven methodologies</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-              <span class="text-slate-600 text-sm">Ongoing support</span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
   <!-- Benefits Section -->
-  <section class="py-16 bg-white">
+  <section class="py-12 md:py-16 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-          {currentContent.benefitsTitle}
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.benefits.title}
         </h2>
-        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-          {currentContent.benefitsSubtitle}
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.benefits.subtitle}
         </p>
       </div>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {currentContent.benefitsList.map((benefit) => (
-          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-4 hover:border-blue-300 transition-all duration-300">
-            <div class="flex items-start gap-3">
-              <div class="w-6 h-6 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {currentContent.benefits.items.map((benefit) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex items-center gap-3 p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[4px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <svg class="w-4 h-4 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <p class="text-sm text-slate-600">{benefit}</p>
             </div>
+            <span class="text-sm text-slate-600 group-hover:text-slate-700 transition-colors duration-300 relative z-10">
+              {benefit}
+            </span>
           </div>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section - Matching homepage -->
-  <section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
-          {currentContent.ctaTitle}
-        </h2>
-        <p class="text-base md:text-lg text-slate-500 mb-4 max-w-2xl mx-auto leading-relaxed">
-          {currentContent.ctaSubtitle}
-        </p>
-        <p class="text-sm text-slate-500 mb-8 max-w-2xl mx-auto">
-          {currentContent.ctaDescription}
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href={lang === 'fi' ? '/fi/contact?consultation=true' : '/contact?consultation=true'} class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm sm:text-base gap-2">
-            {lang === 'fi' ? 'Varaa konsultaatio' : 'Book Consultation'}
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
-          <a href={lang === 'fi' ? '/fi/contact?proposal=true' : '/contact?proposal=true'} class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm sm:text-base gap-2">
-            {lang === 'fi' ? 'Pyydä tarjous' : 'Request Proposal'}
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
-        </div>
       </div>
     </div>
   </section>
