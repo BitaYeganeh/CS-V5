@@ -1,26 +1,23 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-
-// SEO Configuration
-const seoConfig = {
-  title: "CSA STAR Cloud Security Certification | Cloud Security Assurance",
-  description: "Comprehensive CSA STAR certification for cloud security assurance. Demonstrate cloud security excellence with Level 1, 2, and 3 CSA STAR certification programs.",
-  keywords: "CSA STAR, cloud security certification, cloud security assurance, CCM, CAIQ, cloud compliance, Finland",
-  type: "service" as const,
-};
+import Button from '@/components/ui/Button.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const title = "CSA STAR Cloud Security Certification";
 
 const content = {
   en: {
-    hero: {
-      title: "CSA STAR Cloud Security Certification",
-      subtitle: "Cloud Security Assurance",
-      description: "Cloud security assurance through CSA STAR certification levels 1-3. Demonstrate comprehensive cloud security excellence and build customer trust with globally recognized cloud security certification.",
-      primaryCTA: { text: "Achieve CSA STAR Certification", href: "/contact" },
-      secondaryCTA: { text: "View Our Services", href: "/services" }
+    title: "CSA STAR",
+    subtitle: "Cloud Security Certification",
+    heroDescription: "Cloud security assurance through CSA STAR certification levels 1-3. Demonstrate comprehensive cloud security excellence and build customer trust with globally recognized cloud security certification.",
+    forWho: "For cloud service providers seeking globally recognized cloud security certification.",
+    achieve: "CSA STAR certification at the appropriate level with comprehensive security controls and customer trust.",
+    overview: {
+      title: "Overview",
+      description: "CSA STAR (Security, Trust, Assurance, and Risk) is the Cloud Security Alliance's certification program for cloud service providers. It builds on the CSA Cloud Controls Matrix (CCM) and provides progressive levels of certification that demonstrate increasing maturity in cloud security management.",
+      highlight: "Our expert team provides comprehensive support for CSA STAR certification at all levels, from self-assessment to continuous monitoring, helping you demonstrate cloud security excellence and build customer trust."
     },
     levels: {
       title: "CSA STAR Certification Levels",
@@ -31,24 +28,21 @@ const content = {
           title: "CSA STAR Level 1",
           subtitle: "Self-Assessment",
           description: "Open self-assessment based on Cloud Controls Matrix (CCM) and Consensus Assessments Initiative Questionnaire (CAIQ).",
-          features: ["Free registration and assessment", "Public registry listing", "CCM-based control documentation", "CAIQ questionnaire completion"],
-          color: "green"
+          features: ["Free registration and assessment", "Public registry listing", "CCM-based control documentation", "CAIQ questionnaire completion"]
         },
         {
           level: "2",
           title: "CSA STAR Level 2",
           subtitle: "Third-Party Assessment",
           description: "Independent third-party assessment based on ISO/IEC 27001 or SOC 2 frameworks with CCM integration.",
-          features: ["Independent auditor assessment", "ISO 27001 or SOC 2 based", "CCM controls mapping", "Annual recertification"],
-          color: "blue"
+          features: ["Independent auditor assessment", "ISO 27001 or SOC 2 based", "CCM controls mapping", "Annual recertification"]
         },
         {
           level: "3",
           title: "CSA STAR Level 3",
           subtitle: "Continuous Monitoring",
           description: "Continuous monitoring-based assessment demonstrating real-time security posture and maturity.",
-          features: ["Continuous monitoring program", "Real-time security metrics", "Maturity model assessment", "Enhanced public disclosure"],
-          color: "purple"
+          features: ["Continuous monitoring program", "Real-time security metrics", "Maturity model assessment", "Enhanced public disclosure"]
         }
       ]
     },
@@ -67,11 +61,11 @@ const content = {
     process: {
       title: "CSA STAR Implementation Process",
       subtitle: "Structured approach to achieving CSA STAR certification across all levels.",
-      steps: [
-        { step: "1", title: "Current State Assessment", description: "Evaluate existing cloud security controls against CCM framework and identify gaps." },
-        { step: "2", title: "Level Strategy Planning", description: "Determine appropriate CSA STAR level and develop implementation roadmap." },
-        { step: "3", title: "Controls Implementation", description: "Implement required security controls and documentation aligned with CCM requirements." },
-        { step: "4", title: "Certification & Maintenance", description: "Complete certification process and establish ongoing maintenance and monitoring programs." }
+      items: [
+        { number: "01", title: "Current State Assessment", description: "Evaluate existing cloud security controls against CCM framework and identify gaps." },
+        { number: "02", title: "Level Strategy Planning", description: "Determine appropriate CSA STAR level and develop implementation roadmap." },
+        { number: "03", title: "Controls Implementation", description: "Implement required security controls and documentation aligned with CCM requirements." },
+        { number: "04", title: "Certification & Maintenance", description: "Complete certification process and establish ongoing maintenance and monitoring programs." }
       ]
     },
     services: {
@@ -99,20 +93,40 @@ const content = {
         { title: "GDPR Compliance", icon: "lock-closed" }
       ]
     },
-    cta: {
-      title: "Achieve CSA STAR Cloud Security Excellence",
-      subtitle: "Demonstrate comprehensive cloud security capabilities and build customer trust with CSA STAR certification.",
-      primaryCTA: { text: "Start CSA STAR Journey", href: "/contact" },
-      secondaryCTA: { text: "Learn More About Us", href: "/about" }
+    deliverables: {
+      title: "What You Get",
+      items: [
+        "CCM controls gap analysis report",
+        "CAIQ questionnaire completion",
+        "Level strategy and roadmap",
+        "Controls implementation plan",
+        "Certification package and submission",
+        "Continuous monitoring program (Level 3)",
+        "Annual recertification support",
+        "Public registry listing"
+      ]
+    },
+    benefitsList: {
+      title: "Key Benefits",
+      items: [
+        "Globally recognized cloud security certification",
+        "Enhanced customer trust and confidence",
+        "Competitive advantage in cloud markets",
+        "Demonstrated security maturity",
+        "Regulatory compliance alignment"
+      ]
     }
   },
   fi: {
-    hero: {
-      title: "CSA STAR Pilvipalveluiden turvallisuussertifiointi",
-      subtitle: "Pilvipalveluiden turvallisuusvarmennus",
-      description: "Pilvipalveluiden turvallisuusvarmennus CSA STAR -sertifiointitasojen 1-3 kautta. Osoita kattavaa pilvipalveluiden turvallisuuden huippuosaamista ja rakenna asiakasluottamusta maailmanlaajuisesti tunnetulla pilvipalveluiden turvallisuussertifioinnilla.",
-      primaryCTA: { text: "Saavuta CSA STAR -sertifiointi", href: "/contact" },
-      secondaryCTA: { text: "Tutustu palveluihimme", href: "/services" }
+    title: "CSA STAR",
+    subtitle: "Pilvipalveluiden turvallisuussertifiointi",
+    heroDescription: "Pilvipalveluiden turvallisuusvarmennus CSA STAR -sertifiointitasojen 1-3 kautta. Osoita kattavaa pilvipalveluiden turvallisuuden huippuosaamista ja rakenna asiakasluottamusta maailmanlaajuisesti tunnetulla pilvipalveluiden turvallisuussertifioinnilla.",
+    forWho: "Pilvipalveluntarjoajille, jotka tavoittelevat maailmanlaajuisesti tunnustettua pilvipalveluiden turvallisuussertifiointia.",
+    achieve: "CSA STAR -sertifiointi sopivalla tasolla kattavilla turvallisuuskontrolleilla ja asiakasluottamuksella.",
+    overview: {
+      title: "Yleiskatsaus",
+      description: "CSA STAR (Security, Trust, Assurance, and Risk) on Cloud Security Alliancen sertifiointiohjelma pilvipalveluntarjoajille. Se perustuu CSA Cloud Controls Matrix (CCM) -menetelmään ja tarjoaa progressiivisia sertifiointitasoja, jotka osoittavat kasvavaa kypsyyttä pilvipalveluiden turvallisuuden hallinnassa.",
+      highlight: "Asiantuntijatiimimme tarjoaa kattavaa tukea CSA STAR -sertifiointiin kaikilla tasoilla oma-arvioinnista jatkuvaan seurantaan auttaen sinua osoittamaan pilvipalveluiden turvallisuuden huippuosaamista ja rakentamaan asiakasluottamusta."
     },
     levels: {
       title: "CSA STAR -sertifiointitasot",
@@ -123,24 +137,21 @@ const content = {
           title: "CSA STAR -taso 1",
           subtitle: "Oma-arviointi",
           description: "Avoin oma-arviointi, joka perustuu Cloud Controls Matrix (CCM) -menetelmään ja Consensus Assessments Initiative Questionnaire (CAIQ) -kyselyyn.",
-          features: ["Ilmainen rekisteröinti ja arviointi", "Julkinen rekisterilistaus", "CCM-pohjainen kontrollidokumentaatio", "CAIQ-kyselylomakkeen täyttö"],
-          color: "green"
+          features: ["Ilmainen rekisteröinti ja arviointi", "Julkinen rekisterilistaus", "CCM-pohjainen kontrollidokumentaatio", "CAIQ-kyselylomakkeen täyttö"]
         },
         {
           level: "2",
           title: "CSA STAR -taso 2",
           subtitle: "Kolmannen osapuolen arviointi",
           description: "Riippumaton kolmannen osapuolen arviointi, joka perustuu ISO/IEC 27001 tai SOC 2 -kehyksiin CCM-integraatiolla.",
-          features: ["Riippumaton auditoijan arviointi", "ISO 27001 tai SOC 2 -pohjainen", "CCM-kontrollien kartoitus", "Vuotuinen uudelleensertifiointi"],
-          color: "blue"
+          features: ["Riippumaton auditoijan arviointi", "ISO 27001 tai SOC 2 -pohjainen", "CCM-kontrollien kartoitus", "Vuotuinen uudelleensertifiointi"]
         },
         {
           level: "3",
           title: "CSA STAR -taso 3",
           subtitle: "Jatkuva seuranta",
           description: "Jatkuvaan seurantaan perustuva arviointi, joka osoittaa reaaliaikaista turvallisuustilaa ja kypsyyttä.",
-          features: ["Jatkuva seurantaohjelma", "Reaaliaikaiset turvallisuusmittarit", "Kypsyysmallin arviointi", "Tehostettu julkinen tiedottaminen"],
-          color: "purple"
+          features: ["Jatkuva seurantaohjelma", "Reaaliaikaiset turvallisuusmittarit", "Kypsyysmallin arviointi", "Tehostettu julkinen tiedottaminen"]
         }
       ]
     },
@@ -159,11 +170,11 @@ const content = {
     process: {
       title: "CSA STAR -toteutusprosessi",
       subtitle: "Rakenteinen lähestymistapa CSA STAR -sertifioinnin saavuttamiseksi kaikilla tasoilla.",
-      steps: [
-        { step: "1", title: "Nykytilan arviointi", description: "Arvioi olemassa olevat pilvipalveluiden turvallisuuskontrollit CCM-kehystä vastaan ja tunnista puutteet." },
-        { step: "2", title: "Tasostrategian suunnittelu", description: "Määritä sopiva CSA STAR -taso ja kehitä toteutuksen tiekartta." },
-        { step: "3", title: "Kontrollien toteutus", description: "Toteuta vaaditut turvallisuuskontrollit ja dokumentaatio CCM-vaatimusten mukaisesti." },
-        { step: "4", title: "Sertifiointi ja ylläpito", description: "Suorita sertifiointiprosessi ja perusta jatkuvat ylläpito- ja seurantaohjelmat." }
+      items: [
+        { number: "01", title: "Nykytilan arviointi", description: "Arvioi olemassa olevat pilvipalveluiden turvallisuuskontrollit CCM-kehystä vastaan ja tunnista puutteet." },
+        { number: "02", title: "Tasostrategian suunnittelu", description: "Määritä sopiva CSA STAR -taso ja kehitä toteutuksen tiekartta." },
+        { number: "03", title: "Kontrollien toteutus", description: "Toteuta vaaditut turvallisuuskontrollit ja dokumentaatio CCM-vaatimusten mukaisesti." },
+        { number: "04", title: "Sertifiointi ja ylläpito", description: "Suorita sertifiointiprosessi ja perusta jatkuvat ylläpito- ja seurantaohjelmat." }
       ]
     },
     services: {
@@ -191,16 +202,34 @@ const content = {
         { title: "GDPR-vaatimustenmukaisuus", icon: "lock-closed" }
       ]
     },
-    cta: {
-      title: "Saavuta CSA STAR -pilvipalveluiden turvallisuuden huippuosaaminen",
-      subtitle: "Osoita kattavat pilvipalveluiden turvallisuuskyvykkyydet ja rakenna asiakasluottamusta CSA STAR -sertifioinnilla.",
-      primaryCTA: { text: "Aloita CSA STAR -matka", href: "/contact" },
-      secondaryCTA: { text: "Tutustu meihin paremmin", href: "/about" }
+    deliverables: {
+      title: "Mitä saat",
+      items: [
+        "CCM-kontrollien aukkoanalyysiraportti",
+        "CAIQ-kyselylomakkeen täyttö",
+        "Tasostrategia ja tiekartta",
+        "Kontrollien toteutussuunnitelma",
+        "Sertifiointipaketti ja ilmoittaminen",
+        "Jatkuva seurantaohjelma (taso 3)",
+        "Vuotuinen uudelleensertifioinnin tuki",
+        "Julkinen rekisterilistaus"
+      ]
+    },
+    benefitsList: {
+      title: "Keskeiset edut",
+      items: [
+        "Globaalisti tunnustettu pilvipalveluiden turvallisuussertifiointi",
+        "Parantunut asiakasluottamus",
+        "Kilpailuetu pilvipalvelumarkkinoilla",
+        "Osoitettu turvallisuuden kypsyys",
+        "Sääntelyvaatimusten yhdenmukaistaminen"
+      ]
     }
   }
 };
 
 const currentContent = content[lang];
+const isFi = lang === 'fi';
 
 function getLevelColor(color: string) {
   switch(color) {
@@ -221,295 +250,334 @@ function getIconColor(color: string) {
 }
 ---
 
-<Layout {...seoConfig}>
+<Layout title={title}>
 
-<!-- Hero Section - Centered, NO image -->
-<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    
-    <div class="flex justify-center mb-4">
-      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
-        <Icon name="cloud" class="w-8 h-8 text-[#1E2A7A]" />
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
+        </p>
+        
+        <!-- Info Section - Two Column Layout -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
-      {currentContent.hero.title}
-    </h1>
-    
-    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
-      {currentContent.hero.subtitle}
-    </p>
-    
-    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
-      {currentContent.hero.description}
-    </p>
-    
-    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
-      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
-        {currentContent.hero.primaryCTA.text}
-        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6">
+        <p class="text-sm text-slate-600 leading-relaxed">{currentContent.overview.description}</p>
+        <p class="text-sm text-blue-600 font-semibold mt-3">{currentContent.overview.highlight}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CSA STAR Levels Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.levels.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.levels.subtitle}
+        </p>
+      </div>
       
-      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
-        {currentContent.hero.secondaryCTA.text}
-        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-    </div>
-    
-  </div>
-</section>
-
-<!-- CSA STAR Levels Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.levels.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.levels.subtitle}
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-8">
-      {currentContent.levels.items.map((level) => (
-        <div class={`bg-slate-50/50 rounded-xl border border-slate-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 ${getLevelColor(level.color)} p-6 group`}>
-          
-          <div class="flex justify-end mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-              <span class={`text-xl font-bold ${getIconColor(level.color)} group-hover:text-white transition-colors duration-300`}>
-                {level.level}
-              </span>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {currentContent.levels.items.map((level) => (
+          <div class={`bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden ${getLevelColor(level.color)}`}>
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-end mb-2 relative z-10">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <span className={`text-lg font-bold ${getIconColor(level.color)} group-hover:text-white transition-colors duration-300`}>
+                  {level.level}
+                </span>
+              </div>
+            </div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-0.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+              {level.title}
+            </h3>
+            <p className={`text-xs font-semibold ${getIconColor(level.color)} mb-2 text-left relative z-10`}>{level.subtitle}</p>
+            <p class="text-xs text-slate-500 mb-2 group-hover:text-slate-600 transition-colors duration-300 relative z-10">{level.description}</p>
+            
+            <div class="mt-auto pt-2 border-t border-slate-100 relative z-10">
+              <ul class="space-y-1">
+                {level.features.map((feature) => (
+                  <li class="flex items-start text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                    <svg class="w-3 h-3 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-          
-          <h3 class="text-xl font-bold text-slate-900 mb-1 group-hover:text-blue-700 transition-colors duration-300 text-left">
-            {level.title}
-          </h3>
-          <p class={`text-sm font-semibold ${getIconColor(level.color)} mb-3 text-left`}>{level.subtitle}</p>
-          <p class="text-slate-500 text-sm leading-relaxed mb-4 text-left">{level.description}</p>
-          
-          <ul class="space-y-1.5">
-            {level.features.map((feature) => (
-              <li class="flex items-start text-xs text-slate-500">
-                <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                {feature}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Benefits Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.benefits.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.benefits.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {currentContent.benefits.items.map((benefit) => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    flex flex-col h-full p-6 group">
-          
-          <div class="flex justify-end mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-              <Icon name={benefit.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+  <!-- Benefits Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.benefits.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.benefits.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {currentContent.benefits.items.map((benefit) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-end mb-2 relative z-10">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={benefit.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
             </div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+              {benefit.title}
+            </h3>
+            <p class="text-xs md:text-sm text-slate-500 leading-relaxed text-left group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {benefit.description}
+            </p>
           </div>
-          
-          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
-            {benefit.title}
-          </h3>
-          
-          <p class="text-slate-500 text-sm leading-relaxed text-left">
-            {benefit.description}
-          </p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Implementation Process Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.process.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.process.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-4 gap-6">
-      {currentContent.process.steps.map((step) => (
-        <div class="bg-slate-50/50 rounded-xl p-5 text-center border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    group">
-          
-          <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">
-            {step.step}
-          </div>
-          
-          <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
-            {step.title}
-          </h3>
-          
-          <p class="text-slate-500 text-xs leading-relaxed">
-            {step.description}
-          </p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Services Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.services.title}
-      </h2>
-    </div>
-    
-    <div class="grid md:grid-cols-2 gap-8">
-      {currentContent.services.items.map((service) => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    flex flex-col h-full p-6 group">
-          
-          <div class="flex justify-end mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-              <Icon name={service.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+  <!-- Implementation Process Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.process.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.process.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {currentContent.process.items.map((step) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden text-center">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-center mb-2 relative z-10">
+              <div class="w-10 h-10 bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                {step.number}
+              </div>
             </div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {step.title}
+            </h3>
+            <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {step.description}
+            </p>
           </div>
-          
-          <h3 class="text-xl font-bold text-slate-900 mb-4 group-hover:text-blue-700 transition-colors duration-300 text-left">
-            {service.title}
-          </h3>
-          
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.services.title}
+        </h2>
+      </div>
+      
+      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        {currentContent.services.items.map((service) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-end mb-2 relative z-10">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={service.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-2 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+              {service.title}
+            </h3>
+            
+            <ul class="space-y-1 relative z-10">
+              {service.features.map((feature) => (
+                <li class="flex items-start text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                  <svg class="w-3 h-3 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Framework Integration Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.frameworks.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.frameworks.subtitle}
+        </p>
+      </div>
+      
+      <div class="max-w-2xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+        {currentContent.frameworks.items.map((framework) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden text-center">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-center mb-2 relative z-10">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={framework.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            
+            <h3 class="text-sm font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {framework.title}
+            </h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables & Benefits Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-3xl mx-auto">
+        
+        <!-- Deliverables -->
+        <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm p-5 md:p-6">
+          <h2 class="text-base font-bold text-[#3B82F6] mb-4 text-center">{currentContent.deliverables.title}</h2>
           <ul class="space-y-2">
-            {service.features.map((feature) => (
-              <li class="flex items-start text-sm text-slate-600">
-                <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            {currentContent.deliverables.items.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="w-3.5 h-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
-                {feature}
+                <span class="text-xs md:text-sm text-slate-600">{item}</span>
               </li>
             ))}
           </ul>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Framework Integration Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.frameworks.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.frameworks.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-      {currentContent.frameworks.items.map((framework) => (
-        <div class="bg-slate-50/50 rounded-xl p-5 text-center border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-md transition-all duration-300
-                    group">
-          
-          <div class="flex justify-center mb-3">
-            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6]">
-              <Icon name={framework.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
-            </div>
-          </div>
-          
-          <h3 class="text-sm font-semibold text-slate-800 group-hover:text-blue-700 transition-colors duration-300">
-            {framework.title}
-          </h3>
+        
+        <!-- Benefits -->
+        <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm p-5 md:p-6">
+          <h2 class="text-base font-bold text-[#3B82F6] mb-4 text-center">{currentContent.benefitsList.title}</h2>
+          <ul class="space-y-2">
+            {currentContent.benefitsList.items.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="w-3.5 h-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-xs md:text-sm text-slate-600">{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-      
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
-        {currentContent.cta.title}
-      </h2>
-
-      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
-        {currentContent.cta.subtitle}
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
         
-        <a href={currentContent.cta.primaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
-          {currentContent.cta.primaryCTA.text}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-        
-        <a href={currentContent.cta.secondaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
-          {currentContent.cta.secondaryCTA.text}
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
 </Layout>

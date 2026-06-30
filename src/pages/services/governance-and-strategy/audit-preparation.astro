@@ -1,39 +1,19 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-
-// SEO Configuration
-const seoConfig = {
-  title: "Audit Preparation Services | Evidence Management & Compliance Readiness",
-  description: "Systematic audit preparation with evidence management, control documentation, and remediation tracking. Expert support for ISO 27001, SOC 2, PCI DSS, and GDPR audits.",
-  keywords: "audit preparation, evidence management, audit readiness, SOC 2 preparation, ISO 27001 audit, compliance audit, control documentation",
-  type: "service" as const,
-  schema: {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Audit Preparation Services",
-    "provider": {
-      "@type": "Organization",
-      "name": "Cyber Security Finland"
-    },
-    "description": "Systematic audit preparation with evidence management, control documentation, and remediation tracking for compliance audits.",
-    "serviceType": "Audit Readiness"
-  }
-};
+import Button from '@/components/ui/Button.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const title = "Audit Preparation";
 
 const content = {
   en: {
-    hero: {
-      title: "Audit Preparation",
-      subtitle: "Evidence Management & Compliance Readiness",
-      description: "Ensure smooth and successful audit processes with evidence management, control documentation, and systematic preparation. Audit readiness through evidence collection, control narratives, and remediation tracking.",
-      primaryCTA: { text: "Start Preparation", href: "/contact" },
-      secondaryCTA: { text: "Download Readiness Guide", href: "/resources/guides/audit-readiness-checklist" }
-    },
-    
+    title: "Audit Preparation",
+    subtitle: "Evidence Management & Compliance Readiness",
+    heroDescription: "Ensure smooth and successful audit processes with evidence management, control documentation, and systematic preparation.",
+    forWho: "For organizations preparing for ISO 27001, SOC 2, PCI DSS, GDPR, and other compliance audits.",
+    achieve: "Full audit readiness with comprehensive evidence management, control documentation, and systematic preparation.",
     components: {
       title: "Audit Preparation Components",
       subtitle: "Comprehensive approach to ensuring audit readiness through four core elements",
@@ -44,11 +24,10 @@ const content = {
         { title: "Readiness Assessment", description: "Systematic audit readiness evaluation", icon: "check-circle" }
       ]
     },
-    
     evidence: {
       title: "Evidence Types & Management",
       subtitle: "Systematic approach to collecting and managing different types of audit evidence",
-      types: [
+      items: [
         {
           title: "System Evidence",
           description: "Automated reports and logs",
@@ -69,7 +48,6 @@ const content = {
         }
       ]
     },
-    
     standards: {
       title: "Supported Audit Standards",
       subtitle: "Preparation for various international audit and certification standards",
@@ -80,18 +58,16 @@ const content = {
         { title: "GDPR", focus: "Personal data protection", criteria: ["Privacy practices", "Rights", "Data breaches", "DPO role"] }
       ]
     },
-    
     phases: {
       title: "Preparation Process Phases",
       subtitle: "Four-phase systematic approach to ensuring audit readiness",
-      steps: [
+      items: [
         { number: "01", title: "Pre-audit", description: "Current state mapping and gap identification", tasks: ["Control inventory", "Evidence mapping", "Gap analysis", "Remediation plan"] },
         { number: "02", title: "Remediation", description: "Fixing identified gaps", tasks: ["Control implementation", "Process improvement", "Documentation completion", "Testing"] },
         { number: "03", title: "Evidence Preparation", description: "Audit evidence compilation and organization", tasks: ["Evidence collection", "Organization", "Indexing", "Verification"] },
         { number: "04", title: "Readiness Testing", description: "Final audit readiness verification", tasks: ["Mock audit", "Walkthrough tests", "Evidence validation", "Team preparation"] }
       ]
     },
-    
     metrics: {
       title: "Tracking Metrics",
       subtitle: "Metrics for objective assessment and tracking of audit readiness",
@@ -101,25 +77,14 @@ const content = {
         { metric: "Average Remediation Time", target: "<30 days" },
         { metric: "Mock Audit Results", target: "≥90% passed" }
       ]
-    },
-    
-    cta: {
-      title: "Ready for Successful Audit?",
-      subtitle: "Contact us to start your audit preparation project together.",
-      primaryCTA: { text: "Contact Us", href: "/contact" },
-      secondaryCTA: { text: "Book Demo", href: "/demo" }
     }
   },
-  
   fi: {
-    hero: {
-      title: "Tilintarkastuksen valmistelu",
-      subtitle: "Evidenssien hallinta ja vaatimustenmukaisuusvalmius",
-      description: "Varmista sujuva ja onnistunut tarkastusprosessi evidenssien hallinnalla, kontrollien dokumentoinnilla ja systemaattisella valmistelulla. Tarkastuksenvalmistelu evidenssien hallinnalla, kontrollien kuvauksilla ja toimenpiteiden seurannalla.",
-      primaryCTA: { text: "Aloita valmistelu", href: "/contact" },
-      secondaryCTA: { text: "Lataa valmiusopas", href: "/resources/guides/audit-readiness-checklist" }
-    },
-    
+    title: "Tilintarkastuksen valmistelu",
+    subtitle: "Evidenssien hallinta ja vaatimustenmukaisuusvalmius",
+    heroDescription: "Varmista sujuva ja onnistunut tarkastusprosessi evidenssien hallinnalla, kontrollien dokumentoinnilla ja systemaattisella valmistelulla.",
+    forWho: "Organisaatioille, jotka valmistautuvat ISO 27001, SOC 2, PCI DSS, GDPR ja muihin vaatimustenmukaisuustarkastuksiin.",
+    achieve: "Täysi tarkastusvalmius kattavalla evidenssien hallinnalla, kontrollien dokumentoinnilla ja systemaattisella valmistelulla.",
     components: {
       title: "Tarkastusvalmistelun komponentit",
       subtitle: "Kattava lähestymistapa tarkastusvalmiuden varmistamiseen neljän keskeisen elementin kautta",
@@ -130,11 +95,10 @@ const content = {
         { title: "Valmiuden arviointi", description: "Tarkastusvalmiuden systemaattinen arviointi", icon: "check-circle" }
       ]
     },
-    
     evidence: {
       title: "Evidenssityypit ja hallinta",
       subtitle: "Systemaattinen lähestymistapa erilaisten tarkastusevidenssien keräämiseen ja hallintaan",
-      types: [
+      items: [
         {
           title: "Järjestelmäevidenssi",
           description: "Automaattiset raportit ja lokit",
@@ -155,7 +119,6 @@ const content = {
         }
       ]
     },
-    
     standards: {
       title: "Tuetut tarkastusstandardit",
       subtitle: "Valmistautuminen eri kansainvälisiin tarkastus- ja sertifiointistandardeihin",
@@ -166,18 +129,16 @@ const content = {
         { title: "GDPR", focus: "Henkilötietojen suoja", criteria: ["Tietosuojakäytännöt", "Oikeudet", "Tietoturvaloukkaukset", "DPO-rooli"] }
       ]
     },
-    
     phases: {
       title: "Valmisteluprosessin vaiheet",
       subtitle: "Neljän vaiheen systemaattinen lähestymistapa tarkastusvalmiuden varmistamiseen",
-      steps: [
+      items: [
         { number: "01", title: "Esiauditointi", description: "Nykytilan kartoitus ja puutteiden tunnistaminen", tasks: ["Kontrollien inventointi", "Evidenssien kartoitus", "Puuteanalyysi", "Korjaussuunnitelma"] },
         { number: "02", title: "Korjaustoimenpiteet", description: "Löydettyjen puutteiden korjaaminen", tasks: ["Kontrollien implementointi", "Prosessien parantaminen", "Dokumentoinnin täydentäminen", "Testaus"] },
         { number: "03", title: "Evidenssien valmistelu", description: "Tarkastusevidenssin kokoaminen ja järjestäminen", tasks: ["Evidenssien kerääminen", "Järjestäminen", "Indeksointi", "Varmistaminen"] },
         { number: "04", title: "Valmiuden testaus", description: "Tarkastusvalmiuden lopullinen varmistaminen", tasks: ["Mock audit", "Walkthrough-testit", "Evidenssien validointi", "Tiimin valmistaminen"] }
       ]
     },
-    
     metrics: {
       title: "Seurantamittarit",
       subtitle: "Mittarit tarkastusvalmiuden objektiiviseen arviointiin ja seurantaan",
@@ -187,354 +148,293 @@ const content = {
         { metric: "Korjausajan keskiarvo", target: "<30 päivää" },
         { metric: "Mock audit -tulokset", target: "≥90% hyväksytty" }
       ]
-    },
-    
-    cta: {
-      title: "Valmis onnistuneeseen tarkastukseen?",
-      subtitle: "Ota yhteyttä ja aloitetaan tarkastusvalmisteluprojekti yhdessä.",
-      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
-      secondaryCTA: { text: "Varaa demo", href: "/demo" }
     }
   }
 };
 
 const currentContent = content[lang];
+const isFi = lang === 'fi';
 ---
 
-<Layout {...seoConfig}>
+<Layout title={title}>
 
-<!-- Hero Section - Centered without image -->
-<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28 relative overflow-hidden">
-  <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
-      <div>{currentContent.hero.title}</div>
-      <div class="mt-2">
-        <span class="bg-gradient-to-r from-[#1E2A7A] to-[#60A5FA] bg-clip-text text-transparent">{currentContent.hero.subtitle}</span>
-      </div>
-    </h1>
-    
-    <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-10">
-      {currentContent.hero.description}
-    </p>
-    
-    <!-- Buttons -->
-    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
-      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
-        {currentContent.hero.primaryCTA.text}
-        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-      
-      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
-        {currentContent.hero.secondaryCTA.text}
-        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-    </div>
-    
-  </div>
-</section>
-
-<!-- Trust Bar -->
-<section class="py-8 bg-gradient-to-b from-blue-50/30 to-white overflow-hidden">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="grid md:grid-cols-2 gap-8 items-center">
-      
-      <!-- Left Side: Text -->
-      <div class="text-center md:text-left">
-        <p class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-tight text-slate-800">
-          Audit readiness<br/>through 
-          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#60A5FA] bg-clip-text text-transparent">systematic preparation</span>.
+  <!-- Hero Section - Smaller font -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
         </p>
-        <p class="text-sm md:text-base text-blue-600 font-medium mt-4">
-          Proven methodology for successful audits
-        </p>
-      </div>
-      
-      <!-- Right Side: Key stats -->
-      <div class="grid grid-cols-2 gap-4">
-        <div class="bg-white rounded-xl p-4 text-center border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300">
-          <div class="text-3xl font-bold text-[#1E2A7A]">100%</div>
-          <div class="text-sm text-slate-500">Control Coverage Target</div>
-        </div>
-        <div class="bg-white rounded-xl p-4 text-center border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300">
-          <div class="text-3xl font-bold text-[#1E2A7A]">≥95%</div>
-          <div class="text-sm text-slate-500">Evidence Completeness</div>
-        </div>
-        <div class="bg-white rounded-xl p-4 text-center border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300">
-          <div class="text-3xl font-bold text-[#1E2A7A]">&lt;30d</div>
-          <div class="text-sm text-slate-500">Remediation Time</div>
-        </div>
-        <div class="bg-white rounded-xl p-4 text-center border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300">
-          <div class="text-3xl font-bold text-[#1E2A7A]">4</div>
-          <div class="text-sm text-slate-500">Standards Supported</div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</section>
-
-<!-- Audit Components Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.components.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.components.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {currentContent.components.items.map((item) => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    flex flex-col h-full p-6 group">
-          
-          <div class="flex justify-end mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+        
+        <!-- Info Section - Two Column Layout (Centered) -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <!-- Who is this for? -->
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
+              </div>
             </div>
           </div>
           
-          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
-            {item.title}
-          </h3>
-          
-          <p class="text-slate-500 text-sm leading-relaxed text-left">
-            {item.description}
-          </p>
+          <!-- What will you achieve? -->
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      ))}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Evidence Types Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.evidence.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.evidence.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-3 gap-8">
-      {currentContent.evidence.types.map((type) => (
-        <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    group">
-          
-          <div class="flex items-start gap-4">
-            <div class="flex-shrink-0">
-              <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+
+  <!-- Audit Components Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.components.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.components.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {currentContent.components.items.map((item) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-end mb-2 relative z-10">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
                           transition-all duration-300
-                          group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-                <Icon name={type.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={item.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
               </div>
             </div>
             
-            <div class="flex-1">
-              <h3 class="text-md font-semibold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
-                {type.title}
-              </h3>
-              <p class="text-slate-500 text-sm leading-relaxed mb-3">
-                {type.description}
-              </p>
-              <ul class="space-y-1">
-                {type.examples.map((example) => (
-                  <li class="flex items-center text-xs text-slate-500">
-                    <svg class="w-3 h-3 text-green-500 mr-1.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    {example}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Audit Standards Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.standards.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.standards.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-2 gap-8">
-      {currentContent.standards.items.map((standard) => (
-        <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    group">
-          
-          <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
-            {standard.title}
-          </h3>
-          <p class="text-slate-500 text-sm mb-4">{standard.focus}</p>
-          
-          <div class="flex flex-wrap gap-2">
-            {standard.criteria.map((criterion) => (
-              <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs rounded-full group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:text-white transition-all duration-300">
-                {criterion}
-              </span>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Preparation Phases Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.phases.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.phases.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {currentContent.phases.steps.map((step, index) => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    group">
-          
-          <div class="p-6">
-            <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold mb-4">
-              {index + 1}
-            </div>
-            
-            <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
-              {step.title}
+            <h3 class="text-base font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+              {item.title}
             </h3>
-            <p class="text-slate-500 text-sm mb-4">{step.description}</p>
+            <p class="text-xs md:text-sm text-slate-500 leading-relaxed text-left group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {item.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Evidence Types Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.evidence.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.evidence.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {currentContent.evidence.items.map((type) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
             
-            <ul class="space-y-1.5">
-              {step.tasks.map((task) => (
-                <li class="flex items-start text-xs text-slate-500">
-                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={type.icon} class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+                  {type.title}
+                </h3>
+                <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+                  {type.description}
+                </p>
+              </div>
+            </div>
+            
+            <ul class="space-y-1 mt-1 relative z-10">
+              {type.examples.map((example) => (
+                <li class="flex items-center text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                  <svg class="w-3 h-3 text-[#3B82F6] mr-1.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {example}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Audit Standards Section - 4 in a line -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.standards.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.standards.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {currentContent.standards.items.map((standard) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {standard.title}
+            </h3>
+            <p class="text-xs text-slate-500 mb-2 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {standard.focus}
+            </p>
+            
+            <div class="flex flex-wrap gap-1.5 relative z-10">
+              {standard.criteria.map((criterion) => (
+                <span class="px-2 py-0.5 text-xs font-medium text-[#3B82F6] bg-white rounded-full border border-[#3B82F6] group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                  {criterion}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Preparation Phases Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.phases.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.phases.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {currentContent.phases.items.map((phase, index) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex items-center gap-2 mb-2">
+              <div class="w-8 h-8 bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0">
+                {index + 1}
+              </div>
+              <h3 class="text-sm font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+                {phase.title}
+              </h3>
+            </div>
+            
+            <p class="text-xs text-slate-500 mb-2 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {phase.description}
+            </p>
+            
+            <ul class="space-y-1 mt-auto relative z-10">
+              {phase.tasks.map((task) => (
+                <li class="flex items-start text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                  <svg class="w-3 h-3 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
                   {task}
                 </li>
               ))}
             </ul>
           </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Tracking Metrics Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.metrics.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.metrics.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {currentContent.metrics.items.map((metric) => (
-        <div class="bg-gradient-to-br from-blue-50 to-white rounded-xl p-6 text-center border border-blue-100
-                    hover:border-blue-300 hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300">
-          <div class="text-3xl font-bold text-[#1E2A7A] mb-2">{metric.target}</div>
-          <p class="text-slate-600 text-sm">{metric.metric}</p>
-          <div class="mt-4 flex justify-center">
-            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-              <Icon name="target" class="w-5 h-5 text-blue-600" />
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="bg-gradient-to-br from-blue-50 to-white rounded-2xl border border-blue-200 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-      
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
-        {currentContent.cta.title}
-      </h2>
-
-      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
-        {currentContent.cta.subtitle}
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        
-        <a href={currentContent.cta.primaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
-          {currentContent.cta.primaryCTA.text}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-        
-        <a href={currentContent.cta.secondaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
-          {currentContent.cta.secondaryCTA.text}
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
+        ))}
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<style>
-  /* Smooth scrolling */
-  html {
-    scroll-behavior: smooth;
-  }
-</style>
+  <!-- Tracking Metrics Section - Smaller font -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.metrics.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.metrics.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {currentContent.metrics.items.map((metric) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden text-center">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="text-2xl font-bold text-[#1E2A7A] mb-1 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {metric.target}
+            </div>
+            <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {metric.metric}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
 </Layout>

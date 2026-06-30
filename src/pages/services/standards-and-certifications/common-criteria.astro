@@ -1,26 +1,23 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-
-// SEO Configuration
-const seoConfig = {
-  title: "Common Criteria | Security Evaluation & Certification",
-  description: "Security Targets, Protection Profiles, and evaluation guidance for Common Criteria certification. Expert support for EAL1-EAL7 levels.",
-  keywords: "Common Criteria, security evaluation, certification, EAL, security targets, protection profiles, Finland",
-  type: "service" as const,
-};
+import Button from '@/components/ui/Button.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const title = "Common Criteria";
 
 const content = {
   en: {
-    hero: {
-      title: "Common Criteria",
-      subtitle: "Security Evaluation & Certification",
-      description: "Security Targets, Protection Profiles, and evaluation guidance for Common Criteria certification. Expert guidance for every aspect of Common Criteria certification including Security Target development, Protection Profile compliance, and evaluation support.",
-      primaryCTA: { text: "Start Evaluation", href: "/contact" },
-      secondaryCTA: { text: "Learn More", href: "#services" }
+    title: "Common Criteria",
+    subtitle: "Security Evaluation & Certification",
+    heroDescription: "Security Targets, Protection Profiles, and evaluation guidance for Common Criteria certification. Expert guidance for every aspect of Common Criteria certification including Security Target development, Protection Profile compliance, and evaluation support.",
+    forWho: "For organizations seeking Common Criteria certification for their IT products at EAL1-EAL7 levels.",
+    achieve: "Successful Common Criteria certification with expert guidance and comprehensive documentation.",
+    overview: {
+      title: "Overview",
+      description: "Common Criteria is an international standard (ISO/IEC 15408) for computer security certification. It provides a framework for specifying security requirements and evaluating IT products against those requirements.",
+      highlight: "Our expert team provides end-to-end support for Common Criteria certification, from Security Target development and Protection Profile compliance through evaluation support and certification maintenance."
     },
     services: {
       title: "Our Common Criteria Services",
@@ -65,20 +62,39 @@ const content = {
         { level: "EAL7", description: "Formally verified design and tested" }
       ]
     },
-    cta: {
-      title: "Ready for Common Criteria Certification?",
-      subtitle: "Get expert guidance for successful evaluation and certification",
-      primaryCTA: { text: "Contact Our Experts", href: "/contact" },
-      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    deliverables: {
+      title: "What You Get",
+      items: [
+        "Security Target (ST) documentation",
+        "Protection Profile (PP) compliance assessment",
+        "Evaluation evidence and documentation",
+        "Certification package and reports",
+        "Evaluation lab support and liaison",
+        "Certification body communication",
+        "Maintenance and renewal support"
+      ]
+    },
+    benefits: {
+      title: "Key Benefits",
+      items: [
+        "Achieve internationally recognized certification",
+        "Demonstrate product security to customers",
+        "Competitive advantage in security markets",
+        "Meet government and defense requirements",
+        "Streamlined evaluation process support"
+      ]
     }
   },
   fi: {
-    hero: {
-      title: "Common Criteria",
-      subtitle: "Turvallisuusarviointi ja sertifiointi",
-      description: "Turvallisuustavoitteet, suojausprofiilit ja arviointiohjaus Common Criteria -sertifiointiin. Asiantuntevaa ohjausta jokaiseen Common Criteria -sertifioinnin osa-alueeseen, mukaan lukien Security Target -kehitys, Protection Profile -vaatimustenmukaisuus ja arviointituki.",
-      primaryCTA: { text: "Aloita arviointi", href: "/contact" },
-      secondaryCTA: { text: "Lue lisää", href: "#services" }
+    title: "Common Criteria",
+    subtitle: "Turvallisuusarviointi ja sertifiointi",
+    heroDescription: "Turvallisuustavoitteet, suojausprofiilit ja arviointiohjaus Common Criteria -sertifiointiin. Asiantuntevaa ohjausta jokaiseen Common Criteria -sertifioinnin osa-alueeseen, mukaan lukien Security Target -kehitys, Protection Profile -vaatimustenmukaisuus ja arviointituki.",
+    forWho: "Organisaatioille, jotka tavoittelevat Common Criteria -sertifiointia IT-tuotteilleen EAL1-EAL7-tasoilla.",
+    achieve: "Onnistunut Common Criteria -sertifiointi asiantuntevalla ohjauksella ja kattavalla dokumentaatiolla.",
+    overview: {
+      title: "Yleiskatsaus",
+      description: "Common Criteria on kansainvälinen standardi (ISO/IEC 15408) tietokoneiden turvallisuussertifiointiin. Se tarjoaa kehyksen turvallisuusvaatimusten määrittelyyn ja IT-tuotteiden arviointiin näitä vaatimuksia vastaan.",
+      highlight: "Asiantuntijatiimimme tarjoaa kattavaa tukea Common Criteria -sertifiointiin Security Target -kehityksestä ja Protection Profile -vaatimustenmukaisuudesta arviointitukeen ja sertifioinnin ylläpitoon."
     },
     services: {
       title: "Common Criteria -palvelumme",
@@ -123,103 +139,148 @@ const content = {
         { level: "EAL7", description: "Formaalisti varmennettu suunnittelu ja testaus" }
       ]
     },
-    cta: {
-      title: "Valmis Common Criteria -sertifiointiin?",
-      subtitle: "Saa asiantuntevaa ohjausta onnistuneeseen arviointiin ja sertifiointiin",
-      primaryCTA: { text: "Ota yhteyttä asiantuntijoihimme", href: "/contact" },
-      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    deliverables: {
+      title: "Mitä saat",
+      items: [
+        "Security Target (ST) -dokumentaatio",
+        "Protection Profile (PP) -vaatimustenmukaisuusarviointi",
+        "Arviointitodisteet ja dokumentaatio",
+        "Sertifiointipaketti ja raportit",
+        "Arviointilaboratorion tuki ja yhteistyö",
+        "Sertifiointielimen viestintä",
+        "Ylläpito- ja uusimistuki"
+      ]
+    },
+    benefits: {
+      title: "Keskeiset edut",
+      items: [
+        "Saavuta kansainvälisesti tunnustettu sertifiointi",
+        "Osoita tuoteturvallisuus asiakkaille",
+        "Kilpailuetu turvallisuusmarkkinoilla",
+        "Täytä hallituksen ja puolustuksen vaatimukset",
+        "Virtaviivaistettu arviointiprosessin tuki"
+      ]
     }
   }
 };
 
 const currentContent = content[lang];
+const isFi = lang === 'fi';
 ---
 
-<Layout {...seoConfig}>
+<Layout title={title}>
 
-<!-- Hero Section - Centered, NO image -->
-<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    
-    <div class="flex justify-center mb-4">
-      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
-        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
-      </div>
-    </div>
-    
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
-      {currentContent.hero.title}
-    </h1>
-    
-    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
-      {currentContent.hero.subtitle}
-    </p>
-    
-    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
-      {currentContent.hero.description}
-    </p>
-    
-    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
-      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
-        {currentContent.hero.primaryCTA.text}
-        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-      
-      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
-        {currentContent.hero.secondaryCTA.text}
-        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-    </div>
-    
-  </div>
-</section>
-
-<!-- Services Section -->
-<section id="services" class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.services.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.services.subtitle}
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-8">
-      {currentContent.services.items.map((service) => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    flex flex-col h-full p-6 group">
-          
-          <div class="flex justify-end mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-              <Icon name={service.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
+        </p>
+        
+        <!-- Info Section - Two Column Layout -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
+              </div>
             </div>
           </div>
           
-          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6">
+        <p class="text-sm text-slate-600 leading-relaxed">{currentContent.overview.description}</p>
+        <p class="text-sm text-blue-600 font-semibold mt-3">{currentContent.overview.highlight}</p>
+      </div>
+    </div>
+  </section>
+
+<!-- Services Section -->
+<section class="py-12 md:py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8 md:mb-12">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+        {currentContent.services.title}
+      </h2>
+      <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+        {currentContent.services.subtitle}
+      </p>
+    </div>
+    
+    <!-- max-w-5xl makes cards narrower, 3 columns on desktop -->
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {currentContent.services.items.map((service) => (
+        <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                    hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                    transition-all duration-300
+                    flex flex-col p-4 md:p-5 group relative overflow-hidden">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+          
+          <div class="flex justify-end mb-2 relative z-10">
+            <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                        border-2 border-[#3B82F6]
+                        transition-all duration-300
+                        group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                        group-hover:border-transparent">
+              <Icon name={service.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+            </div>
+          </div>
+          
+          <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
             {service.title}
           </h3>
-          
-          <p class="text-slate-500 text-sm leading-relaxed text-left mb-4">
+          <p class="text-xs text-slate-500 mb-2 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
             {service.description}
           </p>
           
-          <div class="mt-auto">
-            <ul class="space-y-1.5">
+          <div class="mt-auto pt-2 border-t border-slate-100 relative z-10">
+            <ul class="space-y-1">
               {service.features.map((feature) => (
-                <li class="flex items-start text-xs text-slate-500">
-                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                <li class="flex items-start text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                  <svg class="w-3 h-3 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
                   {feature}
                 </li>
@@ -231,74 +292,74 @@ const currentContent = content[lang];
     </div>
   </div>
 </section>
-
-<!-- Evaluation Assurance Levels Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.evaluationLevels.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.evaluationLevels.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {currentContent.evaluationLevels.items.map((eal) => (
-        <div class="bg-slate-50/50 rounded-xl p-5 border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-md transition-all duration-300
-                    flex items-center gap-4">
-          <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-            <span class="text-blue-600 font-bold text-sm">{eal.level.slice(-1)}</span>
-          </div>
-          <div>
-            <h3 class="font-semibold text-slate-900">{eal.level}</h3>
-            <p class="text-slate-500 text-xs">{eal.description}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-      
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
-        {currentContent.cta.title}
-      </h2>
-
-      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
-        {currentContent.cta.subtitle}
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        
-        <a href={currentContent.cta.primaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
-          {currentContent.cta.primaryCTA.text}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-        
-        <a href={currentContent.cta.secondaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
-          {currentContent.cta.secondaryCTA.text}
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
+  <!-- Evaluation Assurance Levels Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.evaluationLevels.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.evaluationLevels.subtitle}
+        </p>
       </div>
-
+      
+      <div class="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {currentContent.evaluationLevels.items.map((eal) => (
+          <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3bb1f6]
+                      transition-all duration-300
+                      flex items-center gap-3 p-3 group">
+            <div class="w-8 h-8 bg-[#3B82F6] rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="text-white font-bold text-xs">{eal.level.slice(-1)}</span>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold text-slate-900 group-hover:text-[#3B82F6] transition-colors duration-300">{eal.level}</h3>
+              <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">{eal.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- Deliverables & Benefits Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-3xl mx-auto">
+        
+        <!-- Deliverables -->
+        <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm p-5 md:p-6">
+          <h2 class="text-base font-bold text-[#3B82F6] mb-4 text-center">{currentContent.deliverables.title}</h2>
+          <ul class="space-y-2">
+            {currentContent.deliverables.items.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="w-3.5 h-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-xs md:text-sm text-slate-600">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        <!-- Benefits -->
+        <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm p-5 md:p-6">
+          <h2 class="text-base font-bold text-[#3B82F6] mb-4 text-center">{currentContent.benefits.title}</h2>
+          <ul class="space-y-2">
+            {currentContent.benefits.items.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="w-3.5 h-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-xs md:text-sm text-slate-600">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+  </section>
 
 </Layout>

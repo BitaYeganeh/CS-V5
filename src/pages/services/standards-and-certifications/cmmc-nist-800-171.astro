@@ -1,182 +1,261 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-
-// SEO Configuration
-const seoConfig = {
-  title: "CMMC / NIST 800-171 | Cybersecurity Maturity Model Certification",
-  description: "Gap analysis, SPRS scoring, POA&M development, and enclave strategies for CMMC and NIST 800-171 compliance. Expert guidance for federal contract requirements.",
-  keywords: "CMMC, NIST 800-171, cybersecurity maturity model, SPRS scoring, POA&M, enclave, Finland",
-  type: "service" as const,
-};
+import Button from '@/components/ui/Button.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const title = "CMMC / NIST 800-171";
 
 const content = {
   en: {
-    hero: {
-      title: "CMMC / NIST 800-171",
-      subtitle: "Cybersecurity Maturity Model Certification",
-      description: "CMMC and NIST 800-171 are US standards for protecting controlled unclassified information (CUI) in federal contracts. We provide gap analysis, SPRS scoring, POA&M development, and enclave strategies to help organizations achieve compliance.",
-      primaryCTA: { text: "Contact Us", href: "/contact" },
-      secondaryCTA: { text: "Learn More", href: "/services" }
+    title: "CMMC / NIST 800-171",
+    subtitle: "Cybersecurity Maturity Model Certification",
+    heroDescription: "CMMC and NIST 800-171 are US standards for protecting controlled unclassified information (CUI) in federal contracts. We provide gap analysis, SPRS scoring, POA&M development, and enclave strategies to help organizations achieve compliance.",
+    forWho: "For organizations seeking federal contracts requiring CMMC or NIST 800-171 compliance.",
+    achieve: "Full CMMC/NIST 800-171 compliance with gap analysis, SPRS scoring, and POA&M development.",
+    overview: {
+      title: "Overview",
+      description: "CMMC (Cybersecurity Maturity Model Certification) and NIST 800-171 are US standards for protecting controlled unclassified information (CUI) in federal contracts. These frameworks establish comprehensive security requirements for defense industrial base organizations.",
+      highlight: "Our expert team provides end-to-end support for CMMC and NIST 800-171 compliance, from gap analysis and SPRS scoring through POA&M development and enclave strategies to help you meet federal contract requirements."
     },
     services: {
       title: "Our Services",
+      subtitle: "Comprehensive CMMC and NIST 800-171 compliance support across all key areas",
       items: [
-        "Gap analysis and readiness assessment",
-        "SPRS scoring and POA&M development",
-        "Enclave design and implementation",
-        "Support for certification and audits"
+        { title: "Gap Analysis", description: "Identify gaps in your current security posture against CMMC/NIST 800-171 requirements", icon: "search" },
+        { title: "SPRS Scoring", description: "Calculate and submit Supplier Performance Risk System scores", icon: "chart-line" },
+        { title: "POA&M Development", description: "Create Plan of Action & Milestones for identified gaps", icon: "list" },
+        { title: "Enclave Strategy", description: "Design and implement secure enclave environments for CUI", icon: "shield" },
+        { title: "Readiness Assessment", description: "Comprehensive readiness assessment for CMMC certification", icon: "clipboard" },
+        { title: "Audit Support", description: "Expert support during CMMC certification audits", icon: "users" }
       ]
     },
-    cta: {
-      title: "Ready for CMMC / NIST 800-171 Compliance?",
-      subtitle: "Contact us for CMMC and NIST 800-171 compliance support and let our experts help you meet federal contract requirements.",
-      primaryCTA: { text: "Contact Us", href: "/contact" },
-      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    deliverables: {
+      title: "What You Get",
+      items: [
+        "CMMC/NIST 800-171 gap analysis report",
+        "SPRS scoring and documentation",
+        "POA&M development and tracking",
+        "Enclave design and implementation plan",
+        "Readiness assessment and recommendations",
+        "Audit preparation and support materials",
+        "Continuous compliance monitoring",
+        "Certification support package"
+      ]
+    },
+    benefits: {
+      title: "Key Benefits",
+      items: [
+        "Meet federal contract cybersecurity requirements",
+        "Secure controlled unclassified information (CUI)",
+        "Achieve CMMC certification readiness",
+        "Competitive advantage for federal contracts",
+        "Streamlined compliance documentation"
+      ]
     }
   },
   fi: {
-    hero: {
-      title: "CMMC / NIST 800-171",
-      subtitle: "Kyberturvallisuuden kypsyysmalli -sertifiointi",
-      description: "CMMC ja NIST 800-171 ovat Yhdysvaltain standardeja suojatun luokittelemattoman tiedon (CUI) suojaamiseksi liittovaltion sopimuksissa. Tarjoamme aukkoanalyysiä, SPRS-pisteytystä, POA&M-kehitystä ja erillisverkostostrategioita auttaaksemme organisaatioita saavuttamaan vaatimustenmukaisuuden.",
-      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
-      secondaryCTA: { text: "Lue lisää", href: "/services" }
+    title: "CMMC / NIST 800-171",
+    subtitle: "Kyberturvallisuuden kypsyysmalli -sertifiointi",
+    heroDescription: "CMMC ja NIST 800-171 ovat Yhdysvaltain standardeja suojatun luokittelemattoman tiedon (CUI) suojaamiseksi liittovaltion sopimuksissa. Tarjoamme aukkoanalyysiä, SPRS-pisteytystä, POA&M-kehitystä ja erillisverkostostrategioita auttaaksemme organisaatioita saavuttamaan vaatimustenmukaisuuden.",
+    forWho: "Organisaatioille, jotka tavoittelevat liittovaltion sopimuksia, jotka edellyttävät CMMC- tai NIST 800-171 -vaatimustenmukaisuutta.",
+    achieve: "Täysi CMMC/NIST 800-171 -vaatimustenmukaisuus aukkoanalyysillä, SPRS-pisteytyksellä ja POA&M-kehityksellä.",
+    overview: {
+      title: "Yleiskatsaus",
+      description: "CMMC (Cybersecurity Maturity Model Certification) ja NIST 800-171 ovat Yhdysvaltain standardeja suojatun luokittelemattoman tiedon (CUI) suojaamiseksi liittovaltion sopimuksissa. Nämä kehykset asettavat kattavat turvallisuusvaatimukset puolustusteollisuuden organisaatioille.",
+      highlight: "Asiantuntijatiimimme tarjoaa kattavaa tukea CMMC- ja NIST 800-171 -vaatimustenmukaisuuteen aukkoanalyysistä ja SPRS-pisteytyksestä POA&M-kehitykseen ja erillisverkostostrategioihin auttaaksemme sinua täyttämään liittovaltion sopimusvaatimukset."
     },
     services: {
       title: "Palvelumme",
+      subtitle: "Kattava CMMC- ja NIST 800-171 -vaatimustenmukaisuustuki kaikilla keskeisillä osa-alueilla",
       items: [
-        "Aukkoanalyysi ja valmiusarviointi",
-        "SPRS-pisteytys ja POA&M-kehitys",
-        "Erillisverkon suunnittelu ja toteutus",
-        "Tuki sertifiointiin ja auditointeihin"
+        { title: "Aukkoanalyysi", description: "Tunnista puutteet nykyisessä tietoturvassa CMMC/NIST 800-171 -vaatimuksia vastaan", icon: "search" },
+        { title: "SPRS-pisteytys", description: "Laske ja toimita Supplier Performance Risk System -pisteet", icon: "chart-line" },
+        { title: "POA&M-kehitys", description: "Luo toimenpidesuunnitelma tunnistetuille puutteille", icon: "list" },
+        { title: "Erillisverkostostrategia", description: "Suunnittele ja toteuta turvalliset erillisverkostot CUI:lle", icon: "shield" },
+        { title: "Valmiusarviointi", description: "Kattava valmiusarviointi CMMC-sertifiointia varten", icon: "clipboard" },
+        { title: "Auditointituki", description: "Asiantunteva tuki CMMC-sertifiointiauditoinneissa", icon: "users" }
       ]
     },
-    cta: {
-      title: "Valmis CMMC / NIST 800-171 -vaatimustenmukaisuuteen?",
-      subtitle: "Ota yhteyttä CMMC- ja NIST 800-171 -vaatimustenmukaisuustukea varten ja anna asiantuntijoidemme auttaa sinua täyttämään liittovaltion sopimusvaatimukset.",
-      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
-      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    deliverables: {
+      title: "Mitä saat",
+      items: [
+        "CMMC/NIST 800-171 aukkoanalyysiraportti",
+        "SPRS-pisteytys ja dokumentaatio",
+        "POA&M-kehitys ja seuranta",
+        "Erillisverkon suunnittelu- ja toteutussuunnitelma",
+        "Valmiusarviointi ja suositukset",
+        "Auditointivalmistelu- ja tukimateriaalit",
+        "Jatkuva vaatimustenmukaisuuden seuranta",
+        "Sertifiointitukipaketti"
+      ]
+    },
+    benefits: {
+      title: "Keskeiset edut",
+      items: [
+        "Täytä liittovaltion sopimusten kyberturvavaatimukset",
+        "Suojaa luokittelematon suojattu tieto (CUI)",
+        "Saavuta CMMC-sertifiointivalmius",
+        "Kilpailuetu liittovaltion sopimuksissa",
+        "Virtaviivaistettu vaatimustenmukaisuusdokumentaatio"
+      ]
     }
   }
 };
 
 const currentContent = content[lang];
+const isFi = lang === 'fi';
 ---
 
-<Layout {...seoConfig}>
+<Layout title={title}>
 
-<!-- Hero Section - Centered, NO image -->
-<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    
-    <div class="flex justify-center mb-4">
-      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
-        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
-      </div>
-    </div>
-    
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
-      {currentContent.hero.title}
-    </h1>
-    
-    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
-      {currentContent.hero.subtitle}
-    </p>
-    
-    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
-      {currentContent.hero.description}
-    </p>
-    
-    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
-      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
-        {currentContent.hero.primaryCTA.text}
-        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-      
-      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
-        {currentContent.hero.secondaryCTA.text}
-        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-    </div>
-    
-  </div>
-</section>
-
-<!-- Services Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.services.title}
-      </h2>
-    </div>
-    
-    <div class="grid md:grid-cols-2 gap-6">
-      {currentContent.services.items.map((item) => (
-        <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-lg hover:-translate-y-1
-                    transition-all duration-300
-                    flex items-center gap-4 group">
-          <div class="flex-shrink-0">
-            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6]">
-              <svg class="w-5 h-5 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
+        </p>
+        
+        <!-- Info Section - Two Column Layout -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
+              </div>
             </div>
           </div>
-          <span class="text-slate-700 text-sm font-medium">{item}</span>
+          
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-      
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
-        {currentContent.cta.title}
-      </h2>
-
-      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
-        {currentContent.cta.subtitle}
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        
-        <a href={currentContent.cta.primaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
-          {currentContent.cta.primaryCTA.text}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-        
-        <a href={currentContent.cta.secondaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
-          {currentContent.cta.secondaryCTA.text}
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6">
+        <p class="text-sm text-slate-600 leading-relaxed">{currentContent.overview.description}</p>
+        <p class="text-sm text-blue-600 font-semibold mt-3">{currentContent.overview.highlight}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.services.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.services.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {currentContent.services.items.map((service) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-end mb-2 relative z-10">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={service.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+              {service.title}
+            </h3>
+            <p class="text-xs md:text-sm text-slate-500 leading-relaxed text-left group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {service.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables & Benefits Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-3xl mx-auto">
+        
+        <!-- Deliverables -->
+        <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm p-5 md:p-6">
+          <h2 class="text-base font-bold text-[#3B82F6] mb-4 text-center">{currentContent.deliverables.title}</h2>
+          <ul class="space-y-2">
+            {currentContent.deliverables.items.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="w-3.5 h-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-xs md:text-sm text-slate-600">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        <!-- Benefits -->
+        <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm p-5 md:p-6">
+          <h2 class="text-base font-bold text-[#3B82F6] mb-4 text-center">{currentContent.benefits.title}</h2>
+          <ul class="space-y-2">
+            {currentContent.benefits.items.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="w-3.5 h-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-xs md:text-sm text-slate-600">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+  </section>
 
 </Layout>

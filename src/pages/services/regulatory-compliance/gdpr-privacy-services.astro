@@ -1,27 +1,19 @@
 ﻿---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-
-// SEO Configuration
-const seoConfig = {
-  title: "GDPR & Privacy Services | Data Protection Compliance & Privacy Excellence",
-  description: "Comprehensive GDPR compliance and privacy excellence with privacy-by-design implementation and sustainable governance.",
-  keywords: "GDPR compliance, data protection, privacy services, DPIA, data mapping, subject rights, privacy-by-design",
-  type: "service" as const,
-};
+import Button from '@/components/ui/Button.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const title = "GDPR & Privacy";
 
 const content = {
   en: {
-    hero: {
-      title: "GDPR & Privacy Excellence Services",
-      subtitle: "Data Protection Compliance & Privacy Governance",
-      description: "Expert GDPR implementation and privacy program management including data mapping, privacy impact assessments, consent management, data subject rights automation, and continuous compliance monitoring to build competitive advantage through privacy excellence.",
-      primaryCTA: { text: "Start Privacy Assessment", href: "/contact?service=gdpr-privacy" },
-      secondaryCTA: { text: "View Privacy Resources", href: "/resources" }
-    },
+    title: "GDPR & Privacy",
+    subtitle: "Data Protection Compliance & Privacy Governance",
+    heroDescription: "Expert GDPR implementation and privacy program management including data mapping, privacy impact assessments, consent management, data subject rights automation, and continuous compliance monitoring to build competitive advantage through privacy excellence.",
+    forWho: "For organizations handling personal data of EU residents that need to achieve and maintain GDPR compliance.",
+    achieve: "Full GDPR compliance with privacy-by-design, automated subject rights, and sustainable privacy governance.",
     services: {
       title: "Comprehensive Privacy Services",
       subtitle: "End-to-end GDPR compliance services that transform privacy obligations into competitive advantages through excellence in data protection.",
@@ -132,22 +124,14 @@ const content = {
         { title: "Cost Reduction", description: "Avoid significant regulatory fines while reducing data management costs through privacy-by-design", icon: "chart-line" },
         { title: "Market Differentiation", description: "Use privacy excellence as competitive differentiator in privacy-conscious markets", icon: "star" }
       ]
-    },
-    cta: {
-      title: "Ready to Achieve Privacy Excellence?",
-      subtitle: "Transform GDPR compliance from regulatory burden into competitive advantage with comprehensive privacy services and expert guidance.",
-      primaryCTA: { text: "Start Privacy Assessment", href: "/contact?service=gdpr-privacy" },
-      secondaryCTA: { text: "Explore GDPR Framework", href: "/frameworks/gdpr" }
     }
   },
   fi: {
-    hero: {
-      title: "GDPR- ja tietosuojapalvelut",
-      subtitle: "Tietosuojavaatimustenmukaisuus & tietosuojahallinta",
-      description: "Asiantunteva GDPR-toteutus ja tietosuojaohjelman hallinta, mukaan lukien tietokartoitus, tietosuojan vaikutusten arvioinnit, suostumushallinta, rekisteröityjen oikeuksien automatisointi ja jatkuva vaatimustenmukaisuuden seuranta kilpailuedun rakentamiseksi tietosuojan huippuosaamisen avulla.",
-      primaryCTA: { text: "Aloita tietosuoja-arviointi", href: "/contact?service=gdpr-privacy" },
-      secondaryCTA: { text: "Tutustu tietosuojaresursseihin", href: "/resources" }
-    },
+    title: "GDPR & Tietosuoja",
+    subtitle: "Tietosuojavaatimustenmukaisuus & tietosuojahallinta",
+    heroDescription: "Asiantunteva GDPR-toteutus ja tietosuojaohjelman hallinta, mukaan lukien tietokartoitus, tietosuojan vaikutusten arvioinnit, suostumushallinta, rekisteröityjen oikeuksien automatisointi ja jatkuva vaatimustenmukaisuuden seuranta kilpailuedun rakentamiseksi tietosuojan huippuosaamisen avulla.",
+    forWho: "Organisaatioille, jotka käsittelevät EU:n asukkaiden henkilötietoja ja joiden on saavutettava ja ylläpidettävä GDPR-vaatimustenmukaisuus.",
+    achieve: "Täysi GDPR-vaatimustenmukaisuus tietosuoja-by-designilla, automatisoiduilla rekisteröityjen oikeuksilla ja kestävällä tietosuojahallinnalla.",
     services: {
       title: "Kattavat tietosuojapalvelut",
       subtitle: "Päästä päähän -GDPR-vaatimustenmukaisuuspalvelut, jotka muuttavat tietosuojavelvoitteet kilpailueduiksi tietosuojan huippuosaamisen avulla.",
@@ -222,230 +206,214 @@ const content = {
         { title: "Kustannusten vähentäminen", description: "Vältä merkittävät sääntelysakot vähentäen samalla tietojenhallintakustannuksia tietosuoja-by-designin avulla", icon: "chart-line" },
         { title: "Markkinaerottautuminen", description: "Käytä tietosuojan huippuosaamista kilpailullisena erottautumistekijänä tietosuojatietoisilla markkinoilla", icon: "star" }
       ]
-    },
-    cta: {
-      title: "Valmis saavuttamaan tietosuojan huippuosaamisen?",
-      subtitle: "Muuta GDPR-vaatimustenmukaisuus sääntelytaakasta kilpailueduksi kattavilla tietosuojapalveluilla ja asiantuntijaohjauksella.",
-      primaryCTA: { text: "Aloita tietosuoja-arviointi", href: "/contact?service=gdpr-privacy" },
-      secondaryCTA: { text: "Tutustu GDPR-kehykseen", href: "/frameworks/gdpr" }
     }
   }
 };
 
 const currentContent = content[lang];
+const isFi = lang === 'fi';
 ---
 
-<Layout {...seoConfig}>
+<Layout title={title}>
 
-<!-- Hero Section - Centered, NO image -->
-<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
-      <div>{currentContent.hero.title}</div>
-      <div class="mt-2">
-        <span class="bg-gradient-to-r from-[#1E2A7A] to-[#60A5FA] bg-clip-text text-transparent">{currentContent.hero.subtitle}</span>
-      </div>
-    </h1>
-    
-    <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-10">
-      {currentContent.hero.description}
-    </p>
-    
-    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
-      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
-        {currentContent.hero.primaryCTA.text}
-        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-      
-      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
-        {currentContent.hero.secondaryCTA.text}
-        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-    </div>
-    
-  </div>
-</section>
-
-<!-- Privacy Services Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.services.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.services.subtitle}
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      {currentContent.services.items.map((service) => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    flex flex-col h-full p-6 group">
-          
-          <div class="flex justify-between items-start mb-4">
-            <div></div>
-            <div class="flex justify-end">
-              <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
-                          transition-all duration-300
-                          group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-                <Icon name={service.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
+        </p>
+        
+        <!-- Info Section - Two Column Layout -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
               </div>
             </div>
           </div>
           
-          <div class="flex justify-between items-start mb-3">
-            <h3 class="text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors duration-300">
-              {service.title}
-            </h3>
-            <div class="text-right">
-              <span class="text-xs font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy Services Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.services.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.services.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {currentContent.services.items.map((service) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-end mb-2 relative z-10">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={service.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            
+            <div class="flex items-center justify-between mb-1.5">
+              <h3 class="text-sm font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+                {service.title}
+              </h3>
+              <span class="text-xs font-medium text-[#3B82F6] bg-blue-50 px-2 py-0.5 rounded-full border border-[#3B82F6] relative z-10">
                 {service.timeline}
               </span>
-              <p class="text-xs text-slate-400 mt-1">{service.compliance}</p>
+            </div>
+            <p class="text-xs text-slate-500 mb-1.5 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {service.description}
+            </p>
+            <p class="text-xs text-slate-400 mb-2 relative z-10">{service.compliance}</p>
+            
+            <div class="mt-auto pt-2 border-t border-slate-100 relative z-10">
+              <h4 class="text-xs font-semibold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300">
+                {isFi ? 'Keskeiset toimitettavat' : 'Key Deliverables'}
+              </h4>
+              <ul class="space-y-1">
+                {service.deliverables.slice(0, 4).map((deliverable) => (
+                  <li class="flex items-start text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                    <svg class="w-3 h-3 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {deliverable}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-          
-          <p class="text-slate-500 text-sm leading-relaxed mb-4">
-            {service.description}
-          </p>
-          
-          <div class="mt-auto">
-            <h4 class="font-semibold text-slate-800 text-sm mb-2">
-              {lang === 'fi' ? 'Keskeiset toimitettavat' : 'Key Deliverables'}
-            </h4>
-            <ul class="space-y-1.5">
-              {service.deliverables.slice(0, 4).map((deliverable) => (
-                <li class="flex items-start text-xs text-slate-500">
-                  <svg class="w-3 h-3 text-blue-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  {deliverable}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- GDPR Principles Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.principles.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.principles.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {currentContent.principles.items.map((principle) => (
-        <div class="bg-slate-50/50 rounded-xl p-5 border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-lg transition-all duration-300">
-          
-          <h3 class="text-base font-bold text-slate-900 mb-2">{principle.principle}</h3>
-          <p class="text-slate-500 text-xs mb-3">{principle.description}</p>
-          <div class="pt-2 border-t border-slate-100">
-            <p class="text-xs font-medium text-red-600">{lang === 'fi' ? 'Enimmäisseuraamus:' : 'Max Penalty:'} {principle.penalty}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Benefits Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.benefits.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.benefits.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {currentContent.benefits.items.map((benefit) => (
-        <div class="bg-slate-50/50 rounded-xl p-6 text-center border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    group">
-          
-          <div class="flex justify-center mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-              <Icon name={benefit.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
-            </div>
-          </div>
-          
-          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300">
-            {benefit.title}
-          </h3>
-          
-          <p class="text-slate-500 text-sm leading-relaxed">
-            {benefit.description}
-          </p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-      
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
-        {currentContent.cta.title}
-      </h2>
-
-      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
-        {currentContent.cta.subtitle}
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        
-        <a href={currentContent.cta.primaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
-          {currentContent.cta.primaryCTA.text}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-        
-        <a href={currentContent.cta.secondaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
-          {currentContent.cta.secondaryCTA.text}
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
+        ))}
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- GDPR Principles Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.principles.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.principles.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {currentContent.principles.items.map((principle) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+              {principle.principle}
+            </h3>
+            <p class="text-xs text-slate-500 mb-2 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {principle.description}
+            </p>
+            <div class="mt-auto pt-2 border-t border-slate-100 relative z-10">
+              <p class="text-xs font-medium text-red-600">
+                {isFi ? 'Enimmäisseuraamus:' : 'Max Penalty:'} {principle.penalty}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.benefits.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.benefits.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {currentContent.benefits.items.map((benefit) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden text-center">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-center mb-2 relative z-10">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={benefit.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {benefit.title}
+            </h3>
+            <p class="text-xs md:text-sm text-slate-500 leading-relaxed group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {benefit.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
 </Layout>

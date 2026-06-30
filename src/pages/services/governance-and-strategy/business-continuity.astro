@@ -5,195 +5,277 @@ import Button from '@/components/ui/Button.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
-
 const title = lang === 'fi' ? 'Liiketoiminnan jatkuvuus' : 'Business Continuity';
-const description = lang === 'fi' 
-  ? 'Rakenna ja paranna BCMS:ää BIA:lla, strategioilla, suunnitelmilla, harjoituksilla ja jatkuvalla parantamisella.'
-  : 'Stand up and improve your BCMS with BIAs, strategies, plans, exercises, and continual improvement.';
 
-const bcmsComponents = [
-  {
-    icon: 'activity',
-    titleFi: 'Liiketoimintavaikutusanalyysi (BIA)',
-    titleEn: 'Business Impact Analysis (BIA)',
-    descFi: 'Kriittisten prosessien tunnistaminen ja häiriövaikutusten arviointi',
-    descEn: 'Critical process identification and disruption impact assessment'
+const content = {
+  en: {
+    title: "Business Continuity",
+    subtitle: "Business Continuity Management",
+    heroDescription: "Ensure business resilience and rapid recovery from disruptions. We build comprehensive BCMS from strategies to exercises.",
+    forWho: "For organizations looking to build or improve their Business Continuity Management System (BCMS) and ensure operational resilience.",
+    achieve: "A robust BCMS with clear strategies, tested plans, and continuous improvement processes.",
+    components: {
+      title: "Core BCMS Components",
+      subtitle: "A comprehensive business continuity management system consists of four core elements",
+      items: [
+        { title: "Business Impact Analysis", description: "Critical process identification and disruption impact assessment", icon: "activity" },
+        { title: "Continuity Strategies", description: "Alternative operating methods and contingency plan development", icon: "shield" },
+        { title: "Continuity Plans", description: "Detailed operational procedures for crisis situations", icon: "file-text" },
+        { title: "Exercises & Testing", description: "Regular plan testing and staff training", icon: "users" }
+      ]
+    },
+    bia: {
+      title: "Business Impact Analysis (BIA)",
+      subtitle: "Systematic process for identifying critical business functions and assessing disruption impacts",
+      items: [
+        {
+          title: "Risk Assessment",
+          description: "Identify threats and vulnerabilities",
+          icon: "search",
+          details: ["Natural disasters", "Technology risks", "Personnel risks", "Supplier risks"]
+        },
+        {
+          title: "Impact Analysis",
+          description: "Assessment of disruption impacts",
+          icon: "bar-chart",
+          details: ["Financial impact", "Operational impact", "Reputation risk", "Regulatory impacts"]
+        },
+        {
+          title: "Recovery Timelines",
+          description: "RTO and RPO definition for processes",
+          icon: "clock",
+          details: ["Recovery Time Objective", "Recovery Point Objective", "Minimum Service Level", "Maximum Tolerable Downtime"]
+        }
+      ]
+    },
+    plans: {
+      title: "Types of Continuity Plans",
+      subtitle: "Comprehensive plan portfolio for different crisis situations and recovery phases",
+      items: [
+        {
+          title: "Crisis Management Plan",
+          details: ["Crisis team activation", "Decision-making processes", "Communication strategies", "Media relations"]
+        },
+        {
+          title: "Business Continuity Plan",
+          details: ["Alternative process activation", "Resource reallocation", "Supplier relationship management", "Customer communication"]
+        },
+        {
+          title: "IT Disaster Recovery Plan",
+          details: ["System backup", "Alternative IT resource activation", "Data recovery", "Technical support"]
+        },
+        {
+          title: "Recovery Plan",
+          details: ["Normal operations restoration", "Lessons learned assessment", "Plan updates", "Stakeholder reporting"]
+        }
+      ]
+    },
+    exercises: {
+      title: "Exercise Types and Testing",
+      subtitle: "Regular exercises ensure plan effectiveness and staff readiness",
+      items: [
+        { title: "Tabletop Exercises", description: "Scenario-based discussion exercises", icon: "book-open" },
+        { title: "Simulations", description: "Realistic crisis scenario walkthroughs", icon: "play" },
+        { title: "Full-Scale Tests", description: "Actual disruption situation testing", icon: "zap" },
+        { title: "Component Tests", description: "Individual plan component testing", icon: "target" }
+      ]
+    },
+    steps: {
+      title: "Implementation Process",
+      subtitle: "Five-phase methodology for building and maintaining BCMS",
+      items: [
+        { number: "01", title: "BCMS Framework Design", description: "Business continuity management system foundations" },
+        { number: "02", title: "BIA and Risk Assessment", description: "Critical process and risk identification" },
+        { number: "03", title: "Strategy Development", description: "Continuity strategy and alternative planning" },
+        { number: "04", title: "Plan Development", description: "Detailed operational plan creation" },
+        { number: "05", title: "Testing and Maintenance", description: "Exercise execution and continuous improvement" }
+      ]
+    }
   },
-  {
-    icon: 'shield',
-    titleFi: 'Jatkuvuusstrategiat',
-    titleEn: 'Continuity Strategies',
-    descFi: 'Vaihtoehtoisten toimintatapojen ja varasuunnitelmien kehittäminen',
-    descEn: 'Alternative operating methods and contingency plan development'
-  },
-  {
-    icon: 'file-text',
-    titleFi: 'Jatkuvuussuunnitelmat',
-    titleEn: 'Continuity Plans',
-    descFi: 'Yksityiskohtaiset toimintaohjeet kriisitilanteisiin',
-    descEn: 'Detailed operational procedures for crisis situations'
-  },
-  {
-    icon: 'users',
-    titleFi: 'Harjoitukset ja testaus',
-    titleEn: 'Exercises and Testing',
-    descFi: 'Suunnitelmien säännöllinen testaus ja henkilöstön koulutus',
-    descEn: 'Regular plan testing and staff training'
+  fi: {
+    title: "Liiketoiminnan jatkuvuus",
+    subtitle: "Liiketoiminnan jatkuvuuden hallinta",
+    heroDescription: "Varmista liiketoimintasi kestävyys ja nopea toipuminen häiriötilanteista. Rakennamme kattavan BCMS:n strategioista harjoituksiin.",
+    forWho: "Organisaatioille, jotka haluavat rakentaa tai parantaa liiketoiminnan jatkuvuuden hallintajärjestelmää (BCMS) ja varmistaa toiminnallisen kestävyyden.",
+    achieve: "Vankka BCMS selkeillä strategioilla, testatuilla suunnitelmilla ja jatkuvan parantamisen prosesseilla.",
+    components: {
+      title: "BCMS:n keskeiset komponentit",
+      subtitle: "Kattava liiketoiminnan jatkuvuuden hallintajärjestelmä koostuu neljästä keskeisestä elementistä",
+      items: [
+        { title: "Liiketoimintavaikutusanalyysi", description: "Kriittisten prosessien tunnistaminen ja häiriövaikutusten arviointi", icon: "activity" },
+        { title: "Jatkuvuusstrategiat", description: "Vaihtoehtoisten toimintatapojen ja varasuunnitelmien kehittäminen", icon: "shield" },
+        { title: "Jatkuvuussuunnitelmat", description: "Yksityiskohtaiset toimintaohjeet kriisitilanteisiin", icon: "file-text" },
+        { title: "Harjoitukset ja testaus", description: "Suunnitelmien säännöllinen testaus ja henkilöstön koulutus", icon: "users" }
+      ]
+    },
+    bia: {
+      title: "Liiketoimintavaikutusanalyysi (BIA)",
+      subtitle: "Systemaattinen prosessi kriittisten liiketoimintafunktioiden tunnistamiseksi ja häiriövaikutusten arvioimiseksi",
+      items: [
+        {
+          title: "Riskinarviointi",
+          description: "Tunnista uhkat ja haavoittuvuudet",
+          icon: "search",
+          details: ["Luonnonkatastrofit", "Teknologiariskit", "Henkilöstöriskit", "Toimittajariskit"]
+        },
+        {
+          title: "Vaikutusanalyysi",
+          description: "Arviointi häiriöiden vaikutuksista",
+          icon: "bar-chart",
+          details: ["Taloudellinen vaikutus", "Operatiivinen vaikutus", "Maineriski", "Säädösvaikutukset"]
+        },
+        {
+          title: "Palautumisaikataulut",
+          description: "RTO ja RPO määrittely prosesseille",
+          icon: "clock",
+          details: ["Recovery Time Objective", "Recovery Point Objective", "Minimipalvelutaso", "Maksimi siedettävä katkos"]
+        }
+      ]
+    },
+    plans: {
+      title: "Jatkuvuussuunnitelmien tyypit",
+      subtitle: "Kattava suunnitelmisto eri kriisitilanteisiin ja toipumisvaiheisiin",
+      items: [
+        {
+          title: "Kriisienhallintasuunnitelma",
+          details: ["Kriisitiimin aktivointi", "Päätöksentekoprosessit", "Kommunikaatiostrategiat", "Mediasuhde"]
+        },
+        {
+          title: "Liiketoiminnan jatkuvuussuunnitelma",
+          details: ["Vaihtoehtoisten prosessien aktivointi", "Resurssien uudelleenkohdentaminen", "Toimittajasuhteiden hallinta", "Asiakasviestintä"]
+        },
+        {
+          title: "IT-katastrofipalautumissuunnitelma",
+          details: ["Järjestelmien varmuuskopiointi", "Vaihtoehtoisten IT-resurssien aktivointi", "Tietojen palautus", "Tekninen tuki"]
+        },
+        {
+          title: "Toipumissuunnitelma",
+          details: ["Normaalien toimintojen palautus", "Opittujen asioiden arviointi", "Suunnitelmien päivitys", "Sidosryhmäraportointi"]
+        }
+      ]
+    },
+    exercises: {
+      title: "Harjoitustyypit ja testaus",
+      subtitle: "Säännölliset harjoitukset varmistavat suunnitelmien toimivuuden ja henkilöstön valmiuden",
+      items: [
+        { title: "Pöytäkirjaharjoitukset", description: "Skenaariopohjaiset keskusteluharjoitukset", icon: "book-open" },
+        { title: "Simulaatiot", description: "Realistiset kriisiskenaarioiden läpikäynnit", icon: "play" },
+        { title: "Täyden mittakaavan testit", description: "Todelliset häiriötilanteiden testaukset", icon: "zap" },
+        { title: "Komponenttitestit", description: "Yksittäisten suunnitelman osien testaus", icon: "target" }
+      ]
+    },
+    steps: {
+      title: "Toteutusprosessi",
+      subtitle: "Viiden vaiheen metodologia BCMS:n rakentamiseen ja ylläpitoon",
+      items: [
+        { number: "01", title: "BCMS-kehyksen suunnittelu", description: "Liiketoiminnan jatkuvuuden hallintajärjestelmän perusteet" },
+        { number: "02", title: "BIA ja riskinarviointi", description: "Kriittisten prosessien ja riskien tunnistaminen" },
+        { number: "03", title: "Strategioiden kehittäminen", description: "Jatkuvuusstrategioiden ja vaihtoehtojen suunnittelu" },
+        { number: "04", title: "Suunnitelmien laatiminen", description: "Yksityiskohtaisten toimintasuunnitelmien luominen" },
+        { number: "05", title: "Testaus ja ylläpito", description: "Harjoitusten suoritus ja jatkuva parantaminen" }
+      ]
+    }
   }
-];
+};
 
-const bcProcesses = [
-  {
-    icon: 'search',
-    titleFi: 'Riskinarviointi',
-    titleEn: 'Risk Assessment',
-    descFi: 'Tunnista uhkat ja haavoittuvuudet',
-    descEn: 'Identify threats and vulnerabilities',
-    detailsFi: ['Luonnonkatastrofit', 'Teknologiariskit', 'Henkilöstöriskit', 'Toimittajariskit'],
-    detailsEn: ['Natural disasters', 'Technology risks', 'Personnel risks', 'Supplier risks']
-  },
-  {
-    icon: 'bar-chart',
-    titleFi: 'Vaikutusanalyysi',
-    titleEn: 'Impact Analysis',
-    descFi: 'Arviointi häiriöiden vaikutuksista',
-    descEn: 'Assessment of disruption impacts',
-    detailsFi: ['Taloudellinen vaikutus', 'Operatiivinen vaikutus', 'Maineriski', 'Säädösvaikutukset'],
-    detailsEn: ['Financial impact', 'Operational impact', 'Reputation risk', 'Regulatory impacts']
-  },
-  {
-    icon: 'clock',
-    titleFi: 'Palautumisaikataulut',
-    titleEn: 'Recovery Timelines',
-    descFi: 'RTO ja RPO määrittely prosesseille',
-    descEn: 'RTO and RPO definition for processes',
-    detailsFi: ['Recovery Time Objective', 'Recovery Point Objective', 'Minimum Service Level', 'Maximum Tolerable Downtime'],
-    detailsEn: ['Recovery Time Objective', 'Recovery Point Objective', 'Minimum Service Level', 'Maximum Tolerable Downtime']
-  }
-];
-
-const planTypes = [
-  {
-    titleFi: 'Kriisienhallintasuunnitelma',
-    titleEn: 'Crisis Management Plan',
-    itemsFi: ['Kriisitiimin aktivointi', 'Päätöksentekoprosessit', 'Kommunikaatiostrategiat', 'Mediasuhde'],
-    itemsEn: ['Crisis team activation', 'Decision-making processes', 'Communication strategies', 'Media relations']
-  },
-  {
-    titleFi: 'Liiketoiminnan jatkuvuussuunnitelma',
-    titleEn: 'Business Continuity Plan',
-    itemsFi: ['Vaihtoehtoisten prosessien aktivointi', 'Resurssien uudelleenkohdentaminen', 'Toimittajasuhteiden hallinta', 'Asiakasviestintä'],
-    itemsEn: ['Alternative process activation', 'Resource reallocation', 'Supplier relationship management', 'Customer communication']
-  },
-  {
-    titleFi: 'IT-katastrofipalautumissuunnitelma',
-    titleEn: 'IT Disaster Recovery Plan',
-    itemsFi: ['Järjestelmien varmuuskopiointi', 'Vaihtoehtoisten IT-resurssien aktivointi', 'Tietojen palautus', 'Tekninen tuki'],
-    itemsEn: ['System backup', 'Alternative IT resource activation', 'Data recovery', 'Technical support']
-  },
-  {
-    titleFi: 'Toipumissuunnitelma',
-    titleEn: 'Recovery Plan',
-    itemsFi: ['Normaalien toimintojen palautus', 'Opittujen asioiden arviointi', 'Suunnitelmien päivitys', 'Sidosryhmäraportointi'],
-    itemsEn: ['Normal operations restoration', 'Lessons learned assessment', 'Plan updates', 'Stakeholder reporting']
-  }
-];
-
-const exerciseTypes = [
-  {
-    icon: 'book-open',
-    titleFi: 'Pöytäkirjaharjoitukset',
-    titleEn: 'Tabletop Exercises',
-    descFi: 'Skenaariopohjaiset keskusteluharjoitukset',
-    descEn: 'Scenario-based discussion exercises'
-  },
-  {
-    icon: 'play',
-    titleFi: 'Simulaatiot',
-    titleEn: 'Simulations',
-    descFi: 'Realistiset kriisiskenaarioiden läpikäynnit',
-    descEn: 'Realistic crisis scenario walkthroughs'
-  },
-  {
-    icon: 'zap',
-    titleFi: 'Täyden mittakaavan testit',
-    titleEn: 'Full-Scale Tests',
-    descFi: 'Todelliset häiriötilanteiden testaukset',
-    descEn: 'Actual disruption situation testing'
-  },
-  {
-    icon: 'target',
-    titleFi: 'Komponenttitestit',
-    titleEn: 'Component Tests',
-    descFi: 'Yksittäisten suunnitelman osien testaus',
-    descEn: 'Individual plan component testing'
-  }
-];
-
-const implementationSteps = [
-  { step: '1', fi: 'BCMS-kehyksen suunnittelu', en: 'BCMS Framework Design', fiDesc: 'Liiketoiminnan jatkuvuuden hallintajärjestelmän perusteet', enDesc: 'Business continuity management system foundations' },
-  { step: '2', fi: 'BIA ja riskinarviointi', en: 'BIA and Risk Assessment', fiDesc: 'Kriittisten prosessien ja riskien tunnistaminen', enDesc: 'Critical process and risk identification' },
-  { step: '3', fi: 'Strategioiden kehittäminen', en: 'Strategy Development', fiDesc: 'Jatkuvuusstrategioiden ja vaihtoehtojen suunnittelu', enDesc: 'Continuity strategy and alternative planning' },
-  { step: '4', fi: 'Suunnitelmien laatiminen', en: 'Plan Development', fiDesc: 'Yksityiskohtaisten toimintasuunnitelmien luominen', enDesc: 'Detailed operational plan creation' },
-  { step: '5', fi: 'Testaus ja ylläpito', en: 'Testing and Maintenance', fiDesc: 'Harjoitusten suoritus ja jatkuva parantaminen', enDesc: 'Exercise execution and continuous improvement' }
-];
+const currentContent = content[lang];
+const isFi = lang === 'fi';
 ---
-<Layout title={title} description={description}>
+
+<Layout title={title}>
+
   <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center">
-        <div class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
-          <Icon name="shield" class="w-4 h-4 mr-2" />
-          {lang === 'fi' ? 'Liiketoiminnan jatkuvuus' : 'Business Continuity'}
-        </div>
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-          {lang === 'fi' ? 'Liiketoiminnan jatkuvuuden hallinta' : 'Business Continuity Management'}
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
         </h1>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-          {lang === 'fi' 
-            ? 'Varmista liiketoimintasi kestävyys ja nopea toipuminen häiriötilanteista. Rakennamme kattavan BCMS:n strategioista harjoituksiin.'
-            : 'Ensure business resilience and rapid recovery from disruptions. We build comprehensive BCMS from strategies to exercises.'
-          }
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button href="/contact" variant="primary">
-            {lang === 'fi' ? 'Aloita BCMS-projekti' : 'Start BCMS Project'}
-          </Button>
-          <Button href="/demo" variant="secondary">
-            {lang === 'fi' ? 'Tutustu palveluun' : 'Explore Service'}
-          </Button>
+        
+        <!-- Info Section - Two Column Layout -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- BCMS Components Section -->
-  <section class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">
-          {lang === 'fi' ? 'BCMS:n keskeiset komponentit' : 'Core BCMS Components'}
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.components.title}
         </h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-          {lang === 'fi' 
-            ? 'Kattava liiketoiminnan jatkuvuuden hallintajärjestelmä koostuu neljästä keskeisestä elementistä'
-            : 'A comprehensive business continuity management system consists of four core elements'
-          }
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.components.subtitle}
         </p>
       </div>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {bcmsComponents.map((component) => (
-          <div class="bg-gray-50 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
-            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Icon name={component.icon} class="w-6 h-6 text-blue-600" />
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {currentContent.components.items.map((item) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-end mb-2 relative z-10">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={item.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
             </div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              {lang === 'fi' ? component.titleFi : component.titleEn}
+            
+            <h3 class="text-base font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+              {item.title}
             </h3>
-            <p class="text-gray-600 text-sm">
-              {lang === 'fi' ? component.descFi : component.descEn}
+            <p class="text-xs md:text-sm text-slate-500 leading-relaxed text-left group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {item.description}
             </p>
           </div>
         ))}
@@ -201,37 +283,50 @@ const implementationSteps = [
     </div>
   </section>
 
-  <!-- BIA Process Section -->
-  <section class="py-20 bg-gray-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">
-          {lang === 'fi' ? 'Liiketoimintavaikutusanalyysi (BIA)' : 'Business Impact Analysis (BIA)'}
+  <!-- BIA Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.bia.title}
         </h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-          {lang === 'fi' 
-            ? 'Systemaattinen prosessi kriittisten liiketoimintafunktioiden tunnistamiseksi ja häiriövaikutusten arvioimiseksi'
-            : 'Systematic process for identifying critical business functions and assessing disruption impacts'
-          }
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.bia.subtitle}
         </p>
       </div>
-
-      <div class="grid lg:grid-cols-3 gap-8">
-        {bcProcesses.map((process) => (
-          <div class="bg-white rounded-lg p-8 shadow-lg">
-            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-              <Icon name={process.icon} class="w-6 h-6 text-blue-600" />
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {currentContent.bia.items.map((item) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={item.icon} class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+                  {item.title}
+                </h3>
+                <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+                  {item.description}
+                </p>
+              </div>
             </div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-3">
-              {lang === 'fi' ? process.titleFi : process.titleEn}
-            </h3>
-            <p class="text-gray-600 mb-4">
-              {lang === 'fi' ? process.descFi : process.descEn}
-            </p>
-            <ul class="space-y-2">
-              {(lang === 'fi' ? process.detailsFi : process.detailsEn).map((detail) => (
-                <li class="flex items-center text-sm text-gray-600">
-                  <Icon name="check" class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+            
+            <ul class="space-y-1 mt-1 relative z-10">
+              {item.details.map((detail) => (
+                <li class="flex items-center text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                  <svg class="w-3 h-3 text-[#3B82F6] mr-1.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
                   {detail}
                 </li>
               ))}
@@ -243,31 +338,35 @@ const implementationSteps = [
   </section>
 
   <!-- Plan Types Section -->
-  <section class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">
-          {lang === 'fi' ? 'Jatkuvuussuunnitelmien tyypit' : 'Types of Continuity Plans'}
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.plans.title}
         </h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-          {lang === 'fi' 
-            ? 'Kattava suunnitelmisto eri kriisitilanteisiin ja toipumisvaiheisiin'
-            : 'Comprehensive plan portfolio for different crisis situations and recovery phases'
-          }
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.plans.subtitle}
         </p>
       </div>
-
-      <div class="grid md:grid-cols-2 gap-8">
-        {planTypes.map((planType) => (
-          <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-8">
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">
-              {lang === 'fi' ? planType.titleFi : planType.titleEn}
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {currentContent.plans.items.map((plan) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-2 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {plan.title}
             </h3>
-            <ul class="space-y-3">
-              {(lang === 'fi' ? planType.itemsFi : planType.itemsEn).map((item) => (
-                <li class="flex items-start">
-                  <Icon name="arrow-right" class="w-4 h-4 text-blue-600 mr-3 mt-1 flex-shrink-0" />
-                  <span class="text-gray-700">{item}</span>
+            <ul class="space-y-1 relative z-10">
+              {plan.details.map((detail) => (
+                <li class="flex items-start text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                  <svg class="w-3 h-3 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {detail}
                 </li>
               ))}
             </ul>
@@ -278,31 +377,40 @@ const implementationSteps = [
   </section>
 
   <!-- Exercise Types Section -->
-  <section class="py-20 bg-gray-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">
-          {lang === 'fi' ? 'Harjoitustyypit ja testaus' : 'Exercise Types and Testing'}
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.exercises.title}
         </h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-          {lang === 'fi' 
-            ? 'Säännölliset harjoitukset varmistavat suunnitelmien toimivuuden ja henkilöstön valmiuden'
-            : 'Regular exercises ensure plan effectiveness and staff readiness'
-          }
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.exercises.subtitle}
         </p>
       </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {exerciseTypes.map((exercise) => (
-          <div class="bg-white rounded-lg p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
-            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Icon name={exercise.icon} class="w-8 h-8 text-white" />
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {currentContent.exercises.items.map((item) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden text-center">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-center mb-2 relative z-10">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={item.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
             </div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              {lang === 'fi' ? exercise.titleFi : exercise.titleEn}
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {item.title}
             </h3>
-            <p class="text-gray-600 text-sm">
-              {lang === 'fi' ? exercise.descFi : exercise.descEn}
+            <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {item.description}
             </p>
           </div>
         ))}
@@ -311,68 +419,42 @@ const implementationSteps = [
   </section>
 
   <!-- Implementation Process Section -->
-  <section class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">
-          {lang === 'fi' ? 'Toteutusprosessi' : 'Implementation Process'}
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.steps.title}
         </h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-          {lang === 'fi' 
-            ? 'Viiden vaiheen metodologia BCMS:n rakentamiseen ja ylläpitoon'
-            : 'Five-phase methodology for building and maintaining BCMS'
-          }
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.steps.subtitle}
         </p>
       </div>
-
-      <div class="space-y-8">
-        {implementationSteps.map((step, index) => (
-          <div class="flex items-start space-x-6">
-            <div class="flex-shrink-0">
-              <div class="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center font-bold text-lg">
-                {step.step}
+      
+      <div class="max-w-4xl mx-auto space-y-4">
+        {currentContent.steps.items.map((step) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col md:flex-row md:items-center gap-4 p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-10 h-10 bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white rounded-xl flex items-center justify-center text-sm font-bold">
+                {step.number}
               </div>
             </div>
-            <div class="flex-1">
-              <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                {lang === 'fi' ? step.fi : step.en}
+            <div class="flex-1 relative z-10">
+              <h3 class="text-sm font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                {step.title}
               </h3>
-              <p class="text-gray-600">
-                {lang === 'fi' ? step.fiDesc : step.enDesc}
+              <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                {step.description}
               </p>
             </div>
-            {index < implementationSteps.length - 1 && (
-              <div class="hidden lg:block w-8 h-8 text-gray-300">
-                <Icon name="arrow-down" class="w-full h-full" />
-              </div>
-            )}
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="py-20 bg-gradient-to-r from-blue-600 to-indigo-700">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-white mb-4">
-        {lang === 'fi' ? 'Valmis rakentamaan kestävää liiketoimintaa?' : 'Ready to Build Resilient Business?'}
-      </h2>
-      <p class="text-xl text-blue-100 mb-8">
-        {lang === 'fi' 
-          ? 'Ota yhteyttä ja keskustellaan BCMS-tarpeistasi ja toteutuksesta.'
-          : 'Contact us to discuss your BCMS needs and implementation.'
-        }
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/contact" variant="secondary">
-          {lang === 'fi' ? 'Ota yhteyttä' : 'Contact Us'}
-        </Button>
-        <Button href="/demo" variant="tertiary">
-          {lang === 'fi' ? 'Varaa demo' : 'Book Demo'}
-        </Button>
-      </div>
-    </div>
-  </section>
 </Layout>
-
