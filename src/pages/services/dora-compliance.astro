@@ -1,33 +1,30 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-
-// SEO Configuration
-const seoConfig = {
-  title: "DORA Compliance | Digital Operational Resilience Act Services",
-  description: "Professional DORA compliance services. We help financial service organizations meet EU Digital Operational Resilience Act requirements.",
-  keywords: "DORA, Digital Operational Resilience Act, financial services compliance, ICT risk management, EU regulation, Finland",
-  type: "service" as const,
-};
+import Button from '@/components/ui/Button.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const title = "DORA Compliance";
 
 const content = {
   en: {
-    hero: {
-      title: "DORA Compliance",
-      subtitle: "Digital Operational Resilience Act",
-      description: "Professional DORA compliance services. We help financial service organizations meet EU Digital Operational Resilience Act requirements. Meet DORA requirements and strengthen your financial service organization's cybersecurity resilience.",
-      primaryCTA: { text: "Get in Touch", href: "/contact" },
-      secondaryCTA: { text: "DORA Readiness Check", href: "/contact?assessment=true" }
+    title: "DORA Compliance",
+    subtitle: "Digital Operational Resilience Act",
+    heroDescription: "Professional DORA compliance services. We help financial service organizations meet EU Digital Operational Resilience Act requirements. Meet DORA requirements and strengthen your financial service organization's cybersecurity resilience.",
+    forWho: "For financial service organizations seeking to meet EU Digital Operational Resilience Act (DORA) requirements.",
+    achieve: "DORA compliance with comprehensive ICT risk management, incident reporting, and digital resilience.",
+    overview: {
+      title: "Overview",
+      description: "The Digital Operational Resilience Act (DORA) is an EU regulation that establishes a comprehensive framework for ICT risk management in financial services. It requires financial organizations to strengthen their digital operational resilience and manage ICT-related risks.",
+      highlight: "Our expert team provides comprehensive DORA compliance services, from initial assessment and gap analysis through implementation and ongoing compliance monitoring."
     },
     pillars: {
       title: "DORA Pillars",
       subtitle: "DORA is based on four pillars that define requirements for financial service organizations.",
       items: [
-        { title: "ICT Risk Management", description: "Comprehensive ICT risk management system for financial services", icon: "chart", requirements: ["ICT risk identification and assessment", "Risk management strategies", "Continuous monitoring and reporting"] },
-        { title: "ICT Incident Reporting", description: "Rapid and effective incident response and reporting", icon: "alert", requirements: ["Incident detection", "Response processes", "Regulatory reporting"] },
+        { title: "ICT Risk Management", description: "Comprehensive ICT risk management system for financial services", icon: "chart-line", requirements: ["ICT risk identification and assessment", "Risk management strategies", "Continuous monitoring and reporting"] },
+        { title: "ICT Incident Reporting", description: "Rapid and effective incident response and reporting", icon: "alert-triangle", requirements: ["Incident detection", "Response processes", "Regulatory reporting"] },
         { title: "Digital Resilience", description: "Strengthen digital service resilience and continuity", icon: "shield", requirements: ["Service continuity", "Backup and recovery", "Planned testing"] },
         { title: "Third-Party Risks", description: "Manage cybersecurity risks from vendors and partners", icon: "network", requirements: ["Vendor assessment", "Contract management", "Continuous monitoring"] }
       ]
@@ -49,17 +46,29 @@ const content = {
     process: {
       title: "Implementation Process",
       subtitle: "Clear and structured process for DORA compliance.",
-      steps: [
-        { step: "1", title: "DORA Assessment", description: "Assess current security posture against DORA requirements" },
-        { step: "2", title: "Gap Analysis", description: "Identify gaps and plan remediation measures" },
-        { step: "3", title: "Planning", description: "Plan DORA compliance program" },
-        { step: "4", title: "Implementation", description: "Implement required security measures" },
-        { step: "5", title: "Monitoring", description: "Continuous compliance monitoring and reporting" }
+      items: [
+        { number: "01", title: "DORA Assessment", description: "Assess current security posture against DORA requirements" },
+        { number: "02", title: "Gap Analysis", description: "Identify gaps and plan remediation measures" },
+        { number: "03", title: "Planning", description: "Plan DORA compliance program" },
+        { number: "04", title: "Implementation", description: "Implement required security measures" },
+        { number: "05", title: "Monitoring", description: "Continuous compliance monitoring and reporting" }
       ]
     },
-    benefits: {
-      title: "DORA Compliance Benefits",
-      subtitle: "Achieve concrete benefits with DORA compliance.",
+    deliverables: {
+      title: "What You Get",
+      items: [
+        "DORA compliance assessment report",
+        "ICT risk management framework",
+        "Incident response and reporting procedures",
+        "Digital resilience strategy",
+        "Third-party risk management program",
+        "Compliance monitoring framework",
+        "Staff training materials",
+        "Ongoing compliance support"
+      ]
+    },
+    benefitsList: {
+      title: "Key Benefits",
       items: [
         "Meet EU regulatory requirements",
         "Strengthen cybersecurity resilience",
@@ -67,28 +76,25 @@ const content = {
         "Reduce regulatory risks",
         "Competitive advantage in markets"
       ]
-    },
-    cta: {
-      title: "Ready to start your DORA compliance?",
-      subtitle: "Contact us and let's start your DORA compliance process.",
-      primaryCTA: { text: "Get in Touch", href: "/contact" },
-      secondaryCTA: { text: "DORA Readiness Check", href: "/contact?assessment=true" }
     }
   },
   fi: {
-    hero: {
-      title: "DORA Yhteensopivuus",
-      subtitle: "Digitaalisen Operatiivisen Resilienssin Laki",
-      description: "Ammattimaiset DORA yhteensopivuuspalvelut. Autamme rahoituspalveluorganisaatioita täyttämään EU:n digitaalisen operatiivisen resilienssin lain vaatimukset. Täytä DORA vaatimukset ja vahvista rahoituspalveluorganisaatiosi kyberturvan kestävyys.",
-      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
-      secondaryCTA: { text: "DORA Valmistelutarkistus", href: "/contact?assessment=true" }
+    title: "DORA Yhteensopivuus",
+    subtitle: "Digitaalisen Operatiivisen Resilienssin Laki",
+    heroDescription: "Ammattimaiset DORA yhteensopivuuspalvelut. Autamme rahoituspalveluorganisaatioita täyttämään EU:n digitaalisen operatiivisen resilienssin lain vaatimukset. Täytä DORA vaatimukset ja vahvista rahoituspalveluorganisaatiosi kyberturvan kestävyys.",
+    forWho: "Rahoituspalveluorganisaatioille, jotka tavoittelevat EU:n digitaalisen operatiivisen resilienssin lain (DORA) vaatimusten täyttämistä.",
+    achieve: "DORA-vaatimustenmukaisuus kattavalla ICT-riskienhallinnalla, vikatilanteiden raportoinnilla ja digitaalisella resilienssillä.",
+    overview: {
+      title: "Yleiskatsaus",
+      description: "Digitaalisen operatiivisen resilienssin laki (DORA) on EU:n asetus, joka luo kattavan kehyksen ICT-riskienhallinnalle rahoituspalveluissa. Se vaatii rahoitusorganisaatioita vahvistamaan digitaalista operatiivista resilienssiään ja hallitsemaan ICT-riskejä.",
+      highlight: "Asiantuntijatiimimme tarjoaa kattavia DORA-yhteensopivuuspalveluita alkukartoituksesta ja aukkoanalyysistä toteutukseen ja jatkuvaan vaatimustenmukaisuuden seurantaan."
     },
     pillars: {
       title: "DORA Pilarit",
-      subtitle: "DORA perustuu neljään pilarin, jotka määrittelevät rahoituspalveluorganisaatioiden vaatimukset.",
+      subtitle: "DORA perustuu neljään pilariin, jotka määrittelevät rahoituspalveluorganisaatioiden vaatimukset.",
       items: [
-        { title: "ICT Riskienhallinta", description: "Kattava ICT riskienhallintajärjestelmä rahoituspalveluille", icon: "chart", requirements: ["ICT riskien tunnistus ja arviointi", "Riskien hallintastrategiat", "Jatkuva seuranta ja raportointi"] },
-        { title: "ICT Vikatilanteiden Vastaus", description: "Nopea ja tehokas vikatilanteiden vastaus ja raportointi", icon: "alert", requirements: ["Vikatilanteiden tunnistus", "Vastausprosessit", "Sääntelyraportointi"] },
+        { title: "ICT Riskienhallinta", description: "Kattava ICT riskienhallintajärjestelmä rahoituspalveluille", icon: "chart-line", requirements: ["ICT riskien tunnistus ja arviointi", "Riskien hallintastrategiat", "Jatkuva seuranta ja raportointi"] },
+        { title: "ICT Vikatilanteiden Vastaus", description: "Nopea ja tehokas vikatilanteiden vastaus ja raportointi", icon: "alert-triangle", requirements: ["Vikatilanteiden tunnistus", "Vastausprosessit", "Sääntelyraportointi"] },
         { title: "Digitaalinen Resilienssi", description: "Vahvista digitaalisten palvelujen kestävyys ja jatkuvuus", icon: "shield", requirements: ["Palvelujen jatkuvuus", "Varmuuskopiointi ja palautus", "Suunnitelmallinen testaus"] },
         { title: "Kolmannen Osapuolen Riskit", description: "Hallitse toimittajien ja kumppaneiden kyberturvariskit", icon: "network", requirements: ["Toimittajien arviointi", "Sopimusten hallinta", "Jatkuva valvonta"] }
       ]
@@ -110,17 +116,29 @@ const content = {
     process: {
       title: "Toteutusprosessi",
       subtitle: "Selkeä ja strukturoitu prosessi DORA yhteensopivuuteen.",
-      steps: [
-        { step: "1", title: "DORA Arviointi", description: "Arvioidaan nykyinen tietoturvataso DORA vaatimusten suhteen" },
-        { step: "2", title: "Gap Analysis", description: "Tunnistetaan puutteet ja suunnitellaan korjauskeinot" },
-        { step: "3", title: "Suunnittelu", description: "Suunnitellaan DORA yhteensopivuusohjelma" },
-        { step: "4", title: "Toteutus", description: "Toteutetaan tarvittavat tietoturvatoimenpiteet" },
-        { step: "5", title: "Valvonta", description: "Jatkuva yhteensopivuuden valvonta ja raportointi" }
+      items: [
+        { number: "01", title: "DORA Arviointi", description: "Arvioidaan nykyinen tietoturvataso DORA vaatimusten suhteen" },
+        { number: "02", title: "Aukkoanalyysi", description: "Tunnistetaan puutteet ja suunnitellaan korjauskeinot" },
+        { number: "03", title: "Suunnittelu", description: "Suunnitellaan DORA yhteensopivuusohjelma" },
+        { number: "04", title: "Toteutus", description: "Toteutetaan tarvittavat tietoturvatoimenpiteet" },
+        { number: "05", title: "Valvonta", description: "Jatkuva yhteensopivuuden valvonta ja raportointi" }
       ]
     },
-    benefits: {
-      title: "DORA Yhteensopivuuden Edut",
-      subtitle: "Saavuta konkreettisia hyötyjä DORA yhteensopivuuden avulla.",
+    deliverables: {
+      title: "Mitä saat",
+      items: [
+        "DORA-yhteensopivuusarviointiraportti",
+        "ICT-riskienhallintakehys",
+        "Vikatilanteiden vastaus- ja raportointimenettelyt",
+        "Digitaalinen resilienssistrategia",
+        "Kolmannen osapuolen riskienhallintaohjelma",
+        "Vaatimustenmukaisuuden seurantakehys",
+        "Henkilöstön koulutusmateriaalit",
+        "Jatkuva yhteensopivuustuki"
+      ]
+    },
+    benefitsList: {
+      title: "Keskeiset edut",
       items: [
         "Täytä EU sääntelyvaatimukset",
         "Vahvista kyberturvan kestävyyttä",
@@ -128,287 +146,299 @@ const content = {
         "Vähennä sääntelyriskejä",
         "Kilpailuetu markkinoilla"
       ]
-    },
-    cta: {
-      title: "Valmiit aloittamaan DORA yhteensopivuuden?",
-      subtitle: "Ota yhteyttä meihin ja aloitetaan DORA yhteensopivuusprosessi.",
-      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
-      secondaryCTA: { text: "DORA Valmistelutarkistus", href: "/contact?assessment=true" }
     }
   }
 };
 
 const currentContent = content[lang];
+const isFi = lang === 'fi';
+
+function getLevelColor(color: string) {
+  switch(color) {
+    case 'green': return 'border-l-4 border-green-500';
+    case 'blue': return 'border-l-4 border-blue-500';
+    case 'purple': return 'border-l-4 border-purple-500';
+    default: return 'border-l-4 border-blue-500';
+  }
+}
+
+function getIconColor(color: string) {
+  switch(color) {
+    case 'green': return 'text-green-600';
+    case 'blue': return 'text-blue-600';
+    case 'purple': return 'text-purple-600';
+    default: return 'text-blue-600';
+  }
+}
 ---
 
-<Layout {...seoConfig}>
+<Layout title={title}>
 
-<!-- Hero Section - Centered, NO image -->
-<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    
-    <div class="flex justify-center mb-4">
-      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
-        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
+        </p>
+        
+        <!-- Info Section - Two Column Layout -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
-      {currentContent.hero.title}
-    </h1>
-    
-    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
-      {currentContent.hero.subtitle}
-    </p>
-    
-    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
-      {currentContent.hero.description}
-    </p>
-    
-    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
-      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
-        {currentContent.hero.primaryCTA.text}
-        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6">
+        <p class="text-sm text-slate-600 leading-relaxed">{currentContent.overview.description}</p>
+        <p class="text-sm text-blue-600 font-semibold mt-3">{currentContent.overview.highlight}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pillars Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.pillars.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.pillars.subtitle}
+        </p>
+      </div>
       
-      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
-        {currentContent.hero.secondaryCTA.text}
-        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {currentContent.pillars.items.map((item) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-end mb-2 relative z-10">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={item.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+              {item.title}
+            </h3>
+            <p class="text-xs text-slate-500 mb-2 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {item.description}
+            </p>
+            
+            <div class="mt-auto pt-2 border-t border-slate-100 relative z-10">
+              <ul class="space-y-1">
+                {item.requirements.map((req) => (
+                  <li class="flex items-start text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                    <svg class="w-3 h-3 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {req}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
-    
-  </div>
-</section>
+  </section>
 
-<!-- Pillars Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.pillars.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.pillars.subtitle}
-      </p>
+  <!-- Timeline Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.timeline.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.timeline.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {currentContent.timeline.items.map((item) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden text-center">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-center mb-2 relative z-10">
+              <div class="w-14 h-14 bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                {item.year}
+              </div>
+            </div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {item.title}
+            </h3>
+            <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {item.description}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
+  </section>
 
-    <div class="grid md:grid-cols-2 gap-8">
-      {currentContent.pillars.items.map((item) => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    flex flex-col h-full p-6 group">
-          
-          <div class="flex justify-end mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+  <!-- Affected Entities Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.entities.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.entities.subtitle}
+        </p>
+      </div>
+      
+      <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-4">
+        {currentContent.entities.items.map((entity) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex items-center justify-center gap-2 p-3 group">
+            <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0
                         transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+                        group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#1E2A7A]">
+              <Icon name="building" class="w-4 h-4 text-blue-600 group-hover:text-white transition-colors duration-300" />
             </div>
+            <span class="text-slate-700 text-xs font-medium group-hover:text-[#1E40AF] transition-colors duration-300">{entity}</span>
           </div>
-          
-          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
-            {item.title}
-          </h3>
-          
-          <p class="text-slate-500 text-sm leading-relaxed text-left mb-4">
-            {item.description}
-          </p>
-          
-          <div class="mt-auto">
-            <ul class="space-y-1.5">
-              {item.requirements.map((req) => (
-                <li class="flex items-start text-xs text-slate-500">
-                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  {req}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Timeline Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.timeline.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.timeline.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-3 gap-8">
-      {currentContent.timeline.items.map((item) => (
-        <div class="bg-slate-50/50 rounded-xl p-6 text-center border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    group">
-          
-          <div class="w-16 h-16 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-3">
-            {item.year}
-          </div>
-          
-          <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
-            {item.title}
-          </h3>
-          
-          <p class="text-slate-500 text-sm leading-relaxed">
-            {item.description}
-          </p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Affected Entities Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.entities.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.entities.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {currentContent.entities.items.map((entity) => (
-        <div class="bg-slate-50/50 rounded-xl p-4 border border-slate-100 text-center
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-md transition-all duration-300
-                    flex items-center justify-center gap-2">
-          <Icon name="building" class="w-4 h-4 text-blue-500" />
-          <span class="text-slate-700 text-sm font-medium">{entity}</span>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Process Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.process.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.process.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-5 gap-6">
-      {currentContent.process.steps.map((step) => (
-        <div class="bg-slate-50/50 rounded-xl p-5 text-center border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    group">
-          
-          <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">
-            {step.step}
-          </div>
-          
-          <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
-            {step.title}
-          </h3>
-          
-          <p class="text-slate-500 text-xs leading-relaxed">
-            {step.description}
-          </p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Benefits Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.benefits.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.benefits.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-3 gap-6">
-      {currentContent.benefits.items.map((item) => (
-        <div class="bg-slate-50/50 rounded-xl p-6 text-center border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-md transition-all duration-300
-                    flex items-center justify-center">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-              <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-            </div>
-            <span class="text-slate-700 text-sm font-medium">{item}</span>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-      
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
-        {currentContent.cta.title}
-      </h2>
-
-      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
-        {currentContent.cta.subtitle}
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        
-        <a href={currentContent.cta.primaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
-          {currentContent.cta.primaryCTA.text}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-        
-        <a href={currentContent.cta.secondaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
-          {currentContent.cta.secondaryCTA.text}
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
+        ))}
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.process.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.process.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        {currentContent.process.items.map((step) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden text-center">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-center mb-2 relative z-10">
+              <div class="w-10 h-10 bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                {step.number}
+              </div>
+            </div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {step.title}
+            </h3>
+            <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {step.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables & Benefits Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-3xl mx-auto">
+        
+        <!-- Deliverables -->
+        <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm p-5 md:p-6">
+          <h2 class="text-base font-bold text-[#3B82F6] mb-4 text-center">{currentContent.deliverables.title}</h2>
+          <ul class="space-y-2">
+            {currentContent.deliverables.items.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="w-3.5 h-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-xs md:text-sm text-slate-600">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        <!-- Benefits -->
+        <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm p-5 md:p-6">
+          <h2 class="text-base font-bold text-[#3B82F6] mb-4 text-center">{currentContent.benefitsList.title}</h2>
+          <ul class="space-y-2">
+            {currentContent.benefitsList.items.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="w-3.5 h-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-xs md:text-sm text-slate-600">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+  </section>
 
 </Layout>

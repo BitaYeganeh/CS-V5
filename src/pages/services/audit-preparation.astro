@@ -1,35 +1,32 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-
-// SEO Configuration
-const seoConfig = {
-  title: "Audit Preparation and Internal Audits | ISO 27001, SOC 2, NIS2/DORA",
-  description: "We prepare and lead audits (ISO 27001, SOC 2, NIS2/DORA) with no surprises. Comprehensive audit preparation and internal audit services.",
-  keywords: "audit preparation, internal audits, ISO 27001 audit, SOC 2 audit, NIS2, DORA, Finland",
-  type: "service" as const,
-};
+import Button from '@/components/ui/Button.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const title = "Audit Preparation and Internal Audits";
 
 const content = {
   en: {
-    hero: {
-      title: "Audit Preparation and Internal Audits",
-      subtitle: "ISO 27001, SOC 2, NIS2/DORA",
-      description: "We prepare and lead audits (ISO 27001, SOC 2, NIS2/DORA) with no surprises. Comprehensive audit preparation and internal audit services to ensure your audit proceeds smoothly and objectives are achieved.",
-      primaryCTA: { text: "Get in Touch", href: "/contact" },
-      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    title: "Audit Preparation",
+    subtitle: "ISO 27001, SOC 2, NIS2/DORA",
+    heroDescription: "We prepare and lead audits (ISO 27001, SOC 2, NIS2/DORA) with no surprises. Comprehensive audit preparation and internal audit services to ensure your audit proceeds smoothly and objectives are achieved.",
+    forWho: "For organizations preparing for ISO 27001, SOC 2, NIS2/DORA, or other compliance audits seeking expert preparation and internal audit support.",
+    achieve: "Successful audit outcomes with comprehensive preparation, internal audits, and no surprises.",
+    overview: {
+      title: "Overview",
+      description: "Audit preparation is critical for achieving successful certification or compliance outcomes. Whether you're preparing for ISO 27001, SOC 2, NIS2/DORA, or other frameworks, comprehensive preparation ensures your audit proceeds smoothly and objectives are achieved.",
+      highlight: "Our expert team provides comprehensive audit preparation and internal audit services, ensuring no surprises and successful audit outcomes across all major cybersecurity and compliance frameworks."
     },
     offerings: {
-      title: "Audit Preparation",
+      title: "Audit Preparation Services",
       subtitle: "We ensure your audit proceeds smoothly and objectives are achieved.",
       items: [
-        { title: "Gap analysis and remediation", description: "Identify gaps and remediate them before the audit", icon: "check" },
-        { title: "Evidence management", description: "Documentation and evidence properly organized", icon: "document" },
-        { title: "Auditor coordination", description: "Smooth communication and scheduling", icon: "user" },
-        { title: "Internal auditing", description: "Pre-audit and preparation activities", icon: "shield" }
+        { title: "Gap Analysis & Remediation", description: "Identify gaps and remediate them before the audit", icon: "check" },
+        { title: "Evidence Management", description: "Documentation and evidence properly organized", icon: "document" },
+        { title: "Auditor Coordination", description: "Smooth communication and scheduling", icon: "user" },
+        { title: "Internal Auditing", description: "Pre-audit and preparation activities", icon: "shield" }
       ]
     },
     standards: {
@@ -46,42 +43,74 @@ const content = {
       title: "Audit Phases",
       subtitle: "We support your organization at each phase to achieve a successful audit.",
       items: [
-        { title: "Pre-preparation", features: ["Requirements mapping", "Gap analysis", "Remediation actions", "Evidence collection"] },
-        { title: "Preparation", features: ["Documentation organization", "Staff training", "Process testing", "Internal audit"] },
-        { title: "Audit", features: ["Auditor support", "Interview support", "Documentation assistance", "Technical support"] }
+        {
+          title: "Pre-Preparation",
+          icon: "search",
+          features: ["Requirements mapping", "Gap analysis", "Remediation actions", "Evidence collection"]
+        },
+        {
+          title: "Preparation",
+          icon: "clipboard",
+          features: ["Documentation organization", "Staff training", "Process testing", "Internal audit"]
+        },
+        {
+          title: "Audit",
+          icon: "certificate",
+          features: ["Auditor support", "Interview support", "Documentation assistance", "Technical support"]
+        }
       ]
     },
     process: {
       title: "Preparation Process",
       subtitle: "Systematic approach to audit success.",
-      steps: [
-        { step: "1", title: "Initial Assessment", description: "Current state and objectives definition" },
-        { step: "2", title: "Gap Analysis", description: "Gap identification and prioritization" },
-        { step: "3", title: "Remediation Plan", description: "Action plan and timeline" },
-        { step: "4", title: "Implementation", description: "Control implementation and testing" },
-        { step: "5", title: "Readiness", description: "Final preparation and audit" }
+      items: [
+        { number: "01", title: "Initial Assessment", description: "Current state and objectives definition" },
+        { number: "02", title: "Gap Analysis", description: "Gap identification and prioritization" },
+        { number: "03", title: "Remediation Plan", description: "Action plan and timeline" },
+        { number: "04", title: "Implementation", description: "Control implementation and testing" },
+        { number: "05", title: "Readiness", description: "Final preparation and audit" }
       ]
     },
-    cta: {
-      title: "Start your audit preparation",
-      subtitle: "Contact us to schedule your preparation and internal audits.",
-      primaryCTA: { text: "Get in Touch", href: "/contact" },
-      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    deliverables: {
+      title: "What You Get",
+      items: [
+        "Gap analysis report",
+        "Remediation plan and roadmap",
+        "Evidence management framework",
+        "Documentation organization",
+        "Internal audit program",
+        "Staff training materials",
+        "Auditor coordination support",
+        "Post-audit improvement plan"
+      ]
+    },
+    benefitsList: {
+      title: "Key Benefits",
+      items: [
+        "Successful audit outcomes",
+        "No surprises during audit",
+        "Efficient audit process",
+        "Reduced audit costs",
+        "Comprehensive preparation"
+      ]
     }
   },
   fi: {
-    hero: {
-      title: "Auditointien valmistelu ja sisäiset auditoinnit",
-      subtitle: "ISO 27001, SOC 2, NIS2/DORA",
-      description: "Valmistelemme ja johdamme auditoinnit (ISO 27001, SOC 2, NIS2/DORA) ilman yllätyksiä. Kattava auditointien valmistelu- ja sisäiset auditointipalvelut varmistamaan, että auditointinne sujuu ongelmitta ja tavoitteet saavutetaan.",
-      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
-      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    title: "Auditointivalmistelu",
+    subtitle: "ISO 27001, SOC 2, NIS2/DORA",
+    heroDescription: "Valmistelemme ja johdamme auditoinnit (ISO 27001, SOC 2, NIS2/DORA) ilman yllätyksiä. Kattava auditointien valmistelu- ja sisäiset auditointipalvelut varmistamaan, että auditointinne sujuu ongelmitta ja tavoitteet saavutetaan.",
+    forWho: "Organisaatioille, jotka valmistautuvat ISO 27001, SOC 2, NIS2/DORA tai muihin compliance-auditointeihin ja tarvitsevat asiantuntevaa valmistelu- ja sisäistä auditointitukea.",
+    achieve: "Onnistuneet auditointitulokset kattavalla valmistelulla, sisäisillä auditoinneilla ja ilman yllätyksiä.",
+    overview: {
+      title: "Yleiskatsaus",
+      description: "Auditointivalmistelu on kriittinen onnistuneen sertifioinnin tai vaatimustenmukaisuuden saavuttamiseksi. Valmistauduitpa ISO 27001, SOC 2, NIS2/DORA tai muihin viitekehyksiin, kattava valmistelu varmistaa, että auditointinne sujuu ongelmitta ja tavoitteet saavutetaan.",
+      highlight: "Asiantuntijatiimimme tarjoaa kattavia auditointivalmistelu- ja sisäisiä auditointipalveluita, varmistaen ettei yllätyksiä tule ja onnistuneet auditointitulokset saavutetaan kaikissa keskeisissä kyberturva- ja compliance-viitekehyksissä."
     },
     offerings: {
-      title: "Auditointivalmistelu",
+      title: "Auditointivalmistelupalvelut",
       subtitle: "Varmistamme, että auditointinne sujuu ongelmitta ja tavoitteet saavutetaan.",
       items: [
-        { title: "Aukkoanalyysi ja korjaukset", description: "Tunnistamme puutteet ja korjaamme ne ennen auditointia", icon: "check" },
+        { title: "Aukkoanalyysi & korjaukset", description: "Tunnistamme puutteet ja korjaamme ne ennen auditointia", icon: "check" },
         { title: "Evidenssien hallinta", description: "Dokumentaatio ja todistusaineisto kunnossa", icon: "document" },
         { title: "Auditoijan koordinointi", description: "Sujuva kommunikaatio ja aikataulutus", icon: "user" },
         { title: "Sisäinen auditointi", description: "Ennakkoauditointi ja valmistautuminen", icon: "shield" }
@@ -101,278 +130,358 @@ const content = {
       title: "Auditointivaiheet",
       subtitle: "Jokaisessa vaiheessa tuemme organisaatiotanne menestyksekkään auditoinnin saavuttamiseksi.",
       items: [
-        { title: "Ennakkovalmistelu", features: ["Vaatimusten kartoitus", "Aukkoanalyysi", "Korjaustoimenpiteet", "Evidenssien keruu"] },
-        { title: "Valmistelu", features: ["Dokumentaation organisointi", "Henkilöstön koulutus", "Prosessien testaus", "Sisäinen auditointi"] },
-        { title: "Auditointi", features: ["Auditoijan tuki", "Haastattelutuki", "Dokumentaatio-apu", "Tekninen tuki"] }
+        {
+          title: "Ennakkovalmistelu",
+          icon: "search",
+          features: ["Vaatimusten kartoitus", "Aukkoanalyysi", "Korjaustoimenpiteet", "Evidenssien keruu"]
+        },
+        {
+          title: "Valmistelu",
+          icon: "clipboard",
+          features: ["Dokumentaation organisointi", "Henkilöstön koulutus", "Prosessien testaus", "Sisäinen auditointi"]
+        },
+        {
+          title: "Auditointi",
+          icon: "certificate",
+          features: ["Auditoijan tuki", "Haastattelutuki", "Dokumentaatio-apu", "Tekninen tuki"]
+        }
       ]
     },
     process: {
       title: "Valmisteluprosessi",
       subtitle: "Systemaattinen lähestymistapa auditointimenestykseen.",
-      steps: [
-        { step: "1", title: "Alkukartoitus", description: "Nykytilan ja tavoitteiden määrittely" },
-        { step: "2", title: "Aukkoanalyysi", description: "Puutteiden tunnistaminen ja priorisointi" },
-        { step: "3", title: "Korjaussuunnitelma", description: "Toimenpidesuunnitelma ja aikataulu" },
-        { step: "4", title: "Toteutus", description: "Kontrollien käyttöönotto ja testaus" },
-        { step: "5", title: "Valmius", description: "Lopullinen valmistelu ja auditointi" }
+      items: [
+        { number: "01", title: "Alkukartoitus", description: "Nykytilan ja tavoitteiden määrittely" },
+        { number: "02", title: "Aukkoanalyysi", description: "Puutteiden tunnistaminen ja priorisointi" },
+        { number: "03", title: "Korjaussuunnitelma", description: "Toimenpidesuunnitelma ja aikataulu" },
+        { number: "04", title: "Toteutus", description: "Kontrollien käyttöönotto ja testaus" },
+        { number: "05", title: "Valmius", description: "Lopullinen valmistelu ja auditointi" }
       ]
     },
-    cta: {
-      title: "Aloita auditointivalmistelu",
-      subtitle: "Ota yhteyttä niin aikataulutamme valmistelun ja sisäiset auditoinnit.",
-      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
-      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    deliverables: {
+      title: "Mitä saat",
+      items: [
+        "Aukkoanalyysiraportti",
+        "Korjaussuunnitelma ja tiekartta",
+        "Evidenssien hallintakehys",
+        "Dokumentaation organisointi",
+        "Sisäinen auditointiohjelma",
+        "Henkilöstön koulutusmateriaalit",
+        "Auditoijan koordinointituki",
+        "Auditoinnin jälkeinen parannussuunnitelma"
+      ]
+    },
+    benefitsList: {
+      title: "Keskeiset edut",
+      items: [
+        "Onnistuneet auditointitulokset",
+        "Ei yllätyksiä auditoinnin aikana",
+        "Tehokas auditointiprosessi",
+        "Pienemmät auditointikustannukset",
+        "Kattava valmistelu"
+      ]
     }
   }
 };
 
 const currentContent = content[lang];
+const isFi = lang === 'fi';
+
+function getLevelColor(color: string) {
+  switch(color) {
+    case 'green': return 'border-l-4 border-green-500';
+    case 'blue': return 'border-l-4 border-blue-500';
+    case 'purple': return 'border-l-4 border-purple-500';
+    default: return 'border-l-4 border-blue-500';
+  }
+}
+
+function getIconColor(color: string) {
+  switch(color) {
+    case 'green': return 'text-green-600';
+    case 'blue': return 'text-blue-600';
+    case 'purple': return 'text-purple-600';
+    default: return 'text-blue-600';
+  }
+}
 ---
 
-<Layout {...seoConfig}>
+<Layout title={title}>
 
-<!-- Hero Section - Centered, NO image -->
-<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    
-    <div class="flex justify-center mb-4">
-      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
-        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
-      </div>
-    </div>
-    
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
-      {currentContent.hero.title}
-    </h1>
-    
-    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
-      {currentContent.hero.subtitle}
-    </p>
-    
-    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
-      {currentContent.hero.description}
-    </p>
-    
-    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
-      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
-        {currentContent.hero.primaryCTA.text}
-        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-      
-      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
-        {currentContent.hero.secondaryCTA.text}
-        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-    </div>
-    
-  </div>
-</section>
-
-<!-- Offerings Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.offerings.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.offerings.subtitle}
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {currentContent.offerings.items.map((item) => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    flex flex-col h-full p-6 group">
-          
-          <div class="flex justify-end mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
-            </div>
-          </div>
-          
-          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
-            {item.title}
-          </h3>
-          
-          <p class="text-slate-500 text-sm leading-relaxed text-left">
-            {item.description}
-          </p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Standards Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.standards.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.standards.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {currentContent.standards.items.map((item) => (
-        <div class="bg-slate-50/50 rounded-xl p-5 border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    group">
-          
-          <div class="flex items-start gap-3">
-            <div class="flex-shrink-0">
-              <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center
-                          transition-all duration-300
-                          group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6]">
-                <Icon name={item.icon} class="w-5 h-5 text-blue-600 group-hover:text-white transition-colors duration-300" />
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
+        </p>
+        
+        <!-- Info Section - Two Column Layout -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
               </div>
             </div>
-            <div>
-              <h3 class="text-base font-bold text-slate-800 mb-1 group-hover:text-blue-700 transition-colors duration-300">
-                {item.title}
-              </h3>
-              <p class="text-slate-500 text-xs">{item.description}</p>
+          </div>
+          
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      ))}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Audit Phases Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.phases.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.phases.subtitle}
-      </p>
+  <!-- Overview Section -->
+  <section class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6">
+        <p class="text-sm text-slate-600 leading-relaxed">{currentContent.overview.description}</p>
+        <p class="text-sm text-blue-600 font-semibold mt-3">{currentContent.overview.highlight}</p>
+      </div>
     </div>
-    
-    <div class="grid md:grid-cols-3 gap-8">
-      {currentContent.phases.items.map((phase, index) => (
-        <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    group">
-          
-          <div class="w-10 h-10 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-lg flex items-center justify-center text-white font-bold mb-4">
-            {index + 1}
+  </section>
+
+  <!-- Offerings Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.offerings.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.offerings.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {currentContent.offerings.items.map((item) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-end mb-2 relative z-10">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={item.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+              {item.title}
+            </h3>
+            <p class="text-xs md:text-sm text-slate-500 leading-relaxed text-left group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {item.description}
+            </p>
           </div>
-          
-          <h3 class="text-lg font-bold text-slate-900 mb-4 group-hover:text-blue-700 transition-colors duration-300">
-            {phase.title}
-          </h3>
-          
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Standards Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.standards.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.standards.subtitle}
+        </p>
+      </div>
+      
+      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {currentContent.standards.items.map((item) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden text-center">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-center mb-2 relative z-10">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={item.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {item.title}
+            </h3>
+            <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {item.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Audit Phases Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.phases.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.phases.subtitle}
+        </p>
+      </div>
+      
+      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        {currentContent.phases.items.map((phase, index) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-5 md:p-6 group relative overflow-hidden text-center">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-center mb-3 relative z-10">
+              <div class="w-10 h-10 bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                {index + 1}
+              </div>
+            </div>
+            
+            <h3 class="text-base font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10 text-center">
+              {phase.title}
+            </h3>
+            
+            <div class="mt-auto pt-3 border-t-2 border-slate-200 group-hover:border-[#3B82F6] transition-colors duration-300 relative z-10">
+              <ul class="space-y-1.5 relative z-10 text-left mx-auto w-full max-w-xs">
+                {phase.features.map((feature) => (
+                  <li class="flex items-start text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                    <svg class="w-3 h-3 text-[#3B82F6] mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.process.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.process.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        {currentContent.process.items.map((step) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden text-center">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-center mb-2 relative z-10">
+              <div class="w-10 h-10 bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                {step.number}
+              </div>
+            </div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {step.title}
+            </h3>
+            <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {step.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables & Benefits Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-3xl mx-auto">
+        
+        <!-- Deliverables -->
+        <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm p-5 md:p-6">
+          <h2 class="text-base font-bold text-[#3B82F6] mb-4 text-center">{currentContent.deliverables.title}</h2>
           <ul class="space-y-2">
-            {phase.features.map((feature) => (
-              <li class="flex items-start text-sm text-slate-600">
-                <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            {currentContent.deliverables.items.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="w-3.5 h-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
-                {feature}
+                <span class="text-xs md:text-sm text-slate-600">{item}</span>
               </li>
             ))}
           </ul>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Process Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.process.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.process.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-5 gap-6">
-      {currentContent.process.steps.map((step) => (
-        <div class="bg-slate-50/50 rounded-xl p-5 text-center border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    group">
-          
-          <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">
-            {step.step}
-          </div>
-          
-          <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
-            {step.title}
-          </h3>
-          
-          <p class="text-slate-500 text-xs leading-relaxed">
-            {step.description}
-          </p>
+        
+        <!-- Benefits -->
+        <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm p-5 md:p-6">
+          <h2 class="text-base font-bold text-[#3B82F6] mb-4 text-center">{currentContent.benefitsList.title}</h2>
+          <ul class="space-y-2">
+            {currentContent.benefitsList.items.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="w-3.5 h-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-xs md:text-sm text-slate-600">{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-      
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
-        {currentContent.cta.title}
-      </h2>
-
-      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
-        {currentContent.cta.subtitle}
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
         
-        <a href={currentContent.cta.primaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
-          {currentContent.cta.primaryCTA.text}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-        
-        <a href={currentContent.cta.secondaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
-          {currentContent.cta.secondaryCTA.text}
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
 </Layout>

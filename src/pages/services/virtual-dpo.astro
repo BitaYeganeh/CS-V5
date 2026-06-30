@@ -1,31 +1,23 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-
-// SEO Configuration
-const seoConfig = {
-  title: "Virtual DPO (V-DPO) | Data Protection Officer Services",
-  description: "Experienced Data Protection Officer service for GDPR and privacy governance needs without full-time recruitment. Full-service, advisory, and project-based V-DPO models.",
-  keywords: "virtual DPO, V-DPO, data protection officer, GDPR compliance, privacy governance, Finland",
-  type: "service" as const,
-};
+import Button from '@/components/ui/Button.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const title = "Virtual DPO (V-DPO)";
 
 const content = {
   en: {
-    hero: {
-      title: "Virtual DPO (V-DPO)",
-      subtitle: "Experienced Data Protection Officer Service",
-      description: "Experienced Data Protection Officer service for GDPR and privacy governance needs without full-time recruitment. We meet GDPR Article 37 requirements and provide strategic privacy guidance to your organization.",
-      primaryCTA: { text: "Contact Us", href: "/contact?service=vdpo" },
-      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
-    },
+    title: "Virtual DPO (V-DPO)",
+    subtitle: "Experienced Data Protection Officer Service",
+    heroDescription: "Experienced Data Protection Officer service for GDPR and privacy governance needs without full-time recruitment. We meet GDPR Article 37 requirements and provide strategic privacy guidance to your organization.",
+    forWho: "For organizations seeking expert Data Protection Officer services without full-time recruitment costs.",
+    achieve: "GDPR compliance and strategic privacy governance with experienced DPO expertise.",
     overview: {
       title: "Service Overview",
       description: "Our Virtual DPO service provides experienced Data Protection Officer expertise for GDPR requirements and privacy governance without full-time recruitment. We offer the expertise needed for privacy management, compliance oversight, and stakeholder communication.",
-      compliance: "We meet GDPR Article 37 requirements and provide strategic privacy guidance to your organization."
+      highlight: "We meet GDPR Article 37 requirements and provide strategic privacy guidance to your organization."
     },
     serviceModels: {
       title: "Service Models",
@@ -63,16 +55,14 @@ const content = {
         "Article 7 - Consent Management"
       ]
     },
-    benefits: {
-      title: "V-DPO Benefits",
-      subtitle: "Why choose our Virtual DPO service?",
+    process: {
+      title: "Engagement Process",
+      subtitle: "Structured approach to delivering V-DPO services.",
       items: [
-        "Save costs compared to full-time DPO",
-        "Access to privacy expertise",
-        "Flexible engagement as needed",
-        "Meet GDPR requirements",
-        "Avoid regulatory risks and fines",
-        "Improve customer trust"
+        { number: "01", title: "Discovery", description: "Assess current privacy posture and GDPR compliance" },
+        { number: "02", title: "Strategy", description: "Develop privacy strategy and governance framework" },
+        { number: "03", title: "Implementation", description: "Implement privacy policies and procedures" },
+        { number: "04", title: "Monitoring", description: "Ongoing compliance monitoring and reporting" }
       ]
     },
     deliverables: {
@@ -88,68 +78,28 @@ const content = {
         "Privacy governance framework"
       ]
     },
-    outcomes: {
-      title: "Key Outcomes",
+    benefitsList: {
+      title: "Key Benefits",
       items: [
-        "Full GDPR compliance",
-        "Enhanced privacy governance framework",
-        "Improved customer and stakeholder trust",
-        "Reduced regulatory risks and potential fines"
+        "Save costs compared to full-time DPO",
+        "Access to privacy expertise",
+        "Flexible engagement as needed",
+        "Meet GDPR requirements",
+        "Avoid regulatory risks and fines",
+        "Improve customer trust"
       ]
-    },
-    caseStudies: {
-      title: "Case Studies",
-      subtitle: "Real examples of how our V-DPO service has helped organizations improve their privacy governance.",
-      items: [
-        {
-          title: "Financial Services Group",
-          description: "Multinational financial group that needed GDPR and DORA compliance across operations in Europe and the US.",
-          challenge: "Extensive data processing activities across multiple countries and need to align GDPR and DORA requirements.",
-          solution: "Implemented a full-service V-DPO model focusing on RoPA management, DPIA execution, and regulatory authority liaison.",
-          results: ["Full GDPR and DORA compliance achieved in 10 months", "Data privacy incidents reduced by 90%", "Regulatory audit score improved to Grade A", "Customer trust increased by 35%"]
-        },
-        {
-          title: "Healthcare Services Company",
-          description: "Healthcare services company providing specialized care with critical patient data processing activities.",
-          challenge: "Highly sensitive personal data processing activities with strict GDPR requirements where errors could result in severe penalties.",
-          solution: "Implemented an advisory V-DPO model focusing on privacy policy development, staff training, and DPIA execution.",
-          results: ["Full GDPR compliance achieved with zero audit findings", "Patient data processing procedures optimized by 40%", "Staff privacy awareness increased by 85%", "Privacy incidents reduced by 95%"]
-        }
-      ]
-    },
-    metrics: {
-      title: "Success Metrics & Outcomes",
-      subtitle: "Evidence of how our V-DPO service impacts our clients' organizations.",
-      items: [
-        { value: "98%", label: "Compliance Rate", description: "of clients achieve full GDPR compliance with V-DPO service" },
-        { value: "75%", label: "Privacy Incidents Reduction", description: "reduction in privacy incidents after V-DPO implementation" },
-        { value: "60%", label: "Cost Reduction", description: "average cost savings compared to hiring an internal DPO" },
-        { value: "95%", label: "Client Satisfaction", description: "of clients report that our V-DPO service meets or exceeds expectations" }
-      ],
-      advantages: {
-        regulatory: ["Full GDPR and privacy compliance", "DPIA and RoPA process management", "Regulatory authority liaison"],
-        organizational: ["Improved customer trust", "Increased staff privacy awareness", "Reduced breach risk exposure"]
-      }
-    },
-    cta: {
-      title: "Ready to start V-DPO service?",
-      subtitle: "Let's discuss your organization's privacy needs and the most suitable V-DPO service model.",
-      primaryCTA: { text: "Get Started", href: "/contact?service=vdpo" },
-      secondaryCTA: { text: "Schedule Meeting", href: "/contact?consultation=true" }
     }
   },
   fi: {
-    hero: {
-      title: "Virtuaalinen DPO (V-DPO)",
-      subtitle: "Kokenut tietosuojavastaavan palvelu",
-      description: "Kokeneen tietosuojavastaavan palvelu GDPR:n ja tietosuojan hallinnan tarpeisiin ilman pysyvää rekrytointia. Täytämme GDPR-artiklan 37 vaatimukset ja tarjoamme strategista tietosuojan ohjausta organisaatiollesi.",
-      primaryCTA: { text: "Ota yhteyttä", href: "/contact?service=vdpo" },
-      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
-    },
+    title: "Virtuaalinen DPO (V-DPO)",
+    subtitle: "Kokenut tietosuojavastaavan palvelu",
+    heroDescription: "Kokeneen tietosuojavastaavan palvelu GDPR:n ja tietosuojan hallinnan tarpeisiin ilman pysyvää rekrytointia. Täytämme GDPR-artiklan 37 vaatimukset ja tarjoamme strategista tietosuojan ohjausta organisaatiollesi.",
+    forWho: "Organisaatioille, jotka tarvitsevat kokenutta tietosuojavastaavan palvelua ilman kokoaikaisen rekrytoinnin kustannuksia.",
+    achieve: "GDPR-vaatimustenmukaisuus ja strateginen tietosuojan hallinta kokeneella DPO-osaamisella.",
     overview: {
       title: "Yleiskatsaus palveluun",
       description: "Virtuaalinen DPO -palvelumme tarjoaa kokeneen tietosuojavastaavan osaamisen GDPR-vaatimusten ja tietosuojan hallinnan tarpeisiin ilman pysyvää rekrytointia. Tarjoamme asiantuntemusta, jota tarvitaan tietosuojan hallinnassa, sääntelyn noudattamisessa ja sidosryhmien kanssa käytävässä viestinnässä.",
-      compliance: "Täytämme GDPR-artiklan 37 vaatimukset ja tarjoamme strategista tietosuojan ohjausta organisaatiollesi."
+      highlight: "Täytämme GDPR-artiklan 37 vaatimukset ja tarjoamme strategista tietosuojan ohjausta organisaatiollesi."
     },
     serviceModels: {
       title: "Palvelumallit",
@@ -187,16 +137,14 @@ const content = {
         "Artikla 7 - Suostumushallinta"
       ]
     },
-    benefits: {
-      title: "V-DPO:n edut",
-      subtitle: "Miksi valita virtuaalinen DPO -palvelumme?",
+    process: {
+      title: "Toimintamalli",
+      subtitle: "Rakenteinen lähestymistapa V-DPO-palveluiden tuottamiseen.",
       items: [
-        "Säästä kustannuksia kokopäiväisen DPO:n sijaan",
-        "Pääsy kokeneeseen tietosuojan asiantuntijaan",
-        "Joustava käyttöönotto tarpeen mukaan",
-        "GDPR-vaatimusten täyttäminen",
-        "Vältä sääntelyriskejä ja sakkoja",
-        "Paranna asiakasluottamusta"
+        { number: "01", title: "Alkukartoitus", description: "Arvioidaan nykyinen tietosuojatilanne ja GDPR-vaatimustenmukaisuus" },
+        { number: "02", title: "Strategia", description: "Kehitetään tietosuojastrategia ja hallintakehys" },
+        { number: "03", title: "Toteutus", description: "Toteutetaan tietosuojakäytännöt ja -menettelyt" },
+        { number: "04", title: "Seuranta", description: "Jatkuva vaatimustenmukaisuuden seuranta ja raportointi" }
       ]
     },
     deliverables: {
@@ -212,414 +160,266 @@ const content = {
         "Tietosuojan hallintakehys"
       ]
     },
-    outcomes: {
-      title: "Tärkeimmät tulokset",
+    benefitsList: {
+      title: "Keskeiset edut",
       items: [
-        "GDPR-vaatimusten täysi noudattaminen",
-        "Parannettu tietosuojan hallintakehys",
-        "Parannettu asiakas- ja sidosryhmäluottamus",
-        "Vähemmän sääntelyriskejä ja mahdollisia sakkoja"
+        "Säästä kustannuksia kokopäiväisen DPO:n sijaan",
+        "Pääsy kokeneeseen tietosuojan asiantuntijaan",
+        "Joustava käyttöönotto tarpeen mukaan",
+        "GDPR-vaatimusten täyttäminen",
+        "Vältä sääntelyriskejä ja sakkoja",
+        "Paranna asiakasluottamusta"
       ]
-    },
-    caseStudies: {
-      title: "Toteutetut tapaukset",
-      subtitle: "Todellisia esimerkkejä siitä, miten V-DPO-palvelumme on auttanut organisaatioita parantamaan tietosuojan hallintaa.",
-      items: [
-        {
-          title: "Finanssialan konserni",
-          description: "Monikansallinen finanssikonserni, jolla oli tarve GDPR:n ja DORA-sääntelyn yhteensopivuuteen Euroopassa ja Yhdysvalloissa.",
-          challenge: "Laajat tietojenkäsittelyprosessit useissa maissa ja tarve yhdistää GDPR- ja DORA-vaatimukset.",
-          solution: "Toteutimme täyspalvelu V-DPO-mallin, jossa keskityttiin RoPA:n hallintaan, DPIA-suorituksiin ja sääntelyviranomaisten kanssa viestintään.",
-          results: ["Täysi GDPR- ja DORA-yhteensopivuus saavutettu 10 kuukaudessa", "Tietosuojahaaviointien määrä väheni 90%", "Sääntelytarkastusten arvosana parani A-luokkaan", "Asiakasluottamus parani 35%"]
-        },
-        {
-          title: "Terveyspalveluyritys",
-          description: "Erityispalveluita tarjoava terveysalan yritys, jolla oli kriittisiä potilastietoja käsitteleviä prosesseja.",
-          challenge: "Erittäin herkkiä henkilötietoja käsittelevät prosessit, joissa GDPR-vaatimukset olivat tiukat ja virheet voivat aiheuttaa vakavia seuraamuksia.",
-          solution: "Toteutimme konsultoivan V-DPO-mallin, jossa keskityttiin tietosuojakäytäntöjen kehittämiseen, henkilöstökoulutukseen ja DPIA-suorituksiin.",
-          results: ["Täysi GDPR-yhteensopivuus saavutettu ilman tarkastuspuutteita", "Potilastietojen käsittelyprosessit optimoitiin 40%", "Henkilöstön tietosuojatietoisuus nousi 85%", "Tietosuojahaaviointien määrä väheni 95%"]
-        }
-      ]
-    },
-    metrics: {
-      title: "Menestyksen mittarit ja tulokset",
-      subtitle: "Todisteet siitä, miten V-DPO-palvelumme vaikuttaa asiakkaidemme organisaatioihin.",
-      items: [
-        { value: "98%", label: "Yhteensopivuuden taso", description: "asiakkaistamme saavuttaa täyden GDPR-yhteensopivuuden V-DPO:n avulla" },
-        { value: "75%", label: "Tietosuojahaaviointien väheneminen", description: "vähemmän tietosuojahaaviointeja keskimäärin V-DPO:n käytön jälkeen" },
-        { value: "60%", label: "Kustannusten vähentäminen", description: "keskimääräinen kustannushyöty verrattuna sisäiseen DPO:n palkkaamiseen" },
-        { value: "95%", label: "Asiakastyytyväisyys", description: "asiakkaistamme kokee, että V-DPO-palvelumme vastaa odotuksiinsa tai ylittää ne" }
-      ],
-      advantages: {
-        regulatory: ["Täysi GDPR- ja tietosuojan yhteensopivuus", "DPIA- ja RoPA-prosessien hallinta", "Sääntelyviranomaisten kanssa viestintä"],
-        organizational: ["Parannettu asiakasluottamus", "Henkilöstön tietosuojatietoisuuden kasvu", "Rikkomisriskien vähentäminen"]
-      }
-    },
-    cta: {
-      title: "Aloitetaan V-DPO-palvelu?",
-      subtitle: "Keskustellaan organisaatiosi tietosuojan tarpeista ja sopivimmasta V-DPO-palvelumallista.",
-      primaryCTA: { text: "Aloita nyt", href: "/contact?service=vdpo" },
-      secondaryCTA: { text: "Aseta tapaaminen", href: "/contact?consultation=true" }
     }
   }
 };
 
 const currentContent = content[lang];
+const isFi = lang === 'fi';
+
+function getLevelColor(color: string) {
+  switch(color) {
+    case 'green': return 'border-l-4 border-green-500';
+    case 'blue': return 'border-l-4 border-blue-500';
+    case 'purple': return 'border-l-4 border-purple-500';
+    default: return 'border-l-4 border-blue-500';
+  }
+}
+
+function getIconColor(color: string) {
+  switch(color) {
+    case 'green': return 'text-green-600';
+    case 'blue': return 'text-blue-600';
+    case 'purple': return 'text-purple-600';
+    default: return 'text-blue-600';
+  }
+}
 ---
 
-<Layout {...seoConfig}>
+<Layout title={title}>
 
-<!-- Hero Section - Centered, NO image -->
-<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    
-    <div class="flex justify-center mb-4">
-      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
-        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
-      </div>
-    </div>
-    
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
-      {currentContent.hero.title}
-    </h1>
-    
-    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
-      {currentContent.hero.subtitle}
-    </p>
-    
-    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
-      {currentContent.hero.description}
-    </p>
-    
-    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
-      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
-        {currentContent.hero.primaryCTA.text}
-        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-      
-      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
-        {currentContent.hero.secondaryCTA.text}
-        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-    </div>
-    
-  </div>
-</section>
-
-<!-- Service Overview Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="bg-slate-50/50 rounded-2xl p-8 border border-slate-100">
-      <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-4">{currentContent.overview.title}</h2>
-      <p class="text-slate-600 leading-relaxed mb-4">{currentContent.overview.description}</p>
-      <p class="text-slate-600 leading-relaxed font-semibold text-blue-600">{currentContent.overview.compliance}</p>
-    </div>
-  </div>
-</section>
-
-<!-- Service Models Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.serviceModels.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.serviceModels.subtitle}
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-8">
-      {currentContent.serviceModels.items.map((model) => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    flex flex-col h-full p-6 group">
-          
-          <div class="flex justify-end mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-              <Icon name={model.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
-            </div>
-          </div>
-          
-          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
-            {model.title}
-          </h3>
-          
-          <p class="text-slate-500 text-sm leading-relaxed text-left mb-4">
-            {model.description}
-          </p>
-          
-          <div class="mt-auto">
-            <ul class="space-y-1.5">
-              {model.features.map((feature) => (
-                <li class="flex items-start text-xs text-slate-500">
-                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- GDPR Requirements Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.requirements.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.requirements.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {currentContent.requirements.items.map((req) => (
-        <div class="bg-slate-50/50 rounded-xl p-4 border border-slate-100 text-center
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-md transition-all duration-300">
-          <p class="text-sm font-medium text-slate-700">{req}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Benefits Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.benefits.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.benefits.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {currentContent.benefits.items.map((benefit) => (
-        <div class="bg-slate-50/50 rounded-xl p-4 border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-md transition-all duration-300">
-          <div class="flex items-center gap-3">
-            <Icon name="star" class="w-5 h-5 text-blue-600" />
-            <span class="text-slate-700 text-sm">{benefit}</span>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Deliverables & Outcomes Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid md:grid-cols-2 gap-12">
-      
-      <!-- Deliverables -->
-      <div>
-        <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-6">{currentContent.deliverables.title}</h2>
-        <ul class="space-y-3">
-          {currentContent.deliverables.items.map((item) => (
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-slate-600 text-sm">{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-      
-      <!-- Outcomes -->
-      <div>
-        <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-6">{currentContent.outcomes.title}</h2>
-        <ul class="space-y-3">
-          {currentContent.outcomes.items.map((item) => (
-            <li class="flex items-start gap-3">
-              <Icon name="shield-check" class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-              <span class="text-slate-600 text-sm">{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-      
-    </div>
-  </div>
-</section>
-
-<!-- Case Studies Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.caseStudies.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.caseStudies.subtitle}
-      </p>
-    </div>
-    
-    <div class="space-y-8">
-      {currentContent.caseStudies.items.map((study, idx) => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-lg transition-all duration-300">
-          
-          <div class="flex flex-col md:flex-row gap-6">
-            <div class="md:w-1/4">
-              <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center">
-                <Icon name="shield-check" class="w-8 h-8 text-blue-600" />
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
+        </p>
+        
+        <!-- Info Section - Two Column Layout -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
               </div>
             </div>
-            <div class="md:w-3/4">
-              <h3 class="text-xl font-bold text-slate-900 mb-2">{study.title}</h3>
-              <p class="text-slate-500 text-sm mb-4">{study.description}</p>
-              
-              <div class="grid md:grid-cols-3 gap-4 mt-4">
-                <div>
-                  <h4 class="font-semibold text-slate-800 text-sm mb-2">Challenge:</h4>
-                  <p class="text-slate-500 text-xs">{study.challenge}</p>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-slate-800 text-sm mb-2">Solution:</h4>
-                  <p class="text-slate-500 text-xs">{study.solution}</p>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-slate-800 text-sm mb-2">Results:</h4>
-                  <ul class="space-y-1">
-                    {study.results.map((result) => (
-                      <li class="flex items-start text-xs text-slate-500">
-                        <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        {result}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+          </div>
+          
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
               </div>
             </div>
           </div>
         </div>
-      ))}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Metrics Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.metrics.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.metrics.subtitle}
-      </p>
+  <!-- Overview Section -->
+  <section class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6">
+        <p class="text-sm text-slate-600 leading-relaxed">{currentContent.overview.description}</p>
+        <p class="text-sm text-blue-600 font-semibold mt-3">{currentContent.overview.highlight}</p>
+      </div>
     </div>
-    
-    <div class="grid md:grid-cols-4 gap-6 mb-12">
-      {currentContent.metrics.items.map((metric) => (
-        <div class="bg-slate-50/50 rounded-xl p-6 text-center border border-slate-100
-                    hover:border-blue-300 hover:shadow-md transition-all duration-300">
-          <div class="text-3xl md:text-4xl font-bold text-[#1E2A7A] mb-2">{metric.value}</div>
-          <p class="text-slate-700 text-sm font-semibold mb-2">{metric.label}</p>
-          <p class="text-slate-500 text-xs">{metric.description}</p>
+  </section>
+
+  <!-- Service Models Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.serviceModels.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.serviceModels.subtitle}
+        </p>
+      </div>
+      
+      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        {currentContent.serviceModels.items.map((model) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-5 md:p-6 group relative overflow-hidden text-center">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-center mb-3 relative z-10">
+              <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={model.icon} class="w-6 h-6 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            
+            <h3 class="text-base font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10 text-center">
+              {model.title}
+            </h3>
+            <p class="text-xs text-slate-500 mb-3 group-hover:text-slate-600 transition-colors duration-300 relative z-10 text-center">
+              {model.description}
+            </p>
+            
+            <div class="mt-auto pt-3 border-t-2 border-slate-200 group-hover:border-[#3B82F6] transition-colors duration-300 relative z-10">
+              <ul class="space-y-1.5 relative z-10 text-left mx-auto w-full max-w-xs">
+                {model.features.map((feature) => (
+                  <li class="flex items-start text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                    <svg class="w-3 h-3 text-[#3B82F6] mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GDPR Requirements Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.requirements.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.requirements.subtitle}
+        </p>
+      </div>
+      
+      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {currentContent.requirements.items.map((req) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex items-center justify-center p-4 group text-center">
+            <p class="text-xs font-medium text-slate-700 group-hover:text-[#1E40AF] transition-colors duration-300">{req}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.process.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.process.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {currentContent.process.items.map((step) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden text-center">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-center mb-2 relative z-10">
+              <div class="w-10 h-10 bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                {step.number}
+              </div>
+            </div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {step.title}
+            </h3>
+            <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {step.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables & Benefits Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-3xl mx-auto">
+        
+        <!-- Deliverables -->
+        <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm p-5 md:p-6">
+          <h2 class="text-base font-bold text-[#3B82F6] mb-4 text-center">{currentContent.deliverables.title}</h2>
+          <ul class="space-y-2">
+            {currentContent.deliverables.items.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="w-3.5 h-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-xs md:text-sm text-slate-600">{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-      ))}
-    </div>
-    
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100">
-        <h3 class="text-lg font-bold text-[#1E2A7A] mb-4 flex items-center gap-2">
-          <Icon name="shield-check" class="w-5 h-5" /> Regulatory Advantages
-        </h3>
-        <ul class="space-y-2">
-          {currentContent.metrics.advantages.regulatory.map((item) => (
-            <li class="flex items-start gap-2 text-sm text-slate-600">
-              <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
-      
-      <div class="bg-slate-50/50 rounded-xl p-6 border border-slate-100">
-        <h3 class="text-lg font-bold text-[#1E2A7A] mb-4 flex items-center gap-2">
-          <Icon name="users" class="w-5 h-5" /> Organizational Benefits
-        </h3>
-        <ul class="space-y-2">
-          {currentContent.metrics.advantages.organizational.map((item) => (
-            <li class="flex items-start gap-2 text-sm text-slate-600">
-              <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-      
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
-        {currentContent.cta.title}
-      </h2>
-
-      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
-        {currentContent.cta.subtitle}
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
         
-        <a href={currentContent.cta.primaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
-          {currentContent.cta.primaryCTA.text}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
+        <!-- Benefits -->
+        <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm p-5 md:p-6">
+          <h2 class="text-base font-bold text-[#3B82F6] mb-4 text-center">{currentContent.benefitsList.title}</h2>
+          <ul class="space-y-2">
+            {currentContent.benefitsList.items.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="w-3.5 h-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-xs md:text-sm text-slate-600">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
         
-        <a href={currentContent.cta.secondaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
-          {currentContent.cta.secondaryCTA.text}
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
 </Layout>

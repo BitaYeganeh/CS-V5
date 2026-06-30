@@ -1,207 +1,362 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
-
-// SEO Configuration
-const seoConfig = {
-  title: "Managed GRC Services | Expert-led Security Leadership",
-  description: "Expert-led security leadership and protection. CISO-as-a-Service and Anti-Fraud Services for your organization.",
-  keywords: "managed GRC, CISO as a service, anti-fraud services, security leadership, Finland",
-  type: "service" as const,
-};
+import Button from '@/components/ui/Button.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const title = "Managed GRC Services";
 
 const content = {
   en: {
-    hero: {
-      title: "Managed GRC Services",
-      subtitle: "Expert-led security leadership and protection",
-      description: "Professional managed GRC services providing expert-led security leadership and protection for your organization.",
-      primaryCTA: { text: "Explore Services", href: "#services" },
-      secondaryCTA: { text: "Book Consultation", href: "/contact?consultation=true" }
+    title: "Managed GRC Services",
+    subtitle: "Expert-led security leadership and protection",
+    heroDescription: "Professional managed GRC services providing expert-led security leadership and protection for your organization.",
+    forWho: "For organizations seeking expert-led security leadership and protection through managed GRC services.",
+    achieve: "Expert security leadership with CISO-as-a-Service and comprehensive anti-fraud protection.",
+    overview: {
+      title: "Overview",
+      description: "Managed GRC (Governance, Risk, and Compliance) services provide organizations with expert-led security leadership and protection. Our services combine strategic security leadership with operational fraud prevention to deliver comprehensive protection.",
+      highlight: "Our expert team provides managed GRC services including CISO-as-a-Service and Anti-Fraud Services, delivering expert security leadership and comprehensive fraud protection for your organization."
     },
-    items: [
-      {
-        title: "CISO-as-a-Service",
-        href: "/services/managed-grc-services/ciso-as-a-service",
-        description: "On-demand security leadership: strategy, roadmap, metrics, and stakeholder reporting.",
-        icon: "shield-check"
-      },
-      {
-        title: "Anti-Fraud Services",
-        href: "/services/managed-grc-services/anti-fraud",
-        description: "Design and operate fraud prevention: BEC/invoice fraud controls, payment controls, detection and response.",
-        icon: "alert-triangle"
-      }
-    ],
-    cta: {
-      title: "Ready to enhance your security leadership?",
-      subtitle: "Contact us to discuss your managed GRC needs.",
-      primaryCTA: { text: "Get in Touch", href: "/contact" },
-      secondaryCTA: { text: "Explore Services", href: "#services" }
+    services: {
+      title: "Our Services",
+      subtitle: "Expert-led security leadership and protection services",
+      items: [
+        {
+          title: "CISO-as-a-Service",
+          icon: "shield-check",
+          description: "On-demand security leadership: strategy, roadmap, metrics, and stakeholder reporting.",
+          features: ["Security strategy development", "Roadmap and program management", "KPI/KRI metrics and reporting", "Stakeholder communication"]
+        },
+        {
+          title: "Anti-Fraud Services",
+          icon: "alert-triangle",
+          description: "Design and operate fraud prevention: BEC/invoice fraud controls, payment controls, detection and response.",
+          features: ["BEC and invoice fraud controls", "Payment process controls", "Fraud detection monitoring", "Incident response procedures"]
+        }
+      ]
+    },
+    process: {
+      title: "Engagement Process",
+      subtitle: "Structured approach to delivering managed GRC services.",
+      items: [
+        { number: "01", title: "Discovery", description: "Assess current security posture and fraud risks" },
+        { number: "02", title: "Strategy & Roadmap", description: "Develop security strategy and implementation roadmap" },
+        { number: "03", title: "Implementation", description: "Deploy CISO leadership and fraud controls" },
+        { number: "04", title: "Operations", description: "Ongoing management, monitoring, and reporting" }
+      ]
+    },
+    deliverables: {
+      title: "What You Get",
+      items: [
+        "Security strategy and roadmap",
+        "Executive reporting and dashboards",
+        "Fraud control framework",
+        "Payment process controls",
+        "Fraud detection monitoring",
+        "Incident response procedures",
+        "Staff training and awareness",
+        "Ongoing security leadership"
+      ]
+    },
+    benefitsList: {
+      title: "Key Benefits",
+      items: [
+        "Expert security leadership on demand",
+        "Comprehensive fraud protection",
+        "Strategic security direction",
+        "Measurable security outcomes",
+        "Cost-effective service model"
+      ]
     }
   },
   fi: {
-    hero: {
-      title: "Hallitut GRC-palvelut",
-      subtitle: "Asiantuntijavetoinen turvallisuusjohtaminen ja suojaus",
-      description: "Ammattimaiset hallitut GRC-palvelut tarjoavat asiantuntijavetoista turvallisuusjohtamista ja suojausta organisaatiollesi.",
-      primaryCTA: { text: "Tutustu palveluihin", href: "#services" },
-      secondaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" }
+    title: "Hallitut GRC-palvelut",
+    subtitle: "Asiantuntijavetoinen turvallisuusjohtaminen ja suojaus",
+    heroDescription: "Ammattimaiset hallitut GRC-palvelut tarjoavat asiantuntijavetoista turvallisuusjohtamista ja suojausta organisaatiollesi.",
+    forWho: "Organisaatioille, jotka tarvitsevat asiantuntijavetoista turvallisuusjohtamista ja suojausta hallittujen GRC-palvelujen avulla.",
+    achieve: "Asiantunteva turvallisuusjohtaminen CISO-palveluna ja kattava petostentorjunta.",
+    overview: {
+      title: "Yleiskatsaus",
+      description: "Hallitut GRC-palvelut (Governance, Risk, and Compliance) tarjoavat organisaatioille asiantuntijavetoista turvallisuusjohtamista ja suojausta. Palvelumme yhdistävät strategisen turvallisuusjohtamisen operatiiviseen petostentorjuntaan kattavan suojauksen tuottamiseksi.",
+      highlight: "Asiantuntijatiimimme tarjoaa hallittuja GRC-palveluita, mukaan lukien CISO-palveluna ja petostentorjuntapalvelut, tuottaen asiantuntevaa turvallisuusjohtamista ja kattavaa petossuojausta organisaatiollesi."
     },
-    items: [
-      {
-        title: "CISO-as-a-Service",
-        href: "/services/managed-grc-services/ciso-as-a-service",
-        description: "Tarjoaa tarvittaessa turvallisuusjohtamista: strategia, tiekartta, mittarit ja sidosryhmäraportointi.",
-        icon: "shield-check"
-      },
-      {
-        title: "Petostentorjuntapalvelut",
-        href: "/services/managed-grc-services/anti-fraud",
-        description: "Suunnittele ja operoi petosten estämistä: BEC/laskupetoskontrollit, maksukontrollit, havainnointi ja reagointi.",
-        icon: "alert-triangle"
-      }
-    ],
-    cta: {
-      title: "Valmis tehostamaan turvallisuusjohtamistasi?",
-      subtitle: "Ota yhteyttä keskustellaksesi hallituista GRC-tarpeistasi.",
-      primaryCTA: { text: "Ota yhteyttä", href: "/contact" },
-      secondaryCTA: { text: "Tutustu palveluihin", href: "#services" }
+    services: {
+      title: "Palvelumme",
+      subtitle: "Asiantuntijavetoiset turvallisuusjohtamisen ja suojauksen palvelut",
+      items: [
+        {
+          title: "CISO-as-a-Service",
+          icon: "shield-check",
+          description: "Tarjoaa tarvittaessa turvallisuusjohtamista: strategia, tiekartta, mittarit ja sidosryhmäraportointi.",
+          features: ["Turvallisuusstrategian kehitys", "Tiekartta ja ohjelmajohtaminen", "KPI/KRI-mittarit ja raportointi", "Sidosryhmäviestintä"]
+        },
+        {
+          title: "Petostentorjuntapalvelut",
+          icon: "alert-triangle",
+          description: "Suunnittele ja operoi petosten estämistä: BEC/laskupetoskontrollit, maksukontrollit, havainnointi ja reagointi.",
+          features: ["BEC- ja laskupetoskontrollit", "Maksuprosessien kontrollit", "Petosten havainnointi", "Tapahtumien hallintamenettelyt"]
+        }
+      ]
+    },
+    process: {
+      title: "Toimintamalli",
+      subtitle: "Rakenteinen lähestymistapa hallittujen GRC-palvelujen tuottamiseen.",
+      items: [
+        { number: "01", title: "Alkukartoitus", description: "Arvioidaan nykyinen turvallisuustilanne ja petosriskit" },
+        { number: "02", title: "Strategia & Tiekartta", description: "Kehitetään turvallisuusstrategia ja toteutuksen tiekartta" },
+        { number: "03", title: "Toteutus", description: "Käyttöönotetaan CISO-johtaminen ja petoskontrollit" },
+        { number: "04", title: "Operointi", description: "Jatkuva hallinta, seuranta ja raportointi" }
+      ]
+    },
+    deliverables: {
+      title: "Mitä saat",
+      items: [
+        "Turvallisuusstrategia ja tiekartta",
+        "Johdon raportointi ja kojelaudat",
+        "Petoskontrollien kehys",
+        "Maksuprosessien kontrollit",
+        "Petosten havainnointi",
+        "Tapahtumien hallintamenettelyt",
+        "Henkilöstön koulutus ja tietoisuus",
+        "Jatkuva turvallisuusjohtaminen"
+      ]
+    },
+    benefitsList: {
+      title: "Keskeiset edut",
+      items: [
+        "Asiantunteva turvallisuusjohtaminen tarvittaessa",
+        "Kattava petossuoja",
+        "Strateginen turvallisuussuunta",
+        "Mitattavat turvallisuustulokset",
+        "Kustannustehokas palvelumalli"
+      ]
     }
   }
 };
 
 const currentContent = content[lang];
+const isFi = lang === 'fi';
+
+function getLevelColor(color: string) {
+  switch(color) {
+    case 'green': return 'border-l-4 border-green-500';
+    case 'blue': return 'border-l-4 border-blue-500';
+    case 'purple': return 'border-l-4 border-purple-500';
+    default: return 'border-l-4 border-blue-500';
+  }
+}
+
+function getIconColor(color: string) {
+  switch(color) {
+    case 'green': return 'text-green-600';
+    case 'blue': return 'text-blue-600';
+    case 'purple': return 'text-purple-600';
+    default: return 'text-blue-600';
+  }
+}
 ---
 
-<Layout {...seoConfig}>
+<Layout title={title}>
 
-<!-- Hero Section - Centered, NO image -->
-<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    
-    <div class="flex justify-center mb-4">
-      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
-        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
-      </div>
-    </div>
-    
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
-      {currentContent.hero.title}
-    </h1>
-    
-    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
-      {currentContent.hero.subtitle}
-    </p>
-    
-    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
-      {currentContent.hero.description}
-    </p>
-    
-    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
-      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
-        {currentContent.hero.primaryCTA.text}
-        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-      
-      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
-        {currentContent.hero.secondaryCTA.text}
-        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-    </div>
-    
-  </div>
-</section>
-
-<!-- Services Section -->
-<section id="services" class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {lang === 'fi' ? 'Palvelumme' : 'Our Services'}
-      </h2>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-8">
-      {currentContent.items.map((item) => (
-        <a href={item.href} class="bg-slate-50/50 rounded-xl border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    flex flex-col h-full p-6 group cursor-pointer">
-          
-          <div class="flex justify-end mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
+        </p>
+        
+        <!-- Info Section - Two Column Layout -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
+              </div>
             </div>
           </div>
           
-          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
-            {item.title}
-          </h3>
-          
-          <p class="text-slate-500 text-sm leading-relaxed text-left flex-1">
-            {item.description}
-          </p>
-          
-          <div class="mt-5 pt-4 border-t border-slate-100 flex justify-start">
-            <span class="inline-flex items-center text-[#1E40AF] group-hover:text-[#3B82F6] font-semibold text-sm gap-1 transition-all duration-300">
-              {lang === 'fi' ? 'Lue lisää' : 'Read more'}
-              <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </span>
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
+            </div>
           </div>
-        </a>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-      
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
-        {currentContent.cta.title}
-      </h2>
-
-      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
-        {currentContent.cta.subtitle}
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        
-        <a href={currentContent.cta.primaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
-          {currentContent.cta.primaryCTA.text}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-        
-        <a href={currentContent.cta.secondaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
-          {currentContent.cta.secondaryCTA.text}
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
+        </div>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6">
+        <p class="text-sm text-slate-600 leading-relaxed">{currentContent.overview.description}</p>
+        <p class="text-sm text-blue-600 font-semibold mt-3">{currentContent.overview.highlight}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.services.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.services.subtitle}
+        </p>
+      </div>
+      
+      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        {currentContent.services.items.map((service) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-5 md:p-6 group relative overflow-hidden text-center">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-center mb-3 relative z-10">
+              <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={service.icon} class="w-6 h-6 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            
+            <h3 class="text-base font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10 text-center">
+              {service.title}
+            </h3>
+            <p class="text-xs text-slate-500 mb-3 group-hover:text-slate-600 transition-colors duration-300 relative z-10 text-center">
+              {service.description}
+            </p>
+            
+            <div class="mt-auto pt-3 border-t-2 border-slate-200 group-hover:border-[#3B82F6] transition-colors duration-300 relative z-10">
+              <ul class="space-y-1.5 relative z-10 text-left mx-auto w-full max-w-xs">
+                {service.features.map((feature) => (
+                  <li class="flex items-start text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                    <svg class="w-3 h-3 text-[#3B82F6] mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.process.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.process.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {currentContent.process.items.map((step) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden text-center">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-center mb-2 relative z-10">
+              <div class="w-10 h-10 bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                {step.number}
+              </div>
+            </div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {step.title}
+            </h3>
+            <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {step.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables & Benefits Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-3xl mx-auto">
+        
+        <!-- Deliverables -->
+        <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm p-5 md:p-6">
+          <h2 class="text-base font-bold text-[#3B82F6] mb-4 text-center">{currentContent.deliverables.title}</h2>
+          <ul class="space-y-2">
+            {currentContent.deliverables.items.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="w-3.5 h-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-xs md:text-sm text-slate-600">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        <!-- Benefits -->
+        <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm p-5 md:p-6">
+          <h2 class="text-base font-bold text-[#3B82F6] mb-4 text-center">{currentContent.benefitsList.title}</h2>
+          <ul class="space-y-2">
+            {currentContent.benefitsList.items.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="w-3.5 h-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-xs md:text-sm text-slate-600">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+  </section>
 
 </Layout>
