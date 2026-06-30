@@ -12,359 +12,311 @@ const seoConfig = {
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const title = "ISO 22301 Business Continuity";
 
 const content = {
   en: {
-    hero: {
-      title: "ISO 22301 Business Continuity Management",
-      subtitle: "Operational Resilience & Disaster Recovery",
-      description: "Business continuity and disaster recovery planning to ensure your organization maintains operations during disruptions and recovers quickly from incidents. Build operational resilience with comprehensive BCM implementation.",
-      primaryCTA: { text: "Build Business Resilience", href: "/contact" },
-      secondaryCTA: { text: "View Our Services", href: "/services" }
+    title: "ISO 22301 Business Continuity",
+    subtitle: "Operational Resilience & Disaster Recovery",
+    heroDescription: "Business continuity and disaster recovery planning to ensure your organization maintains operations during disruptions and recovers quickly from incidents. Build operational resilience with comprehensive BCM implementation.",
+    forWho: "For organizations requiring robust business continuity management and disaster recovery capabilities.",
+    achieve: "ISO 22301 compliance with operational resilience and rapid disaster recovery capabilities.",
+    overview: {
+      title: "Overview",
+      description: "ISO 22301 is the international standard for Business Continuity Management Systems (BCMS). It provides a framework for identifying threats, assessing risks, and developing strategies to ensure operational resilience and rapid recovery from disruptions.",
+      highlight: "Our expert team provides comprehensive BCM implementation support, from business impact analysis and risk assessment through strategy development, plan implementation, and ongoing maintenance."
     },
-    benefits: {
-      title: "Why ISO 22301 Business Continuity?",
-      subtitle: "Protect your organization from disruptions and ensure rapid recovery with internationally recognized business continuity management standards.",
+    features: {
+      title: "Our BCM Services",
+      subtitle: "Comprehensive business continuity services covering all aspects of ISO 22301 implementation",
       items: [
-        { title: "Operational Resilience", description: "Maintain critical operations during incidents and minimize business impact from disruptions.", icon: "shield-check" },
-        { title: "Rapid Recovery", description: "Structured approach to recover operations quickly and return to business as usual.", icon: "refresh-cw" },
-        { title: "Stakeholder Confidence", description: "Demonstrate preparedness to customers, suppliers, and regulators through proven BCM capabilities.", icon: "users" },
-        { title: "Cost Management", description: "Reduce potential losses from business interruptions through proactive planning and preparation.", icon: "chart-line" },
-        { title: "Regulatory Compliance", description: "Meet regulatory requirements for business continuity and operational resilience across industries.", icon: "document-check" },
-        { title: "Organizational Learning", description: "Continuous improvement culture with lessons learned from exercises and real incidents.", icon: "trending-up" }
-      ]
-    },
-    process: {
-      title: "ISO 22301 Implementation Process",
-      subtitle: "Comprehensive approach to building and implementing a robust Business Continuity Management System (BCMS).",
-      steps: [
-        { step: "1", title: "Business Impact Analysis", description: "Identify critical business processes, dependencies, and impact of potential disruptions." },
-        { step: "2", title: "Risk Assessment", description: "Evaluate threats, vulnerabilities, and risks that could disrupt business operations." },
-        { step: "3", title: "Strategy Development", description: "Develop business continuity strategies and recovery solutions for critical processes." },
-        { step: "4", title: "Plan Implementation", description: "Implement business continuity plans with testing, training, and continuous improvement." }
-      ]
-    },
-    services: {
-      title: "Comprehensive BCM Services",
-      items: [
-        {
-          title: "BCMS Development & Implementation",
-          icon: "shield",
-          items: ["Business impact analysis (BIA)", "Risk assessment and treatment", "Business continuity strategy development", "BCMS policy and procedure development", "Crisis management framework"]
-        },
-        {
-          title: "Testing & Maintenance",
-          icon: "refresh-cw",
-          items: ["Business continuity plan testing", "Crisis simulation exercises", "Emergency response training", "Continuous improvement programs", "Management system audits"]
-        }
+        { title: "Business Impact Analysis", description: "Identify critical business processes, dependencies, and impact of potential disruptions.", icon: "chart" },
+        { title: "Risk Assessment", description: "Evaluate threats, vulnerabilities, and risks that could disrupt business operations.", icon: "shield" },
+        { title: "Strategy Development", description: "Develop business continuity strategies and recovery solutions for critical processes.", icon: "cog" },
+        { title: "Plan Implementation", description: "Implement business continuity plans with testing, training, and continuous improvement.", icon: "refresh-cw" },
+        { title: "Crisis Management", description: "Crisis management framework with incident response procedures and communication protocols.", icon: "alert-circle" },
+        { title: "Testing & Exercises", description: "Regular testing and simulation exercises to validate and improve BCM capabilities.", icon: "clipboard-check" }
       ]
     },
     industries: {
-      title: "Industry Applications",
+      title: "Industries We Serve",
       subtitle: "ISO 22301 BCM is applicable across all industries, with particular importance in sectors with high operational dependencies.",
       items: [
-        "Financial Services", "Healthcare", "Manufacturing", "Energy & Utilities", "Government", "Technology"
+        "Financial Services",
+        "Healthcare",
+        "Manufacturing",
+        "Energy & Utilities",
+        "Government",
+        "Technology"
       ]
     },
-    cta: {
-      title: "Build Operational Resilience with ISO 22301",
-      subtitle: "Protect your business from disruptions and ensure rapid recovery with comprehensive business continuity management.",
-      primaryCTA: { text: "Start BCM Implementation", href: "/contact" },
-      secondaryCTA: { text: "Learn More About Us", href: "/about" }
+    deliverables: {
+      title: "What You Get",
+      items: [
+        "BCMS policy and procedure documentation",
+        "Business impact analysis (BIA) report",
+        "Risk assessment and treatment plan",
+        "Business continuity strategy framework",
+        "Incident response and crisis management plans",
+        "Testing and exercise program",
+        "Training and awareness materials",
+        "Continuous improvement framework"
+      ]
+    },
+    benefits: {
+      title: "Key Benefits",
+      items: [
+        "Maintain operations during disruptions",
+        "Minimize financial impact of incidents",
+        "Demonstrate preparedness to stakeholders",
+        "Meet regulatory compliance requirements",
+        "Build organizational resilience culture"
+      ]
     }
   },
   fi: {
-    hero: {
-      title: "ISO 22301 -liiketoiminnan jatkuvuuden hallinta",
-      subtitle: "Operatiivinen resilienssi ja katastrofipalautus",
-      description: "Liiketoiminnan jatkuvuus- ja katastrofipalautussuunnittelu varmistaakseen, että organisaatiosi ylläpitää toimintoja häiriöiden aikana ja toipuu nopeasti tapahtumista. Rakenna operatiivista resilienssiä kattavalla BCM-toteutuksella.",
-      primaryCTA: { text: "Rakenna liiketoiminnan resilienssiä", href: "/contact" },
-      secondaryCTA: { text: "Tutustu palveluihimme", href: "/services" }
+    title: "ISO 22301 -liiketoiminnan jatkuvuus",
+    subtitle: "Operatiivinen resilienssi ja katastrofipalautus",
+    heroDescription: "Liiketoiminnan jatkuvuus- ja katastrofipalautussuunnittelu varmistaakseen, että organisaatiosi ylläpitää toimintoja häiriöiden aikana ja toipuu nopeasti tapahtumista. Rakenna operatiivista resilienssiä kattavalla BCM-toteutuksella.",
+    forWho: "Organisaatioille, jotka tarvitsevat vankkaa liiketoiminnan jatkuvuuden hallintaa ja katastrofipalautuskykyjä.",
+    achieve: "ISO 22301 -vaatimustenmukaisuus operatiivisella resilienssillä ja nopealla katastrofipalautuskyvyllä.",
+    overview: {
+      title: "Yleiskatsaus",
+      description: "ISO 22301 on kansainvälinen standardi liiketoiminnan jatkuvuuden hallintajärjestelmille (BCMS). Se tarjoaa kehyksen uhkien tunnistamiseen, riskien arviointiin ja strategioiden kehittämiseen operatiivisen resilienssin ja nopean palautumisen varmistamiseksi häiriöistä.",
+      highlight: "Asiantuntijatiimimme tarjoaa kattavaa BCM-toteutustukea liiketoimintavaikutusanalyysistä ja riskinarvioinnista strategian kehittämisen, suunnitelmien toteutuksen ja jatkuvan ylläpidon kautta."
     },
-    benefits: {
-      title: "Miksi ISO 22301 -liiketoiminnan jatkuvuus?",
-      subtitle: "Suojaa organisaatiosi häiriöiltä ja varmista nopea palautuminen kansainvälisesti tunnetuilla liiketoiminnan jatkuvuuden hallintastandardeilla.",
+    features: {
+      title: "BCM-palvelumme",
+      subtitle: "Kattavat liiketoiminnan jatkuvuuspalvelut, jotka kattavat kaikki ISO 22301 -toteutuksen näkökohdat",
       items: [
-        { title: "Operatiivinen resilienssi", description: "Ylläpidä kriittisiä toimintoja tapahtumien aikana ja minimoi liiketoimintavaikutukset häiriöistä.", icon: "shield-check" },
-        { title: "Nopea palautuminen", description: "Rakenteellinen lähestymistapa toimintojen nopeaan palauttamiseen ja normaaliin toimintaan palaamiseen.", icon: "refresh-cw" },
-        { title: "Sidosryhmäluottamus", description: "Osoita valmistautumista asiakkaille, toimittajille ja sääntelyviranomaisille todistetuilla BCM-kyvykkyyksillä.", icon: "users" },
-        { title: "Kustannusten hallinta", description: "Vähennä mahdollisia tappioita liiketoiminnan keskeytyksistä ennakoivalla suunnittelulla ja valmistelulla.", icon: "chart-line" },
-        { title: "Sääntelyn vaatimustenmukaisuus", description: "Täytä liiketoiminnan jatkuvuuden ja operatiivisen resilienssin sääntelyvaatimukset eri toimialoilla.", icon: "document-check" },
-        { title: "Organisaation oppiminen", description: "Jatkuva parantamiskulttuuri harjoituksista ja todellisista tapahtumista opituilla asioilla.", icon: "trending-up" }
-      ]
-    },
-    process: {
-      title: "ISO 22301 -toteutusprosessi",
-      subtitle: "Kattava lähestymistapa vankan liiketoiminnan jatkuvuuden hallintajärjestelmän (BCMS) rakentamiseen ja toteuttamiseen.",
-      steps: [
-        { step: "1", title: "Liiketoimintavaikutusanalyysi", description: "Tunnista kriittiset liiketoimintaprosessit, riippuvuudet ja mahdollisten häiriöiden vaikutukset." },
-        { step: "2", title: "Riskinarviointi", description: "Arvioi uhat, haavoittuvuudet ja riskit, jotka voivat häiritä liiketoimintaa." },
-        { step: "3", title: "Strategian kehittäminen", description: "Kehitä liiketoiminnan jatkuvuusstrategiat ja palautusratkaisut kriittisille prosesseille." },
-        { step: "4", title: "Suunnitelmien toteutus", description: "Toteuta liiketoiminnan jatkuvuussuunnitelmat testauksella, koulutuksella ja jatkuvalla parantamisella." }
-      ]
-    },
-    services: {
-      title: "Kattavat BCM-palvelut",
-      items: [
-        {
-          title: "BCMS:n kehitys ja toteutus",
-          icon: "shield",
-          items: ["Liiketoimintavaikutusanalyysi (BIA)", "Riskinarviointi ja käsittely", "Liiketoiminnan jatkuvuusstrategian kehitys", "BCMS-käytäntöjen ja menettelyjen kehitys", "Kriisinhallintakehys"]
-        },
-        {
-          title: "Testaus ja ylläpito",
-          icon: "refresh-cw",
-          items: ["Liiketoiminnan jatkuvuussuunnitelmien testaus", "Kriisisimulaatioharjoitukset", "Hätätilannekoulutus", "Jatkuvat parannusohjelmat", "Hallintajärjestelmäauditoinnit"]
-        }
+        { title: "Liiketoimintavaikutusanalyysi", description: "Tunnista kriittiset liiketoimintaprosessit, riippuvuudet ja mahdollisten häiriöiden vaikutukset.", icon: "chart" },
+        { title: "Riskinarviointi", description: "Arvioi uhat, haavoittuvuudet ja riskit, jotka voivat häiritä liiketoimintaa.", icon: "shield" },
+        { title: "Strategian kehittäminen", description: "Kehitä liiketoiminnan jatkuvuusstrategiat ja palautusratkaisut kriittisille prosesseille.", icon: "cog" },
+        { title: "Suunnitelmien toteutus", description: "Toteuta liiketoiminnan jatkuvuussuunnitelmat testauksella, koulutuksella ja jatkuvalla parantamisella.", icon: "refresh-cw" },
+        { title: "Kriisinhallinta", description: "Kriisinhallintakehys tapahtumien hallintamenettelyillä ja viestintäprotokollilla.", icon: "alert-circle" },
+        { title: "Testaus ja harjoitukset", description: "Säännöllinen testaus ja simulaatioharjoitukset BCM-kyvykkyyksien validoimiseksi ja parantamiseksi.", icon: "clipboard-check" }
       ]
     },
     industries: {
-      title: "Toimialasovellukset",
+      title: "Toimialat joita palvelemme",
       subtitle: "ISO 22301 BCM soveltuu kaikille toimialoille, ja sillä on erityinen merkitys aloilla, joilla on korkeat operatiiviset riippuvuudet.",
       items: [
-        "Rahoituspalvelut", "Terveydenhuolto", "Teollisuus", "Energia ja vesihuolto", "Julkinen sektori", "Teknologia"
+        "Rahoituspalvelut",
+        "Terveydenhuolto",
+        "Teollisuus",
+        "Energia ja vesihuolto",
+        "Julkinen sektori",
+        "Teknologia"
       ]
     },
-    cta: {
-      title: "Rakenna operatiivista resilienssiä ISO 22301:n avulla",
-      subtitle: "Suojaa liiketoimintasi häiriöiltä ja varmista nopea palautuminen kattavalla liiketoiminnan jatkuvuuden hallinnalla.",
-      primaryCTA: { text: "Aloita BCM-toteutus", href: "/contact" },
-      secondaryCTA: { text: "Tutustu meihin paremmin", href: "/about" }
+    deliverables: {
+      title: "Mitä saat",
+      items: [
+        "BCMS-käytäntöjen ja menettelyjen dokumentointi",
+        "Liiketoimintavaikutusanalyysi (BIA) -raportti",
+        "Riskinarviointi- ja käsittelysuunnitelma",
+        "Liiketoiminnan jatkuvuusstrategiakehys",
+        "Tapahtumien hallinta- ja kriisinhallintasuunnitelmat",
+        "Testaus- ja harjoitusohjelma",
+        "Koulutus- ja tietoisuusmateriaalit",
+        "Jatkuvan parantamisen kehys"
+      ]
+    },
+    benefits: {
+      title: "Keskeiset edut",
+      items: [
+        "Ylläpidä toimintoja häiriöiden aikana",
+        "Minimoi tapahtumien taloudelliset vaikutukset",
+        "Osoita valmistautumista sidosryhmille",
+        "Täytä sääntelyn vaatimustenmukaisuusvaatimukset",
+        "Rakenna organisaation resilienssikulttuuri"
+      ]
     }
   }
 };
 
 const currentContent = content[lang];
+const isFi = lang === 'fi';
 ---
 
 <Layout {...seoConfig}>
 
-<!-- Hero Section - Centered, NO image -->
-<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    
-    <div class="flex justify-center mb-4">
-      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
-        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
+        </p>
+        
+        <!-- Info Section - Two Column Layout -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
-      {currentContent.hero.title}
-    </h1>
-    
-    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
-      {currentContent.hero.subtitle}
-    </p>
-    
-    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
-      {currentContent.hero.description}
-    </p>
-    
-    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
-      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
-        {currentContent.hero.primaryCTA.text}
-        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6">
+        <p class="text-sm text-slate-600 leading-relaxed">{currentContent.overview.description}</p>
+        <p class="text-sm text-blue-600 font-semibold mt-3">{currentContent.overview.highlight}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.features.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.features.subtitle}
+        </p>
+      </div>
       
-      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
-        {currentContent.hero.secondaryCTA.text}
-        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-    </div>
-    
-  </div>
-</section>
-
-<!-- Benefits Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.benefits.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.benefits.subtitle}
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {currentContent.benefits.items.map((item) => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    flex flex-col h-full p-6 group">
-          
-          <div class="flex justify-end mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {currentContent.features.items.map((feature) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-end mb-2 relative z-10">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={feature.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
             </div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+              {feature.title}
+            </h3>
+            <p class="text-xs md:text-sm text-slate-500 leading-relaxed text-left group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {feature.description}
+            </p>
           </div>
-          
-          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
-            {item.title}
-          </h3>
-          
-          <p class="text-slate-500 text-sm leading-relaxed text-left">
-            {item.description}
-          </p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Implementation Process Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.process.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.process.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-4 gap-6">
-      {currentContent.process.steps.map((step) => (
-        <div class="bg-slate-50/50 rounded-xl p-5 text-center border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    group">
-          
-          <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">
-            {step.step}
-          </div>
-          
-          <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
-            {step.title}
-          </h3>
-          
-          <p class="text-slate-500 text-xs leading-relaxed">
-            {step.description}
-          </p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Services Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.services.title}
-      </h2>
-    </div>
-    
-    <div class="grid md:grid-cols-2 gap-8">
-      {currentContent.services.items.map((service) => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    flex flex-col h-full p-6 group">
-          
-          <div class="flex justify-end mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-              <Icon name={service.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+  <!-- Industries Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.industries.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.industries.subtitle}
+        </p>
+      </div>
+      
+      <div class="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {currentContent.industries.items.map((industry) => (
+          <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3bb1f6]
+                      transition-all duration-300
+                      flex items-center gap-3 p-3 group">
+            <div class="w-6 h-6 bg-[#3B82F6] rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
             </div>
+            <span class="text-sm font-medium text-slate-700 group-hover:text-[#3B82F6] transition-colors duration-300">{industry}</span>
           </div>
-          
-          <h3 class="text-xl font-bold text-slate-900 mb-4 group-hover:text-blue-700 transition-colors duration-300 text-left">
-            {service.title}
-          </h3>
-          
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables & Benefits Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-3xl mx-auto">
+        
+        <!-- Deliverables -->
+        <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm p-5 md:p-6">
+          <h2 class="text-base font-bold text-[#3B82F6] mb-4 text-center">{currentContent.deliverables.title}</h2>
           <ul class="space-y-2">
-            {service.items.map((item) => (
-              <li class="flex items-start text-sm text-slate-600">
-                <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            {currentContent.deliverables.items.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="w-3.5 h-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
-                {item}
+                <span class="text-xs md:text-sm text-slate-600">{item}</span>
               </li>
             ))}
           </ul>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Industries Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.industries.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.industries.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-      {currentContent.industries.items.map((industry) => (
-        <div class="bg-slate-50/50 rounded-xl p-4 text-center border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-md transition-all duration-300">
-          <p class="text-sm font-medium text-slate-700">{industry}</p>
+        
+        <!-- Benefits -->
+        <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm p-5 md:p-6">
+          <h2 class="text-base font-bold text-[#3B82F6] mb-4 text-center">{currentContent.benefits.title}</h2>
+          <ul class="space-y-2">
+            {currentContent.benefits.items.map((item) => (
+              <li class="flex items-start gap-2.5">
+                <svg class="w-3.5 h-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-xs md:text-sm text-slate-600">{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-      
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
-        {currentContent.cta.title}
-      </h2>
-
-      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
-        {currentContent.cta.subtitle}
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
         
-        <a href={currentContent.cta.primaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
-          {currentContent.cta.primaryCTA.text}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-        
-        <a href={currentContent.cta.secondaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
-          {currentContent.cta.secondaryCTA.text}
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
 </Layout>
