@@ -1,7 +1,6 @@
 ﻿---
 import Layout from '@/layouts/Layout.astro';
-import HeroSection from '@/components/sections/HeroSection.astro';
-import CTA from '@/components/sections/CTA.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
@@ -45,429 +44,705 @@ const seoConfig = {
   }
 };
 
-const heroContent = {
-  title: "GDPR Accelerator - Privacy Excellence Program",
-  subtitle: "Comprehensive GDPR compliance solution with privacy-by-design implementation and ongoing privacy management",
-  description: "Cybersecurity.fi's GDPR Accelerator delivers complete privacy compliance including data mapping, privacy impact assessments, consent management, data subject rights implementation, and ongoing privacy governance to ensure sustainable GDPR compliance and build customer trust through privacy excellence.",
-  primaryCTA: { text: "Start GDPR Accelerator Program", href: "/contact?package=gdpr-accelerator" },
-  secondaryCTA: { text: "View Privacy Services", href: "/services/regulatory-compliance/gdpr-privacy-services" }
+const content = {
+  en: {
+    title: "GDPR Accelerator",
+    subtitle: "Privacy Excellence Program",
+    heroDescription: "Complete GDPR compliance solution with privacy-by-design implementation and ongoing privacy management. Our comprehensive program delivers data mapping, privacy impact assessments, consent management, data subject rights implementation, and ongoing privacy governance to ensure sustainable GDPR compliance.",
+    forWho: "For organizations seeking comprehensive GDPR compliance and privacy excellence.",
+    achieve: "Full GDPR compliance with privacy management system and ongoing privacy governance.",
+    overview: {
+      title: "Overview",
+      description: "The GDPR Compliance Accelerator delivers complete privacy compliance including data mapping, privacy impact assessments, consent management, data subject rights implementation, and ongoing privacy governance to ensure sustainable GDPR compliance and build customer trust through privacy excellence.",
+      highlight: "With over €1.6 billion in fines issued since GDPR came into force, privacy compliance is not optional. Our accelerator program helps you achieve comprehensive GDPR compliance while building customer trust and competitive advantage."
+    },
+    gdprPrinciples: {
+      title: "Seven Principles of GDPR",
+      subtitle: "Our accelerator program ensures your organization fully implements all seven GDPR principles with practical guidance and proven frameworks",
+      items: [
+        {
+          principle: "Lawfulness, Fairness & Transparency",
+          description: "Processing must be lawful, fair, and transparent to the data subject with clear legal basis",
+          implementation: [
+            "Legal basis identification and documentation",
+            "Comprehensive privacy notices",
+            "Fair processing assessments",
+            "Clear communication protocols",
+            "Regular legal basis reviews"
+          ]
+        },
+        {
+          principle: "Purpose Limitation",
+          description: "Data must be collected for specified, explicit, and legitimate purposes only",
+          implementation: [
+            "Purpose specification documentation",
+            "Compatible use assessments",
+            "Processing purpose restrictions",
+            "Regular purpose reviews",
+            "Purpose change consent management"
+          ]
+        },
+        {
+          principle: "Data Minimisation",
+          description: "Data processing must be adequate, relevant, and limited to what is necessary",
+          implementation: [
+            "Data minimization assessments",
+            "Data field necessity evaluations",
+            "Regular data audits",
+            "Processing scope limitations",
+            "Automated minimization controls"
+          ]
+        },
+        {
+          principle: "Accuracy",
+          description: "Personal data must be accurate and kept up to date where necessary",
+          implementation: [
+            "Data accuracy procedures",
+            "Regular update processes",
+            "Data quality monitoring",
+            "Rectification mechanisms",
+            "Data source verification"
+          ]
+        },
+        {
+          principle: "Storage Limitation",
+          description: "Data kept in identifiable form only as long as necessary for processing purposes",
+          implementation: [
+            "Data retention policy development",
+            "Automated deletion processes",
+            "Regular data review procedures",
+            "Archival strategies",
+            "Legal hold management"
+          ]
+        },
+        {
+          principle: "Integrity & Confidentiality",
+          description: "Appropriate security measures to protect against unauthorized processing and data breaches",
+          implementation: [
+            "Security measures implementation",
+            "Encryption and access controls",
+            "Staff training programs",
+            "Security assessments",
+            "Incident response procedures"
+          ]
+        },
+        {
+          principle: "Accountability",
+          description: "Controllers must demonstrate compliance with all GDPR principles",
+          implementation: [
+            "Compliance documentation",
+            "Privacy governance frameworks",
+            "Regular compliance audits",
+            "Data Protection Impact Assessments",
+            "Privacy by design implementation"
+          ]
+        }
+      ]
+    },
+    dataSubjectRights: {
+      title: "Data Subject Rights Implementation",
+      subtitle: "Comprehensive implementation of all data subject rights with automated workflows and response mechanisms",
+      items: [
+        {
+          right: "Right of Access",
+          description: "Individuals can request access to their personal data",
+          response_time: "1 month",
+          implementation: "Automated data export tools, identity verification, comprehensive data search"
+        },
+        {
+          right: "Right to Rectification",
+          description: "Individuals can request correction of inaccurate data",
+          response_time: "1 month",
+          implementation: "Data correction workflows, audit trails, downstream system updates"
+        },
+        {
+          right: "Right to Erasure",
+          description: "Individuals can request deletion of their data",
+          response_time: "1 month",
+          implementation: "Secure deletion procedures, backup management, third-party notifications"
+        },
+        {
+          right: "Right to Restrict Processing",
+          description: "Individuals can request limitation of data processing",
+          response_time: "1 month",
+          implementation: "Processing restriction flags, system controls, staff notifications"
+        },
+        {
+          right: "Right to Data Portability",
+          description: "Individuals can request data in a structured format",
+          response_time: "1 month",
+          implementation: "Standardized export formats, secure transfer mechanisms, validation processes"
+        },
+        {
+          right: "Right to Object",
+          description: "Individuals can object to certain types of processing",
+          response_time: "1 month",
+          implementation: "Objection handling processes, legitimate interest assessments, processing cessation"
+        }
+      ]
+    },
+    implementationRoadmap: {
+      title: "5-Month Implementation Roadmap",
+      subtitle: "Structured approach to achieve comprehensive GDPR compliance with clear phases and deliverables",
+      items: [
+        {
+          phase: "Phase 1: Foundation & Assessment",
+          duration: "Month 1-2",
+          objectives: [
+            "Establish privacy governance framework",
+            "Conduct comprehensive data audit",
+            "Identify legal basis for processing",
+            "Assess current compliance gaps"
+          ]
+        },
+        {
+          phase: "Phase 2: Policy & Procedure Development",
+          duration: "Month 2-3",
+          objectives: [
+            "Develop GDPR-compliant policies",
+            "Create operational procedures",
+            "Establish data subject rights processes",
+            "Design privacy training programs"
+          ]
+        },
+        {
+          phase: "Phase 3: Technical Implementation",
+          duration: "Month 3-4",
+          objectives: [
+            "Implement privacy by design",
+            "Deploy technical safeguards",
+            "Establish monitoring systems",
+            "Configure data protection tools"
+          ]
+        },
+        {
+          phase: "Phase 4: Testing & Validation",
+          duration: "Month 4-5",
+          objectives: [
+            "Test data subject rights processes",
+            "Validate privacy controls",
+            "Conduct compliance assessments",
+            "Prepare for regulatory readiness"
+          ]
+        }
+      ]
+    },
+    specialCategories: {
+      title: "Special Category Data Handling",
+      subtitle: "Expert guidance on handling sensitive personal data with enhanced protections and compliance requirements",
+      items: [
+        {
+          category: "Health Data",
+          considerations: "Medical records, health assessments, wellness data",
+          safeguards: "Enhanced security, explicit consent, medical professional oversight"
+        },
+        {
+          category: "Biometric Data",
+          considerations: "Fingerprints, facial recognition, voice patterns",
+          safeguards: "Specific identification purposes, technical safeguards, access restrictions"
+        },
+        {
+          category: "Financial Data",
+          considerations: "Banking details, credit scores, payment information",
+          safeguards: "Encryption, access controls, fraud prevention measures"
+        },
+        {
+          category: "Location Data",
+          considerations: "GPS coordinates, tracking data, geolocation",
+          safeguards: "Purpose specification, user consent, anonymization techniques"
+        }
+      ]
+    },
+    packageTiers: {
+      title: "GDPR Compliance Packages",
+      subtitle: "Choose the package that best fits your organization size and compliance requirements",
+      items: [
+        {
+          name: "Startup Package",
+          suitable: "Small companies (up to 50 employees)",
+          includes: [
+            "Basic data mapping",
+            "Essential policies and procedures",
+            "Privacy notice templates",
+            "Data subject rights setup",
+            "3 months support"
+          ],
+          popular: false
+        },
+        {
+          name: "Business Package",
+          suitable: "Medium companies (50-250 employees)",
+          includes: [
+            "Comprehensive data mapping",
+            "Full policy suite",
+            "Privacy impact assessments",
+            "Training programs",
+            "Technical implementation support",
+            "6 months support"
+          ],
+          popular: true
+        },
+        {
+          name: "Enterprise Package",
+          suitable: "Large organizations (250+ employees)",
+          includes: [
+            "Complex data mapping and modeling",
+            "Advanced privacy controls",
+            "Multi-jurisdiction compliance",
+            "Executive training",
+            "Ongoing compliance monitoring",
+            "12 months support",
+            "Annual compliance review"
+          ],
+          popular: false
+        }
+      ]
+    },
+    benefitsList: {
+      title: "Key Benefits",
+      items: [
+        "Comprehensive GDPR compliance in 60-90 days",
+        "Full privacy management system included",
+        "Virtual DPO services provided",
+        "Data subject rights implementation",
+        "Ongoing privacy governance",
+        "Customer trust and competitive advantage"
+      ]
+    }
+  },
+  fi: {
+    title: "GDPR-kiihdytin",
+    subtitle: "Tietosuojan huippuosaamisohjelma",
+    heroDescription: "Kokonaisvaltainen GDPR-ratkaisu tietosuojan sisäänrakennetulla toteutuksella ja jatkuvalla tietosuojahallinnalla. Kattava ohjelmamme tarjoaa tietokartoituksen, tietosuojan vaikutusten arvioinnit, suostumustenhallinnan, rekisteröityjen oikeuksien toteutuksen ja jatkuvan tietosuojahallinnon kestävän GDPR-vaatimustenmukaisuuden varmistamiseksi.",
+    forWho: "Organisaatioille, jotka tavoittelevat kattavaa GDPR-vaatimustenmukaisuutta ja tietosuojan huippuosaamista.",
+    achieve: "Täysi GDPR-vaatimustenmukaisuus tietosuojan hallintajärjestelmällä ja jatkuvalla tietosuojahallinnolla.",
+    overview: {
+      title: "Yleiskatsaus",
+      description: "GDPR-kiihdytin tarjoaa täydellisen tietosuojavaatimustenmukaisuuden, mukaan lukien tietokartoituksen, tietosuojan vaikutusten arvioinnit, suostumustenhallinnan, rekisteröityjen oikeuksien toteutuksen ja jatkuvan tietosuojahallinnon kestävän GDPR-vaatimustenmukaisuuden varmistamiseksi.",
+      highlight: "Yli 1,6 miljardia euroa sakkoja on määrätty GDPR:n voimaantulon jälkeen. Tietosuojavaatimusten noudattaminen ei ole valinnaista. Kiihdytinohjelmamme auttaa sinua saavuttamaan kattavan GDPR-vaatimustenmukaisuuden samalla kun rakennat asiakasluottamusta ja kilpailuetua."
+    },
+    gdprPrinciples: {
+      title: "GDPR:n seitsemän periaatetta",
+      subtitle: "Kiihdytinohjelmamme varmistaa, että organisaatiosi toteuttaa täysin kaikki seitsemän GDPR-periaatetta käytännön ohjeilla ja todistetuilla kehyksillä",
+      items: [
+        {
+          principle: "Laillisuus, kohtuullisuus ja läpinäkyvyys",
+          description: "Käsittelyn on oltava laillista, kohtuullista ja rekisteröidylle läpinäkyvää selkeällä oikeusperusteella",
+          implementation: [
+            "Oikeusperusteiden tunnistaminen ja dokumentointi",
+            "Kattavat tietosuojailmoitukset",
+            "Kohtuullisuusarvioinnit",
+            "Selkeät viestintäprotokollat",
+            "Säännölliset oikeusperustekatsaukset"
+          ]
+        },
+        {
+          principle: "Käyttötarkoituksen rajoittaminen",
+          description: "Tietoja on kerättävä vain tiettyjä, nimenomaisia ja laillisia tarkoituksia varten",
+          implementation: [
+            "Käyttötarkoitusdokumentaatio",
+            "Yhteensopivuusarviot",
+            "Käyttötarkoitusrajoitukset",
+            "Säännölliset tarkoituskatsaukset",
+            "Käyttötarkoituksen muutosten suostumushallinta"
+          ]
+        },
+        {
+          principle: "Tietojen minimointi",
+          description: "Tietojenkäsittelyn on oltava riittävää, olennaista ja tarpeelliseen rajoitettua",
+          implementation: [
+            "Tietojen minimointiarvioinnit",
+            "Tietokenttien tarpeellisuusarviot",
+            "Säännölliset tietotarkastukset",
+            "Käsittelyn laajuusrajoitukset",
+            "Automatisoidut minimointikontrollit"
+          ]
+        },
+        {
+          principle: "Tarkkuus",
+          description: "Henkilötietojen on oltava tarkkoja ja tarvittaessa ajan tasalla",
+          implementation: [
+            "Tietojen tarkkuusmenettelyt",
+            "Säännölliset päivitysprosessit",
+            "Tiedon laadun seuranta",
+            "Oikaisumekanismit",
+            "Tietolähteen varmennus"
+          ]
+        },
+        {
+          principle: "Säilytyksen rajoittaminen",
+          description: "Tietoja säilytetään tunnistettavassa muodossa vain niin kauan kuin käsittelytarkoitus edellyttää",
+          implementation: [
+            "Tietojen säilytyskäytäntö",
+            "Automatisoidut poistoprosessit",
+            "Säännölliset tietojen tarkistusmenettelyt",
+            "Arkistointistrategiat",
+            "Oikeudellisten pidätysten hallinta"
+          ]
+        },
+        {
+          principle: "Eheys ja luottamuksellisuus",
+          description: "Asianmukaiset turvatoimenpiteet luvattoman käsittelyn ja tietomurtojen estämiseksi",
+          implementation: [
+            "Turvatoimenpiteiden toteutus",
+            "Salaus ja käyttöoikeuksien hallinta",
+            "Henkilöstön koulutusohjelmat",
+            "Turvallisuusarvioinnit",
+            "Tapahtumien hallintamenettelyt"
+          ]
+        },
+        {
+          principle: "Vastuuvelvollisuus",
+          description: "Rekisterinpitäjien on osoitettava noudattavansa kaikkia GDPR-periaatteita",
+          implementation: [
+            "Vaatimustenmukaisuusdokumentaatio",
+            "Tietosuojan hallintakehykset",
+            "Säännölliset vaatimustenmukaisuusauditoinnit",
+            "Tietosuojan vaikutusten arvioinnit",
+            "Tietosuoja sisäänrakennettuna -toteutus"
+          ]
+        }
+      ]
+    },
+    dataSubjectRights: {
+      title: "Rekisteröityjen oikeuksien toteutus",
+      subtitle: "Kaikkien rekisteröityjen oikeuksien kattava toteutus automatisoiduilla työnkuluilla ja vastausmekanismeilla",
+      items: [
+        {
+          right: "Tarkastusoikeus",
+          description: "Rekisteröidyt voivat pyytää pääsyä henkilötietoihinsa",
+          response_time: "1 kuukausi",
+          implementation: "Automatisoidut tietojen vientityökalut, henkilöllisyyden varmennus, kattava tietohaku"
+        },
+        {
+          right: "Oikeus tietojen oikaisemiseen",
+          description: "Rekisteröidyt voivat pyytää virheellisten tietojen korjaamista",
+          response_time: "1 kuukausi",
+          implementation: "Tietojen korjaus työnkulut, auditointiketjut, alajärjestelmien päivitykset"
+        },
+        {
+          right: "Oikeus tietojen poistamiseen",
+          description: "Rekisteröidyt voivat pyytää tietojensa poistamista",
+          response_time: "1 kuukausi",
+          implementation: "Turvalliset poistomenettelyt, varmuuskopioiden hallinta, kolmannen osapuolen ilmoitukset"
+        },
+        {
+          right: "Oikeus käsittelyn rajoittamiseen",
+          description: "Rekisteröidyt voivat pyytää tietojenkäsittelyn rajoittamista",
+          response_time: "1 kuukausi",
+          implementation: "Käsittelyn rajoitusliput, järjestelmäkontrollit, henkilöstön ilmoitukset"
+        },
+        {
+          right: "Oikeus tietojen siirrettävyyteen",
+          description: "Rekisteröidyt voivat pyytää tietoja jäsennellyssä muodossa",
+          response_time: "1 kuukausi",
+          implementation: "Standardoidut vientimuodot, turvalliset siirtomekanismit, validointiprosessit"
+        },
+        {
+          right: "Vastustamisoikeus",
+          description: "Rekisteröidyt voivat vastustaa tiettyjä käsittelytyyppejä",
+          response_time: "1 kuukausi",
+          implementation: "Vastustamiskäsittelyprosessit, oikeutettujen etujen arvioinnit, käsittelyn lopettaminen"
+        }
+      ]
+    },
+    implementationRoadmap: {
+      title: "5 kuukauden toteutussuunnitelma",
+      subtitle: "Rakenteinen lähestymistapa kattavan GDPR-vaatimustenmukaisuuden saavuttamiseksi selkeillä vaiheilla",
+      items: [
+        {
+          phase: "Vaihe 1: Perusta & Arviointi",
+          duration: "Kuukaudet 1-2",
+          objectives: [
+            "Tietosuojahallintokehyksen perustaminen",
+            "Kattavan tietotarkastuksen suorittaminen",
+            "Käsittelyn oikeusperusteiden tunnistaminen",
+            "Nykyisten vaatimustenmukaisuuspuutteiden arviointi"
+          ]
+        },
+        {
+          phase: "Vaihe 2: Käytäntöjen ja menettelyjen kehitys",
+          duration: "Kuukaudet 2-3",
+          objectives: [
+            "GDPR-yhteensopivien käytäntöjen kehittäminen",
+            "Operatiivisten menettelyjen luominen",
+            "Rekisteröityjen oikeusprosessien perustaminen",
+            "Tietosuojakoulutusohjelmien suunnittelu"
+          ]
+        },
+        {
+          phase: "Vaihe 3: Tekninen toteutus",
+          duration: "Kuukaudet 3-4",
+          objectives: [
+            "Tietosuoja sisäänrakennettuna -toteutus",
+            "Teknisten suojaustoimenpiteiden käyttöönotto",
+            "Seurantajärjestelmien perustaminen",
+            "Tietosuojatyökalujen konfigurointi"
+          ]
+        },
+        {
+          phase: "Vaihe 4: Testaus ja validointi",
+          duration: "Kuukaudet 4-5",
+          objectives: [
+            "Rekisteröityjen oikeusprosessien testaus",
+            "Tietosuojakontrollien validointi",
+            "Vaatimustenmukaisuusarviointien suorittaminen",
+            "Sääntelyvalmiuteen valmistautuminen"
+          ]
+        }
+      ]
+    },
+    specialCategories: {
+      title: "Erityisten henkilötietoryhmien käsittely",
+      subtitle: "Asiantunteva ohjaus arkaluonteisten henkilötietojen käsittelyyn tehostetuilla suojauksilla",
+      items: [
+        {
+          category: "Terveystiedot",
+          considerations: "Potilastiedot, terveysarvioinnit, hyvinvointitiedot",
+          safeguards: "Tehostettu turvallisuus, nimenomainen suostumus, lääketieteellinen valvonta"
+        },
+        {
+          category: "Biometriset tiedot",
+          considerations: "Sormenjäljet, kasvojentunnistus, äänikuvio",
+          safeguards: "Tietyt tunnistustarkoitukset, tekniset suojaustoimenpiteet, käyttöoikeusrajoitukset"
+        },
+        {
+          category: "Taloudelliset tiedot",
+          considerations: "Pankkitiedot, luottopisteet, maksutiedot",
+          safeguards: "Salaus, käyttöoikeuksien hallinta, petostentorjuntatoimenpiteet"
+        },
+        {
+          category: "Sijaintitiedot",
+          considerations: "GPS-koordinaatit, seurantatiedot, geopaikannus",
+          safeguards: "Käyttötarkoituksen määrittely, käyttäjien suostumus, anonymisointitekniikat"
+        }
+      ]
+    },
+    packageTiers: {
+      title: "GDPR-paketit",
+      subtitle: "Valitse organisaatiosi kokoon ja vaatimustenmukaisuustarpeisiin parhaiten sopiva paketti",
+      items: [
+        {
+          name: "Aloituspaketti",
+          suitable: "Pienet yritykset (jopa 50 työntekijää)",
+          includes: [
+            "Perustason tietokartoitus",
+            "Keskeiset käytännöt ja menettelyt",
+            "Tietosuojailmoituspohjat",
+            "Rekisteröityjen oikeuksien perustaminen",
+            "3 kuukauden tuki"
+          ],
+          popular: false
+        },
+        {
+          name: "Yrityspaketti",
+          suitable: "Keskisuuret yritykset (50-250 työntekijää)",
+          includes: [
+            "Kattava tietokartoitus",
+            "Täysi käytäntökokoelma",
+            "Tietosuojan vaikutusten arvioinnit",
+            "Koulutusohjelmat",
+            "Tekninen toteutustuki",
+            "6 kuukauden tuki"
+          ],
+          popular: true
+        },
+        {
+          name: "Konsernipaketti",
+          suitable: "Suuret organisaatiot (250+ työntekijää)",
+          includes: [
+            "Monimutkainen tietokartoitus ja mallinnus",
+            "Edistyneet tietosuojakontrollit",
+            "Monitoimialueen vaatimustenmukaisuus",
+            "Johdon koulutus",
+            "Jatkuva vaatimustenmukaisuuden seuranta",
+            "12 kuukauden tuki",
+            "Vuosittainen vaatimustenmukaisuuskatsaus"
+          ],
+          popular: false
+        }
+      ]
+    },
+    benefitsList: {
+      title: "Keskeiset edut",
+      items: [
+        "Kattava GDPR-vaatimustenmukaisuus 60-90 päivässä",
+        "Täydellinen tietosuojan hallintajärjestelmä",
+        "Virtuaalinen DPO-palvelu",
+        "Rekisteröityjen oikeuksien toteutus",
+        "Jatkuva tietosuojahallinto",
+        "Asiakasluottamus ja kilpailuetu"
+      ]
+    }
+  }
 };
 
-const gdprPrinciples = [
-  {
-    principle: "Lawfulness, Fairness & Transparency",
-    description: "Processing must be lawful, fair, and transparent to the data subject with clear legal basis",
-    implementation: [
-      "Legal basis identification and documentation for all processing activities",
-      "Comprehensive privacy notices and transparency measures",
-      "Fair processing assessments and impact evaluations",
-      "Clear data subject communication protocols and plain language policies",
-      "Regular legal basis reviews and updates"
-    ],
-    legalBases: "Consent, Contract, Legal Obligation, Vital Interests, Public Task, Legitimate Interests"
-  },
-  {
-    principle: "Purpose Limitation",
-    description: "Data must be collected for specified, explicit, and legitimate purposes only",
-    implementation: [
-      "Detailed purpose specification documentation for all data processing",
-      "Compatible use assessments and further processing evaluations",
-      "Clear processing purpose restrictions and limitations",
-      "Regular purpose review processes and compatibility assessments",
-      "Purpose change notification and consent management"
-    ],
-    keyRequirement: "Cannot process for incompatible purposes without new legal basis"
-  },
-  {
-    principle: "Data Minimisation",
-    description: "Data processing must be adequate, relevant, and limited to what is necessary",
-    implementation: [
-      "Comprehensive data minimization assessments and collection reviews",
-      "Data field necessity evaluations and collection justifications",
-      "Regular data audits and unnecessary data identification",
-      "Processing scope limitations and data reduction initiatives",
-      "Automated data minimization controls and monitoring"
-    ],
-    impact: "Reduces data breach risk and storage costs while improving compliance"
-  },
-  {
-    principle: "Accuracy",
-    description: "Personal data must be accurate and kept up to date where necessary",
-    implementation: [
-      "Data accuracy procedures and quality management systems",
-      "Regular update and correction processes with data subject input",
-      "Data quality monitoring and automated accuracy checks",
-      "Rectification mechanisms and error correction workflows",
-      "Data source verification and validation procedures"
-    ],
-    dataSubjectRight: "Right to rectification - correction of inaccurate data"
-  },
-  {
-    principle: "Storage Limitation",
-    description: "Data kept in identifiable form only as long as necessary for processing purposes",
-    implementation: [
-      "Data retention policy development with clear retention periods",
-      "Automated deletion processes and data lifecycle management",
-      "Regular data review and purging procedures",
-      "Archival and pseudonymization strategies for long-term storage",
-      "Legal hold and litigation exception management"
-    ],
-    requirement: "Must define and justify retention periods for all data categories"
-  },
-  {
-    principle: "Integrity & Confidentiality (Security)",
-    description: "Appropriate security measures to protect against unauthorized processing and data breaches",
-    implementation: [
-      "Technical and organizational security measures implementation",
-      "Encryption, access controls, and data protection technologies",
-      "Staff training and security awareness programs",
-      "Regular security assessments and penetration testing",
-      "Incident response and data breach notification procedures"
-    ],
-    requirement: "Security measures appropriate to the risk and state of technology"
-  },
-  {
-    principle: "Accountability",
-    description: "Controllers must demonstrate compliance with all GDPR principles",
-    implementation: [
-      "Comprehensive compliance documentation and evidence collection",
-      "Privacy governance frameworks and management systems",
-      "Regular compliance audits and assessment programs",
-      "Data Protection Impact Assessment (DPIA) processes",
-      "Privacy by design and by default implementation"
-    ],
-    evidence: "Documentation, policies, training records, audit reports, DPIAs"
-  },
-  {
-    principle: "Storage Limitation",
-    description: "Data must not be kept longer than necessary",
-    implementation: [
-      "Data retention schedules",
-      "Automated deletion processes",
-      "Regular data reviews",
-      "Secure disposal procedures"
-    ]
-  },
-  {
-    principle: "Integrity & Confidentiality",
-    description: "Data must be processed securely with appropriate technical and organizational measures",
-    implementation: [
-      "Security risk assessments",
-      "Technical safeguards implementation",
-      "Organizational security measures",
-      "Incident response procedures"
-    ]
-  },
-  {
-    principle: "Accountability",
-    description: "Controllers must demonstrate compliance with GDPR principles",
-    implementation: [
-      "Compliance documentation",
-      "Privacy governance framework",
-      "Regular compliance audits",
-      "Accountability demonstrations"
-    ]
-  }
-];
-
-const implementationRoadmap = [
-  {
-    phase: "Phase 1: Foundation & Assessment",
-    duration: "Month 1-2",
-    objectives: [
-      "Establish privacy governance framework",
-      "Conduct comprehensive data audit",
-      "Identify legal basis for processing",
-      "Assess current compliance gaps"
-    ],
-    deliverables: [
-      "Privacy governance charter",
-      "Data mapping inventory",
-      "Legal basis register",
-      "Gap analysis report",
-      "Privacy impact assessment template"
-    ]
-  },
-  {
-    phase: "Phase 2: Policy & Procedure Development",
-    duration: "Month 2-3",
-    objectives: [
-      "Develop GDPR-compliant policies",
-      "Create operational procedures",
-      "Establish data subject rights processes",
-      "Design privacy training programs"
-    ],
-    deliverables: [
-      "Privacy policy suite",
-      "Data processing procedures",
-      "Data subject rights processes",
-      "Privacy training materials",
-      "Vendor assessment framework"
-    ]
-  },
-  {
-    phase: "Phase 3: Technical Implementation",
-    duration: "Month 3-4",
-    objectives: [
-      "Implement privacy by design",
-      "Deploy technical safeguards",
-      "Establish monitoring systems",
-      "Configure data protection tools"
-    ],
-    deliverables: [
-      "Privacy by design guidelines",
-      "Technical security controls",
-      "Data monitoring systems",
-      "Consent management platform",
-      "Data breach response tools"
-    ]
-  },
-  {
-    phase: "Phase 4: Testing & Validation",
-    duration: "Month 4-5",
-    objectives: [
-      "Test data subject rights processes",
-      "Validate privacy controls",
-      "Conduct compliance assessments",
-      "Prepare for regulatory readiness"
-    ],
-    deliverables: [
-      "Process testing reports",
-      "Control validation results",
-      "Compliance assessment",
-      "Regulatory readiness review",
-      "Continuous improvement plan"
-    ]
-  }
-];
-
-const dataSubjectRights = [
-  {
-    right: "Right of Access",
-    description: "Individuals can request access to their personal data",
-    response_time: "1 month",
-    implementation: "Automated data export tools, identity verification, comprehensive data search"
-  },
-  {
-    right: "Right to Rectification",
-    description: "Individuals can request correction of inaccurate data",
-    response_time: "1 month",
-    implementation: "Data correction workflows, audit trails, downstream system updates"
-  },
-  {
-    right: "Right to Erasure",
-    description: "Individuals can request deletion of their data",
-    response_time: "1 month",
-    implementation: "Secure deletion procedures, backup management, third-party notifications"
-  },
-  {
-    right: "Right to Restrict Processing",
-    description: "Individuals can request limitation of data processing",
-    response_time: "1 month",
-    implementation: "Processing restriction flags, system controls, staff notifications"
-  },
-  {
-    right: "Right to Data Portability",
-    description: "Individuals can request data in a structured format",
-    response_time: "1 month",
-    implementation: "Standardized export formats, secure transfer mechanisms, validation processes"
-  },
-  {
-    right: "Right to Object",
-    description: "Individuals can object to certain types of processing",
-    response_time: "1 month",
-    implementation: "Objection handling processes, legitimate interest assessments, processing cessation"
-  }
-];
-
-const specialCategories = [
-  {
-    category: "Health Data",
-    considerations: "Medical records, health assessments, wellness data",
-    safeguards: "Enhanced security, explicit consent, medical professional oversight"
-  },
-  {
-    category: "Biometric Data",
-    considerations: "Fingerprints, facial recognition, voice patterns",
-    safeguards: "Specific identification purposes, technical safeguards, access restrictions"
-  },
-  {
-    category: "Financial Data",
-    considerations: "Banking details, credit scores, payment information",
-    safeguards: "Encryption, access controls, fraud prevention measures"
-  },
-  {
-    category: "Location Data",
-    considerations: "GPS coordinates, tracking data, geolocation",
-    safeguards: "Purpose specification, user consent, anonymization techniques"
-  }
-];
-
-const packageTiers = [
-  {
-    name: "Startup Package",
-    suitable: "Small companies (up to 50 employees)",
-    includes: [
-      "Basic data mapping",
-      "Essential policies and procedures",
-      "Privacy notice templates",
-      "Data subject rights setup",
-      "3 months support"
-    ]
-  },
-  {
-    name: "Business Package",
-    suitable: "Medium companies (50-250 employees)",
-    includes: [
-      "Comprehensive data mapping",
-      "Full policy suite",
-      "Privacy impact assessments",
-      "Training programs",
-      "Technical implementation support",
-      "6 months support"
-    ]
-  },
-  {
-    name: "Enterprise Package",
-    suitable: "Large organizations (250+ employees)",
-    includes: [
-      "Complex data mapping and modeling",
-      "Advanced privacy controls",
-      "Multi-jurisdiction compliance",
-      "Executive training",
-      "Ongoing compliance monitoring",
-      "12 months support",
-      "Annual compliance review"
-    ]
-  }
-];
+const currentContent = content[lang];
+const isFi = lang === 'fi';
 ---
 
-<Layout seoConfig={seoConfig}>
-  <HeroSection content={heroContent} />
-  
-  <!-- GDPR Overview -->
-  <section class="py-16 bg-white">
+<Layout {...seoConfig}>
+
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Why GDPR Compliance Matters More Than Ever</h2>
-        <p class="text-lg text-slate-600 max-w-4xl mx-auto">
-          With over €1.6 billion in fines issued since GDPR came into force, privacy compliance is not optional. 
-          Our accelerator program helps you achieve comprehensive GDPR compliance while building customer trust 
-          and competitive advantage.
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
         </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-red-50 border-l-4 border-red-400 p-6">
-          <div class="flex items-center mb-2">
-            <svg class="w-6 h-6 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-            </svg>
-            <h3 class="text-lg font-semibold text-red-900">High Fines</h3>
-          </div>
-          <p class="text-red-700">Up to 4% of annual revenue or €20M - whichever is higher</p>
-        </div>
         
-        <div class="bg-orange-50 border-l-4 border-orange-400 p-6">
-          <div class="flex items-center mb-2">
-            <svg class="w-6 h-6 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <h3 class="text-lg font-semibold text-orange-900">Reputational Risk</h3>
+        <!-- Info Section - Two Column Layout -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
+              </div>
+            </div>
           </div>
-          <p class="text-orange-700">Data breaches and non-compliance damage customer trust</p>
-        </div>
-        
-        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6">
-          <div class="flex items-center mb-2">
-            <svg class="w-6 h-6 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.414-4.414a2 2 0 010 2.828L9.828 17.657a2 2 0 01-2.828 0L3.172 13.828a2 2 0 010-2.828L9.757 4.414a2 2 0 012.828 0z"></path>
-            </svg>
-            <h3 class="text-lg font-semibold text-yellow-900">Business Value</h3>
+          
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
+            </div>
           </div>
-          <p class="text-yellow-700">Compliance creates competitive advantage and enables growth</p>
-        </div>
-        
-        <div class="bg-teal-50 border-l-4 border-teal-400 p-6">
-          <div class="flex items-center mb-2">
-            <svg class="w-6 h-6 text-teal-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-            </svg>
-            <h3 class="text-lg font-semibold text-teal-900">Customer Trust</h3>
-          </div>
-          <p class="text-teal-700">Strong privacy practices build lasting customer relationships</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- GDPR Principles -->
-  <section class="py-16 bg-slate-50">
+  <!-- Overview Section -->
+  <section class="py-6">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Seven Principles of GDPR</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          Our accelerator program ensures your organization fully implements all seven GDPR principles 
-          with practical guidance and proven frameworks.
+      <div class="max-w-4xl mx-auto bg-gradient-to-br from-blue-50 to-indigo-50/30 rounded-2xl border-2 border-[#3B82F6] shadow-lg p-6 md:p-8">
+        <div class="flex items-start gap-4 mb-4">
+          <div class="w-10 h-10 bg-[#3B82F6] rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h2 class="text-xl md:text-2xl font-bold text-[#1E2A7A]">{currentContent.overview.title}</h2>
+        </div>
+        <p class="text-slate-700 leading-relaxed mb-4 pl-14">{currentContent.overview.description}</p>
+        <div class="bg-white/70 rounded-xl border border-[#3B82F6]/30 p-4 pl-14">
+          <p class="text-[#1E2A7A] font-semibold flex items-start gap-2">
+            <svg class="w-5 h-5 text-[#3B82F6] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {currentContent.overview.highlight}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GDPR Principles Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.gdprPrinciples.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.gdprPrinciples.subtitle}
         </p>
       </div>
       
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {gdprPrinciples.map((principle, index) => (
-          <div class="bg-white rounded-lg shadow-lg border border-slate-200 p-6">
-            <div class="flex items-start mb-4">
-              <span class="bg-teal-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3 mt-1">
-                {index + 1}
-              </span>
-              <div>
-                <h3 class="text-lg font-semibold text-slate-900 mb-2">{principle.principle}</h3>
-                <p class="text-slate-600 mb-4">{principle.description}</p>
-              </div>
-            </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        {currentContent.gdprPrinciples.items.map((principle) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
             
-            <div>
-              <h4 class="text-sm font-semibold text-slate-900 mb-3">Implementation Approach:</h4>
-              <ul class="space-y-2">
-                {principle.implementation.map(item => (
-                  <li class="flex items-start">
-                    <svg class="w-4 h-4 text-teal-600 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="text-sm text-slate-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {principle.principle}
+            </h3>
+            <p class="text-[10px] text-slate-500 mb-2 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {principle.description}
+            </p>
+            
+            <ul class="space-y-1 relative z-10">
+              {principle.implementation.map((item) => (
+                <li class="flex items-start text-[10px] text-slate-600 group-hover:text-slate-700 transition-colors duration-300">
+                  <svg class="w-2.5 h-2.5 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Data Subject Rights -->
-  <section class="py-16 bg-white">
+  <!-- Data Subject Rights Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Data Subject Rights Implementation</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          Comprehensive implementation of all data subject rights with automated workflows and response mechanisms.
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.dataSubjectRights.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.dataSubjectRights.subtitle}
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {dataSubjectRights.map(right => (
-          <div class="bg-slate-50 rounded-lg p-6">
-            <div class="flex items-center justify-between mb-3">
-              <h3 class="text-lg font-semibold text-slate-900">{right.right}</h3>
-              <span class="bg-teal-100 text-teal-800 text-xs px-2 py-1 rounded-full">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        {currentContent.dataSubjectRights.items.map((right) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex items-center justify-between mb-1.5 relative z-10">
+              <h3 class="text-sm font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                {right.right}
+              </h3>
+              <span class="bg-[#3B82F6]/10 text-[#1E40AF] text-[10px] font-medium px-2 py-0.5 rounded-full">
                 {right.response_time}
               </span>
             </div>
-            <p class="text-slate-600 mb-4">{right.description}</p>
-            <div>
-              <h4 class="text-sm font-semibold text-slate-900 mb-2">Implementation:</h4>
-              <p class="text-sm text-slate-700">{right.implementation}</p>
+            <p class="text-[10px] text-slate-500 mb-2 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {right.description}
+            </p>
+            <div class="relative z-10">
+              <p class="text-[10px] text-slate-600 group-hover:text-slate-700 transition-colors duration-300">
+                <span class="font-semibold text-[#1E40AF]">{isFi ? 'Toteutus:' : 'Implementation:'}</span> {right.implementation}
+              </p>
             </div>
           </div>
         ))}
@@ -475,127 +750,139 @@ const packageTiers = [
     </div>
   </section>
 
-  <!-- Implementation Roadmap -->
-  <section class="py-16 bg-slate-50">
+  <!-- Implementation Roadmap Section -->
+  <section class="py-12 md:py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">5-Month Implementation Roadmap</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          Structured approach to achieve comprehensive GDPR compliance with clear phases and deliverables.
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.implementationRoadmap.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.implementationRoadmap.subtitle}
         </p>
       </div>
       
-      <div class="space-y-8">
-        {implementationRoadmap.map((phase, index) => (
-          <div class="bg-white rounded-lg shadow-lg border border-slate-200 p-8">
-            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
-              <div class="lg:flex-1">
-                <div class="flex items-center mb-3">
-                  <span class="bg-teal-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3">
-                    {phase.phase.split(':')[0]}
-                  </span>
-                  <span class="text-sm text-slate-500">{phase.duration}</span>
-                </div>
-                <h3 class="text-xl font-semibold text-slate-900 mb-2">{phase.phase.split(':')[1]}</h3>
-              </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+        {currentContent.implementationRoadmap.items.map((phase) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex items-center justify-between mb-2 relative z-10">
+              <h3 class="text-xs font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                {phase.phase}
+              </h3>
+              <span class="text-[10px] text-slate-500">{phase.duration}</span>
             </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div>
-                <h4 class="text-sm font-semibold text-slate-900 mb-3">Objectives:</h4>
-                <ul class="space-y-2">
-                  {phase.objectives.map(objective => (
-                    <li class="flex items-start">
-                      <svg class="w-4 h-4 text-teal-600 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                      </svg>
-                      <span class="text-sm text-slate-700">{objective}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div>
-                <h4 class="text-sm font-semibold text-slate-900 mb-3">Deliverables:</h4>
-                <ul class="space-y-2">
-                  {phase.deliverables.map(deliverable => (
-                    <li class="flex items-start">
-                      <svg class="w-4 h-4 text-orange-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" clip-rule="evenodd"></path>
-                      </svg>
-                      <span class="text-sm text-slate-700">{deliverable}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Special Categories -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Special Category Data Handling</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          Expert guidance on handling sensitive personal data with enhanced protections and compliance requirements.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {specialCategories.map(category => (
-          <div class="bg-slate-50 rounded-lg p-6">
-            <h3 class="text-lg font-semibold text-slate-900 mb-3">{category.category}</h3>
-            <p class="text-slate-600 mb-4">{category.considerations}</p>
-            <div>
-              <h4 class="text-sm font-semibold text-slate-900 mb-2">Required Safeguards:</h4>
-              <p class="text-sm text-slate-700">{category.safeguards}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing Packages -->
-  <section class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">GDPR Compliance Packages</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          Choose the package that best fits your organization size and compliance requirements.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {packageTiers.map((tier, index) => (
-          <div class={`rounded-lg shadow-lg p-8 ${index === 1 ? 'bg-teal-50 border-2 border-teal-200 transform scale-105' : 'bg-white border border-slate-200'}`}>
-            <div class="text-center mb-6">
-              <h3 class="text-xl font-semibold text-slate-900 mb-2">{tier.name}</h3>
-              <p class="text-sm text-slate-600">{tier.suitable}</p>
-            </div>
-            
-            <ul class="space-y-3 mb-8">
-              {tier.includes.map(item => (
-                <li class="flex items-start">
-                  <svg class="w-4 h-4 text-teal-600 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            <ul class="space-y-1.5 relative z-10">
+              {phase.objectives.map((objective) => (
+                <li class="flex items-start text-[10px] text-slate-600 group-hover:text-slate-700 transition-colors duration-300">
+                  <svg class="w-2.5 h-2.5 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span class="text-sm text-slate-700">{item}</span>
+                  {objective}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Special Categories Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.specialCategories.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.specialCategories.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+        {currentContent.specialCategories.items.map((category) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {category.category}
+            </h3>
+            <p class="text-[10px] text-slate-500 mb-2 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {category.considerations}
+            </p>
+            <div class="relative z-10">
+              <p class="text-[10px] text-slate-600 group-hover:text-slate-700 transition-colors duration-300">
+                <span class="font-semibold text-[#1E40AF]">{isFi ? 'Suojaukset:' : 'Safeguards:'}</span> {category.safeguards}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Package Tiers Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.packageTiers.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.packageTiers.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {currentContent.packageTiers.items.map((tier) => (
+          <div class={`bg-white rounded-xl border-2 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-5 md:p-6 group relative overflow-hidden
+                      ${tier.popular ? 'border-[#3B82F6]' : 'border-slate-100'}`}>
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            {tier.popular && (
+              <div class="flex justify-center mb-3 relative z-10">
+                <span class="bg-[#3B82F6] text-white text-xs font-medium px-3 py-1 rounded-full">
+                  {isFi ? 'Suosituin' : 'Most Popular'}
+                </span>
+              </div>
+            )}
+            
+            <div class="text-center mb-4 relative z-10">
+              <h3 class="text-lg font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                {tier.name}
+              </h3>
+              <p class="text-xs text-slate-500 mt-1">{tier.suitable}</p>
+            </div>
+            
+            <ul class="space-y-1.5 mb-4 relative z-10 flex-grow">
+              {tier.includes.map((item) => (
+                <li class="flex items-start text-xs text-slate-600 group-hover:text-slate-700 transition-colors duration-300">
+                  <svg class="w-3 h-3 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {item}
                 </li>
               ))}
             </ul>
             
             <a href={`/contact?package=gdpr-${tier.name.toLowerCase().replace(' ', '-')}`} 
-               class={`block w-full text-center py-3 px-4 rounded-md font-medium ${
-                 index === 1 
-                   ? 'bg-teal-600 text-white hover:bg-teal-700' 
-                   : 'bg-slate-100 text-slate-900 hover:bg-slate-200'
-               } transition-colors`}>
-              Get Started
+               class={`relative z-10 inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
+                       ${tier.popular 
+                         ? 'bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] hover:shadow-lg' 
+                         : 'border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent'}`}>
+              {isFi ? 'Aloita' : 'Get Started'}
             </a>
           </div>
         ))}
@@ -603,65 +890,31 @@ const packageTiers = [
     </div>
   </section>
 
-  <!-- Compliance Benefits -->
-  <section class="py-16 bg-white">
+  <!-- Benefits Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Beyond Compliance: Business Benefits</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          GDPR compliance delivers tangible business value beyond regulatory requirements.
-        </p>
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.benefitsList.title}
+        </h2>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="text-center">
-          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.414-4.414a2 2 0 010 2.828L9.828 17.657a2 2 0 01-2.828 0L3.172 13.828a2 2 0 010-2.828L9.757 4.414a2 2 0 012.828 0z"></path>
-            </svg>
+      <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-3">
+        {currentContent.benefitsList.items.map((benefit) => (
+          <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3bb1f6]
+                      transition-all duration-300
+                      flex items-center gap-3 p-3 group">
+            <div class="w-6 h-6 bg-[#3B82F6] rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <span class="text-sm font-medium text-slate-700 group-hover:text-[#3B82F6] transition-colors duration-300">{benefit}</span>
           </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Enhanced Trust</h3>
-          <p class="text-slate-600">Build stronger customer relationships through transparent privacy practices</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Competitive Edge</h3>
-          <p class="text-slate-600">Differentiate from competitors with strong privacy credentials</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Risk Reduction</h3>
-          <p class="text-slate-600">Minimize data breach risks and associated costs</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20a3 3 0 01-3-3v-2a3 3 0 013-3h1m6 6v-2a3 3 0 00-3-3H7a3 3 0 00-3 3v2a3 3 0 003 3m6-3a3 3 0 013 3m-3-3h4m-4 0V8m0 12v-2"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Market Access</h3>
-          <p class="text-slate-600">Access EU markets and privacy-conscious customers globally</p>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <CTA 
-    title="Accelerate Your GDPR Compliance Journey"
-    description="Transform privacy compliance from a burden into a competitive advantage with our comprehensive GDPR accelerator program."
-    primaryCTA={{ text: "Start GDPR Program", href: "/contact?package=gdpr-accelerator" }}
-    secondaryCTA={{ text: "Learn About GDPR", href: "/frameworks/gdpr" }}
-  />
 </Layout>
-

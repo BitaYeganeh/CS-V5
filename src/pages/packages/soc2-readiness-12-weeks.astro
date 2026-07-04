@@ -1,7 +1,6 @@
 ﻿---
 import Layout from '@/layouts/Layout.astro';
-import HeroSection from '@/components/sections/HeroSection.astro';
-import CTA from '@/components/sections/CTA.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
@@ -45,329 +44,528 @@ const seoConfig = {
   }
 };
 
-const heroContent = {
-  title: "SOC 2 Readiness in 12 Weeks - Trust Service Excellence",
-  subtitle: "Achieve SOC 2 Type I and Type II readiness with comprehensive trust service criteria implementation and audit preparation",
-  description: "Cybersecurity.fi's SOC 2 Readiness Program delivers complete preparation for successful SOC 2 audits, ensuring your organization meets all Trust Service Criteria while building customer confidence through demonstrated security, availability, processing integrity, confidentiality, and privacy controls.",
-  primaryCTA: { text: "Start SOC 2 Readiness Program", href: "/contact?package=soc2-readiness" },
-  secondaryCTA: { text: "Learn About SOC 2", href: "/frameworks/soc-2" }
+const content = {
+  en: {
+    title: "SOC 2 Readiness",
+    subtitle: "12-Week Trust Service Excellence Program",
+    heroDescription: "Achieve SOC 2 Type I and Type II readiness with comprehensive trust service criteria implementation and audit preparation. Our complete program ensures your organization meets all Trust Service Criteria while building customer confidence through demonstrated security, availability, processing integrity, confidentiality, and privacy controls.",
+    forWho: "For service organizations preparing for SOC 2 Type I and Type II audits.",
+    achieve: "SOC 2 readiness with comprehensive trust service criteria implementation and audit preparation.",
+    overview: {
+      title: "Overview",
+      description: "SOC 2 compliance demonstrates to customers and stakeholders that your organization has implemented robust controls to protect their data. It's essential for B2B SaaS companies, cloud service providers, and technology companies handling sensitive customer data.",
+      highlight: "SOC 2 compliance builds customer trust, provides competitive advantage, enables business growth, and improves overall security posture."
+    },
+    trustServiceCriteria: {
+      title: "SOC 2 Trust Service Criteria",
+      subtitle: "Our program addresses all five trust service criteria, helping you choose the right combination for your business needs",
+      items: [
+        {
+          criterion: "Security (Mandatory)",
+          description: "Protection of system resources against unauthorized access, use, disclosure, disruption, modification, or destruction",
+          focus: "Access controls, logical and physical security, network security, system boundaries, data protection, change management, risk assessment and mitigation",
+          weeks: "Weeks 1-4"
+        },
+        {
+          criterion: "Availability (Optional)",
+          description: "System availability for operation and use as committed or agreed, typically 99.9% or higher uptime requirements",
+          focus: "System monitoring, backup procedures, incident response, capacity management, disaster recovery, business continuity planning, performance monitoring",
+          weeks: "Weeks 5-6"
+        },
+        {
+          criterion: "Processing Integrity (Optional)",
+          description: "System processing is complete, valid, accurate, timely, and authorized to meet the entity's objectives",
+          focus: "Data validation, error handling, processing controls, system monitoring, data accuracy, completeness checks, authorized processing",
+          weeks: "Weeks 7-8"
+        },
+        {
+          criterion: "Confidentiality (Optional)",
+          description: "Information designated as confidential is protected as committed or agreed through its collection, use, retention, disclosure, and disposal",
+          focus: "Data classification, encryption, access restrictions, confidentiality agreements, secure disposal, data loss prevention, information handling policies",
+          weeks: "Weeks 9-10"
+        },
+        {
+          criterion: "Privacy (Optional)",
+          description: "Personal information is collected, used, retained, disclosed, and disposed of in conformity with the entity's privacy notice",
+          focus: "Privacy policies, consent management, data retention, privacy controls, data subject rights, cross-border transfers, privacy impact assessments",
+          weeks: "Weeks 11-12"
+        }
+      ]
+    },
+    programPhases: {
+      title: "12-Week Implementation Timeline",
+      subtitle: "Structured approach to achieve SOC 2 readiness with clear milestones and deliverables",
+      items: [
+        {
+          phase: "Weeks 1-2: Foundation & Assessment",
+          activities: [
+            "Current state assessment against Trust Service Criteria",
+            "Detailed gap analysis and remediation planning",
+            "SOC 2 scoping and system boundary definition",
+            "Service Organization Description (SOD) development",
+            "Control environment evaluation",
+            "Audit firm selection support"
+          ]
+        },
+        {
+          phase: "Weeks 3-6: Security Foundation",
+          activities: [
+            "Access management and identity governance",
+            "Logical and physical security controls",
+            "Network security architecture review",
+            "Data protection and encryption deployment",
+            "Change management controls",
+            "Risk assessment framework establishment"
+          ]
+        },
+        {
+          phase: "Weeks 7-8: Additional Criteria",
+          activities: [
+            "Availability monitoring and incident response",
+            "Processing integrity controls",
+            "Confidentiality controls implementation",
+            "Privacy controls and GDPR alignment",
+            "Business continuity planning",
+            "Performance monitoring deployment"
+          ]
+        },
+        {
+          phase: "Weeks 9-10: Policy Development",
+          activities: [
+            "SOC 2 compliant policy suite development",
+            "Detailed procedure documentation",
+            "Vendor management procedures",
+            "Evidence collection system setup",
+            "Control testing procedures",
+            "Management review and approval"
+          ]
+        },
+        {
+          phase: "Weeks 11-12: Audit Preparation",
+          activities: [
+            "Internal control testing and validation",
+            "Evidence organization for auditor review",
+            "Pre-audit readiness assessment",
+            "Auditor engagement support",
+            "Staff training for audit interviews",
+            "Final SOC 2 readiness certification"
+          ]
+        }
+      ]
+    },
+    deliverables: {
+      title: "Program Deliverables",
+      subtitle: "Comprehensive deliverables ensuring your organization is fully prepared for SOC 2 audit success",
+      items: [
+        {
+          category: "Documentation",
+          items: [
+            "Service Organization Description (SOD)",
+            "SOC 2 compliant policies and procedures",
+            "Risk assessment and treatment plan",
+            "Control matrix and evidence repository",
+            "Incident response playbooks"
+          ]
+        },
+        {
+          category: "Implementation",
+          items: [
+            "Security control implementations",
+            "Monitoring and alerting systems",
+            "Access management framework",
+            "Data encryption and protection",
+            "Backup and recovery procedures"
+          ]
+        },
+        {
+          category: "Training & Support",
+          items: [
+            "SOC 2 awareness training for staff",
+            "Control owner training sessions",
+            "Auditor interface training",
+            "Ongoing compliance guidance",
+            "Post-audit support (3 months)"
+          ]
+        }
+      ]
+    },
+    packageOptions: {
+      title: "SOC 2 Readiness Packages",
+      subtitle: "Choose the package that best fits your compliance requirements and business needs",
+      items: [
+        {
+          name: "Essential (Security Only)",
+          criteria: ["Security (64 controls)"],
+          suitable: "Small to medium SaaS companies, basic SOC 2 Type I compliance needs",
+          popular: false
+        },
+        {
+          name: "Standard (Security + Availability)",
+          criteria: ["Security (64 controls)", "Availability (13 controls)"],
+          suitable: "Growing companies with uptime commitments and SLA requirements",
+          popular: true
+        },
+        {
+          name: "Comprehensive (All 5 Criteria)",
+          criteria: ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
+          suitable: "Enterprise organizations, financial services, healthcare, full compliance requirements",
+          popular: false
+        }
+      ]
+    },
+    benefitsList: {
+      title: "Key Benefits",
+      items: [
+        "Complete SOC 2 readiness in just 12 weeks",
+        "Comprehensive trust service criteria implementation",
+        "Expert guidance throughout the journey",
+        "All required documentation included",
+        "Audit preparation and support",
+        "Customer trust and competitive advantage"
+      ]
+    }
+  },
+  fi: {
+    title: "SOC 2 -valmius",
+    subtitle: "12 viikon luottamuspalveluiden huippuosaamisohjelma",
+    heroDescription: "Saavuta SOC 2 Type I ja Type II -valmius kattavalla luottamuspalvelukriteerien toteutuksella ja auditointivalmistelulla. Kattava ohjelmamme varmistaa, että organisaatiosi täyttää kaikki luottamuspalvelukriteerit samalla kun rakennat asiakasluottamusta osoitetuilla turvallisuus-, saatavuus-, käsittelyn eheys-, luottamuksellisuus- ja tietosuojakontrolleilla.",
+    forWho: "Palveluorganisaatioille, jotka valmistautuvat SOC 2 Type I ja Type II -auditointeihin.",
+    achieve: "SOC 2 -valmius kattavalla luottamuspalvelukriteerien toteutuksella ja auditointivalmistelulla.",
+    overview: {
+      title: "Yleiskatsaus",
+      description: "SOC 2 -vaatimustenmukaisuus osoittaa asiakkaille ja sidosryhmille, että organisaatiosi on toteuttanut vankat kontrollit heidän tietojensa suojaamiseksi. Se on välttämätön B2B SaaS-yrityksille, pilvipalveluntarjoajille ja teknologiayrityksille, jotka käsittelevät arkaluonteista asiakasdataa.",
+      highlight: "SOC 2 -vaatimustenmukaisuus rakentaa asiakasluottamusta, tarjoaa kilpailuetua, mahdollistaa liiketoiminnan kasvun ja parantaa yleistä tietoturvatasoa."
+    },
+    trustServiceCriteria: {
+      title: "SOC 2 -luottamuspalvelukriteerit",
+      subtitle: "Ohjelmamme kattaa kaikki viisi luottamuspalvelukriteeriä auttaen sinua valitsemaan oikean yhdistelmän liiketoimintatarpeisiisi",
+      items: [
+        {
+          criterion: "Turvallisuus (Pakollinen)",
+          description: "Järjestelmäresurssien suojaaminen luvatonta käyttöä, käyttöä, paljastamista, häiriöitä, muokkausta tai tuhoamista vastaan",
+          focus: "Käyttöoikeuksien hallinta, looginen ja fyysinen turvallisuus, verkkoturvallisuus, järjestelmärajat, tietosuoja, muutostenhallinta, riskinarviointi ja -hallinta",
+          weeks: "Viikot 1-4"
+        },
+        {
+          criterion: "Saatavuus (Valinnainen)",
+          description: "Järjestelmän saatavuus käyttöä tai sopimusta varten, tyypillisesti 99,9% tai korkeammat käyttöaikavaatimukset",
+          focus: "Järjestelmän seuranta, varmuuskopiointimenettelyt, tapahtumien hallinta, kapasiteetin hallinta, palautumissuunnittelu, liiketoiminnan jatkuvuus, suorituskyvyn seuranta",
+          weeks: "Viikot 5-6"
+        },
+        {
+          criterion: "Käsittelyn eheys (Valinnainen)",
+          description: "Järjestelmän käsittely on täydellistä, pätevää, tarkkaa, oikea-aikaista ja valtuutettua",
+          focus: "Tietojen validointi, virheiden käsittely, käsittelykontrollit, järjestelmän seuranta, tietojen tarkkuus, eheystarkistukset, valtuutettu käsittely",
+          weeks: "Viikot 7-8"
+        },
+        {
+          criterion: "Luottamuksellisuus (Valinnainen)",
+          description: "Luottamukselliseksi nimetty tieto suojataan keruun, käytön, säilytyksen, paljastamisen ja hävittämisen aikana",
+          focus: "Tietojen luokittelu, salaus, käyttörajoitukset, luottamuksellisuussopimukset, turvallinen hävittäminen, tietovuotojen estäminen, tietojen käsittelykäytännöt",
+          weeks: "Viikot 9-10"
+        },
+        {
+          criterion: "Tietosuoja (Valinnainen)",
+          description: "Henkilötietoja kerätään, käytetään, säilytetään, paljastetaan ja hävitetään organisaation tietosuojailmoituksen mukaisesti",
+          focus: "Tietosuojakäytännöt, suostumusten hallinta, tietojen säilytys, tietosuojakontrollit, rekisteröityjen oikeudet, rajat ylittävät siirrot, tietosuojan vaikutusten arvioinnit",
+          weeks: "Viikot 11-12"
+        }
+      ]
+    },
+    programPhases: {
+      title: "12 viikon toteutusaikataulu",
+      subtitle: "Rakenteinen lähestymistapa SOC 2 -valmiuden saavuttamiseksi selkeillä virstanpylväillä ja toimitettavilla",
+      items: [
+        {
+          phase: "Viikot 1-2: Perusta & Arviointi",
+          activities: [
+            "Nykyisten tilan arviointi luottamuspalvelukriteereitä vastaan",
+            "Yksityiskohtainen puuteanalyysi ja korjaussuunnittelu",
+            "SOC 2 -laajuuden määrittely ja järjestelmärajat",
+            "Palveluorganisaation kuvauksen (SOD) kehitys",
+            "Kontrolliympäristön arviointi",
+            "Auditointiyrityksen valintatuki"
+          ]
+        },
+        {
+          phase: "Viikot 3-6: Turvallisuusperusta",
+          activities: [
+            "Käyttöoikeuksien hallinta ja identiteettihallinta",
+            "Loogiset ja fyysiset turvakontrollit",
+            "Verkkoturvallisuusarkkitehtuurin katselmointi",
+            "Tietosuoja- ja salaustoimenpiteiden käyttöönotto",
+            "Muutostenhallintakontrollit",
+            "Riskinarviointikehyksen perustaminen"
+          ]
+        },
+        {
+          phase: "Viikot 7-8: Lisäkriteerit",
+          activities: [
+            "Saatavuuden seuranta ja tapahtumien hallinta",
+            "Käsittelyn eheyden kontrollit",
+            "Luottamuksellisuuskontrollien toteutus",
+            "Tietosuojakontrollit ja GDPR-linjaus",
+            "Liiketoiminnan jatkuvuuden suunnittelu",
+            "Suorituskyvyn seurannan käyttöönotto"
+          ]
+        },
+        {
+          phase: "Viikot 9-10: Käytäntöjen kehitys",
+          activities: [
+            "SOC 2 -yhteensopiva käytäntökokoelma",
+            "Yksityiskohtaiset menettelydokumentit",
+            "Toimittajahallintamenettelyt",
+            "Todisteiden keruujärjestelmän perustus",
+            "Kontrollitestausmenettelyt",
+            "Johdon katselmus ja hyväksyntä"
+          ]
+        },
+        {
+          phase: "Viikot 11-12: Auditointivalmistelu",
+          activities: [
+            "Sisäinen kontrollitestaus ja validointi",
+            "Todisteiden järjestäminen auditoijalle",
+            "Esi-auditointivalmiusarviointi",
+            "Auditoijasitoumustuki",
+            "Henkilöstön koulutus auditoijahaastatteluihin",
+            "Lopullinen SOC 2 -valmiusvarmennus"
+          ]
+        }
+      ]
+    },
+    deliverables: {
+      title: "Ohjelman toimitettavat",
+      subtitle: "Kattavat toimitettavat, jotka varmistavat organisaatiosi täydellisen valmistautumisen SOC 2 -auditointiin",
+      items: [
+        {
+          category: "Dokumentaatio",
+          items: [
+            "Palveluorganisaation kuvaus (SOD)",
+            "SOC 2 -yhteensopivat käytännöt ja menettelyt",
+            "Riskinarviointi- ja käsittelysuunnitelma",
+            "Kontrollimatriisi ja todistearkisto",
+            "Tapahtumien hallintasuunnitelmat"
+          ]
+        },
+        {
+          category: "Toteutus",
+          items: [
+            "Turvakontrollien toteutus",
+            "Seuranta- ja hälytysjärjestelmät",
+            "Käyttöoikeuksien hallintakehys",
+            "Tietojen salaus ja suoja",
+            "Varmuuskopiointi- ja palautusmenettelyt"
+          ]
+        },
+        {
+          category: "Koulutus & Tuki",
+          items: [
+            "SOC 2 -tietoisuuskoulutus henkilöstölle",
+            "Kontrollinomistajien koulutus",
+            "Auditoijakoulutus",
+            "Jatkuva vaatimustenmukaisuusohjaus",
+            "Auditoinnin jälkeinen tuki (3 kuukautta)"
+          ]
+        }
+      ]
+    },
+    packageOptions: {
+      title: "SOC 2 -valmiuspaketit",
+      subtitle: "Valitse vaatimustenmukaisuustarpeisiisi ja liiketoimintatarpeisiisi parhaiten sopiva paketti",
+      items: [
+        {
+          name: "Perus (Turvallisuus vain)",
+          criteria: ["Turvallisuus (64 kontrollia)"],
+          suitable: "Pienille ja keskisuurille SaaS-yrityksille, perus SOC 2 Type I -tarpeisiin",
+          popular: false
+        },
+        {
+          name: "Standardi (Turvallisuus + Saatavuus)",
+          criteria: ["Turvallisuus (64 kontrollia)", "Saatavuus (13 kontrollia)"],
+          suitable: "Kasvaville yrityksille, joilla on käyttöaikasitoumuksia",
+          popular: true
+        },
+        {
+          name: "Kattava (Kaikki 5 kriteeriä)",
+          criteria: ["Turvallisuus", "Saatavuus", "Käsittelyn eheys", "Luottamuksellisuus", "Tietosuoja"],
+          suitable: "Konsernitason organisaatioille, rahoituspalveluille, terveydenhuollolle",
+          popular: false
+        }
+      ]
+    },
+    benefitsList: {
+      title: "Keskeiset edut",
+      items: [
+        "Täysi SOC 2 -valmius vain 12 viikossa",
+        "Kattava luottamuspalvelukriteerien toteutus",
+        "Asiantuntijaohjaus koko matkan ajan",
+        "Kaikki vaadittu dokumentaatio mukana",
+        "Auditointivalmistelu ja tuki",
+        "Asiakasluottamus ja kilpailuetu"
+      ]
+    }
+  }
 };
 
-const trustServiceCriteria = [
-  {
-    criterion: "Security (Mandatory)",
-    description: "Protection of system resources against unauthorized access, use, disclosure, disruption, modification, or destruction",
-    focus: "Access controls, logical and physical security, network security, system boundaries, data protection, change management, risk assessment and mitigation",
-    weeks: "Weeks 1-4",
-    controlCount: "64 common criteria controls"
-  },
-  {
-    criterion: "Availability (Optional)",
-    description: "System availability for operation and use as committed or agreed, typically 99.9% or higher uptime requirements",
-    focus: "System monitoring, backup procedures, incident response, capacity management, disaster recovery, business continuity planning, performance monitoring",
-    weeks: "Weeks 5-6",
-    controlCount: "13 additional criteria controls"
-  },
-  {
-    criterion: "✓ Processing Integrity (Optional)",
-    description: "System processing is complete, valid, accurate, timely, and authorized to meet the entity's objectives",
-    focus: "Data validation, error handling, processing controls, system monitoring, data accuracy, completeness checks, authorized processing",
-    weeks: "Weeks 7-8",
-    controlCount: "11 additional criteria controls"
-  },
-  {
-    criterion: "Confidentiality (Optional)",
-    description: "Information designated as confidential is protected as committed or agreed through its collection, use, retention, disclosure, and disposal",
-    focus: "Data classification, encryption, access restrictions, confidentiality agreements, secure disposal, data loss prevention, information handling policies",
-    weeks: "Weeks 9-10",
-    controlCount: "8 additional criteria controls"
-  },
-  {
-    criterion: "Privacy (Optional)",
-    description: "Personal information is collected, used, retained, disclosed, and disposed of in conformity with the entity's privacy notice and criteria set forth in Generally Accepted Privacy Principles (GAPP)",
-    focus: "Privacy policies, consent management, data retention, privacy controls, data subject rights, cross-border transfers, privacy impact assessments",
-    weeks: "Weeks 11-12",
-    controlCount: "19 additional criteria controls"
-  }
-];
-
-const programPhases = [
-  {
-    phase: "Weeks 1-2: Foundation & Assessment ",
-    title: "SOC 2 Readiness Assessment & Scoping",
-    activities: [
-      "Comprehensive current state assessment against all applicable Trust Service Criteria",
-      "Detailed gap analysis with risk-based prioritization and remediation planning",
-      "SOC 2 scoping and system boundary definition with data flow mapping",
-      "Service Organization Description (SOD) development and stakeholder review",
-      "Control environment evaluation with governance framework assessment",
-      "Audit firm selection criteria and procurement support"
-    ],
-    deliverables: [
-      "SOC 2 Readiness Assessment Report with gap analysis",
-      "System Scoping Document and data flow diagrams",
-      "Service Organization Description (SOD) first draft",
-      "Control Environment Assessment with recommendations",
-      "Implementation Roadmap with timeline and resource requirements"
-    ]
-  },
-  {
-    phase: "Weeks 3-6: Security Foundation & Core Controls ",
-    title: "Mandatory Security Controls Design & Implementation",
-    activities: [
-      "Access management and identity governance system implementation",
-      "Logical and physical security controls deployment and configuration",
-      "Network security architecture review and segmentation implementation",
-      "Data protection and encryption mechanisms deployment",
-      "Change management and system development lifecycle controls",
-      "Risk assessment and management framework establishment"
-    ],
-    deliverables: [
-      "Access Management Framework with role-based access controls",
-      "Network Security Architecture with segmentation and monitoring",
-      "Data Protection and Encryption Implementation documentation",
-      "Change Management Procedures with approval workflows",
-      "Risk Management Framework with assessment methodologies"
-    ]
-  },
-  {
-    phase: "Weeks 7-8: Additional Trust Service Criteria Implementation ",
-    title: "Availability, Processing Integrity, Confidentiality & Privacy Controls",
-    activities: [
-      "Availability monitoring and incident response capabilities implementation",
-      "Processing integrity controls for data validation and accuracy",
-      "Confidentiality controls for sensitive information protection",
-      "Privacy controls for personal data handling and GDPR alignment",
-      "Business continuity and disaster recovery planning and testing",
-      "Performance monitoring and capacity management system deployment"
-    ],
-    deliverables: [
-      "Availability Monitoring Dashboard with automated alerting",
-      "Processing Integrity Controls with data validation procedures",
-      "Confidentiality Framework with classification and handling procedures",
-      "Privacy Management Program with consent and rights management",
-      "Business Continuity and Disaster Recovery tested procedures"
-    ]
-  },
-  {
-    phase: "Weeks 9-10: Policy Development & Documentation ",
-    title: "SOC 2 Compliant Policies, Procedures & Evidence Repository",
-    activities: [
-      "Comprehensive SOC 2 compliant policy suite development and approval",
-      "Detailed procedure documentation with step-by-step instructions",
-      "Vendor management and third-party risk assessment procedures",
-      "Evidence collection and documentation management system setup",
-      "Control testing procedures and validation methodologies development",
-      "Management review and approval processes establishment"
-    ],
-    deliverables: [
-      "Complete SOC 2 Policy Suite with board approval",
-      "Detailed Procedure Documentation with control activities",
-      "Vendor Management Framework with assessment criteria",
-      "Evidence Repository with automated collection capabilities",
-      "Control Testing Procedures with validation criteria"
-    ]
-  },
-  {
-    phase: "Weeks 11-12: Audit Preparation & Readiness Validation ",
-    title: "Internal Testing, Audit Preparation & Certification Readiness",
-    activities: [
-      "Comprehensive internal control testing and effectiveness validation",
-      "Evidence collection and organization for auditor review",
-      "Pre-audit readiness assessment with simulated audit procedures",
-      "Auditor selection, engagement, and contract negotiation support",
-      "Staff training for audit interviews and evidence presentation",
-      "Final SOC 2 readiness certification and sign-off procedures"
-    ],
-    deliverables: [
-      "Internal Control Testing Results with effectiveness validation",
-      "Organized Evidence Portfolio ready for auditor review",
-      "Pre-Audit Readiness Assessment with certification",
-      "Auditor Engagement Support with contract review",
-      "Staff Training Materials and audit interview preparation",
-      "SOC 2 Readiness Certification with management sign-off"
-    ]
-  }
-];
-
-const deliverables = [
-  {
-    category: "Documentation",
-    items: [
-      "Service Organization Description (SOD)",
-      "SOC 2 compliant policies and procedures",
-      "Risk assessment and treatment plan",
-      "Control matrix and evidence repository",
-      "Incident response playbooks"
-    ]
-  },
-  {
-    category: "Implementation",
-    items: [
-      "Security control implementations",
-      "Monitoring and alerting systems",
-      "Access management framework",
-      "Data encryption and protection",
-      "Backup and recovery procedures"
-    ]
-  },
-  {
-    category: "Training & Support",
-    items: [
-      "SOC 2 awareness training for staff",
-      "Control owner training sessions",
-      "Auditor interface training",
-      "Ongoing compliance guidance",
-      "Post-audit support (3 months)"
-    ]
-  }
-];
-
-const packageOptions = [
-  {
-    name: "Essential (Security Only)",
-    criteria: ["Security (64 controls)"],
-    suitable: "Small to medium SaaS companies, basic SOC 2 Type I compliance needs",
-    includes: "Security controls, policies, evidence collection, Type I audit prep"
-  },
-  {
-    name: "Standard (Security + Availability)",
-    criteria: ["Security (64 controls)", "Availability (13 controls)"],
-    suitable: "Growing companies with uptime commitments and SLA requirements",
-    includes: "Security + Availability controls, monitoring, incident response, Type I/II prep"
-  },
-  {
-    name: " Comprehensive (All 5 Criteria)",
-    criteria: ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
-    suitable: "Enterprise organizations, financial services, healthcare, full compliance requirements",
-    includes: "All Trust Service Criteria, comprehensive controls (115+ total), Type I/II audit readiness"
-  },
-  {
-    name: "Enterprise Plus (All Criteria + Ongoing)",
-    criteria: ["All 5 Criteria + 12 months ongoing support"],
-    suitable: "Large enterprises requiring continuous compliance management and support",
-    includes: "Complete implementation + 12 months ongoing compliance monitoring and support"
-  }
-];
+const currentContent = content[lang];
+const isFi = lang === 'fi';
 ---
 
-<Layout seoConfig={seoConfig}>
-  <HeroSection content={heroContent} />
-  
-  <!-- Program Overview -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Why SOC 2 Compliance Matters</h2>
-        <p class="text-lg text-slate-600 max-w-4xl mx-auto">
-          SOC 2 compliance demonstrates to customers and stakeholders that your organization has 
-          implemented robust controls to protect their data. It's essential for B2B SaaS companies, 
-          cloud service providers, and technology companies handling sensitive customer data.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="text-center">
-          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.414-4.414a2 2 0 010 2.828L9.828 17.657a2 2 0 01-2.828 0L3.172 13.828a2 2 0 010-2.828L9.757 4.414a2 2 0 012.828 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Customer Trust</h3>
-          <p class="text-slate-600">Build confidence with enterprise customers requiring SOC 2 compliance</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Competitive Advantage</h3>
-          <p class="text-slate-600">Differentiate from competitors and win enterprise deals</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Business Growth</h3>
-          <p class="text-slate-600">Access larger enterprise markets with compliance requirements</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-slate-900 mb-2">Risk Management</h3>
-          <p class="text-slate-600">Improve security posture and reduce operational risks</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<Layout {...seoConfig}>
 
-  <!-- Trust Service Criteria -->
-  <section class="py-16 bg-slate-50">
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">SOC 2 Trust Service Criteria</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          Our program addresses all five trust service criteria, helping you choose the right combination for your business needs.
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
         </p>
-      </div>
-      
-      <div class="space-y-6">
-        {trustServiceCriteria.map((criteria, index) => (
-          <div class="bg-white rounded-lg shadow-lg border border-slate-200 p-8">
-            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
-              <div class="lg:flex-1">
-                <div class="flex items-center mb-2">
-                  <span class="bg-teal-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3">
-                    {criteria.weeks}
-                  </span>
-                  <h3 class="text-xl font-semibold text-slate-900">{criteria.criterion}</h3>
-                </div>
-                <p class="text-slate-600 mb-3">{criteria.description}</p>
-                <p class="text-sm text-slate-500"><strong>Focus Areas:</strong> {criteria.focus}</p>
+        
+        <!-- Info Section - Two Column Layout -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
               </div>
             </div>
           </div>
+          
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto bg-gradient-to-br from-blue-50 to-indigo-50/30 rounded-2xl border-2 border-[#3B82F6] shadow-lg p-6 md:p-8">
+        <div class="flex items-start gap-4 mb-4">
+          <div class="w-10 h-10 bg-[#3B82F6] rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h2 class="text-xl md:text-2xl font-bold text-[#1E2A7A]">{currentContent.overview.title}</h2>
+        </div>
+        <p class="text-slate-700 leading-relaxed mb-4 pl-14">{currentContent.overview.description}</p>
+        <div class="bg-white/70 rounded-xl border border-[#3B82F6]/30 p-4 pl-14">
+          <p class="text-[#1E2A7A] font-semibold flex items-start gap-2">
+            <svg class="w-5 h-5 text-[#3B82F6] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {currentContent.overview.highlight}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Service Criteria Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.trustServiceCriteria.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.trustServiceCriteria.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        {currentContent.trustServiceCriteria.items.map((criteria) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex items-center justify-between mb-1.5 relative z-10">
+              <h3 class="text-sm font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                {criteria.criterion}
+              </h3>
+              <span class="text-[9px] text-slate-500">{criteria.weeks}</span>
+            </div>
+            <p class="text-[10px] text-slate-500 mb-2 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {criteria.description}
+            </p>
+            <div class="relative z-10">
+              <p class="text-[9px] text-slate-600 group-hover:text-slate-700 transition-colors duration-300">
+                <span class="font-semibold text-[#1E40AF]">{isFi ? 'Keskeiset alueet:' : 'Focus Areas:'}</span> {criteria.focus}
+              </p>
+            </div>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Implementation Timeline -->
-  <section class="py-16 bg-white">
+  <!-- Program Phases Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">12-Week Implementation Timeline</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          Structured approach to achieve SOC 2 readiness with clear milestones and deliverables.
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.programPhases.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.programPhases.subtitle}
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {programPhases.map((phase, index) => (
-          <div class="bg-slate-50 rounded-lg p-6">
-            <div class="flex items-center mb-4">
-              <span class="bg-teal-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3">
-                {phase.phase}
-              </span>
-              <h3 class="text-lg font-semibold text-slate-900">{phase.title}</h3>
-            </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        {currentContent.programPhases.items.map((phase) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
             
-            <ul class="space-y-2">
-              {phase.activities.map(activity => (
-                <li class="flex items-start">
-                  <svg class="w-4 h-4 text-teal-600 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            <h3 class="text-xs font-bold text-[#1E40AF] mb-2 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {phase.phase}
+            </h3>
+            
+            <ul class="space-y-1.5 relative z-10">
+              {phase.activities.map((activity) => (
+                <li class="flex items-start text-[10px] text-slate-600 group-hover:text-slate-700 transition-colors duration-300">
+                  <svg class="w-2.5 h-2.5 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span class="text-sm text-slate-700">{activity}</span>
+                  {activity}
                 </li>
               ))}
             </ul>
@@ -377,27 +575,37 @@ const packageOptions = [
     </div>
   </section>
 
-  <!-- Deliverables -->
-  <section class="py-16 bg-slate-50">
+  <!-- Deliverables Section -->
+  <section class="py-12 md:py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Program Deliverables</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          Comprehensive deliverables ensuring your organization is fully prepared for SOC 2 audit success.
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.deliverables.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.deliverables.subtitle}
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {deliverables.map(category => (
-          <div class="bg-white rounded-lg shadow-lg p-6">
-            <h3 class="text-lg font-semibold text-slate-900 mb-4">{category.category}</h3>
-            <ul class="space-y-3">
-              {category.items.map(item => (
-                <li class="flex items-start">
-                  <svg class="w-4 h-4 text-teal-600 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+        {currentContent.deliverables.items.map((category) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-2 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {category.category}
+            </h3>
+            
+            <ul class="space-y-1.5 relative z-10">
+              {category.items.map((item) => (
+                <li class="flex items-start text-[10px] text-slate-600 group-hover:text-slate-700 transition-colors duration-300">
+                  <svg class="w-2.5 h-2.5 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span class="text-sm text-slate-700">{item}</span>
+                  {item}
                 </li>
               ))}
             </ul>
@@ -407,45 +615,63 @@ const packageOptions = [
     </div>
   </section>
 
-  <!-- Pricing Packages -->
-  <section class="py-16 bg-white">
+  <!-- Package Options Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">SOC 2 Readiness Packages</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          Choose the package that best fits your compliance requirements and business needs.
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.packageOptions.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.packageOptions.subtitle}
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {packageOptions.map((pkg, index) => (
-          <div class={`rounded-lg shadow-lg p-8 ${index === 1 ? 'bg-teal-50 border-2 border-teal-200' : 'bg-white border border-slate-200'}`}>
-            <div class="text-center mb-6">
-              <h3 class="text-xl font-semibold text-slate-900 mb-2">{pkg.name}</h3>
-              <p class="text-sm text-slate-600">{pkg.suitable}</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 items-stretch">
+        {currentContent.packageOptions.items.map((pkg) => (
+          <div class={`bg-white rounded-xl border-2 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-5 md:p-6 group relative overflow-hidden
+                      ${pkg.popular ? 'border-[#3B82F6]' : 'border-slate-100'}
+                      h-full`}>
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            {pkg.popular && (
+              <div class="flex justify-center mb-3 relative z-10">
+                <span class="bg-[#3B82F6] text-white text-xs font-medium px-3 py-1 rounded-full">
+                  {isFi ? 'Suosituin' : 'Most Popular'}
+                </span>
+              </div>
+            )}
+            
+            <div class="text-center mb-4 relative z-10">
+              <h3 class="text-lg font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                {pkg.name}
+              </h3>
+              <p class="text-xs text-slate-500 mt-1 leading-relaxed">{pkg.suitable}</p>
             </div>
             
-            <div class="mb-6">
-              <h4 class="text-sm font-semibold text-slate-900 mb-3">Included Criteria:</h4>
-              <ul class="space-y-2">
-                {pkg.criteria.map(criterion => (
-                  <li class="flex items-center">
-                    <svg class="w-4 h-4 text-teal-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            <div class="mb-4 relative z-10 flex-1">
+              <h4 class="text-xs font-semibold text-[#1E40AF] mb-1.5">{isFi ? 'Sisältää kriteerit:' : 'Included Criteria:'}</h4>
+              <ul class="space-y-1">
+                {pkg.criteria.map((criterion) => (
+                  <li class="flex items-start text-xs text-slate-600 group-hover:text-slate-700 transition-colors duration-300">
+                    <svg class="w-3 h-3 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span class="text-sm text-slate-700">{criterion}</span>
+                    {criterion}
                   </li>
                 ))}
               </ul>
             </div>
             
-            <a href={`/contact?package=soc2-${pkg.name.toLowerCase()}`} 
-               class={`block w-full text-center py-2 px-4 rounded-md font-medium ${
-                 index === 1 
-                   ? 'bg-teal-600 text-white hover:bg-teal-700' 
-                   : 'bg-slate-100 text-slate-900 hover:bg-slate-200'
-               } transition-colors`}>
-              Get Started
+            <a href={`/contact?package=soc2-${pkg.name.toLowerCase().replace(/\s/g, '-')}`} 
+               class={`relative z-10 inline-flex items-center justify-center px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 w-full mt-auto
+                       ${pkg.popular 
+                         ? 'bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] hover:shadow-lg' 
+                         : 'border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent'}`}>
+              {isFi ? 'Aloita' : 'Get Started'}
             </a>
           </div>
         ))}
@@ -453,11 +679,32 @@ const packageOptions = [
     </div>
   </section>
 
-  <CTA 
-    title="Ready to Achieve SOC 2 Compliance?"
-    description="Join the growing number of companies that have achieved SOC 2 readiness through our proven 12-week program."
-    primaryCTA={{ text: "Start Your SOC 2 Journey", href: "/contact?package=soc2-readiness" }}
-    secondaryCTA={{ text: "Learn About SOC 2", href: "/frameworks/soc-2" }}
-  />
-</Layout>
+  
+  <!-- Benefits Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.benefitsList.title}
+        </h2>
+      </div>
+      
+      <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-3">
+        {currentContent.benefitsList.items.map((benefit) => (
+          <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3bb1f6]
+                      transition-all duration-300
+                      flex items-center gap-3 p-3 group">
+            <div class="w-6 h-6 bg-[#3B82F6] rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <span class="text-sm font-medium text-slate-700 group-hover:text-[#3B82F6] transition-colors duration-300">{benefit}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
+</Layout>

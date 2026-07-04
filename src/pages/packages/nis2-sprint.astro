@@ -1,8 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Button from '@/components/ui/Button.astro';
-import HeroSection from '@/components/sections/HeroSection.astro';
-import CTA from '@/components/sections/CTA.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
@@ -46,461 +44,557 @@ const seoConfig = {
   }
 };
 
-// Check if this is the homepage to show promotional content
-const isHomepage = Astro.url.pathname === '/' || Astro.url.pathname === '';
-
-const heroContent = {
-  title: lang === 'fi' 
-    ? (isHomepage ? "NIS2 Sprint -ohjelma - Nopea vaatimustenmukaisuuden toteutus" : "NIS2 Sprint -ohjelma - Nopea vaatimustenmukaisuuden toteutus")
-    : (isHomepage ? "NIS2 Sprint Program - Rapid Compliance Implementation" : "NIS2 Sprint Program - Rapid Compliance Implementation"),
-  subtitle: lang === 'fi'
-    ? (isHomepage ? "Nopeutettu 12 viikon ohjelma, jolla varmistetaan täysi NIS2-direktiivin vaatimustenmukaisuus kriittiselle infrastruktuurille ja keskeisille palveluntarjoajille" : "Nopeutettu 12 viikon ohjelma NIS2-direktiivin vaatimustenmukaisuuteen")
-    : (isHomepage ? "Accelerated 12-week program ensuring full NIS2 Directive compliance for critical infrastructure and essential service providers" : "Accelerated 12-week program for NIS2 Directive compliance"),
-  description: lang === 'fi'
-    ? (isHomepage ? "Cybersecurity.fi:n NIS2 Sprint -ohjelma toimittaa kattavan kyberturvallisuuden hallinnon, riskienhallinnan ja häiriönhallintakyvykkyydet, jotka vaaditaan EU:n NIS2-direktiivissä. Nopeuta vaatimustenmukaisuuttasi rakentamalla samalla kestävän kyberturvallisuuden perustan, joka suojaa kriittisiä toimintoja ja varmistaa sääntelyn noudattamisen." : "NIS2 Sprint -ohjelma tarjoaa kattavat kyberturvallisuuden hallinnon, riskienhallinnan ja häiriönhallintakyvykkyydet, jotka vaaditaan EU:n NIS2-direktiivissä.")
-    : (isHomepage ? "Cybersecurity.fi's NIS2 Sprint Program delivers comprehensive cybersecurity governance, risk management, and incident response capabilities required under the EU NIS2 Directive. Fast-track your compliance while building resilient cybersecurity foundations that protect critical operations and ensure regulatory alignment." : "NIS2 Sprint Program delivers comprehensive cybersecurity governance, risk management, and incident response capabilities required under the EU NIS2 Directive."),
-  primaryCTA: { text: lang === 'fi' ? "Aloita NIS2 Sprint -ohjelma" : "Start NIS2 Sprint Program", href: "/contact?package=nis2-sprint" },
-  secondaryCTA: { text: lang === 'fi' ? "Katso NIS2-viitekehys" : "View NIS2 Framework", href: lang === 'fi' ? "/fi/frameworks/nis2" : "/frameworks/nis2" }
+const content = {
+  en: {
+    title: "NIS2 Sprint Program",
+    subtitle: "Rapid NIS2 Directive Compliance",
+    heroDescription: "Accelerated 12-week program ensuring full NIS2 Directive compliance for critical infrastructure and essential service providers. Our comprehensive program delivers cybersecurity governance, risk management, and incident response capabilities required under the EU NIS2 Directive.",
+    forWho: "For essential and important entities required to comply with the EU NIS2 Directive.",
+    achieve: "Full NIS2 compliance with enhanced cybersecurity resilience and governance.",
+    overview: {
+      title: "Overview",
+      description: "The Network and Information Systems (NIS2) Directive strengthens cybersecurity requirements across critical sectors in the EU. Our Sprint Program delivers rapid compliance for organizations that must meet these enhanced cybersecurity obligations.",
+      highlight: "NIS2 compliance is mandatory for all in-scope essential and important entities with enforcement actively monitored by national authorities."
+    },
+    nis2Sectors: {
+      title: "NIS2 Covered Sectors",
+      subtitle: "NIS2 applies to essential and important service providers across critical sectors of the economy",
+      items: [
+        {
+          category: "Essential Services (High Risk)",
+          sectors: [
+            "Energy sector (electricity, oil, gas distribution)",
+            "Transport (air, rail, water, road transport)",
+            "Banking and financial market infrastructures",
+            "Health sector (healthcare providers)",
+            "Drinking water supply and distribution",
+            "Digital infrastructure (Internet Exchange Points, DNS)",
+            "ICT service management (B2B) and cloud services",
+            "Public administration (central government entities)"
+          ]
+        },
+        {
+          category: "Important Services (Medium-High Risk)",
+          sectors: [
+            "Digital services (online marketplaces, search engines)",
+            "Waste water management and treatment",
+            "Chemicals production and distribution",
+            "Food production and distribution",
+            "Manufacturing (medical devices, electronics, machinery)",
+            "Research organizations and facilities",
+            "Space sector (satellite operations)",
+            "Postal and courier services"
+          ]
+        }
+      ]
+    },
+    nis2Requirements: {
+      title: "NIS2 Cybersecurity Requirements",
+      subtitle: "Comprehensive cybersecurity measures required under the NIS2 Directive",
+      items: [
+        {
+          area: "Cybersecurity Risk Management",
+          description: "Comprehensive cybersecurity risk assessment and management framework",
+          requirements: [
+            "Policies on risk analysis and information system security",
+            "Incident handling and business continuity management",
+            "Supply chain security and security in network relationships",
+            "Security in acquisition, development and maintenance of systems",
+            "Policies and procedures to assess effectiveness of measures"
+          ],
+          timeline: "Weeks 1-3"
+        },
+        {
+          area: "Technical & Organizational Measures",
+          description: "Implementation of appropriate technical and organizational cybersecurity measures",
+          requirements: [
+            "Multi-factor authentication and secure communication protocols",
+            "Encryption and cryptographic mechanisms for data protection",
+            "Network security measures and network segmentation",
+            "Backup mechanisms and disaster recovery procedures",
+            "Security testing and vulnerability management programs"
+          ],
+          timeline: "Weeks 4-7"
+        },
+        {
+          area: "Incident Reporting & Response",
+          description: "24/7 incident detection, response, and regulatory notification capabilities",
+          requirements: [
+            "Computer security incident detection and response capabilities",
+            "Early warning notifications to relevant authorities",
+            "24-hour, 72-hour, and one-month incident reporting timelines",
+            "Evidence preservation and forensic investigation protocols",
+            "Recovery procedures and lessons learned documentation"
+          ],
+          timeline: "Weeks 8-10"
+        },
+        {
+          area: "Governance & Human Resources",
+          description: "Corporate governance framework and human resource security measures",
+          requirements: [
+            "Cybersecurity governance policies and management responsibilities",
+            "Regular cybersecurity training and awareness programs",
+            "Access control policies and privileged access management",
+            "Third-party risk assessment and vendor security requirements",
+            "Regular security audits and penetration testing programs"
+          ],
+          timeline: "Weeks 11-12"
+        }
+      ]
+    },
+    implementationPhases: {
+      title: "8-Week Sprint Implementation",
+      subtitle: "Accelerated implementation methodology to achieve NIS2 compliance quickly and efficiently",
+      items: [
+        {
+          phase: "Weeks 1-3: Foundation & Assessment",
+          objectives: [
+            "NIS2 scope and applicability determination",
+            "Cybersecurity posture assessment",
+            "Gap analysis against NIS2 requirements",
+            "Risk assessment methodology selection",
+            "Governance framework design",
+            "Implementation roadmap development"
+          ]
+        },
+        {
+          phase: "Weeks 4-7: Technical Implementation",
+          objectives: [
+            "Critical security controls deployment",
+            "Network architecture review",
+            "Identity and access management enhancement",
+            "Encryption controls implementation",
+            "Backup and disaster recovery setup",
+            "Security monitoring capabilities deployment"
+          ]
+        },
+        {
+          phase: "Weeks 8-10: Incident Response",
+          objectives: [
+            "CSIRT establishment",
+            "Incident detection procedures",
+            "Regulatory reporting workflows",
+            "Crisis communication protocols",
+            "Evidence preservation capabilities",
+            "Recovery procedures activation"
+          ]
+        },
+        {
+          phase: "Weeks 11-12: Governance Finalization",
+          objectives: [
+            "Governance framework finalization",
+            "Policy suite development",
+            "Staff training programs",
+            "Vendor assessment framework",
+            "Compliance testing and validation",
+            "Continuous monitoring planning"
+          ]
+        }
+      ]
+    },
+    complianceTimeline: {
+      title: "NIS2 Compliance Timeline",
+      subtitle: "Key milestones and deadlines for NIS2 implementation and ongoing compliance",
+      items: [
+        { date: "January 16, 2023", milestone: "NIS2 Directive Entry into Force", status: "Completed", description: "EU NIS2 Directive officially entered into force" },
+        { date: "October 17, 2024", milestone: "National Implementation Deadline", status: "Completed", description: "EU Member States completed transposition into national law" },
+        { date: "October 17, 2024", milestone: "Compliance Deadline", status: "Active", description: "Organizations must be fully compliant with NIS2 requirements" },
+        { date: "Ongoing", milestone: "Continuous Compliance", status: "Ongoing", description: "Regular audits, incident reporting, and compliance monitoring" }
+      ]
+    },
+    penalties: {
+      title: "NIS2 Penalties & Sanctions",
+      subtitle: "Understanding the enforcement landscape and potential consequences of non-compliance",
+      items: [
+        {
+          severity: "Administrative Fines",
+          amount: "Up to €10 million or 2% of annual turnover",
+          applies_to: "Essential and important entities",
+          violations: "Non-compliance with cybersecurity measures and incident reporting"
+        },
+        {
+          severity: "Management Sanctions",
+          amount: "Personal liability for management",
+          applies_to: "Senior management and board members",
+          violations: "Failure to fulfill cybersecurity responsibilities"
+        },
+        {
+          severity: "Operational Sanctions",
+          amount: "Suspension of services or operations",
+          applies_to: "Critical service providers",
+          violations: "Severe non-compliance affecting service availability"
+        }
+      ]
+    },
+    packageIncludes: {
+      title: "NIS2 Sprint Program Includes",
+      subtitle: "Comprehensive NIS2 compliance implementation with ongoing support and monitoring",
+      items: [
+        "Complete NIS2 applicability and gap assessment",
+        "Cybersecurity risk management framework",
+        "Technical security controls deployment",
+        "24/7 incident response system",
+        "Complete compliance documentation package",
+        "Staff training and awareness programs",
+        "Continuous monitoring and threat detection",
+        "12 months post-implementation support",
+        "Quarterly compliance reviews",
+        "Legal compliance verification",
+        "Annual compliance assessment",
+        "24/7 expert support hotline"
+      ]
+    },
+    benefitsList: {
+      title: "Key Benefits",
+      items: [
+        "Full NIS2 compliance in just 8 weeks",
+        "Comprehensive risk management framework",
+        "Expert guidance throughout the journey",
+        "All required documentation included",
+        "Ongoing support and monitoring",
+        "Enhanced cybersecurity resilience"
+      ]
+    }
+  },
+  fi: {
+    title: "NIS2 Sprint -ohjelma",
+    subtitle: "Nopea NIS2-vaatimustenmukaisuus",
+    heroDescription: "Nopeutettu 12 viikon ohjelma, jolla varmistetaan täysi NIS2-direktiivin vaatimustenmukaisuus kriittiselle infrastruktuurille ja keskeisille palveluntarjoajille. Kattava ohjelmamme tarjoaa kyberturvallisuuden hallinnon, riskienhallinnan ja häiriönhallintakyvykkyydet, jotka vaaditaan EU:n NIS2-direktiivissä.",
+    forWho: "Keskeisille ja tärkeille toimijoille, joiden on noudatettava EU:n NIS2-direktiiviä.",
+    achieve: "Täysi NIS2-vaatimustenmukaisuus tehostetulla kyberturvallisuuden sietokyvyllä ja hallinnolla.",
+    overview: {
+      title: "Yleiskatsaus",
+      description: "Verkko- ja tietoturvadirektiivi (NIS2) vahvistaa kyberturvallisuusvaatimuksia kriittisillä aloilla koko EU:ssa. Sprint-ohjelmamme tarjoaa nopean vaatimustenmukaisuuden organisaatioille, joiden on täytettävä nämä tehostetut kyberturvallisuusvelvoitteet.",
+      highlight: "NIS2-vaatimustenmukaisuus on pakollinen kaikille soveltamisalaan kuuluville keskeisille ja tärkeille toimijoille, ja kansalliset viranomaiset valvovat aktiivisesti vaatimustenmukaisuutta."
+    },
+    nis2Sectors: {
+      title: "NIS2 Soveltamisalaan kuuluvat sektorit",
+      subtitle: "NIS2 koskee keskeisiä ja tärkeitä palveluntarjoajia talouden kriittisillä sektoreilla",
+      items: [
+        {
+          category: "Keskeiset palvelut (Korkea riski)",
+          sectors: [
+            "Energiasektori (sähkö, öljy, kaasun jakelu)",
+            "Liikenne (ilma-, raide-, vesi-, tieliikenne)",
+            "Pankki- ja rahoitusmarkkinainfrastruktuurit",
+            "Terveyssektori (terveydenhuollon tarjoajat)",
+            "Juomaveden toimitus- ja jakelujärjestelmät",
+            "Digitaalinen infrastruktuuri (Internet-yhdysliikennepisteet, DNS)",
+            "ICT-palvelunhallinta (B2B) ja pilvipalvelut",
+            "Julkinen hallinto (keskushallinnon yksiköt)"
+          ]
+        },
+        {
+          category: "Tärkeät palvelut (Keskitason/Korkea riski)",
+          sectors: [
+            "Digitaaliset palvelut (verkkokaupat, hakukoneet)",
+            "Jäteveden hallinta ja käsittelylaitokset",
+            "Kemikaalien tuotanto, käsittely ja jakelu",
+            "Elintarvikkeiden tuotanto, jalostus ja jakelu",
+            "Valmistus (lääkinnälliset laitteet, elektroniikka)",
+            "Tutkimusorganisaatiot ja -laitokset",
+            "Avaruussektori (satelliittioperatiot)",
+            "Posti- ja kuriiripalvelut"
+          ]
+        }
+      ]
+    },
+    nis2Requirements: {
+      title: "NIS2 Kyberturvallisuusvaatimukset",
+      subtitle: "Kattavat kyberturvallisuustoimenpiteet, joita NIS2-direktiivi vaatii",
+      items: [
+        {
+          area: "Kyberturvallisuusriskien hallinta",
+          description: "Kattava kyberturvallisuusriskien arviointi- ja hallintakehys",
+          requirements: [
+            "Politiikat riskianalyysistä ja tietojärjestelmien turvallisuudesta",
+            "Häiriöiden käsittely ja liiketoiminnan jatkuvuuden hallinta",
+            "Toimitusketjun turvallisuus ja turvallisuus verkkosuhteissa",
+            "Turvallisuus järjestelmien hankinnassa, kehityksessä ja ylläpidossa",
+            "Politiikat ja menettelyt toimenpiteiden tehokkuuden arvioimiseksi"
+          ],
+          timeline: "Viikot 1-3"
+        },
+        {
+          area: "Tekniset & Organisatoriset toimenpiteet",
+          description: "Asianmukaisten teknisten ja organisatoristen kyberturvatoimenpiteiden toteuttaminen",
+          requirements: [
+            "Monivaiheinen todennus ja turvalliset viestintäprotokollat",
+            "Salaus ja kryptografiset mekanismit tietojen suojaamiseksi",
+            "Verkkoturvallisuustoimenpiteet ja verkon segmentointi",
+            "Varmuuskopiointimekanismit ja palautumismenettelyt",
+            "Turvallisuustestaus ja haavoittuvuuksien hallintaohjelmat"
+          ],
+          timeline: "Viikot 4-7"
+        },
+        {
+          area: "Häiriöiden raportointi & Vastaaminen",
+          description: "24/7 häiriöiden havaitsemis-, reagointi- ja viranomaisilmoituskyvykkyydet",
+          requirements: [
+            "Tietoturvahäiriöiden havaitsemis- ja reagointikyvykkyydet",
+            "Varhaisvaroitukset asianomaisille viranomaisille",
+            "24 tunnin, 72 tunnin ja yhden kuukauden raportointiaikataulut",
+            "Todisteiden säilyttäminen ja tekninen tutkinta",
+            "Palautumismenettelyt ja opittujen asioiden dokumentointi"
+          ],
+          timeline: "Viikot 8-10"
+        },
+        {
+          area: "Hallinto & Henkilöstöresurssit",
+          description: "Yhtiön hallintokehys ja henkilöstöturvallisuustoimenpiteet",
+          requirements: [
+            "Kyberturvallisuuden hallintopolitiikat ja johdon vastuut",
+            "Säännölliset kyberturvallisuuskoulutukset ja tietoisuusohjelmat",
+            "Pääsynhallintapolitiikat ja etuoikeutettujen pääsyn hallinta",
+            "Kolmannen osapuolen riskinarviointi ja toimittajien turvallisuusvaatimukset",
+            "Säännölliset turvallisuusauditoinnit ja tunkeutumistestausohjelmat"
+          ],
+          timeline: "Viikot 11-12"
+        }
+      ]
+    },
+    implementationPhases: {
+      title: "8 Viikon Sprint -toteutus",
+      subtitle: "Nopeutettu toteutusmenetelmä NIS2-vaatimustenmukaisuuden saavuttamiseksi nopeasti ja tehokkaasti",
+      items: [
+        {
+          phase: "Viikot 1-3: Perusta & Arviointi",
+          objectives: [
+            "NIS2 laajuuden ja sovellettavuuden määrittäminen",
+            "Kyberturvallisuuden tilan arviointi",
+            "Puuteanalyysi NIS2-vaatimuksia vasten",
+            "Riskienarviointimenetelmän valinta",
+            "Hallintokehyksen suunnittelu",
+            "Toteutussuunnitelman kehittäminen"
+          ]
+        },
+        {
+          phase: "Viikot 4-7: Tekninen toteutus",
+          objectives: [
+            "Kriittisten turvakontrollien käyttöönotto",
+            "Verkkoarkkitehtuurin katselmointi",
+            "Identiteetin- ja pääsynhallinnan parantaminen",
+            "Salaustoimenpiteiden toteutus",
+            "Varmuuskopioinnin ja palautumisen asennus",
+            "Turvallisuusvalvonnan käyttöönotto"
+          ]
+        },
+        {
+          phase: "Viikot 8-10: Häiriönhallinta",
+          objectives: [
+            "CSIRT-perustaminen",
+            "Häiriöiden havaitsemismenettelyt",
+            "Sääntelyraportoinnin työnkulut",
+            "Kriisiviestintäprotokollat",
+            "Todisteiden säilyttämisen kyvykkyydet",
+            "Palautumismenettelyjen aktivointi"
+          ]
+        },
+        {
+          phase: "Viikot 11-12: Hallinnon viimeistely",
+          objectives: [
+            "Hallintokehyksen viimeistely",
+            "Käytäntökokonaisuuden kehitys",
+            "Henkilöstön koulutusohjelmat",
+            "Toimittaja-arviointikehys",
+            "Vaatimustenmukaisuustestaus",
+            "Jatkuvan seurannan suunnittelu"
+          ]
+        }
+      ]
+    },
+    complianceTimeline: {
+      title: "NIS2 Vaatimustenmukaisuuden Aikajana",
+      subtitle: "Keskeiset virstanpylväät ja määräajat NIS2-toteutukselle ja jatkuvalle vaatimustenmukaisuudelle",
+      items: [
+        { date: "16. Tammikuuta 2023", milestone: "NIS2 Direktiivin voimaantulo", status: "Valmis", description: "EU:n NIS2-direktiivi astui virallisesti voimaan" },
+        { date: "17. Lokakuuta 2024", milestone: "Kansallinen täytäntöönpanon määräaika", status: "Valmis", description: "EU:n jäsenvaltiot saattoivat direktiivin osaksi kansallista lainsäädäntöä" },
+        { date: "17. Lokakuuta 2024", milestone: "Vaatimustenmukaisuuden määräaika", status: "Aktiivinen", description: "Organisaatioiden on oltava täysin NIS2-vaatimusten mukaisia" },
+        { date: "Jatkuva", milestone: "Jatkuva vaatimustenmukaisuus", status: "Jatkuva", description: "Säännölliset auditoinnit, häiriöraportointi ja vaatimustenmukaisuuden valvonta" }
+      ]
+    },
+    penalties: {
+      title: "NIS2 Sanktiot & Seuraamukset",
+      subtitle: "Ymmärrä valvontaympäristö ja noudattamatta jättämisen mahdolliset seuraukset",
+      items: [
+        {
+          severity: "Hallinnolliset sakot",
+          amount: "Jopa 10 miljoonaa € tai 2% vuosiliikevaihdosta",
+          applies_to: "Keskeiset ja tärkeät toimijat",
+          violations: "Kyberturvatoimenpiteiden ja häiriöraportoinnin laiminlyönti"
+        },
+        {
+          severity: "Johdon sanktiot",
+          amount: "Johdon henkilökohtainen vastuu",
+          applies_to: "Ylin johto ja hallituksen jäsenet",
+          violations: "Kyberturvallisuusvastuiden laiminlyönti"
+        },
+        {
+          severity: "Toiminnalliset sanktiot",
+          amount: "Palveluiden tai toimintojen keskeyttäminen",
+          applies_to: "Kriittiset palveluntarjoajat",
+          violations: "Vakava vaatimustenmukaisuuden laiminlyönti, joka vaikuttaa palvelun saatavuuteen"
+        }
+      ]
+    },
+    packageIncludes: {
+      title: "NIS2 Sprint -ohjelma sisältää",
+      subtitle: "Kattava NIS2-vaatimustenmukaisuuden toteutus jatkuvalla tuella ja valvonnalla",
+      items: [
+        "Täydellinen NIS2-soveltuvuus- ja puuteanalyysi",
+        "Kyberturvallisuusriskien hallintakehys",
+        "Teknisten turvakontrollien käyttöönotto",
+        "24/7 häiriönhallintajärjestelmä",
+        "Täydellinen dokumentaatiopaketti",
+        "Henkilöstökoulutusohjelmat",
+        "Jatkuva seuranta ja uhkien havaitseminen",
+        "12 kuukauden tuki toteutuksen jälkeen",
+        "Neljännesvuosittaiset vaatimustenmukaisuuskatsaukset",
+        "Lakisääteisen vaatimustenmukaisuuden varmistus",
+        "Vuosittainen vaatimustenmukaisuusarviointi",
+        "24/7 asiantuntijatuki"
+      ]
+    },
+    benefitsList: {
+      title: "Keskeiset edut",
+      items: [
+        "Täysi NIS2-vaatimustenmukaisuus vain 8 viikossa",
+        "Kattava riskienhallintakehys",
+        "Asiantuntijaohjaus koko matkan ajan",
+        "Kaikki vaadittu dokumentaatio mukana",
+        "Jatkuva tuki ja seuranta",
+        "Tehostettu kyberturvallisuuden sietokyky"
+      ]
+    }
+  }
 };
 
-const nis2Sectors = [
-  {
-    category: lang === 'fi' ? "Keskeiset palvelut (Korkea riski)" : "Essential Services (High Risk)",
-    sectors: lang === 'fi' ? [
-      "Energiasektori (sähkö, öljy, kaasun jakelu ja toimitus)",
-      "Liikenne (ilma-, raide-, vesi-, tieliikenne ja liikenteenhallinta)",
-      "Pankki- ja rahoitusmarkkinainfrastruktuurit",
-      "Terveyssektori (terveydenhuollon tarjoajat ja laitokset)",
-      "Juomaveden toimitus- ja jakelujärjestelmät",
-      "Digitaalinen infrastruktuuri (Internet-yhdysliikennepisteet, DNS, TLD-rekisterit)",
-      "ICT-palvelunhallinta (B2B) ja pilvipalvelut",
-      "Julkinen hallinto (keskushallinnon yksiköt)"
-    ] : [
-      "Energy sector (electricity, oil, gas distribution and supply)",
-      "Transport (air, rail, water, road transport and traffic management)",
-      "Banking and financial market infrastructures",
-      "Health sector (healthcare providers and institutions)",
-      "Drinking water supply and distribution systems",
-      "Digital infrastructure (Internet Exchange Points, DNS, TLD registries)",
-      "ICT service management (B2B) and cloud computing services",
-      "Public administration (central government entities)"
-    ]
-  },
-  {
-    category: lang === 'fi' ? "Tärkeät palvelut (Keskitason/Korkea riski)" : "Important Services (Medium-High Risk)", 
-    sectors: lang === 'fi' ? [
-      "Digitaaliset palvelut (verkkokaupat, hakukoneet, sosiaaliset verkostot)",
-      "Jäteveden hallinta ja käsittelylaitokset",
-      "Kemikaalien tuotanto, käsittely ja jakelu",
-      "Elintarvikkeiden tuotanto, jalostus ja jakelu",
-      "Valmistus (lääkinnälliset laitteet, elektroniikka, koneet, moottoriajoneuvot)",
-      "Tutkimusorganisaatiot ja -laitokset",
-      "Avaruussektori (satelliittioperatiot ja palvelut)",
-      "Posti- ja kuriiripalvelut (rajat ylittävät toiminnot)"
-    ] : [
-      "Digital services (online marketplaces, search engines, social networks)",
-      "Waste water management and treatment facilities",
-      "Chemicals production, processing and distribution",
-      "Food production, processing and distribution",
-      "Manufacturing (medical devices, electronics, machinery, motor vehicles)",
-      "Research organizations and facilities",
-      "Space sector (satellite operations and services)",
-      "Postal and courier services (cross-border operations)"
-    ]
-  },
-  {
-    category: lang === 'fi' ? "Kokorajat" : "Size Thresholds",
-    sectors: lang === 'fi' ? [
-      "Keskeiset palvelut: Kaikki yksiköt koosta riippumatta",
-      "Tärkeät palvelut: Vain keskisuuret ja suuret yritykset",
-      "Keskisuuret yritykset: 50-249 työntekijää TAI 10-50M€ liikevaihto",
-      "Suuret yritykset: 250+ työntekijää TAI 50M€+ liikevaihto",
-      "Julkisen sektorin yksiköt kuuluvat yleensä soveltamisalaan"
-    ] : [
-      "Essential Services: All entities regardless of size",
-      "Important Services: Medium and large enterprises only",
-      "Medium enterprises: 50-249 employees OR €10-50M turnover",
-      "Large enterprises: 250+ employees OR €50M+ turnover",
-      "Public sector entities are generally in scope"
-    ]
-  }
-];
+const currentContent = content[lang];
+const isFi = lang === 'fi';
 
-const nis2Requirements = [
-  {
-    area: lang === 'fi' ? "Kyberturvallisuusriskien hallinta" : "Cybersecurity Risk Management",
-    description: lang === 'fi'
-      ? "Kattava kyberturvallisuusriskien arviointi- ja hallintakehys"
-      : "Comprehensive cybersecurity risk assessment and management framework",
-    requirements: lang === 'fi' ? [
-      "Politiikat riskianalyysistä ja tietojärjestelmien turvallisuudesta",
-      "Häiriöiden käsittely ja liiketoiminnan jatkuvuuden hallinta",
-      "Toimitusketjun turvallisuus ja turvallisuus verkkosuhteissa",
-      "Turvallisuus järjestelmien hankinnassa, kehityksessä ja ylläpidossa",
-      "Politiikat ja menettelyt toimenpiteiden tehokkuuden arvioimiseksi"
-    ] : [
-      "Policies on risk analysis and information system security",
-      "Incident handling and business continuity management",
-      "Supply chain security and security in network relationships",
-      "Security in acquisition, development and maintenance of systems",
-      "Policies and procedures to assess effectiveness of measures"
-    ],
-    timeline: lang === 'fi' ? "Viikot 1-3" : "Weeks 1-3"
-  },
-  {
-    area: lang === 'fi' ? "Tekniset & Organisatoriset toimenpiteet" : "Technical & Organizational Measures",
-    description: lang === 'fi'
-      ? "Asianmukaisten teknisten ja organisatoristen kyberturvatoimenpiteiden toteuttaminen"
-      : "Implementation of appropriate technical and organizational cybersecurity measures",
-    requirements: lang === 'fi' ? [
-      "Monivaiheinen todennus ja turvalliset viestintäprotokollat",
-      "Salaus ja kryptografiset mekanismit tietojen suojaamiseksi",
-      "Verkkoturvallisuustoimenpiteet ja verkon segmentointi",
-      "Varmuuskopiointimekanismit ja palautumismenettelyt",
-      "Turvallisuustestaus ja haavoittuvuuksien hallintaohjelmat"
-    ] : [
-      "Multi-factor authentication and secure communication protocols",
-      "Encryption and cryptographic mechanisms for data protection",
-      "Network security measures and network segmentation",
-      "Backup mechanisms and disaster recovery procedures",
-      "Security testing and vulnerability management programs"
-    ],
-    timeline: lang === 'fi' ? "Viikot 4-7" : "Weeks 4-7"
-  },
-  {
-    area: lang === 'fi' ? "Häiriöiden raportointi & Vastaaminen" : "Incident Reporting & Response",
-    description: lang === 'fi'
-      ? "24/7 häiriöiden havaitsemis-, reagointi- ja viranomaisilmoituskyvykkyydet"
-      : "24/7 incident detection, response, and regulatory notification capabilities",
-    requirements: lang === 'fi' ? [
-      "Tietoturvahäiriöiden havaitsemis- ja reagointikyvykkyydet",
-      "Varhaisvaroitukset asianomaisille viranomaisille",
-      "24 tunnin, 72 tunnin ja yhden kuukauden raportointiaikataulut",
-      "Todisteiden säilyttäminen ja tekninen tutkinta",
-      "Palautumismenettelyt ja opittujen asioiden dokumentointi"
-    ] : [
-      "Computer security incident detection and response capabilities", 
-      "Early warning notifications to relevant authorities",
-      "24-hour, 72-hour, and one-month incident reporting timelines",
-      "Evidence preservation and forensic investigation protocols",
-      "Recovery procedures and lessons learned documentation"
-    ],
-    timeline: lang === 'fi' ? "Viikot 8-10" : "Weeks 8-10"
-  },
-  {
-    area: lang === 'fi' ? "Hallinto & Henkilöstöresurssit" : "Governance & Human Resources",
-    description: lang === 'fi'
-      ? "Yhtiön hallintokehys ja henkilöstöturvallisuustoimenpiteet"
-      : "Corporate governance framework and human resource security measures",
-    requirements: lang === 'fi' ? [
-      "Kyberturvallisuuden hallintopolitiikat ja johdon vastuut",
-      "Säännölliset kyberturvallisuuskoulutukset ja tietoisuusohjelmat",
-      "Pääsynhallintapolitiikat ja etuoikeutettujen pääsyn hallinta",
-      "Kolmannen osapuolen riskinarviointi ja toimittajien turvallisuusvaatimukset",
-      "Säännölliset turvallisuusauditoinnit ja tunkeutumistestausohjelmat"
-    ] : [
-      "Cybersecurity governance policies and management responsibilities",
-      "Regular cybersecurity training and awareness programs",
-      "Access control policies and privileged access management",
-      "Third-party risk assessment and vendor security requirements",
-      "Regular security audits and penetration testing programs"
-    ],
-    timeline: lang === 'fi' ? "Viikot 11-12" : "Weeks 11-12"
-  }
-];
-
-const implementationPhases = [
-  {
-    phase: lang === 'fi' ? "Viikot 1-3: Perusta & Arviointi" : "Weeks 1-3: Foundation & Assessment",
-    objectives: lang === 'fi' ? [
-      "NIS2 laajuuden ja sovellettavuuden määrittäminen lakianalyysilla",
-      "Kattava kyberturvallisuuden tilan arviointi ja kypsyystason evaluointi",
-      "Puuteanalyysi kaikkia NIS2 teknisiä ja organisatorisia vaatimuksia vasten",
-      "Riskiarviointimenetelmän valinta ja uhkamaisema-analyysi",
-      "Hallintokehyksen suunnittelu ja johdon vastuiden kartoitus",
-      "Toteutussuunnitelman kehittäminen ja resurssien suunnittelu"
-    ] : [
-      "NIS2 scope and applicability determination with legal analysis",
-      "Comprehensive cybersecurity posture assessment and maturity evaluation",
-      "Gap analysis against all NIS2 technical and organizational requirements",
-      "Risk assessment methodology selection and threat landscape analysis",
-      "Governance framework design and management responsibility mapping",
-      "Implementation roadmap development with resource planning"
-    ],
-    deliverables: lang === 'fi' ? [
-      "NIS2 Lakisääteisen sovellettavuuden arviointiraportti",
-      "Kyberturvallisuuden kypsyysarviointi puuteanalyysillä",
-      "Riskiarviointikehys ja uhkamallinnusdokumentaatio", 
-      "Hallintokirja (Governance Charter) rooleineen ja vastuineen",
-      "12 viikon toteutussuunnitelma resurssien allokoinnilla"
-    ] : [
-      "NIS2 Legal Applicability Assessment Report",
-      "Cybersecurity Maturity Assessment with gap analysis",
-      "Risk Assessment Framework and threat modeling documentation", 
-      "Governance Charter with roles and responsibilities",
-      "12-week Implementation Roadmap with resource allocation"
-    ]
-  },
-  {
-    phase: lang === 'fi' ? "Viikot 4-7: Tekninen toteutus & Turvakontrollit" : "Weeks 4-7: Technical Implementation & Security Controls",
-    objectives: lang === 'fi' ? [
-      "Kriittisten turvakontrollien käyttöönotto koko infrastruktuurissa",
-      "Verkkoarkkitehtuurin katselmointi ja segmentoinnin toteutus",
-      "Identiteetin- ja pääsynhallintajärjestelmän parantaminen",
-      "Salauksen ja kryptografisten kontrollien toteutus",
-      "Varmuuskopioinnin, palautumisen ja liiketoiminnan jatkuvuuden asennus",
-      "Turvallisuusvalvonnan ja uhkien havaitsemiskyvykkyyksien käyttöönotto"
-    ] : [
-      "Critical security controls deployment across all infrastructure",
-      "Network architecture review and segmentation implementation",
-      "Identity and access management system enhancement",
-      "Encryption and cryptographic controls implementation",
-      "Backup, disaster recovery, and business continuity setup",
-      "Security monitoring and threat detection capabilities deployment"
-    ],
-    deliverables: lang === 'fi' ? [
-      "Parannettu turvallisuusinfrastruktuuri dokumentoiduilla kontrolleilla",
-      "Verkon segmentoinnin ja mikrosegmentoinnin toteutus",
-      "Monivaiheisen todennuksen (MFA) käyttöönotto kaikissa järjestelmissä",
-      "Tietoturvatietojen ja tapahtumien hallinta (SIEM) -alusta",
-      "Kattavat varmuuskopiointi- ja palautusmenettelyt",
-      "24/7 turvallisuusvalvonnan kojelauta ja hälytysjärjestelmä"
-    ] : [
-      "Enhanced security infrastructure with documented controls",
-      "Network segmentation and microsegmentation implementation",
-      "Multi-factor authentication deployment across all systems",
-      "Security Information and Event Management (SIEM) platform",
-      "Comprehensive backup and disaster recovery procedures",
-      "24/7 security monitoring dashboard and alerting system"
-    ]
-  },
-  {
-    phase: lang === 'fi' ? "Viikot 8-10: Häiriönhallinta & Sääntelyn noudattaminen" : "Weeks 8-10: Incident Response & Regulatory Compliance",
-    objectives: lang === 'fi' ? [
-      "Tietoturvaloukkauksiin reagoivan ryhmän (CSIRT) perustaminen",
-      "Häiriöiden havaitsemis-, luokittelu- ja vakavuusarviointimenettelyt",
-      "Sääntelyraportoinnin työnkulut 24h, 72h ja kuukausittaisille vaatimuksille",
-      "Kriisiviestintä- ja sidosryhmäilmoitusprotokollat",
-      "Todisteiden säilyttäminen ja digitaalisen forensiikan kyvykkyydet",
-      "Palautumismenettelyt ja liiketoiminnan jatkuvuuden aktivointiprotokollat"
-    ] : [
-      "Computer Security Incident Response Team (CSIRT) establishment",
-      "Incident detection, classification, and severity assessment procedures",
-      "Regulatory reporting workflows for 24h, 72h, and monthly requirements",
-      "Crisis communication and stakeholder notification protocols",
-      "Evidence preservation and digital forensics capabilities",
-      "Recovery procedures and business continuity activation protocols"
-    ],
-    deliverables: lang === 'fi' ? [
-      "Täydellinen häiriönhallintasuunnitelma CSIRT-toimintaohjeineen",
-      "Häiriönhallinta-alusta automaattisilla raportointikyvykkyyksillä",
-      "Sääntelyraportoinnin mallipohjat ja ilmoitustyönkulut",
-      "Kriisiviestintäsuunnitelma sidosryhmien yhteystietoineen",
-      "Digitaalisen forensiikan työkalupakki ja todisteiden säilytyskäytännöt",
-      "Liiketoiminnan jatkuvuuden ja palautumisen aktivointimenettelyt"
-    ] : [
-      "Complete Incident Response Plan with CSIRT operational procedures",
-      "Incident Management Platform with automated reporting capabilities",
-      "Regulatory reporting templates and notification workflows",
-      "Crisis Communication Plan with stakeholder contact procedures",
-      "Digital forensics toolkit and evidence preservation protocols",
-      "Business Continuity and Disaster Recovery activation procedures"
-    ]
-  },
-  {
-    phase: lang === 'fi' ? "Viikot 11-12: Hallinnon viimeistely & Vaatimustenmukaisuuden validointi" : "Weeks 11-12: Governance Finalization & Compliance Validation",
-    objectives: lang === 'fi' ? [
-      "Kyberturvallisuuden hallintokehyksen viimeistely ja hallituksen hyväksyntä",
-      "Täydellisen politiikka- ja menettelytapakokonaisuuden kehitys ja hyväksyntä",
-      "Kattavat henkilöstökoulutukset ja kyberturvallisuustietoisuusohjelmat",
-      "Kolmannen osapuolen toimittaja-arviointi ja toimitusketjun turvaprotokollat",
-      "Vaatimustenmukaisuuden testaus, validointi ja auditointivalmius",
-      "Jatkuva seuranta ja parannussuunnittelu KPI-mittareiden määrityksellä"
-    ] : [
-      "Cybersecurity governance framework finalization and board approval",
-      "Complete policy and procedure suite development and approval",
-      "Comprehensive staff training and cybersecurity awareness programs",
-      "Third-party vendor assessment and supply chain security protocols",
-      "Compliance testing, validation, and audit readiness preparation",
-      "Continuous monitoring and improvement planning with KPI establishment"
-    ],
-    deliverables: lang === 'fi' ? [
-      "Hallituksen hyväksymä kyberturvallisuuden hallintokirja ja politiikat",
-      "Täydellinen NIS2-politiikka- ja menettelytapadokumentaatio",
-      "Henkilöstökoulutusohjelmat suoritusten seurannalla ja sertifioinnilla",
-      "Toimittaja-arviointikehys ja toimitusketjun turvallisuusvaatimukset",
-      "NIS2-vaatimustenmukaisuuden validointiraportti audit-valmiilla dokumentaatiolla",
-      "Jatkuva vaatimustenmukaisuuden seurantasuunnitelma suorituskykymittareilla"
-    ] : [
-      "Board-approved Cybersecurity Governance Charter and policies",
-      "Complete NIS2 Policy and Procedure Documentation Suite",
-      "Staff Training Programs with completion tracking and certification",
-      "Vendor Assessment Framework and supply chain security requirements",
-      "NIS2 Compliance Validation Report with audit-ready documentation",
-      "Continuous Compliance Monitoring Plan with performance indicators"
-    ]
-  }
-];
-
-const complianceTimeline = [
-  {
-    date: lang === 'fi' ? "16. Tammikuuta 2023" : "January 16, 2023",
-    milestone: lang === 'fi' ? "NIS2 Direktiivin voimaantulo" : "NIS2 Directive Entry into Force",
-    status: lang === 'fi' ? "Valmis" : "Completed",
-    description: lang === 'fi' ? "EU:n NIS2-direktiivi astui virallisesti voimaan" : "EU NIS2 Directive officially entered into force"
-  },
-  {
-    date: lang === 'fi' ? "17. Lokakuuta 2024" : "October 17, 2024", 
-    milestone: lang === 'fi' ? "Kansallinen täytäntöönpanon määräaika" : "National Implementation Deadline",
-    status: lang === 'fi' ? "Valmis" : "Completed",
-    description: lang === 'fi' ? "EU:n jäsenvaltiot saattoivat direktiivin osaksi kansallista lainsäädäntöä" : "EU Member States completed transposition into national law"
-  },
-  {
-    date: lang === 'fi' ? "17. Lokakuuta 2024" : "October 17, 2024",
-    milestone: lang === 'fi' ? "Vaatimustenmukaisuuden määräaika" : "Compliance Deadline",
-    status: lang === 'fi' ? "Aktiivinen" : "Active",
-    description: lang === 'fi' ? "Organisaatioiden on oltava täysin NIS2-vaatimusten mukaisia" : "Organizations must be fully compliant with NIS2 requirements"
-  },
-  {
-    date: lang === 'fi' ? "Jatkuva" : "Ongoing",
-    milestone: lang === 'fi' ? "Jatkuva vaatimustenmukaisuus" : "Continuous Compliance",
-    status: lang === 'fi' ? "Jatkuva" : "Ongoing", 
-    description: lang === 'fi' ? "Säännölliset auditoinnit, häiriöraportointi ja vaatimustenmukaisuuden valvonta" : "Regular audits, incident reporting, and compliance monitoring"
-  }
-];
-
-const penalties = [
-  {
-    severity: lang === 'fi' ? "Hallinnolliset sakot" : "Administrative Fines",
-    amount: lang === 'fi' ? "Jopa 10 miljoonaa € tai 2% vuosiliikevaihdosta" : "Up to €10 million or 2% of annual turnover",
-    applies_to: lang === 'fi' ? "Keskeiset ja tärkeät toimijat" : "Essential and important entities",
-    violations: lang === 'fi' ? "Kyberturvatoimenpiteiden ja häiriöraportoinnin laiminlyönti" : "Non-compliance with cybersecurity measures and incident reporting"
-  },
-  {
-    severity: lang === 'fi' ? "Johdon sanktiot" : "Management Sanctions",
-    amount: lang === 'fi' ? "Johdon henkilökohtainen vastuu" : "Personal liability for management",
-    applies_to: lang === 'fi' ? "Ylin johto ja hallituksen jäsenet" : "Senior management and board members",
-    violations: lang === 'fi' ? "Kyberturvallisuusvastuiden laiminlyönti" : "Failure to fulfill cybersecurity responsibilities"
-  },
-  {
-    severity: lang === 'fi' ? "Toiminnalliset sanktiot" : "Operational Sanctions",
-    amount: lang === 'fi' ? "Palveluiden tai toimintojen keskeyttäminen" : "Suspension of services or operations", 
-    applies_to: lang === 'fi' ? "Kriittiset palveluntarjoajat" : "Critical service providers",
-    violations: lang === 'fi' ? "Vakava vaatimustenmukaisuuden laiminlyönti, joka vaikuttaa palvelun saatavuuteen" : "Severe non-compliance affecting service availability"
-  }
-];
-
-const packageIncludes = lang === 'fi' ? [
-    "Täydellinen NIS2-soveltuvuus- ja puuteanalyysi",
-    "Kyberturvallisuusriskien hallintakehyksen toteutus",
-    "Teknisten turvakontrollien käyttöönotto ja konfigurointi",
-    "24/7 häiriönhallinta- ja sääntelyraportointijärjestelmä",
-    "Täydellinen sääntelyvaatimustenmukaisuuden dokumentaatiopaketti",
-    "Kattavat henkilöstökoulutus- ja tietoisuusohjelmat",
-    "Jatkuvan valvonnan ja uhkien havaitsemisen asennus",
-    "12 kuukauden tuki ja ylläpito käyttöönoton jälkeen",
-    "Neljännesvuosittaiset vaatimustenmukaisuuskatsaukset ja parannussuositukset",
-    "Lakisääteisen vaatimustenmukaisuuden varmistus ja auditointituki",
-    "Vuosittainen NIS2-vaatimustenmukaisuuden arviointi ja sertifiointi",
-    "24/7 asiantuntijatuki vaatimustenmukaisuuskysymyksiin"
-  ] : [
-    "Complete NIS2 applicability and gap assessment",
-    "Cybersecurity risk management framework implementation",
-    "Technical security controls deployment and configuration",
-    "24/7 incident response and regulatory reporting system",
-    "Complete regulatory compliance documentation package",
-    "Comprehensive staff training and awareness programs",
-    "Continuous monitoring and threat detection setup",
-    "12 months post-implementation support and maintenance",
-    "Quarterly compliance reviews and improvement recommendations",
-    "Legal compliance verification and audit support",
-    "Annual NIS2 compliance assessment and certification",
-    "24/7 expert support hotline for compliance questions"
-  ];
+function getStatusClass(status: string) {
+  if (status === 'Completed' || status === 'Valmis') return 'bg-green-100 text-green-700';
+  if (status === 'Active' || status === 'Aktiivinen') return 'bg-orange-100 text-orange-700';
+  if (status === 'Ongoing' || status === 'Jatkuva') return 'bg-blue-100 text-blue-700';
+  return 'bg-slate-100 text-slate-700';
+}
 ---
 
-<Layout seoConfig={seoConfig}>
-  <HeroSection content={heroContent} />
-  
-  <!-- NIS2 Overview -->
-  <section class="py-16 bg-white">
+<Layout {...seoConfig}>
+
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang === 'fi' ? "NIS2-direktiivi: Parannettu kyberturvallisuus Euroopalle" : "NIS2 Directive: Enhanced Cybersecurity for Europe"}</h2>
-        <p class="text-lg text-slate-600 max-w-4xl mx-auto">
-          {lang === 'fi' 
-            ? "Verkko- ja tietoturvadirektiivi (NIS2) vahvistaa kyberturvallisuusvaatimuksia kriittisillä aloilla koko EU:ssa. Sprint-ohjelmamme tarjoaa nopean vaatimustenmukaisuuden organisaatioille, joiden on täytettävä nämä tehostetut kyberturvallisuusvelvoitteet."
-            : "The Network and Information Systems (NIS2) Directive strengthens cybersecurity requirements across critical sectors in the EU. Our Sprint Program delivers rapid compliance for organizations that must meet these enhanced cybersecurity obligations."}
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
         </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-red-50 border-l-4 border-red-400 p-6">
-          <div class="flex items-center mb-2">
-            <svg class="w-6 h-6 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <h3 class="text-lg font-semibold text-red-900">{lang === 'fi' ? "Pakollinen" : "Mandatory"}</h3>
-          </div>
-          <p class="text-red-700">{lang === 'fi' ? "Vaatimustenmukaisuus pakollista kaikille soveltamisalaan kuuluville keskeisille ja tärkeille toimijoille" : "Compliance required for all in-scope essential and important entities"}</p>
-        </div>
         
-        <div class="bg-orange-50 border-l-4 border-orange-400 p-6">
-          <div class="flex items-center mb-2">
-            <svg class="w-6 h-6 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-            </svg>
-            <h3 class="text-lg font-semibold text-orange-900">{lang === 'fi' ? "Korkeat sakot" : "High Penalties"}</h3>
+        <!-- Info Section - Two Column Layout -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
+              </div>
+            </div>
           </div>
-          <p class="text-orange-700">{lang === 'fi' ? "Jopa 10M€ tai 2% vuosiliikevaihdosta noudattamatta jättämisestä" : "Up to €10M or 2% annual turnover for non-compliance"}</p>
-        </div>
-        
-        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6">
-          <div class="flex items-center mb-2">
-            <svg class="w-6 h-6 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <h3 class="text-lg font-semibold text-yellow-900">{lang === 'fi' ? "Aktiivinen valvonta" : "Active Enforcement"}</h3>
+          
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
+            </div>
           </div>
-          <p class="text-yellow-700">{lang === 'fi' ? "Kansalliset viranomaiset valvovat aktiivisesti vaatimustenmukaisuutta" : "National authorities actively monitoring and enforcing compliance"}</p>
-        </div>
-        
-        <div class="bg-teal-50 border-l-4 border-teal-400 p-6">
-          <div class="flex items-center mb-2">
-            <svg class="w-6 h-6 text-teal-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-            </svg>
-            <h3 class="text-lg font-semibold text-teal-900">{lang === 'fi' ? "Liiketoimintahyöty" : "Business Benefit"}</h3>
-          </div>
-          <p class="text-teal-700">{lang === 'fi' ? "Parannettu kyberturvallisuuden sietokyky ja kilpailuetu" : "Enhanced cybersecurity resilience and competitive advantage"}</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- NIS2 Sectors -->
-  <section class="py-16 bg-slate-50">
+  <!-- Overview Section -->
+  <section class="py-6">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang === 'fi' ? "NIS2 Soveltamisalaan kuuluvat sektorit" : "NIS2 Covered Sectors"}</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi' 
-            ? "NIS2 koskee keskeisiä ja tärkeitä palveluntarjoajia talouden kriittisillä sektoreilla."
-            : "NIS2 applies to essential and important service providers across critical sectors of the economy."}
+      <div class="max-w-4xl mx-auto bg-gradient-to-br from-blue-50 to-indigo-50/30 rounded-2xl border-2 border-[#3B82F6] shadow-lg p-6 md:p-8">
+        <div class="flex items-start gap-4 mb-4">
+          <div class="w-10 h-10 bg-[#3B82F6] rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h2 class="text-xl md:text-2xl font-bold text-[#1E2A7A]">{currentContent.overview.title}</h2>
+        </div>
+        <p class="text-slate-700 leading-relaxed mb-4 pl-14">{currentContent.overview.description}</p>
+        <div class="bg-white/70 rounded-xl border border-[#3B82F6]/30 p-4 pl-14">
+          <p class="text-[#1E2A7A] font-semibold flex items-start gap-2">
+            <svg class="w-5 h-5 text-[#3B82F6] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {currentContent.overview.highlight}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NIS2 Sectors Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.nis2Sectors.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.nis2Sectors.subtitle}
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {nis2Sectors.map(category => (
-          <div class="bg-white rounded-lg shadow-lg p-6">
-            <h3 class="text-xl font-semibold text-slate-900 mb-4">{category.category}</h3>
-            <ul class="space-y-3">
-              {category.sectors.map(sector => (
-                <li class="flex items-start">
-                  <svg class="w-4 h-4 text-teal-600 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+        {currentContent.nis2Sectors.items.map((category) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-2 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {category.category}
+            </h3>
+            
+            <ul class="space-y-1.5 relative z-10">
+              {category.sectors.map((sector) => (
+                <li class="flex items-start text-xs text-slate-600 group-hover:text-slate-700 transition-colors duration-300">
+                  <svg class="w-3 h-3 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span class="text-slate-700">{sector}</span>
+                  {sector}
                 </li>
               ))}
             </ul>
@@ -510,36 +604,42 @@ const packageIncludes = lang === 'fi' ? [
     </div>
   </section>
 
-  <!-- NIS2 Requirements -->
-  <section class="py-16 bg-white">
+  <!-- NIS2 Requirements Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang === 'fi' ? "NIS2 Kyberturvallisuusvaatimukset" : "NIS2 Cybersecurity Requirements"}</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi' 
-            ? "Kattavat kyberturvallisuustoimenpiteet, joita NIS2-direktiivi vaatii."
-            : "Comprehensive cybersecurity measures required under the NIS2 Directive."}
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.nis2Requirements.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.nis2Requirements.subtitle}
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {nis2Requirements.map(requirement => (
-          <div class="bg-slate-50 rounded-lg p-6">
-            <div class="flex items-center mb-4">
-              <span class="bg-teal-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3">
-                {requirement.timeline}
-              </span>
-              <h3 class="text-lg font-semibold text-slate-900">{requirement.area}</h3>
-            </div>
-            <p class="text-slate-600 mb-4">{requirement.description}</p>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">        {currentContent.nis2Requirements.items.map((req) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
             
-            <ul class="space-y-2">
-              {requirement.requirements.map(req => (
-                <li class="flex items-start">
-                  <svg class="w-4 h-4 text-teal-600 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            <div class="flex items-center justify-between mb-2 relative z-10">
+              <h3 class="text-sm font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                {req.area}
+              </h3>
+              <span class="text-[10px] text-slate-500">{req.timeline}</span>
+            </div>
+            <p class="text-[10px] text-slate-500 mb-2 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {req.description}
+            </p>
+            
+            <ul class="space-y-1 relative z-10">
+              {req.requirements.map((item) => (
+                <li class="flex items-start text-[10px] text-slate-600 group-hover:text-slate-700 transition-colors duration-300">
+                  <svg class="w-2.5 h-2.5 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span class="text-sm text-slate-700">{req}</span>
+                  {item}
                 </li>
               ))}
             </ul>
@@ -549,164 +649,189 @@ const packageIncludes = lang === 'fi' ? [
     </div>
   </section>
 
-  <!-- Implementation Timeline -->
-  <section class="py-16 bg-slate-50">
+  <!-- Implementation Phases Section -->
+  <section class="py-12 md:py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang === 'fi' ? "8 Viikon Sprint -toteutus" : "8-Week Sprint Implementation"}</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi' 
-            ? "Nopeutettu toteutusmenetelmä NIS2-vaatimustenmukaisuuden saavuttamiseksi nopeasti ja tehokkaasti."
-            : "Accelerated implementation methodology to achieve NIS2 compliance quickly and efficiently."}
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.implementationPhases.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.implementationPhases.subtitle}
         </p>
       </div>
       
-      <div class="space-y-8">
-        {implementationPhases.map((phase, index) => (
-          <div class="bg-white rounded-lg shadow-lg border border-slate-200 p-8">
-            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
-              <div class="lg:flex-1">
-                <h3 class="text-xl font-semibold text-slate-900 mb-2">{phase.phase}</h3>
-              </div>
-            </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+        {currentContent.implementationPhases.items.map((phase) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div>
-                <h4 class="text-sm font-semibold text-slate-900 mb-3">{lang === 'fi' ? "Tavoitteet:" : "Objectives:"}</h4>
-                <ul class="space-y-2">
-                  {phase.objectives.map(objective => (
-                    <li class="flex items-start">
-                      <svg class="w-4 h-4 text-teal-600 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                      </svg>
-                      <span class="text-sm text-slate-700">{objective}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div>
-                <h4 class="text-sm font-semibold text-slate-900 mb-3">{lang === 'fi' ? "Tuotokset:" : "Deliverables:"}</h4>
-                <ul class="space-y-2">
-                  {phase.deliverables.map(deliverable => (
-                    <li class="flex items-start">
-                      <svg class="w-4 h-4 text-orange-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" clip-rule="evenodd"></path>
-                      </svg>
-                      <span class="text-sm text-slate-700">{deliverable}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            <h3 class="text-xs font-bold text-[#1E40AF] mb-2 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {phase.phase}
+            </h3>
+            
+            <ul class="space-y-1.5 relative z-10">
+              {phase.objectives.map((objective) => (
+                <li class="flex items-start text-[10px] text-slate-600 group-hover:text-slate-700 transition-colors duration-300">
+                  <svg class="w-2.5 h-2.5 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {objective}
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Compliance Timeline -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang === 'fi' ? "NIS2 Vaatimustenmukaisuuden Aikajana" : "NIS2 Compliance Timeline"}</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi' 
-            ? "Keskeiset virstanpylväät ja määräajat NIS2-toteutukselle ja jatkuvalle vaatimustenmukaisuudelle."
-            : "Key milestones and deadlines for NIS2 implementation and ongoing compliance."}
-        </p>
-      </div>
-      
-      <div class="space-y-6">
-        {complianceTimeline.map((milestone, index) => (
-          <div class="flex items-start">
-            <div class={`w-4 h-4 rounded-full mt-1 mr-4 ${
-              milestone.status === 'Completed' || milestone.status === 'Valmis' ? 'bg-green-500' : 
-              milestone.status === 'Active' || milestone.status === 'Aktiivinen' ? 'bg-orange-500' : 'bg-teal-500'
-            }`}></div>
-            <div class="flex-1">
-              <div class="flex items-center justify-between mb-2">
-                <h3 class="text-lg font-semibold text-slate-900">{milestone.milestone}</h3>
-                <span class={`px-3 py-1 rounded-full text-xs font-medium ${
-                  milestone.status === 'Completed' || milestone.status === 'Valmis' ? 'bg-green-100 text-green-800' :
-                  milestone.status === 'Active' || milestone.status === 'Aktiivinen' ? 'bg-orange-100 text-orange-800' : 'bg-teal-100 text-teal-800'
-                }`}>
-                  {milestone.status}
-                </span>
-              </div>
-              <p class="text-sm text-slate-500 mb-2">{milestone.date}</p>
-              <p class="text-slate-700">{milestone.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Penalties -->
-  <section class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang === 'fi' ? "NIS2 Sanktiot & Seuraamukset" : "NIS2 Penalties & Sanctions"}</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          {lang === 'fi' 
-            ? "Ymmärrä valvontaympäristö ja noudattamatta jättämisen mahdolliset seuraukset."
-            : "Understanding the enforcement landscape and potential consequences of non-compliance."}
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {penalties.map(penalty => (
-          <div class="bg-white rounded-lg shadow-lg p-6 border-l-4 border-red-400">
-            <h3 class="text-lg font-semibold text-slate-900 mb-3">{penalty.severity}</h3>
-            <p class="text-xl font-bold text-red-600 mb-3">{penalty.amount}</p>
-            <p class="text-sm text-slate-600 mb-3"><strong>{lang === 'fi' ? "Koskee:" : "Applies to:"}</strong> {penalty.applies_to}</p>
-            <p class="text-sm text-slate-700">{penalty.violations}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Package Includes -->
-  <section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-slate-900 mb-4">{lang === 'fi' ? "NIS2 Sprint -ohjelma sisältää" : "NIS2 Sprint Program Includes"}</h2>
-      <p class="text-lg text-slate-600 mb-8">
-        {lang === 'fi' 
-          ? "Kattava NIS2-vaatimustenmukaisuuden toteutus jatkuvalla tuella ja valvonnalla."
-          : "Comprehensive NIS2 compliance implementation with ongoing support and monitoring."}
+<!-- Compliance Timeline Section -->
+<section class="py-12 md:py-16 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8 md:mb-12">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+        {currentContent.complianceTimeline.title}
+      </h2>
+      <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+        {currentContent.complianceTimeline.subtitle}
       </p>
-      
-      <div class="bg-slate-50 rounded-lg p-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-          {packageIncludes.map(item => (
-            <div class="flex items-start">
-              <svg class="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-slate-700">{item}</span>
+    </div>
+    
+    <div class="max-w-3xl mx-auto space-y-3">
+      {currentContent.complianceTimeline.items.map((milestone) => (
+        <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                    hover:shadow-md hover:border-[#3B82F6]
+                    transition-all duration-300
+                    flex items-center p-4 md:p-5 group">
+          <div class="w-3 h-3 rounded-full mr-4 flex-shrink-0 bg-[#3B82F6]"></div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <h3 class="text-sm font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                {milestone.milestone}
+              </h3>
+              <span class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#3B82F6]/10 text-[#3B82F6]">
+                {milestone.status}
+              </span>
             </div>
-          ))}
+            <p class="text-[10px] text-slate-500">{milestone.date}</p>
+            <p class="text-[10px] text-slate-600">{milestone.description}</p>
+          </div>
         </div>
-        
-        <div class="mt-8">
-          <Button
-            href="/contact?package=nis2-sprint"
-            variant="primary"
-            className="py-3 px-8 inline-block">
-            {lang === 'fi' ? "Aloita NIS2 Sprint -ohjelma" : "Start NIS2 Sprint Program"}
-          </Button>
-        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+  <!-- Penalties Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.penalties.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.penalties.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+        {currentContent.penalties.items.map((penalty) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex items-center gap-2 mb-2 relative z-10">
+              <div class="w-6 h-6 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-3.5 h-3.5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" />
+                </svg>
+              </div>
+              <h3 class="text-sm font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                {penalty.severity}
+              </h3>
+            </div>
+            <p class="text-sm font-bold text-red-600 mb-1.5 relative z-10">{penalty.amount}</p>
+            <p class="text-[10px] text-slate-500 mb-1 relative z-10">
+              <span class="font-semibold text-[#1E40AF]">{isFi ? 'Koskee:' : 'Applies to:'}</span> {penalty.applies_to}
+            </p>
+            <p class="text-[10px] text-slate-600 relative z-10">{penalty.violations}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <CTA 
-    title={lang === 'fi' ? "Saavuta NIS2-vaatimustenmukaisuus vain 8 viikossa" : "Achieve NIS2 Compliance in Just 8 Weeks"}
-    description={lang === 'fi' ? "Älä odota pakkotoimia. Aloita NIS2-vaatimustenmukaisuusmatkasi todistetulla Sprint-ohjelmamme menetelmällä." : "Don't wait for enforcement actions. Start your NIS2 compliance journey with our proven Sprint Program methodology."}
-    primaryCTA={{ text: lang === 'fi' ? "Aloita NIS2 Sprint" : "Begin NIS2 Sprint", href: "/contact?package=nis2-sprint" }}
-    secondaryCTA={{ text: lang === 'fi' ? "Lue lisää NIS2:sta" : "Learn About NIS2", href: lang === 'fi' ? "/fi/regulatory/nis2-finland" : "/regulatory/nis2-finland" }}
-  />
-</Layout>
+  <!-- Package Includes Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.packageIncludes.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.packageIncludes.subtitle}
+        </p>
+      </div>
+      
+      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-3">
+        {currentContent.packageIncludes.items.map((item) => (
+          <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3bb1f6]
+                      transition-all duration-300
+                      flex items-center gap-3 p-3 group">
+            <div class="w-5 h-5 bg-[#3B82F6] rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <span class="text-sm font-medium text-slate-700 group-hover:text-[#3B82F6] transition-colors duration-300">{item}</span>
+          </div>
+        ))}
+      </div>
+      
+      <div class="text-center mt-8">
+        <a href="/contact?package=nis2-sprint" 
+           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium">
+          {isFi ? 'Aloita NIS2 Sprint -ohjelma' : 'Start NIS2 Sprint Program'}
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
 
+  <!-- Benefits Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.benefitsList.title}
+        </h2>
+      </div>
+      
+      <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-3">
+        {currentContent.benefitsList.items.map((benefit) => (
+          <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3bb1f6]
+                      transition-all duration-300
+                      flex items-center gap-3 p-3 group">
+            <div class="w-6 h-6 bg-[#3B82F6] rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <span class="text-sm font-medium text-slate-700 group-hover:text-[#3B82F6] transition-colors duration-300">{benefit}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Layout>

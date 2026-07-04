@@ -1,9 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Button from '@/components/ui/Button.astro';
-import HeroSection from '@/components/sections/HeroSection.astro';
-import FeatureGrid from '@/components/sections/FeatureGrid.astro';
-import CTA from '@/components/sections/CTA.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
@@ -53,150 +50,329 @@ const seoConfig = {
   }
 };
 
-const heroContent = {
-  title: "Ready-to-Deploy Cybersecurity Packages",
-  subtitle: "Fast-track your cybersecurity compliance with our comprehensive pre-built packages.",
-  description: "Choose from our carefully designed packages that combine multiple services to help you achieve compliance quickly and efficiently.",
-  primaryCTA: { text: "View Packages", href: "#packages" },
-  secondaryCTA: { text: "Get Consultation", href: "/contact?consultation=true" }
+const content = {
+  en: {
+    title: "Cybersecurity Packages",
+    subtitle: "Ready-to-Deploy Cybersecurity Solutions",
+    heroDescription: "Fast-track your cybersecurity compliance with our comprehensive pre-built packages. Choose from carefully designed packages that combine multiple services to help you achieve compliance quickly and efficiently.",
+    forWho: "For organizations seeking accelerated cybersecurity compliance with proven, ready-made solutions.",
+    achieve: "Rapid compliance implementation with expert guidance and comprehensive support.",
+    overview: {
+      title: "Overview",
+      description: "Our ready-to-deploy cybersecurity packages combine multiple services into comprehensive solutions designed to accelerate your compliance journey. Each package includes proven methodologies, expert guidance, and all the tools you need to achieve your security goals.",
+      highlight: "Pre-built frameworks and templates accelerate your compliance timeline while reducing costs compared to individual service engagements."
+    },
+    packages: {
+      title: "Our Packages",
+      subtitle: "Pre-built cybersecurity packages designed to accelerate your compliance journey and provide comprehensive protection for your organization",
+      items: [
+        {
+          title: "ISO 27001 Fast‑Track (90–120 days)",
+          description: "Complete ISO 27001 certification in 90-120 days with our accelerated program.",
+          icon: "zap",
+          href: "/packages/iso-27001-fast-track",
+          features: ["Gap analysis", "Policy development", "Implementation support", "Audit preparation"]
+        },
+        {
+          title: "NIS2 Sprint Program",
+          description: "Rapid NIS2 compliance implementation for critical infrastructure organizations.",
+          icon: "shield",
+          href: "/packages/nis2-sprint",
+          features: ["NIS2 assessment", "Implementation plan", "Compliance monitoring", "Reporting tools"]
+        },
+        {
+          title: "SOC 2 Readiness in 12 Weeks",
+          description: "Complete SOC 2 compliance preparation with comprehensive trust service criteria implementation.",
+          icon: "check-circle",
+          href: "/packages/soc2-readiness-12-weeks",
+          features: ["SOC 2 assessment", "Control implementation", "Evidence collection", "Audit support"]
+        },
+        {
+          title: "DORA Program‑in‑a‑Box",
+          description: "Complete Digital Operational Resilience Act compliance solution for financial institutions.",
+          icon: "building",
+          href: "/packages/dora-program-in-a-box",
+          features: ["ICT risk management", "Incident response", "Testing framework", "Third-party management"]
+        },
+        {
+          title: "GDPR Compliance Accelerator",
+          description: "Comprehensive GDPR privacy compliance program with ongoing support.",
+          icon: "user-shield",
+          href: "/packages/gdpr-accelerator",
+          features: ["Privacy audit", "Policy development", "Data mapping", "Training programs"]
+        },
+        {
+          title: "CISO‑as‑a‑Service Plans",
+          description: "Professional cybersecurity leadership without the full-time cost.",
+          icon: "rocket",
+          href: "/packages/ciso-as-a-service",
+          features: ["Strategic guidance", "Risk management", "Compliance oversight", "Team development"]
+        }
+      ]
+    },
+    benefitsList: {
+      title: "Why Choose Our Packages?",
+      items: [
+        "Faster implementation with pre-built frameworks",
+        "Proven methodology from successful implementations",
+        "Cost-effective bundled services",
+        "Expert guidance throughout the journey",
+        "Comprehensive support and tools included"
+      ]
+    }
+  },
+  fi: {
+    title: "Kyberturvallisuuspalvelupaketit",
+    subtitle: "Valmiit kyberturvallisuusratkaisut",
+    heroDescription: "Nopeuta kyberturvallisuusvaatimustenmukaisuuttasi kattavilla valmiilla paketeillamme. Valitse huolellisesti suunnitelluista paketeista, jotka yhdistävät useita palveluita auttaakseen sinua saavuttamaan vaatimustenmukaisuuden nopeasti ja tehokkaasti.",
+    forWho: "Organisaatioille, jotka tavoittelevat nopeutettua kyberturvallisuusvaatimustenmukaisuutta todistetuilla valmiilla ratkaisuilla.",
+    achieve: "Nopea vaatimustenmukaisuuden toteutus asiantuntijaohjauksella ja kattavalla tuella.",
+    overview: {
+      title: "Yleiskatsaus",
+      description: "Valmiit kyberturvallisuuspaketimme yhdistävät useita palveluita kattaviksi ratkaisuiksi, jotka on suunniteltu nopeuttamaan vaatimustenmukaisuusmatkaasi. Jokainen paketti sisältää todistetut menetelmät, asiantuntijaohjauksen ja kaikki työkalut, joita tarvitset turvallisuustavoitteidesi saavuttamiseksi.",
+      highlight: "Valmiit kehykset ja mallit nopeuttavat vaatimustenmukaisuusaikatauluasi samalla kun vähentävät kustannuksia verrattuna yksittäisiin palvelusitoumuksiin."
+    },
+    packages: {
+      title: "Pakettimme",
+      subtitle: "Valmiit kyberturvallisuuspaketit, jotka on suunniteltu nopeuttamaan vaatimustenmukaisuusmatkaasi ja tarjoamaan kattavan suojan organisaatiollesi",
+      items: [
+        {
+          title: "ISO 27001 Fast‑Track (90–120 päivää)",
+          description: "Täydellinen ISO 27001 -sertifiointi 90-120 päivässä nopeutetulla ohjelmallamme.",
+          icon: "zap",
+          href: "/packages/iso-27001-fast-track",
+          features: ["Aukkoanalyysi", "Käytäntöjen kehitys", "Toteutustuki", "Auditointivalmistelu"]
+        },
+        {
+          title: "NIS2 Sprint -ohjelma",
+          description: "Nopea NIS2-vaatimustenmukaisuuden toteutus kriittisen infrastruktuurin organisaatioille.",
+          icon: "shield",
+          href: "/packages/nis2-sprint",
+          features: ["NIS2-arviointi", "Toteutussuunnitelma", "Vaatimustenmukaisuuden seuranta", "Raportointityökalut"]
+        },
+        {
+          title: "SOC 2 -valmius 12 viikossa",
+          description: "Kattava SOC 2 -vaatimustenmukaisuuden valmistelu luottamuspalvelukriteereillä.",
+          icon: "check-circle",
+          href: "/packages/soc2-readiness-12-weeks",
+          features: ["SOC 2 -arviointi", "Kontrollien toteutus", "Todisteiden keruu", "Auditointituki"]
+        },
+        {
+          title: "DORA-ohjelma-laatikossa",
+          description: "Kokonaisvaltainen DORA-direktiivin toteutusratkaisu rahoituslaitoksille.",
+          icon: "building",
+          href: "/packages/dora-program-in-a-box",
+          features: ["ICT-riskinhallinta", "Tapahtumien hallinta", "Testauskehys", "Kolmannen osapuolen hallinta"]
+        },
+        {
+          title: "GDPR-kiihdytin",
+          description: "Kattava GDPR-tietosuojaohjelma jatkuvalla tuella.",
+          icon: "user-shield",
+          href: "/packages/gdpr-accelerator",
+          features: ["Tietosuoja-auditointi", "Käytäntöjen kehitys", "Tietokartoitus", "Koulutusohjelmat"]
+        },
+        {
+          title: "CISO-palveluna-suunnitelmat",
+          description: "Ammattimaista kyberturvallisuusjohtamista ilman vakituisia kustannuksia.",
+          icon: "rocket",
+          href: "/packages/ciso-as-a-service",
+          features: ["Strateginen ohjaus", "Riskienhallinta", "Vaatimustenmukaisuuden valvonta", "Tiimin kehitys"]
+        }
+      ]
+    },
+    benefitsList: {
+      title: "Miksi valita pakettimme?",
+      items: [
+        "Nopeampi toteutus valmiilla kehyksillä",
+        "Todistettu menetelmä onnistuneista toteutuksista",
+        "Kustannustehokkaat pakettipalvelut",
+        "Asiantuntijaohjaus koko matkan ajan",
+        "Kattava tuki ja työkalut mukana"
+      ]
+    }
+  }
 };
 
-const packages = [
-  {
-    title: "ISO 27001 Fast‑Track (90–120 days)",
-    description: "Complete ISO 27001 certification in 90-120 days with our accelerated program.",
-    icon: "zap",
-    href: "/packages/iso-27001-fast-track",
-    features: ["Gap analysis", "Policy development", "Implementation support", "Audit preparation"]
-  },
-  {
-    title: "NIS2 Sprint Program",
-    description: "Rapid NIS2 compliance implementation for critical infrastructure organizations.",
-    icon: "shield",
-    href: "/packages/nis2-sprint",
-    features: ["NIS2 assessment", "Implementation plan", "Compliance monitoring", "Reporting tools"]
-  },
-  {
-    title: "SOC 2 Readiness in 12 Weeks",
-    description: "Complete SOC 2 compliance preparation with comprehensive trust service criteria implementation.",
-    icon: "checkCircle",
-    href: "/packages/soc2-readiness-12-weeks",
-    features: ["SOC 2 assessment", "Control implementation", "Evidence collection", "Audit support"]
-  },
-  {
-    title: "DORA Program‑in‑a‑Box",
-    description: "Complete Digital Operational Resilience Act compliance solution for financial institutions.",
-    icon: "building",
-    href: "/packages/dora-program-in-a-box",
-    features: ["ICT risk management", "Incident response", "Testing framework", "Third-party management"]
-  },
-  {
-    title: "GDPR Compliance Accelerator",
-    description: "Comprehensive GDPR privacy compliance program with ongoing support.",
-    icon: "userShield",
-    href: "/packages/gdpr-accelerator",
-    features: ["Privacy audit", "Policy development", "Data mapping", "Training programs"]
-  },
-  {
-    title: "CISO‑as‑a‑Service Plans",
-    description: "Professional cybersecurity leadership without the full-time cost.",
-    icon: "rocket",
-    href: "/packages/ciso-as-a-service",
-    features: ["Strategic guidance", "Risk management", "Compliance oversight", "Team development"]
-  }
-];
+const currentContent = content[lang];
+const isFi = lang === 'fi';
 ---
 
-<Layout seoConfig={seoConfig}>
-  <HeroSection content={heroContent} />
-  
-  <section id="packages" class="py-16 bg-white">
+<Layout {...seoConfig}>
+
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Our Packages</h2>
-        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          Pre-built cybersecurity packages designed to accelerate your compliance journey 
-          and provide comprehensive protection for your organization.
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
+        </p>
+        
+        <!-- Info Section - Two Column Layout -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto bg-gradient-to-br from-blue-50 to-indigo-50/30 rounded-2xl border-2 border-[#3B82F6] shadow-lg p-6 md:p-8">
+        <div class="flex items-start gap-4 mb-4">
+          <div class="w-10 h-10 bg-[#3B82F6] rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h2 class="text-xl md:text-2xl font-bold text-[#1E2A7A]">{currentContent.overview.title}</h2>
+        </div>
+        <p class="text-slate-700 leading-relaxed mb-4 pl-14">{currentContent.overview.description}</p>
+        <div class="bg-white/70 rounded-xl border border-[#3B82F6]/30 p-4 pl-14">
+          <p class="text-[#1E2A7A] font-semibold flex items-start gap-2">
+            <svg class="w-5 h-5 text-[#3B82F6] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {currentContent.overview.highlight}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packages Section -->
+  <section id="packages" class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.packages.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.packages.subtitle}
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {packages.map(pkg => (
-          <div class="bg-white rounded-lg shadow-lg border border-slate-200 p-6 hover:shadow-xl transition-shadow">
-            <div class="mb-4">
-              <h3 class="text-xl font-semibold text-slate-900 mb-2">{pkg.title}</h3>
-              <p class="text-slate-600 mb-4">{pkg.description}</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        {currentContent.packages.items.map((pkg) => (
+          <a 
+            href={pkg.href}
+            class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                   hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                   transition-all duration-300
+                   flex flex-col p-4 md:p-5 group relative overflow-hidden
+                   block"
+          >
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-end mb-2 relative z-10">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={pkg.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
             </div>
             
-            <ul class="space-y-2 mb-6">
-              {pkg.features.map(feature => (
-                <li class="flex items-center text-sm text-slate-700">
-                  <svg class="w-4 h-4 text-teal-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+              {pkg.title}
+            </h3>
+            
+            <p class="text-xs text-slate-500 mb-3 group-hover:text-slate-600 transition-colors duration-300 text-left relative z-10">
+              {pkg.description}
+            </p>
+            
+            <ul class="space-y-1.5 mb-3 relative z-10">
+              {pkg.features.map((feature) => (
+                <li class="flex items-start text-xs text-slate-600 group-hover:text-slate-700 transition-colors duration-300">
+                  <svg class="w-3 h-3 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
                   {feature}
                 </li>
               ))}
             </ul>
             
-            <Button
-              href={pkg.href}
-              variant="primary"
-              className="w-full py-2 px-4"
-            >
-              Learn More
-            </Button>
+            <div class="mt-auto pt-3 border-t-2 border-slate-200 group-hover:border-[#3B82F6] transition-colors duration-300 relative z-10">
+              <span class="inline-flex items-center text-[#1E40AF] group-hover:text-[#3B82F6] font-semibold text-xs gap-1 transition-all duration-300">
+                {isFi ? 'Tutustu' : 'Learn More'}
+                <svg class="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.benefitsList.title}
+        </h2>
+      </div>
+      
+      <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-3">
+        {currentContent.benefitsList.items.map((benefit) => (
+          <div class="bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3bb1f6]
+                      transition-all duration-300
+                      flex items-center gap-3 p-3 group">
+            <div class="w-6 h-6 bg-[#3B82F6] rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <span class="text-sm font-medium text-slate-700 group-hover:text-[#3B82F6] transition-colors duration-300">{benefit}</span>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Why Choose Our Packages?</h2>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="text-center">
-          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-slate-900 mb-2">Faster Implementation</h3>
-          <p class="text-slate-600">Pre-built frameworks and templates accelerate your compliance timeline.</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-slate-900 mb-2">Proven Methodology</h3>
-          <p class="text-slate-600">Battle-tested approaches based on successful implementations.</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-slate-900 mb-2">Cost-Effective</h3>
-          <p class="text-slate-600">Bundled services provide better value than individual engagements.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <CTA 
-    title="Need a Custom Package?"
-    description="Don't see exactly what you need? We can create a custom package tailored to your specific requirements."
-    primaryCTA={{ text: "Contact Us", href: "/contact" }}
-    secondaryCTA={{ text: "View Services", href: "/services" }}
-  />
 </Layout>
-
