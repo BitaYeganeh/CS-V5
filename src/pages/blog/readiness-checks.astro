@@ -1,5 +1,6 @@
 ﻿---
 import Layout from '@/layouts/Layout.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 import Button from '@/components/ui/Button.astro';
 
 const title = "Readiness Checks";
@@ -22,7 +23,7 @@ const content = {
           questions: "120 questions",
           coverage: "Information Security Management System",
           difficulty: "Intermediate",
-          icon: ""
+          icon: "shield-check"
         },
         {
           title: "GDPR Compliance Check",
@@ -31,7 +32,7 @@ const content = {
           questions: "85 questions",
           coverage: "Data Protection & Privacy",
           difficulty: "Beginner",
-          icon: ""
+          icon: "lock-closed"
         },
         {
           title: "SOC 2 Readiness",
@@ -40,7 +41,7 @@ const content = {
           questions: "150 questions",
           coverage: "Trust Services Criteria",
           difficulty: "Advanced",
-          icon: ""
+          icon: "clipboard-check"
         },
         {
           title: "DORA Compliance",
@@ -49,7 +50,7 @@ const content = {
           questions: "95 questions",
           coverage: "Financial Services Security",
           difficulty: "Intermediate",
-          icon: ""
+          icon: "building-library"
         },
         {
           title: "NIS2 Directive",
@@ -58,7 +59,7 @@ const content = {
           questions: "80 questions",
           coverage: "Network & Information Security",
           difficulty: "Intermediate",
-          icon: ""
+          icon: "globe"
         },
         {
           title: "General Security Posture",
@@ -67,7 +68,7 @@ const content = {
           questions: "110 questions",
           coverage: "All Security Domains",
           difficulty: "All Levels",
-          icon: ""
+          icon: "chart-line"
         }
       ]
     },
@@ -108,32 +109,32 @@ const content = {
         {
           title: "Identify Gaps",
           description: "Pinpoint specific areas where your security posture needs improvement",
-          icon: ""
+          icon: "search"
         },
         {
           title: "Save Time",
           description: "Avoid costly mistakes by understanding requirements upfront",
-          icon: ""
+          icon: "clock"
         },
         {
           title: "Prioritize Actions",
           description: "Focus resources on the most critical security improvements",
-          icon: ""
+          icon: "trending-up"
         },
         {
           title: "Track Progress",
           description: "Monitor your security maturity improvements over time",
-          icon: ""
+          icon: "chart-line"
         },
         {
           title: "Compliance Confidence",
           description: "Build confidence in your ability to meet regulatory requirements",
-          icon: ""
+          icon: "shield-check"
         },
         {
           title: "Expert Guidance",
           description: "Access to cybersecurity experts for implementation support",
-          icon: "‍"
+          icon: "users"
         }
       ]
     },
@@ -170,27 +171,32 @@ const content = {
         {
           title: "Comprehensive Score",
           description: "Overall readiness score with detailed breakdown by domain",
-          format: "Percentage & Category"
+          format: "Percentage & Category",
+          icon: "chart-bar"
         },
         {
           title: "Gap Analysis",
           description: "Specific areas requiring attention and improvement",
-          format: "Detailed Report"
+          format: "Detailed Report",
+          icon: "document"
         },
         {
           title: "Action Plan",
           description: "Prioritized recommendations with implementation timeline",
-          format: "Step-by-step Guide"
+          format: "Step-by-step Guide",
+          icon: "clipboard"
         },
         {
           title: "Resource Library",
           description: "Access to templates, tools, and best practices",
-          format: "Downloadable Resources"
+          format: "Downloadable Resources",
+          icon: "book"
         },
         {
           title: "Progress Tracking",
           description: "Tools to monitor improvements over time",
-          format: "Dashboard Access"
+          format: "Dashboard Access",
+          icon: "chart-line"
         }
       ]
     },
@@ -226,7 +232,7 @@ const content = {
           questions: "120 kysymystä",
           coverage: "Tietoturvajohtamisjärjestelmä",
           difficulty: "Keskitaso",
-          icon: ""
+          icon: "shield-check"
         },
         {
           title: "GDPR-yhteensopivuustarkistus",
@@ -235,7 +241,7 @@ const content = {
           questions: "85 kysymystä",
           coverage: "Tietosuoja ja yksityisyys",
           difficulty: "Aloittelija",
-          icon: ""
+          icon: "lock-closed"
         },
         {
           title: "SOC 2 -valmius",
@@ -244,7 +250,7 @@ const content = {
           questions: "150 kysymystä",
           coverage: "Luottamuspalvelukriteerit",
           difficulty: "Edistynyt",
-          icon: ""
+          icon: "clipboard-check"
         },
         {
           title: "DORA-yhteensopivuus",
@@ -253,7 +259,7 @@ const content = {
           questions: "95 kysymystä",
           coverage: "Rahoituspalvelujen turvallisuus",
           difficulty: "Keskitaso",
-          icon: ""
+          icon: "building-library"
         },
         {
           title: "NIS2-direktiivi",
@@ -262,7 +268,7 @@ const content = {
           questions: "80 kysymystä",
           coverage: "Verkko- ja tietoturva",
           difficulty: "Keskitaso",
-          icon: ""
+          icon: "globe"
         },
         {
           title: "Yleinen turvallisuustila",
@@ -271,7 +277,7 @@ const content = {
           questions: "110 kysymystä",
           coverage: "Kaikki turvallisuusalueet",
           difficulty: "Kaikki tasot",
-          icon: ""
+          icon: "chart-line"
         }
       ]
     },
@@ -312,32 +318,32 @@ const content = {
         {
           title: "Tunnista kuilut",
           description: "Tunnista tarkat alueet, joissa turvallisuustilasi tarvitsee parannusta",
-          icon: ""
+          icon: "search"
         },
         {
           title: "Säästä aikaa",
           description: "Vältä kalliita virheitä ymmärtämällä vaatimukset etukäteen",
-          icon: ""
+          icon: "clock"
         },
         {
           title: "Priorisoi toimenpiteet",
           description: "Keskitä resursseja kriittisimpiin turvallisuusparannuksiin",
-          icon: ""
+          icon: "trending-up"
         },
         {
           title: "Seuraa edistymistä",
           description: "Seuraa turvallisuuden kypsyystason parannuksia ajan myötä",
-          icon: ""
+          icon: "chart-line"
         },
         {
           title: "Yhteensopivuusluottamus",
           description: "Rakenna luottamusta kykyysi täyttää sääntelyvaatimukset",
-          icon: ""
+          icon: "shield-check"
         },
         {
           title: "Asiantunteva ohjaus",
           description: "Pääsy kyberturvallisuusasiantuntijoihin toteutustukea varten",
-          icon: "‍"
+          icon: "users"
         }
       ]
     },
@@ -374,27 +380,32 @@ const content = {
         {
           title: "Kattava pistemäärä",
           description: "Kokonaisvalmiuspistemäärä yksityiskohtaisella alueittaisella jakautumalla",
-          format: "Prosentti ja kategoria"
+          format: "Prosentti ja kategoria",
+          icon: "chart-bar"
         },
         {
           title: "Kuiluanalyysi",
           description: "Tarkat huomiota vaativat alueet ja parannukset",
-          format: "Yksityiskohtainen raportti"
+          format: "Yksityiskohtainen raportti",
+          icon: "document"
         },
         {
           title: "Toimintasuunnitelma",
           description: "Priorisoidut suositukset toteutusajastimella",
-          format: "Vaiheittainen opas"
+          format: "Vaiheittainen opas",
+          icon: "clipboard"
         },
         {
           title: "Resurssikirjasto",
           description: "Pääsy malleihin, työkaluihin ja parhaisiin käytäntöihin",
-          format: "Ladattavat resurssit"
+          format: "Ladattavat resurssit",
+          icon: "book"
         },
         {
           title: "Edistymisen seuranta",
           description: "Työkalut edistymisen seurantaan ajan myötä",
-          format: "Ohjauspaneelin pääsy"
+          format: "Ohjauspaneelin pääsy",
+          icon: "chart-line"
         }
       ]
     },
@@ -418,49 +429,77 @@ const content = {
 };
 
 const currentContent = content[lang];
+const isFi = lang === 'fi';
 ---
 
 <Layout title={title}>
+
   <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-5xl font-bold mb-6">{currentContent.title}</h1>
-      <p class="text-2xl font-light mb-8">{currentContent.subtitle}</p>
-      <p class="text-xl text-slate-300 max-w-3xl mx-auto">{currentContent.heroDescription}</p>
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.title}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.subtitle}
+        </p>
+        <p class="text-sm md:text-base text-slate-500 leading-relaxed max-w-3xl mx-auto mt-2">
+          {currentContent.heroDescription}
+        </p>
+      </div>
     </div>
   </section>
 
   <!-- Assessments Section -->
-  <section class="py-16 bg-white">
+  <section class="py-12 md:py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-gray-900 mb-4">{currentContent.assessments.title}</h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">{currentContent.assessments.description}</p>
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.assessments.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.assessments.description}
+        </p>
       </div>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {currentContent.assessments.types.map((assessment) => (
-          <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg border border-blue-200 hover:shadow-lg transition duration-300">
-            <div class="text-4xl mb-4">{assessment.icon}</div>
-            <h3 class="text-xl font-bold text-blue-900 mb-3">{assessment.title}</h3>
-            <p class="text-blue-800 text-sm mb-4">{assessment.description}</p>
-            
-            <div class="space-y-2 text-sm text-blue-700">
-              <div class="flex justify-between">
-                <span>Duration:</span>
-                <span class="font-medium">{assessment.duration}</span>
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-5 md:p-6 group">
+            <div class="flex justify-end mb-3">
+              <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+                <Icon name={assessment.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
               </div>
-              <div class="flex justify-between">
-                <span>Questions:</span>
-                <span class="font-medium">{assessment.questions}</span>
+            </div>
+            <h3 class="text-base font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300">
+              {assessment.title}
+            </h3>
+            <p class="text-xs text-slate-500 mb-3 group-hover:text-slate-600 transition-colors duration-300 flex-1">
+              {assessment.description}
+            </p>
+            <div class="space-y-1.5 pt-3 border-t-2 border-slate-200 group-hover:border-[#3B82F6] transition-colors duration-300">
+              <div class="flex justify-between text-xs">
+                <span class="text-slate-500">Duration:</span>
+                <span class="text-slate-700 font-medium">{assessment.duration}</span>
               </div>
-              <div class="flex justify-between">
-                <span>Coverage:</span>
-                <span class="font-medium">{assessment.coverage}</span>
+              <div class="flex justify-between text-xs">
+                <span class="text-slate-500">Questions:</span>
+                <span class="text-slate-700 font-medium">{assessment.questions}</span>
               </div>
-              <div class="flex justify-between">
-                <span>Difficulty:</span>
-                <span class="font-medium">{assessment.difficulty}</span>
+              <div class="flex justify-between text-xs">
+                <span class="text-slate-500">Coverage:</span>
+                <span class="text-slate-700 font-medium">{assessment.coverage}</span>
+              </div>
+              <div class="flex justify-between text-xs">
+                <span class="text-slate-500">Difficulty:</span>
+                <span class="text-[#3B82F6] font-medium">{assessment.difficulty}</span>
               </div>
             </div>
           </div>
@@ -470,22 +509,37 @@ const currentContent = content[lang];
   </section>
 
   <!-- Process Section -->
-  <section class="py-16 bg-slate-50">
+  <section class="py-12 md:py-16 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-gray-900 mb-4">{currentContent.process.title}</h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">{currentContent.process.description}</p>
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.process.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.process.description}
+        </p>
       </div>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {currentContent.process.steps.map((step) => (
-          <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-            <div class="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-              {step.step}
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group text-center">
+            <div class="flex justify-center mb-3">
+              <div class="w-12 h-12 bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] rounded-full flex items-center justify-center text-white font-bold text-lg">
+                {step.step}
+              </div>
             </div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-3">{step.title}</h3>
-            <p class="text-gray-600 text-sm mb-4">{step.description}</p>
-            <div class="text-blue-600 font-medium text-sm">{step.duration}</div>
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300">
+              {step.title}
+            </h3>
+            <p class="text-xs text-slate-500 mb-3 group-hover:text-slate-600 transition-colors duration-300">
+              {step.description}
+            </p>
+            <div class="mt-auto pt-3 border-t-2 border-slate-200 group-hover:border-[#3B82F6] transition-colors duration-300 text-xs text-[#3B82F6] font-medium">
+              {step.duration}
+            </div>
           </div>
         ))}
       </div>
@@ -493,19 +547,36 @@ const currentContent = content[lang];
   </section>
 
   <!-- Benefits Section -->
-  <section class="py-16 bg-white">
+  <section class="py-12 md:py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-gray-900 mb-4">{currentContent.benefits.title}</h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">{currentContent.benefits.description}</p>
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.benefits.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.benefits.description}
+        </p>
       </div>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {currentContent.benefits.advantages.map((benefit) => (
-          <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border border-green-200">
-            <div class="text-3xl mb-4">{benefit.icon}</div>
-            <h3 class="text-lg font-semibold text-green-900 mb-3">{benefit.title}</h3>
-            <p class="text-green-800 text-sm">{benefit.description}</p>
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group">
+            <div class="flex justify-end mb-2">
+              <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+                <Icon name={benefit.icon} class="w-5 h-5 text-blue-600 group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300">
+              {benefit.title}
+            </h3>
+            <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+              {benefit.description}
+            </p>
           </div>
         ))}
       </div>
@@ -513,25 +584,33 @@ const currentContent = content[lang];
   </section>
 
   <!-- Sample Questions Section -->
-  <section class="py-16 bg-slate-50">
+  <section class="py-12 md:py-16 bg-slate-50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-gray-900 mb-4">{currentContent.sample.title}</h2>
-        <p class="text-xl text-gray-600">{currentContent.sample.description}</p>
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.sample.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.sample.description}
+        </p>
       </div>
       
-      <div class="space-y-6">
+      <div class="space-y-4">
         {currentContent.sample.questions.map((question) => (
-          <div class="bg-white p-6 rounded-lg shadow-lg">
-            <div class="mb-4">
-              <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">{question.category}</span>
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-md transition-all duration-300
+                      p-4 md:p-5 group">
+            <div class="mb-3">
+              <span class="px-3 py-1 bg-[#3B82F6] text-white rounded-full text-xs font-medium">
+                {question.category}
+              </span>
             </div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">{question.question}</h3>
-            <div class="space-y-2">
+            <h3 class="text-sm font-semibold text-slate-900 mb-3">{question.question}</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-1.5">
               {question.options.map((option) => (
                 <div class="flex items-center">
-                  <input type="radio" name={`question-${question.category}`} class="mr-3">
-                  <label class="text-gray-700">{option}</label>
+                  <input type="radio" name={`question-${question.category}`} class="mr-2 accent-[#3B82F6] w-3.5 h-3.5">
+                  <label class="text-xs text-slate-600">{option}</label>
                 </div>
               ))}
             </div>
@@ -542,74 +621,44 @@ const currentContent = content[lang];
   </section>
 
   <!-- Results Section -->
-  <section class="py-16 bg-white">
+  <section class="py-12 md:py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-gray-900 mb-4">{currentContent.results.title}</h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">{currentContent.results.description}</p>
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.results.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.results.description}
+        </p>
       </div>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {currentContent.results.deliverables.map((deliverable) => (
-          <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg border border-purple-200">
-            <h3 class="text-lg font-semibold text-purple-900 mb-3">{deliverable.title}</h3>
-            <p class="text-purple-800 text-sm mb-4">{deliverable.description}</p>
-            <div class="text-purple-600 font-medium text-sm">{deliverable.format}</div>
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-4 md:p-5 group text-center">
+            <div class="flex justify-center mb-3">
+              <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
+                <Icon name={deliverable.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300">
+              {deliverable.title}
+            </h3>
+            <p class="text-xs text-slate-500 mb-2 group-hover:text-slate-600 transition-colors duration-300 flex-1">
+              {deliverable.description}
+            </p>
+            <div class="mt-auto pt-2 border-t border-slate-100 text-xs text-[#3B82F6] font-medium">
+              {deliverable.format}
+            </div>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Start Section -->
-  <section class="py-16 bg-slate-50">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold text-gray-900 mb-4">{currentContent.start.title}</h2>
-        <p class="text-xl text-gray-600">{currentContent.start.description}</p>
-      </div>
-      
-      <div class="bg-white p-8 rounded-lg shadow-lg">
-        <div class="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">Key Features</h3>
-            <ul class="space-y-3">
-              {currentContent.start.features.map((feature) => (
-                <li class="flex items-center text-gray-700">
-                  <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          <div class="text-center">
-            <div class="bg-blue-100 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-            </div>
-            <p class="text-gray-600 mb-6">Ready to assess your cybersecurity readiness?</p>
-            <Button href={currentContent.cta.link} variant="brand" className="py-3 px-6 font-semibold">
-              {currentContent.cta.button}
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- CTA Section -->
-  <section class="py-16 bg-blue-600 text-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-4xl font-bold mb-4">{currentContent.cta.title}</h2>
-      <p class="text-xl mb-8">{currentContent.cta.subtitle}</p>
-      <a href={currentContent.cta.link} class="inline-block bg-white text-blue-600 font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300">
-        {currentContent.cta.button}
-      </a>
-    </div>
-  </section>
 </Layout>
-
