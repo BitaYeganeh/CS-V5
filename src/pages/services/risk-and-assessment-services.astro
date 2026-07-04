@@ -19,6 +19,34 @@ const langPrefix = getLanguagePrefix(lang);
 const title = t('riskAndAssessmentTitle', lang);
 const tagline = t('riskAndAssessmentTagline', lang);
 
+const content = {
+  en: {
+    subtitle: "Risk & Assessment Services",
+    heroDescription: "Comprehensive risk and assessment services including risk assessments, risk management frameworks, and third-party risk management.",
+    forWho: "For organizations seeking to identify, assess, and mitigate cybersecurity risks across their operations.",
+    achieve: "Comprehensive risk management with identified vulnerabilities and implemented controls.",
+    overview: {
+      title: "Overview",
+      description: "Risk and assessment services are essential for identifying vulnerabilities, assessing threats, and implementing effective controls to protect your organization from cyber threats and operational disruptions.",
+      highlight: "Our expert team provides comprehensive risk and assessment services, helping you build resilience and ensure operational continuity."
+    }
+  },
+  fi: {
+    subtitle: "Riskienhallinta- & arviointipalvelut",
+    heroDescription: "Kattavat riskienhallinta- ja arviointipalvelut, mukaan lukien riskiarvioinnit, riskienhallintakehykset ja kolmannen osapuolen riskienhallinta.",
+    forWho: "Organisaatioille, jotka haluavat tunnistaa, arvioida ja vähentää kyberturvallisuusriskejä toiminnassaan.",
+    achieve: "Kattava riskienhallinta tunnistetuilla haavoittuvuuksilla ja toteutetuilla kontrolleilla.",
+    overview: {
+      title: "Yleiskatsaus",
+      description: "Riskienhallinta- ja arviointipalvelut ovat olennaisia haavoittuvuuksien tunnistamiseksi, uhkien arvioimiseksi ja tehokkaiden kontrollien toteuttamiseksi organisaatiosi suojaamiseksi.",
+      highlight: "Asiantuntijatiimimme tarjoaa kattavia riskienhallinta- ja arviointipalveluita auttaen sinua rakentamaan resilienssiä ja varmistamaan toimintojen jatkuvuuden."
+    }
+  }
+};
+
+const currentContent = content[lang] || content.en;
+const isFi = lang === 'fi';
+
 const items = [
   {
     title: t('riskManagementTitle', lang),
@@ -50,98 +78,145 @@ const stats = [
 
 <Layout {...seoConfig}>
 
-<!-- Hero Section - Centered -->
-<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    
-    <div class="flex justify-center mb-4">
-      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
-        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
-      </div>
-    </div>
-    
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
-      {title}
-    </h1>
-    
-    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
-      {tagline}
-    </p>
-    
-  </div>
-</section>
-
-<!-- Stats Section -->
-<section class="py-8 bg-slate-50 border-b border-slate-100">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-      {stats.map((stat) => (
-        <div class="text-center">
-          <div class="text-3xl md:text-4xl font-bold text-[#3B82F6] mb-1">
-            {stat.value}
-          </div>
-          <div class="text-slate-500 text-sm">
-            {stat.label}
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Services Grid Section -->
-<section class="py-12 md:py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-8 md:mb-12">
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
-        {lang === 'fi' ? 'Riskienhallintapalvelumme' : 'Our Risk Services'}
-      </h2>
-      <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
-        {lang === 'fi' 
-          ? 'Kattavat ratkaisut riskienhallintaan, riskiarviointeihin ja kolmannen osapuolen riskeihin.'
-          : 'Comprehensive solutions for risk management, risk assessments, and third-party risks.'}
-      </p>
-    </div>
-
-    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-      {items.map((item) => (
-        <a href={item.href} class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
-                    hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
-                    transition-all duration-300
-                    flex flex-col h-full p-5 md:p-6 group cursor-pointer text-center">
-          
-          <div class="flex justify-center mb-3 relative">
-            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center
-                        border-2 border-[#3B82F6]
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
-                        group-hover:border-transparent">
-              <Icon name={item.icon} class="w-6 h-6 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.heroDescription}
+        </p>
+        
+        <!-- Info Section - Two Column Layout -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
+              </div>
             </div>
           </div>
           
-          <h3 class="text-base font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-center">
-            {item.title}
-          </h3>
-          
-          <p class="text-xs text-slate-500 mb-3 group-hover:text-slate-600 transition-colors duration-300 text-center flex-1">
-            {item.description}
-          </p>
-          
-          <div class="mt-auto pt-3 border-t-2 border-slate-200 group-hover:border-[#3B82F6] transition-colors duration-300">
-            <span class="inline-flex items-center text-[#1E40AF] group-hover:text-[#3B82F6] font-semibold text-xs gap-1 transition-all duration-300">
-              {lang === 'fi' ? 'Tutustu palveluun' : 'Explore Service'}
-              <svg class="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </span>
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
+            </div>
           </div>
-        </a>
-      ))}
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- Overview Section -->
+  <section class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto bg-slate-50/80 rounded-xl border border-slate-200 shadow-sm p-6 md:p-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-4">{currentContent.overview.title}</h2>
+        <p class="text-slate-600 leading-relaxed mb-4">{currentContent.overview.description}</p>
+        <div class="bg-blue-50 border-l-4 border-[#3B82F6] p-4 rounded-r-lg">
+          <p class="text-[#1E2A7A] font-semibold">{currentContent.overview.highlight}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Stats Section -->
+  <section class="py-8 bg-slate-50 border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {stats.map((stat) => (
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold text-[#3B82F6] mb-1">
+              {stat.value}
+            </div>
+            <div class="text-slate-500 text-sm">
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {lang === 'fi' ? 'Riskienhallintapalvelumme' : 'Our Risk Services'}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {lang === 'fi' 
+            ? 'Kattavat ratkaisut riskienhallintaan, riskiarviointeihin ja kolmannen osapuolen riskeihin.'
+            : 'Comprehensive solutions for risk management, risk assessments, and third-party risks.'}
+        </p>
+      </div>
+
+      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        {items.map((item) => (
+          <a href={item.href} class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col h-full p-5 md:p-6 group cursor-pointer text-center">
+            
+            <div class="flex justify-center mb-3 relative">
+              <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={item.icon} class="w-6 h-6 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            
+            <h3 class="text-base font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-center">
+              {item.title}
+            </h3>
+            
+            <p class="text-xs text-slate-500 mb-3 group-hover:text-slate-600 transition-colors duration-300 text-center flex-1">
+              {item.description}
+            </p>
+            
+            <div class="mt-auto pt-3 border-t-2 border-slate-200 group-hover:border-[#3B82F6] transition-colors duration-300">
+              <span class="inline-flex items-center text-[#1E40AF] group-hover:text-[#3B82F6] font-semibold text-xs gap-1 transition-all duration-300">
+                {lang === 'fi' ? 'Tutustu palveluun' : 'Explore Service'}
+                <svg class="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 
 </Layout>
