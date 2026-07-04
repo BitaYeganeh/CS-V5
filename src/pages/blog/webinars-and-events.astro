@@ -1,4 +1,5 @@
----
-// Permanent redirect to the main resources page
-return Astro.redirect('/resources', 301);
----
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const targetPath = lang === 'fi' ? '/fi/resources' : '/resources';
+
+return Astro.redirect(targetPath, 301);
