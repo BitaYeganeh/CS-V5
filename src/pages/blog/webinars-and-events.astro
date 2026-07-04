@@ -1,5 +1,16 @@
-const currentPath = Astro.url.pathname;
-const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
-const targetPath = lang === 'fi' ? '/fi/resources' : '/resources';
+---
+import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
+// Temporarily disabled obsolete page content to resolve build errors.
+const title = "Webinars & Events";
+---
+<Layout title={title} description="Redirecting">
+  <section class="py-24">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h1 class="text-3xl font-bold mb-4">Page Moved</h1>
+      <p class="text-slate-600 mb-6">Webinars & events have moved to the new <a href="/resources/webinars" class="text-teal-700 underline">/resources/webinars</a> section.</p>
+      <Button href="/resources/webinars" variant="primary" className="px-6 py-3">Go to Webinars</Button>
+    </div>
+  </section>
+</Layout>
 
-return Astro.redirect(targetPath, 301);
