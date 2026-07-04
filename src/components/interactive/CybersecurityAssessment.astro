@@ -1,5 +1,5 @@
 ---
-import Icon from '@ui/icons/Icon.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
 interface Props {
   title?: string;
@@ -73,49 +73,76 @@ const assessmentQuestions = [
 ];
 ---
 
-<div class="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl p-6 md:p-8 border border-teal-200">
+<div class="bg-slate-50/80 rounded-xl border border-slate-200 shadow-sm p-6 md:p-8">
   <div class="max-w-2xl mx-auto">
     <div class="text-center mb-8">
-      <div class="inline-flex items-center justify-center w-12 h-12 bg-teal-100 rounded-full mb-4">
-        <Icon name="shieldCheck" class="w-6 h-6 text-teal-600" />
+      <div class="inline-flex items-center justify-center w-12 h-12 bg-[#3B82F6]/10 rounded-full mb-4 border border-[#3B82F6]">
+        <Icon name="shield-check" class="w-6 h-6 text-[#3B82F6]" />
       </div>
-      <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-3">{title}</h2>
+      <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-3">{title}</h2>
       <p class="text-slate-600">{description}</p>
     </div>
     
-    <form id="interactive-assessment-form" class="space-y-6">
+    <!-- About the Assessment Section -->
+    <div class="bg-white rounded-xl border-2 border-slate-100 p-5 md:p-6 mb-6
+                hover:border-[#3B82F6] hover:shadow-md
+                transition-all duration-300 group">
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0">
+          <div class="w-10 h-10 bg-[#3B82F6]/10 rounded-lg flex items-center justify-center
+                      group-hover:bg-[#3B82F6] transition-colors duration-300">
+            <svg class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-sm font-semibold text-[#1E40AF] group-hover:text-[#3B82F6] transition-colors duration-300 mb-1">
+            About the Assessment
+          </h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Our cybersecurity assessment is based on years of research and client experience. It covers all core cybersecurity domains and gives you a clear picture of your organization's current state.
+          </p>
+          <p class="text-sm text-slate-600 leading-relaxed mt-2">
+            The assessment takes about 5-10 minutes and is completely anonymized. Results are kept confidential and used solely for generating recommendations.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <form id="interactive-assessment-form" class="space-y-5">
       {assessmentQuestions.map((q) => (
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-          <h3 class="font-semibold text-slate-900 mb-4">{q.question}</h3>
+        <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm hover:border-[#3B82F6] transition-all duration-300 p-5">
+          <h3 class="text-sm font-bold text-[#1E40AF] mb-4">{q.question}</h3>
           
           {q.type === 'radio' && (
-            <div class="space-y-3">
+            <div class="space-y-2">
               {q.options.map((option) => (
-                <label class="flex items-start p-3 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer transition-colors">
+                <label class="flex items-start p-3 border border-slate-200 rounded-lg hover:border-[#3B82F6] hover:bg-slate-50 cursor-pointer transition-all duration-200">
                   <input 
                     type="radio" 
                     name={`question-${q.id}`} 
                     value={option.value}
-                    class="mt-1 mr-3 text-teal-600 focus:ring-teal-500"
+                    class="mt-1 mr-3 text-[#3B82F6] focus:ring-[#3B82F6] focus:ring-2"
                     required={q.id <= 4}
                   />
-                  <span class="text-slate-700">{option.label}</span>
+                  <span class="text-sm text-slate-700">{option.label}</span>
                 </label>
               ))}
             </div>
           )}
           
           {q.type === 'checkbox' && (
-            <div class="space-y-3">
+            <div class="space-y-2">
               {q.options.map((option) => (
-                <label class="flex items-start p-3 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer transition-colors">
+                <label class="flex items-start p-3 border border-slate-200 rounded-lg hover:border-[#3B82F6] hover:bg-slate-50 cursor-pointer transition-all duration-200">
                   <input 
                     type="checkbox" 
                     name={`question-${q.id}`} 
                     value={option.value}
-                    class="mt-1 mr-3 text-teal-600 focus:ring-teal-500"
+                    class="mt-1 mr-3 text-[#3B82F6] focus:ring-[#3B82F6] focus:ring-2"
                   />
-                  <span class="text-slate-700">{option.label}</span>
+                  <span class="text-sm text-slate-700">{option.label}</span>
                 </label>
               ))}
             </div>
@@ -123,10 +150,10 @@ const assessmentQuestions = [
         </div>
       ))}
       
-      <div class="pt-4">
+      <div class="pt-2">
         <button 
           type="submit"
-          class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-medium py-3 px-4 rounded-lg hover:opacity-90 transition-opacity shadow-md"
+          class="w-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white font-medium py-3 px-6 rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 shadow-md hover:shadow-lg"
         >
           Calculate Risk Level
         </button>
@@ -134,34 +161,34 @@ const assessmentQuestions = [
     </form>
     
     <!-- Results Display (initially hidden) -->
-    <div id="assessment-results" class="hidden mt-8 p-6 bg-white rounded-xl border border-slate-200">
-      <h3 class="text-xl font-bold text-slate-900 mb-4">Your Assessment Results</h3>
+    <div id="assessment-results" class="hidden mt-8 p-6 bg-white rounded-xl border-2 border-[#3B82F6] shadow-sm">
+      <h3 class="text-lg font-bold text-[#1E2A7A] mb-4">Your Assessment Results</h3>
       <div class="space-y-4">
-        <div class="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
+        <div class="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-100">
           <span class="font-medium text-slate-700">Risk Level:</span>
           <span id="risk-level" class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Medium</span>
         </div>
-        <div class="p-4 bg-slate-50 rounded-lg">
-          <h4 class="font-medium text-slate-700 mb-2">Recommended Actions:</h4>
-          <ul id="recommendations" class="space-y-2 text-slate-600 text-sm">
+        <div class="p-4 bg-slate-50 rounded-lg border border-slate-100">
+          <h4 class="font-medium text-[#1E40AF] mb-2">Recommended Actions:</h4>
+          <ul id="recommendations" class="space-y-2 text-sm text-slate-600">
             <li class="flex items-start">
-              <Icon name="arrowRight" class="w-4 h-4 text-teal-600 mt-0.5 mr-2 flex-shrink-0" />
+              <Icon name="arrow-right" class="w-4 h-4 text-[#3B82F6] mt-0.5 mr-2 flex-shrink-0" />
               <span>Consider implementing a Virtual CISO (V-CISO) service</span>
             </li>
             <li class="flex items-start">
-              <Icon name="arrowRight" class="w-4 h-4 text-teal-600 mt-0.5 mr-2 flex-shrink-0" />
+              <Icon name="arrow-right" class="w-4 h-4 text-[#3B82F6] mt-0.5 mr-2 flex-shrink-0" />
               <span>Evaluate GDPR compliance needs with Virtual DPO (V-DPO) service</span>
             </li>
             <li class="flex items-start">
-              <Icon name="arrowRight" class="w-4 h-4 text-teal-600 mt-0.5 mr-2 flex-shrink-0" />
+              <Icon name="arrow-right" class="w-4 h-4 text-[#3B82F6] mt-0.5 mr-2 flex-shrink-0" />
               <span>Review our ISO 27001 Fast-Track package</span>
             </li>
           </ul>
         </div>
-        <div class="pt-4">
+        <div class="pt-2">
           <a 
             href="/contact?service=consultation" 
-            class="inline-block w-full text-center bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-medium py-3 px-4 rounded-lg hover:opacity-90 transition-opacity"
+            class="inline-block w-full text-center bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white font-medium py-3 px-6 rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg"
           >
             Schedule Free Consultation
           </a>
@@ -269,12 +296,12 @@ const assessmentQuestions = [
           'Consider periodic security assessments',
           'Stay updated on emerging threats',
           'Review compliance requirements annually'
-      ];
+        ];
       }
       
       recommendationsEl.innerHTML = recommendations.map(rec => 
         `<li class="flex items-start">
-          <Icon name="arrowRight" class="w-4 h-4 text-teal-600 mt-0.5 mr-2 flex-shrink-0" />
+          <Icon name="arrow-right" class="w-4 h-4 text-[#3B82F6] mt-0.5 mr-2 flex-shrink-0" />
           <span>${rec}</span>
         </li>`
       ).join('');

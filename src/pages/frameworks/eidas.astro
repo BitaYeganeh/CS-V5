@@ -16,11 +16,18 @@ const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 const content = {
   en: {
     hero: {
-      title: "eIDAS Digital Identity and Trust Services",
-      subtitle: "EU Digital Identity Compliance",
+      title: "eIDAS",
+      subtitle: "Digital Identity & Trust Services",
       description: "We help Finnish organizations implement eIDAS requirements, building robust digital identity and trust service frameworks that enable secure cross-border digital transactions.",
       primaryCTA: { text: "Start eIDAS Compliance", href: "/contact?service=eidas" },
       secondaryCTA: { text: "Learn More", href: "/services/eidas-digital-trust" }
+    },
+    forWho: "For organizations seeking EU digital identity compliance and trust service provider status.",
+    achieve: "eIDAS compliance with secure digital identity and qualified trust services.",
+    overview: {
+      title: "Overview",
+      description: "eIDAS (electronic IDentification, Authentication and trust Services) is the EU regulation that establishes a framework for electronic identification and trust services for electronic transactions in the European Single Market.",
+      highlight: "Our expert team provides comprehensive eIDAS implementation support, from digital identity management and trust service provider qualification through cross-border recognition and ongoing compliance monitoring."
     },
     benefits: {
       title: "Why Choose Our eIDAS Services",
@@ -81,11 +88,18 @@ const content = {
   },
   fi: {
     hero: {
-      title: "eIDAS-digitaalinen identiteetti ja luottamuspalvelut",
-      subtitle: "EU:n digitaalisen identiteetin vaatimustenmukaisuus",
+      title: "eIDAS",
+      subtitle: "Digitaalinen identiteetti & luottamuspalvelut",
       description: "Autamme suomalaisia organisaatioita toteuttamaan eIDAS-vaatimukset, rakentaen vankkoja digitaalisen identiteetin ja luottamuspalvelukehyksiä, jotka mahdollistavat turvalliset rajat ylittävät digitaaliset tapahtumat.",
       primaryCTA: { text: "Aloita eIDAS-vaatimustenmukaisuus", href: "/contact?service=eidas" },
       secondaryCTA: { text: "Lue lisää", href: "/services/eidas-digital-trust" }
+    },
+    forWho: "Organisaatioille, jotka tavoittelevat EU:n digitaalisen identiteetin vaatimustenmukaisuutta ja luottamuspalveluntarjoajan asemaa.",
+    achieve: "eIDAS-vaatimustenmukaisuus turvallisella digitaalisella identiteetillä ja laatuvarmenteisilla luottamuspalveluilla.",
+    overview: {
+      title: "Yleiskatsaus",
+      description: "eIDAS (electronic IDentification, Authentication and trust Services) on EU:n asetus, joka luo kehyksen sähköiselle tunnistamiselle ja luottamuspalveluille sähköisille tapahtumille Euroopan yhtenäismarkkinoilla.",
+      highlight: "Asiantuntijatiimimme tarjoaa kattavaa eIDAS-toteutustukea digitaalisen identiteetin hallinnasta ja luottamuspalveluntarjoajan pätevyydestä rajat ylittävään tunnustamiseen ja jatkuvaan vaatimustenmukaisuuden seurantaan."
     },
     benefits: {
       title: "Miksi valita eIDAS-palvelumme",
@@ -147,328 +161,357 @@ const content = {
 };
 
 const currentContent = content[lang];
+const isFi = lang === 'fi';
 ---
 
 <Layout {...seoConfig}>
 
-<!-- Hero Section - Centered, NO image -->
-<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    
-    <div class="flex justify-center mb-4">
-      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
-        <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.hero.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.hero.description}
+        </p>
+        
+        <!-- Info Section - Two Column Layout -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Kelle tämä on tarkoitettu?' : 'Who is this for?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.forWho}
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 group hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 relative overflow-hidden text-left">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300"></div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+                <svg class="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xs font-semibold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {isFi ? 'Mitä saavutat?' : 'What will you achieve?'}
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                  {currentContent.achieve}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
-      {currentContent.hero.title}
-    </h1>
-    
-    <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
-      {currentContent.hero.subtitle}
-    </p>
-    
-    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
-      {currentContent.hero.description}
-    </p>
-    
-    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
-      <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
-        {currentContent.hero.primaryCTA.text}
-        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-      
-      <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
-        {currentContent.hero.secondaryCTA.text}
-        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-    </div>
-    
-  </div>
-</section>
+  </section>
 
-<!-- Key Benefits Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.benefits.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.benefits.subtitle}
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {currentContent.benefits.items.map((item) => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    flex flex-col h-full p-6 group">
-          
-          <div class="flex justify-end mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
-            </div>
-          </div>
-          
-          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
-            {item.title}
-          </h3>
-          
-          <p class="text-slate-500 text-sm leading-relaxed text-left">
-            {item.description}
-          </p>
+  <!-- Overview Section -->
+  <section class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto bg-slate-50/80 rounded-xl border border-slate-200 shadow-sm p-6 md:p-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-[#1E2A7A] mb-4">{currentContent.overview.title}</h2>
+        <p class="text-slate-600 leading-relaxed mb-4">{currentContent.overview.description}</p>
+        <div class="bg-blue-50 border-l-4 border-[#3B82F6] p-4 rounded-r-lg">
+          <p class="text-[#1E2A7A] font-semibold">{currentContent.overview.highlight}</p>
         </div>
-      ))}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- eIDAS Requirements Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.requirements.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.requirements.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {currentContent.requirements.items.map((item) => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    flex flex-col h-full p-6 group">
-          
-          <div class="flex justify-end mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center
-                        transition-all duration-300
-                        group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:shadow-lg">
-              <Icon name={item.icon} class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
-            </div>
-          </div>
-          
-          <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300 text-left">
-            {item.title}
-          </h3>
-          
-          <p class="text-slate-500 text-sm leading-relaxed text-left mb-4">
-            {item.description}
-          </p>
-          
-          <div class="mt-auto">
-            <h4 class="font-semibold text-slate-800 text-sm mb-2">Key Controls:</h4>
-            <ul class="space-y-1.5">
-              {item.controls.map((control) => (
-                <li class="flex items-start text-xs text-slate-500">
-                  <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  {control}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
+  <!-- Key Benefits Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-<!-- Implementation Phases Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.phases.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.phases.subtitle}
-      </p>
-    </div>
-    
-    <div class="space-y-6">
-      {currentContent.phases.items.map((phase, index) => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-lg transition-all duration-300
-                    group">
-          
-          <div class="flex flex-col md:flex-row gap-6">
-            <div class="flex-shrink-0">
-              <div class="w-12 h-12 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] rounded-full flex items-center justify-center text-white font-bold text-lg">
-                {index + 1}
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.benefits.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.benefits.subtitle}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {currentContent.benefits.items.map((item) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col h-full p-5 md:p-6 group">
+            
+            <div class="flex justify-end mb-3">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={item.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
               </div>
             </div>
             
-            <div class="flex-1">
-              <div class="flex flex-wrap items-center gap-3 mb-4">
-                <h3 class="text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors duration-300">
-                  {phase.phase}
-                </h3>
-                <span class="inline-flex items-center px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-700">
-                  {phase.duration}
-                </span>
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left">
+              {item.title}
+            </h3>
+            
+            <p class="text-xs md:text-sm text-slate-500 leading-relaxed text-left group-hover:text-slate-600 transition-colors duration-300">
+              {item.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- eIDAS Requirements Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.requirements.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.requirements.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {currentContent.requirements.items.map((item) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col h-full p-5 md:p-6 group">
+            
+            <div class="flex justify-end mb-3">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={item.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
+            </div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left">
+              {item.title}
+            </h3>
+            
+            <p class="text-xs md:text-sm text-slate-500 leading-relaxed text-left group-hover:text-slate-600 transition-colors duration-300 mb-3">
+              {item.description}
+            </p>
+            
+            <div class="mt-auto pt-3 border-t-2 border-slate-200 group-hover:border-[#3B82F6] transition-colors duration-300">
+              <h4 class="font-semibold text-[#1E40AF] text-xs mb-1.5">{isFi ? 'Keskeiset kontrollit:' : 'Key Controls:'}</h4>
+              <ul class="space-y-1">
+                {item.controls.map((control) => (
+                  <li class="flex items-start text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                    <svg class="w-3 h-3 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    {control}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Implementation Phases Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.phases.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.phases.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        {currentContent.phases.items.map((phase, index) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-5 md:p-6 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex items-center justify-between mb-3 relative z-10">
+              <h3 class="text-sm font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                {phase.phase}
+              </h3>
+              <span class="text-xs font-medium text-[#3B82F6] bg-blue-50 px-2 py-1 rounded-full border border-[#3B82F6] relative z-10">
+                {phase.duration}
+              </span>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-4 relative z-10">
+              <div>
+                <h4 class="font-semibold text-[#1E40AF] text-xs mb-1.5">{isFi ? 'Keskeiset toimet:' : 'Key Activities:'}</h4>
+                <ul class="space-y-1">
+                  {phase.activities.map((activity) => (
+                    <li class="flex items-start text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                      <svg class="w-3 h-3 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                      {activity}
+                    </li>
+                  ))}
+                </ul>
               </div>
               
-              <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h4 class="font-semibold text-slate-800 text-sm mb-2">Key Activities</h4>
-                  <ul class="space-y-1.5">
-                    {phase.activities.map((activity) => (
-                      <li class="flex items-start text-xs text-slate-500">
-                        <svg class="w-3 h-3 text-green-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        {activity}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div>
-                  <h4 class="font-semibold text-slate-800 text-sm mb-2">Deliverables</h4>
-                  <ul class="space-y-1.5">
-                    {phase.deliverables.map((deliverable) => (
-                      <li class="flex items-start text-xs text-slate-500">
-                        <svg class="w-3 h-3 text-blue-500 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
-                        {deliverable}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div>
+                <h4 class="font-semibold text-[#1E40AF] text-xs mb-1.5">{isFi ? 'Tuotokset:' : 'Deliverables:'}</h4>
+                <ul class="space-y-1">
+                  {phase.deliverables.map((deliverable) => (
+                    <li class="flex items-start text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                      <svg class="w-3 h-3 text-[#3B82F6] mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                      </svg>
+                      {deliverable}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Industry Examples Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.industries.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.industries.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-3 gap-8">
-      {currentContent.industries.items.map((example) => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    group">
-          
-          <div class="mb-4">
-            <span class="inline-block bg-blue-100 text-blue-700 text-xs font-medium px-3 py-1 rounded-full group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] group-hover:text-white transition-all duration-300">
-              {example.industry}
-            </span>
-          </div>
-          
-          <h4 class="font-semibold text-slate-800 text-sm mb-2">Challenge:</h4>
-          <p class="text-slate-500 text-xs mb-4">{example.challenge}</p>
-          
-          <h4 class="font-semibold text-slate-800 text-sm mb-2">Our Solution:</h4>
-          <p class="text-slate-500 text-xs mb-4">{example.solution}</p>
-          
-          <h4 class="font-semibold text-slate-800 text-sm mb-2">Outcome:</h4>
-          <p class="text-slate-500 text-xs">{example.outcome}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- Related Services Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
-        {currentContent.related.title}
-      </h2>
-      <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-        {currentContent.related.subtitle}
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-4 gap-6">
-      {currentContent.related.items.map((service) => (
-        <a href={service.href} class="bg-slate-50/50 rounded-xl border border-slate-100 p-5 text-center
-                    hover:border-blue-300 hover:bg-slate-50
-                    hover:shadow-md transition-all duration-300
-                    group block">
-          
-          <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
-            {service.title}
-          </h3>
-          <p class="text-slate-500 text-xs">{service.description}</p>
-        </a>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-      
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
-        {currentContent.cta.title}
-      </h2>
-
-      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
-        {currentContent.cta.subtitle}
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        
-        <a href={currentContent.cta.primaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
-          {currentContent.cta.primaryCTA.text}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-        
-        <a href={currentContent.cta.secondaryCTA.href} 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
-          {currentContent.cta.secondaryCTA.text}
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
+        ))}
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- Industry Examples Section -->
+  <section class="py-12 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.industries.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.industries.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        {currentContent.industries.items.map((example) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-5 md:p-6 group relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="mb-3 relative z-10">
+              <span class="inline-block bg-[#3B82F6]/10 text-[#1E40AF] text-xs font-medium px-3 py-1 rounded-full group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:text-white transition-all duration-300">
+                {example.industry}
+              </span>
+            </div>
+            
+            <div class="relative z-10">
+              <h4 class="font-semibold text-[#1E40AF] text-xs mb-1">{isFi ? 'Haaste:' : 'Challenge:'}</h4>
+              <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300 mb-3">{example.challenge}</p>
+              
+              <h4 class="font-semibold text-[#1E40AF] text-xs mb-1">{isFi ? 'Ratkaisumme:' : 'Our Solution:'}</h4>
+              <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300 mb-3">{example.solution}</p>
+              
+              <h4 class="font-semibold text-[#1E40AF] text-xs mb-1">{isFi ? 'Tulos:' : 'Outcome:'}</h4>
+              <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300">{example.outcome}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] mb-2">
+          {currentContent.related.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.related.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-4 gap-6">
+        {currentContent.related.items.map((service) => (
+          <a href={service.href} class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-5 md:p-6 group text-center relative overflow-hidden block">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <h3 class="text-sm font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {service.title}
+            </h3>
+            <p class="text-xs text-slate-500 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {service.description}
+            </p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-8 md:p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+        
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-4 text-slate-900">
+          {currentContent.cta.title}
+        </h2>
+
+        <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+          {currentContent.cta.subtitle}
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          
+          <a href={currentContent.cta.primaryCTA.href} 
+             class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
+            {currentContent.cta.primaryCTA.text}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          
+          <a href={currentContent.cta.secondaryCTA.href} 
+             class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
+            {currentContent.cta.secondaryCTA.text}
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
 </Layout>
