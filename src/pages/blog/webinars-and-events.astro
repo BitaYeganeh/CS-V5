@@ -1,4 +1,33 @@
 ---
-// src/pages/resources/webinars.astro
-return Astro.redirect('/resources', 301);
+import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/ui/Button.astro';
+
+const title = "Webinars & Events";
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+const targetPath = lang === 'fi' ? '/fi/resources/webinars' : '/resources/webinars';
 ---
+
+<Layout title={title} description="Redirecting">
+  <section class="pt-20 md:pt-28 pb-20">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+        <svg class="w-10 h-10 text-[#3B82F6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+        </svg>
+      </div>
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+        Page Moved
+      </h1>
+      <p class="text-base md:text-lg text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+        Webinars & events have moved to the new <a href={targetPath} class="text-[#3B82F6] hover:text-[#3bb1f6] font-semibold underline transition-colors duration-200">{targetPath}</a> section.
+      </p>
+      <a href={targetPath} class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white rounded-full hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-xl font-medium text-sm">
+        Go to Webinars
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </section>
+</Layout>
