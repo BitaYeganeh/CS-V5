@@ -34,9 +34,53 @@ const seoConfig = {
 };
 
 const currentPath = Astro.url.pathname;
-const lang = 'fi'; // Explicitly set to Finnish for this version
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
 const content = {
+  en: {
+    hero: {
+      title: "Enterprise Cybersecurity & Compliance Advisory",
+      subtitle: "Strategic guidance for complex regulatory environments. ISO 27001, NIS2, GDPR, and DORA implementation with proven methodologies trusted by global organizations.",
+      primaryCTA: { text: "Request Consultation", href: "/contact" },
+      secondaryCTA: { text: "Explore Capabilities", href: "/services" }
+    },
+    services: {
+      title: "Core Capabilities",
+      description: "Comprehensive cybersecurity and regulatory compliance solutions for enterprises across regulated industries",
+      items: [
+        {
+          title: "Information Security Management",
+          description: "ISO 27001 implementation and certification readiness programs",
+          icon: "shield-check",
+          href: "/packages/iso-27001-fast-track"
+        },
+        {
+          title: "Regulatory Compliance",
+          description: "NIS2 directive compliance and cybersecurity resilience frameworks",
+          icon: "globe-alt",
+          href: "/services/nis2-compliance"
+        },
+        {
+          title: "Data Protection & Privacy",
+          description: "GDPR compliance programs and privacy governance frameworks",
+          icon: "lock-closed",
+          href: "/services/gdpr-privacy-services"
+        },
+        {
+          title: "Digital Operational Resilience",
+          description: "DORA compliance for financial institutions and critical infrastructure",
+          icon: "building-library",
+          href: "/services/dora-compliance"
+        }
+      ]
+    },
+    cta: {
+      title: "Transform Your Security Posture",
+      subtitle: "Partner with experienced advisors trusted by enterprises in highly regulated industries worldwide.",
+      primaryCTA: { text: "Schedule Consultation", href: "/contact" },
+      secondaryCTA: { text: "View Services", href: "/services" }
+    }
+  },
   fi: {
     hero: {
       title: "Kyberturvallisuus- ja vaatimustenmukaisuusneuvonta",
@@ -49,26 +93,26 @@ const content = {
       description: "Kattavat kyberturvallisuus- ja sääntelyvaatimustenmukaisuusratkaisut yrityksille säännellyillä toimialoilla",
       items: [
         {
-          title: "ISO 27001 Fast-Track",
-          description: "Täysi ISMS-toteutus 90 päivässä sertifiointituelle",
+          title: "Tietoturvallisuuden hallinta",
+          description: "ISO 27001 -toteutus ja sertifiointivalmius-ohjelmat",
           icon: "shield-check",
           href: "/fi/packages/iso-27001-fast-track"
         },
         {
-          title: "NIS2 Yhteensopivuus",
-          description: "Valmistele NIS2-direktiivin vaatimuksia asiantuntijan ohjauksella",
+          title: "Sääntelyvaatimustenmukaisuus",
+          description: "NIS2-direktiivin vaatimustenmukaisuus ja kyberturvallisuuden resilienssi",
           icon: "globe-alt",
           href: "/fi/services/nis2-compliance"
         },
         {
-          title: "GDPR & Tietosuoja",
-          description: "Tietosuojan noudattaminen ja yksityisyyden hallintaratkaisut",
+          title: "Tietosuoja ja yksityisyys",
+          description: "GDPR-vaatimustenmukaisuusohjelmat ja tietosuojan hallintakehykset",
           icon: "lock-closed",
           href: "/fi/services/gdpr-privacy-services"
         },
         {
-          title: "DORA Toteutus",
-          description: "Digitaalinen toiminnallinen resilierenssi rahoituspalveluille",
+          title: "Digitaalinen toimintakyky",
+          description: "DORA-vaatimustenmukaisuus rahoituslaitoksille ja kriittiselle infrastruktuurille",
           icon: "building-library",
           href: "/fi/services/dora-compliance"
         }
@@ -84,641 +128,1320 @@ const content = {
 };
 
 const currentContent = content[lang];
+const isFi = lang === 'fi';
 
 const keyServices = [
   {
-    title: "Yhteensopivuuskehykset",
-    description: "Muunna sääntelyvaatimukset kilpailueduksi. Asiantunteva ISO 27001, SOC 2, GDPR, NIS2 ja DORA -kehyksien toteutus todistettujen nopean toteutuksen metodologioiden avulla.",
+    title: isFi ? "Yhteensopivuuskehykset" : "Compliance Frameworks",
+    description: isFi 
+      ? "Muunna sääntelyvaatimukset kilpailueduksi. Asiantunteva ISO 27001, SOC 2, GDPR, NIS2 ja DORA -kehyksien toteutus todistettujen nopean toteutuksen metodologioiden avulla."
+      : "Transform regulatory requirements into competitive advantages. Expert implementation of ISO 27001, SOC 2, GDPR, NIS2, and DORA frameworks with proven fast-track methodologies.",
     icon: "shield-check",
-    href: "/fi/services"
+    href: isFi ? "/fi/services" : "/services"
   },
   {
-    title: "Riskienhallinta",
-    description: "Tunnista, arvioi ja lievitä kyberturvallisuusriskit tehokkaasti. Kattavat riskien arvioinnit, kolmannen osapuolen riskienhallinta ja liiketoiminnan jatkuvuuden suunnittelu organisaatiollesi räätälöitynä.",
+    title: isFi ? "Riskienhallinta" : "Risk Management",
+    description: isFi
+      ? "Tunnista, arvioi ja lievitä kyberturvallisuusriskit tehokkaasti. Kattavat riskien arvioinnit, kolmannen osapuolen riskienhallinta ja liiketoiminnan jatkuvuuden suunnittelu organisaatiollesi räätälöitynä."
+      : "Identify, assess, and mitigate cybersecurity risks effectively. Comprehensive risk assessments, third-party risk management, and business continuity planning tailored to your organization.",
     icon: "chart-line",
-    href: "/fi/services"
+    href: isFi ? "/fi/services" : "/services"
   },
   {
-    title: "Hallinto & Strategia",
-    description: "Rakenna vahvoja kyberturvallisuuden hallintorakenteita. Strageinen politiikan kehitys, CISO-palveluna ja hallituksen tason riskiraportointi varmistaaksesi organisaation turvallisuuden kypsyyden.",
+    title: isFi ? "Hallinto & Strategia" : "Governance & Policy",
+    description: isFi
+      ? "Rakenna vahvoja kyberturvallisuuden hallintorakenteita. Strateginen politiikan kehitys, CISO-palveluna ja hallituksen tason riskiraportointi varmistaaksesi organisaation turvallisuuden kypsyyden."
+      : "Establish robust cybersecurity governance structures. Strategic policy development, CISO-as-a-Service, Virtual CISO (V-CISO), and board-level risk reporting to ensure organizational security maturity.",
     icon: "building-library",
-    href: "/fi/services"
+    href: isFi ? "/fi/services" : "/services"
   },
   {
-    title: "Erikoispalvelut",
-    description: "Asiantuntijapalvelut ainutlaatuisiin kyberturvallisuuden haasteisiin. Petostorjuntapalvelut, digitaalisen luottamuksen ratkaisut, tarkastuksen valmistelu ja erikoisvaatimustenmukaisuustuki monimutkaisiin vaatimuksiin.",
+    title: isFi ? "Erikoispalvelut" : "Specialized Services",
+    description: isFi
+      ? "Asiantuntijapalvelut ainutlaatuisiin kyberturvallisuuden haasteisiin. Petostorjuntapalvelut, digitaalisen luottamuksen ratkaisut, tarkastuksen valmistelu ja erikoisvaatimustenmukaisuustuki monimutkaisiin vaatimuksiin."
+      : "Expert services for unique cybersecurity challenges. Anti-fraud services, digital trust solutions, audit preparation, and specialized compliance support for complex requirements.",
     icon: "star",
-    href: "/fi/services"
+    href: isFi ? "/fi/services" : "/services"
   }
 ];
 
 const complianceFrameworks = [
   {
     title: "ISO 27001",
-    description: "Tietoturvan hallintajärjestelmä - kansainvälinen standardi kyberturvallisuuden hallinnolle.",
+    description: isFi 
+      ? "Tietoturvan hallintajärjestelmä - kansainvälinen standardi kyberturvallisuuden hallinnolle."
+      : "Information Security Management System - the international standard for cybersecurity management.",
     icon: "shield-check",
-    href: "/fi/frameworks/iso-27001"
+    href: isFi ? "/fi/frameworks/iso-27001" : "/frameworks/iso-27001"
   },
   {
     title: "NIS2 Direktiivi",
-    description: "Verkko- ja tietoturvalaki - EU:n kyberturvallisuuslainsäädäntö keskeisille ja tärkeille toimijoille.",
+    description: isFi
+      ? "Verkko- ja tietoturvalaki - EU:n kyberturvallisuuslainsäädäntö keskeisille ja tärkeille toimijoille."
+      : "Network and Information Security Directive - EU cybersecurity legislation for essential and important entities.",
     icon: "globe-alt",
-    href: "/fi/regulatory/nis2"
+    href: isFi ? "/fi/regulatory/nis2" : "/frameworks/nis2"
   },
   {
     title: "GDPR",
-    description: "Yleinen tietosuoja-asetus - EU:n tietosuojalainsäädäntö henkilötietojen suojelulle ja yksityisyydelle.",
+    description: isFi
+      ? "Yleinen tietosuoja-asetus - EU:n tietosuojalainsäädäntö henkilötietojen suojelulle ja yksityisyydelle."
+      : "General Data Protection Regulation - EU privacy regulation for personal data protection and privacy.",
     icon: "lock-closed",
-    href: "/fi/regulatory/gdpr"
+    href: isFi ? "/fi/regulatory/gdpr" : "/regulatory/gdpr"
   },
   {
     title: "DORA",
-    description: "Digitaalisen toiminnan resilierenssilaki - EU:n laki digitaalisen toiminnan resilierenssistä rahoituspalveluissa.",
+    description: isFi
+      ? "Digitaalisen toiminnan resilierenssilaki - EU:n laki digitaalisen toiminnan resilierenssistä rahoituspalveluissa."
+      : "Digital Operational Resilience Act - EU regulation for digital operational resilience in financial services.",
     icon: "building-library",
-    href: "/fi/regulatory/dora"
+    href: isFi ? "/fi/regulatory/dora" : "/regulatory/dora"
   },
   {
     title: "SOC 2",
-    description: "Service Organization Control 2 - tarkastusmenettely, joka varmistaa palveluntarjoajien hallitsevan tietojen turvallisuuden.",
+    description: isFi
+      ? "Service Organization Control 2 - tarkastusmenettely, joka varmistaa palveluntarjoajien hallitsevan tietojen turvallisuuden."
+      : "Service Organization Control 2 - auditing procedure that ensures service providers securely manage data.",
     icon: "document-check",
-    href: "/fi/frameworks/soc-2"
+    href: isFi ? "/fi/frameworks/soc-2" : "/frameworks/soc-2"
   },
   {
     title: "Yhteiset kriteerit",
-    description: "Kansainvälinen standardi tietoturvan sertifiointiin - arviointikriteerit IT-turvallisuustuotteille.",
+    description: isFi
+      ? "Kansainvälinen standardi tietoturvan sertifiointiin - arviointikriteerit IT-turvallisuustuotteille."
+      : "International standard for computer security certification - evaluation criteria for IT security products.",
     icon: "star",
-    href: "/fi/frameworks/common-criteria"
+    href: isFi ? "/fi/frameworks/common-criteria" : "/frameworks/common-criteria"
   }
 ];
 
 const industries = [
   { 
-    name: "Rahoituspalvelut & Fintech", 
+    name: isFi ? "Rahoituspalvelut & Fintech" : "Financial Services & Fintech", 
     icon: "bank", 
-    href: "/fi/industries/financial-services-fintech",
-    image: "/images/industries/financial-services.svg",
-    description: "Erikoistunut DORA, PCI DSS ja toiminnan resilierenssin asiantuntemus pankeille, maksunkäsittelyyrityksille ja fintech-yrityksille."
+    href: isFi ? "/fi/industries/financial-services-fintech" : "/industries/financial-services-fintech",
+    image: "/images/industries/financial.avif",
+    description: isFi 
+      ? "Erikoistunut DORA, PCI DSS ja toiminnan resilierenssin asiantuntemus pankeille, maksunkäsittelyyrityksille ja fintech-yrityksille."
+      : "Specialized DORA, PCI DSS, and operational resilience expertise for banks, payment processors, and fintech companies."
   },
   { 
-    name: "SaaS & Teknologia", 
+    name: isFi ? "SaaS & Teknologia" : "SaaS & Technology", 
     icon: "code", 
-    href: "/fi/industries/saas-technology",
-    image: "/images/industries/saas-technology.svg",
-    description: "ISO 27001, SOC 2 ja pilvitietoturvan kehykset räätälöitynä ohjelmisto- ja teknologiayrityksille."
+    href: isFi ? "/fi/industries/saas-technology" : "/industries/saas-technology",
+    image: "/images/industries/saas.avif",
+    description: isFi
+      ? "ISO 27001, SOC 2 ja pilvitietoturvan kehykset räätälöitynä ohjelmisto- ja teknologiayrityksille."
+      : "ISO 27001, SOC 2, and cloud security frameworks tailored for software companies and technology service providers."
   },
   { 
-    name: "Terveys & Elintarviketeollisuus", 
+    name: isFi ? "Terveys & Elintarviketeollisuus" : "Healthcare & Life Sciences", 
     icon: "heart", 
-    href: "/fi/industries/healthcare-life-sciences",
-    image: "/images/industries/healthcare.svg",
-    description: "GDPR, Virtuaalinen DPO (V-DPO), lääketieteellisten laitteiden sääntely ja potilastietojen suojaus yhteensopivuus terveydenhuollon organisaatioille ja elintarviketeollisuuden yrityksille."
+    href: isFi ? "/fi/industries/healthcare-life-sciences" : "/industries/healthcare-life-sciences",
+    image: "/images/industries/healthcare.avif",
+    description: isFi
+      ? "GDPR, Virtuaalinen DPO (V-DPO), lääketieteellisten laitteiden sääntely ja potilastietojen suojaus yhteensopivuus terveydenhuollon organisaatioille ja elintarviketeollisuuden yrityksille."
+      : "GDPR, Virtual DPO (V-DPO), medical device regulations, and patient data protection compliance for healthcare organizations and life sciences companies."
   },
   { 
-    name: "Kriittinen infrastruktuuri", 
+    name: isFi ? "Kriittinen infrastruktuuri" : "Critical Infrastructure", 
     icon: "bolt", 
-    href: "/fi/industries/critical-infrastructure-energy",
-    image: "/images/industries/critical-infrastructure.svg",
-    description: "NIS2-direktiivin toteutus, operaatioteknologian turvallisuus ja resilierenssin suunnittelu oleellisille palveluntarjoajille."
+    href: isFi ? "/fi/industries/critical-infrastructure-energy" : "/industries/critical-infrastructure-energy",
+    image: "/images/industries/critical.avif",
+    description: isFi
+      ? "NIS2-direktiivin toteutus, operaatioteknologian turvallisuus ja resilierenssin suunnittelu oleellisille palveluntarjoajille."
+      : "NIS2 directive implementation, operational technology security, and resilience planning for essential service providers."
   },
   { 
-    name: "Julkinen sektori", 
+    name: isFi ? "Julkinen sektori" : "Public Sector", 
     icon: "building", 
-    href: "/fi/industries/public-sector-finland",
-    image: "/images/industries/public-sector.svg",
-    description: "Hallituksen erityiset sääntelykehykset, julkiset hankinnat ja kansalaisten tietosuojan standardit."
+    href: isFi ? "/fi/industries/public-sector-finland" : "/industries/public-sector-finland",
+    image: "/images/industries/public.avif",
+    description: isFi
+      ? "Hallituksen erityiset sääntelykehykset, julkiset hankinnat ja kansalaisten tietosuojan standardit."
+      : "Government-specific compliance frameworks, public procurement requirements, and citizen data protection standards."
   },
   { 
-    name: "Valmistava teollisuus", 
+    name: isFi ? "Valmistava teollisuus" : "Manufacturing & Industrial", 
     icon: "cog", 
-    href: "/fi/industries/manufacturing-industrial",
-    image: "/images/industries/manufacturing.svg",
-    description: "Teollisuuden IoT-tietoturva, toimittajaketjun suojaus ja operaatioiden jatkuvuus valmistaville ja teollisille organisaatioille."
+    href: isFi ? "/fi/industries/manufacturing-industrial" : "/industries/manufacturing-industrial",
+    image: "/images/industries/manufacturing.avif",
+    description: isFi
+      ? "Teollisuuden IoT-tietoturva, toimittajaketjun suojaus ja operaatioiden jatkuvuus valmistaville ja teollisille organisaatioille."
+      : "Industrial IoT security, supply chain protection, and operational continuity for manufacturing and industrial organizations."
   }
 ];
 
 const latestResources = [
   {
-    title: "ISO 27001 Pika-aloitusopas",
-    excerpt: "25-sivuinen toteutusroadmap",
-    href: "/fi/resources/guides/iso-27001-quick-start",
-    category: "Opas"
+    title: isFi ? "ISO 27001 Pika-aloitusopas" : "ISO 27001 Quick Start Guide",
+    excerpt: isFi ? "25-sivuinen toteutusroadmap" : "25-page implementation roadmap",
+    href: isFi ? "/fi/resources/guides/iso-27001-quick-start" : "/resources/guides/iso-27001-quick-start",
+    category: isFi ? "Opas" : "Guide"
   },
   {
-    title: "NIS2 Yhteensopivuus Tarkistuslista",
-    excerpt: "Täysi vaatimusanalyysityökalu",
-    href: "/fi/resources/guides/nis2-compliance-checklist",
-    category: "Tarkistuslista"
+    title: isFi ? "NIS2 Yhteensopivuus Tarkistuslista" : "NIS2 Compliance Checklist",
+    excerpt: isFi ? "Täysi vaatimusanalyysityökalu" : "Complete requirement assessment tool",
+    href: isFi ? "/fi/resources/guides/nis2-compliance-checklist" : "/resources/guides/nis2-compliance-checklist",
+    category: isFi ? "Tarkistuslista" : "Checklist"
   },
   {
-    title: "GDPR Tietosuoja-vaikutusten Arviointi Malli",
-    excerpt: "Valmiiksi määritelty PIA-kehys",
-    href: "/fi/resources/guides/gdpr-pia-template",
-    category: "Malli"
+    title: isFi ? "GDPR Tietosuoja-vaikutusten Arviointi Malli" : "GDPR Privacy Impact Assessment Template",
+    excerpt: isFi ? "Valmiiksi määritelty PIA-kehys" : "Ready-to-use PIA framework",
+    href: isFi ? "/fi/resources/guides/gdpr-pia-template" : "/resources/guides/gdpr-pia-template",
+    category: isFi ? "Malli" : "Template"
   }
 ];
 ---
 
 <Layout {...seoConfig}>
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-slate-100 via-white to-slate-100 text-slate-900 py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+
+<!-- Hero Section - WITH BACKGROUND IMAGE -->
+<section class="text-slate-900 md:min-h-screen flex items-center relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('/images/bgf.jpg')">
+  
+  <!-- Fade overlay at top -->
+  <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent"></div>
+  
+  <!-- Fade with blur effect -->
+  <div class="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-t from-white via-white/80 to-transparent backdrop-blur-sm"></div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 md:py-4">
+    
+    <!-- TITLE AT THE VERY TOP - CENTERED -->
+    <div class="text-center mb-6 md:mb-12 lg:mb-20">
+      <h1 class="font-bold tracking-tight leading-tight"
+          style="font-family: 'Montserrat', sans-serif; font-size: clamp(24px, 5vw, 45px);">
+        <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
           {currentContent.hero.title}
-        </h1>
-        <p class="text-xl text-slate-600 mb-10 max-w-4xl mx-auto">
-          {currentContent.hero.subtitle}
+        </span>
+      </h1>
+    </div>
+
+    <!-- Mobile layout (stacked vertically) -->
+    <div class="flex flex-col items-center justify-center gap-6 mb-8 md:hidden">
+      <img 
+        src="/images/cyber.webp"
+        alt="kyberturvallisuus konsepti"
+        class="w-full max-w-xs object-cover"
+        loading="eager"
+      />
+    </div>
+    
+    <div class="text-center">
+      
+      <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+        
+        <!-- Left Side: Content -->
+        <div class="text-center">
+          <div class="text-center">
+            <div class="hidden md:flex items-center justify-center gap-4 mb-4 -mt-20">
+              <div class="h-px w-16 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
+              <span class="text-[#1E2A7A] text-3xl font-bold animate-pulse" style="animation-duration: 2s;">✦</span>
+              <div class="h-px w-16 bg-gradient-to-l from-transparent to-[#1E2A7A]"></div>
+            </div>
+            
+            <p class="text-slate-600 leading-relaxed mx-auto text-center"
+               style="font-family: 'Montserrat', sans-serif; font-size: clamp(16px, 2.5vw, 25px); max-width: 600px; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);">
+              {currentContent.hero.subtitle}
+            </p>
+          </div>
+        </div>
+        
+        <!-- Right Side: cyber.webp image -->
+        <div class="hidden md:block">
+          <img 
+            src="/images/cyber.webp"
+            alt="Kyberturvallisuusstrategia konsepti"
+            class="object-contain -mt-8"
+            style="width: 100%; max-width: 600px; height: auto;"
+            loading="eager"
+          />
+        </div>
+        
+      </div>
+      
+      <!-- Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center mt-8 md:mt-14"
+           style="font-family: 'Montserrat', sans-serif;">
+        
+        <a href={isFi ? "/fi/contact" : "/contact"} 
+           class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white rounded-full hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
+          {currentContent.hero.primaryCTA.text}
+        </a>
+        
+        <a href={isFi ? "/fi/services" : "/services"} 
+           class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#3B82F6] text-[#3B82F6] rounded-full hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm sm:text-base">
+          {currentContent.hero.secondaryCTA.text}
+        </a>
+      </div>
+      
+    </div>
+  </div>
+
+  <style>
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .animate-gradient {
+    animation: gradient 4s ease infinite;
+    background-size: 200% 200%;
+  }
+  </style>
+</section>
+
+<!-- Trust Bar - WHITE BACKGROUND with subtle border -->
+<section class="py-8 bg-white border-y border-slate-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      
+      <!-- Left Side: Text -->
+      <div class="text-center md:text-left">
+        <div class="flex items-center gap-3 mb-3 md:justify-start justify-center">
+          <div class="h-px w-8 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
+          <span class="text-[#1E2A7A] text-xs font-medium tracking-wider uppercase">{isFi ? 'Luotetut kumppanit' : 'Trusted Partners'}</span>
+          <div class="h-px w-8 bg-gradient-to-l from-transparent to-[#1E2A7A]"></div>
+        </div>
+        
+        <p class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-tight text-slate-800">
+          {isFi ? 'Yhteensopivuudesta' : 'From compliance'}<br/>{isFi ? 'kilpailueduksi' : 'to competitive advantage'}.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button href={currentContent.hero.primaryCTA.href} variant="primary" class="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700">
-            {currentContent.hero.primaryCTA.text}
-          </Button>
-          <Button href={currentContent.hero.secondaryCTA.href} variant="secondary">
-            {currentContent.hero.secondaryCTA.text}
-          </Button>
+        
+        <div class="flex items-center gap-3 mt-3 md:justify-start justify-center">
+          <div class="flex items-center gap-0.5">
+            {[...Array(5)].map((_, i) => (
+              <svg key={i} class="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+              </svg>
+            ))}
+          </div>
+          <span class="text-xs text-slate-500">4.9/5 (200+ {isFi ? 'arvostelua' : 'reviews'})</span>
         </div>
       </div>
+      
+      <!-- Right Side: Auto-scrolling Logos Carousel -->
+      <div class="relative overflow-hidden">
+        
+        <div class="text-center mb-3">
+          <span class="text-xs text-slate-400 uppercase tracking-wider">{isFi ? 'Toimialajohtajien luottama' : 'Trusted by industry leaders'}</span>
+        </div>
+        
+        <div class="overflow-hidden">
+          <div class="flex animate-scroll gap-6 md:gap-8 py-2">
+            
+            {[
+              { src: '/images/nis2.webp', alt: 'NIS2' },
+              { src: '/images/dora.webp', alt: 'DORA' },
+              { src: '/images/logo-client-1.webp', alt: 'Client 3' },
+              { src: '/images/CRA.jpg', alt: 'CRA' },
+              { src: '/images/SOC-2-logo.jpg', alt: 'SOC2' },
+              { src: '/images/gdpr.webp', alt: 'GDPR' },
+              { src: '/images/nis2.webp', alt: 'NIS2' },
+              { src: '/images/dora.webp', alt: 'DORA' },
+              { src: '/images/logo-client-1.webp', alt: 'Client 3' },
+              { src: '/images/CRA.jpg', alt: 'CRA' },
+              { src: '/images/SOC-2-logo.jpg', alt: 'SOC2' },
+              { src: '/images/gdpr.webp', alt: 'GDPR' },
+            ].map((logo, idx) => (
+              <div key={idx} class="flex-shrink-0 flex items-center justify-center h-16 md:h-20 w-24 md:w-32 rounded-xl p-2 md:p-3 hover:scale-105 transition-all duration-300">
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  class="max-h-12 md:max-h-20 w-auto object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+            
+          </div>
+        </div>
+        
+      </div>
+      
     </div>
-  </section>
+  </div>
+</section>
+
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
   
-  <!-- Key Services Section -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+  .animate-scroll {
+    animation: scroll 20s linear infinite;
+    width: fit-content;
+  }
+  
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+</style>
+
+<!-- Featured Packages Section -->
+<section class="text-slate-900 md:min-h-screen flex items-center relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('/images/bgf.jpg')">
+  
+  <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 md:py-12">  
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#3B82F6] mb-4">
+        {isFi ? 'Esittelyssä Fast-Track Paketit' : 'Featured Fast-Track Packages'}
+      </h2>
+      <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
+        {isFi ? 'Nopeat ratkaisut säännellyille organisaatioille' : 'Fast-track solutions designed for regulated organizations'}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- ISO 27001 Card -->
+      <div class="bg-white rounded-xl border border-slate-100 shadow-sm
+                  hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] hover:border-2
+                  transition-all duration-300
+                  flex flex-col p-6 group">
+        
+        <div class="flex justify-center mb-4">
+          <div class="inline-block px-3 py-1 text-xs font-medium text-[#3B82F6] bg-white rounded-full border-2 border-[#3B82F6] group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+            {isFi ? 'Valmiina sertifiointiin 90–120 päivässä' : 'Become certification-ready in 90–120 days'}
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 text-center">
+          {isFi ? 'ISO 27001 Fast-Track' : 'ISO 27001 Fast-Track'}
+        </h3>
+        
+        <p class="text-base font-semibold text-[#1E2A7A] mb-6 leading-relaxed text-center">
+          {isFi ? 'Rakenna ja toteuta täydellinen ISMS asiantuntijaohjauksella.' : 'Build and implement a complete ISMS with expert guidance.'}
+        </p>        
+        
+        <ul class="text-sm text-slate-600 space-y-2.5 mb-6 text-left">
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? 'Täydellinen ISMS-toteutus räätälöitynä toimintoihisi' : 'Complete ISMS implementation tailored to your operations'}</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? 'Politiikkakirjasto 50+ valmiilla asiakirjalla' : 'Policy library with 50+ ready-to-use documents'}</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? 'Riskien arviointi ja aukkoanalyysi' : 'Risk assessment & gap analysis'}</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? 'Auditointivalmistelu ja sertifiointituki' : 'Audit preparation and certification support'}</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? 'Henkilöstön koulutus ja tietoturvatietoisuus' : 'Staff training and security awareness'}</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? '12 kuukauden sertifioinnin jälkeinen tuki' : '12 months of post-certification support'}</span>
+          </li>
+        </ul>
+        
+        <a href={isFi ? "/fi/packages/iso-27001-fast-track" : "/packages/iso-27001-fast-track"} class="mt-auto inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] bg-white hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm w-fit self-center">
+          {isFi ? 'Aloita ohjelma' : 'Start program'}
+        </a>
+      </div>
+
+      <!-- NIS2 Card -->
+      <div class="bg-white rounded-xl border border-slate-100 shadow-sm
+                  hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] hover:border-2
+                  transition-all duration-300
+                  flex flex-col p-6 group">
+        
+        <div class="flex justify-center mb-4">
+          <div class="inline-block px-3 py-1 text-xs font-medium text-[#3B82F6] bg-white rounded-full border-2 border-[#3B82F6] group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+            {isFi ? 'Valmiina NIS2-vaatimustenmukaisuuteen 60–90 päivässä' : 'Become NIS2 compliant in 60–90 days'}
+          </div>
+        </div>
+        
+        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 text-center">
+          {isFi ? 'NIS2 Sprint -ohjelma' : 'NIS2 Sprint Program'}
+        </h3>
+        
+        <p class="text-base font-semibold text-[#1E2A7A] mb-6 leading-relaxed text-center">
+          {isFi ? 'Valmistaudu NIS2-vaatimuksiin asiantuntijatuella.' : 'Prepare for NIS2 requirements with expert support.'}
+        </p>        
+        
+        <ul class="text-sm text-slate-600 space-y-2.5 mb-6 text-left">
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? 'NIS2 aukkoanalyysi ja tiekartta' : 'NIS2 gap analysis & roadmap'}</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? 'Riskienhallintakehys' : 'Risk management framework'}</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? 'Tapahtumien hallintakehys ja menettelyt' : 'Incident response framework and procedures'}</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? 'Toimitusketjun turvallisuus ja kolmannen osapuolen riskien hallinta' : 'Supply chain security and third-party risk controls'}</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? 'Sääntelyraportoinnin perustaminen auditointivalmiutta varten' : 'Regulatory reporting setup for audit readiness'}</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? 'Johdon ja hallituksen tason koulutus' : 'Executive and board-level compliance training'}</span>
+          </li>
+        </ul>
+        
+        <a href={isFi ? "/fi/packages/nis2-sprint" : "/packages/nis2-sprint"} class="mt-auto inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] bg-white hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm w-fit self-center">
+          {isFi ? 'Aloita ohjelma' : 'Start program'}
+        </a>
+      </div>
+      
+      <!-- SOC 2 Card -->
+      <div class="bg-white rounded-xl border border-slate-100 shadow-sm
+                  hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] hover:border-2
+                  transition-all duration-300
+                  flex flex-col p-6 group">
+        
+        <div class="flex justify-center mb-4">
+          <div class="inline-block px-3 py-1 text-xs font-medium text-[#3B82F6] bg-white rounded-full border-2 border-[#3B82F6] group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+            {isFi ? 'Valmiina SOC 2 -auditointiin 12 viikossa' : 'Become SOC 2 ready in 12 weeks'}
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 text-center">
+          {isFi ? 'SOC 2 -valmius' : 'SOC 2 Readiness'}
+        </h3>
+        
+        <p class="text-base font-semibold text-[#1E2A7A] mb-6 leading-relaxed text-center">
+          {isFi ? 'Valmistaudu SOC 2 Type I ja Type II -auditointeihin.' : 'Prepare for SOC 2 Type I and Type II audits.'}
+        </p>        
+        
+        <ul class="text-sm text-slate-600 space-y-2.5 mb-6 text-left">
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? 'Type I ja Type II -valmistelu' : 'Type I & Type II preparation'}</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? 'Kontrollien toteutus ja testaus' : 'Control implementation & testing'}</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? 'Todisteiden keruun kehys' : 'Evidence collection framework'}</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? 'Jatkuvan seurannan perustaminen' : 'Continuous monitoring setup'}</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-[#3B82F6] font-bold mt-0.5">✓</span> 
+            <span>{isFi ? 'Auditointivalmistelu ja tuki' : 'Audit preparation and support'}</span>
+          </li>
+        </ul>
+        
+        <a href={isFi ? "/fi/packages/soc2-readiness-12-weeks" : "/packages/soc2-readiness-12-weeks"} class="mt-auto inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] bg-white hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm w-fit self-center">
+          {isFi ? 'Aloita ohjelma' : 'Start program'}
+        </a>
+      </div>
+      
+    </div>
+    
+    <div class="text-center mt-12">
+      <a href={isFi ? "/fi/packages" : "/packages"} class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-lg font-medium text-sm gap-2">
+        {isFi ? 'Näytä kaikki ohjelmat' : 'View All Programs'}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- Core Capabilities Section - WHITE BACKGROUND -->
+<section class="py-8 md:py-20 bg-white relative overflow-hidden">
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6] to-transparent opacity-30"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6] to-transparent opacity-20"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="md:hidden text-center mb-6 px-2">
+      <div class="flex items-center justify-center gap-4 mb-4">
+        <div class="h-px w-8 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
+        <span class="text-[#1E2A7A] text-2xl font-bold">✦</span>
+        <div class="h-px w-8 bg-gradient-to-l from-transparent to-[#1E2A7A]"></div>
+      </div>
+      
+      <h2 class="text-3xl font-bold tracking-tight text-[#3B82F6] mb-4">
+        {currentContent.services.title}
+      </h2>
+      
+      <p class="text-base text-slate-500 leading-relaxed">
+        {currentContent.services.description}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-5 gap-10 items-start">
+      
+      <div class="hidden md:block md:col-span-2">
+        <div class="flex items-center justify-center gap-4 mb-6">
+          <div class="h-px w-8 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
+          <span class="text-[#1E2A7A] text-2xl font-bold">✦</span>
+          <div class="h-px w-8 bg-gradient-to-l from-transparent to-[#1E2A7A]"></div>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#3B82F6] mb-8 text-center">
           {currentContent.services.title}
         </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+        
+        <p class="text-base md:text-lg text-[#1E2A7A] leading-relaxed text-justify hyphens-auto fade-in-out">
           {currentContent.services.description}
         </p>
+        <style>
+          .fade-in-out {
+            animation: fadeInOut 4s ease-in-out infinite;
+          }
+          
+          @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            20% { opacity: 1; transform: translateY(0); }
+            80% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+          }
+        </style>
       </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {currentContent.services.items.map((service, index) => (
-          <div key={index} class="bg-white rounded-xl shadow-sm p-6 border border-slate-200 hover:shadow-md transition-shadow duration-200">
-            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-              <Icon name={service.icon} class="w-6 h-6 text-blue-600" />
+      
+      <div class="md:col-span-3">
+        
+        <!-- DESKTOP: Horizontal scrollable -->
+        <div class="hidden md:block relative">
+          
+          <div class="overflow-x-auto overflow-y-hidden pb-4 scroll-smooth" 
+               style="-webkit-overflow-scrolling: touch;
+                      scrollbar-width: thin;
+                      scrollbar-color: #3B82F6 #f1f1f1;">
+            
+            <style>
+              .overflow-x-auto::-webkit-scrollbar {
+                height: 6px;
+              }
+              .overflow-x-auto::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 10px;
+              }
+              .overflow-x-auto::-webkit-scrollbar-thumb {
+                background: #3B82F6;
+                border-radius: 10px;
+              }
+              .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+                background: #3bb1f6;
+              }
+              
+              body {
+                overflow-x: hidden !important;
+              }
+            </style>
+            
+            <div class="flex gap-6" style="width: fit-content;">
+              
+              {keyServices.map((service, index) => {
+                const colors = ['from-[#3B82F6] to-[#3bb1f6]', 'from-[#1E2A7A] to-[#3B82F6]', 'from-[#3bb1f6] to-[#1E2A7A]', 'from-[#3B82F6] to-[#1E2A7A]'];
+                const colorClass = colors[index % colors.length];
+                
+                return (
+                  <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                              hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                              transition-all duration-300
+                              flex flex-col p-5 md:p-6 group relative overflow-hidden
+                              min-w-[280px] max-w-[280px] flex-shrink-0">
+          
+                    <div class={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${colorClass} group-hover:h-[6px] transition-all duration-300 z-20`}></div>
+          
+                    <div class="flex justify-end mb-3 md:mb-4 relative z-10">
+                      <div class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl flex items-center justify-center
+                                  border-2 border-[#3B82F6]
+                                  transition-all duration-300
+                                  group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                                  group-hover:border-transparent">
+                        <Icon name={service.icon} class="w-5 h-5 md:w-6 md:h-6 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+                      </div>
+                    </div>
+          
+                    <h3 class="text-lg md:text-xl font-bold text-[#1E40AF] mb-2 md:mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+                      {service.title}
+                    </h3>
+          
+                    <p class="text-xs md:text-sm text-slate-500 leading-relaxed text-left flex-1 relative z-10">
+                      {service.description}
+                    </p>
+          
+                    <div class="mt-4 md:mt-5 pt-3 md:pt-4 flex justify-start relative z-10">
+                      <a href={service.href} class="inline-flex items-center text-[#1E40AF] hover:text-[#3bb1f6] font-semibold text-xs md:text-sm gap-1 transition-all duration-300 group/link">
+                        {isFi ? 'Lue lisää' : 'Read more'}
+                        <Icon name="arrowRight" class="w-3 h-3 md:w-4 md:h-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+                      </a>
+                    </div>
+          
+                  </div>
+                );
+              })}
+              
             </div>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2">{service.title}</h3>
-            <p class="text-slate-600 mb-4">{service.description}</p>
-            <a
-              href={service.href}
-              class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium group"
-            >
-              Lue lisää
-              <Icon name="arrowRight" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-            </a>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-    
-  <!-- Industries We Serve Section -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-          Toimialat joita palvelemme
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Asiantuntemuksemme kattaa useita toimialoja ja tarjoaa toimialakohtaisia ratkaisuja kullekin sektorille.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {industries.map((industry, index) => (
-          <div key={index} class="bg-gradient-to-br from-slate-50 to-white rounded-xl p-6 border border-slate-200 hover:shadow-lg transition-all duration-300">
-            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
-              <Icon name={industry.icon} class="w-8 h-8 text-blue-600" />
-            </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-3">{industry.name}</h3>
-            <p class="text-slate-600 mb-4">{industry.description}</p>
-            <a
-              href={industry.href}
-              class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium group"
-            >
-              Tutustu palveluihimme
-              <Icon name="arrowRight" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-            </a>
+          
+          <div class="text-right text-xs text-slate-400 mt-2 select-none">
+            ← {isFi ? 'Selaa tutustuaksesi' : 'Scroll to explore'} →
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-  
-  <!-- Compliance Frameworks Section -->
-  <section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-          Yhteensopivuuskehykset
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Täysi yhteensopivuus keskeisten sääntelyvaatimusten kanssa.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {complianceFrameworks.map((framework, index) => (
-          <div key={index} class="bg-white rounded-xl shadow-sm p-6 border border-slate-200 hover:shadow-md transition-shadow duration-200">
-            <div class="flex items-start">
-              <div class="flex-shrink-0 mt-1">
-                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <Icon name={framework.icon} class="w-6 h-6 text-blue-600" />
+        </div>
+        
+        <!-- MOBILE: Vertical stacked -->
+        <div class="md:hidden flex flex-col gap-4">
+          
+          {keyServices.map((service, index) => {
+            const colors = ['from-[#3B82F6] to-[#3bb1f6]', 'from-[#1E2A7A] to-[#3B82F6]', 'from-[#3bb1f6] to-[#1E2A7A]', 'from-[#3B82F6] to-[#1E2A7A]'];
+            const colorClass = colors[index % colors.length];
+            
+            return (
+              <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                          hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                          transition-all duration-300
+                          flex flex-col p-5 group relative overflow-hidden">
+        
+                <div class={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${colorClass} group-hover:h-[6px] transition-all duration-300 z-20`}></div>
+        
+                <div class="flex justify-end mb-3 relative z-10">
+                  <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                              border-2 border-[#3B82F6]
+                              transition-all duration-300
+                              group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                              group-hover:border-transparent">
+                    <Icon name={service.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+                  </div>
                 </div>
+        
+                <h3 class="text-lg font-bold text-[#1E40AF] mb-2 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+                  {service.title}
+                </h3>
+        
+                <p class="text-xs text-slate-500 leading-relaxed text-left flex-1 relative z-10">
+                  {service.description}
+                </p>
+        
+                <div class="mt-4 pt-3 flex justify-start relative z-10">
+                  <a href={service.href} class="inline-flex items-center text-[#1E40AF] hover:text-[#3bb1f6] font-semibold text-xs gap-1 transition-all duration-300 group/link">
+                    {isFi ? 'Lue lisää' : 'Read more'}
+                    <Icon name="arrowRight" class="w-3 h-3 transition-transform duration-300 group-hover/link:translate-x-1" />
+                  </a>
+                </div>
+        
               </div>
-              <div class="ml-4">
-                <h3 class="text-lg font-semibold text-slate-900 mb-2">{framework.title}</h3>
-                <p class="text-slate-600 text-sm">{framework.description}</p>
+            );
+          })}
+          
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Compliance Frameworks Section -->
+<section class="py-16 relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('/images/bgf.jpg')">
+  
+  <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#3B82F6] mb-4">
+        {isFi ? 'Yhteensopivuuskehykset' : 'Compliance Frameworks'}
+      </h2>
+      <p class="text-base md:text-lg text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+        {isFi
+          ? 'Täysi yhteensopivuus keskeisten sääntelyvaatimusten kanssa'
+          : 'Full compliance with key regulatory requirements'}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {complianceFrameworks.map((framework, index) => {
+        const colors = ['from-[#3B82F6] to-[#3bb1f6]', 'from-[#1E2A7A] to-[#3B82F6]', 'from-[#3bb1f6] to-[#1E2A7A]', 'from-[#3B82F6] to-[#1E2A7A]', 'from-[#1E2A7A] to-[#3bb1f6]', 'from-[#3B82F6] to-[#1E2A7A]'];
+        const colorClass = colors[index % colors.length];
+        
+        return (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-6 group relative overflow-hidden">
+            
+            <div class={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${colorClass} group-hover:h-[6px] transition-all duration-300 z-20`}></div>
+            
+            <div class="flex justify-end mb-4 relative z-10">
+              <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={framework.icon} class="w-6 h-6 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
               </div>
-            </div>
-            <div class="mt-4">
+            </div>            
+            
+            <h3 class="text-xl font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
+              {framework.title}
+            </h3>
+            
+            <p class="text-sm text-slate-500 leading-relaxed text-left flex-1 relative z-10">
+              {framework.description}
+            </p>
+            
+            <div class="mt-5 pt-4 flex text-left relative z-10">
               <a
                 href={framework.href}
-                class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 font-medium group"
+                class="inline-flex items-center text-sm text-[#1E40AF] hover:text-[#3B82F6] font-semibold gap-1 transition-all duration-300 group/link"
               >
-                Lue lisää
-                <Icon name="arrowRight" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                {isFi ? 'Lue lisää' : 'Learn more'}
+                <Icon name="arrowRight" class="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1" />
               </a>
             </div>
           </div>
-        ))}
-      </div>
+        );
+      })}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Featured Packages Section -->
-  <section class="py-20 bg-white overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">Esittelyssä Fast-Track Paketit</h2>
-        <p class="text-xl text-slate-600 max-w-4xl mx-auto">
-          Saavuta yhteensopivuus nopeammin todistetuilla ohjelmillamme
-        </p>
+<!-- Industries Section -->
+<section class="py-16 bg-slate-50 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <div class="flex items-center justify-center gap-4 mb-4">
+        <div class="h-px w-12 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
+        <span class="text-[#1E2A7A] text-2xl font-bold">✦</span>
+        <div class="h-px w-12 bg-gradient-to-l from-transparent to-[#1E2A7A]"></div>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="group bg-white p-8 rounded-xl border border-slate-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-          <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-200 transition-colors duration-300">
-            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">ISO 27001 Fast-Track</h3>
-          <p class="text-slate-600 mb-4 leading-relaxed">Aikajana: 90-120 päivää</p>
-          <ul class="text-sm text-slate-600 space-y-2 mb-6">
-            <li>• Täysi ISMS-toteutus</li>
-            <li>• Käytäntöpohjat (50+ dokumenttia)</li>
-            <li>• Henkilöstökoulutus ja tiedotus</li>
-            <li>• Sertifiointitarkastuksen tuki</li>
-            <li>• 12 kuukauden jatkuva tuki</li>
-          </ul>
-          <a href="/fi/packages/iso-27001-fast-track" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold group/link transition-colors duration-300">
-            Lue lisää 
-            <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-        
-        <div class="group bg-white p-8 rounded-xl border border-slate-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-          <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-200 transition-colors duration-300">
-            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">NIS2 Sprint -ohjelma</h3>
-          <p class="text-slate-600 mb-4 leading-relaxed">Aikajana: 60-90 päivää</p>
-          <ul class="text-sm text-slate-600 space-y-2 mb-6">
-            <li>• NIS2 aukkokohtaus ja yhteensopivuusroadmap</li>
-            <li>• Riskienhallintakehyksen toteutus</li>
-            <li>• Incidenttien hallintamenettelyt</li>
-            <li>• Toimittajaketjun turvatoimet</li>
-            <li>• Sääntelyviranomaisten raportointiasetus</li>
-          </ul>
-          <a href="/fi/packages/nis2-sprint" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold group/link transition-colors duration-300">
-            Lue lisää 
-            <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-        
-        <div class="group bg-white p-8 rounded-xl border border-slate-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-          <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-200 transition-colors duration-300">
-            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">SOC 2 Valmius-12 viikkoa</h3>
-          <p class="text-slate-600 mb-4 leading-relaxed">Aikajana: 84 päivää</p>
-          <ul class="text-sm text-slate-600 space-y-2 mb-6">
-            <li>• Type I ja Type II valmius</li>
-            <li>• Ohjauksen toteutus ja testaus</li>
-            <li>• Todistuskeruun kehys</li>
-            <li>• Tarkastuksen valmistelu ja tuki</li>
-            <li>• Jatkuva valvonta asetus</li>
-          </ul>
-          <a href="/fi/packages/soc2-readiness-12-weeks" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold group/link transition-colors duration-300">
-            Lue lisää 
-            <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-        
-        <div class="group bg-white p-8 rounded-xl border border-slate-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-          <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-200 transition-colors duration-300">
-            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">DORA-ohjelma-laatikossa</h3>
-          <p class="text-slate-600 mb-4 leading-relaxed">Aikajana: 75-105 päivää</p>
-          <ul class="text-sm text-slate-600 space-y-2 mb-6">
-            <li>• ICT-riskienhallintakehys</li>
-            <li>• Kolmannen osapuolen riskien valvontaojelma</li>
-            <li>• Operaattorisen resilierenssin testaus</li>
-            <li>• Incidenttien ilmoitusmekanismit</li>
-            <li>• Liiketoiminnan jatkuvuuden parantaminen</li>
-          </ul>
-          <a href="/fi/packages/dora-program-in-a-box" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold group/link transition-colors duration-300">
-            Lue lisää 
-            <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Industries Section -->
-  <section class="py-20 bg-slate-50 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">Toimialat joita palvelemme</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Erikoistunut asiantuntemus sääntelytoimialoilla ymmärtäen sektorikohtaiset yhteensopivuusvaatimukset.
-        </p>
-      </div>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#3B82F6] mb-4">
+        {isFi ? 'Toimialat joita palvelemme' : 'Industries We Serve'}
+      </h2>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {industries.map((industry, index) => (
-          <a href={industry.href} class="group bg-white rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-slate-200" style={`animation-delay: ${index * 150}ms`}>
-            <div class="w-full h-48 bg-gradient-to-br from-slate-100 to-slate-200 rounded-lg mb-4 overflow-hidden">
+      <p class="text-base md:text-lg text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+        {isFi 
+          ? 'Erikoistunut asiantuntemus sääntelytoimialoilla ymmärtäen sektorikohtaiset yhteensopivuusvaatimukset.'
+          : 'Specialized expertise across regulated industries with deep understanding of sector-specific compliance requirements.'}
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {industries.map((industry, index) => {
+        const colors = ['from-[#3B82F6] to-[#3bb1f6]', 'from-[#1E2A7A] to-[#3B82F6]', 'from-[#3bb1f6] to-[#1E2A7A]', 'from-[#3B82F6] to-[#1E2A7A]', 'from-[#1E2A7A] to-[#3bb1f6]', 'from-[#3B82F6] to-[#1E2A7A]'];
+        const colorClass = colors[index % colors.length];
+        
+        return (
+          <a href={industry.href} 
+             class="group bg-white rounded-xl border-2 border-slate-100 shadow-sm 
+                    hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                    transition-all duration-300
+                    flex flex-col p-6 relative overflow-hidden">
+            
+            <div class={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${colorClass} group-hover:h-[6px] transition-all duration-300 z-20`}></div>
+            
+            <div class="w-full h-48 md:h-56 rounded-lg mb-4 overflow-hidden bg-gradient-to-br from-slate-100 to-white border-2 border-slate-200 group-hover:border-[#3B82F6] transition-all duration-300">
               <img 
                 src={industry.image} 
-                alt={`${industry.name} toimiala`}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                alt={`${industry.name}`}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
               />
-              <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-cyan-200 absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="display: none;">
-                <svg class="w-16 h-16 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-              </svg>
             </div>
-            </div>
-            <div class="text-center">
-              <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">{industry.name}</h3>
-              <p class="text-sm text-slate-600">{industry.description}</p>
+            
+            <div class="text-center flex-1 flex flex-col">
+              <h3 class="text-xl font-bold mb-2 text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                {industry.name}
+              </h3>
+              <p class="text-xs md:text-sm text-slate-500 leading-relaxed flex-1 group-hover:text-slate-600 transition-colors duration-300">
+                {industry.description}
+              </p>
+              
+              <div class="mt-4 pt-4 flex justify-center">
+                <span class="inline-flex items-center text-sm text-[#1E40AF] group-hover:text-[#3B82F6] font-semibold gap-1 transition-all duration-300">
+                  {isFi ? 'Tutustu palveluihimme' : 'Explore framework'}
+                  <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </a>
-        ))}
-      </div>
+        );
+      })}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Testimonials Section -->
-  <section class="py-20 bg-white overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">Mitä asiakkaamme sanovat</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Toimimme johdonmukaisesti lupauksiemme mukaisesti poikkeuksellisilla tuloksilla.
-        </p>
+<!-- Testimonials Section -->
+<section class="py-16 relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('/images/bgf.jpg')">
+  
+  <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <div class="flex items-center justify-center gap-4 mb-4">
+        <div class="h-px w-12 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
+        <span class="text-[#1E2A7A] text-2xl font-bold">✦</span>
+        <div class="h-px w-12 bg-gradient-to-l from-transparent to-[#1E2A7A]"></div>
       </div>
       
-      <div class="flex justify-center">
-        <div class="bg-slate-50 p-8 rounded-xl border border-slate-200 max-w-2xl">
-          <blockquote class="text-slate-700 mb-6 italic text-lg">
-            "Tämän kyberturvallisuustiimin kanssa työskentely oli ratkaisevan tärkeää globaalin sääntelymme strategian kannalta. He auttoivat meitä saavuttamaan ISO 27001 -sertifiointia samalla kun ylläpidimme nopeaa kansainvälistymistämme yli 160 maassa."
-          </blockquote>
-          <div class="flex items-center">
-            <div>
-              <div class="font-semibold text-slate-900">Margus Pala</div>
-              <div class="text-sm text-slate-600">CPO, eID Easy</div>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#3B82F6] mb-4">
+        {isFi ? 'Mitä asiakkaamme sanovat' : 'What Our Clients Say'}
+      </h2>
+      
+      <p class="text-base md:text-lg text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+        {isFi ? 'Maailmanlaajuisten yritysten luottama' : 'Trusted by enterprises worldwide'}
+      </p>
+    </div>
+    
+    <div class="flex justify-center">
+      <div class="bg-white/90 backdrop-blur-sm p-8 rounded-xl border-2 border-white/30 shadow-lg max-w-2xl hover:shadow-xl hover:border-[#3B82F6] transition-all duration-300">
+        
+        <div class="flex justify-center gap-1 mb-4">
+          {[...Array(5)].map((_, i) => (
+            <svg key={i} class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+              <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+            </svg>
+          ))}
+        </div>
+        
+        <blockquote class="text-[#1E2A7A] mb-6 text-base md:text-lg leading-relaxed text-center font-medium">
+          {isFi 
+            ? '"Tämän kyberturvallisuustiimin kanssa työskentely oli ratkaisevan tärkeää globaalin sääntelymme strategian kannalta. He auttoivat meitä saavuttamaan '
+            : '"Working with this cybersecurity team was essential for our global compliance strategy. They helped us achieve '}
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] bg-clip-text text-transparent font-bold">
+            {isFi ? 'ISO 27001 -sertifiointia' : 'ISO 27001 certification'}
+          </span>
+          {isFi 
+            ? ' samalla kun ylläpidimme nopeaa kansainvälistymistämme yli 160 maassa."'
+            : ' while maintaining our rapid international expansion across 160+ countries."'}
+        </blockquote>
+
+        <div class="flex items-center justify-center gap-4">
+          <div class="w-14 h-14 bg-gradient-to-br from-[#3B82F6] to-[#1E2A7A] rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md">
+            MP
+          </div>
+          <div class="text-left">
+            <div class="font-bold text-[#1E2A7A] text-base">
+              Margus Pala
+            </div>
+            <div class="text-sm text-slate-500">
+              CPO, eID Easy
             </div>
           </div>
         </div>
+        
+        <div class="absolute -top-2 -right-2 text-7xl text-[#3B82F6]/10 font-serif">"</div>
+        <div class="absolute -bottom-2 -left-2 text-7xl text-[#3B82F6]/10 font-serif">"</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Latest Resources Section -->
-  <section class="py-20 bg-slate-50 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">Ilmaiset resurssit & Tietokeskus</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Pysy ajan tasalla viimeisimmillä kyberturvallisuuden oivalluksillamme, oppaillamme ja sääntelypäivityksillämme.
-        </p>
+<!-- Latest Resources Section -->
+<section class="py-16 bg-white relative overflow-hidden">
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6] to-transparent opacity-30"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6] to-transparent opacity-20"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <div class="flex items-center justify-center gap-4 mb-4">
+        <div class="h-px w-12 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
+        <span class="text-[#1E2A7A] text-2xl font-bold">✦</span>
+        <div class="h-px w-12 bg-gradient-to-l from-transparent to-[#1E2A7A]"></div>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {latestResources.map((resource, index) => (
-          <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-slate-200" style={`animation-delay: ${index * 150}ms`}>
-            <div class="mb-4">
-              <span class="inline-block px-3 py-1 text-sm font-semibold text-blue-600 bg-blue-100 rounded-full">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#3B82F6] mb-4">
+        {isFi ? 'Ilmaiset resurssit & Tietokeskus' : 'Free Resources & Knowledge Hub'}
+      </h2>
+      
+      <p class="text-base md:text-lg text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+        {isFi 
+          ? 'Pysy ajan tasalla viimeisimmillä kyberturvallisuuden oivalluksillamme, oppaillamme ja sääntelypäivityksillämme.'
+          : 'Stay ahead with our latest cybersecurity insights, guides, and regulatory updates.'}
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {latestResources.map((resource, index) => {
+        const colors = ['from-[#3B82F6] to-[#3bb1f6]', 'from-[#1E2A7A] to-[#3B82F6]', 'from-[#3bb1f6] to-[#1E2A7A]'];
+        const colorClass = colors[index % colors.length];
+        
+        return (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-6 group relative overflow-hidden">
+            
+            <div class={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${colorClass} group-hover:h-[6px] transition-all duration-300 z-20`}></div>
+            
+            <div class="flex justify-end mb-4 relative z-10">
+              <span class="inline-block px-3 py-1 text-sm font-semibold text-[#3B82F6] bg-white rounded-full 
+                           border-2 border-[#3B82F6]
+                           transition-all duration-300
+                           group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] 
+                           group-hover:border-transparent">
                 {resource.category}
               </span>
+            </div>            
+            <h3 class="text-xl font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {resource.title}
+            </h3>
+            
+            <p class="text-slate-500 text-sm leading-relaxed mb-4 flex-1 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {resource.excerpt}
+            </p>
+            
+            <div class="relative z-10">
+              <a href={resource.href} 
+                 class="inline-flex items-center text-[#1E40AF] group-hover:text-[#3bb1f6] font-semibold text-sm gap-1 transition-all duration-300 group/link">
+                {isFi ? 'Lue lisää' : 'Read more'} 
+                <svg class="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">{resource.title}</h3>
-            <p class="text-slate-600 mb-6 leading-relaxed">{resource.excerpt}</p>
-            <a href={resource.href} class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold group/link transition-colors duration-300">
-              Lue lisää 
-              <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </a>
           </div>
-        ))}
+        );
+      })}
+    </div>
+    
+    <div class="text-center mt-12">
+      <a href={isFi ? "/fi/resources" : "/resources"} 
+         class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-lg font-medium text-sm gap-2">
+        {isFi ? 'Näytä kaikki resurssit' : 'View All Resources'}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- Webinars Section -->
+<section class="py-16 relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('/images/bgf.jpg')">
+  
+  <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <div class="flex items-center justify-center gap-4 mb-4">
+        <div class="h-px w-12 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
+        <span class="text-[#1E2A7A] text-2xl font-bold">✦</span>
+        <div class="h-px w-12 bg-gradient-to-l from-transparent to-[#1E2A7A]"></div>
       </div>
       
-      <div class="text-center mt-12">
-        <Button href="/fi/resources" variant="secondary">
-          Näytä kaikki resurssit
-        </Button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Webinars Section -->
-  <section class="py-20 bg-white overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-6">Tulevat webinaarit</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Pysy ajan tasalla asiantuntijoiden vetämillä koulutusistunnoillamme
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-slate-50 p-8 rounded-xl border border-slate-200 hover:shadow-lg transition-shadow">
-          <div class="mb-4">
-            <span class="inline-block px-3 py-1 text-sm font-semibold text-blue-600 bg-blue-100 rounded-full">
-              Syyskuu 15, 2025
-            </span>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-4">NIS2 Toteutus: Mitä suomalaiset yritykset tarvitsevat tietää</h3>
-          <p class="text-slate-600 mb-6">Olemassa olevat ohjeet organisaatioille jotka valmistautuvat NIS2 yhteensopivuusvaatimuksiin.</p>
-          <a href="/fi/resources/webinars" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold group/link transition-colors duration-300">
-            Rekisteröidy 
-            <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-        
-        <div class="bg-slate-50 p-8 rounded-xl border border-slate-200 hover:shadow-lg transition-shadow">
-          <div class="mb-4">
-            <span class="inline-block px-3 py-1 text-sm font-semibold text-blue-600 bg-blue-100 rounded-full">
-              Syyskuu 22, 2025
-            </span>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-4">DORA Yhteensopivuus rahoituspalveluille</h3>
-          <p class="text-slate-600 mb-6">Rahoituslaitosten valmistautuminen digitaalisen toiminnan resilierenssin vaatimuksiin.</p>
-          <a href="/fi/resources/webinars" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold group/link transition-colors duration-300">
-            Rekisteröidy 
-            <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-        
-        <div class="bg-slate-50 p-8 rounded-xl border border-slate-200 hover:shadow-lg transition-shadow">
-          <div class="mb-4">
-            <span class="inline-block px-3 py-1 text-sm font-semibold text-blue-600 bg-blue-100 rounded-full">
-              Syyskuu 29, 2025
-            </span>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-4">ISO 27001:2022 Muutokset ja vaikutukset</h3>
-          <p class="text-slate-600 mb-6">Ymmärrä viimeisimmät päivitykset ja niiden vaikutukset organisaatioosi.</p>
-          <a href="/fi/resources/webinars" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold group/link transition-colors duration-300">
-            Rekisteröidy 
-            <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-20 bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-4xl font-bold mb-4">
-        Oletko valmis suojaamaan yhteensopivuuttasi?
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#3B82F6] mb-4">
+        {isFi ? 'Tulevat webinaarit' : 'Upcoming Webinars'}
       </h2>
-      <p class="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
-        Älä odota tietoturvaloukkausta tai sääntelymääräystä joka saa sinut yllättäen.
+      
+      <p class="text-base md:text-lg text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+        {isFi 
+          ? 'Pysy ajan tasalla asiantuntijoiden vetämillä koulutusistunnoillamme'
+          : 'Stay informed with our expert-led educational sessions'}
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/fi/contact" variant="primary" className="text-lg px-8 py-3 hover:scale-105 transition-transform duration-300 bg-blue-600 hover:bg-blue-700 text-white border-0">
-          Aloita tänään
-        </Button>
-        <Button href="/fi/contact?assessment=true" variant="secondary" className="text-lg px-8 py-3 hover:scale-105 transition-transform duration-300 bg-white hover:bg-slate-100 text-slate-900 border border-slate-300">
-          Hanki ilmainen arviointi
-        </Button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <div class="bg-white/90 backdrop-blur-sm rounded-xl border-2 border-white/30 shadow-sm p-6 text-center
+                  hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                  transition-all duration-300
+                  flex flex-col group relative overflow-hidden">
+        
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+        
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full mb-4 mx-auto relative z-10
+                    text-[#3B82F6] bg-white border-2 border-[#3B82F6]
+                    group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent
+                    transition-all duration-300">
+          <svg class="w-3.5 h-3.5 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <span class="text-xs font-medium">{isFi ? 'Syyskuu 15, 2025' : 'Sep 15, 2025'}</span>
+        </div>
+        
+        <h3 class="text-lg font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+          {isFi ? 'NIS2 Toteutus: Mitä suomalaiset yritykset tarvitsevat tietää' : 'NIS2 Implementation: What Finnish Companies Need to Know'}
+        </h3>
+        
+        <p class="text-sm text-slate-600 leading-relaxed mb-6 flex-1 group-hover:text-slate-700 transition-colors duration-300 relative z-10">
+          {isFi 
+            ? 'Olemassa olevat ohjeet organisaatioille jotka valmistautuvat NIS2 yhteensopivuusvaatimuksiin.'
+            : 'Essential guidance for organizations preparing for NIS2 compliance requirements.'}
+        </p>
+        
+        <div class="relative z-10">
+          <a href={isFi ? "/fi/resources/webinars" : "/resources/webinars"} 
+             class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] bg-white hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-1.5">
+            {isFi ? 'Rekisteröidy' : 'Register'}
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-white/90 backdrop-blur-sm rounded-xl border-2 border-white/30 shadow-sm p-6 text-center
+                  hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                  transition-all duration-300
+                  flex flex-col group relative overflow-hidden">
+        
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+        
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full mb-4 mx-auto relative z-10
+                    text-[#3B82F6] bg-white border-2 border-[#3B82F6]
+                    group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent
+                    transition-all duration-300">
+          <svg class="w-3.5 h-3.5 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <span class="text-xs font-medium">{isFi ? 'Syyskuu 22, 2025' : 'Sep 22, 2025'}</span>
+        </div>
+        
+        <h3 class="text-lg font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+          {isFi ? 'DORA Yhteensopivuus rahoituspalveluille' : 'DORA Compliance for Financial Services'}
+        </h3>
+        
+        <p class="text-sm text-slate-600 leading-relaxed mb-6 flex-1 group-hover:text-slate-700 transition-colors duration-300 relative z-10">
+          {isFi 
+            ? 'Rahoituslaitosten valmistautuminen digitaalisen toiminnan resilierenssin vaatimuksiin.'
+            : 'Preparing financial institutions for digital operational resilience requirements.'}
+        </p>
+        
+        <div class="relative z-10">
+          <a href={isFi ? "/fi/resources/webinars" : "/resources/webinars"} 
+             class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] bg-white hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-1.5">
+            {isFi ? 'Rekisteröidy' : 'Register'}
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-white/90 backdrop-blur-sm rounded-xl border-2 border-white/30 shadow-sm p-6 text-center
+                  hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                  transition-all duration-300
+                  flex flex-col group relative overflow-hidden">
+        
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3bb1f6] to-[#1E2A7A] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+        
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full mb-4 mx-auto relative z-10
+                    text-[#3B82F6] bg-white border-2 border-[#3B82F6]
+                    group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent
+                    transition-all duration-300">
+          <svg class="w-3.5 h-3.5 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <span class="text-xs font-medium">{isFi ? 'Syyskuu 29, 2025' : 'Sep 29, 2025'}</span>
+        </div>
+        
+        <h3 class="text-lg font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+          {isFi ? 'ISO 27001:2022 Muutokset ja vaikutukset' : 'ISO 27001:2022 Changes and Impact'}
+        </h3>
+        
+        <p class="text-sm text-slate-600 leading-relaxed mb-6 flex-1 group-hover:text-slate-700 transition-colors duration-300 relative z-10">
+          {isFi 
+            ? 'Ymmärrä viimeisimmät päivitykset ja niiden vaikutukset organisaatioosi.'
+            : 'Understanding the latest updates and their implications for your organization.'}
+        </p>
+        
+        <div class="relative z-10">
+          <a href={isFi ? "/fi/resources/webinars" : "/resources/webinars"} 
+             class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] bg-white hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-1.5">
+            {isFi ? 'Rekisteröidy' : 'Register'}
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="text-center mt-10">
+      <a href={isFi ? "/fi/resources/webinars" : "/resources/webinars"} 
+         class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-lg font-medium text-sm gap-2">
+        {isFi ? 'Näytä kaikki webinaarit' : 'View all webinars'}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-12 relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('/images/bgf.jpg')">
+  
+  <div class="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent"></div>
+  
+  <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-6 md:p-10 text-center relative overflow-hidden">
+      
+      <div class="absolute -inset-0.5 bg-gradient-to-r from-[#3B82F6] via-[#3bb1f6] to-[#1E2A7A] rounded-2xl opacity-75 animate-spin-slow blur-sm"></div>
+      
+      <div class="relative bg-white/90 backdrop-blur-sm rounded-2xl p-6 md:p-10">
+        <div class="flex items-center justify-center gap-4 mb-3">
+          <div class="h-px w-10 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
+          <span class="text-[#1E2A7A] text-xl font-bold animate-pulse" style="animation-duration: 2s;">✦</span>
+          <div class="h-px w-10 bg-gradient-to-l from-transparent to-[#1E2A7A]"></div>
+        </div>
+        
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3 text-[#1E2A7A]">
+          {isFi ? 'Oletko valmis suojaamaan' : 'Ready to Secure Your'} <span class="bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] bg-clip-text text-transparent">{isFi ? 'yhteensopivuuttasi' : 'Compliance'}</span>?
+        </h2>
+
+        <p class="text-sm md:text-base text-[#1E2A7A] mb-6 max-w-2xl mx-auto leading-relaxed">
+          {isFi 
+            ? 'Älä odota tietoturvaloukkausta tai sääntelymääräystä joka saa sinut yllättäen.'
+            : "Don't wait for a security incident or regulatory deadline."}
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href={isFi ? "/fi/contact?assessment=true" : "/contact?assessment=true"} class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30 font-medium text-sm gap-2 group">
+            {isFi ? 'Hanki ilmainen arviointi' : 'Get Free Assessment'}
+            <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Simplified CSS for clean animations -->
-  <style>
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
+<style>
+  @keyframes spin-slow {
+    0% {
+      transform: rotate(0deg);
     }
-
-    /* Simple card hover effects */
-    .hover\:shadow-lg:hover {
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    100% {
+      transform: rotate(360deg);
     }
+  }
+  
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
+  }
+</style>
 
-    /* Enhanced transitions */
-    button, a[href] {
-      transition: all 0.3s ease;
+<!-- Simplified CSS for clean animations -->
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .hover\:shadow-lg:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  button, a[href] {
+    transition: all 0.3s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
+  }
 
-    /* Responsive animations - respect user preferences */
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
+  .transform {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
     }
+  }
 
-    /* Performance optimizations */
-    .transform {
-      transform-style: preserve-3d;
-      backface-visibility: hidden;
+  .fade-in:nth-child(1) { animation-delay: 0ms; }
+  .fade-in:nth-child(2) { animation-delay: 150ms; }
+  .fade-in:nth-child(3) { animation-delay: 300ms; }
+  .fade-in:nth-child(4) { animation-delay: 450ms; }
+  .fade-in:nth-child(5) { animation-delay: 600ms; }
+  .fade-in:nth-child(6) { animation-delay: 750ms; }
+
+  @keyframes spin-slow {
+    0% {
+      transform: rotate(0deg);
     }
-
-    /* Subtle animations on load */
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 0.6s ease-out forwards;
+    100% {
+      transform: rotate(360deg);
     }
+  }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
+  .animate-spin-slow {
+    animation: spin-slow 4s linear infinite;
+  }
+</style>
 
-    /* Staggered delays for cards */
-    .fade-in:nth-child(1) { animation-delay: 0ms; }
-    .fade-in:nth-child(2) { animation-delay: 150ms; }
-    .fade-in:nth-child(3) { animation-delay: 300ms; }
-    .fade-in:nth-child(4) { animation-delay: 450ms; }
-    .fade-in:nth-child(5) { animation-delay: 600ms; }
-    .fade-in:nth-child(6) { animation-delay: 750ms; }
-  </style>
-
-  <!-- Simplified JavaScript for basic interactions -->
-  <script>
-    // Simple fade-in animation on page load
-    document.addEventListener('DOMContentLoaded', () => {
-      // Add fade-in class to sections for smooth loading
-      const sections = document.querySelectorAll('section');
-      sections.forEach((section, index) => {
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section, index) => {
+      if (!(section instanceof HTMLElement)) return;
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(20px)';
+      section.style.transition = 'all 0.6s ease-out';
+      
+      setTimeout(() => {
         if (!(section instanceof HTMLElement)) return;
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'all 0.6s ease-out';
-        
-        setTimeout(() => {
-          if (!(section instanceof HTMLElement)) return;
-          section.style.opacity = '1';
-          section.style.transform = 'translateY(0)';
-        }, index * 100);
-      });
+        section.style.opacity = '1';
+        section.style.transform = 'translateY(0)';
+      }, index * 100);
+    });
 
-      // Simple hover effects for cards
-      const cards = document.querySelectorAll('[class*="hover:"]');
-      cards.forEach(card => {
-        if (!(card instanceof HTMLElement)) return;
-        card.addEventListener('mouseenter', () => {
-          card.style.transform = 'translateY(-4px)';
-        });
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'translateY(0)';
-        });
+    const cards = document.querySelectorAll('[class*="hover:"]');
+    cards.forEach(card => {
+      if (!(card instanceof HTMLElement)) return;
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-4px)';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
       });
     });
-  </script>
+  });
+</script>
 </Layout>

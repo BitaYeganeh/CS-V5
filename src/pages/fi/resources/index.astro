@@ -1,234 +1,406 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Button from '@/components/ui/Button.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
 
 const currentPath = Astro.url.pathname;
-const lang = 'fi'; // Explicitly set to Finnish for this version
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
-const resourceCategories = [
-	{
-		title: "Resurssikirjasto",
-		description: "Lataa oppaita, malleja ja tarkistuslistoja",
-		icon: "folder-open",
-		items: [
-			{
-				title: "ISO 27001 Pika-aloitusopas",
-				description: "25-sivuinen toteutusroadmap",
-				href: "/fi/resources/guides/iso-27001-quick-start",
-				type: "Opas",
-				date: "2024-01-15"
-			},
-			{
-				title: "NIS2 Yhteensopivuus -tarkistuslista",
-				description: "Täysi vaatimusanalyysityökalu",
-				href: "/fi/resources/guides/nis2-compliance-checklist",
-				type: "Tarkistuslista",
-				date: "2024-02-20"
-			},
-			{
-				title: "GDPR Tietosuoja-vaikutusten arviointi -malli",
-				description: "Valmiiksi määritelty PIA-kehys",
-				href: "/fi/resources/guides/gdpr-pia-template",
-				type: "Malli",
-				date: "2024-01-30"
-			}
-		]
-	},
-	{
-		title: "Whitepaperit",
-		description: "Syvälliset tutkimukset ja analyysit",
-		icon: "document-text",
-		items: [
-			{
-				title: "NIS2 Direktiivin vaikutusanalyysi",
-				description: "Yksityiskohtainen analyysi NIS2:n vaikutuksista eri toimialoille",
-				href: "/fi/resources/whitepapers/nis2-impact-analysis",
-				type: "Whitepaper",
-				date: "2024-03-10"
-			},
-			{
-				title: "DORA Sääntelyn vaikutus rahoitussektoriin",
-				description: "Digitaalisen toiminnallisen resilierenssin sääntelyvaikutukset",
-				href: "/fi/resources/whitepapers/dora-financial-impact",
-				type: "Whitepaper",
-				date: "2024-03-05"
-			}
-		]
-	},
-	{
-		title: "Työkalut & Mallit",
-		description: "Käytännönläheiset työkalut ja dokumenttipohjat",
-		icon: "wrench-screwdriver",
-		items: [
-			{
-				title: "Riskienhallintamatriisi",
-				description: "ISO 27005 -standardin mukainen riskienhallintatyökalu",
-				href: "/fi/resources/tools/risk-matrix-template",
-				type: "Malli",
-				date: "2024-02-15"
-			},
-			{
-				title: "Tietoturhaloukkausten hallintaprotokolla",
-				description: "Tietoturhaloukkausten hallinta ja ilmoitusprotokolla",
-				href: "/fi/resources/tools/incident-response-template",
-				type: "Pohja",
-				date: "2024-02-25"
-			}
-		]
-	}
-];
+const seoConfig = {
+  title: lang === 'fi' ? "Resurssit | Kyberturvallisuus & Yhteensopivuus" : "Resources | Cybersecurity & Compliance",
+  description: lang === 'fi'
+    ? "Lataa oppaita, malleja ja tarkistuslistoja kyberturvallisuuden ja sääntelyvaatimusten noudattamiseksi. ISO 27001, NIS2, GDPR, DORA."
+    : "Download guides, templates, and checklists for cybersecurity and regulatory compliance. ISO 27001, NIS2, GDPR, DORA.",
+  type: "page" as const,
+};
 
-const featuredResources = [
-	{
-		title: "ISO 27001 Toteutusopas",
-		description: "Täysi ISMS-toteutus 90 päivässä -vaiheittainen opas",
-		category: "ISO 27001",
-		href: "/fi/resources/guides/iso-27001-implementation-guide",
-		type: "Opas"
-	},
-	{
-		title: "GDPR Tietosuojakäytännöt -mallipohja",
-		description: "Valmis tietosuojakäytäntöjen pohja organisaatiollesi",
-		category: "GDPR",
-		href: "/fi/resources/templates/gdpr-policy-template",
-		type: "Malli"
-	},
-	{
-		title: "NIS2 Vaatimustarkistus",
-		description: "Täysi NIS2-direktiivin vaatimustarkistuslista",
-		category: "NIS2",
-		href: "/fi/resources/checklists/nis2-requirements-checklist",
-		type: "Tarkistuslista"
-	}
-];
+const content = {
+  en: {
+    hero: {
+      title: "Resource Library",
+      subtitle: "Guides, templates, and tools for cybersecurity and compliance",
+      description: "Download practical resources to help you manage cybersecurity and meet regulatory requirements.",
+    },
+    featured: {
+      title: "Featured Resources",
+      subtitle: "These resources are our recommendations for beginners and organizations building their cybersecurity program.",
+      items: [
+        {
+          title: "ISO 27001 Implementation Guide",
+          description: "Complete ISMS implementation in 90 days - step-by-step guide",
+          category: "ISO 27001",
+          href: "/resources/guides/iso-27001-implementation-guide",
+          type: "Guide"
+        },
+        {
+          title: "GDPR Privacy Policy Template",
+          description: "Ready-to-use privacy policy template for your organization",
+          category: "GDPR",
+          href: "/resources/templates/gdpr-policy-template",
+          type: "Template"
+        },
+        {
+          title: "NIS2 Requirements Checklist",
+          description: "Complete NIS2 directive requirements checklist",
+          category: "NIS2",
+          href: "/resources/checklists/nis2-requirements-checklist",
+          type: "Checklist"
+        }
+      ]
+    },
+    categories: [
+      {
+        title: "Resource Library",
+        description: "Download guides, templates, and checklists",
+        icon: "folder-open",
+        items: [
+          {
+            title: "ISO 27001 Quick Start Guide",
+            description: "25-page implementation roadmap",
+            href: "/resources/guides/iso-27001-quick-start",
+            type: "Guide",
+            date: "2024-01-15"
+          },
+          {
+            title: "NIS2 Compliance Checklist",
+            description: "Complete requirement assessment tool",
+            href: "/resources/guides/nis2-compliance-checklist",
+            type: "Checklist",
+            date: "2024-02-20"
+          },
+          {
+            title: "GDPR Privacy Impact Assessment Template",
+            description: "Ready-to-use PIA framework",
+            href: "/resources/guides/gdpr-pia-template",
+            type: "Template",
+            date: "2024-01-30"
+          }
+        ]
+      },
+      {
+        title: "Whitepapers",
+        description: "In-depth research and analysis",
+        icon: "document-text",
+        items: [
+          {
+            title: "NIS2 Directive Impact Analysis",
+            description: "Detailed analysis of NIS2 impact across industries",
+            href: "/resources/whitepapers/nis2-impact-analysis",
+            type: "Whitepaper",
+            date: "2024-03-10"
+          },
+          {
+            title: "DORA Regulatory Impact on Financial Sector",
+            description: "Digital operational resilience regulatory impacts",
+            href: "/resources/whitepapers/dora-financial-impact",
+            type: "Whitepaper",
+            date: "2024-03-05"
+          }
+        ]
+      },
+      {
+        title: "Tools & Templates",
+        description: "Practical tools and document templates",
+        icon: "wrench-screwdriver",
+        items: [
+          {
+            title: "Risk Management Matrix",
+            description: "ISO 27005 compliant risk management tool",
+            href: "/resources/tools/risk-matrix-template",
+            type: "Template",
+            date: "2024-02-15"
+          },
+          {
+            title: "Incident Response Protocol",
+            description: "Incident response and notification protocol",
+            href: "/resources/tools/incident-response-template",
+            type: "Template",
+            date: "2024-02-25"
+          }
+        ]
+      }
+    ],
+    cta: {
+      title: "Need Help Using These Resources?",
+      subtitle: "Our expertise can help you leverage these resources effectively in your organization.",
+      primaryCTA: { text: "Contact Our Experts", href: "/contact" },
+      secondaryCTA: { text: "Explore Our Services", href: "/services" }
+    }
+  },
+  fi: {
+    hero: {
+      title: "Resurssikirjasto",
+      subtitle: "Oppaita, malleja ja työkaluja kyberturvallisuuden ja sääntelyn noudattamiseksi",
+      description: "Lataa käytännönläheisiä resursseja, jotka auttavat sinua hallitsemaan kyberturvallisuutta ja noudattamaan sääntelyvaatimuksia.",
+    },
+    featured: {
+      title: "Esittelyssä resurssit",
+      subtitle: "Nämä resurssit ovat suosituksiamme aloittajille ja organisaatioille jotka rakentavat kyberturvallisuusohjelmaansa.",
+      items: [
+        {
+          title: "ISO 27001 Toteutusopas",
+          description: "Täysi ISMS-toteutus 90 päivässä -vaiheittainen opas",
+          category: "ISO 27001",
+          href: "/fi/resources/guides/iso-27001-implementation-guide",
+          type: "Opas"
+        },
+        {
+          title: "GDPR Tietosuojakäytännöt -mallipohja",
+          description: "Valmis tietosuojakäytäntöjen pohja organisaatiollesi",
+          category: "GDPR",
+          href: "/fi/resources/templates/gdpr-policy-template",
+          type: "Malli"
+        },
+        {
+          title: "NIS2 Vaatimustarkistus",
+          description: "Täysi NIS2-direktiivin vaatimustarkistuslista",
+          category: "NIS2",
+          href: "/fi/resources/checklists/nis2-requirements-checklist",
+          type: "Tarkistuslista"
+        }
+      ]
+    },
+    categories: [
+      {
+        title: "Resurssikirjasto",
+        description: "Lataa oppaita, malleja ja tarkistuslistoja",
+        icon: "folder-open",
+        items: [
+          {
+            title: "ISO 27001 Pika-aloitusopas",
+            description: "25-sivuinen toteutusroadmap",
+            href: "/fi/resources/guides/iso-27001-quick-start",
+            type: "Opas",
+            date: "2024-01-15"
+          },
+          {
+            title: "NIS2 Yhteensopivuus -tarkistuslista",
+            description: "Täysi vaatimusanalyysityökalu",
+            href: "/fi/resources/guides/nis2-compliance-checklist",
+            type: "Tarkistuslista",
+            date: "2024-02-20"
+          },
+          {
+            title: "GDPR Tietosuoja-vaikutusten arviointi -malli",
+            description: "Valmiiksi määritelty PIA-kehys",
+            href: "/fi/resources/guides/gdpr-pia-template",
+            type: "Malli",
+            date: "2024-01-30"
+          }
+        ]
+      },
+      {
+        title: "Whitepaperit",
+        description: "Syvälliset tutkimukset ja analyysit",
+        icon: "document-text",
+        items: [
+          {
+            title: "NIS2 Direktiivin vaikutusanalyysi",
+            description: "Yksityiskohtainen analyysi NIS2:n vaikutuksista eri toimialoille",
+            href: "/fi/resources/whitepapers/nis2-impact-analysis",
+            type: "Whitepaper",
+            date: "2024-03-10"
+          },
+          {
+            title: "DORA Sääntelyn vaikutus rahoitussektoriin",
+            description: "Digitaalisen toiminnallisen resilierenssin sääntelyvaikutukset",
+            href: "/fi/resources/whitepapers/dora-financial-impact",
+            type: "Whitepaper",
+            date: "2024-03-05"
+          }
+        ]
+      },
+      {
+        title: "Työkalut & Mallit",
+        description: "Käytännönläheiset työkalut ja dokumenttipohjat",
+        icon: "wrench-screwdriver",
+        items: [
+          {
+            title: "Riskienhallintamatriisi",
+            description: "ISO 27005 -standardin mukainen riskienhallintatyökalu",
+            href: "/fi/resources/tools/risk-matrix-template",
+            type: "Malli",
+            date: "2024-02-15"
+          },
+          {
+            title: "Tietoturvaloukkausten hallintaprotokolla",
+            description: "Tietoturvaloukkausten hallinta ja ilmoitusprotokolla",
+            href: "/fi/resources/tools/incident-response-template",
+            type: "Pohja",
+            date: "2024-02-25"
+          }
+        ]
+      }
+    ],
+    cta: {
+      title: "Tarvitsetko apua resurssien käytössä?",
+      subtitle: "Asiantuntijatietoomme auttaa sinua hyödyntämään näitä resursseja tehokkaasti organisaatiossasi.",
+      primaryCTA: { text: "Ota yhteyttä asiantuntijoihimme", href: "/fi/contact" },
+      secondaryCTA: { text: "Tutustu palveluihimme", href: "/fi/services" }
+    }
+  }
+};
+
+const currentContent = content[lang];
+const isFi = lang === 'fi';
 ---
 
-<Layout 
-	title="Resurssit - Kyberturvallisuus & Yhteensopivuus | Cyber Security Finland" 
-	description="Lataa oppaita, malleja ja tarkistuslistoja kyberturvallisuuden ja sääntelyvaatimusten noudattamiseksi. ISO 27001, NIS2, GDPR, DORA."
->
-	<!-- Hero Section -->
-	<section class="bg-gradient-to-br from-slate-50 via-white to-slate-100 py-20">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="text-center">
-				<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
-					{lang === 'fi' ? 'Resurssikirjasto' : 'Resource Library'}
-				</h1>
-				<p class="text-xl md:text-2xl text-slate-600 mb-4">
-					{lang === 'fi' ? 'Oppaita, malleja ja työkaluja kyberturvallisuuden ja sääntelyn noudattamiseksi' : 'Guides, templates, and tools for cybersecurity and compliance'}
-				</p>
-				<p class="text-lg text-slate-500 max-w-3xl mx-auto">
-					{lang === 'fi' 
-						? 'Lataa käytännönläheisiä resursseja, jotka auttavat sinua hallitsemaan kyberturvallisuutta ja noudattamaan sääntelyvaatimuksia.' 
-						: 'Download practical resources to help you manage cybersecurity and meet regulatory requirements.'}
-				</p>
-			</div>
-		</div>
-	</section>
+<Layout {...seoConfig}>
 
-	<!-- Featured Resources -->
-	<section class="py-16 bg-white">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="text-center mb-12">
-				<h2 class="text-3xl font-bold text-slate-900 mb-4">
-					{lang === 'fi' ? 'Esittelyssä resurssit' : 'Featured Resources'}
-				</h2>
-				<p class="text-xl text-slate-600 max-w-3xl mx-auto">
-					{lang === 'fi' 
-						? 'Nämä resurssit ovat suosituksiamme aloittajille ja organisaatioille jotka rakentavat kyberturvallisuusohjelmaansa.' 
-						: 'These resources are our recommendations for beginners and organizations building their cybersecurity program.'}
-				</p>
-			</div>
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.hero.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.hero.description}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Resources -->
+  <section class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-[#3B82F6] mb-2">
+          {currentContent.featured.title}
+        </h2>
+        <p class="text-base text-[#1E2A7A] max-w-3xl mx-auto leading-relaxed">
+          {currentContent.featured.subtitle}
+        </p>
+      </div>
       
-			<div class="grid md:grid-cols-3 gap-8">
-				{featuredResources.map(resource => (
-					<div class="bg-gradient-to-br from-slate-50 to-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-200" key={resource.title}>
-						<div class="flex justify-between items-start mb-4">
-							<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-								{resource.type}
-							</span>
-							<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
-								{resource.category}
-							</span>
-						</div>
-						<h3 class="text-xl font-bold text-slate-900 mb-2">{resource.title}</h3>
-						<p class="text-slate-600 mb-4">{resource.description}</p>
-						<a 
-							href={resource.href} 
-							class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium group"
-						>
-							{lang === 'fi' ? 'Lataa nyt' : 'Download Now'}
-							<Icon name="arrowRight" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-						</a>
-					</div>
-				))}
-			</div>
-		</div>
-	</section>
-
-	<!-- Resource Categories -->
-	<section class="py-16 bg-slate-50">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="space-y-16">
-				{resourceCategories.map(category => (
-					<div class="bg-white rounded-xl shadow-sm p-8 border border-slate-200" key={category.title}>
-						<div class="flex items-center mb-8">
-							<div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-								<Icon name={category.icon} class="w-6 h-6 text-blue-600" />
-							</div>
-							<div>
-								<h2 class="text-2xl font-bold text-slate-900">{category.title}</h2>
-								<p class="text-slate-600">{category.description}</p>
-							</div>
-						</div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {currentContent.featured.items.map((resource) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-5 md:p-6 group relative overflow-hidden" key={resource.title}>
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
             
-						<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-							{category.items.map(item => (
-								<div class="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow duration-200" key={item.title}>
-									<div class="flex justify-between items-start mb-3">
-										<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-800">
-											{item.type}
-										</span>
-										<span class="text-xs text-slate-500">{item.date}</span>
-									</div>
-									<h3 class="font-semibold text-slate-900 mb-2">{item.title}</h3>
-									<p class="text-slate-600 text-sm mb-4">{item.description}</p>
-									<a 
-										href={item.href} 
-										class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 font-medium group"
-									>
-										{lang === 'fi' ? 'Lue lisää' : 'Learn more'}
-										<Icon name="arrowRight" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-									</a>
-								</div>
-							))}
-						</div>
-					</div>
-				))}
-			</div>
-		</div>
-	</section>
+            <div class="flex justify-end mb-3 relative z-10">
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-[#3B82F6]/10 text-[#3B82F6]">
+                {resource.type}
+              </span>
+            </div>
+            
+            <h3 class="text-lg font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
+              {resource.title}
+            </h3>
+            <p class="text-sm text-slate-500 leading-relaxed mb-4 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
+              {resource.description}
+            </p>
+            
+            <div class="mt-auto flex items-center justify-between relative z-10">
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600">
+                {resource.category}
+              </span>
+              <a href={resource.href} class="inline-flex items-center text-sm text-[#1E40AF] hover:text-[#3B82F6] font-medium gap-1 transition-all duration-300 group/link">
+                {isFi ? 'Lataa nyt' : 'Download Now'}
+                <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-	<!-- CTA Section -->
-	<section class="py-20 bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white">
-		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-			<h2 class="text-4xl font-bold mb-4">
-				{lang === 'fi' ? 'Tarvitsetko apua resurssien käytössä?' : 'Need help using these resources?'}
-			</h2>
-			<p class="text-xl mb-8 opacity-90">
-				{lang === 'fi' 
-					? 'Asiantuntijatietoomme auttaa sinua hyödyntämään näitä resursseja tehokkaasti organisaatiossasi.' 
-					: 'Our expertise can help you leverage these resources effectively in your organization.'}
-			</p>
-			<div class="flex flex-col sm:flex-row gap-4 justify-center">
-				<Button href="/fi/contact" variant="white">
-					{lang === 'fi' ? 'Ota yhteyttä asiantuntijoihimme' : 'Contact Our Experts'}
-				</Button>
-				<Button href="/fi/services" variant="outline-white">
-					{lang === 'fi' ? 'Tutustu palveluihimme' : 'Explore Our Services'}
-				</Button>
-			</div>
-		</div>
-	</section>
+  <!-- Resource Categories -->
+  <section class="py-12 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-8">
+        {currentContent.categories.map((category) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col p-5 md:p-6 group relative overflow-hidden" key={category.title}>
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex items-center gap-3 mb-4 relative z-10">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
+                          border-2 border-[#3B82F6]
+                          transition-all duration-300
+                          group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                          group-hover:border-transparent">
+                <Icon name={category.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+              </div>
+              <div>
+                <h2 class="text-xl font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {category.title}
+                </h2>
+                <p class="text-sm text-slate-500 group-hover:text-slate-600 transition-colors duration-300">
+                  {category.description}
+                </p>
+              </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 relative z-10">
+              {category.items.map((item) => (
+                <div class="border border-slate-200 rounded-lg p-4 hover:border-[#3B82F6] hover:bg-slate-50 transition-all duration-200" key={item.title}>
+                  <div class="flex justify-between items-start mb-2">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#3B82F6]/10 text-[#3B82F6]">
+                      {item.type}
+                    </span>
+                    <span class="text-xs text-slate-400">{item.date}</span>
+                  </div>
+                  <h3 class="font-semibold text-slate-900 text-sm mb-1">{item.title}</h3>
+                  <p class="text-slate-600 text-xs mb-3">{item.description}</p>
+                  <a href={item.href} class="inline-flex items-center text-sm text-[#1E40AF] hover:text-[#3B82F6] font-medium gap-1 transition-all duration-300 group/link">
+                    {isFi ? 'Lue lisää' : 'Learn more'}
+                    <svg class="w-3 h-3 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-2xl border-2 border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 p-8 md:p-12 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6]"></div>
+        
+        <div class="flex items-center justify-center gap-4 mb-4">
+          <div class="h-px w-10 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
+          <span class="text-[#1E2A7A] text-xl font-bold">✦</span>
+          <div class="h-px w-10 bg-gradient-to-l from-transparent to-[#1E2A7A]"></div>
+        </div>
+        
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3 text-[#1E2A7A]">
+          {currentContent.cta.title}
+        </h2>
+        <p class="text-sm md:text-base text-[#1E2A7A] mb-6 max-w-2xl mx-auto leading-relaxed">
+          {currentContent.cta.subtitle}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href={currentContent.cta.primaryCTA.href} class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-lg font-medium text-sm gap-2 group">
+            {currentContent.cta.primaryCTA.text}
+            <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href={currentContent.cta.secondaryCTA.href} class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] bg-white hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-2 group">
+            {currentContent.cta.secondaryCTA.text}
+            <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </Layout>

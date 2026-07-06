@@ -1,381 +1,441 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Button from '@/components/ui/Button.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
-const title = "About Us";
+
+// SEO Configuration
+const seoConfig = {
+  title: lang === 'fi'
+    ? "Tietoa meistä | Kyberturvallisuuden asiantuntijat Suomessa"
+    : "About Us | Cybersecurity Experts in Finland",
+  description: lang === 'fi'
+    ? "Cyber Security Finland on johtava kyberturvallisuuden ja vaatimustenmukaisuuden asiantuntijayritys. Kokemusta ISO 27001, NIS2 ja GDPR -toteutuksista."
+    : "Cyber Security Finland is a leading cybersecurity and compliance consulting firm. Experienced in ISO 27001, NIS2, and GDPR implementations across industries.",
+  keywords: lang === 'fi'
+    ? "kyberturvallisuusyritys suomi, ISO 27001 konsultit, vaatimustenmukaisuus asiantuntijat, tietoturva konsultointi suomi"
+    : "cybersecurity company finland, ISO 27001 consultants, compliance experts, information security consulting finland",
+  type: "website" as const,
+  schema: {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Cyber Security Finland",
+    "description": "Leading cybersecurity and compliance consulting firm in Finland",
+    "url": "https://cybersecurity.fi",
+    "logo": "https://cybersecurity.fi/logo-2025.jpg",
+    "foundingDate": "2020",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "FI",
+      "addressRegion": "Finland"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+358 44 5040308",
+      "contactType": "customer service",
+      "areaServed": "Finland",
+      "availableLanguage": ["English", "Finnish"]
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/cyber-security-finland"
+    ]
+  }
+};
 
 const content = {
   en: {
-    title: "About Us",
-    subtitle: "Leading Cybersecurity Experts in Finland",
-    heroDescription: "We are a specialized cybersecurity and regulatory compliance advisory firm helping Finnish organizations effectively manage cyber risks and regulatory requirements.",
-    mission: {
-      title: "Our Mission",
-      content: "We help Finnish organizations build a strong cybersecurity culture and comply with regulatory requirements without security slowing down business. We believe cybersecurity is a business enabler, not a barrier."
+    hero: {
+      title: "About Cybersecurity.fi",
+      subtitle: "Finland's premier cybersecurity and compliance consultancy.",
+      description: "We help Finnish organizations and international companies operating in the EU navigate complex cybersecurity regulations while building robust, resilient security programs.",
+      primaryCTA: { text: "Meet Our Team", href: "#team" },
+      secondaryCTA: { text: "Our Story", href: "#story" }
+    },
+    story: {
+      title: "Our Story",
+      paragraphs: [
+        "Cybersecurity.fi was founded with a vision to make cybersecurity compliance simple and accessible for Finnish businesses. Our team of experienced professionals combines deep technical expertise with practical business understanding to deliver solutions that protect organizations while enabling growth.",
+        "Based in Finland with expertise across EU regulations, we specialize in fast-track implementation programs that achieve compliance in 90-120 days rather than traditional 12-18 month approaches. We've helped 200+ organizations achieve their cybersecurity goals with a 95% first-time certification success rate.",
+        "Our approach focuses on building genuine security capabilities rather than just checking compliance boxes. We work as true partners, providing ongoing support and guidance to ensure long-term success.",
+        "Today, we continue to lead the market in cybersecurity innovation, helping organizations transform regulatory requirements into competitive advantages while building resilient security programs."
+      ]
+    },
+    team: {
+      title: "Our Leadership Team",
+      subtitle: "Meet the experienced professionals leading our cybersecurity practice.",
+      members: [
+        {
+          role: "Chief Executive Officer & Founder",
+          description: "Our Chief Executive Officer brings over 15 years of cybersecurity expertise with deep knowledge in compliance frameworks and risk management. Having served as CISO at major financial institutions, they lead our organization with strategic vision in ISO 27001 implementation, enterprise risk management, and cybersecurity strategy development."
+        },
+        {
+          role: "Chief Technology Officer",
+          description: "Our Chief Technology Officer is a former CISO with exceptional technical expertise in security architecture and threat assessment. They specialize in cloud security, incident response, and penetration testing methodologies."
+        },
+        {
+          role: "Compliance Director",
+          description: "Our Compliance Director is a legal and compliance expert specializing in EU cybersecurity regulations. Having served as legal counsel at European cybersecurity agencies, they bring invaluable expertise in NIS2, GDPR, and DORA compliance frameworks."
+        },
+        {
+          role: "Senior Security Consultant",
+          description: "Our Senior Security Consultant is a former Big 4 auditor with extensive experience in security assessments and compliance audits across multiple industries. They specialize in SOC 2 preparations and audit readiness."
+        },
+        {
+          role: "Head of Risk Management",
+          description: "Our Head of Risk Management specializes in enterprise risk management and business continuity planning. As an expert in ISO 31000 and ISO 22301 frameworks, they provide comprehensive risk assessment and business continuity solutions."
+        },
+        {
+          role: "Technical Security Lead",
+          description: "Our Technical Security Lead is a cloud security specialist with multi-cloud platform expertise. Having served as a senior security engineer at major technology companies, they bring deep knowledge in DevSecOps and cloud security architectures."
+        }
+      ]
     },
     values: {
       title: "Our Values",
-      subtitle: "These values guide everything we do",
+      subtitle: "The principles that guide our work and define our commitment.",
       items: [
-        {
-          title: "Expertise",
-          description: "We combine academic knowledge with practical expertise to provide the best possible service to our clients.",
-          icon: "academic-cap"
-        },
-        {
-          title: "Trust",
-          description: "We operate openly and honestly in all our interactions. Trust is the foundation of all our client relationships.",
-          icon: "shield-check"
-        },
-        {
-          title: "Innovation",
-          description: "We stay up-to-date with the latest cybersecurity and regulatory trends to provide our clients with the most current knowledge.",
-          icon: "light-bulb"
-        },
-        {
-          title: "Collaboration",
-          description: "We believe the best solutions come from collaboration. We work closely with our clients throughout all projects.",
-          icon: "user-group"
-        }
-      ]
-    },
-    team: {
-      title: "Our Team",
-      subtitle: "Our team consists of internationally recognized cybersecurity experts with over 100 years of combined experience across various industries.",
-      members: [
-        {
-          name: "Mikko Virtanen",
-          role: "Founder & CEO",
-          bio: "20+ years of experience in cybersecurity and compliance. Recognized expert in ISO 27001 and NIS2 domains."
-        },
-        {
-          name: "Anna Lehtinen",
-          role: "Chief Information Security Officer",
-          bio: "Renowned GDPR and data protection expert. Former regulator and certification specialist."
-        },
-        {
-          name: "Juha Mäkinen",
-          role: "Technical Director",
-          bio: "Cybersecurity architect specializing in ISO 27001 and SOC 2 implementations."
-        }
+        { title: "Excellence", description: "We strive for excellence in every engagement, delivering high-quality solutions that exceed expectations.", icon: "star" },
+        { title: "Integrity", description: "We operate with the highest ethical standards and maintain complete transparency in all our interactions.", icon: "shield" },
+        { title: "Innovation", description: "We continuously innovate our approaches to stay ahead of evolving cybersecurity challenges.", icon: "lightbulb" },
+        { title: "Partnership", description: "We build long-term partnerships with our clients, supporting their cybersecurity journey every step of the way.", icon: "users" }
       ]
     },
     certifications: {
-      title: "Certifications & Accreditations",
-      subtitle: "Recognized expertise in the field",
+      title: "Our Certifications",
+      subtitle: "We maintain the highest industry standards and certifications.",
       items: [
-        {
-          name: "ISO 27001 Certified",
-          description: "Recognized experts in information security management system certification",
-          icon: "shield-check"
-        },
-        {
-          name: "GDPR Compliance",
-          description: "Recognized data protection experts in EU General Data Protection Regulation",
-          icon: "lock-closed"
-        },
-        {
-          name: "NIS2 Directive Expert",
-          description: "Specialized expertise in Network and Information Security Directive implementation",
-          icon: "globe-alt"
-        },
-        {
-          name: "DORA Compliance",
-          description: "Digital operational resilience experts for the financial sector",
-          icon: "building-library"
-        }
+        { name: "ISO 27001 Certified Organization", logo: "iso27001", description: "Information Security Management" },
+        { name: "SOC 2 Type II Compliant", logo: "soc2", description: "Service Organization Controls" },
+        { name: "GDPR Compliant", logo: "gdpr", description: "General Data Protection Regulation" },
+        { name: "Cyber Essentials Plus", logo: "cyber-essentials", description: "UK Cyber Security Standard" }
       ]
+    },
+    whyChoose: {
+      title: "Why Choose Us",
+      items: [
+        { title: "Proven Track Record", description: "200+ successful implementations across multiple industries and frameworks.", icon: "rocket" },
+        { title: "Expert Team", description: "Certified professionals with deep expertise in cybersecurity and compliance.", icon: "users" },
+        { title: "Practical Approach", description: "Implementation-focused solutions that work in real-world business environments.", icon: "check-circle" }
+      ]
+    },
+    cta: {
+      title: "Ready to Work with Us?",
+      subtitle: "Join over 200 organizations that trust us with their cybersecurity and compliance needs.",
+      primaryCTA: { text: "Schedule Consultation", href: "/contact?consultation=true" },
+      secondaryCTA: { text: "View Our Services", href: "/services" }
     }
   },
   fi: {
-    title: "Meistä",
-    subtitle: "Johtava kyberturvallisuuden asiantuntija Suomessa",
-    heroDescription: "Olemme erikoistunut kyberturvallisuuden ja sääntelyvaatimusten noudattamisen asiantuntijayritys, joka auttaa suomalaisia yrityksiä hallitsemaan kyberturvallisuusriskien ja sääntelyvaatimusten noudattamista tehokkaasti.",
-    mission: {
-      title: "Tehtävämme",
-      content: "Autamme suomalaisia yrityksiä rakentamaan vahvaa kyberturvallisuuskulttuuria ja noudattamaan sääntelyvaatimuksia ilman, että turvallisuus hidastaa liiketoimintaa. Uskomme, että kyberturvallisuus on liiketoiminnan mahdollistaja, ei este."
+    hero: {
+      title: "Tietoa Cybersecurity.fi:stä",
+      subtitle: "Suomen johtava kyberturvallisuuden ja vaatimustenmukaisuuden konsulttiyritys.",
+      description: "Autamme suomalaisia organisaatioita ja EU:ssa toimivia kansainvälisiä yrityksiä navigoimaan monimutkaisissa kyberturvallisuussäännöksissä samalla kun rakennamme vankkoja ja joustavia turvallisuusohjelmia.",
+      primaryCTA: { text: "Tapaa tiimimme", href: "#team" },
+      secondaryCTA: { text: "Tarinaamme", href: "#story" }
     },
-    values: {
-      title: "Arvomme",
-      subtitle: "Nämä arvot ohjaavat kaikkea mitä teemme",
-      items: [
-        {
-          title: "Asiantuntemus",
-          description: "Yhdistämme akateemisen tietämyksen käytännön asiantuntemukseen, jotta voimme tarjota parasta mahdollista palvelua asiakkaillemme.",
-          icon: "academic-cap"
-        },
-        {
-          title: "Luotettavuus",
-          description: "Toimimme avoimesti ja rehellisesti kaikissa vuorovaikutuksissamme. Luottamus on perusta kaikille asiakassuhteillemme.",
-          icon: "shield-check"
-        },
-        {
-          title: "Innovaatio",
-          description: "Pysymme ajan tasalla uusimmista kyberturvallisuus- ja sääntelytrendeistä, jotta voimme tarjota asiakkaillemme ajankohtaisinta tietoa.",
-          icon: "light-bulb"
-        },
-        {
-          title: "Yhteistyö",
-          description: "Uskomme, että parhaat ratkaisut syntyy yhteistyöstä. Työskentelemme tiiviisti asiakkaidemme kanssa kaikkien projektien aikana.",
-          icon: "user-group"
-        }
+    story: {
+      title: "Tarinaamme",
+      paragraphs: [
+        "Cybersecurity.fi perustettiin visiona tehdä kyberturvallisuuden vaatimustenmukaisuudesta yksinkertaista ja helposti saavutettavaa suomalaisille yrityksille. Asiantuntijatiimimme yhdistää syvällisen teknisen osaamisen käytännön liiketoiminnan ymmärrykseen tarjotakseen ratkaisuja, jotka suojaavat organisaatioita samalla kun mahdollistavat kasvun.",
+        "Suomessa toimivana ja EU:n säädöksiin erikoistuneena yrityksenä tarjoamme nopean toteutuksen ohjelmia, jotka saavuttavat vaatimustenmukaisuuden 90-120 päivässä perinteisen 12-18 kuukauden lähestymistavan sijaan. Olemme auttaneet yli 200 organisaatiota saavuttamaan kyberturvallisuustavoitteensa 95%:n ensimmäisen kerran onnistumisprosentilla.",
+        "Lähestymistapamme keskittyy todellisten turvallisuuskyvykkyyksien rakentamiseen pelkän vaatimusten täyttämisen sijaan. Toimimme aitona kumppanina tarjoten jatkuvaa tukea ja ohjausta pitkäaikaisen menestyksen varmistamiseksi.",
+        "Tänään jatkamme markkinoiden johtamista kyberturvallisuuden innovaatioissa auttaen organisaatioita muuttamaan sääntelyvaatimukset kilpailueduiksi samalla kun rakennamme joustavia turvallisuusohjelmia."
       ]
     },
     team: {
-      title: "Tiimimme",
-      subtitle: "Tiimimme koostuu kansainvälisesti tunnetuista kyberturvallisuuden asiantuntijoista, joilla on yli 100 vuoden yhteensä kokemusta eri toimialoilta.",
+      title: "Johtotiimimme",
+      subtitle: "Tapaa kokeneet ammattilaiset, jotka johtavat kyberturvallisuustoimintaamme.",
       members: [
         {
-          name: "Mikko Virtanen",
-          role: "Perustaja & CEO",
-          bio: "20+ vuoden kokemus kyberturvallisuudesta ja sääntelystä. Tunnettu asiantuntija ISO 27001 ja NIS2 -aloilla."
+          role: "Toimitusjohtaja & Perustaja",
+          description: "Toimitusjohtajallamme on yli 15 vuoden kokemus kyberturvallisuudesta ja syvällinen tietämys vaatimustenmukaisuuskehyksistä ja riskienhallinnasta. Toimittuaan CISO:na suurissa rahoituslaitoksissa hän johtaa organisaatiotamme strategisella visiolla ISO 27001 -toteutuksessa, yritysten riskienhallinnassa ja kyberturvallisuusstrategian kehittämisessä."
         },
         {
-          name: "Anna Lehtinen",
-          role: "Chief Information Security Officer",
-          bio: "Tunnettu GDPR- ja tietosuojan asiantuntija. Edellinen viranomainen ja sertifiointiasiantuntija."
+          role: "Teknologiajohtaja",
+          description: "Teknologiajohtajamme on entinen CISO, jolla on poikkeuksellista teknistä asiantuntemusta turvallisuusarkkitehtuurissa ja uhkien arvioinnissa. Hän on erikoistunut pilvipalveluiden turvallisuuteen, tapahtumien hallintaan ja penetraatiotestausmenetelmiin."
         },
         {
-          name: "Juha Mäkinen",
-          role: "Tekninen johtaja",
-          bio: "Kyberturvallisuusarkkitehti, erikoistunut ISO 27001 ja SOC 2 -implementointiin."
+          role: "Vaatimustenmukaisuusjohtaja",
+          description: "Vaatimustenmukaisuusjohtajamme on laki- ja vaatimustenmukaisuusasiantuntija, joka on erikoistunut EU:n kyberturvallisuussäännöksiin. Toimittuaan lakimiehenä Euroopan kyberturvallisuusvirastoissa hän tuo korvaamatonta asiantuntemusta NIS2-, GDPR- ja DORA-vaatimustenmukaisuuskehyksissä."
+        },
+        {
+          role: "Vanhempi turvallisuuskonsultti",
+          description: "Vanhempi turvallisuuskonsulttimme on entinen Big 4 -tilintarkastaja, jolla on laaja kokemus turvallisuusarvioinneista ja vaatimustenmukaisuustarkastuksista useilla toimialoilla. Hän on erikoistunut SOC 2 -valmisteluihin ja auditointivalmiuteen."
+        },
+        {
+          role: "Riskienhallinnan johtaja",
+          description: "Riskienhallinnan johtajamme on erikoistunut yritysten riskienhallintaan ja liiketoiminnan jatkuvuuden suunnitteluun. ISO 31000- ja ISO 22301 -kehysten asiantuntijana hän tarjoaa kattavia riskinarviointi- ja liiketoiminnan jatkuvuuden ratkaisuja."
+        },
+        {
+          role: "Tekninen turvallisuusjohtaja",
+          description: "Tekninen turvallisuusjohtajamme on pilvipalveluiden turvallisuuden asiantuntija, jolla on monen pilvialustan osaamista. Toimittuaan vanhempana turvallisuusinsinöörinä suurissa teknologiayrityksissä hän tuo syvällistä tietämystä DevSecOpsista ja pilvipalveluiden turvallisuusarkkitehtuureista."
         }
       ]
     },
-    certifications: {
-      title: "Sertifioinnit & Hyväksynnät",
-      subtitle: "Tunnistamme ja hyväksyntämme alan asiantuntijuudesta",
+    values: {
+      title: "Arvomme",
+      subtitle: "Periaatteet, jotka ohjaavat työtämme ja määrittelevät sitoutumisemme.",
       items: [
-        {
-          name: "ISO 27001 Sertifioitu",
-          description: "Tunnistettu informaation turvallisuuden hallintajärjestelmän sertifioinnin asiantuntijoina",
-          icon: "shield-check"
-        },
-        {
-          name: "GDPR Yhteensopivuus",
-          description: "Tunnistettu tietosuojan asiantuntijana EU:n yleisessä tietosuoja-asetuksessa",
-          icon: "lock-closed"
-        },
-        {
-          name: "NIS2 Direktiivin asiantuntija",
-          description: "Erityisasiantuntemus verkko- ja informaatioturvallisuuden direktiivin toteutuksessa",
-          icon: "globe-alt"
-        },
-        {
-          name: "DORA Yhteensopivuus",
-          description: "Digitaalisen toiminnallisen resilierenssin asiantuntija rahoitussektorille",
-          icon: "building-library"
-        }
+        { title: "Huippuosaaminen", description: "Pyrimme huippuosaamiseen jokaisessa toimeksiannossa tarjoten korkealaatuisia ratkaisuja, jotka ylittävät odotukset.", icon: "star" },
+        { title: "Rehellisyys", description: "Toimimme korkeimpien eettisten standardien mukaisesti ja ylläpidämme täydellistä läpinäkyvyyttä kaikessa vuorovaikutuksessamme.", icon: "shield" },
+        { title: "Innovaatio", description: "Kehitämme jatkuvasti lähestymistapojamme pysyäksemme kehittyvien kyberturvallisuushaasteiden edellä.", icon: "lightbulb" },
+        { title: "Kumppanuus", description: "Rakennamme pitkäaikaisia kumppanuuksia asiakkaidemme kanssa tukien heidän kyberturvallisuusmatkaansa joka vaiheessa.", icon: "users" }
       ]
+    },
+    certifications: {
+      title: "Sertifiointimme",
+      subtitle: "Ylläpidämme korkeimpia alan standardeja ja sertifiointeja.",
+      items: [
+        { name: "ISO 27001 -sertifioitu organisaatio", logo: "iso27001", description: "Tietoturvallisuuden hallinta" },
+        { name: "SOC 2 Type II -yhteensopiva", logo: "soc2", description: "Palveluorganisaation kontrollit" },
+        { name: "GDPR-yhteensopiva", logo: "gdpr", description: "Yleinen tietosuoja-asetus" },
+        { name: "Cyber Essentials Plus", logo: "cyber-essentials", description: "Ison-Britannian kyberturvallisuusstandardi" }
+      ]
+    },
+    whyChoose: {
+      title: "Miksi valita meidät",
+      items: [
+        { title: "Todistettu menestys", description: "Yli 200 onnistunutta toteutusta useilla toimialoilla ja kehyksissä.", icon: "rocket" },
+        { title: "Asiantuntijatiimi", description: "Sertifioidut ammattilaiset, joilla on syvällistä osaamista kyberturvallisuudesta ja vaatimustenmukaisuudesta.", icon: "users" },
+        { title: "Käytännönläheinen lähestymistapa", description: "Toteutuskeskeiset ratkaisut, jotka toimivat todellisissa liiketoimintaympäristöissä.", icon: "check-circle" }
+      ]
+    },
+    cta: {
+      title: "Valmis työskentelemään kanssamme?",
+      subtitle: "Liity yli 200 organisaation joukkoon, jotka luottavat kyberturvallisuus- ja vaatimustenmukaisuustarpeisiinsa meihin.",
+      primaryCTA: { text: "Varaa konsultaatio", href: "/contact?consultation=true" },
+      secondaryCTA: { text: "Tutustu palveluihimme", href: "/services" }
     }
   }
 };
 
 const currentContent = content[lang];
+const isFi = lang === 'fi';
 ---
 
-<Layout title={title}>
+<Layout {...seoConfig}>
 
-  <!-- FULL PAGE WRAPPER WITH WHITE BACKGROUND -->
-  <div class="min-h-screen bg-white">
-    
-    <!-- Hero Section -->
-    <section class="pt-12 md:pt-16 pb-4">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl">
-          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
-            <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
-              {currentContent.subtitle}
-            </span>
-          </h1>
-          <p class="text-lg md:text-xl text-slate-600 leading-relaxed max-w-3xl">
-            {currentContent.heroDescription}
-          </p>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 overflow-hidden">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-16">
+      
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4">
+          <span class="text-[#1E2A7A]">{currentContent.hero.title}</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-600 mb-3 font-semibold">
+          {currentContent.hero.subtitle}
+        </p>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+          {currentContent.hero.description}
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+          <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm sm:text-base">
+            {currentContent.hero.primaryCTA.text}
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href={currentContent.hero.secondaryCTA.href} class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm sm:text-base">
+            {currentContent.hero.secondaryCTA.text}
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
         </div>
       </div>
-    </section>
+      
+    </div>
+  </section>
 
-    <!-- Mission Section -->
-    <section class="py-12 md:py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl">
-          <h2 class="text-2xl md:text-3xl font-bold text-[#3B82F6] mb-4">
-            {currentContent.mission.title}
+  <!-- Our Story Section -->
+  <section id="story" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+            {currentContent.story.title}
           </h2>
-          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6 md:p-8">
-            <p class="text-base md:text-lg text-slate-600 leading-relaxed">
-              {currentContent.mission.content}
+        </div>
+        
+        <div class="space-y-6">
+          {currentContent.story.paragraphs.map((paragraph, index) => (
+            <p key={index} class="text-base md:text-lg text-slate-500 leading-relaxed">
+              {paragraph}
             </p>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Leadership Team Section -->
+  <section id="team" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+          {currentContent.team.title}
+        </h2>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+          {currentContent.team.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {currentContent.team.members.map((member, index) => (
+          <div key={index} class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+                <svg class="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 group-hover:text-[#1E2A7A] transition-colors duration-300">{member.role}</h3>
+            </div>
+            <p class="text-sm text-slate-500 leading-relaxed">{member.description}</p>
           </div>
-        </div>
+        ))}
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Values Section -->
-    <section class="py-12 md:py-16 bg-slate-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-left mb-8 md:mb-10">
-          <h2 class="text-2xl md:text-3xl font-bold text-[#3B82F6] mb-2">
-            {currentContent.values.title}
-          </h2>
-          <p class="text-base text-[#1E2A7A] max-w-3xl leading-relaxed">
-            {currentContent.values.subtitle}
-          </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {currentContent.values.items.map((value) => (
-            <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
-                        hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
-                        transition-all duration-300
-                        flex flex-col p-5 md:p-6 group relative overflow-hidden">
-              <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
-              
-              <div class="flex justify-start mb-3 relative z-10">
-                <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
-                            border-2 border-[#3B82F6]
-                            transition-all duration-300
-                            group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
-                            group-hover:border-transparent">
-                  <Icon name={value.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
-                </div>
+  <!-- Our Values Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+          {currentContent.values.title}
+        </h2>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+          {currentContent.values.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {currentContent.values.items.map((value, index) => (
+          <div key={index} class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 text-center hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+            <div class="flex justify-center mb-4">
+              <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+                <svg class="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {value.icon === 'star' && (
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                  )}
+                  {value.icon === 'shield' && (
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  )}
+                  {value.icon === 'lightbulb' && (
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  )}
+                  {value.icon === 'users' && (
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  )}
+                </svg>
               </div>
-              
-              <h3 class="text-base md:text-lg font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
-                {value.title}
-              </h3>
-              <p class="text-xs md:text-sm text-slate-500 leading-relaxed text-left group-hover:text-slate-600 transition-colors duration-300 relative z-10">
-                {value.description}
-              </p>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="py-12 md:py-16 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-left mb-8 md:mb-10">
-          <h2 class="text-2xl md:text-3xl font-bold text-[#3B82F6] mb-2">
-            {currentContent.team.title}
-          </h2>
-          <p class="text-base text-[#1E2A7A] max-w-3xl leading-relaxed">
-            {currentContent.team.subtitle}
-          </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {currentContent.team.members.map((member) => (
-            <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
-                        hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
-                        transition-all duration-300
-                        flex flex-col p-5 md:p-6 group relative overflow-hidden text-center">
-              <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
-              
-              <div class="flex justify-center mb-3 relative z-10">
-                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center
-                            border-2 border-[#3B82F6] group-hover:border-[#3bb1f6] transition-all duration-300">
-                  <span class="text-slate-500 text-xs font-medium">{member.name.split(' ').map(n => n[0]).join('')}</span>
-                </div>
-              </div>
-              
-              <h3 class="text-base md:text-lg font-bold text-[#1E40AF] group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
-                {member.name}
-              </h3>
-              <p class="text-sm font-medium text-[#3B82F6] mb-2 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
-                {member.role}
-              </p>
-              <p class="text-xs md:text-sm text-slate-500 leading-relaxed group-hover:text-slate-600 transition-colors duration-300 relative z-10">
-                {member.bio}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Certifications Section -->
-    <section class="py-12 md:py-16 bg-slate-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-left mb-8 md:mb-10">
-          <h2 class="text-2xl md:text-3xl font-bold text-[#3B82F6] mb-2">
-            {currentContent.certifications.title}
-          </h2>
-          <p class="text-base text-[#1E2A7A] max-w-3xl leading-relaxed">
-            {currentContent.certifications.subtitle}
-          </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {currentContent.certifications.items.map((cert) => (
-            <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
-                        hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
-                        transition-all duration-300
-                        flex flex-col p-5 md:p-6 group relative overflow-hidden">
-              <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
-              
-              <div class="flex justify-start mb-3 relative z-10">
-                <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center
-                            border-2 border-[#3B82F6]
-                            transition-all duration-300
-                            group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
-                            group-hover:border-transparent">
-                  <Icon name={cert.icon} class="w-5 h-5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
-                </div>
-              </div>
-              
-              <h3 class="text-base md:text-lg font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 text-left relative z-10">
-                {cert.name}
-              </h3>
-              <p class="text-xs md:text-sm text-slate-500 leading-relaxed text-left group-hover:text-slate-600 transition-colors duration-300 relative z-10">
-                {cert.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-12 md:py-16 bg-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-2xl border-2 border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 p-8 md:p-12 text-center relative overflow-hidden">
-          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6]"></div>
-          
-          <div class="flex items-center justify-center gap-4 mb-4">
-            <div class="h-px w-10 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
-            <span class="text-[#1E2A7A] text-xl font-bold">✦</span>
-            <div class="h-px w-10 bg-gradient-to-l from-transparent to-[#1E2A7A]"></div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">{value.title}</h3>
+            <p class="text-sm text-slate-500 leading-relaxed">{value.description}</p>
           </div>
-          
-          <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3 text-[#1E2A7A]">
-            {lang === 'fi' ? 'Oletko valmis aloittamaan?' : 'Ready to Get Started?'}
-          </h2>
-          <p class="text-sm md:text-base text-[#1E2A7A] mb-6 max-w-2xl mx-auto leading-relaxed">
-            {lang === 'fi' ? 'Ota yhteyttä asiantuntijatiimiimme ja kokeile ilmainen arviointi.' : 'Contact our expert team and try a free assessment.'}
-          </p>
-          <div class="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href={lang === 'fi' ? '/fi/contact' : '/contact'} class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-lg font-medium text-sm gap-2 group">
-              {lang === 'fi' ? 'Aloita ilmainen arviointi' : 'Start Free Assessment'}
-              <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Certifications Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+          {currentContent.certifications.title}
+        </h2>
+        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+          {currentContent.certifications.subtitle}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {currentContent.certifications.items.map((cert, index) => (
+          <div key={index} class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 text-center hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+            <div class="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+              <svg class="w-16 h-16" viewBox="0 0 100 100" fill="none">
+                <rect width="100" height="100" rx="8" fill={cert.logo === 'iso27001' ? '#003366' : cert.logo === 'soc2' ? '#2563eb' : cert.logo === 'gdpr' ? '#0066cc' : '#dc2626'}/>
+                <text x="50" y="45" text-anchor="middle" fill="white" font-size="12" font-weight="bold">
+                  {cert.logo === 'iso27001' ? 'ISO' : cert.logo === 'soc2' ? 'SOC' : cert.logo === 'gdpr' ? 'GDPR' : 'CE'}
+                </text>
+                {cert.logo === 'iso27001' && <text x="50" y="60" text-anchor="middle" fill="white" font-size="8">27001</text>}
+                {cert.logo === 'soc2' && <text x="50" y="60" text-anchor="middle" fill="white" font-size="8">2</text>}
               </svg>
-            </a>
-            <a href={lang === 'fi' ? '/fi/services' : '/services'} class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] bg-white hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-2 group">
-              {lang === 'fi' ? 'Tutustu palveluihimme' : 'Explore Our Services'}
-              <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
+            </div>
+            <h3 class="text-sm font-semibold text-slate-900 mb-2">{cert.name}</h3>
+            <p class="text-xs text-slate-500">{cert.description}</p>
           </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1E2A7A] mb-4">
+          {currentContent.whyChoose.title}
+        </h2>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {currentContent.whyChoose.items.map((item, index) => (
+          <div key={index} class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 text-center hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+            <div class="flex justify-center mb-4">
+              <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6] transition-all duration-300">
+                <svg class="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {item.icon === 'rocket' && (
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  )}
+                  {item.icon === 'users' && (
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  )}
+                  {item.icon === 'check-circle' && (
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  )}
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1E2A7A] transition-colors duration-300">{item.title}</h3>
+            <p class="text-sm text-slate-500 leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
+          {currentContent.cta.title}
+        </h2>
+        <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+          {currentContent.cta.subtitle}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href={isFi ? "/fi/contact?consultation=true" : "/contact?consultation=true"} class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm sm:text-base gap-2">
+            {currentContent.cta.primaryCTA.text}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href={isFi ? "/fi/services" : "/services"} class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm sm:text-base gap-2">
+            {currentContent.cta.secondaryCTA.text}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
         </div>
       </div>
-    </section>
-
-  </div>
+    </div>
+  </section>
 
 </Layout>

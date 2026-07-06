@@ -1,177 +1,307 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Button from '@/components/ui/Button.astro';
 import Icon from '@/components/ui/icons/Icon.astro';
 
 const currentPath = Astro.url.pathname;
-const lang = 'fi'; // Explicitly set to Finnish for this version
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
 
-const packages = [
-	{
-		title: "ISO 27001 Fast-Track",
-		description: "Täysi ISMS-toteutus 90 päivässä sertifiointituelle",
-		duration: "90-120 päivää",
-		price: "Alkaen 19 900€",
-		features: [
-			"Täysi ISMS-toteutus",
-			"Käytäntöpohjat (50+ dokumenttia)",
-			"Henkilöstökoulutus ja tiedotus",
-			"Sertifiointitarkastuksen tuki",
-			"12 kuukauden jatkuva tuki"
-		],
-		href: "/fi/packages/iso-27001-fast-track",
-		color: "blue"
-	},
-	{
-		title: "NIS2 Sprint -ohjelma",
-		description: "Valmistele NIS2-direktiivin vaatimuksia 60-90 päivässä",
-		duration: "60-90 päivää",
-		price: "Alkaen 14 900€",
-		features: [
-			"NIS2 aukkokohtaus ja yhteensopivuusroadmap",
-			"Riskienhallintakehyksen toteutus",
-			"Tietoturhaloukkausten hallintamenettelyt",
-			"Toimittajaketjun turvatoimet",
-			"Sääntelyviranomaisten raportointiasetus"
-		],
-		href: "/fi/packages/nis2-sprint",
-		color: "cyan"
-	},
-	{
-		title: "SOC 2 Valmius-12 viikkoa",
-		description: "Type I ja Type II valmius 12 viikossa",
-		duration: "84 päivää",
-		price: "Alkaen 16 900€",
-		features: [
-			"Type I ja Type II valmius",
-			"Ohjauksen toteutus ja testaus",
-			"Todistuskeruun kehys",
-			"Tarkastuksen valmistelu ja tuki",
-			"Jatkuva valvonta asetus"
-		],
-		href: "/fi/packages/soc2-readiness-12-weeks",
-		color: "teal"
-	},
-	{
-		title: "DORA-ohjelma-laatikossa",
-		description: "Digitaalinen toiminnallinen resilierenssi rahoituspalveluille",
-		duration: "75-105 päivää",
-		price: "Alkaen 24 900€",
-		features: [
-			"ICT-riskienhallintakehys",
-			"Kolmannen osapuolen riskien valvontaojelma",
-			"Operaattorisen resilierenssin testaus",
-			"Tietoturhaloukkausten ilmoitusmekanismit",
-			"Liiketoiminnan jatkuvuuden parantaminen"
-		],
-		href: "/fi/packages/dora-program-in-a-box",
-		color: "indigo"
-	}
-];
+const seoConfig = {
+  title: lang === 'fi' ? "Paketit | Kyberturvallisuuspalvelut" : "Packages | Cybersecurity Services",
+  description: lang === 'fi'
+    ? "Nopean toteutuksen kyberturvallisuus- ja sääntelyvaatimustenmukaisuuspaketit. ISO 27001, NIS2, GDPR ja DORA -paketit nopealla aikataululla."
+    : "Fast-track cybersecurity and regulatory compliance packages. ISO 27001, NIS2, GDPR and DORA packages with accelerated timelines.",
+  type: "page" as const,
+};
 
-const ctaSection = {
-	title: lang === 'fi' 
-		? 'Etkö löydä sopivaa pakettia?' 
-		: 'Can\'t find the right package?',
-	description: lang === 'fi' 
-		? 'Ota yhteyttä asiantuntijoidemme tiimiin ja konsultoimme sinulle räätälöidyn ratkaisun organisaatiosi tarpeisiin.' 
-		: 'Contact our expert team to consult a customized solution for your organization\'s specific needs.',
-	primaryCTA: { 
-		text: lang === 'fi' ? 'Aloita ilmainen arviointi' : 'Start Free Assessment', 
-		href: "/fi/contact" 
-	},
-	secondaryCTA: { 
-		text: lang === 'fi' ? 'Näytä kaikki palvelut' : 'View All Services', 
-		href: "/fi/services" 
-	}
+const content = {
+  en: {
+    hero: {
+      title: "Ready-Made Service Packages",
+      subtitle: "Fast implementation, expert support, and proven methodologies",
+      description: "Ready-made packages that accelerate compliance and improve your cybersecurity posture without lengthy development cycles.",
+      primaryCTA: { text: "View All Services", href: "/services" }
+    },
+    packages: [
+      {
+        title: "ISO 27001 Fast-Track",
+        description: "Complete ISMS implementation in 90 days with certification support",
+        duration: "90-120 days",
+        price: "Starting at €19,900",
+        features: [
+          "Complete ISMS implementation",
+          "Policy templates (50+ documents)",
+          "Staff training and awareness",
+          "Certification audit support",
+          "12 months ongoing support"
+        ],
+        href: "/packages/iso-27001-fast-track",
+        color: "blue"
+      },
+      {
+        title: "NIS2 Sprint Program",
+        description: "Prepare for NIS2 directive requirements in 60-90 days",
+        duration: "60-90 days",
+        price: "Starting at €14,900",
+        features: [
+          "NIS2 gap assessment and compliance roadmap",
+          "Risk management framework implementation",
+          "Incident management procedures",
+          "Supply chain security measures",
+          "Regulatory reporting setup"
+        ],
+        href: "/packages/nis2-sprint",
+        color: "cyan"
+      },
+      {
+        title: "SOC 2 Readiness-12 Weeks",
+        description: "Type I and Type II readiness in 12 weeks",
+        duration: "84 days",
+        price: "Starting at €16,900",
+        features: [
+          "Type I and Type II readiness",
+          "Control implementation and testing",
+          "Evidence collection framework",
+          "Audit preparation and support",
+          "Continuous monitoring setup"
+        ],
+        href: "/packages/soc2-readiness-12-weeks",
+        color: "teal"
+      },
+      {
+        title: "DORA Program-in-a-Box",
+        description: "Digital operational resilience for financial services",
+        duration: "75-105 days",
+        price: "Starting at €24,900",
+        features: [
+          "ICT risk management framework",
+          "Third-party risk oversight program",
+          "Operational resilience testing",
+          "Incident reporting mechanisms",
+          "Business continuity enhancement"
+        ],
+        href: "/packages/dora-program-in-a-box",
+        color: "indigo"
+      }
+    ],
+    cta: {
+      title: "Can't Find the Right Package?",
+      subtitle: "Contact our expert team to consult a customized solution for your organization's specific needs.",
+      primaryCTA: { text: "Start Free Assessment", href: "/contact" },
+      secondaryCTA: { text: "View All Services", href: "/services" }
+    }
+  },
+  fi: {
+    hero: {
+      title: "Valmiit palvelupaketit",
+      subtitle: "Nopea toteutus, asiantunteva tuki ja todistetut metodologiat",
+      description: "Valmiit paketit, jotka nopeuttavat sääntelyvaatimustenmukaisuutta ja parantavat kyberturvallisuuttasi ilman pitkää kehitysaikaa.",
+      primaryCTA: { text: "Näytä kaikki palvelut", href: "/fi/services" }
+    },
+    packages: [
+      {
+        title: "ISO 27001 Fast-Track",
+        description: "Täysi ISMS-toteutus 90 päivässä sertifiointituelle",
+        duration: "90-120 päivää",
+        price: "Alkaen 19 900€",
+        features: [
+          "Täysi ISMS-toteutus",
+          "Käytäntöpohjat (50+ dokumenttia)",
+          "Henkilöstökoulutus ja tiedotus",
+          "Sertifiointitarkastuksen tuki",
+          "12 kuukauden jatkuva tuki"
+        ],
+        href: "/fi/packages/iso-27001-fast-track",
+        color: "blue"
+      },
+      {
+        title: "NIS2 Sprint -ohjelma",
+        description: "Valmistele NIS2-direktiivin vaatimuksia 60-90 päivässä",
+        duration: "60-90 päivää",
+        price: "Alkaen 14 900€",
+        features: [
+          "NIS2 aukkokohtaus ja yhteensopivuusroadmap",
+          "Riskienhallintakehyksen toteutus",
+          "Tietoturvaloukkausten hallintamenettelyt",
+          "Toimittajaketjun turvatoimet",
+          "Sääntelyviranomaisten raportointiasetus"
+        ],
+        href: "/fi/packages/nis2-sprint",
+        color: "cyan"
+      },
+      {
+        title: "SOC 2 Valmius-12 viikkoa",
+        description: "Type I ja Type II valmius 12 viikossa",
+        duration: "84 päivää",
+        price: "Alkaen 16 900€",
+        features: [
+          "Type I ja Type II valmius",
+          "Ohjauksen toteutus ja testaus",
+          "Todistuskeruun kehys",
+          "Tarkastuksen valmistelu ja tuki",
+          "Jatkuva valvonta asetus"
+        ],
+        href: "/fi/packages/soc2-readiness-12-weeks",
+        color: "teal"
+      },
+      {
+        title: "DORA-ohjelma-laatikossa",
+        description: "Digitaalinen toiminnallinen resilierenssi rahoituspalveluille",
+        duration: "75-105 päivää",
+        price: "Alkaen 24 900€",
+        features: [
+          "ICT-riskienhallintakehys",
+          "Kolmannen osapuolen riskien valvontaojelma",
+          "Operaattorisen resilierenssin testaus",
+          "Tietoturvaloukkausten ilmoitusmekanismit",
+          "Liiketoiminnan jatkuvuuden parantaminen"
+        ],
+        href: "/fi/packages/dora-program-in-a-box",
+        color: "indigo"
+      }
+    ],
+    cta: {
+      title: "Etkö löydä sopivaa pakettia?",
+      subtitle: "Ota yhteyttä asiantuntijoidemme tiimiin ja konsultoimme sinulle räätälöidyn ratkaisun organisaatiosi tarpeisiin.",
+      primaryCTA: { text: "Aloita ilmainen arviointi", href: "/fi/contact" },
+      secondaryCTA: { text: "Näytä kaikki palvelut", href: "/fi/services" }
+    }
+  }
+};
+
+const currentContent = content[lang];
+const isFi = lang === 'fi';
+
+// Get color classes for the package cards
+const getColorClasses = (color: string) => {
+  const colorMap: Record<string, { bg: string, light: string, border: string, hover: string, text: string }> = {
+    blue: { bg: 'bg-[#3B82F6]', light: 'bg-blue-50', border: 'border-[#3B82F6]', hover: 'hover:border-[#3B82F6]', text: 'text-[#3B82F6]' },
+    cyan: { bg: 'bg-cyan-500', light: 'bg-cyan-50', border: 'border-cyan-500', hover: 'hover:border-cyan-500', text: 'text-cyan-500' },
+    teal: { bg: 'bg-teal-500', light: 'bg-teal-50', border: 'border-teal-500', hover: 'hover:border-teal-500', text: 'text-teal-500' },
+    indigo: { bg: 'bg-indigo-500', light: 'bg-indigo-50', border: 'border-indigo-500', hover: 'hover:border-indigo-500', text: 'text-indigo-500' }
+  };
+  return colorMap[color] || colorMap.blue;
 };
 ---
 
-<Layout 
-	title="Paketit - Kyberturvallisuuspalvelut | Cyber Security Finland" 
-	description="Nopean toteutuksen kyberturvallisuus- ja sääntelyvaatimustenmukaisuuspaketit. ISO 27001, NIS2, GDPR ja DORA -paketit nopealla aikataululla."
->
-	<!-- Hero Section -->
-	<section class="bg-gradient-to-br from-slate-50 via-white to-slate-100 py-20">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="text-center">
-				<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
-					{lang === 'fi' ? 'Valmiit palvelupaketit' : 'Ready-Made Service Packages'}
-				</h1>
-				<p class="text-xl md:text-2xl text-slate-600 mb-4">
-					{lang === 'fi' ? 'Nopea toteutus, asiantunteva tuki ja todistetut metodologiat' : 'Fast implementation, expert support, and proven methodologies'}
-				</p>
-				<p class="text-lg text-slate-500 max-w-3xl mx-auto">
-					{lang === 'fi' 
-						? 'Valmiit paketit, jotka nopeuttavat sääntelyvaatimustenmukaisuutta ja parantavat kyberturvallisuuttasi ilman pitkää kehitysaikaa.' 
-						: 'Ready-made packages that accelerate compliance and improve your cybersecurity posture without lengthy development cycles.'}
-				</p>
-			</div>
-		</div>
-	</section>
+<Layout {...seoConfig}>
 
-	<!-- Packages Grid -->
-	<section class="py-20 bg-white">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-				{packages.map(pkg => (
-					<div class="bg-gradient-to-br from-white to-slate-50 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden group" key={pkg.title}>
-						<div class={`h-2 bg-${pkg.color}-500`}></div>
-						<div class="p-6">
-							<h3 class="text-xl font-bold text-slate-900 mb-2">{pkg.title}</h3>
-							<p class="text-slate-600 mb-4">{pkg.description}</p>
-              
-							<div class="mb-4">
-								<div class="flex justify-between text-sm text-slate-500 mb-1">
-									<span>{lang === 'fi' ? 'Aikajana' : 'Timeline'}</span>
-									<span class="font-medium">{pkg.duration}</span>
-								</div>
-								<div class="flex justify-between text-sm text-slate-500">
-									<span>{lang === 'fi' ? 'Hinta' : 'Price'}</span>
-									<span class="font-medium">{pkg.price}</span>
-								</div>
-							</div>
-              
-							<ul class="space-y-2 mb-6">
-								{pkg.features.map(feature => (
-									<li class="flex items-start" key={feature}>
-										<Icon name="checkCircle" class={`w-4 h-4 text-${pkg.color}-500 mt-0.5 mr-2 flex-shrink-0`} />
-										<span class="text-slate-700 text-sm">{feature}</span>
-									</li>
-								))}
-							</ul>
-              
-							<Button 
-								href={pkg.href} 
-								variant="primary" 
-								className={`w-full bg-gradient-to-r from-${pkg.color}-600 to-${pkg.color}-700 hover:from-${pkg.color}-700 hover:to-${pkg.color}-800`}
-							>
-								{lang === 'fi' ? 'Lue lisää' : 'Learn More'}
-							</Button>
-						</div>
-					</div>
-				))}
-			</div>
-		</div>
-	</section>
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {currentContent.hero.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {currentContent.hero.description}
+        </p>
+        
+        <div class="mt-8">
+          <a href={currentContent.hero.primaryCTA.href} class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm sm:text-base">
+            {currentContent.hero.primaryCTA.text}
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<!-- CTA Section -->
-	<section class="py-20 bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white">
-		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-			<h2 class="text-4xl font-bold mb-4">
-				{ctaSection.title}
-			</h2>
-			<p class="text-xl mb-8 opacity-90">
-				{ctaSection.description}
-			</p>
-			<div class="flex flex-col sm:flex-row gap-4 justify-center">
-				<Button href={ctaSection.primaryCTA.href} variant="white">
-					{ctaSection.primaryCTA.text}
-				</Button>
-				<Button href={ctaSection.secondaryCTA.href} variant="outline-white">
-					{ctaSection.secondaryCTA.text}
-				</Button>
-			</div>
-		</div>
-	</section>
+  <!-- Packages Grid -->
+  <section class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {currentContent.packages.map((pkg) => {
+          const colors = getColorClasses(pkg.color);
+          return (
+            <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                        hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                        transition-all duration-300
+                        flex flex-col h-full group relative overflow-hidden" key={pkg.title}>
+              
+              <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+              
+              <div class="p-5 md:p-6 flex-1 flex flex-col">
+                <h3 class="text-lg font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300">
+                  {pkg.title}
+                </h3>
+                <p class="text-sm text-slate-500 leading-relaxed mb-4 group-hover:text-slate-600 transition-colors duration-300">
+                  {pkg.description}
+                </p>
+                
+                <div class="mb-4">
+                  <div class="flex justify-between text-sm text-slate-500 mb-1">
+                    <span>{isFi ? 'Aikajana' : 'Timeline'}</span>
+                    <span class="font-medium text-slate-700">{pkg.duration}</span>
+                  </div>
+                  <div class="flex justify-between text-sm text-slate-500">
+                    <span>{isFi ? 'Hinta' : 'Price'}</span>
+                    <span class="font-medium text-slate-700">{pkg.price}</span>
+                  </div>
+                </div>
+                
+                <ul class="space-y-2 mb-6 flex-1">
+                  {pkg.features.map((feature) => (
+                    <li class="flex items-start" key={feature}>
+                      <svg class="w-4 h-4 text-[#3B82F6] mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="text-sm text-slate-600 group-hover:text-slate-700 transition-colors duration-300">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <a href={pkg.href} class="inline-flex items-center justify-center px-4 py-2 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm w-full">
+                  {isFi ? 'Lue lisää' : 'Learn More'}
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-2xl border-2 border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 p-8 md:p-12 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6]"></div>
+        
+        <div class="flex items-center justify-center gap-4 mb-4">
+          <div class="h-px w-10 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
+          <span class="text-[#1E2A7A] text-xl font-bold">✦</span>
+          <div class="h-px w-10 bg-gradient-to-l from-transparent to-[#1E2A7A]"></div>
+        </div>
+        
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3 text-[#1E2A7A]">
+          {currentContent.cta.title}
+        </h2>
+        <p class="text-sm md:text-base text-[#1E2A7A] mb-6 max-w-2xl mx-auto leading-relaxed">
+          {currentContent.cta.subtitle}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href={currentContent.cta.primaryCTA.href} class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-lg font-medium text-sm gap-2 group">
+            {currentContent.cta.primaryCTA.text}
+            <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href={currentContent.cta.secondaryCTA.href} class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] bg-white hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-2 group">
+            {currentContent.cta.secondaryCTA.text}
+            <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </Layout>

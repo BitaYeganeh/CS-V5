@@ -102,196 +102,180 @@ const frameworks = [
   { id: 'gdpr', label: 'GDPR', count: 3 },
   { id: 'dora', label: 'DORA', count: 1 }
 ];
+
+const isFi = lang === 'fi';
 ---
 
 <Layout {...seoConfig}>
 
-<!-- Hero Section - Centered, NO image -->
-<section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    
-    <div class="flex justify-center mb-4">
-      <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
-        <Icon name="document-check" class="w-8 h-8 text-[#1E2A7A]" />
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {isFi ? 'Resurssikirjasto' : 'Resource Library'}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {isFi 
+            ? 'Lataa oppaita, malleja ja tarkistuslistoja kyberturvallisuuden ja sääntelyn noudattamiseksi.' 
+            : 'Download guides, templates, and checklists for cybersecurity and compliance.'}
+        </p>
       </div>
     </div>
-    
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-[#1E2A7A]">
-      {lang === 'fi' ? 'Resurssikirjasto' : 'Resource Library'}
-    </h1>
-    
-    <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
-      {lang === 'fi' 
-        ? 'Lataa oppaita, malleja ja tarkistuslistoja kyberturvallisuuden ja sääntelyn noudattamiseksi.' 
-        : 'Download guides, templates, and checklists for cybersecurity and compliance.'}
-    </p>
-    
-    <div class="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center">
-      <a href="/contact" class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white rounded-full hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-xl font-medium text-sm sm:text-base">
-        {lang === 'fi' ? 'Pyydä konsultaatio' : 'Request Consultation'}
-        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-      
-      <a href="/services" class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border-2 border-[#1E40AF] text-[#1E40AF] rounded-full hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white transition-all duration-300 font-medium text-sm sm:text-base">
-        {lang === 'fi' ? 'Tutustu palveluihimme' : 'Explore Our Services'}
-        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-    </div>
-    
-  </div>
-</section>
+  </section>
 
-<!-- Filters Section -->
-<section class="py-8 bg-white border-b border-slate-100">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row gap-6">
-      
-      <!-- Category Filter -->
-      <div class="flex-1">
-        <h3 class="text-sm font-semibold text-slate-700 mb-3">
-          {lang === 'fi' ? 'Kategoria' : 'Category'}
-        </h3>
-        <div class="flex flex-wrap gap-2">
-          {categories.map(cat => (
-            <button
-              class={`px-3 py-1.5 text-sm rounded-full transition-all duration-200 ${
-                cat.id === 'all' 
-                  ? 'bg-[#1E2A7A] text-white' 
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-              }`}
-            >
-              {cat.label} ({cat.count})
-            </button>
-          ))}
+  <!-- Filters Section -->
+  <section class="py-6 bg-white border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row gap-6">
+        
+        <!-- Category Filter -->
+        <div class="flex-1">
+          <h3 class="text-xs font-semibold text-[#1E40AF] mb-2">
+            {isFi ? 'Kategoria' : 'Category'}
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {categories.map(cat => (
+              <button
+                class={`px-3 py-1.5 text-xs rounded-full transition-all duration-200 ${
+                  cat.id === 'all' 
+                    ? 'bg-[#1E2A7A] text-white' 
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                {cat.label} ({cat.count})
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <!-- Framework Filter -->
-      <div class="flex-1">
-        <h3 class="text-sm font-semibold text-slate-700 mb-3">
-          {lang === 'fi' ? 'Standardi' : 'Framework'}
-        </h3>
-        <div class="flex flex-wrap gap-2">
-          {frameworks.map(framework => (
-            <button
-              class={`px-3 py-1.5 text-sm rounded-full transition-all duration-200 ${
-                framework.id === 'all' 
-                  ? 'bg-[#1E2A7A] text-white' 
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-              }`}
-            >
-              {framework.label} ({framework.count})
-            </button>
-          ))}
+        <!-- Framework Filter -->
+        <div class="flex-1">
+          <h3 class="text-xs font-semibold text-[#1E40AF] mb-2">
+            {isFi ? 'Standardi' : 'Framework'}
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {frameworks.map(framework => (
+              <button
+                class={`px-3 py-1.5 text-xs rounded-full transition-all duration-200 ${
+                  framework.id === 'all' 
+                    ? 'bg-[#1E2A7A] text-white' 
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                {framework.label} ({framework.count})
+              </button>
+            ))}
+          </div>
         </div>
+        
       </div>
-      
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Resources Grid -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {resources.map(resource => (
-        <div class="bg-slate-50/50 rounded-xl border border-slate-100
-                    hover:border-blue-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-2
-                    transition-all duration-300
-                    flex flex-col h-full group">
-          
-          <div class="p-6 flex flex-col h-full">
+  <!-- Resources Grid -->
+  <section class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {resources.map((resource) => (
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm
+                      hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6]
+                      transition-all duration-300
+                      flex flex-col h-full p-5 md:p-6 group relative overflow-hidden">
             
-            <div class="flex justify-between items-start mb-4">
-              <div class="flex flex-wrap gap-2">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6] group-hover:h-[6px] transition-all duration-300 z-20"></div>
+            
+            <div class="flex justify-between items-start mb-3 relative z-10">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#3B82F6]/10 text-[#3B82F6]">
                   {resource.category}
                 </span>
-                {resource.framework && (
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700">
-                    {resource.framework}
-                  </span>
-                )}
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                  {resource.framework}
+                </span>
               </div>
               <div class="flex-shrink-0">
-                <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center
+                <div class="w-8 h-8 bg-white rounded-xl flex items-center justify-center
+                            border-2 border-[#3B82F6]
                             transition-all duration-300
-                            group-hover:bg-gradient-to-r group-hover:from-[#1E2A7A] group-hover:to-[#3B82F6]">
-                  <Icon name={resource.type === 'download' ? 'arrowDownTray' : 'eye'} class="w-5 h-5 text-blue-600 group-hover:text-white transition-colors duration-300" />
+                            group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:shadow-lg
+                            group-hover:border-transparent">
+                  <Icon name={resource.type === 'download' ? 'arrowDownTray' : 'eye'} class="w-4 h-4 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
                 </div>
               </div>
             </div>
             
-            <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+            <h3 class="text-base font-bold text-[#1E40AF] mb-1.5 group-hover:text-[#3bb1f6] transition-colors duration-300 relative z-10">
               {resource.title}
             </h3>
             
-            <p class="text-slate-500 text-sm mb-4 flex-1">
+            <p class="text-sm text-slate-500 leading-relaxed mb-3 flex-1 group-hover:text-slate-600 transition-colors duration-300 relative z-10">
               {resource.description}
             </p>
             
-            <div class="flex items-center justify-between text-xs text-slate-400 mb-5">
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-4 relative z-10">
               <span>{resource.date}</span>
               <span>{resource.readTime}</span>
             </div>
             
             <a 
               href={resource.url}
-              class="inline-flex items-center justify-center w-full px-4 py-2.5 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm gap-2"
+              class="mt-auto inline-flex items-center justify-center px-4 py-2 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-1.5 relative z-10"
             >
               {resource.type === 'download' 
-                ? (lang === 'fi' ? 'Lataa nyt' : 'Download Now') 
-                : (lang === 'fi' ? 'Lue lisää' : 'Read More')}
-              <Icon name={resource.type === 'download' ? 'arrowDownTray' : 'arrowRight'} class="w-4 h-4" />
+                ? (isFi ? 'Lataa nyt' : 'Download Now') 
+                : (isFi ? 'Lue lisää' : 'Read More')}
+              <Icon name={resource.type === 'download' ? 'arrowDownTray' : 'arrowRight'} class="h-4 w-4" />
             </a>
           </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-      
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-slate-900">
-        {lang === 'fi' ? 'Tarvitsetko apua resurssien käytössä?' : 'Need help using these resources?'}
-      </h2>
-
-      <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
-        {lang === 'fi' 
-          ? 'Asiantuntijamme voivat auttaa sinua hyödyntämään näitä resursseja tehokkaasti organisaatiossasi.' 
-          : 'Our experts can help you leverage these resources effectively in your organization.'}
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        
-        <a href="/contact" 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium gap-2">
-          {lang === 'fi' ? 'Ota yhteyttä' : 'Contact Us'}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-        
-        <a href="/services" 
-           class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium">
-          {lang === 'fi' ? 'Tutustu palveluihimme' : 'View Our Services'}
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
+        ))}
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-12 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-white rounded-2xl border-2 border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 p-8 md:p-12 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3B82F6] to-[#3bb1f6]"></div>
+        
+        <div class="flex items-center justify-center gap-4 mb-4">
+          <div class="h-px w-10 bg-gradient-to-r from-transparent to-[#1E2A7A]"></div>
+          <span class="text-[#1E2A7A] text-xl font-bold">✦</span>
+          <div class="h-px w-10 bg-gradient-to-l from-transparent to-[#1E2A7A]"></div>
+        </div>
+        
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3 text-[#1E2A7A]">
+          {isFi ? 'Tarvitsetko apua resurssien käytössä?' : 'Need help using these resources?'}
+        </h2>
+
+        <p class="text-sm md:text-base text-[#1E2A7A] mb-6 max-w-2xl mx-auto leading-relaxed">
+          {isFi 
+            ? 'Asiantuntijamme voivat auttaa sinua hyödyntämään näitä resursseja tehokkaasti organisaatiossasi.' 
+            : 'Our experts can help you leverage these resources effectively in your organization.'}
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="/contact" 
+             class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-lg font-medium text-sm gap-2 group">
+            {isFi ? 'Ota yhteyttä' : 'Contact Us'}
+            <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href="/services" 
+             class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] bg-white hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-2 group">
+            {isFi ? 'Tutustu palveluihimme' : 'View Our Services'}
+            <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </Layout>
