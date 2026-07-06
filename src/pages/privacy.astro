@@ -16,6 +16,7 @@ const seoConfig = {
 const content = {
   en: {
     title: "Privacy Policy",
+    subtitle: "Data Protection & Privacy Governance",
     lastUpdated: "Last updated: January 2025",
     intro: "At Cyber Security Finland, we take your privacy seriously. This policy describes how we collect, use, and protect your personal data.",
     sections: [
@@ -59,6 +60,7 @@ const content = {
   },
   fi: {
     title: "Tietosuojakäytäntö",
+    subtitle: "Tietosuoja & tietosuojahallinta",
     lastUpdated: "Päivitetty viimeksi: Tammikuu 2025",
     intro: "Cyber Security Finland ottaa yksityisyytesi vakavasti. Tämä käytäntö kuvaa, kuinka keräämme, käytämme ja suojaamme henkilötietojasi.",
     sections: [
@@ -103,46 +105,45 @@ const content = {
 };
 
 const c = content[lang];
+const isFi = lang === 'fi';
 ---
 
 <Layout {...seoConfig}>
-  
-  <!-- Hero Section - Centered with icon -->
-  <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 py-20 md:py-28">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      
-      <div class="flex justify-center mb-4">
-        <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
-          <Icon name="shield-check" class="w-8 h-8 text-[#1E2A7A]" />
-        </div>
+
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {c.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {c.intro}
+        </p>
       </div>
-      
-      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
-        {c.title}
-      </h1>
-      
-      <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
-        {c.intro}
-      </p>
-      
     </div>
   </section>
 
   <!-- Content Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <p class="text-sm text-slate-400 mb-8 text-center">{c.lastUpdated}</p>
-
-      <div class="space-y-6">
-        {c.sections.map((section) => (
-          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 hover:bg-slate-50 transition-all duration-300">
-            <h2 class="text-xl font-bold text-[#1E2A7A] mb-3">{section.title}</h2>
-            <p class="text-slate-600 leading-relaxed">{section.content}</p>
-          </div>
-        ))}
+  <section class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <p class="text-xs text-slate-400 mb-6">{c.lastUpdated}</p>
+        <div class="space-y-4">
+          {c.sections.map((section) => (
+            <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 group">
+              <h2 class="text-sm font-bold text-[#1E40AF] mb-2 group-hover:text-[#3bb1f6] transition-colors duration-300">
+                {section.title}
+              </h2>
+              <p class="text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                {section.content}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
-      
     </div>
   </section>
 

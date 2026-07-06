@@ -1,156 +1,228 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
+
+const seoConfig = {
+  title: lang === 'fi' ? "Ota yhteyttä" : "Contact",
+  description: lang === 'fi'
+    ? "Ota yhteyttä Cyber Security Finlandin kyberturvallisuusasiantuntijoihin."
+    : "Contact Cyber Security Finland's cybersecurity experts.",
+  type: "page" as const,
+};
+
+const content = {
+  en: {
+    title: "Contact",
+    subtitle: "Get in Touch",
+    description: "Connect with our team of cybersecurity experts. We're here to help you with your security challenges.",
+  },
+  fi: {
+    title: "Yhteystiedot",
+    subtitle: "Ota yhteyttä",
+    description: "Ota yhteyttä kyberturvallisuusasiantuntijatiimiimme. Olemme täällä auttamassa sinua turvallisuushaasteissasi.",
+  }
+};
+
+const c = content[lang];
+const isFi = lang === 'fi';
 ---
 
-<Layout title="Contact">
-  <div class="min-h-screen bg-white">
-    <section class="pt-12 md:pt-16 pb-4">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl">
-          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
-            <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
-              Get in Touch
-            </span>
-          </h1>
-          <p class="text-lg md:text-xl text-slate-600 leading-relaxed max-w-3xl">
-            Connect with our team of cybersecurity experts.
-          </p>
+<Layout {...seoConfig}>
+
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {c.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {c.description}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Information Cards -->
+  <section class="py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Phone -->
+        <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6 text-center hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 group">
+          <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mx-auto mb-3 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+            <Icon name="phone" class="w-6 h-6 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+          </div>
+          <h3 class="text-sm font-bold text-[#1E40AF] mb-1 group-hover:text-[#3bb1f6] transition-colors duration-300">Phone</h3>
+          <p class="text-sm text-slate-500">+358 44 5040308</p>
+          <p class="text-xs text-slate-400 mt-1">{isFi ? 'Ma-Pe, 9:00-17:00' : 'Mon-Fri, 9:00-17:00'}</p>
+        </div>
+
+        <!-- Email -->
+        <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6 text-center hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 group">
+          <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mx-auto mb-3 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+            <Icon name="mail" class="w-6 h-6 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+          </div>
+          <h3 class="text-sm font-bold text-[#1E40AF] mb-1 group-hover:text-[#3bb1f6] transition-colors duration-300">Email</h3>
+          <p class="text-sm text-slate-500">info@cybersecurity.fi</p>
+          <p class="text-xs text-slate-400 mt-1">{isFi ? 'Vastaamme 24 tunnin sisällä' : 'We respond within 24h'}</p>
+        </div>
+
+        <!-- Location -->
+        <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6 text-center hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 group">
+          <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mx-auto mb-3 border-2 border-[#3B82F6] group-hover:bg-gradient-to-r group-hover:from-[#3B82F6] group-hover:to-[#3bb1f6] group-hover:border-transparent transition-all duration-300">
+            <Icon name="map-pin" class="w-6 h-6 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+          </div>
+          <h3 class="text-sm font-bold text-[#1E40AF] mb-1 group-hover:text-[#3bb1f6] transition-colors duration-300">Location</h3>
+          <p class="text-sm text-slate-500">Helsinki, Finland</p>
+          <p class="text-xs text-slate-400 mt-1">{isFi ? 'Palvelemme asiakkaita maailmanlaajuisesti' : 'Serving clients globally'}</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Contact Information Cards -->
-    <section class="py-8">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <!-- Phone -->
-          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6 text-center">
-            <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-3">
-              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
+  <!-- Contact Form -->
+  <section class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+          <h2 class="text-2xl md:text-3xl font-bold text-[#3B82F6] mb-6">{isFi ? 'Lähetä viesti' : 'Send Us a Message'}</h2>
+          <form class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6 md:p-8">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">{isFi ? 'Etunimi *' : 'First Name *'}</label>
+                <input type="text" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6]/20 transition-all duration-200 bg-white" placeholder={isFi ? 'Anna etunimesi' : 'Enter your first name'}>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">{isFi ? 'Sukunimi *' : 'Last Name *'}</label>
+                <input type="text" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6]/20 transition-all duration-200 bg-white" placeholder={isFi ? 'Anna sukunimesi' : 'Enter your last name'}>
+              </div>
             </div>
-            <h3 class="text-base font-bold text-slate-800 mb-1">Phone</h3>
-            <p class="text-sm text-slate-500">+358 44 5040308</p>
-            <p class="text-xs text-slate-400 mt-1">Mon-Fri, 9:00-17:00</p>
+            <div class="grid md:grid-cols-2 gap-6 mt-6">
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">{isFi ? 'Yritys' : 'Company'}</label>
+                <input type="text" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6]/20 transition-all duration-200 bg-white" placeholder={isFi ? 'Anna yrityksesi nimi' : 'Enter your company name'}>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">{isFi ? 'Sähköposti *' : 'Email *'}</label>
+                <input type="email" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6]/20 transition-all duration-200 bg-white" placeholder={isFi ? 'Anna sähköpostiosoitteesi' : 'Enter your email address'}>
+              </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6 mt-6">
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">{isFi ? 'Puhelinnumero' : 'Phone Number'}</label>
+                <input type="tel" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6]/20 transition-all duration-200 bg-white" placeholder={isFi ? 'Anna puhelinnumerosi' : 'Enter your phone number'}>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">{isFi ? 'Kiinnostuksen kohde' : 'Service Interest'}</label>
+                <select class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6]/20 transition-all duration-200 bg-white">
+                  <option value="">{isFi ? 'Valitse palvelu' : 'Select a service'}</option>
+                  <option value="iso-27001">ISO 27001 Certification</option>
+                  <option value="nis2">NIS2 Compliance</option>
+                  <option value="gdpr">GDPR & Privacy</option>
+                  <option value="dora">DORA Compliance</option>
+                  <option value="soc2">SOC2 Readiness</option>
+                  <option value="ciso">CISO as a Service</option>
+                  <option value="dpo">DPO as a Service</option>
+                  <option value="risk">Risk Assessment</option>
+                  <option value="other">{isFi ? 'Muu / Yleinen tiedustelu' : 'Other/General Inquiry'}</option>
+                </select>
+              </div>
+            </div>
+            <div class="mt-6">
+              <label class="block text-sm font-medium text-slate-700 mb-2">{isFi ? 'Viesti *' : 'Message *'}</label>
+              <textarea rows="5" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6]/20 transition-all duration-200 bg-white" placeholder={isFi ? 'Kuvaile tarpeitasi tai kysymyksiäsi...' : 'Describe your needs or questions...'}></textarea>
+            </div>
+            <div class="mt-6">
+              <button type="submit" class="w-full md:w-auto inline-flex items-center justify-center px-8 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm">
+                {isFi ? 'Lähetä viesti' : 'Send Message'}
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6 hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300">
+            <h3 class="text-base font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300">{isFi ? 'Palvelumme' : 'Our Services'}</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="w-4 h-4 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <span><span class="font-semibold text-slate-700">ISO 27001</span> — {isFi ? 'Täydellinen ISMS-toteutus 90 päivässä' : 'Complete ISMS implementation in 90 days'}</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="w-4 h-4 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <span><span class="font-semibold text-slate-700">NIS2 Compliance</span> — {isFi ? 'Valmistaudu NIS2-direktiivin vaatimuksiin' : 'Prepare for NIS2 directive requirements'}</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="w-4 h-4 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <span><span class="font-semibold text-slate-700">GDPR Compliance</span> — {isFi ? 'Tietosuoja ja tietosuojan hallinta' : 'Data protection and privacy management'}</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="w-4 h-4 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <span><span class="font-semibold text-slate-700">DORA Compliance</span> — {isFi ? 'Digitaalinen operatiivinen resilienssi' : 'Digital operational resilience'}</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="w-4 h-4 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <span><span class="font-semibold text-slate-700">V-CISO Service</span> — {isFi ? 'Virtuaalinen tietoturvapäällikkö' : 'Virtual CISO guidance'}</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="w-4 h-4 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <span><span class="font-semibold text-slate-700">V-DPO Service</span> — {isFi ? 'Virtuaalinen tietosuojavastaava' : 'Virtual Data Protection Officer'}</span>
+              </li>
+            </ul>
           </div>
-
-          <!-- Email -->
-          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6 text-center">
-            <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-3">
-              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <h3 class="text-base font-bold text-slate-800 mb-1">Email</h3>
-            <p class="text-sm text-slate-500">info@cybersecurity.fi</p>
-            <p class="text-xs text-slate-400 mt-1">We respond within 24h</p>
-          </div>
-
-          <!-- Location -->
-          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6 text-center">
-            <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-3">
-              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </div>
-            <h3 class="text-base font-bold text-slate-800 mb-1">Location</h3>
-            <p class="text-sm text-slate-500">Helsinki, Finland</p>
-            <p class="text-xs text-slate-400 mt-1">Serving clients globally</p>
+          <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6 hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300">
+            <h3 class="text-base font-bold text-[#1E40AF] mb-3 group-hover:text-[#3bb1f6] transition-colors duration-300">{isFi ? 'Miksi valita meidät?' : 'Why Choose Us?'}</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="w-4 h-4 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                {isFi ? 'Asiantuntijatiimi Suomessa' : 'Expert team based in Finland'}
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="w-4 h-4 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                {isFi ? 'Todistetut menetelmät 90 päivän toteutuksella' : 'Proven methodologies with 90-day implementation'}
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="w-4 h-4 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                {isFi ? 'Jatkuva tuki ja asiantuntemus' : 'Ongoing support and expertise'}
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="w-4 h-4 text-[#3B82F6] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                {isFi ? 'Toimialakohtainen asiantuntemus' : 'Industry-specific expertise'}
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Contact Form -->
-    <section class="py-12">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-3 gap-8">
-          <div class="lg:col-span-2">
-            <h2 class="text-2xl md:text-3xl font-bold text-[#3B82F6] mb-6">Send Us a Message</h2>
-            <form class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6 md:p-8">
-              <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label class="block text-sm font-medium text-slate-700 mb-2">First Name *</label>
-                  <input type="text" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-white" placeholder="Enter your first name">
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-slate-700 mb-2">Last Name *</label>
-                  <input type="text" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-white" placeholder="Enter your last name">
-                </div>
-              </div>
-              <div class="grid md:grid-cols-2 gap-6 mt-6">
-                <div>
-                  <label class="block text-sm font-medium text-slate-700 mb-2">Company</label>
-                  <input type="text" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-white" placeholder="Enter your company name">
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-slate-700 mb-2">Email *</label>
-                  <input type="email" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-white" placeholder="Enter your email address">
-                </div>
-              </div>
-              <div class="grid md:grid-cols-2 gap-6 mt-6">
-                <div>
-                  <label class="block text-sm font-medium text-slate-700 mb-2">Phone Number</label>
-                  <input type="tel" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-white" placeholder="Enter your phone number">
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-slate-700 mb-2">Service Interest</label>
-                  <select class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-white">
-                    <option value="">Select a service</option>
-                    <option value="iso-27001">ISO 27001 Certification</option>
-                    <option value="nis2">NIS2 Compliance</option>
-                    <option value="gdpr">GDPR & Privacy</option>
-                    <option value="dora">DORA Compliance</option>
-                    <option value="soc2">SOC2 Readiness</option>
-                    <option value="ciso">CISO as a Service</option>
-                    <option value="dpo">DPO as a Service</option>
-                    <option value="risk">Risk Assessment</option>
-                    <option value="other">Other/General Inquiry</option>
-                  </select>
-                </div>
-              </div>
-              <div class="mt-6">
-                <label class="block text-sm font-medium text-slate-700 mb-2">Message *</label>
-                <textarea rows="5" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-white" placeholder="Describe your needs or questions..."></textarea>
-              </div>
-              <div class="mt-6">
-                <button type="submit" class="w-full md:w-auto inline-flex items-center justify-center px-8 py-3 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1E2A7A] text-white hover:from-[#3bb1f6] hover:to-[#3B82F6] transition-all duration-300 hover:shadow-lg font-medium text-sm">
-                  Send Message
-                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-            </form>
-          </div>
-          
-          <!-- Sidebar -->
-          <div class="space-y-6">
-            <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6">
-              <h3 class="text-xl font-bold text-slate-800 mb-3">Our Services</h3>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-2 text-sm"><svg class="w-4 h-4 text-blue-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg> <span><span class="font-semibold">ISO 27001</span> — Complete ISMS implementation in 90 days</span></li>
-                <li class="flex items-start gap-2 text-sm"><svg class="w-4 h-4 text-blue-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg> <span><span class="font-semibold">NIS2 Compliance</span> — Prepare for NIS2 directive requirements</span></li>
-                <li class="flex items-start gap-2 text-sm"><svg class="w-4 h-4 text-blue-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg> <span><span class="font-semibold">GDPR Compliance</span> — Data protection and privacy management</span></li>
-                <li class="flex items-start gap-2 text-sm"><svg class="w-4 h-4 text-blue-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg> <span><span class="font-semibold">DORA Compliance</span> — Digital operational resilience</span></li>
-                <li class="flex items-start gap-2 text-sm"><svg class="w-4 h-4 text-blue-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg> <span><span class="font-semibold">V-CISO Service</span> — Virtual CISO guidance</span></li>
-                <li class="flex items-start gap-2 text-sm"><svg class="w-4 h-4 text-blue-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg> <span><span class="font-semibold">V-DPO Service</span> — Virtual Data Protection Officer</span></li>
-              </ul>
-            </div>
-            <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-6">
-              <h3 class="text-xl font-bold text-slate-800 mb-3">Why Choose Us?</h3>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-2 text-sm"><svg class="w-4 h-4 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Expert team based in Finland</li>
-                <li class="flex items-start gap-2 text-sm"><svg class="w-4 h-4 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Proven methodologies with 90-day implementation</li>
-                <li class="flex items-start gap-2 text-sm"><svg class="w-4 h-4 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Ongoing support and expertise</li>
-                <li class="flex items-start gap-2 text-sm"><svg class="w-4 h-4 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Industry-specific expertise</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
 </Layout>

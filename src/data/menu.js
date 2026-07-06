@@ -1,6 +1,6 @@
 export const menu = [
   {
-    label_fi: "KOTI",
+    label_fi: "ETUSIVU",
     label_en: "HOME",
     href: "/",
     children: []

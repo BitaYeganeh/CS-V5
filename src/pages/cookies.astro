@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
@@ -15,6 +16,7 @@ const seoConfig = {
 const content = {
   en: {
     title: "Cookie Policy",
+    subtitle: "Cookies & Tracking Technologies",
     lastUpdated: "Last updated: January 2025",
     intro: "This policy explains how Cyber Security Finland uses cookies and similar technologies on our website.",
     sections: [
@@ -54,6 +56,7 @@ const content = {
   },
   fi: {
     title: "Evästekäytäntö",
+    subtitle: "Evästeet & seurantateknologiat",
     lastUpdated: "Päivitetty viimeksi: Tammikuu 2025",
     intro: "Tämä käytäntö selittää, kuinka Cyber Security Finland käyttää evästeitä ja vastaavia teknologioita verkkosivustollamme.",
     sections: [
@@ -94,72 +97,43 @@ const content = {
 };
 
 const c = content[lang];
+const isFi = lang === 'fi';
 ---
 
 <Layout {...seoConfig}>
 
   <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-blue-50 to-white text-slate-900 overflow-hidden">
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-16">
-      
-      <div class="text-center max-w-4xl mx-auto">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4">
-          <span class="text-[#1E2A7A]">{c.title}</span>
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {c.subtitle}
+          </span>
         </h1>
-        <p class="text-sm text-slate-500 mt-2">{c.lastUpdated}</p>
-        <p class="text-base md:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed mt-6">
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
           {c.intro}
         </p>
       </div>
-      
     </div>
   </section>
 
-  <!-- Content Sections -->
-  <section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="space-y-6">
-        {c.sections.map((section, index) => (
-          <div class="bg-slate-50/50 rounded-xl border border-slate-100 p-6 hover:border-blue-300 hover:bg-slate-50 hover:shadow-md transition-all duration-300">
-            <h2 class="text-xl md:text-2xl font-bold text-[#1E2A7A] mb-3">
-              {section.title}
-            </h2>
-            <p class="text-slate-500 leading-relaxed">
-              {section.content}
-            </p>
-          </div>
-        ))}
-      </div>
-      
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-12 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-[#1E2A7A]">
-          {lang === 'fi' ? 'Kysyttävää evästeistä?' : 'Questions About Cookies?'}
-        </h2>
-        <p class="text-base md:text-lg text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
-          {lang === 'fi' 
-            ? 'Jos sinulla on kysyttävää evästekäytännöstämme, ota meihin yhteyttä.' 
-            : 'If you have any questions about our cookie policy, please contact us.'}
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-[#1E2A7A] to-[#3B82F6] text-white hover:from-[#3B82F6] hover:to-[#1E2A7A] transition-all duration-300 hover:shadow-lg font-medium text-sm sm:text-base gap-2">
-            {lang === 'fi' ? 'Ota yhteyttä' : 'Contact Us'}
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-          </a>
-          <a href="/" class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-[#1E40AF] text-[#1E40AF] hover:bg-gradient-to-r hover:from-[#1E2A7A] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm sm:text-base gap-2">
-            {lang === 'fi' ? 'Takaisin etusivulle' : 'Back to Home'}
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-          </a>
+  <!-- Content Section -->
+  <section class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <p class="text-xs text-slate-400 mb-6">{c.lastUpdated}</p>
+        <div class="space-y-4">
+          {c.sections.map((section) => (
+            <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 group">
+              <h2 class="text-sm font-bold text-[#1E40AF] mb-2 group-hover:text-[#3bb1f6] transition-colors duration-300">
+                {section.title}
+              </h2>
+              <p class="text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                {section.content}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

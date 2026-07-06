@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Icon from '@/components/ui/icons/Icon.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = currentPath.startsWith('/fi') ? 'fi' : 'en';
@@ -15,6 +16,7 @@ const seoConfig = {
 const content = {
   en: {
     title: "Terms of Service",
+    subtitle: "Terms & Conditions",
     lastUpdated: "Last updated: January 2025",
     intro: "These terms govern your use of the Cyber Security Finland website and services. By using our services, you agree to these terms.",
     sections: [
@@ -54,6 +56,7 @@ const content = {
   },
   fi: {
     title: "Käyttöehdot",
+    subtitle: "Käyttöehdot & ehdot",
     lastUpdated: "Päivitetty viimeksi: Tammikuu 2025",
     intro: "Nämä ehdot koskevat Cyber Security Finlandin verkkosivuston ja palveluiden käyttöä. Käyttämällä palveluitamme hyväksyt nämä ehdot.",
     sections: [
@@ -94,23 +97,46 @@ const content = {
 };
 
 const c = content[lang];
+const isFi = lang === 'fi';
 ---
 
 <Layout {...seoConfig}>
-  <section class="py-16 bg-gradient-to-b from-slate-50 to-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl font-bold text-slate-900 mb-4">{c.title}</h1>
-      <p class="text-sm text-slate-500 mb-8">{c.lastUpdated}</p>
-      <p class="text-lg text-slate-600 mb-12">{c.intro}</p>
 
-      <div class="space-y-8">
-        {c.sections.map((section) => (
-          <div class="bg-white p-6 rounded-lg border border-slate-200">
-            <h2 class="text-xl font-semibold text-slate-900 mb-3">{section.title}</h2>
-            <p class="text-slate-600 leading-relaxed">{section.content}</p>
-          </div>
-        ))}
+  <!-- Hero Section -->
+  <section class="pt-10 md:pt-14 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
+          <span class="bg-gradient-to-r from-[#1E2A7A] to-[#3bb1f6] bg-clip-text text-transparent">
+            {c.subtitle}
+          </span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {c.intro}
+        </p>
       </div>
     </div>
   </section>
+
+  <!-- Content Section -->
+  <section class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <p class="text-xs text-slate-400 mb-6">{c.lastUpdated}</p>
+        <div class="space-y-4">
+          {c.sections.map((section) => (
+            <div class="bg-white rounded-xl border-2 border-slate-100 shadow-sm p-5 md:p-6 hover:shadow-xl hover:-translate-y-1 hover:border-[#3B82F6] transition-all duration-300 group">
+              <h2 class="text-sm font-bold text-[#1E40AF] mb-2 group-hover:text-[#3bb1f6] transition-colors duration-300">
+                {section.title}
+              </h2>
+              <p class="text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                {section.content}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
 </Layout>
