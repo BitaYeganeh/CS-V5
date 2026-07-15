@@ -78,7 +78,7 @@ const isFi = lang === 'fi';
         <p class="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
           {isFi 
             ? 'Lataa ohjeita ja oppaita kyberturvallisuuden ja sääntelyn noudattamiseksi.'
-            : 'Download guides and tutorials for cybersecurity and compliance.'}
+            : 'Guides and tutorials for cybersecurity and compliance.'}
         </p>
       </div>
     </div>
@@ -123,10 +123,9 @@ const isFi = lang === 'fi';
             
             <a 
               href={guide.url}
-              class="mt-auto inline-flex items-center justify-center px-4 py-2 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-1.5 relative z-10"
+              class="mt-auto inline-flex items-center justify-center px-2 py-2 rounded-full border-2 border-[#3B82F6] text-[#3B82F6] hover:bg-gradient-to-r hover:from-[#3bb1f6] hover:to-[#3B82F6] hover:text-white hover:border-transparent transition-all duration-300 font-medium text-sm gap-1.5 relative z-10"
             >
-              {isFi ? 'Lataa opas' : 'Download Guide'}
-              <Icon name="arrowDownTray" class="h-4 w-4" />
+              {isFi ? 'Lue Lisää' : 'Read More'}
             </a>
           </div>
         ))}
