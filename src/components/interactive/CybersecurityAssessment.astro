@@ -301,7 +301,9 @@ const assessmentQuestions = [
       
       recommendationsEl.innerHTML = recommendations.map(rec => 
         `<li class="flex items-start">
-          <Icon name="arrow-right" class="w-4 h-4 text-[#3B82F6] mt-0.5 mr-2 flex-shrink-0" />
+          <svg class="w-4 h-4 text-[#3B82F6] mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
           <span>${rec}</span>
         </li>`
       ).join('');
